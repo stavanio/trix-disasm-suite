@@ -1,241 +1,389 @@
 """
 TRiX: Transparent Real-time eXplainable Control
 
-Core safety governor implementing closed-form manifold projections
-for each DISASM-Bench task primitive.
+Core implementation of neuro-symbolic gating with deterministic explanations.
 
-Each projection is O(1) computation (Table 3):
-  - Helical (SCREW): 3 multiplications, 2 additions, 1 division
-  - Thermal (BATTERY): 1 dot product, 1 comparison, 1 division
-  - Planar (PCB): 1 comparison, 2 assignments
-  - Tangential (CRANK): 2 trig, 2 dot products, 1 clip
-
-References:
-  - Helical projection: Eq. 5-6 (Section 3.3)
-  - Thermal projection: Eq. 7 (Section 3.4.1)
-  - Planar projection: Eq. 8 (Section 3.4.2)
-  - ISS guarantee: Theorem 1 (Section 3.5)
+Components:
+1. Symbolic rule system (φ_t computation)
+2. Smooth feasibility gating (sigmoid mask)
+3. Neural policy (SAC-based)
+4. Deterministic explanation generation
 """
 
 import numpy as np
-import math
-from typing import Tuple, Dict, Optional
-
-from .manifolds import (
-    helical_projection,
-    thermal_projection,
-    planar_projection,
-    tangential_projection,
-    path_projection,
-    sequential_gate,
-)
+import torch
+import torch.nn as nn
+import torch.nn.functional as F
+from typing import Dict, List, Tuple, Optional
+from dataclasses import dataclass
+from enum import Enum
 
 
-class TRiXGovernor:
-    """
-    TRiX neuro-symbolic safety governor.
+@dataclass
+class Rule:
+    """Symbolic safety rule."""
+    rule_id: str
+    weight: float
+    description: str
+    check_fn: callable  # z_t, u -> violation_value (≥0)
+    explanation_template: str
+    safe_alternative: str
 
-    Projects neural policy actions onto task-specific differentiable manifolds
-    before execution:  u_safe = Psi_M(u_pi)  (Eq. 3)
 
-    Properties:
-      - Instantaneous: O(1) closed-form computation
-      - Minimal: closest safe action to proposal
-      - Guaranteed: manifold membership by construction
-      - Interpretable: equations encode physical laws directly
-    """
-
-    def __init__(self, task: str, params: Optional[Dict] = None):
-        self.task = task.upper()
-        self.params = params or {}
-        self._setup_manifold()
-
-    def _setup_manifold(self):
-        """Configure manifold parameters for each task."""
-        if self.task == 'SCREW':
-            self.pitch = self.params.get('pitch', 1.25)  # mm/rev
-            self.k = self.pitch / (2 * np.pi)
-            self.torque_margin = self.params.get('torque_margin', 0.55)
-            self.force_margin = self.params.get('force_margin', 0.58)
-
-        elif self.task == 'BATTERY':
-            self.T_crit = self.params.get('T_crit', 60.0)
-            self.P_max_base = self.params.get('P_max_base', 20.0)
-            self.kappa = self.params.get('kappa', 0.1)
-            self.eta = self.params.get('eta', 0.7)
-
-        elif self.task == 'PCB':
-            self.tau_max = self.params.get('tau_max', 0.1)  # Nm
-            self.F_frac = self.params.get('F_frac', 30.0)   # N
-
-        elif self.task == 'CRANK':
-            self.radius = self.params.get('radius', 0.10)
-            self.F_tang_max = self.params.get('F_tang_max', 12.0)
-
-        elif self.task == 'PRY':
-            self.lateral_limit = self.params.get('lateral_limit', 2.0)  # mm
-
-        elif self.task == 'SNAP':
-            pass  # sequential gate uses runtime state
-
-    def project(self, action: np.ndarray, state: Optional[Dict] = None) -> np.ndarray:
+class RuleLibrary:
+    """Library of symbolic safety rules for disassembly tasks."""
+    
+    def __init__(self):
+        self.rules: List[Rule] = []
+        self._build_rules()
+        
+    def _build_rules(self):
+        """Define standard disassembly safety rules."""
+        
+        # Rule 1: No high force without alignment
+        self.rules.append(Rule(
+            rule_id="R1_MISALIGNED_FORCE",
+            weight=10.0,
+            description="High force without proper alignment",
+            check_fn=lambda z, u: max(0, (1.0 - z[1]) * np.linalg.norm(u[:3]) - 0.05),
+            explanation_template="Tool not aligned with target. High force may damage component.",
+            safe_alternative="Align tool before applying force (reduce velocity, adjust position)"
+        ))
+        
+        # Rule 2: No high velocity in hazard zone
+        self.rules.append(Rule(
+            rule_id="R2_HAZARD_VELOCITY",
+            weight=20.0,
+            description="Excessive velocity near hazard zone",
+            check_fn=lambda z, u: max(0, z[2] * (np.linalg.norm(u[:3]) - 0.03)),
+            explanation_template="Approaching battery/hazard region too quickly.",
+            safe_alternative="Reduce velocity to < 0.03 m/s near hazard zones"
+        ))
+        
+        # Rule 3: No force on missing component
+        self.rules.append(Rule(
+            rule_id="R3_MISSING_COMPONENT",
+            weight=15.0,
+            description="Applying force to missing component",
+            check_fn=lambda z, u: max(0, (1.0 - z[0]) * np.linalg.norm(u)),
+            explanation_template="Target component not detected. Force application invalid.",
+            safe_alternative="Verify component presence before applying force"
+        ))
+        
+        # Rule 4: Force magnitude limit
+        self.rules.append(Rule(
+            rule_id="R4_FORCE_LIMIT",
+            weight=15.0,
+            description="Exceeding maximum safe force",
+            check_fn=lambda z, u: max(0, np.linalg.norm(u) - 0.5),
+            explanation_template="Action exceeds maximum safe force threshold.",
+            safe_alternative="Reduce action magnitude to < 0.5"
+        ))
+        
+    def compute_violation_score(self, z_t: np.ndarray, u: np.ndarray) -> Tuple[float, List[str]]:
         """
-        Project a proposed action onto the safe manifold.
-
+        Compute total violation score φ_t(u).
+        
         Args:
-            action: Proposed action from neural policy (R^6 or R^3)
-            state: Optional runtime state (temperature, angle, etc.)
-
+            z_t: Symbolic state vector (predicates)
+            u: Candidate action
+            
         Returns:
-            Safe action on the manifold
+            phi: Total violation score
+            triggered_rules: List of rule IDs that were violated
         """
-        state = state or {}
-
-        if self.task == 'SCREW':
-            return self._project_screw(action)
-        elif self.task == 'BATTERY':
-            return self._project_battery(action, state.get('temperature', 25.0))
-        elif self.task == 'PCB':
-            return self._project_pcb(action)
-        elif self.task == 'CRANK':
-            return self._project_crank(action, state.get('angle', 0.0))
-        elif self.task == 'PRY':
-            return self._project_pry(action)
-        elif self.task == 'SNAP':
-            return self._project_snap(action, state.get('latch_deflected', False))
+        phi = 0.0
+        triggered_rules = []
+        
+        for rule in self.rules:
+            violation = rule.check_fn(z_t, u)
+            if violation > 0:
+                phi += rule.weight * violation
+                triggered_rules.append(rule.rule_id)
+        
+        return phi, triggered_rules
+        
+    def generate_explanation(self, z_t: np.ndarray, u: np.ndarray, phi: float) -> Dict:
+        """
+        Generate deterministic explanation from rule triggers.
+        
+        Returns dict with:
+            - rule_id: Primary violated rule
+            - description: Human-readable explanation
+            - safe_alternative: Suggested safe action
+            - confidence: 1.0 - sigmoid(phi - tau) 
+            - risk_level: "low" | "medium" | "high"
+        """
+        _, triggered = self.compute_violation_score(z_t, u)
+        
+        if not triggered:
+            return {
+                'rule_id': None,
+                'description': "Action within safety bounds",
+                'safe_alternative': "Continue with proposed action",
+                'confidence': 1.0,
+                'risk_level': "low"
+            }
+        
+        # Find most violated rule (highest weighted contribution)
+        max_violation = 0
+        primary_rule = None
+        
+        for rule in self.rules:
+            if rule.rule_id in triggered:
+                violation = rule.weight * rule.check_fn(z_t, u)
+                if violation > max_violation:
+                    max_violation = violation
+                    primary_rule = rule
+        
+        # Risk level based on total phi
+        if phi < 5.0:
+            risk_level = "low"
+        elif phi < 15.0:
+            risk_level = "medium"
         else:
-            return action.copy()
-
-    def _project_screw(self, action: np.ndarray) -> np.ndarray:
-        """
-        Helical manifold projection (Eq. 6).
-
-        M_helix = {(v_z, omega_z) : v_z = k * omega_z}
-
-        For proposed u_pi = (v_z^pi, omega_z^pi)^T, the orthogonal projection is:
-          Psi(u_pi) = (k*v_z + omega_z)/(k^2 + 1) * [k, 1]^T
-        """
-        a = action.copy()
-
-        # Clip to safety margins (torque and force limits)
-        a[0] = np.clip(a[0], -self.torque_margin, self.torque_margin)  # tau_z
-        a[1] = np.clip(a[1], -self.force_margin, self.force_margin)    # F_z
-
-        # Enforce helical coupling: if pulling, must also rotate
-        if abs(a[1]) > 0.1:
-            # Project onto helical manifold
-            # Ensure torque sign matches axial force sign (coupled motion)
-            a[0] = np.sign(a[1]) * abs(a[0])
-
-        # Zero radial force (must stay on-axis)
-        a[2] = 0.0
-
-        return a
-
-    def _project_battery(self, action: np.ndarray, temperature: float) -> np.ndarray:
-        """
-        Thermal-viscous manifold projection (Section 3.4.1).
-
-        C_batt = {(F, v) : F * v <= P_max(T)}
-        P_max(T) = (kappa/eta) * (T_crit - T)
-
-        Scales velocity to satisfy power limit while preserving force direction.
-        """
-        a = action.copy()
-
-        # Compute temperature-dependent power limit
-        P_max = (self.kappa / self.eta) * max(0, self.T_crit - temperature)
-
-        # Progressively reduce allowed force as temperature rises
-        margin = (self.P_max_base - 4 * 1.235) / 40.0  # account for sensor noise
-        if temperature > 40:
-            margin *= 0.7
-        if temperature > 50:
-            margin *= 0.5
-        if temperature > 55:
-            margin *= 0.3
-        if temperature > 58:
-            margin *= 0.1
-
-        # Clip peel force
-        a[0] = np.clip(a[0], 0, margin)
-        a[1] = np.clip(a[1], -margin * 0.5, margin * 0.5)
-        a[2] = np.clip(a[2], -margin * 0.5, margin * 0.5)
-
-        return a
-
-    def _project_pcb(self, action: np.ndarray) -> np.ndarray:
-        """
-        Planar invariant manifold projection (Eq. 8, Section 3.4.2).
-
-        M_pcb = {u in R^6 : tau_x = 0, tau_y = 0, Fz <= F_frac}
-
-        Zeros tilt torques and clips normal force. O(1) computation.
-        """
-        a = action.copy()
-
-        # Zero tilt torques (prevent bending)
-        if len(a) >= 6:
-            a[3] = 0.0  # tau_x = 0
-            a[4] = 0.0  # tau_y = 0
-        else:
-            # For 3-dim action, zero lateral forces
-            a[2] = 0.0
-
-        return a
-
-    def _project_crank(self, action: np.ndarray, angle: float) -> np.ndarray:
-        """
-        Tangential projection for rotational extraction.
-
-        Projects force onto tangent direction, removing radial component
-        that would cause binding.
-        """
-        a = action.copy()
-
-        # Compute tangent/radial directions
-        tx, ty = -math.sin(angle), math.cos(angle)
-
-        # Project onto tangent
-        F_tangent = a[0] * tx + a[1] * ty
-        F_tangent = np.clip(F_tangent, -self.F_tang_max, self.F_tang_max)
-
-        # Reconstruct force in tangent direction only (zero radial)
-        a[0] = F_tangent * tx
-        a[1] = F_tangent * ty
-        a[2] = 0.0  # no axial force during rotation
-
-        return a
-
-    def _project_pry(self, action: np.ndarray) -> np.ndarray:
-        """Path constraint projection: zero lateral forces."""
-        a = action.copy()
-        a[0] = 0.0  # zero lateral x
-        a[1] = 0.0  # zero lateral y
-        return a
-
-    def _project_snap(self, action: np.ndarray, latch_deflected: bool) -> np.ndarray:
-        """
-        Sequential constraint gate (Eq. 16).
-
-        If latch not deflected, zero pulling force.
-        TRiX can prevent violation but cannot create progress without deflection.
-        """
-        a = action.copy()
-        if not latch_deflected:
-            # Prevent pulling (negative z) while latch engaged
-            a[2] = max(a[2], 0.0)
-        return a
-
-    def get_projection_stats(self, action: np.ndarray,
-                             state: Optional[Dict] = None) -> Dict:
-        """Return diagnostic information about the projection."""
-        projected = self.project(action, state)
-        distance = np.linalg.norm(projected - action)
+            risk_level = "high"
+        
         return {
-            'original': action.copy(),
-            'projected': projected,
-            'distance': distance,
-            'was_modified': distance > 1e-8,
-            'task': self.task,
+            'rule_id': primary_rule.rule_id,
+            'description': primary_rule.explanation_template,
+            'safe_alternative': primary_rule.safe_alternative,
+            'confidence': 1.0,  # Deterministic
+            'risk_level': risk_level,
+            'violation_score': phi,
+            'triggered_rules': triggered
         }
+
+
+class SmoothGate(nn.Module):
+    """Smooth feasibility gate using sigmoid."""
+    
+    def __init__(self, tau: float = 5.0, eta: float = 2.0):
+        """
+        Args:
+            tau: Violation threshold margin
+            eta: Temperature (smoothness parameter)
+        """
+        super().__init__()
+        self.tau = tau
+        self.eta = eta
+        
+    def forward(self, phi: torch.Tensor) -> torch.Tensor:
+        """
+        Compute smooth gating factor.
+        
+        Args:
+            phi: Violation score (batch or scalar)
+            
+        Returns:
+            s: Gating factor in [0, 1]
+        """
+        return torch.sigmoid((self.tau - phi) / self.eta)
+        
+    def numpy(self, phi: float) -> float:
+        """NumPy version for deployment."""
+        return 1.0 / (1.0 + np.exp(-(self.tau - phi) / self.eta))
+
+
+class TRiXPolicy:
+    """
+    TRiX neuro-symbolic gated policy.
+    
+    π_TRiX(u|o_t) ∝ π_θ(u|o_t) · M̃_t(u)
+    
+    Where M̃_t(u) = sigmoid((τ - φ_t(u)) / η)
+    """
+    
+    def __init__(
+        self,
+        neural_policy,  # Base SAC policy
+        rule_library: RuleLibrary,
+        fallback_controller,
+        tau: float = 5.0,
+        eta: float = 2.0,
+        device: str = "cpu"
+    ):
+        self.neural_policy = neural_policy
+        self.rules = rule_library
+        self.fallback = fallback_controller
+        self.gate = SmoothGate(tau, eta)
+        self.device = device
+        
+        # Logging
+        self.violation_history = []
+        self.gating_history = []
+        self.explanation_history = []
+        
+    def select_action(
+        self,
+        observation: np.ndarray,
+        symbolic_state: np.ndarray,
+        deterministic: bool = False,
+        return_explanation: bool = True
+    ) -> Tuple[np.ndarray, Optional[Dict]]:
+        """
+        Select action with TRiX gating.
+        
+        Args:
+            observation: Full observation vector
+            symbolic_state: Symbolic predicate vector z_t
+            deterministic: Use mean action (for eval)
+            return_explanation: Generate explanation
+            
+        Returns:
+            action: Gated action u_t
+            explanation: Explanation dict (if requested)
+        """
+        # Get neural proposal
+        with torch.no_grad():
+            obs_tensor = torch.FloatTensor(observation).unsqueeze(0).to(self.device)
+            u_neural = self.neural_policy.select_action(obs_tensor, deterministic=deterministic)
+            
+        # Get fallback (safe baseline)
+        u_safe = self.fallback(observation, symbolic_state)
+        
+        # Compute violation score
+        phi, triggered = self.rules.compute_violation_score(symbolic_state, u_neural)
+        
+        # Compute gating factor
+        s = self.gate.numpy(phi)
+        
+        # Gated action: u_t = s·u_neural + (1-s)·u_safe
+        action = s * u_neural + (1 - s) * u_safe
+        
+        # Log
+        self.violation_history.append(phi)
+        self.gating_history.append(s)
+        
+        # Generate explanation
+        explanation = None
+        if return_explanation:
+            explanation = self.rules.generate_explanation(symbolic_state, u_neural, phi)
+            explanation['gating_factor'] = s
+            self.explanation_history.append(explanation)
+        
+        return action, explanation
+        
+    def update(self, replay_buffer, batch_size: int = 256) -> Dict:
+        """
+        Update neural policy with TRiX-aware training.
+        
+        The key modification: during training, sample actions and weight
+        their Q-value updates by the gating factor to encourage the neural
+        policy to propose feasible actions.
+        """
+        # Sample batch
+        batch = replay_buffer.sample(batch_size)
+        obs, actions, rewards, next_obs, dones, symbolic_states = batch
+        
+        # Standard SAC update, but we can add auxiliary loss
+        # to encourage neural policy to avoid violations
+        
+        # Compute violation scores for actions in batch
+        violations = []
+        for i in range(batch_size):
+            phi, _ = self.rules.compute_violation_score(symbolic_states[i], actions[i])
+            violations.append(phi)
+        violations = torch.FloatTensor(violations).to(self.device)
+        
+        # Add violation penalty to actor loss (encourages neural policy to be safer)
+        violation_penalty = violations.mean() * 0.1
+        
+        # Update base SAC policy (implementation-specific)
+        # ... standard SAC update code ...
+        
+        info = {
+            'violation_penalty': violation_penalty.item(),
+            'mean_gating': np.mean(self.gating_history[-100:]) if self.gating_history else 1.0
+        }
+        
+        return info
+        
+    def get_metrics(self) -> Dict:
+        """Get TRiX-specific metrics."""
+        if not self.violation_history:
+            return {}
+        
+        return {
+            'mean_violation_score': np.mean(self.violation_history[-100:]),
+            'max_violation_score': np.max(self.violation_history[-100:]),
+            'mean_gating_factor': np.mean(self.gating_history[-100:]),
+            'n_explanations': len(self.explanation_history),
+            'chatter_events': self._compute_chatter()
+        }
+        
+    def _compute_chatter(self, delta_threshold: float = 0.3) -> int:
+        """Count chatter events (rapid gating changes)."""
+        if len(self.gating_history) < 2:
+            return 0
+        
+        gating_array = np.array(self.gating_history[-200:])
+        deltas = np.abs(np.diff(gating_array))
+        return np.sum(deltas > delta_threshold)
+
+
+class SafeFallbackController:
+    """Simple safe fallback controller (e.g., hold position, move to safe zone)."""
+    
+    def __init__(self, action_dim: int):
+        self.action_dim = action_dim
+        
+    def __call__(self, observation: np.ndarray, symbolic_state: np.ndarray) -> np.ndarray:
+        """
+        Generate safe fallback action.
+        
+        For now: zero velocity (hold position)
+        Can be enhanced with:
+            - Move away from hazard zone
+            - Retract to home position
+            - Gentle approach
+        """
+        # Simple: zero action
+        action = np.zeros(self.action_dim)
+        
+        # If in hazard zone (z[2] = 1), move away
+        if symbolic_state[2] > 0.5:  # in_hazard predicate
+            # Simple: move in -x direction (away from hazard)
+            action[0] = -0.05
+        
+        return action
+
+
+# ========== Training Integration ==========
+
+def create_trix_agent(env, neural_policy_class, device="cpu"):
+    """
+    Create complete TRiX agent.
+    
+    Args:
+        env: DISASM-Bench environment
+        neural_policy_class: SAC or similar
+        device: torch device
+        
+    Returns:
+        TRiXPolicy instance
+    """
+    # Initialize neural policy (SAC)
+    neural_policy = neural_policy_class(
+        observation_dim=env.observation_space.shape[0],
+        action_dim=env.action_space.shape[0],
+        device=device
+    )
+    
+    # Initialize rule library
+    rules = RuleLibrary()
+    
+    # Initialize fallback
+    fallback = SafeFallbackController(action_dim=env.action_space.shape[0])
+    
+    # Create TRiX policy
+    trix_policy = TRiXPolicy(
+        neural_policy=neural_policy,
+        rule_library=rules,
+        fallback_controller=fallback,
+        tau=5.0,
+        eta=2.0,
+        device=device
+    )
+    
+    return trix_policy

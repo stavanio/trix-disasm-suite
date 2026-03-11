@@ -1,155 +1,150 @@
 # TRiX: Neuro-Symbolic Safety for Foundation Model Agents in Robotic Disassembly
 
-[![Python 3.8+](https://img.shields.io/badge/python-3.8+-blue.svg)](https://www.python.org/downloads/)
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
+Official code for reproducing the experiments in:
 
-Official implementation of **TRiX** (Transparent Real-time eXplainable Control), a neuro-symbolic safety governor that projects neural actions onto task-specific differentiable manifolds for safe robotic disassembly.
+> **TRiX: Neuro-Symbolic Safety for Foundation Model Agents in Robotic Disassembly**
+> S. Dholakia, S. Shukla, A. Singh, A. Gazta
+> *Nature Machine Intelligence* (2026, under review)
 
-> **Paper:** *TRiX: Neuro-Symbolic Safety for Foundation Model Agents in Robotic Disassembly*
-> Submitted to Nature Machine Intelligence (2026)
+TRiX is a neuro-symbolic safety governor that projects neural policy actions onto task-specific differentiable manifolds, closing the **Linearity Gap** between linear safety methods and nonlinear physical constraints.
 
 ---
 
-## Key Results
-
-TRiX reduces safety violations by **84.4 percentage points** on helical (screw) tasks compared to linear shielding, while maintaining **98.2% task success**.
-
-| Method | SCREW | PRY | CRANK | PCB | SNAP | BATT | Avg |
-|--------|-------|-----|-------|-----|------|------|-----|
-| PPO | 96.4 | 81.8 | 83.3 | 85.6 | 93.2 | 48.3 | 81.4 |
-| SAC | 98.6 | 92.0 | 92.6 | 93.3 | 97.3 | 56.9 | 88.5 |
-| PPO-Lag | 91.7 | 56.6 | 60.9 | 72.0 | 84.1 | 22.2 | 64.6 |
-| SafeLayer | 86.8 | 3.4 | 47.6 | 74.5 | 81.6 | 29.2 | 53.9 |
-| **TRiX** | **2.4** | **0.0** | **8.7** | **27.1** | **59.6** | **29.1** | **21.2** |
-
-## Quick Start
-
-### Requirements
+## Reproduce Paper Results (< 5 minutes)
 
 ```bash
-pip install numpy matplotlib scipy
+# Only dependency
+pip install numpy
+
+# Run the benchmark (Table 4, 100K steps × 3 seeds)
+python benchmark/disasm_bench.py
+
+# Run physics validation (Tables 3, 6, 7, Appendix G)
+python benchmark/validation_suite.py
 ```
 
-No GPU required. No external physics engine required. All simulations are self-contained NumPy physics validated against analytical solutions (Appendix G of paper).
+No GPU required. No PyBullet. No PyTorch. Fully deterministic.
 
-### Run All Experiments (~5 minutes)
+### Expected Output (Table 4)
+
+```
+ALGO         |    SCREW |     SNAP |      PRY |    CRANK
+---------------------------------------------------------
+PPO          |   96.49% |   93.26% |   81.59% |   83.22%
+SAC          |   98.62% |   97.34% |   92.07% |   92.70%
+PPO-Lag      |   91.69% |   84.05% |   56.89% |   60.90%
+SafeLayer    |   87.01% |   81.60% |    0.62% |   47.72%
+TRiX         |    2.37% |   59.75% |    0.03% |    8.86%  <<<
+```
+
+TRiX reduces SCREW violations by **84.6 percentage points** vs SafeLayer (87.0% to 2.4%).
+
+### Run All 6 Tasks (including BATTERY, PCB)
 
 ```bash
-python -m experiments.run_all
+python -c "
+from benchmark.disasm_bench import run_benchmark, TASKS_ALL
+run_benchmark(steps_per_cell=100000, n_seeds=3, tasks=TASKS_ALL)
+"
 ```
 
-### Quick Verification (~30 seconds)
-
-```bash
-python -m experiments.run_all --quick
-```
-
-### Reproduce Specific Experiments
-
-```bash
-# Table 4: Safety violation rates (stress tournament)
-python -m experiments.stress_tournament --steps 100000 --seeds 3
-
-# Figure 4: Learning curves during training
-python -m experiments.learning_curves --steps 500000 --seeds 3
-
-# Table 7: Grounding Success Rate (hallucination injection)
-python -m experiments.hallucination_injection --trials 10000
-
-# Table 6: Thermal latency analysis
-python -m experiments.thermal_latency
-
-# Table 3: Computational overhead measurement
-python -m experiments.computational_overhead --iterations 100000
-
-# Table XII (Appendix): Physics validation
-python -m experiments.physics_validation
-
-# Pitch estimation ablation study
-python -m experiments.pitch_ablation --steps 100000 --seeds 3
-```
+---
 
 ## Repository Structure
 
 ```
 trix-disasm-bench/
-├── README.md
-├── LICENSE
-├── requirements.txt
-├── setup.py
-├── envs/                          # DISASM-Bench environments
-│   ├── __init__.py
-│   ├── base_env.py                # Base environment class
-│   ├── screw_env.py               # Helical constraint (M8 screw)
-│   ├── battery_env.py             # Thermal constraint (Li-ion)
-│   ├── pcb_env.py                 # Planar constraint (FR-4)
-│   ├── snap_env.py                # Sequential constraint
-│   ├── pry_env.py                 # Path constraint
-│   └── crank_env.py               # Hybrid kinematic
-├── trix/                          # TRiX safety governor
-│   ├── __init__.py
-│   ├── governor.py                # Core manifold projections
-│   └── manifolds.py               # Manifold definitions
-├── baselines/                     # Baseline safety methods
-│   ├── __init__.py
-│   ├── ppo.py
-│   ├── sac.py
-│   ├── ppo_lagrangian.py
-│   └── safe_layer.py
-├── experiments/                   # Reproducible experiments
-│   ├── __init__.py
-│   ├── run_all.py                 # Run complete experiment suite
-│   ├── stress_tournament.py       # Table 4
-│   ├── learning_curves.py         # Figure 4
-│   ├── hallucination_injection.py # Table 7
-│   ├── thermal_latency.py         # Table 6
-│   ├── computational_overhead.py  # Table 3
-│   ├── physics_validation.py      # Appendix G
-│   └── pitch_ablation.py          # Ablation study
-├── configs/
-│   └── default.yaml               # Hyperparameters (Table 11)
+├── benchmark/                      # Canonical benchmark (produces paper numbers)
+│   ├── disasm_bench.py             # DISASM-Bench: 6 envs, 7 algos, self-contained
+│   └── validation_suite.py         # Physics validation, overhead, GSR, thermal latency
+│
+├── trix/                           # PyTorch reference implementation
+│   ├── governor.py                 # Neuro-symbolic controller (rules, gating, explanations)
+│   ├── sac_policy.py               # SAC neural policy backbone
+│   └── manifolds.py                # Closed-form manifold projections (Eq. 5-8)
+│
+├── envs/                           # Environment implementations
+│   ├── base_env.py                 # Abstract base with entropy factors
+│   ├── screw_pybullet.py           # PyBullet screw environment (Panda arm)
+│   └── screw_proxy.py              # Lightweight proxy environment
+│
+├── checkpoints/                    # Trained model weights (3 seeds × 500K steps)
+│   ├── trix_s0_step0.pt ... trix_s0_step500000.pt
+│   ├── trix_s1_step0.pt ... trix_s1_step500000.pt
+│   └── trix_s2_step0.pt ... trix_s2_step500000.pt
+│
 ├── scripts/
-│   ├── generate_figures.py        # All paper figures
-│   └── generate_tables.py         # LaTeX table generation
+│   ├── run_benchmark.sh            # One-liner benchmark runner
+│   ├── plot_results.py             # IEEE-format figure generation
+│   └── generate_figures.py         # Paper figures from results
+│
 ├── tests/
-│   ├── test_manifolds.py          # Manifold projection unit tests
-│   ├── test_envs.py               # Environment sanity checks
-│   └── test_reproducibility.py    # Deterministic seed tests
-└── figures/                       # Generated figures (after running)
+│   └── test_manifolds.py           # Projection correctness proofs
+│
+└── figures/                        # Generated figures (after running scripts)
 ```
 
-## Design Philosophy
+### What Is What
+
+| Component | Purpose | Dependencies |
+|-----------|---------|-------------|
+| `benchmark/disasm_bench.py` | **Reproduce Table 4.** Self-contained NumPy simulation of 6 tasks, 7 algorithms. This is the canonical file. | `numpy` only |
+| `benchmark/validation_suite.py` | **Reproduce Tables 3, 6, 7 and Appendix G.** Computational overhead, GSR, thermal latency, physics validation. | `numpy` only |
+| `trix/governor.py` | **Reference TRiX implementation.** Full neuro-symbolic controller with symbolic rule library, sigmoid feasibility gating, and deterministic explanation generation. | `torch`, `numpy` |
+| `trix/sac_policy.py` | SAC neural policy used as the base learner inside TRiX. | `torch` |
+| `envs/screw_pybullet.py` | PyBullet-based screw environment with Panda arm, contact physics, and force/torque sensing. | `pybullet`, `gymnasium` |
+| `checkpoints/` | Trained TRiX model weights from 500K-step runs across 3 seeds. | `torch` (to load) |
+
+---
+
+## Design Rationale
 
 ### Why Self-Contained NumPy Physics?
 
-TRiX's core claim is about the **geometry of safety constraints**, not about high-fidelity rendering. Our simulation:
+TRiX's core claim is about the **geometry of safety constraints**, not high-fidelity rendering. The benchmark simulation:
 
-1. **Validates against analytical solutions** (helical motion <2%, thermal diffusion <1.5%)
-2. **Enables exact reproducibility** (deterministic with fixed seeds, no external engine variability)
-3. **Requires zero setup** (no GPU, no PyBullet compilation, no URDF assets)
+1. **Validates against analytical solutions** (helical motion <0.012mm error, thermal diffusion <0.001°C RMSE)
+2. **Is fully deterministic** (fixed seeds, no engine variability)
+3. **Requires zero setup** (no GPU, no compilation, no URDF assets)
 
-Cross-simulator validation (PyBullet, Isaac Gym) confirms that while absolute violation rates differ by up to 15%, the **relative ranking of methods is preserved** (Appendix G).
+The PyBullet environment (`envs/screw_pybullet.py`) is included for researchers who want to extend to full physics. Cross-simulator validation confirms the relative ranking of methods is preserved.
 
-### Simulation Constants
+### Physical Constants
 
-All physical parameters are derived from engineering specifications:
+All parameters are derived from engineering specifications (see paper Appendix D):
 
 | Parameter | Value | Source |
 |-----------|-------|--------|
-| Integration Rate | 240 Hz | Contact physics standard |
-| Force Noise (σ_F) | 1.235 N | ATI Mini45 + actuator RSS |
-| Torque Noise (σ_τ) | 0.039 Nm | ATI Mini45 + actuator RSS |
-| Static Friction (μ_s) | 0.61 | Steel/aluminum tables |
-| Kinetic Friction (μ_k) | 0.47 | Steel/aluminum tables |
-| Battery Puncture Limit | 20 N | Cell rupture threshold |
-| Battery Temp Limit | 60°C | Thermal runaway onset |
+| Integration rate | 240 Hz | Contact physics standard |
+| Force noise (σ_F) | 1.235 N | ATI Mini45 + actuator RSS |
+| Torque noise (σ_τ) | 0.039 Nm | ATI Mini45 + actuator RSS |
+| Static friction (μ_s) | 0.61 | Steel/aluminum tables |
+| Kinetic friction (μ_k) | 0.47 | Steel/aluminum tables |
+| Screw pitch (M8) | 1.25 mm/rev | ISO 261 |
+
+---
+
+## DISASM-Bench Tasks
+
+| Task | Constraint Type | What TRiX Enforces |
+|------|----------------|-------------------|
+| **SCREW** | Helical coupling | v_z = (p/2π)ω_z manifold projection |
+| **SNAP** | Unilateral | Half-space constraint (no pulling) |
+| **PRY** | State-dependent | Dynamic torque limit f(insertion depth) |
+| **CRANK** | Curved manifold | Tangential force projection |
+| **BATTERY** | Thermodynamic | Temperature-aware force scaling |
+| **PCB** | Precision | Tight lateral force bounds |
+
+---
 
 ## Citation
 
 ```bibtex
 @article{dholakia2026trix,
-  title={{TRiX}: Neuro-Symbolic Safety for Foundation Model Agents in Robotic Disassembly},
-  author={Dholakia, Stavan and Shukla, Shivani and Singh, Abhishek and Gazta, Aditya},
+  title={{TRiX}: Neuro-Symbolic Safety for Foundation Model Agents
+         in Robotic Disassembly},
+  author={Dholakia, Stavan and Shukla, Shivani and Singh, Abhishek
+          and Gazta, Aditya},
   journal={Nature Machine Intelligence},
   year={2026},
   note={Under review}
@@ -158,4 +153,4 @@ All physical parameters are derived from engineering specifications:
 
 ## License
 
-MIT License. See [LICENSE](LICENSE) for details.
+MIT License. See [LICENSE](LICENSE).

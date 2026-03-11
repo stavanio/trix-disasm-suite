@@ -1,3 +1,8 @@
 numpy>=1.21
-matplotlib>=3.5
-scipy>=1.7
+# Optional (for figures):
+# matplotlib>=3.5
+# Optional (for PyTorch reference implementation):
+# torch>=1.12
+# Optional (for PyBullet environments):
+# pybullet>=3.2
+# gymnasium>=0.26

@@ -1,8 +1,10 @@
 """
-Differentiable manifold definitions and projections.
+Differentiable Safe Operating Manifolds (Section 3)
 
-Each projection is a closed-form mathematical operation derived from
-first-principles physics (Appendix B).
+Closed-form projections for each DISASM-Bench task primitive.
+Each projection is O(1) computation derived from first-principles physics.
+
+    u_safe = Psi_M(u_pi) = argmin_{u in M} ||u - u_pi||   (Eq. 3)
 """
 
 import numpy as np
@@ -11,83 +13,54 @@ import math
 
 def helical_projection(v_z: float, omega_z: float, pitch: float) -> tuple:
     """
-    Project (v_z, omega_z) onto the helical manifold (Eq. 6).
+    Orthogonal projection onto the helical manifold (Eq. 6, Appendix B.1).
 
-    M_helix = {(v_z, omega_z) : v_z = k * omega_z}
-    where k = pitch / (2*pi)
+    M_helix = { (v_z, omega_z) : v_z = k * omega_z },  k = pitch / (2*pi)
 
-    Orthogonal projection onto line through origin with direction (k, 1):
-      Psi(u) = (k*v_z + omega_z) / (k^2 + 1) * [k, 1]^T
-
-    Computation: 3 multiplications, 2 additions, 1 division = O(1)
+    Returns the closest point on the manifold to (v_z, omega_z).
+    Cost: 3 multiplications, 2 additions, 1 division.
     """
     k = pitch / (2 * np.pi)
-    scale = (k * v_z + omega_z) / (k**2 + 1)
-    v_safe = k * scale
-    omega_safe = scale
-    return v_safe, omega_safe
+    s = (k * v_z + omega_z) / (k ** 2 + 1)
+    return k * s, s
 
 
 def thermal_projection(F: float, v: float, P_max: float) -> tuple:
     """
-    Project (F, v) onto thermal-viscous manifold (Section B.2).
+    Thermal-viscous manifold projection (Appendix B.2).
 
-    C_batt = {(F, v) : F * v <= P_max(T)}
+    C_batt = { (F, v) : F * v <= P_max(T) }
 
-    If F*v <= P_max: action is safe, return unchanged.
-    If F*v > P_max: scale velocity to satisfy constraint.
-
-    Computation: 1 multiplication, 1 comparison, 1 division = O(1)
+    Scales velocity to satisfy power constraint; preserves force direction.
     """
-    power = F * v
-    if power <= P_max:
+    if F * v <= P_max:
         return F, v
-    # Scale velocity (preserves peel direction)
-    v_safe = P_max / max(abs(F), 1e-8) * np.sign(v)
-    return F, v_safe
+    return F, P_max / max(abs(F), 1e-8) * np.sign(v)
 
 
 def planar_projection(wrench: np.ndarray, F_frac: float = 30.0) -> np.ndarray:
     """
-    Project onto planar invariant manifold (Eq. 8, Section B.3).
+    Planar invariant manifold projection (Eq. 8, Appendix B.3).
 
-    M_pcb = {u in R^6 : tau_x = 0, tau_y = 0, Fz <= F_frac}
+    M_pcb = { u in R^6 : tau_x = 0, tau_y = 0, Fz <= F_frac }
 
-    Zeros tilt torques and clips normal force.
-    Computation: 1 comparison, 2 assignments = O(1)
+    Zeros tilt torques, clips normal force. O(1).
     """
-    result = wrench.copy()
-    result[3] = 0.0  # tau_x = 0
-    result[4] = 0.0  # tau_y = 0
-    result[2] = min(result[2], F_frac)  # clip normal force
-    return result
+    out = wrench.copy()
+    out[3] = 0.0
+    out[4] = 0.0
+    out[2] = min(out[2], F_frac)
+    return out
 
 
-def tangential_projection(Fx: float, Fy: float, angle: float,
+def tangential_projection(Fx: float, Fy: float, theta: float,
                           F_max: float = 12.0) -> tuple:
     """
-    Project force onto tangent direction at given angle.
+    Tangential force projection for curved-manifold tasks (CRANK).
 
-    Removes radial component that would cause binding in rotational
-    extraction tasks.
+    Decomposes Cartesian force into tangential/radial components at angle theta,
+    discards radial, clips tangential.
     """
-    tx, ty = -math.sin(angle), math.cos(angle)
-    F_tangent = Fx * tx + Fy * ty
-    F_tangent = np.clip(F_tangent, -F_max, F_max)
-    return F_tangent * tx, F_tangent * ty
-
-
-def path_projection(Fx: float, Fy: float) -> tuple:
-    """Zero lateral forces for path-constrained extraction."""
-    return 0.0, 0.0
-
-
-def sequential_gate(F_pull: float, latch_deflected: bool) -> float:
-    """
-    Sequential constraint gate (Eq. 16).
-
-    Returns zero pull force if latch not deflected.
-    """
-    if not latch_deflected:
-        return max(F_pull, 0.0)  # prevent pulling
-    return F_pull
+    tx, ty = -math.sin(theta), math.cos(theta)
+    F_t = np.clip(Fx * tx + Fy * ty, -F_max, F_max)
+    return F_t * tx, F_t * ty

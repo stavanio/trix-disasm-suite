@@ -9,3 +9,4 @@ figures/*.png
 figures/*.pdf
 .DS_Store
 .venv/
+*.log
