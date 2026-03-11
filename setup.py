@@ -1,7 +1,7 @@
 from setuptools import setup, find_packages
 
 setup(
-    name="trix-disasm-bench",
+    name="trix-disasm-suite",
     version="1.0.0",
     description="TRiX: Neuro-Symbolic Safety for Foundation Model Agents in Robotic Disassembly",
     author="Stavan Dholakia, Shivani Shukla, Abhishek Singh, Aditya Gazta",
