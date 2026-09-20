@@ -1,0 +1,79 @@
+{
+  "task": "BATTERY",
+  "trace_file": "battery_canonical_trace.json",
+  "trace_sha256": "9a5fcd043e0e9f12403c2ee50040ceeaca938ba75493e334be7d539fdac77042",
+  "trace_step": 329,
+  "episode_seed": 850000,
+  "training_seed": 0,
+  "checkpoint_step": 2000,
+  "state": {
+    "z_m": 0.006753831636160612,
+    "v_z_m_s": 0.00368444062769413,
+    "deformation": 0.0,
+    "short_state": 0.0,
+    "temperature_C": 25.0,
+    "short_flag": false
+  },
+  "interpretation": "intact lithium-ion pouch cell lifted from adhesive using an extraction tab",
+  "visualization": {
+    "lift_m": 0.006753831636160612,
+    "cell_thickness_m": 0.0055,
+    "gripper": {
+      "visual_scale": 0.46829099451497413,
+      "opening_fraction": 0.31515378802426264,
+      "gap_m": 0.018000003807897548,
+      "fingertips": [
+        {
+          "inner_y": -0.009000001285029032,
+          "center_x": -0.07099999160792007,
+          "bottom_z": 0.008653817233881728
+        },
+        {
+          "inner_y": 0.009000002522868518,
+          "center_x": -0.07099999160792114,
+          "bottom_z": 0.008653817233753868
+        }
+      ]
+    },
+    "camera": {
+      "target": [
+        -0.015,
+        0,
+        0.03
+      ],
+      "distance": 0.35,
+      "yaw": 34,
+      "pitch": -30,
+      "fov": 36
+    },
+    "coordinate_reference": "world-aligned simulator display frame; camera-projected XY grid",
+    "coordinate_style": "B601-inspired RGB arrows with Isaac-style square plane handles",
+    "display_frame_origin_world_m": [
+      -0.06000000000000005,
+      -0.12000000000000002,
+      -0.0101
+    ],
+    "display_frame_axes_world": [
+      [
+        1.0,
+        0.0,
+        0.0
+      ],
+      [
+        0.0,
+        1.0,
+        0.0
+      ],
+      [
+        0.0,
+        0.0,
+        1.0
+      ]
+    ],
+    "display_frame_axis_length_m": 0.030513348496113046,
+    "display_frame_is_simulation_origin": false,
+    "grid_spacing_m": 0.02,
+    "arm_kinematics_simulated": false,
+    "geometry_is_illustrative": true
+  }
+}
