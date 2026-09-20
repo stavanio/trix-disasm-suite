@@ -1,0 +1,110 @@
+{
+  "task": "SCREW",
+  "trace_file": "screw_canonical_trace.json",
+  "trace_sha256": "e7f2fd80daf7a23cb55674fb0d6bfea5d855684ceb55ad64834dd1186d078b32",
+  "trace_step": 188,
+  "episode_seed": 880000,
+  "training_seed": 0,
+  "checkpoint_step": 2000,
+  "state": {
+    "theta_rad": 41.555973052978516,
+    "z_m": 0.00827067345380783,
+    "omega_rad_s": 56.40332794189453,
+    "v_z_m_s": 0.011220908723771572,
+    "engagement": 0.9999748468399048,
+    "helix_error": -1.7678969754797436e-07
+  },
+  "observation": [
+    41.555973052978516,
+    0.00827067345380783,
+    56.40332794189453,
+    0.011220908723771572,
+    0.9999748468399048,
+    -1.7678969754797436e-07,
+    0.0,
+    0.0,
+    0.0,
+    0.0
+  ],
+  "visualization": {
+    "camera": {
+      "target": [
+        0,
+        0,
+        0.048
+      ],
+      "distance": 0.35,
+      "yaw": 42,
+      "pitch": -29
+    },
+    "grasp": {
+      "visual_scale": 0.46829099451497413,
+      "opening_fraction": 0.4206066255465114,
+      "actual_gap_m": 0.02399999618890404,
+      "target_m": [
+        0.0,
+        0.0,
+        0.02527067345380783
+      ],
+      "contacts_m": [
+        [
+          -0.011999998004007688,
+          1.006612411653951e-08,
+          0.02527068664493102
+        ],
+        [
+          0.011999998184896353,
+          1.006612411653951e-08,
+          0.02527068664493102
+        ]
+      ],
+      "closing_axis": [
+        1.0,
+        0.0,
+        0.0
+      ],
+      "approach_axis": [
+        0.0,
+        0.0,
+        1.0
+      ],
+      "tip_depth_m": 0.002
+    },
+    "thread_pitch_m": 0.00125,
+    "thread_root_radius_m": 0.00425,
+    "thread_crest_radius_m": 0.0052,
+    "head_bottom_above_insert_m": 0.00827067345380783,
+    "fixture_top_m": 0.014,
+    "theta_rad": 41.555973052978516,
+    "lift_m": 0.00827067345380783,
+    "coordinate_reference": "world-aligned simulator display frame; camera-projected XY grid",
+    "coordinate_style": "B601-inspired RGB arrows with Isaac-style square plane handles",
+    "display_frame_origin_world_m": [
+      -0.06000000000000005,
+      -0.10000000000000003,
+      -0.0161
+    ],
+    "display_frame_axes_world": [
+      [
+        1.0,
+        0.0,
+        0.0
+      ],
+      [
+        0.0,
+        1.0,
+        0.0
+      ],
+      [
+        0.0,
+        0.0,
+        1.0
+      ]
+    ],
+    "display_frame_axis_length_m": 0.031839220448150414,
+    "display_frame_is_simulation_origin": false,
+    "grid_spacing_m": 0.02,
+    "arm_kinematics_simulated": false,
+    "geometry_is_illustrative": true
+  }
+}
