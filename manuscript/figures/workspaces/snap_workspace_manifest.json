@@ -1,0 +1,70 @@
+{
+  "task": "SNAP",
+  "trace_file": "snap_canonical_trace.json",
+  "trace_sha256": "409980337e887eed02abaf7c493173805871ac31f87eb32cb1c89c7e61cef0b7",
+  "observation": [
+    0.005133796017616987,
+    -0.027169644832611084,
+    0.0008084868895821273,
+    0.05000000074505806,
+    0.0,
+    0.0,
+    0.0,
+    1.0,
+    0.0,
+    0.0
+  ],
+  "trace_step": 5,
+  "episode_seed": 874000,
+  "training_seed": 5,
+  "checkpoint_step": 10000,
+  "state": {
+    "delta_m": 0.005133796017616987,
+    "delta_dot_m_s": -0.027169644832611084,
+    "z_m": 0.0008084868895821273,
+    "v_z_m_s": 0.05000000074505806,
+    "released": false,
+    "latch_damage": 0.0,
+    "latch_broken": false,
+    "phase_release_or_later": true
+  },
+  "interpretation": "snap-fit removable electronics enclosure lid retained by a housing-mounted cantilever latch",
+  "visualization": {
+    "delta_m": 0.005133796017616987,
+    "z_m": 0.0008084868895821273,
+    "disengage_threshold_m": 0.002,
+    "released": false,
+    "latch_broken": false,
+    "B601_visual_scale": 0.4932326767627983,
+    "grasp_axis": "Y (front/back lid edges)",
+    "fingertip_gap_m": 0.060000012194049525,
+    "coordinate_reference": "world-aligned simulator display frame; camera-projected XY grid",
+    "coordinate_style": "B601-inspired RGB arrows with Isaac-style square plane handles",
+    "display_frame_origin_world_m": [
+      -0.04000000000000006,
+      -0.10000000000000003,
+      -0.0141
+    ],
+    "display_frame_axes_world": [
+      [
+        1.0,
+        0.0,
+        0.0
+      ],
+      [
+        0.0,
+        1.0,
+        0.0
+      ],
+      [
+        0.0,
+        0.0,
+        1.0
+      ]
+    ],
+    "display_frame_axis_length_m": 0.025471981158640244,
+    "display_frame_is_simulation_origin": false,
+    "grid_spacing_m": 0.02,
+    "arm_kinematics_simulated": false
+  }
+}
