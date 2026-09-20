@@ -15,6 +15,7 @@ from workspace_render_utils import (
     rounded_box,
     write_manifest,
 )
+from workspace_wrench import force, metadata, torque
 
 
 def render(*, output_dir=DEFAULT_OUTPUT_DIR, provenance_path=DEFAULT_PROVENANCE, debug=False):
@@ -88,14 +89,28 @@ def render(*, output_dir=DEFAULT_OUTPUT_DIR, provenance_path=DEFAULT_PROVENANCE,
         b601.make_cyl(cid, 0.0032, 0.012, stem.tolist(), [0.66, 0.70, 0.75, 1])
         grip_z = hub_z + 0.0205
         grip = handle_xy + np.array([0, 0, grip_z])
-        b601.make_cyl(cid, 0.007, 0.027, grip.tolist(), [0.86, 0.87, 0.84, 1])
+        annulus(cid, 0, 0.007, 0.027, grip.tolist(), [0.86, 0.87, 0.84, 1])
         for zz in (grip_z - 0.0125, grip_z + 0.0125):
             annulus(cid, 0.0032, 0.00715, 0.001, [*handle_xy[:2], zz], [0.61, 0.65, 0.67, 1])
         b601.make_cyl(cid, 0.0028, 0.0005, [*handle_xy[:2], grip_z + 0.0137], [0.45, 0.49, 0.53, 1])
-        target = grip + np.array([0, 0, 0.0035])
-        robot, grasp = grasp_b601(
-            cid, target, 0.014, closing=tangent, tip_depth=0.0025, debug=debug
-        )
+        target = grip
+        robot, grasp = grasp_b601(cid, target, 0.014, closing=tangent, tip_depth=0.005, debug=debug)
+        contact_radii = [np.linalg.norm((np.asarray(pt) - grip)[:2]) for pt in grasp["contacts_m"]]
+        if max(abs(r - 0.007) for r in contact_radii) > 0.0001:
+            raise RuntimeError("CRANK fingertips do not contact the handle surface")
+        wrenches = [
+            force(grip, -tangent, offset=[0.021, 0.019, 0.018], label="F_t", label_offset=(16, 2)),
+            torque(
+                [0, 0, hub_z],
+                [0, 0, -1],
+                radius=0.030,
+                start_deg=15,
+                sweep_deg=235,
+                offset=[0, 0, 0.013],
+                label="τ_z",
+                label_offset=(-50, 10),
+            ),
+        ]
         camera = dict(
             target=[float(handle_xy[0] * 0.45), float(handle_xy[1] * 0.45), 0.059],
             distance=0.395,
@@ -111,6 +126,7 @@ def render(*, output_dir=DEFAULT_OUTPUT_DIR, provenance_path=DEFAULT_PROVENANCE,
             [-0.090, 0.125, -0.080, 0.155],
             output,
             output_dir / "crank_workspace_clean.png" if not debug else None,
+            wrenches=wrenches,
         )
         if not debug:
             write_manifest(
@@ -119,12 +135,15 @@ def render(*, output_dir=DEFAULT_OUTPUT_DIR, provenance_path=DEFAULT_PROVENANCE,
                 entry,
                 camera=camera,
                 grasp=grasp,
+                **metadata(wrenches),
+                handle_geometry="explicit radius mesh",
                 theta_raw_rad=theta_raw,
                 theta_display_rad=theta,
                 z_m=z,
                 crank_radius_m=radius,
                 handle_center_m=grip.tolist(),
                 handle_diameter_m=0.014,
+                contact_radial_error_m=[r - 0.007 for r in contact_radii],
             )
         print(
             f'CRANK: theta={math.degrees(theta):.6f} deg; axial z={z*1000:.6f} mm; fingertip gap={grasp["actual_gap_m"]*1000:.4f} mm; {output}'

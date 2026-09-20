@@ -15,6 +15,7 @@ from workspace_render_utils import (
     rounded_box,
     write_manifest,
 )
+from workspace_wrench import force, metadata
 
 L, T, H, Z0 = 0.0665, 0.001, 0.0155, 0.003
 
@@ -101,8 +102,8 @@ def render(*, output_dir=DEFAULT_OUTPUT_DIR, provenance_path=DEFAULT_PROVENANCE,
         for y in (-0.0024, 0.0024):
             rounded_box(
                 cid,
-                [L + 0.004, 0.001, 0.0037],
-                [0, y, Z0 + 0.0053],
+                [L + 0.004, 0.001, 0.0041],
+                [0, y, Z0 + 0.0057],
                 [0.18, 0.20, 0.23, 1],
                 radius=0.0007,
                 bevel=0.00015,
@@ -183,10 +184,18 @@ def render(*, output_dir=DEFAULT_OUTPUT_DIR, provenance_path=DEFAULT_PROVENANCE,
                     [x, face * (T + 0.00022), -0.0065],
                     [0.64, 0.61, 0.45, 1],
                 )
+        # The raised board still overlaps the connector mouth. The reference
+        # seat is illustrative; extraction and tilt remain the recorded state.
+        socket_top = Z0 + 0.0098
+        edge = np.array([center + R @ [x, 0, -H] for x in (-L, L)])
+        socket_overlap = socket_top - edge[:, 2]
+        if np.min(socket_overlap) <= 0:
+            raise RuntimeError("PCB bottom edge has cleared the connector")
         target = center + R @ np.array([0, 0, H - 0.002])
         robot, grasp = grasp_b601(
             cid, target, 2 * T, closing=R[:, 1], approach=R[:, 2], tip_depth=0.0015, debug=debug
         )
+        wrenches = [force(target, [0, 0, 1], offset=[0.033, 0.029, 0.013], label="F_z")]
         camera = dict(target=[0, 0, 0.050], distance=0.400, yaw=36, pitch=-25)
         suffix = "_debug" if debug else ""
         output = output_dir / f"pcb_workspace{suffix}.png"
@@ -197,6 +206,7 @@ def render(*, output_dir=DEFAULT_OUTPUT_DIR, provenance_path=DEFAULT_PROVENANCE,
             [-0.120, 0.120, -0.087, 0.087],
             output,
             output_dir / "pcb_workspace_clean.png" if not debug else None,
+            wrenches=wrenches,
         )
         if not debug:
             write_manifest(
@@ -205,6 +215,7 @@ def render(*, output_dir=DEFAULT_OUTPUT_DIR, provenance_path=DEFAULT_PROVENANCE,
                 entry,
                 camera=camera,
                 grasp=grasp,
+                **metadata(wrenches),
                 lift_m=lift,
                 tilt_x_rad=tx,
                 tilt_y_rad=ty,
@@ -212,6 +223,8 @@ def render(*, output_dir=DEFAULT_OUTPUT_DIR, provenance_path=DEFAULT_PROVENANCE,
                 board_center_m=center.tolist(),
                 board_dimensions_m=[2 * L, 2 * T, 2 * H],
                 retainers_released=True,
+                socket_top_m=socket_top,
+                board_socket_overlap_m=socket_overlap.tolist(),
             )
         print(
             f'PCB: lift={lift*1000:.6f} mm; fingertip gap={grasp["actual_gap_m"]*1000:.4f} mm; {output}'

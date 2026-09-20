@@ -12,6 +12,7 @@ from b601_render_common import black_meshes, fingertip_geometry
 from PIL import Image, ImageDraw, ImageFont
 from workspace_render_cli import DEFAULT_OUTPUT_DIR, DEFAULT_PROVENANCE, run_renderer
 from workspace_render_utils import font_directory, rounded_solid
+from workspace_wrench import annotate, force, metadata
 
 
 def make_label(path):
@@ -248,10 +249,16 @@ def render(*, output_dir=DEFAULT_OUTPUT_DIR, provenance_path=DEFAULT_PROVENANCE)
                 coordinate_metadata,
             )
 
+            wrenches = [
+                force([-0.071, 0, tab_z], [0, 0, 1], offset=[-0.036, -0.027, 0.014], label="F_peel")
+            ]
             Image.fromarray(image).save(output_dir / "battery_workspace_clean.png", dpi=(300, 300))
-            add_coordinate_reference(
+            annotated = add_coordinate_reference(
                 image, depth, view, projection, -0.0101, [-0.115, 0.105, -0.09, 0.09]
-            ).save(output_dir / "battery_workspace.png", dpi=(300, 300))
+            )
+            annotate(annotated, view, projection, wrenches).save(
+                output_dir / "battery_workspace.png", dpi=(300, 300)
+            )
 
         manifest = {
             "task": "BATTERY",
@@ -274,6 +281,7 @@ def render(*, output_dir=DEFAULT_OUTPUT_DIR, provenance_path=DEFAULT_PROVENANCE)
                 "gripper": grasp,
                 "camera": camera,
                 **coordinate_metadata(),
+                **metadata(wrenches),
                 "arm_kinematics_simulated": False,
                 "geometry_is_illustrative": True,
             },

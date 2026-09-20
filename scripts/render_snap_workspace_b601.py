@@ -10,6 +10,7 @@ import numpy as np
 import pybullet as p
 from PIL import Image
 from workspace_render_cli import DEFAULT_OUTPUT_DIR, DEFAULT_PROVENANCE, run_renderer
+from workspace_wrench import annotate, force, metadata
 
 DELTA_DISENGAGE = 0.002
 
@@ -551,10 +552,24 @@ def render(*, output_dir=DEFAULT_OUTPUT_DIR, provenance_path=DEFAULT_PROVENANCE)
 
         from workspace_render_utils import add_coordinate_reference, coordinate_metadata
 
+        wrenches = [
+            force([0, 0, lid_top_z], [0, 0, 1], offset=[-0.039, -0.027, 0.015], label="F_pull"),
+            force(
+                hook_world,
+                [1, 0, 0],
+                offset=[0.004, -0.005, 0.002],
+                length=0.020,
+                label="F_latch",
+                label_offset=(18, -5),
+            ),
+        ]
         Image.fromarray(image).save(output_dir / "snap_workspace_clean.png", dpi=(300, 300))
-        add_coordinate_reference(
+        annotated = add_coordinate_reference(
             image, depth, view, projection, -0.0141, [-0.10, 0.10, -0.09, 0.09]
-        ).save(output_dir / "snap_workspace.png", dpi=(300, 300))
+        )
+        annotate(annotated, view, projection, wrenches).save(
+            output_dir / "snap_workspace.png", dpi=(300, 300)
+        )
 
         manifest = {
             "task": "SNAP",
@@ -580,6 +595,7 @@ def render(*, output_dir=DEFAULT_OUTPUT_DIR, provenance_path=DEFAULT_PROVENANCE)
                 "grasp_axis": "Y (front/back lid edges)",
                 "fingertip_gap_m": gap,
                 **coordinate_metadata(),
+                **metadata(wrenches),
                 "arm_kinematics_simulated": False,
             },
         }

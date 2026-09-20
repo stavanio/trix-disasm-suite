@@ -54,8 +54,8 @@ Run these commands from the repository root:
 
 Each command writes three files into `manuscript/figures/workspaces/`:
 
-- `<task>_workspace.png`: the panel with coordinate graphics.
-- `<task>_workspace_clean.png`: the same scene before coordinate graphics.
+- `<task>_workspace.png`: the panel with coordinate graphics and schematic wrench arrows.
+- `<task>_workspace_clean.png`: the same scene before coordinate and wrench graphics.
 - `<task>_workspace_manifest.json`: archived state, trace identifiers, and visual parameters.
 
 The default input is [frozen_frames.json](../assets/workspaces/frozen_frames.json).
@@ -116,6 +116,34 @@ The graphic convention follows the B601 simulator's RGB direction arrows and
 [Omniverse's translation manipulator](https://docs.omniverse.nvidia.com/extensions/latest/ext_core/ext_viewport/transform-manipulator.html)
 with square plane handles.
 
+## Mechanical details and wrench annotations
+
+The PCB bottom edge remains inside the socket mouth at the archived lift. Both
+end overlaps are recorded in its manifest. The SCREW root is an explicit radius
+mesh, leaving its continuous 1.25 mm helix exposed; its illustrative head diameter
+is 16 mm. CRANK uses an explicit 14 mm handle mesh with the grasp at mid-height.
+The SCREW, PCB, and CRANK contacts are found by intersecting the real black
+fingertip triangles at the contact height, with a separate point-to-triangle
+surface-distance check. CRANK also checks contact against the handle radius.
+
+Purple arrows show schematic wrench directions. Dotted leaders locate their
+application points; arrow lengths do not represent magnitudes. They are projected
+with the scene camera and do not add objects or forces to the archived state.
+No measured force or torque samples are available in the saved frames.
+
+| Panel | Schematic load |
+| --- | --- |
+| SCREW | Axial extraction force Fz and positive axial torque τz |
+| PCB | Upward extraction force Fz |
+| SNAP | Upward lid pull and outward latch-deflection force |
+| CRANK | Tangential handle force Ft and corresponding negative axial torque τz |
+| BATTERY | Upward force at the extraction tab |
+| PRY | Torque about the lever's transverse axis, raising its inward toe |
+
+These load directions illustrate the mechanism and reduced task inputs. They do
+not assert that one displayed gripper supplies every independent input, or that
+a full robot arm, controller, or contact dynamics have been simulated.
+
 ## Verify reproduction
 
 ```bash
@@ -124,7 +152,7 @@ with square plane handles.
 
 The check renders each panel into a temporary directory and compares both PNGs
 pixel-for-pixel with the committed references. It also checks the archived state,
-trace step, and coordinate convention. It leaves the reference files untouched.
+trace step, coordinate convention, wrench metadata, and the PCB/CRANK contact invariants. It leaves the reference files untouched.
 To check one panel, use `--tasks snap`; model and font path options are supported.
 Pixel differences on another platform should be investigated against the recorded
 runtime, model, and font versions before updating a reference image.
@@ -134,6 +162,7 @@ runtime, model, and font versions before updating a reference image.
 - `render_<task>_workspace_b601.py`: task geometry, state mapping, camera and grasp.
 - `b601_render_common.py`: model verification, temporary URDF resolution, B601 frames and mesh measurements.
 - `workspace_render_utils.py`: geometry primitives, measured grasps, fonts and coordinate graphics.
+- `workspace_wrench.py`: camera-projected force and torque annotations.
 - `workspace_render_cli.py`: shared paths and command-line options.
 - `compose_b601_workspaces.py`: the publication figure layout.
 - `verify_workspace_renders.py`: reproduction checks against saved panels.

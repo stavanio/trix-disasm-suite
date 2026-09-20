@@ -65,6 +65,70 @@
     "display_frame_axis_length_m": 0.025471981158640244,
     "display_frame_is_simulation_origin": false,
     "grid_spacing_m": 0.02,
+    "wrench_annotations": [
+      {
+        "kind": "force",
+        "label": "F_pull",
+        "anchor_world_m": [
+          0.0,
+          0.0,
+          0.03930848688958213
+        ],
+        "direction_world": [
+          0.0,
+          0.0,
+          1.0
+        ],
+        "path_world_m": [
+          [
+            -0.039,
+            -0.027,
+            0.054308486889582126
+          ],
+          [
+            -0.039,
+            -0.027,
+            0.08830848688958212
+          ]
+        ],
+        "label_offset_px": [
+          22,
+          -16
+        ]
+      },
+      {
+        "kind": "force",
+        "label": "F_latch",
+        "anchor_world_m": [
+          0.05763379601761699,
+          -0.024,
+          0.036808486889582125
+        ],
+        "direction_world": [
+          1.0,
+          0.0,
+          0.0
+        ],
+        "path_world_m": [
+          [
+            0.061633796017616996,
+            -0.029,
+            0.038808486889582126
+          ],
+          [
+            0.081633796017617,
+            -0.029,
+            0.038808486889582126
+          ]
+        ],
+        "label_offset_px": [
+          18,
+          -5
+        ]
+      }
+    ],
+    "wrench_values_measured": false,
+    "wrench_arrow_scale": "schematic; lengths do not encode magnitude",
     "arm_kinematics_simulated": false
   }
 }

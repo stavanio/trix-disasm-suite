@@ -73,6 +73,40 @@
     "display_frame_axis_length_m": 0.030513348496113046,
     "display_frame_is_simulation_origin": false,
     "grid_spacing_m": 0.02,
+    "wrench_annotations": [
+      {
+        "kind": "force",
+        "label": "F_peel",
+        "anchor_world_m": [
+          -0.071,
+          0.0,
+          0.009353831636160612
+        ],
+        "direction_world": [
+          0.0,
+          0.0,
+          1.0
+        ],
+        "path_world_m": [
+          [
+            -0.10699999999999998,
+            -0.027,
+            0.023353831636160612
+          ],
+          [
+            -0.10699999999999998,
+            -0.027,
+            0.05735383163616062
+          ]
+        ],
+        "label_offset_px": [
+          22,
+          -16
+        ]
+      }
+    ],
+    "wrench_values_measured": false,
+    "wrench_arrow_scale": "schematic; lengths do not encode magnitude",
     "arm_kinematics_simulated": false,
     "geometry_is_illustrative": true
   }

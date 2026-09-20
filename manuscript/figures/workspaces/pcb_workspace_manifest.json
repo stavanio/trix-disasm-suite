@@ -47,8 +47,8 @@
     },
     "grasp": {
       "visual_scale": 0.46829099451497413,
-      "opening_fraction": 0.03394567029800574,
-      "actual_gap_m": 0.0019999996233697175,
+      "opening_fraction": 0.03394547030923885,
+      "actual_gap_m": 0.001999999360920666,
       "target_m": [
         4.778728762137775e-05,
         -8.894008319131052e-05,
@@ -56,14 +56,14 @@
       ],
       "contacts_m": [
         [
-          4.7759527109808575e-05,
-          -0.001088918390704222,
-          0.040305539061041985
+          4.775949213927043e-05,
+          -0.0010889181555106247,
+          0.040305535653142335
         ],
         [
-          4.780616959844092e-05,
-          0.0009110378284254687,
-          0.04031871528462705
+          4.780617737317803e-05,
+          0.0009110377572239183,
+          0.04031871854608015
         ]
       ],
       "closing_axis": [
@@ -76,8 +76,47 @@
         -0.006588154310467446,
         0.9999720326315297
       ],
-      "tip_depth_m": 0.0015
+      "tip_depth_m": 0.0015,
+      "contact_surface_distance_m": [
+        1.4789932413206665e-13,
+        7.153594778446957e-13
+      ],
+      "contact_measurement": "black STL triangle intersections at contact height"
     },
+    "wrench_annotations": [
+      {
+        "kind": "force",
+        "label": "F_z",
+        "anchor_world_m": [
+          4.778728762137775e-05,
+          -8.894008319131052e-05,
+          0.040312122522482036
+        ],
+        "direction_world": [
+          0.0,
+          0.0,
+          1.0
+        ],
+        "path_world_m": [
+          [
+            0.03304778728762138,
+            0.02891105991680869,
+            0.05331212252248203
+          ],
+          [
+            0.03304778728762138,
+            0.02891105991680869,
+            0.08731212252248204
+          ]
+        ],
+        "label_offset_px": [
+          22,
+          -16
+        ]
+      }
+    ],
+    "wrench_values_measured": false,
+    "wrench_arrow_scale": "schematic; lengths do not encode magnitude",
     "lift_m": 0.008312500081956387,
     "tilt_x_rad": 0.006588201969861984,
     "tilt_y_rad": 0.0035398832987993956,
@@ -93,6 +132,11 @@
       0.031
     ],
     "retainers_released": true,
+    "socket_top_m": 0.012799999999999999,
+    "board_socket_overlap_m": [
+      0.0012516646760905564,
+      0.0017224681715740896
+    ],
     "coordinate_reference": "world-aligned simulator display frame; camera-projected XY grid",
     "coordinate_style": "B601-inspired RGB arrows with Isaac-style square plane handles",
     "display_frame_origin_world_m": [

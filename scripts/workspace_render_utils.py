@@ -110,6 +110,53 @@ def _mesh_world(robot, cid, scale, link, name):
     return (mesh_vertices(name) * scale) @ rotation.T + pos
 
 
+def fingertip_section(points, height):
+    """Intersect the triangle surface with the actual contact-height plane.
+
+    An extremum over the bottom 8 mm can select a rib above the workpiece.
+    Intersecting at the contact height instead puts the contact on the STL.
+    """
+    triangles = np.asarray(points).reshape(-1, 3, 3)
+    edges = np.stack((triangles, np.roll(triangles, -1, axis=1)), axis=2).reshape(-1, 2, 3)
+    dz = edges[:, 1, 2] - edges[:, 0, 2]
+    valid = np.abs(dz) > 1e-10
+    edges, dz = edges[valid], dz[valid]
+    t = (height - edges[:, 0, 2]) / dz
+    valid = (t >= 0) & (t <= 1)
+    section = edges[valid, 0] + t[valid, None] * (edges[valid, 1] - edges[valid, 0])
+    if len(section) < 3:
+        raise RuntimeError("Contact plane does not intersect the black fingertip")
+    return section
+
+
+def point_surface_distance(point, vertices):
+    """Euclidean distance to the STL triangles, including edges and vertices."""
+    tri = np.asarray(vertices).reshape(-1, 3, 3)
+    ab, ac = tri[:, 1] - tri[:, 0], tri[:, 2] - tri[:, 0]
+    normal = np.cross(ab, ac)
+    norm2 = np.sum(normal * normal, axis=1)
+    valid = norm2 > 1e-24
+    tri, ab, ac, normal, norm2 = tri[valid], ab[valid], ac[valid], normal[valid], norm2[valid]
+    ap = np.asarray(point) - tri[:, 0]
+    signed = np.sum(ap * normal, axis=1)
+    projected = ap - normal * (signed / norm2)[:, None]
+    d00, d01, d11 = np.sum(ab * ab, axis=1), np.sum(ab * ac, axis=1), np.sum(ac * ac, axis=1)
+    d20, d21 = np.sum(projected * ab, axis=1), np.sum(projected * ac, axis=1)
+    denominator = d00 * d11 - d01 * d01
+    v = (d11 * d20 - d01 * d21) / denominator
+    w = (d00 * d21 - d01 * d20) / denominator
+    inside = (v >= -1e-9) & (w >= -1e-9) & (v + w <= 1 + 1e-9)
+    best = np.min(signed[inside] ** 2 / norm2[inside]) if np.any(inside) else np.inf
+    for i in range(3):
+        a, b = tri[:, i], tri[:, (i + 1) % 3]
+        edge = b - a
+        length2 = np.sum(edge * edge, axis=1)
+        t = np.clip(np.sum((point - a) * edge, axis=1) / length2, 0, 1)
+        delta = point - (a + t[:, None] * edge)
+        best = min(best, np.min(np.sum(delta * delta, axis=1)))
+    return float(np.sqrt(best))
+
+
 def grasp_b601(
     cid, target, width, closing=(1, 0, 0), approach=(0, 0, 1), tip_depth=0.002, debug=False
 ):
@@ -139,17 +186,21 @@ def grasp_b601(
         for link, name in ((7, "pla_left.STL"), (8, "pla_right.STL")):
             pts = _mesh_world(robot, cid, scale, link, name) @ frame
             bottom = pts[:, 2].min()
-            low = pts[pts[:, 2] <= bottom + 0.008]
-            pairs.append((low, bottom))
+            section = fingertip_section(pts, bottom + tip_depth)
+            pairs.append((section, bottom))
         pairs.sort(key=lambda item: item[0][:, 0].mean())
-        return [
-            dict(
-                inner=float(v[:, 0].max() if i == 0 else v[:, 0].min()),
-                side=float((v[:, 1].min() + v[:, 1].max()) / 2),
-                bottom=float(z),
+        result = []
+        for i, (section, bottom) in enumerate(pairs):
+            inner = section[:, 0].max() if i == 0 else section[:, 0].min()
+            face = section[np.abs(section[:, 0] - inner) < 1e-7]
+            result.append(
+                dict(
+                    inner=float(inner),
+                    side=float((face[:, 1].min() + face[:, 1].max()) / 2),
+                    bottom=float(bottom),
+                )
             )
-            for i, (v, z) in enumerate(pairs)
-        ]
+        return result
 
     neg, pos = tips()
     maximum = pos["inner"] - neg["inner"]
@@ -170,15 +221,25 @@ def grasp_b601(
     )
     b601.translate_robot(robot, cid, np.asarray(target) - current)
     neg, pos = tips()
-    side = (neg["side"] + pos["side"]) / 2
-    height = (neg["bottom"] + pos["bottom"]) / 2 + tip_depth
-    contacts = [frame @ np.array([v["inner"], side, height]) for v in (neg, pos)]
+    contacts = [
+        frame @ np.array([v["inner"], v["side"], v["bottom"] + tip_depth]) for v in (neg, pos)
+    ]
     actual_gap = pos["inner"] - neg["inner"]
     if (
         abs(actual_gap - width) > 0.0001
         or np.linalg.norm(np.mean(contacts, axis=0) - target) > 0.0001
     ):
         raise RuntimeError("B601 mesh contact alignment failed")
+
+    surfaces = [
+        _mesh_world(robot, cid, scale, link, name)
+        for link, name in ((7, "pla_left.STL"), (8, "pla_right.STL"))
+    ]
+    surface_errors = [
+        min(point_surface_distance(pt, surface) for surface in surfaces) for pt in contacts
+    ]
+    if max(surface_errors) > 0.00005:
+        raise RuntimeError("A B601 contact point is not on the fingertip STL surface")
 
     # Attach the wrist to the motor, not the asymmetric combined link AABB.
     motor = _mesh_world(robot, cid, scale, 6, "motor_7.STL") @ frame
@@ -213,6 +274,8 @@ def grasp_b601(
         closing_axis=c.tolist(),
         approach_axis=a.tolist(),
         tip_depth_m=tip_depth,
+        contact_surface_distance_m=surface_errors,
+        contact_measurement="black STL triangle intersections at contact height",
     )
 
 
@@ -419,7 +482,7 @@ def add_coordinate_reference(rgb, depth, view, projection, floor_z, xy_bounds, s
     return Image.alpha_composite(base, labels).convert("RGB")
 
 
-def camera_image(cid, camera, floor_z, bounds, output, clean_output=None):
+def camera_image(cid, camera, floor_z, bounds, output, clean_output=None, *, wrenches=(), notes=()):
     width, height = 1800, 1400
     view = p.computeViewMatrixFromYawPitchRoll(
         camera["target"],
@@ -448,9 +511,10 @@ def camera_image(cid, camera, floor_z, bounds, output, clean_output=None):
     rgb = np.asarray(rgba, dtype=np.uint8).reshape(height, width, 4)[:, :, :3]
     if clean_output:
         Image.fromarray(rgb).save(clean_output, dpi=(300, 300))
-    add_coordinate_reference(rgb, depth, view, projection, floor_z, bounds).save(
-        output, dpi=(300, 300)
-    )
+    from workspace_wrench import annotate
+
+    annotated = add_coordinate_reference(rgb, depth, view, projection, floor_z, bounds)
+    annotate(annotated, view, projection, wrenches, notes).save(output, dpi=(300, 300))
 
 
 def write_manifest(output, task, entry, **visualization):

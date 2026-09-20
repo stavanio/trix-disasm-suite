@@ -62,8 +62,31 @@ def verify(tasks, output_dir, asset_dir=None, font_dir=None):
                 or coordinates["display_frame_is_simulation_origin"]
             ):
                 failures.append(f"{task}: coordinate-frame convention changed")
+            if (
+                not coordinates.get("wrench_annotations")
+                or coordinates.get("wrench_values_measured") is not False
+            ):
+                failures.append(f"{task}: missing schematic wrench metadata")
+            grasp = coordinates.get("grasp", {})
+            if grasp and max(grasp["contact_surface_distance_m"]) > 0.00005:
+                failures.append(f"{task}: contact is outside the fingertip STL")
+            if task == "pcb" and min(coordinates["board_socket_overlap_m"]) <= 0:
+                failures.append("pcb: board is outside the socket mouth")
+            if task == "crank":
+                center = np.asarray(coordinates["handle_center_m"])
+                radius = coordinates["handle_diameter_m"] / 2
+                contacts = np.asarray(grasp["contacts_m"])
+                if (
+                    np.max(np.abs(np.linalg.norm((contacts - center)[:, :2], axis=1) - radius))
+                    > 0.0001
+                ):
+                    failures.append("crank: fingers do not meet the handle circumference")
+            if task == "screw" and coordinates["thread_pitch_m"] != 0.00125:
+                failures.append("screw: thread pitch changed")
             if not any(message.startswith(f"{task}:") for message in failures):
-                print(f"PASS {task.upper()}: annotated PNG, clean PNG, archived state, XYZ frame")
+                print(
+                    f"PASS {task.upper()}: annotated PNG, clean PNG, archived state, XYZ frame, wrench annotations, contacts"
+                )
     if failures:
         raise RuntimeError("\n".join(failures))
 

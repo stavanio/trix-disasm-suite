@@ -12,6 +12,7 @@ from b601_render_common import black_meshes, fingertip_geometry
 from PIL import Image
 from workspace_render_cli import DEFAULT_OUTPUT_DIR, DEFAULT_PROVENANCE, run_renderer
 from workspace_render_utils import rounded_outline, rounded_solid
+from workspace_wrench import annotate, metadata, torque
 
 
 def mesh_body(cid, vertices, indices, color):
@@ -297,10 +298,25 @@ def render(*, output_dir=DEFAULT_OUTPUT_DIR, provenance_path=DEFAULT_PROVENANCE)
         image = np.asarray(rgba, dtype=np.uint8).reshape(height, width, 4)[:, :, :3]
         from workspace_render_utils import add_coordinate_reference, coordinate_metadata
 
+        wrenches = [
+            torque(
+                heel,
+                [0, 1, 0],
+                radius=0.026,
+                start_deg=-45,
+                sweep_deg=210,
+                offset=[0.040, -0.019, 0.025],
+                label="τ_pry",
+                label_offset=(-70, -40),
+            )
+        ]
         Image.fromarray(image).save(output_dir / "pry_workspace_clean.png", dpi=(300, 300))
-        add_coordinate_reference(
+        annotated = add_coordinate_reference(
             image, depth, view, projection, -0.0101, [-0.09, 0.16, -0.08, 0.095]
-        ).save(output_dir / "pry_workspace.png", dpi=(300, 300))
+        )
+        annotate(annotated, view, projection, wrenches).save(
+            output_dir / "pry_workspace.png", dpi=(300, 300)
+        )
         manifest = {
             "task": "PRY",
             **{
@@ -329,6 +345,7 @@ def render(*, output_dir=DEFAULT_OUTPUT_DIR, provenance_path=DEFAULT_PROVENANCE)
                 "gripper": grasp,
                 "camera": camera,
                 **coordinate_metadata(),
+                **metadata(wrenches),
                 "arm_kinematics_simulated": False,
                 "geometry_is_illustrative": True,
             },
