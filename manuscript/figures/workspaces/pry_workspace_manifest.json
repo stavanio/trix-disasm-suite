@@ -1,0 +1,95 @@
+{
+  "task": "PRY",
+  "trace_file": "pry_canonical_trace.json",
+  "trace_sha256": "c71cfc50b19c282c3ca364ef8e8a05c29a2b6bff07dae60e6655429e670cf635",
+  "trace_step": 576,
+  "episode_seed": 892000,
+  "training_seed": 2,
+  "checkpoint_step": 7000,
+  "state": {
+    "theta_rad": 144.76226806640625,
+    "omega_rad_s": 67.71357727050781,
+    "gap_m": 0.007237697020173073,
+    "friction_state": 1.0,
+    "insertion_depth_m": 0.004303334280848503,
+    "dynamic_torque_limit": 1.4354499578475952,
+    "crack": 0.0
+  },
+  "interpretation": "B601-held bent pry blade lifting a vented enclosure lid at its seam",
+  "visualization": {
+    "gap_m": 0.007237697020173073,
+    "gap_reference": "vertical separation at raised lid edge",
+    "insertion_depth_m": 0.004303334280848503,
+    "insertion_reference": "housing outer edge to blade tip along X",
+    "tool_axis_angle_rad": 0.24900600127576666,
+    "lid_tilt_rad": 0.06706597724287475,
+    "lid_tilt_source": "illustrative tilt derived from recorded gap and enclosure width",
+    "toe_contact_m": [
+      0.049696665719151496,
+      -0.017,
+      0.026964963799095173
+    ],
+    "heel_contact_m": [
+      0.054,
+      -0.017,
+      0.02
+    ],
+    "gripper": {
+      "visual_scale": 0.46829099451497413,
+      "opening_fraction": 0.31515378802426264,
+      "gap_m": 0.018000002876574973,
+      "fingertips": [
+        {
+          "inner_y": -0.026000000346255877,
+          "center_x": 0.10536537646029816,
+          "bottom_z": 0.031261344907126204
+        },
+        {
+          "inner_y": -0.007999997469680902,
+          "center_x": 0.10536537646029709,
+          "bottom_z": 0.03126134490699835
+        }
+      ]
+    },
+    "camera": {
+      "target": [
+        0.03,
+        -0.004,
+        0.048
+      ],
+      "distance": 0.33,
+      "yaw": 35,
+      "pitch": -28,
+      "fov": 36
+    },
+    "coordinate_reference": "world-aligned simulator display frame; camera-projected XY grid",
+    "coordinate_style": "B601-inspired RGB arrows with Isaac-style square plane handles",
+    "display_frame_origin_world_m": [
+      -0.020000000000000073,
+      -0.10000000000000003,
+      -0.0101
+    ],
+    "display_frame_axes_world": [
+      [
+        1.0,
+        0.0,
+        0.0
+      ],
+      [
+        0.0,
+        1.0,
+        0.0
+      ],
+      [
+        0.0,
+        0.0,
+        1.0
+      ]
+    ],
+    "display_frame_axis_length_m": 0.030334088358214224,
+    "display_frame_is_simulation_origin": false,
+    "grid_spacing_m": 0.02,
+    "arm_kinematics_simulated": false,
+    "geometry_is_illustrative": true
+  }
+}
