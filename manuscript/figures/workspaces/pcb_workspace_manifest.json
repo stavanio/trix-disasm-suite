@@ -1,0 +1,126 @@
+{
+  "task": "PCB",
+  "trace_file": "pcb_canonical_trace.json",
+  "trace_sha256": "ec8bc42d904b161754cb1f403b4edd9e8bdc84bbaee4d638172402a0a164517f",
+  "trace_step": 133,
+  "episode_seed": 844000,
+  "training_seed": 0,
+  "checkpoint_step": 2000,
+  "state": {
+    "tilt_rad": null,
+    "lift_m": null,
+    "observation": [
+      0.008312500081956387,
+      0.014999999664723873,
+      0.006588201969861984,
+      0.0035398832987993956,
+      -1.698651909828186,
+      0.25156694650650024,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ]
+  },
+  "observation": [
+    0.008312500081956387,
+    0.014999999664723873,
+    0.006588201969861984,
+    0.0035398832987993956,
+    -1.698651909828186,
+    0.25156694650650024,
+    0.0,
+    0.0,
+    0.0,
+    0.0
+  ],
+  "visualization": {
+    "camera": {
+      "target": [
+        0,
+        0,
+        0.05
+      ],
+      "distance": 0.4,
+      "yaw": 36,
+      "pitch": -25
+    },
+    "grasp": {
+      "visual_scale": 0.46829099451497413,
+      "opening_fraction": 0.03394567029800574,
+      "actual_gap_m": 0.0019999996233697175,
+      "target_m": [
+        4.778728762137775e-05,
+        -8.894008319131052e-05,
+        0.040312122522482036
+      ],
+      "contacts_m": [
+        [
+          4.7759527109808575e-05,
+          -0.001088918390704222,
+          0.040305539061041985
+        ],
+        [
+          4.780616959844092e-05,
+          0.0009110378284254687,
+          0.04031871528462705
+        ]
+      ],
+      "closing_axis": [
+        2.332124870791716e-05,
+        0.9999782978758998,
+        0.006588113033174939
+      ],
+      "approach_axis": [
+        0.003539799083065019,
+        -0.006588154310467446,
+        0.9999720326315297
+      ],
+      "tip_depth_m": 0.0015
+    },
+    "lift_m": 0.008312500081956387,
+    "tilt_x_rad": 0.006588201969861984,
+    "tilt_y_rad": 0.0035398832987993956,
+    "observation_mapping": "pcb_env_v2: [lift, velocity, tilt_x, tilt_y, ...]",
+    "board_center_m": [
+      0.0,
+      0.0,
+      0.026812500081956386
+    ],
+    "board_dimensions_m": [
+      0.133,
+      0.002,
+      0.031
+    ],
+    "retainers_released": true,
+    "coordinate_reference": "world-aligned simulator display frame; camera-projected XY grid",
+    "coordinate_style": "B601-inspired RGB arrows with Isaac-style square plane handles",
+    "display_frame_origin_world_m": [
+      -0.06000000000000005,
+      -0.12000000000000002,
+      -0.0081
+    ],
+    "display_frame_axes_world": [
+      [
+        1.0,
+        0.0,
+        0.0
+      ],
+      [
+        0.0,
+        1.0,
+        0.0
+      ],
+      [
+        0.0,
+        0.0,
+        1.0
+      ]
+    ],
+    "display_frame_axis_length_m": 0.03547182709530243,
+    "display_frame_is_simulation_origin": false,
+    "grid_spacing_m": 0.02,
+    "arm_kinematics_simulated": false,
+    "geometry_is_illustrative": true
+  }
+}
