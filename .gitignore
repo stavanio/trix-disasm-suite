@@ -10,3 +10,6 @@ figures/*.pdf
 .DS_Store
 .venv/
 *.log
+.venv-renders/
+!assets/workspaces/*.json
+!manuscript/figures/workspaces/*_manifest.json

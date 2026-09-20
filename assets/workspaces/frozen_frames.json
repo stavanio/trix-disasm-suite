@@ -1,0 +1,235 @@
+{
+  "purpose": "Frozen replay frames used for DISASM-Bench workspace provenance visualization.",
+  "selection": "Archived trace frames matching the publication workspace poses.",
+  "states": {
+    "SCREW": {
+      "trace_file": "screw_canonical_trace.json",
+      "trace_sha256": "e7f2fd80daf7a23cb55674fb0d6bfea5d855684ceb55ad64834dd1186d078b32",
+      "evaluation_arm": "trix",
+      "training_seed": 0,
+      "checkpoint_step": 2000,
+      "episode_seed": 880000,
+      "trace_step": 188,
+      "frame": {
+        "step": 188,
+        "obs": [
+          41.555973052978516,
+          0.00827067345380783,
+          56.40332794189453,
+          0.011220908723771572,
+          0.9999748468399048,
+          -1.7678969754797436e-07,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "state": {
+          "theta_rad": 41.555973052978516,
+          "z_m": 0.00827067345380783,
+          "omega_rad_s": 56.40332794189453,
+          "v_z_m_s": 0.011220908723771572,
+          "engagement": 0.9999748468399048,
+          "helix_error": -1.7678969754797436e-07
+        },
+        "progress": null,
+        "reward": 11.220909037054428,
+        "terminated": false,
+        "truncated": false
+      }
+    },
+    "PCB": {
+      "trace_file": "pcb_canonical_trace.json",
+      "trace_sha256": "ec8bc42d904b161754cb1f403b4edd9e8bdc84bbaee4d638172402a0a164517f",
+      "evaluation_arm": "trix",
+      "training_seed": 0,
+      "checkpoint_step": 2000,
+      "episode_seed": 844000,
+      "trace_step": 133,
+      "frame": {
+        "step": 133,
+        "obs": [
+          0.008312500081956387,
+          0.014999999664723873,
+          0.006588201969861984,
+          0.0035398832987993956,
+          -1.698651909828186,
+          0.25156694650650024,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "state": {
+          "tilt_rad": null,
+          "lift_m": null,
+          "observation": [
+            0.008312500081956387,
+            0.014999999664723873,
+            0.006588201969861984,
+            0.0035398832987993956,
+            -1.698651909828186,
+            0.25156694650650024,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ]
+        },
+        "progress": null,
+        "reward": 15.0,
+        "terminated": false,
+        "truncated": false
+      }
+    },
+    "SNAP": {
+      "trace_file": "snap_canonical_trace.json",
+      "trace_sha256": "409980337e887eed02abaf7c493173805871ac31f87eb32cb1c89c7e61cef0b7",
+      "evaluation_arm": "trix",
+      "training_seed": 5,
+      "checkpoint_step": 10000,
+      "episode_seed": 874000,
+      "trace_step": 5,
+      "frame": {
+        "step": 5,
+        "obs": [
+          0.005133796017616987,
+          -0.027169644832611084,
+          0.0008084868895821273,
+          0.05000000074505806,
+          0.0,
+          0.0,
+          0.0,
+          1.0,
+          0.0,
+          0.0
+        ],
+        "state": {
+          "delta_m": 0.005133796017616987,
+          "delta_dot_m_s": -0.027169644832611084,
+          "z_m": 0.0008084868895821273,
+          "v_z_m_s": 0.05000000074505806,
+          "released": false,
+          "latch_damage": 0.0,
+          "latch_broken": false,
+          "phase_release_or_later": true
+        },
+        "progress": null,
+        "reward": 50.0,
+        "terminated": false,
+        "truncated": false
+      }
+    },
+    "CRANK": {
+      "trace_file": "crank_canonical_trace.json",
+      "trace_sha256": "fcf0c9a03750ab7a158b9ce3762bbdddbcf47dfb32316c8d87bce46fa78db153",
+      "evaluation_arm": "trix",
+      "training_seed": 4,
+      "checkpoint_step": 12000,
+      "episode_seed": 872000,
+      "trace_step": 199,
+      "frame": {
+        "step": 199,
+        "obs": [
+          -5.115796089172363,
+          -6.890850067138672,
+          0.3925544023513794,
+          0.9197288155555725,
+          -0.0020000000949949026,
+          -0.03896580636501312,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "state": {
+          "theta_rad": -5.115796089172363,
+          "omega_rad_s": -6.890850067138672,
+          "cos_theta": 0.3925544023513794,
+          "sin_theta": 0.9197288155555725,
+          "z_m": -0.0020000000949949026,
+          "v_z_m_s": -0.03896580636501312,
+          "damage": 0.0,
+          "rotation_complete": false
+        },
+        "progress": null,
+        "reward": 0.407102132748018,
+        "terminated": false,
+        "truncated": false
+      }
+    },
+    "BATTERY": {
+      "trace_file": "battery_canonical_trace.json",
+      "trace_sha256": "9a5fcd043e0e9f12403c2ee50040ceeaca938ba75493e334be7d539fdac77042",
+      "evaluation_arm": "trix_preventive",
+      "training_seed": 0,
+      "checkpoint_step": 2000,
+      "episode_seed": 850000,
+      "trace_step": 329,
+      "frame": {
+        "step": 329,
+        "obs": [
+          0.006753831636160612,
+          0.00368444062769413,
+          0.0,
+          0.0,
+          0.25,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "state": {
+          "z_m": 0.006753831636160612,
+          "v_z_m_s": 0.00368444062769413,
+          "deformation": 0.0,
+          "short_state": 0.0,
+          "temperature_C": 25.0,
+          "short_flag": false
+        },
+        "progress": null,
+        "reward": 3.6844406501095657,
+        "terminated": false,
+        "truncated": false
+      }
+    },
+    "PRY": {
+      "trace_file": "pry_canonical_trace.json",
+      "trace_sha256": "c71cfc50b19c282c3ca364ef8e8a05c29a2b6bff07dae60e6655429e670cf635",
+      "evaluation_arm": "trix",
+      "training_seed": 2,
+      "checkpoint_step": 7000,
+      "episode_seed": 892000,
+      "trace_step": 576,
+      "frame": {
+        "step": 576,
+        "obs": [
+          144.76226806640625,
+          67.71357727050781,
+          0.007237697020173073,
+          1.0,
+          0.004303334280848503,
+          1.4354499578475952,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "state": {
+          "theta_rad": 144.76226806640625,
+          "omega_rad_s": 67.71357727050781,
+          "gap_m": 0.007237697020173073,
+          "friction_state": 1.0,
+          "insertion_depth_m": 0.004303334280848503,
+          "dynamic_torque_limit": 1.4354499578475952,
+          "crack": 0.0
+        },
+        "progress": null,
+        "reward": 0.7237697138500776,
+        "terminated": false,
+        "truncated": false
+      }
+    }
+  }
+}

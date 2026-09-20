@@ -11,6 +11,9 @@ On helical fastener extraction, TRiX reduces safety violations from **86.8% to 2
 
 ## Reproduce Paper Results
 
+For the six B601 workspace panels, see [Workspace rendering](docs/workspace_rendering.md).
+Each panel has a separate PyBullet script, archived input frame, and render manifest.
+
 ```bash
 pip install numpy
 ```

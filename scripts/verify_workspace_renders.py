@@ -1,0 +1,82 @@
+#!/usr/bin/env python3
+"""Regenerate workspace panels and compare them with the committed images."""
+
+import argparse
+import json
+import subprocess
+import sys
+import tempfile
+from pathlib import Path
+
+import b601_render_common as b601
+import numpy as np
+from PIL import Image
+from workspace_render_cli import DEFAULT_OUTPUT_DIR, DEFAULT_PROVENANCE, ROOT
+
+TASKS = ("screw", "pcb", "snap", "crank", "battery", "pry")
+
+
+def verify(tasks, output_dir, asset_dir=None, font_dir=None):
+    frames = json.loads(DEFAULT_PROVENANCE.read_text())["states"]
+    failures = []
+    b601.configure_assets(asset_dir)
+    b601.verify_assets()
+    with tempfile.TemporaryDirectory(prefix="trix-render-check-") as directory:
+        temporary = Path(directory)
+        for task in tasks:
+            command = [
+                sys.executable,
+                str(ROOT / f"scripts/render_{task}_workspace_b601.py"),
+                "--output-dir",
+                str(temporary),
+                "--state-file",
+                str(DEFAULT_PROVENANCE),
+            ]
+            if asset_dir:
+                command += ["--b601-description", str(asset_dir)]
+            if font_dir:
+                command += ["--font-dir", str(font_dir)]
+            result = subprocess.run(command, capture_output=True, text=True)
+            if result.returncode:
+                failures.append(f"{task}: renderer failed\n{result.stdout}{result.stderr}")
+                continue
+            for suffix in (".png", "_clean.png"):
+                filename = f"{task}_workspace{suffix}"
+                with Image.open(output_dir / filename) as saved:
+                    expected = np.asarray(saved.convert("RGB"))
+                with Image.open(temporary / filename) as fresh:
+                    actual = np.asarray(fresh.convert("RGB"))
+                if expected.shape != actual.shape or not np.array_equal(expected, actual):
+                    failures.append(f"{task}: image differs from reference: {filename}")
+            manifest = json.loads((temporary / f"{task}_workspace_manifest.json").read_text())
+            frame = frames[task.upper()]
+            if (
+                manifest["state"] != frame["frame"]["state"]
+                or manifest["trace_step"] != frame["trace_step"]
+            ):
+                failures.append(f"{task}: archived state or trace step changed")
+            coordinates = manifest["visualization"]
+            if (
+                coordinates["grid_spacing_m"] != 0.020
+                or coordinates["display_frame_axes_world"] != np.eye(3).tolist()
+                or coordinates["display_frame_is_simulation_origin"]
+            ):
+                failures.append(f"{task}: coordinate-frame convention changed")
+            if not any(message.startswith(f"{task}:") for message in failures):
+                print(f"PASS {task.upper()}: annotated PNG, clean PNG, archived state, XYZ frame")
+    if failures:
+        raise RuntimeError("\n".join(failures))
+
+
+def main():
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument("--tasks", nargs="+", choices=TASKS, default=TASKS)
+    parser.add_argument("--reference-dir", type=Path, default=DEFAULT_OUTPUT_DIR)
+    parser.add_argument("--b601-description", type=Path)
+    parser.add_argument("--font-dir", type=Path)
+    args = parser.parse_args()
+    verify(args.tasks, args.reference_dir, args.b601_description, args.font_dir)
+
+
+if __name__ == "__main__":
+    main()

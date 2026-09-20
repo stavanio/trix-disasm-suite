@@ -1,0 +1,7 @@
+# Reference versions for the individual PyBullet renders.
+numpy==1.26.4
+pybullet==3.2.7
+Pillow==10.2.0
+
+# Figure composition and a portable DejaVu font fallback.
+matplotlib>=3.6.3,<4
