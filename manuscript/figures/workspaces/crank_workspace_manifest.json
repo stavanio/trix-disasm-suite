@@ -1,0 +1,115 @@
+{
+  "task": "CRANK",
+  "trace_file": "crank_canonical_trace.json",
+  "trace_sha256": "fcf0c9a03750ab7a158b9ce3762bbdddbcf47dfb32316c8d87bce46fa78db153",
+  "trace_step": 199,
+  "episode_seed": 872000,
+  "training_seed": 4,
+  "checkpoint_step": 12000,
+  "state": {
+    "theta_rad": -5.115796089172363,
+    "omega_rad_s": -6.890850067138672,
+    "cos_theta": 0.3925544023513794,
+    "sin_theta": 0.9197288155555725,
+    "z_m": -0.0020000000949949026,
+    "v_z_m_s": -0.03896580636501312,
+    "damage": 0.0,
+    "rotation_complete": false
+  },
+  "observation": [
+    -5.115796089172363,
+    -6.890850067138672,
+    0.3925544023513794,
+    0.9197288155555725,
+    -0.0020000000949949026,
+    -0.03896580636501312,
+    0.0,
+    0.0,
+    0.0,
+    0.0
+  ],
+  "visualization": {
+    "camera": {
+      "target": [
+        0.017664940394367803,
+        0.04138779869555075,
+        0.059
+      ],
+      "distance": 0.395,
+      "yaw": 42,
+      "pitch": -28
+    },
+    "grasp": {
+      "visual_scale": 0.46829099451497413,
+      "opening_fraction": 0.24485167332111263,
+      "actual_gap_m": 0.01400000408841064,
+      "target_m": [
+        0.039255423098595116,
+        0.09197288599011279,
+        0.052999999905005105
+      ],
+      "contacts_m": [
+        [
+          0.04569352741321103,
+          0.08922501067191378,
+          0.05299999198582368
+        ],
+        [
+          0.032817319614365986,
+          0.09472077151063998,
+          0.05299999198582368
+        ]
+      ],
+      "closing_axis": [
+        -0.919728859901128,
+        0.3925542309859512,
+        0.0
+      ],
+      "approach_axis": [
+        0.0,
+        0.0,
+        1.0
+      ],
+      "tip_depth_m": 0.0025
+    },
+    "theta_raw_rad": -5.115796089172363,
+    "theta_display_rad": 1.167389218007223,
+    "z_m": -0.0020000000949949026,
+    "crank_radius_m": 0.1,
+    "handle_center_m": [
+      0.039255423098595116,
+      0.09197288599011279,
+      0.0494999999050051
+    ],
+    "handle_diameter_m": 0.014,
+    "coordinate_reference": "world-aligned simulator display frame; camera-projected XY grid",
+    "coordinate_style": "B601-inspired RGB arrows with Isaac-style square plane handles",
+    "display_frame_origin_world_m": [
+      -0.10000000000000003,
+      -0.06000000000000005,
+      -0.0161
+    ],
+    "display_frame_axes_world": [
+      [
+        1.0,
+        0.0,
+        0.0
+      ],
+      [
+        0.0,
+        1.0,
+        0.0
+      ],
+      [
+        0.0,
+        0.0,
+        1.0
+      ]
+    ],
+    "display_frame_axis_length_m": 0.035743338466750874,
+    "display_frame_is_simulation_origin": false,
+    "grid_spacing_m": 0.02,
+    "arm_kinematics_simulated": false,
+    "geometry_is_illustrative": true
+  }
+}
