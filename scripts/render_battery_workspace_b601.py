@@ -8,11 +8,13 @@ from pathlib import Path
 import b601_render_common as b601
 import numpy as np
 import pybullet as p
-from b601_render_common import black_meshes, fingertip_geometry
 from PIL import Image, ImageDraw, ImageFont
 from workspace_environment import prepare_environment, body_geometry
 from workspace_render_cli import DEFAULT_OUTPUT_DIR, DEFAULT_PROVENANCE, run_renderer
-from workspace_render_utils import font_directory, rounded_solid
+from workspace_render_utils import (
+    font_directory, rounded_solid, mesh_body, grasp_b601,
+    _mesh_world, point_surface_distance,
+)
 from workspace_wrench import annotate, force, metadata
 
 
@@ -63,57 +65,27 @@ def textured_face(cid, path, half_x, half_y, pos):
     p.changeVisualShape(body, -1, textureUniqueId=texture, physicsClientId=cid)
 
 
-def place_gripper(cid, center, tab_width):
-    scale, _ = b601.choose_visual_scale()
-    robot = b601.load_robot(cid, scale)
-    upper = [float(p.getJointInfo(robot, j, physicsClientId=cid)[9]) for j in (7, 8)]
-
-    def opening(fraction):
-        for j, limit in zip((7, 8), upper):
-            p.resetJointState(robot, j, fraction * limit, physicsClientId=cid)
-
-    opening(1)
-    ref_pos, ref_quat, _, local_frame = b601.local_tool_frame(robot, cid)
-    world_frame = np.array([[0, -1, 0], [1, 0, 0], [0, 0, 1]])
-    b601.orient_robot(robot, cid, world_frame @ local_frame.T, ref_pos, ref_quat)
-    meshes = black_meshes()
-    front, back = fingertip_geometry(robot, cid, scale, meshes)
-    max_gap = back["inner_y"] - front["inner_y"]
-    opening(0)
-    front, back = fingertip_geometry(robot, cid, scale, meshes)
-    min_gap = back["inner_y"] - front["inner_y"]
-    fraction = (tab_width - min_gap) / (max_gap - min_gap)
-    if not 0 <= fraction <= 1:
-        raise RuntimeError("Pull-tab width exceeds the B601 jaw range")
-    opening(fraction)
-    front, back = fingertip_geometry(robot, cid, scale, meshes)
-    contact = np.array(
-        [
-            0.5 * (front["center_x"] + back["center_x"]),
-            0.5 * (front["inner_y"] + back["inner_y"]),
-            0.5 * (front["bottom_z"] + back["bottom_z"]),
-        ]
-    )
-    b601.translate_robot(robot, cid, np.asarray(center) - contact)
-    front, back = fingertip_geometry(robot, cid, scale, meshes)
-    gap = back["inner_y"] - front["inner_y"]
-    if not (
-        abs(gap - tab_width) < 0.0001
-        and abs(front["inner_y"] + tab_width / 2) < 0.0001
-        and abs(back["inner_y"] - tab_width / 2) < 0.0001
-        and all(abs(t["center_x"] - center[0]) < 0.0001 for t in (front, back))
-    ):
-        raise RuntimeError("B601 tips do not meet the pull-tab edges")
-    lo, hi = b601.visible_bounds(robot, cid)
-    ax, ay = 0.5 * (lo[:2] + hi[:2])
-    b601.make_cyl(cid, 0.011, 0.008, [ax, ay, hi[2] + 0.004], [0.48, 0.50, 0.53, 1])
-    b601.make_box(cid, [0.010, 0.010, 0.015], [ax, ay, hi[2] + 0.023], [0.14, 0.16, 0.19, 1])
-    return {
-        "visual_scale": scale,
-        "opening_fraction": fraction,
-        "gap_m": gap,
-        "fingertips": [front, back],
-    }
+def pull_tab(cid, origin, width=.018, thickness=.0007):
+    """A fixed folded polymer tab; its whole frame translates with battery z."""
+    stations = [(.028,0,0,1),(.001,0,0,1)]
+    for angle in np.linspace(-np.pi/2,-np.pi,17)[1:]:
+        x,z = .001+.001*np.cos(angle), .001+.001*np.sin(angle)
+        stations.append((x,z,-np.cos(angle),-np.sin(angle)))
+    stations.append((0,.021,1,0))
+    vertices,indices = [],[]
+    for x,z,nx,nz in stations:
+        a=(x-nx*thickness/2,z-nz*thickness/2)
+        b=(x+nx*thickness/2,z+nz*thickness/2)
+        vertices.extend([[a[0],-width/2,a[1]],[a[0],width/2,a[1]],
+                         [b[0],width/2,b[1]],[b[0],-width/2,b[1]]])
+    indices.extend([0,2,1,0,3,2])
+    for ring in range(len(stations)-1):
+        for j in range(4):
+            k=(j+1)%4; a,b,c,d=4*ring+j,4*ring+k,4*(ring+1)+k,4*(ring+1)+j
+            indices.extend([a,b,c,a,c,d])
+    end=4*(len(stations)-1)
+    indices.extend([end,end+1,end+2,end,end+2,end+3])
+    return mesh_body(cid,vertices,indices,[.91,.89,.81,1],origin),vertices
 
 
 def render(*, output_dir=DEFAULT_OUTPUT_DIR, provenance_path=DEFAULT_PROVENANCE, environment=None):
@@ -128,7 +100,7 @@ def render(*, output_dir=DEFAULT_OUTPUT_DIR, provenance_path=DEFAULT_PROVENANCE,
     try:
         with tempfile.TemporaryDirectory(prefix="trix_battery_") as tempdir:
             # Shallow device tray and two discrete adhesive strips.
-            fixture = b601.make_box(cid, [0.080, 0.054, 0.005], [0, 0, -0.005], [0.17, 0.18, 0.20, 1])
+            fixture = rounded_solid(cid,.078,.049,.004,.008,.0006,[0,0,-.002],[.58,.62,.66,1])
             tray = [0.065, 0.073, 0.085, 1]
             b601.make_box(cid, [0.069, 0.040, 0.0007], [0, 0, 0.0007], tray)
             for y in (-0.041, 0.041):
@@ -191,24 +163,37 @@ def render(*, output_dir=DEFAULT_OUTPUT_DIR, provenance_path=DEFAULT_PROVENANCE,
             for y, color in ((0.013, [0.78, 0.80, 0.81, 1]), (-0.013, [0.63, 0.67, 0.70, 1])):
                 b601.make_box(cid, [0.007, 0.0045, 0.0003], [0.062, y, cell_bottom + 0.0017], color)
 
-            # Wide extraction tab bonded underneath the opposite cell end.
-            tab_width = 0.018
-            tab_z = cell_bottom + 0.0008
-            tab = rounded_solid(
-                cid,
-                0.020,
-                tab_width / 2,
-                0.0007,
-                0.0014,
-                0.00015,
-                [-0.061, 0, tab_z],
-                [0.91, 0.89, 0.81, 1],
-            )
-            grasp = place_gripper(cid, [-0.071, 0, tab_z - 0.0007], tab_width)
+            # Grip the broad faces of an upright pull tab, not its thin edges.
+            tab_width,tab_thickness=.018,.0007
+            tab_z=cell_bottom+.0008
+            tab_origin=np.array([-.071,0,tab_z])
+            tab,tab_vertices=pull_tab(cid,tab_origin,tab_width,tab_thickness)
+            contact_center=tab_origin+[0,0,.016]
+            robot,grasp=grasp_b601(cid,contact_center,tab_thickness,
+                                  closing=[1,0,0],approach=[0,0,1],tip_depth=.003)
+            tab_contacts=np.asarray(grasp["contacts_m"])-tab_origin
+            face_errors=np.abs(np.abs(tab_contacts[:,0])-tab_thickness/2)
+            if (max(face_errors)>.00005 or np.any(np.abs(tab_contacts[:,1])>tab_width/2)
+                or np.any(tab_contacts[:,2]<.002) or np.any(tab_contacts[:,2]>.020)):
+                raise RuntimeError("BATTERY fingertips must meet the upright tab's two broad faces")
+
+            # Check a 2 x 2 mm patch on each tab face against the real STL,
+            # so a correct gap alone cannot hide a point-only or hovering grasp.
+            tip_surfaces=[_mesh_world(robot,cid,grasp["visual_scale"],link,name)
+                          for link,name in ((7,"pla_left.STL"),(8,"pla_right.STL"))]
+            patch_errors=[]
+            for contact in grasp["contacts_m"]:
+                distances=[]
+                for dy,dz in ((-.001,-.001),(-.001,.001),(.001,-.001),(.001,.001)):
+                    point=np.asarray(contact)+[0,dy,dz]
+                    distances.append(min(point_surface_distance(point,surface) for surface in tip_surfaces))
+                patch_errors.append(distances)
+            if np.max(patch_errors)>.00005:
+                raise RuntimeError("BATTERY tab face contact patch is outside the fingertip surfaces")
 
             width, height = 1800, 1400
             camera = {
-                "target": [-0.015, 0, 0.030],
+                "target": [-0.015, 0, 0.040],
                 "distance": 0.350,
                 "yaw": 34,
                 "pitch": -30,
@@ -247,11 +232,11 @@ def render(*, output_dir=DEFAULT_OUTPUT_DIR, provenance_path=DEFAULT_PROVENANCE,
             )
 
             wrenches = [
-                force([-0.071, 0, tab_z], [0, 0, 1], offset=[-0.036, -0.027, 0.014], label="F_peel")
+                force(contact_center, [0, 0, 1], offset=[-0.030, -0.027, 0.014], label="F_peel")
             ]
             Image.fromarray(image).save(output_dir / "battery_workspace_clean.png", dpi=(300, 300))
             annotated = add_coordinate_reference(
-                image, depth, view, projection, -0.0101, [-0.115, 0.105, -0.09, 0.09]
+                image, depth, view, projection, -0.0041, [-0.115, 0.105, -0.09, 0.09]
             )
             annotate(annotated, view, projection, wrenches).save(
                 output_dir / "battery_workspace.png", dpi=(300, 300)
@@ -275,10 +260,19 @@ def render(*, output_dir=DEFAULT_OUTPUT_DIR, provenance_path=DEFAULT_PROVENANCE,
             "interpretation": "intact lithium-ion pouch cell lifted from adhesive using an extraction tab",
             "visualization": {
                 "environment": binding,
-                "rendered_bodies": body_geometry(cid, fixture=fixture, cell=cell, tab=tab),
+                "rendered_bodies": body_geometry(cid, fixture=fixture, cell=cell, tab=tab, gripper=robot),
                 "lift_m": lift,
                 "cell_thickness_m": thickness,
-                "gripper": grasp,
+                "grasp": grasp,
+                "tab_width_m": tab_width,
+                "tab_thickness_m": tab_thickness,
+                "tab_local_vertices_m": tab_vertices,
+                "tab_contacts_local_m": tab_contacts.tolist(),
+                "tab_face_contact_error_m": face_errors.tolist(),
+                "tab_contact_patch_dimensions_m": [.002,.002],
+                "tab_contact_patch_surface_error_m": patch_errors,
+                "grasp_interface": "opposed broad faces of upright extraction tab",
+                "fixture_material": "thin light-metal device tray",
                 "camera": camera,
                 **coordinate_metadata(),
                 **metadata(wrenches),
@@ -291,7 +285,7 @@ def render(*, output_dir=DEFAULT_OUTPUT_DIR, provenance_path=DEFAULT_PROVENANCE,
         )
         print("BATTERY peel lift mm:", lift * 1000)
         print("Deformation:", state["deformation"], "temperature C:", state["temperature_C"])
-        print("Pull-tab grasp gap mm:", grasp["gap_m"] * 1000)
+        print("Pull-tab grasp gap mm:", grasp["actual_gap_m"] * 1000)
         print("WROTE:", output_dir / "battery_workspace.png")
     finally:
         p.disconnect(cid)
