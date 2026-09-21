@@ -4,10 +4,19 @@ The six workspace panels are generated from Python geometry, B601 STL meshes,
 and archived DISASM-Bench state frames. Each panel has its own executable script.
 PyBullet's CPU TinyRenderer produces the images without a display server or GPU.
 
-These scripts visualize recorded states. They position the fixtures and gripper
-geometrically; they do not run a policy, solve arm kinematics, or advance a contact
-dynamics simulation. Fixture dimensions and materials are illustrative. Recorded
-task variables are retained in the accompanying manifests.
+All six panels derive moving geometry from the actual analytical environment
+objects. The CLI restores observable fields from the archived frame, verifies the
+observation against the environment's own `_get_obs()`, and passes that object to
+the renderer. There are no display-pose overrides. Static CAD dimensions,
+materials, and camera settings are fixed visual assets. Gripper attachments follow
+the moving workpiece or tool frame.
+
+The six environment source files and their local dependencies are included;
+[environment_sources.json](../assets/workspaces/environment_sources.json) pins
+their SHA-256 hashes. These sources are copied without changing their physics.
+PyBullet renders the resulting geometry; the frozen analytical models provide
+the task dynamics. The viewer does not simulate articulated arm control or
+B601 contact dynamics.
 
 ## Setup
 
@@ -66,16 +75,52 @@ checkpoints are not required to reproduce these selected views.
 | Task | Script | Trace step | Recorded variables shown |
 | --- | --- | ---: | --- |
 | SCREW | [render_screw_workspace_b601.py](../scripts/render_screw_workspace_b601.py) | 188 | 8.270673 mm extraction; recorded screw angle; 1.25 mm thread pitch |
-| PCB | [render_pcb_workspace_b601.py](../scripts/render_pcb_workspace_b601.py) | 133 | 8.312500 mm lift; tilt from observation entries 2 and 3 |
+| PCB | [render_pcb_workspace_b601.py](../scripts/render_pcb_workspace_b601.py) | 133 | 8.312500 mm lift; 0.006588202 rad about long X axis; 0.003539883 rad about Y |
 | SNAP | [render_snap_workspace_b601.py](../scripts/render_snap_workspace_b601.py) | 5 | 5.133796 mm latch deflection; 0.808487 mm lid extraction |
 | CRANK | [render_crank_workspace_b601.py](../scripts/render_crank_workspace_b601.py) | 199 | Recorded crank angle; −2.000000 mm axial displacement; 100 mm arm radius |
 | BATTERY | [render_battery_workspace_b601.py](../scripts/render_battery_workspace_b601.py) | 329 | 6.753832 mm peel lift; intact cell state |
 | PRY | [render_pry_workspace_b601.py](../scripts/render_pry_workspace_b601.py) | 576 | 7.237697 mm seam gap; 4.303334 mm insertion; recorded tool angle |
 
-Values in this table are rounded for display. Calculations use the full precision
-in the archived JSON. PCB's named lift and tilt fields are null in that archive;
-the renderer uses the stored observation according to `pcb_env_v2`'s ordering.
-PRY's lid tilt is derived from the recorded gap and the illustrated enclosure width.
+Archived values in this table are rounded for display; calculations use the full
+precision in the input JSON. PCB's historical named fields are null, so its
+observation components 0, 2 and 3 restore `env.z` and `env.theta`. The earlier
+11 mm / 0.16 rad display override has been removed. `PCBEnvV2.THETA_FRAC` is
+0.075 rad: an intact 0.16 rad state is rejected, without changing that threshold.
+
+### Render an environment object directly
+
+```python
+import sys
+sys.path.insert(0, "scripts")
+from workspace_environment import prepare_environment
+from envs.pcb_env_v2 import PCBEnvV2
+from render_pcb_workspace_b601 import render
+
+env = PCBEnvV2(noise_mult=0)
+env.reset(seed=123)
+for _ in range(12):
+    env.step([0.01, -0.01, 0.55])
+render(environment=env, output_dir="/tmp/pcb-live")
+```
+
+The renderer reads the live object without modifying it. Such manifests use
+`source_kind: live_environment` and do not claim an archived trace identity.
+The default archive path restores **observable state only**, not missing episode
+history or hidden velocities. Do not resume simulation from an archived display
+frame. Its state is sufficient for these geometric degrees of freedom.
+
+| Task | Environment fields controlling geometry |
+| --- | --- |
+| SCREW | `theta`, `z`; model `PITCH` and `RADIUS` |
+| PCB | `z`, both `theta` components; clip release from `z >= Z_CLIP` |
+| SNAP | `delta` moves the housing hook outward; `z` moves lid/tooth/grasp vertically |
+| CRANK | `theta`, `z`; model `RADIUS` |
+| BATTERY | `z` moves cell, terminals, extraction tab and grasp together |
+| PRY | `state.position[0]` sets insertion, `[2]` sets gap, `state.theta` rotates a rigid tool; model `LEVER_LENGTH` |
+
+Manifests record source hashes, resolved state variables, actual PyBullet body
+transforms and observation-roundtrip error. Damaged states with no corresponding
+damage-shape model are refused instead of silently showing intact geometry.
 
 All six scripts accept `--output-dir`, `--state-file`, `--b601-description`, and
 `--font-dir`. The SCREW, PCB, and CRANK scripts also accept `--debug` to mark their
@@ -122,9 +167,29 @@ The PCB bottom edge remains inside the socket mouth at the archived lift. Both
 end overlaps are recorded in its manifest. The SCREW root is an explicit radius
 mesh, leaving its continuous 1.25 mm helix exposed; its illustrative head diameter
 is 16 mm. CRANK uses an explicit 14 mm handle mesh with the grasp at mid-height.
-The SCREW, PCB, and CRANK contacts are found by intersecting the real black
+The SCREW, PCB, CRANK, and PRY contacts are found by intersecting the real black
 fingertip triangles at the contact height, with a separate point-to-triangle
 surface-distance check. CRANK also checks contact against the handle radius.
+PRY closes across the orange polymer tool grip with its approach normal to the
+handle top, following the unchanged 14.266993-degree tool inclination. Both
+contacts are checked against the handle's flat side faces and recorded in its
+manifest. The orange element is part of the pry tool, not a support or fixture.
+
+PCB uses a fixed socket mouth at 12.8 mm world height, with its seated lower
+edge at 3 mm. Socket geometry does not follow lift or tilt. Engagement and gold
+contact exposure are measured outputs; an extracted state is allowed to clear
+the connector. SNAP's housing hook stays at its fixed height when the lid moves;
+its horizontal overlap clears at the environment's 2 mm deflection threshold.
+
+PRY uses one fixed 150 mm tool, transformed from the insertion/gap origin by
+`Ry(-env.state.theta)`. The lid translates by the gap; no hinge angle is invented.
+The reduced environment does not constrain a rigid tool against a housing
+fulcrum. The renderer therefore does not warp the blade or force heel contact.
+That missing contact constraint remains a model limitation.
+
+SCREW step 188 remains partially withdrawn: the head underside is 8.270673 mm
+above the insert, with the remaining shaft still inside it; this was accepted
+as equivalent to the requested 8.25 mm presentation.
 
 Purple arrows show schematic wrench directions. Dotted leaders locate their
 application points; arrow lengths do not represent magnitudes. They are projected
@@ -138,7 +203,7 @@ No measured force or torque samples are available in the saved frames.
 | SNAP | Upward lid pull and outward latch-deflection force |
 | CRANK | Tangential handle force Ft and corresponding negative axial torque τz |
 | BATTERY | Upward force at the extraction tab |
-| PRY | Torque about the lever's transverse axis, raising its inward toe |
+| PRY | Torque about world −Y, matching the positive model-angle convention |
 
 These load directions illustrate the mechanism and reduced task inputs. They do
 not assert that one displayed gripper supplies every independent input, or that
@@ -152,10 +217,25 @@ a full robot arm, controller, or contact dynamics have been simulated.
 
 The check renders each panel into a temporary directory and compares both PNGs
 pixel-for-pixel with the committed references. It also checks the archived state,
-trace step, coordinate convention, wrench metadata, and the PCB/CRANK contact invariants. It leaves the reference files untouched.
+trace step, coordinate convention, wrench metadata, direct PCB observation-to-pose
+mapping, and the CRANK contact invariants. It leaves the reference files untouched.
 To check one panel, use `--tasks snap`; model and font path options are supported.
 Pixel differences on another platform should be investigated against the recorded
 runtime, model, and font versions before updating a reference image.
+
+## Verify state-to-geometry behavior
+
+```bash
+.venv-renders/bin/python scripts/verify_workspace_state_mapping.py
+```
+
+This renders four states per task: the restored frame passed as a live object,
+two independent state perturbations, and a fresh environment after real `step()`
+calls. It checks actual PyBullet body transforms, unchanged fixture geometry,
+changed pixels, and that rendering never mutates the environment. It also checks
+SNAP hook/lid independence, a rigid PRY mesh, PCB's two tilt axes, gripper following,
+and rejection of the inconsistent intact 0.16 rad PCB state. Synthetic
+perturbations are mapping tests, not new benchmark rollouts or paper results.
 
 ## Source layout
 
@@ -164,6 +244,9 @@ runtime, model, and font versions before updating a reference image.
 - `workspace_render_utils.py`: geometry primitives, measured grasps, fonts and coordinate graphics.
 - `workspace_wrench.py`: camera-projected force and torque annotations.
 - `workspace_render_cli.py`: shared paths and command-line options.
+- `workspace_environment.py`: environment restoration, source checks and state validation.
+- `verify_workspace_state_mapping.py`: tests over multiple states and actual rendered bodies.
+- `envs/*_env_v*.py`: unmodified analytical environments.
 - `compose_b601_workspaces.py`: the publication figure layout.
 - `verify_workspace_renders.py`: reproduction checks against saved panels.
 

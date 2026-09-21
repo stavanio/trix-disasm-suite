@@ -56,6 +56,9 @@ def verify(tasks, output_dir, asset_dir=None, font_dir=None):
             ):
                 failures.append(f"{task}: archived state or trace step changed")
             coordinates = manifest["visualization"]
+            binding = coordinates["environment"]
+            if binding["source_kind"] != "archived_observation_restored_to_environment" or binding["pose_overrides"]:
+                failures.append(f"{task}: expected environment state with no pose override")
             if (
                 coordinates["grid_spacing_m"] != 0.020
                 or coordinates["display_frame_axes_world"] != np.eye(3).tolist()
@@ -70,8 +73,11 @@ def verify(tasks, output_dir, asset_dir=None, font_dir=None):
             grasp = coordinates.get("grasp", {})
             if grasp and max(grasp["contact_surface_distance_m"]) > 0.00005:
                 failures.append(f"{task}: contact is outside the fingertip STL")
-            if task == "pcb" and min(coordinates["board_socket_overlap_m"]) <= 0:
-                failures.append("pcb: board is outside the socket mouth")
+            if task == "pcb":
+                pose = [coordinates["lift_m"], coordinates["tilt_x_rad"], coordinates["tilt_y_rad"]]
+                obs = frame["frame"]["obs"]
+                if not np.allclose(pose, [obs[0], obs[2], obs[3]], rtol=0, atol=1e-12):
+                    failures.append("pcb: rendered lift/tilts disagree with the environment observation")
             if task == "crank":
                 center = np.asarray(coordinates["handle_center_m"])
                 radius = coordinates["handle_diameter_m"] / 2

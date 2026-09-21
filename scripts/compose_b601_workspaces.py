@@ -51,7 +51,7 @@ def compose(workspace_dir=FIGURES / "workspaces", output_dir=FIGURES):
         if extension == "pdf":
             kwargs["metadata"] = dict(
                 Title="DISASM-Bench simulation workspace snapshots",
-                Subject="Archived benchmark poses visualized in PyBullet with B601 grippers and world coordinate references",
+                Subject="Benchmark workspaces in PyBullet with B601 grippers; geometry driven by archived analytical environment states",
                 Creator="TRiX B601 workspace compositor",
             )
         figure.savefig(output, dpi=300, bbox_inches="tight", facecolor="white", **kwargs)
