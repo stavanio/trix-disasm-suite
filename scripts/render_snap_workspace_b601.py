@@ -9,10 +9,10 @@ import b601_render_common as b601
 import numpy as np
 import pybullet as p
 from PIL import Image
+from workspace_environment import prepare_environment, body_geometry
 from workspace_render_cli import DEFAULT_OUTPUT_DIR, DEFAULT_PROVENANCE, run_renderer
 from workspace_wrench import annotate, force, metadata
 
-DELTA_DISENGAGE = 0.002
 
 
 def make_box_between(cid, p0, p1, half_y, half_z, rgba):
@@ -126,32 +126,14 @@ def open_and_orient_gripper(robot, cid):
 # ============================================================
 
 
-def render(*, output_dir=DEFAULT_OUTPUT_DIR, provenance_path=DEFAULT_PROVENANCE):
+def render(*, output_dir=DEFAULT_OUTPUT_DIR, provenance_path=DEFAULT_PROVENANCE, environment=None):
     output_dir = Path(output_dir)
     output_dir.mkdir(parents=True, exist_ok=True)
     provenance_path = Path(provenance_path)
-    provenance = json.loads(provenance_path.read_text())
-
-    entry = provenance["states"]["SNAP"]
-
-    if entry["trace_step"] != 5:
-        raise RuntimeError(f"Expected SNAP step 5, got {entry['trace_step']}")
-
+    env, model, entry, binding = prepare_environment("SNAP", provenance_path, environment)
     st = entry["frame"]["state"]
-
-    delta = float(st["delta_m"])
-    z = float(st["z_m"])
-    released = bool(st["released"])
-    broken = bool(st["latch_broken"])
-
-    if delta < DELTA_DISENGAGE:
-        raise RuntimeError("Selected frame is not disengaged")
-
-    if released:
-        raise RuntimeError("Selected frame should have released=False")
-
-    if broken:
-        raise RuntimeError("Selected frame should have intact latch")
+    delta, z = float(env.delta), float(env.z)
+    released, broken = bool(env.released), bool(env.latch_broken)
 
     scale, _ = b601.choose_visual_scale()
 
@@ -172,7 +154,7 @@ def render(*, output_dir=DEFAULT_OUTPUT_DIR, provenance_path=DEFAULT_PROVENANCE)
 
         # Table/base
 
-        b601.make_box(
+        fixture = b601.make_box(
             cid,
             [0.075, 0.060, 0.007],
             [0, 0, -0.007],
@@ -250,7 +232,7 @@ def render(*, output_dir=DEFAULT_OUTPUT_DIR, provenance_path=DEFAULT_PROVENANCE)
         lid_top_z = lid_center_z + LID_HALF_Z
 
         # Main thin lid.
-        b601.make_box(
+        lid = b601.make_box(
             cid,
             [
                 LID_HALF_X,
@@ -336,7 +318,7 @@ def render(*, output_dir=DEFAULT_OUTPUT_DIR, provenance_path=DEFAULT_PROVENANCE)
         )
 
         # Green retaining tooth.
-        b601.make_box(
+        tooth = b601.make_box(
             cid,
             [0.005, 0.0065, 0.0025],
             [
@@ -359,12 +341,14 @@ def render(*, output_dir=DEFAULT_OUTPUT_DIR, provenance_path=DEFAULT_PROVENANCE)
             BOX_EDGE,
         )
 
-        # Engaged hook position.
+        # Housing hook height is fixed; only the lid tooth follows env.z.
+        rest_catch_z = rim_z + 0.005 - 0.006
+        # Nominal horizontal overlap equals the model disengagement travel.
         nominal_hook = np.array(
             [
-                catch_x + 0.0035,
+                catch_x + 0.005 + 0.0019 + 0.0008 - model.DELTA_DISENGAGE,
                 catch_y - 0.005,
-                catch_z + 0.006,
+                rest_catch_z + 0.006,
             ]
         )
 
@@ -393,7 +377,7 @@ def render(*, output_dir=DEFAULT_OUTPUT_DIR, provenance_path=DEFAULT_PROVENANCE)
             [
                 hook_world[0] - 0.0008,
                 catch_y - 0.003,
-                catch_z + 0.002,
+                rest_catch_z + 0.002,
             ]
         )
 
@@ -406,7 +390,7 @@ def render(*, output_dir=DEFAULT_OUTPUT_DIR, provenance_path=DEFAULT_PROVENANCE)
             rgba=LATCH,
         )
 
-        b601.make_box(
+        hook = b601.make_box(
             cid,
             [0.0019, 0.0035, 0.0014],
             hook_lip.tolist(),
@@ -586,9 +570,14 @@ def render(*, output_dir=DEFAULT_OUTPUT_DIR, provenance_path=DEFAULT_PROVENANCE)
                 "retained by a housing-mounted cantilever latch"
             ),
             "visualization": {
+                "environment": binding,
+                "rendered_bodies": body_geometry(cid, fixture=fixture, lid=lid, tooth=tooth, hook=hook, gripper=robot),
+                "latch_root_m": latch_root.tolist(),
+                "hook_tip_m": hook_world.tolist(),
+                "hook_tooth_horizontal_clearance_m": float(hook_lip[0] - 0.0019 - (catch_x + 0.005)),
                 "delta_m": delta,
                 "z_m": z,
-                "disengage_threshold_m": DELTA_DISENGAGE,
+                "disengage_threshold_m": model.DELTA_DISENGAGE,
                 "released": released,
                 "latch_broken": broken,
                 "B601_visual_scale": scale,
@@ -608,7 +597,7 @@ def render(*, output_dir=DEFAULT_OUTPUT_DIR, provenance_path=DEFAULT_PROVENANCE)
             + "\n"
         )
 
-        print("SNAP archived frame")
+        print("SNAP environment state:", binding["source_kind"])
         print("delta mm       :", delta * 1000)
         print("extraction mm  :", z * 1000)
         print("released       :", released)
