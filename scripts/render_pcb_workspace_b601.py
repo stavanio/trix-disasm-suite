@@ -48,51 +48,36 @@ def render(*, output_dir=DEFAULT_OUTPUT_DIR, provenance_path=DEFAULT_PROVENANCE,
                 0, -1, visual, (center + R @ np.asarray(local)).tolist(), quat, physicsClientId=cid
             )
 
-        fixture = rounded_box(cid, [0.094, 0.059, 0.004], [0, 0, -0.004], [0.22, 0.24, 0.27, 1], radius=0.007)
-        rounded_box(
-            cid,
-            [0.087, 0.053, 0.0015],
-            [0, 0, 0.0015],
-            [0.055, 0.21, 0.145, 1],
-            radius=0.004,
-            bevel=0.0003,
-        )
-        for x in (-0.079, 0.079):
-            for y in (-0.045, 0.045):
-                annulus(cid, 0.0018, 0.0036, 0.0003, [x, y, 0.00315], [0.66, 0.59, 0.31, 1])
-                b601.make_cyl(cid, 0.0018, 0.0001, [x, y, 0.00315], [0.055, 0.075, 0.075, 1])
-        # Routed copper paths, solder pads, and restrained support parts.
-        for sign in (-1, 1):
-            for x in np.linspace(-0.058, 0.058, 14):
-                length = 0.012 + 0.002 * (int(abs(x) * 1000) % 4)
-                b601.make_box(
-                    cid,
-                    [0.0002, length / 2, 0.000035],
-                    [float(x), sign * (0.007 + length / 2), 0.00305],
-                    [0.15, 0.37, 0.24, 1],
-                )
-                b601.make_box(
-                    cid,
-                    [0.001, 0.0014, 0.0001],
-                    [float(x), sign * (0.008 + length), 0.00315],
-                    [0.60, 0.57, 0.35, 1],
-                )
-            for x in (-0.064, -0.045, 0.045, 0.064):
-                rounded_box(
-                    cid,
-                    [0.003, 0.0016, 0.0009],
-                    [x, sign * 0.035, 0.0039],
-                    [0.12, 0.14, 0.16, 1],
-                    radius=0.0005,
-                    bevel=0.0001,
-                )
-                for dx in (-0.0031, 0.0031):
-                    b601.make_box(
-                        cid,
-                        [0.0005, 0.00165, 0.00085],
-                        [x + dx, sign * 0.035, 0.00385],
-                        [0.58, 0.60, 0.60, 1],
-                    )
+        # Bare motherboard on three short spacers, without a generic plinth.
+        fixture = rounded_box(cid, [.087,.053,.0015], [0,0,.0015], [.055,.21,.145,1], radius=.004, bevel=.0003)
+        for x,y in ((-.078,-.044),(.078,-.040),(0,.044)):
+            b601.make_cyl(cid,.003,.006,[x,y,-.003],[.55,.58,.60,1])
+            annulus(cid,.0015,.003,.0002,[x,y,.0031],[.62,.58,.34,1])
+            b601.make_cyl(cid,.0015,.0001,[x,y,.0031],[.035,.08,.065,1])
+        # Sparse routed traces with 45-degree corners, leading to component groups.
+        # These are fixed CAD surface details, not plotted state values.
+        routes = [
+            [(-.058,-.005),(-.058,-.020),(-.046,-.032)],
+            [(-.054,-.005),(-.054,-.018),(-.043,-.029)],
+            [(.022,-.005),(.022,-.016),(.034,-.028),(.047,-.028)],
+            [(.026,-.005),(.026,-.014),(.037,-.025),(.047,-.025)],
+            [(-.025,.005),(-.025,.019),(-.013,.031),(.005,.031)],
+            [(.047,.005),(.047,.018),(.060,.031)],
+        ]
+        for route in routes:
+            for a,b in zip(route,route[1:]):
+                a,b = np.asarray(a),np.asarray(b); delta=b-a; midpoint=(a+b)/2
+                b601.make_box(cid,[float(np.linalg.norm(delta))/2,.00016,.000025],
+                    [*midpoint,.00305],[.10,.30,.20,1],orn=[0,0,math.atan2(delta[1],delta[0])])
+        for x,y,hx,hy in ((-.044,-.032,.008,.005),(.053,-.027,.007,.005),(.010,.030,.006,.004)):
+            rounded_box(cid,[hx,hy,.0012],[x,y,.0042],[.075,.09,.105,1],radius=.0005,bevel=.0001)
+            for sign in (-1,1):
+                for dx in (-.0045,-.0015,.0015,.0045):
+                    b601.make_box(cid,[.00035,.001,.0002],[x+dx,y+sign*(hy+.0006),.0034],[.58,.61,.59,1])
+        for x,y in ((-.023,-.034),(-.017,-.034),(.022,.032),(.028,.032),(.063,.022)):
+            b601.make_box(cid,[.0013,.0008,.0007],[x,y,.0037],[.48,.40,.23,1])
+            for dx in (-.0013,.0013):
+                b601.make_box(cid,[.00035,.00085,.0007],[x+dx,y,.0037],[.65,.67,.64,1])
         # Open socket channel: separate rails leave the board slot visible.
         socket = rounded_box(
             cid,
@@ -217,7 +202,7 @@ def render(*, output_dir=DEFAULT_OUTPUT_DIR, provenance_path=DEFAULT_PROVENANCE,
         camera_image(
             cid,
             camera,
-            -0.0081,
+            -0.0061,
             [-0.120, 0.120, -0.087, 0.087],
             output,
             output_dir / "pcb_workspace_clean.png" if not debug else None,
@@ -233,6 +218,8 @@ def render(*, output_dir=DEFAULT_OUTPUT_DIR, provenance_path=DEFAULT_PROVENANCE,
                 **metadata(wrenches),
                 environment=binding,
                 rendered_bodies=body_geometry(cid, fixture=fixture, socket=socket, board=board, gripper=robot),
+                fixture_material="bare motherboard on three spacers",
+                board_surface_detail="sparse routed traces and component groups",
                 pose_source="PCBEnvV2.z and PCBEnvV2.theta",
                 lift_m=lift,
                 tilt_x_rad=tx,
