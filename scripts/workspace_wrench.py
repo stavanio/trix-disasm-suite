@@ -13,7 +13,7 @@ from workspace_render_utils import font_directory
 INK = (126, 55, 151)
 
 
-def force(anchor, direction, *, offset, length=0.034, label="F", label_offset=(22, -16)):
+def force(anchor, direction, *, offset, length=0.034, label="F", label_offset=(22, -16), show_leader=True):
     anchor, direction, offset = map(
         lambda v: np.asarray(v, dtype=float), (anchor, direction, offset)
     )
@@ -26,6 +26,7 @@ def force(anchor, direction, *, offset, length=0.034, label="F", label_offset=(2
         direction_world=direction.tolist(),
         path_world_m=[start.tolist(), (start + direction * length).tolist()],
         label_offset_px=list(label_offset),
+        **({"show_leader": False} if not show_leader else {}),
     )
 
 
@@ -38,7 +39,8 @@ def torque(
     sweep_deg=240,
     offset=(0, 0, 0),
     label="τ",
-    label_offset=(22, -16)
+    label_offset=(22, -16),
+    show_leader=True,
 ):
     anchor, axis, offset = map(lambda v: np.asarray(v, dtype=float), (anchor, axis, offset))
     axis /= np.linalg.norm(axis)
@@ -55,6 +57,7 @@ def torque(
         axis_world=axis.tolist(),
         path_world_m=path.tolist(),
         label_offset_px=list(label_offset),
+        **({"show_leader": False} if not show_leader else {}),
     )
 
 
@@ -104,7 +107,7 @@ def annotate(image, view, projection, wrenches, notes=()):
         # shifting the load direction or obscuring the contact geometry.
         start = points[0]
         span = np.linalg.norm(start - anchor)
-        if span > 14:
+        if item.get("show_leader", True) and span > 14:
             for t in np.arange(8, span, 14):
                 a = anchor + (start - anchor) * t / span
                 b = anchor + (start - anchor) * min(t + 6, span) / span
