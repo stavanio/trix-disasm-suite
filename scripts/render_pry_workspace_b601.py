@@ -86,21 +86,25 @@ def render(*, output_dir=DEFAULT_OUTPUT_DIR, provenance_path=DEFAULT_PROVENANCE,
     theta = math.remainder(float(env.state.theta), 2 * math.pi)
     half_x, half_y, wall_top = 0.054, 0.038, 0.020
     tool_y, thickness = -0.017, 0.0045
-    # There is one translational separation coordinate, and no lid hinge state.
-    lid_q = [0, 0, 0, 1]
+    # The recorded gap is the free-edge opening; the opposite edge stays
+    # supported on the rim. This CAD support constraint derives the lid angle
+    # from gap and fixed width, without adding an independent state variable.
+    if not 0 <= gap < 2*half_x:
+        raise ValueError("PRY gap exceeds the fixed lid span")
+    lid_angle = math.asin(gap/(2*half_x))
+    lid_q = p.getQuaternionFromEuler([0,-lid_angle,0])
+    lid_rotation = np.asarray(p.getMatrixFromQuaternion(lid_q)).reshape(3,3)
+    support = np.array([-half_x,0,wall_top])
     def lid_point(local):
-        return np.asarray(local) + [0, 0, wall_top + gap]
+        return support + lid_rotation @ (np.asarray(local)+[half_x,0,0])
 
     output_dir.mkdir(parents=True, exist_ok=True)
     cid = p.connect(p.DIRECT)
     try:
-        fixture = b601.make_box(cid, [0.068, 0.051, 0.005], [0, 0, -0.005], [0.17, 0.18, 0.20, 1])
-        hollow_housing(cid, half_x, half_y, wall_top)
-        # Empty fastening bosses and a recessed cavity identify the lower shell.
-        for x in (-0.044, 0.044):
-            for y in (-0.028, 0.028):
-                b601.make_cyl(cid, 0.003, 0.014, [x, y, 0.009], [0.22, 0.25, 0.28, 1])
-                b601.make_cyl(cid, 0.0012, 0.0002, [x, y, 0.0161], [0.025, 0.03, 0.04, 1])
+        fixture = hollow_housing(cid, half_x, half_y, wall_top)
+        # Two retaining ledges at the supported end; no four-corner bolt pattern.
+        for y in (-.024,.024):
+            b601.make_box(cid,[.003,.005,.001],[-half_x+.003,y,wall_top-.001],[.24,.27,.30,1])
 
         lid_center = lid_point([0, 0, thickness / 2])
         lid = rounded_solid(
@@ -121,17 +125,14 @@ def render(*, output_dir=DEFAULT_OUTPUT_DIR, provenance_path=DEFAULT_PROVENANCE,
                 cid, 0.00065, 0.013, 0.0001, 0.0005, 0.00002, pos.tolist(), [0.035, 0.045, 0.055, 1]
             )
             p.resetBasePositionAndOrientation(vent, pos, lid_q, physicsClientId=cid)
-        for x in (-0.044, 0.044):
-            for y in (-0.028, 0.028):
-                pos = lid_point([x, y, thickness + 0.00007])
-                hole = b601.make_cyl(cid, 0.0017, 0.00014, pos.tolist(), [0.06, 0.07, 0.08, 1])
-                p.resetBasePositionAndOrientation(hole, pos, lid_q, physicsClientId=cid)
-
-        # State-to-CAD convention: local toe is the insertion/gap origin;
+        # State-to-CAD convention: toe X follows insertion, toe Z follows
+        # the underside of the supported lid at that X coordinate;
         # positive model angle rotates the shank upward about world -Y.
         # The model has no rigid-contact/fulcrum constraint. Never reshape the
         # blade or move the housing to create contact absent from these states.
-        toe_origin = np.array([half_x - insertion, tool_y, wall_top + gap])
+        toe_x = half_x-insertion
+        toe_z = wall_top + (toe_x+half_x)*math.tan(lid_angle)
+        toe_origin = np.array([toe_x,tool_y,toe_z])
         tool_q = p.getQuaternionFromEuler([0, -theta, 0])
         tool_rotation = np.asarray(p.getMatrixFromQuaternion(tool_q)).reshape(3, 3)
         stations = [
@@ -235,7 +236,7 @@ def render(*, output_dir=DEFAULT_OUTPUT_DIR, provenance_path=DEFAULT_PROVENANCE,
         ]
         Image.fromarray(image).save(output_dir / "pry_workspace_clean.png", dpi=(300, 300))
         annotated = add_coordinate_reference(
-            image, depth, view, projection, -0.0101, [-0.09, 0.24, -0.10, 0.12]
+            image, depth, view, projection, -0.0001, [-0.09, 0.24, -0.10, 0.12]
         )
         notes = [dict(
             anchor_world_m=(handle_center + tool_rotation @ [0.017, 0, 0.004]).tolist(),
@@ -265,9 +266,15 @@ def render(*, output_dir=DEFAULT_OUTPUT_DIR, provenance_path=DEFAULT_PROVENANCE,
                 "environment": binding,
                 "rendered_bodies": body_geometry(cid, fixture=fixture, lid=lid, blade=blade, handle=handle, gripper=robot),
                 "gap_m": gap,
-                "gap_reference": "vertical lid translation: env.state.position[2]",
+                "gap_reference": "free-edge vertical opening: env.state.position[2]",
+                "lid_support_edge_m": support.tolist(),
+                "lid_free_edge_m": lid_point([half_x,0,0]).tolist(),
+                "lid_angle_rad": lid_angle,
+                "lid_angle_source": "asin(env.state.position[2] / fixed lid span); opposite edge supported",
+                "lid_span_m": 2*half_x,
+                "fixture_material": "retained-edge polymer enclosure without mounting plinth",
                 "insertion_depth_m": insertion,
-                "insertion_reference": "housing outer edge to tool origin along X: env.state.position[0]",
+                "insertion_reference": "housing outer edge to tool origin along X: env.state.position[0]; toe height follows lid underside",
                 "tool_axis_angle_rad": theta,
                 "tool_rotation_source": "Ry(-env.state.theta)",
                 "toe_origin_m": toe_origin.tolist(),
