@@ -10,6 +10,7 @@ import numpy as np
 import pybullet as p
 from b601_render_common import black_meshes, fingertip_geometry
 from PIL import Image, ImageDraw, ImageFont
+from workspace_environment import prepare_environment, body_geometry
 from workspace_render_cli import DEFAULT_OUTPUT_DIR, DEFAULT_PROVENANCE, run_renderer
 from workspace_render_utils import font_directory, rounded_solid
 from workspace_wrench import annotate, force, metadata
@@ -115,23 +116,19 @@ def place_gripper(cid, center, tab_width):
     }
 
 
-def render(*, output_dir=DEFAULT_OUTPUT_DIR, provenance_path=DEFAULT_PROVENANCE):
+def render(*, output_dir=DEFAULT_OUTPUT_DIR, provenance_path=DEFAULT_PROVENANCE, environment=None):
     output_dir = Path(output_dir)
     output_dir.mkdir(parents=True, exist_ok=True)
     provenance_path = Path(provenance_path)
-    entry = json.loads(provenance_path.read_text())["states"]["BATTERY"]
+    env, model, entry, binding = prepare_environment("BATTERY", provenance_path, environment)
     state = entry["frame"]["state"]
-    if entry["trace_step"] != 329:
-        raise RuntimeError("Expected the frozen BATTERY frame at step 329")
-    if state["deformation"] != 0 or state["short_state"] != 0 or state["short_flag"]:
-        raise RuntimeError("This intact pouch geometry requires the undamaged archived state")
-    lift = float(state["z_m"])
+    lift = float(env.z)
     output_dir.mkdir(parents=True, exist_ok=True)
     cid = p.connect(p.DIRECT)
     try:
         with tempfile.TemporaryDirectory(prefix="trix_battery_") as tempdir:
             # Shallow device tray and two discrete adhesive strips.
-            b601.make_box(cid, [0.080, 0.054, 0.005], [0, 0, -0.005], [0.17, 0.18, 0.20, 1])
+            fixture = b601.make_box(cid, [0.080, 0.054, 0.005], [0, 0, -0.005], [0.17, 0.18, 0.20, 1])
             tray = [0.065, 0.073, 0.085, 1]
             b601.make_box(cid, [0.069, 0.040, 0.0007], [0, 0, 0.0007], tray)
             for y in (-0.041, 0.041):
@@ -161,7 +158,7 @@ def render(*, output_dir=DEFAULT_OUTPUT_DIR, provenance_path=DEFAULT_PROVENANCE)
                 [0, 0, cell_bottom + 0.0010],
                 [0.50, 0.53, 0.55, 1],
             )
-            rounded_solid(
+            cell = rounded_solid(
                 cid,
                 0.054,
                 0.032,
@@ -197,7 +194,7 @@ def render(*, output_dir=DEFAULT_OUTPUT_DIR, provenance_path=DEFAULT_PROVENANCE)
             # Wide extraction tab bonded underneath the opposite cell end.
             tab_width = 0.018
             tab_z = cell_bottom + 0.0008
-            rounded_solid(
+            tab = rounded_solid(
                 cid,
                 0.020,
                 tab_width / 2,
@@ -274,8 +271,11 @@ def render(*, output_dir=DEFAULT_OUTPUT_DIR, provenance_path=DEFAULT_PROVENANCE)
                 )
             },
             "state": state,
+            "observation": entry["frame"]["obs"],
             "interpretation": "intact lithium-ion pouch cell lifted from adhesive using an extraction tab",
             "visualization": {
+                "environment": binding,
+                "rendered_bodies": body_geometry(cid, fixture=fixture, cell=cell, tab=tab),
                 "lift_m": lift,
                 "cell_thickness_m": thickness,
                 "gripper": grasp,

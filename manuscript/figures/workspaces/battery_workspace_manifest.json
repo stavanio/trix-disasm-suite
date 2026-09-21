@@ -14,8 +14,99 @@
     "temperature_C": 25.0,
     "short_flag": false
   },
+  "observation": [
+    0.006753831636160612,
+    0.00368444062769413,
+    0.0,
+    0.0,
+    0.25,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0
+  ],
   "interpretation": "intact lithium-ion pouch cell lifted from adhesive using an extraction tab",
   "visualization": {
+    "environment": {
+      "source_kind": "archived_observation_restored_to_environment",
+      "environment_class": "envs.battery_env_v2.BatteryEnvV2",
+      "environment_source_sha256": "28505bec3a739b0639690fc182d1751ac6832351324925a74bec1b392cb3e343",
+      "constraint_hash": "09a4ae5d933db6bf",
+      "state_variables": {
+        "z_m": 0.006753831636160612,
+        "v_z_m_s": 0.00368444062769413,
+        "deformation": 0.0,
+        "short_state": 0.0,
+        "temperature_C": 25.0,
+        "short_flag": false
+      },
+      "max_observation_roundtrip_error": 0.0,
+      "resumable_episode_checkpoint": false,
+      "pose_overrides": false
+    },
+    "rendered_bodies": {
+      "fixture": {
+        "position_m": [
+          0.0,
+          0.0,
+          -0.005
+        ],
+        "quaternion_xyzw": [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ],
+        "shape_dimensions": [
+          [
+            0.16,
+            0.108,
+            0.01
+          ]
+        ]
+      },
+      "cell": {
+        "position_m": [
+          0.0,
+          0.0,
+          0.01130383163616061
+        ],
+        "quaternion_xyzw": [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ],
+        "shape_dimensions": [
+          [
+            1.0,
+            1.0,
+            1.0
+          ]
+        ]
+      },
+      "tab": {
+        "position_m": [
+          -0.061,
+          0.0,
+          0.009353831636160612
+        ],
+        "quaternion_xyzw": [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ],
+        "shape_dimensions": [
+          [
+            1.0,
+            1.0,
+            1.0
+          ]
+        ]
+      }
+    },
     "lift_m": 0.006753831636160612,
     "cell_thickness_m": 0.0055,
     "gripper": {
