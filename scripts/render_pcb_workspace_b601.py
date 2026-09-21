@@ -1,12 +1,12 @@
 #!/usr/bin/env python3
-"""Frozen PCB trace rendered as a partially extracted DIMM and real B601."""
-import json
+"""Render PCB lift and both tilt components directly from PCBEnvV2."""
 import math
 from pathlib import Path
 
 import b601_render_common as b601
 import numpy as np
 import pybullet as p
+from workspace_environment import prepare_environment, body_geometry
 from workspace_render_cli import DEFAULT_OUTPUT_DIR, DEFAULT_PROVENANCE, run_renderer
 from workspace_render_utils import (
     annulus,
@@ -18,22 +18,25 @@ from workspace_render_utils import (
 from workspace_wrench import force, metadata
 
 L, T, H, Z0 = 0.0665, 0.001, 0.0155, 0.003
+# Fixed CAD dimensions. These do not change to accommodate a selected state.
+SEATED_BOTTOM_Z_M = Z0
+SOCKET_TOP_M = Z0 + 0.0098
+SOCKET_INNER_HALF_WIDTH_M = 0.0016
 
 
-def render(*, output_dir=DEFAULT_OUTPUT_DIR, provenance_path=DEFAULT_PROVENANCE, debug=False):
+def render(*, output_dir=DEFAULT_OUTPUT_DIR, provenance_path=DEFAULT_PROVENANCE, environment=None, debug=False):
     output_dir = Path(output_dir)
     output_dir.mkdir(parents=True, exist_ok=True)
     provenance_path = Path(provenance_path)
-    entry = json.loads(provenance_path.read_text())["states"]["PCB"]
-    if entry["trace_step"] != 133:
-        raise ValueError("Expected PCB trace step 133")
-    # pcb_env_v2._obs: lift, velocity, tilt_x, tilt_y, ... . The historical
-    # state's named lift/tilt fields are null; preserve them and use obs.
-    obs = entry["frame"]["obs"]
-    lift, tx, ty = float(obs[0]), float(obs[2]), float(obs[3])
+    env, model, entry, binding = prepare_environment("PCB", provenance_path, environment)
+    lift, tx, ty = float(env.z), float(env.theta[0]), float(env.theta[1])
+    retainers_released = env.z >= model.Z_CLIP
     quat = p.getQuaternionFromEuler([tx, ty, 0])
     R = np.asarray(p.getMatrixFromQuaternion(quat)).reshape(3, 3)
-    center = np.array([0, 0, Z0 + H + lift])
+    # Tilt about the lower long edge so it remains centered inside the slot.
+    # Lift is measured from the seated board's lower edge at the channel floor.
+    lower_edge_center = np.array([0, 0, SEATED_BOTTOM_Z_M + lift])
+    center = lower_edge_center + R @ np.array([0, 0, H])
     cid = p.connect(p.DIRECT)
     try:
 
@@ -45,7 +48,7 @@ def render(*, output_dir=DEFAULT_OUTPUT_DIR, provenance_path=DEFAULT_PROVENANCE,
                 0, -1, visual, (center + R @ np.asarray(local)).tolist(), quat, physicsClientId=cid
             )
 
-        rounded_box(cid, [0.094, 0.059, 0.004], [0, 0, -0.004], [0.22, 0.24, 0.27, 1], radius=0.007)
+        fixture = rounded_box(cid, [0.094, 0.059, 0.004], [0, 0, -0.004], [0.22, 0.24, 0.27, 1], radius=0.007)
         rounded_box(
             cid,
             [0.087, 0.053, 0.0015],
@@ -91,19 +94,22 @@ def render(*, output_dir=DEFAULT_OUTPUT_DIR, provenance_path=DEFAULT_PROVENANCE,
                         [0.58, 0.60, 0.60, 1],
                     )
         # Open socket channel: separate rails leave the board slot visible.
-        rounded_box(
+        socket = rounded_box(
             cid,
             [L + 0.004, 0.0048, 0.0008],
-            [0, 0, Z0 + 0.0008],
+            [0, 0, SEATED_BOTTOM_Z_M - 0.0008],
             [0.13, 0.15, 0.18, 1],
             radius=0.0015,
             bevel=0.0002,
         )
-        for y in (-0.0024, 0.0024):
+        rail_half_height = (SOCKET_TOP_M - SEATED_BOTTOM_Z_M) / 2
+        rail_center_z = (SOCKET_TOP_M + SEATED_BOTTOM_Z_M) / 2
+        rail_center_y = SOCKET_INNER_HALF_WIDTH_M + 0.001
+        for y in (-rail_center_y, rail_center_y):
             rounded_box(
                 cid,
-                [L + 0.004, 0.001, 0.0041],
-                [0, y, Z0 + 0.0057],
+                [L + 0.004, 0.001, rail_half_height],
+                [0, y, rail_center_z],
                 [0.18, 0.20, 0.23, 1],
                 radius=0.0007,
                 bevel=0.00015,
@@ -115,10 +121,10 @@ def render(*, output_dir=DEFAULT_OUTPUT_DIR, provenance_path=DEFAULT_PROVENANCE,
                     [float(x), np.sign(y) * 0.0045, Z0 + 0.0003],
                     [0.63, 0.65, 0.62, 1],
                 )
-        # Retainers pivot outward at both ends; the board has been released.
+        # Retainer release follows the environment clip-clearance phase.
         for sign in (-1, 1):
             pivot = np.array([sign * (L + 0.004), 0, Z0 + 0.0025])
-            q = p.getQuaternionFromEuler([0, sign * math.radians(30), 0])
+            q = p.getQuaternionFromEuler([0, sign * (math.radians(30) if retainers_released else 0), 0])
             Q = np.asarray(p.getMatrixFromQuaternion(q)).reshape(3, 3)
             rounded_box(
                 cid,
@@ -143,7 +149,7 @@ def render(*, output_dir=DEFAULT_OUTPUT_DIR, provenance_path=DEFAULT_PROVENANCE,
         notch = -0.008
         nh = 0.0012
         nd = 0.0032
-        board_box([L, T, H - nd / 2], [0, 0, nd / 2], green)
+        board = board_box([L, T, H - nd / 2], [0, 0, nd / 2], green)
         left = -L
         right = notch - nh
         board_box([(right - left) / 2, T, nd / 2], [(left + right) / 2, 0, -H + nd / 2], green)
@@ -184,13 +190,22 @@ def render(*, output_dir=DEFAULT_OUTPUT_DIR, provenance_path=DEFAULT_PROVENANCE,
                     [x, face * (T + 0.00022), -0.0065],
                     [0.64, 0.61, 0.45, 1],
                 )
-        # The raised board still overlaps the connector mouth. The reference
-        # seat is illustrative; extraction and tilt remain the recorded state.
-        socket_top = Z0 + 0.0098
+        # Check both tilted board faces, not only the bottom centerline.
+        socket_top = SOCKET_TOP_M
         edge = np.array([center + R @ [x, 0, -H] for x in (-L, L)])
         socket_overlap = socket_top - edge[:, 2]
-        if np.min(socket_overlap) <= 0:
-            raise RuntimeError("PCB bottom edge has cleared the connector")
+        bottom_corners = np.array([center + R @ [x, y, -H] for x in (-L, L) for y in (-T, T)])
+        corner_overlap = socket_top - bottom_corners[:, 2]
+        # At the mouth, the gold outer faces are the widest inserted section.
+        mouth_y = []
+        gold_z = []
+        for face in (-1, 1):
+            local_y = face * (T + 0.00013)
+            local_z = (socket_top - center[2] - R[2, 1] * local_y) / R[2, 2]
+            mouth_y.append(float((center + R @ [0, local_y, local_z])[1]))
+            gold_z.append([(center + R @ [0, local_y, -H + h])[2] for h in (0.00025, 0.00295)])
+        slot_clearance = SOCKET_INNER_HALF_WIDTH_M - max(abs(y) for y in mouth_y)
+        gold_z = np.asarray(gold_z)
         target = center + R @ np.array([0, 0, H - 0.002])
         robot, grasp = grasp_b601(
             cid, target, 2 * T, closing=R[:, 1], approach=R[:, 2], tip_depth=0.0015, debug=debug
@@ -216,15 +231,28 @@ def render(*, output_dir=DEFAULT_OUTPUT_DIR, provenance_path=DEFAULT_PROVENANCE,
                 camera=camera,
                 grasp=grasp,
                 **metadata(wrenches),
+                environment=binding,
+                rendered_bodies=body_geometry(cid, fixture=fixture, socket=socket, board=board, gripper=robot),
+                pose_source="PCBEnvV2.z and PCBEnvV2.theta",
                 lift_m=lift,
                 tilt_x_rad=tx,
                 tilt_y_rad=ty,
-                observation_mapping="pcb_env_v2: [lift, velocity, tilt_x, tilt_y, ...]",
+                observation_mapping="[z, v_z, theta[0], theta[1], omega[0], omega[1], damage, fractured, 0, 0]",
+                tilt_axis_world=[1, 0, 0],
+                tilt_axis_description="board long axis, through the lower edge",
+                seated_bottom_z_m=SEATED_BOTTOM_Z_M,
+                lower_edge_center_m=lower_edge_center.tolist(),
                 board_center_m=center.tolist(),
                 board_dimensions_m=[2 * L, 2 * T, 2 * H],
-                retainers_released=True,
+                retainers_released=bool(retainers_released),
                 socket_top_m=socket_top,
                 board_socket_overlap_m=socket_overlap.tolist(),
+                board_bottom_corner_overlap_m=corner_overlap.tolist(),
+                socket_inner_width_m=2 * SOCKET_INNER_HALF_WIDTH_M,
+                socket_side_clearance_m=slot_clearance,
+                gold_contact_lower_upper_z_m=gold_z.tolist(),
+                gold_contact_buried_height_m=(socket_top - gold_z[:, 0]).tolist(),
+                gold_contact_exposed_height_m=(gold_z[:, 1] - socket_top).tolist(),
             )
         print(
             f'PCB: lift={lift*1000:.6f} mm; fingertip gap={grasp["actual_gap_m"]*1000:.4f} mm; {output}'
