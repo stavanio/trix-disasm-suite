@@ -196,7 +196,7 @@ The PCB bottom edge remains inside the socket mouth at the archived lift. Both
 end overlaps are recorded in its manifest. The SCREW root is an explicit radius
 mesh, leaving its continuous 1.25 mm helix exposed; its illustrative head diameter
 is 16 mm. CRANK uses an explicit 14 mm handle mesh with the grasp at mid-height.
-The SCREW, PCB, CRANK, and PRY contacts are found by intersecting the real black
+The SCREW, PCB, CRANK, BATTERY, and PRY contacts are found by intersecting the real black
 fingertip triangles at the contact height, with a separate point-to-triangle
 surface-distance check. CRANK also checks contact against the handle radius.
 PRY closes across the orange polymer tool grip with its approach normal to the
@@ -210,18 +210,35 @@ contact exposure are measured outputs; an extracted state is allowed to clear
 the connector. SNAP's housing hook stays at its fixed height when the lid moves;
 its horizontal overlap clears at the environment's 2 mm deflection threshold.
 
-PRY uses one fixed 150 mm tool, transformed from the insertion/gap origin by
-`Ry(-env.state.theta)`. The lid translates by the gap; no hinge angle is invented.
+PRY uses one fixed 150 mm tool rotated by `Ry(-env.state.theta)`. The recorded gap
+is the vertical opening of the free lid edge. The opposite edge stays on the
+housing rim. With fixed 108 mm lid span, its opening angle is derived as
+`asin(gap / 0.108)`; it is not an additional environment variable or display
+angle. Toe X follows the recorded insertion and toe Z follows the resulting lid
+underside plane. The blade's local mesh never changes shape.
 The reduced environment does not constrain a rigid tool against a housing
 fulcrum. The renderer therefore does not warp the blade or force heel contact.
 That missing contact constraint remains a model limitation.
+
+The fixed fixtures are task-specific: SCREW has a procedurally textured wood
+blank with a flush M8 threaded insert; PCB is a bare motherboard on three
+spacers with sparse routed traces; CRANK has a circular bearing pedestal;
+BATTERY sits in a thin device tray; PRY uses its enclosure shell directly.
+These CAD materials and mounts do not modify the frozen analytical dynamics.
+
+BATTERY's extraction tab is a fixed folded strip. The gripper closes across its
+0.7 mm thickness and contacts the two broad upright faces. Each contact includes
+a 2 x 2 mm patch checked against the actual black fingertip STL surfaces. The
+cell, tab and gripper all translate by the same `env.z`. The manifest records
+contact patch errors, tab-local contacts and the unchanging tab mesh.
 
 SCREW step 188 remains partially withdrawn: the head underside is 8.270673 mm
 above the insert, with the remaining shaft still inside it; this was accepted
 as equivalent to the requested 8.25 mm presentation.
 
 Purple arrows show schematic wrench directions. Dotted leaders locate their
-application points; arrow lengths do not represent magnitudes. They are projected
+application points where visible; the SCREW leaders are omitted to keep the
+fastener clear. Arrow lengths do not represent magnitudes. They are projected
 with the scene camera and do not add objects or forces to the archived state.
 No measured force or torque samples are available in the saved frames.
 

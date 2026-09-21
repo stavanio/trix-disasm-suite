@@ -61,16 +61,26 @@ def check_snapshot(task, env, model, manifest):
         near(v['grasp']['target_m'], pos('handle'), 'CRANK grasp')
     elif task == 'BATTERY':
         near(pos('cell'), [0, 0, .0018 + env.z + .00275], 'BATTERY cell')
-        near(pos('tab'), [-.061, 0, .0018 + env.z + .0008], 'BATTERY pull tab')
-        for tip in v['gripper']['fingertips']:
-            near(tip['bottom_z'], .0018 + env.z + .0001, 'BATTERY gripper follows tab', atol=2e-7)
+        near(pos('tab'), [-.071, 0, .0018 + env.z + .0008], 'BATTERY pull tab')
+        near(v['grasp']['target_m'], pos('tab')+[0,0,.016], 'BATTERY gripper follows tab')
+        contacts=np.asarray(v['grasp']['contacts_m'])-pos('tab')
+        near(np.abs(contacts[:,0]), [v['tab_thickness_m']/2]*2, 'BATTERY broad face contacts', atol=5e-8)
+        assert np.max(np.abs(contacts[:,1]))<v['tab_width_m']/2
+        assert np.all((contacts[:,2]>.002)&(contacts[:,2]<.020))
+        assert np.max(v['tab_contact_patch_surface_error_m'])<.00005
     elif task == 'PRY':
         R = rotation(p.getQuaternionFromEuler([0, -env.state.theta, 0]))
-        toe = np.array([.054-env.state.position[0], -.017, .020+env.state.position[2]])
-        near(pos('blade'), toe, 'PRY insertion/gap origin')
+        lid_R=rotation(bodies['lid']['quaternion_xyzw'])
+        supported_edge=pos('lid')+lid_R@[-.054,0,-.00225]
+        free_edge=pos('lid')+lid_R@[.054,0,-.00225]
+        near(supported_edge,[-.054,0,.020],'PRY opposite edge stays supported')
+        near(free_edge[2]-supported_edge[2],env.state.position[2],'PRY free edge opens by recorded gap')
+        near(np.linalg.norm(free_edge-supported_edge),.108,'PRY lid remains rigid')
+        toe=pos('blade')
+        near(toe[:2],[.054-env.state.position[0],-.017],'PRY insertion')
+        # Actual blade origin must lie on the actual lid underside plane.
+        near(np.dot(toe-supported_edge,lid_R[:,2]),0,'PRY toe follows lid underside')
         near(rotation(bodies['blade']['quaternion_xyzw']), R, 'PRY rotation')
-        near(pos('lid'), [0, 0, .02225+env.state.position[2]], 'PRY gap')
-        near(rotation(bodies['lid']['quaternion_xyzw']), np.eye(3), 'PRY no invented hinge')
         near(pos('handle'), toe + R @ [model.LEVER_LENGTH-.019, 0, -.009], 'PRY fixed tool length')
         near(v['grasp']['approach_axis'], R[:, 2], 'PRY tool-relative grasp')
     return bodies
@@ -132,6 +142,8 @@ def verify(task, directory):
         if task == 'PCB':
             assert manifests[index]['rendered_bodies']['socket'] == manifests[0]['rendered_bodies']['socket'], 'socket changed with state'
             assert manifests[index]['socket_top_m'] == manifests[0]['socket_top_m']
+        if task == 'BATTERY':
+            assert manifests[index]['tab_local_vertices_m'] == manifests[0]['tab_local_vertices_m'], 'BATTERY pull tab changed shape'
         if task == 'PRY':
             assert manifests[index]['blade_local_vertices_m'] == manifests[0]['blade_local_vertices_m'], 'PRY mesh morphed with state'
     if task == 'SNAP':

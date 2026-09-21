@@ -70,7 +70,9 @@ def build_manifest(workspace_dir=DEFAULT_OUTPUT_DIR, provenance_path=DEFAULT_PRO
         units=dict(length="m", angle="rad", angular_velocity="rad/s", linear_velocity="m/s", temperature="deg C"),
         state_conventions=dict(
             screw_crank_theta="orientation modulo 2*pi in [0, 2*pi); unwrapped theta is retained in environment_states",
-            pry_theta="orientation as remainder(theta, 2*pi) in [-pi, pi]; applied as Ry(-theta)",
+            pry_theta="orientation as remainder(theta, 2*pi) in [-pi, pi]; rigid tool applied as Ry(-theta)",
+            pry_gap="free-edge vertical opening; opposite lid edge supported; lid angle derived as asin(gap / fixed span), toe height follows lid underside at recorded insertion",
+            battery_grasp="fixed folded extraction tab and its opposed-face grasp translate with cell z",
             pcb_tilt="Euclidean norm of tilt_x and tilt_y; components map to environment theta[0] and theta[1]",
             battery_short="boolean short flag; continuous severity is retained in environment_states.short_state",
         ),

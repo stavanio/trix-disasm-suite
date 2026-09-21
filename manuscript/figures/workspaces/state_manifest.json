@@ -105,7 +105,9 @@
   },
   "state_conventions": {
     "screw_crank_theta": "orientation modulo 2*pi in [0, 2*pi); unwrapped theta is retained in environment_states",
-    "pry_theta": "orientation as remainder(theta, 2*pi) in [-pi, pi]; applied as Ry(-theta)",
+    "pry_theta": "orientation as remainder(theta, 2*pi) in [-pi, pi]; rigid tool applied as Ry(-theta)",
+    "pry_gap": "free-edge vertical opening; opposite lid edge supported; lid angle derived as asin(gap / fixed span), toe height follows lid underside at recorded insertion",
+    "battery_grasp": "fixed folded extraction tab and its opposed-face grasp translate with cell z",
     "pcb_tilt": "Euclidean norm of tilt_x and tilt_y; components map to environment theta[0] and theta[1]",
     "battery_short": "boolean short flag; continuous severity is retained in environment_states.short_state"
   },
@@ -275,24 +277,24 @@
     "SCREW": {
       "panel": "a",
       "image": "screw_workspace.png",
-      "image_sha256": "285bc6078ac4927a3b966e4a02288ef82600b91e63d94f3f12d6bc75cb58e053",
+      "image_sha256": "6aa4d88449980a3b55d918c994a2f972ed309bfca9ed3343e3d4a2b340bb13b2",
       "clean_image": "screw_workspace_clean.png",
-      "clean_image_sha256": "ebbaec3eb276c766d380d04ac3d990fda202c188ff6f8ab5daa8609c35fda609",
+      "clean_image_sha256": "730d820ee35bdc6be6e48bc553740ba23694f30b2cc9def307f2d4c31dbb5e51",
       "render_manifest": "screw_workspace_manifest.json",
-      "render_manifest_sha256": "34c3bf62213e126b40315911501b80f48f405a453431be45941d8bccdc996a90",
+      "render_manifest_sha256": "a87008aca8941c1d0c397a017f13be1fabbd790ddd7bcb1d307e8552ec31d971",
       "renderer_script": "scripts/render_screw_workspace_b601.py",
-      "renderer_script_sha256": "e35a4a9e2fcc1fb711b8ccdb51118e02551e3303e3f9160bc89a49cb83d93cbb"
+      "renderer_script_sha256": "d83acf2216c3fdb5be888cf814a82b702a59587c4d8391d08ce212eac0eb312d"
     },
     "PCB": {
       "panel": "b",
       "image": "pcb_workspace.png",
-      "image_sha256": "9c347f18112e026558c7b204c8c55bf0357fcdcab40af1e8269b1dd1ebd7fdff",
+      "image_sha256": "93517a843e9c6471638b7d13b63221af4742f251d2e7f3a8970d3093e8761ad1",
       "clean_image": "pcb_workspace_clean.png",
-      "clean_image_sha256": "f80bb3d3f96ecacc8c675af9cefea151bff36737488056d7febe43ef85a8c950",
+      "clean_image_sha256": "929f9b9af68b08201dcc6a80e223330216ad92c55d3af399b53e592d1dc94de1",
       "render_manifest": "pcb_workspace_manifest.json",
-      "render_manifest_sha256": "fb67aef06dc6b1af088bfb356386c422ece5fc0d7707f1a856c4976f48d696fe",
+      "render_manifest_sha256": "3851b78298b76989d27994a17cf15da2b070d6dbb1ac24c8cc2f68ff7dd82379",
       "renderer_script": "scripts/render_pcb_workspace_b601.py",
-      "renderer_script_sha256": "bf818c8964cd24c5361e4fbbaa809e6bb01d7e330e716da15b9dd326dee1ef8b"
+      "renderer_script_sha256": "d7eedee065ceb2b405e5e926f95cce09be05d73b8aae55da6aa82ae7e5af4b4b"
     },
     "SNAP": {
       "panel": "c",
@@ -308,35 +310,35 @@
     "CRANK": {
       "panel": "d",
       "image": "crank_workspace.png",
-      "image_sha256": "a2ffce17fc5c02d218379fa7e556e303b455d31fc8770150460a1c3620c8b5a3",
+      "image_sha256": "b25cb5001a482d66da65644fd8b9e1977923e19e92038f6dde709da87fe0743d",
       "clean_image": "crank_workspace_clean.png",
-      "clean_image_sha256": "5fc2e039a8d33c6fde34dea97a3f457662d34a77a9d9658f9a8b7a498ac15284",
+      "clean_image_sha256": "dcbd534f6c44d337ac26a7f7da4e3395e2634c0d4035be433be071e5b6848a60",
       "render_manifest": "crank_workspace_manifest.json",
-      "render_manifest_sha256": "b1d80c642aae76cd2c146811ac01b3f93513ea2ae6f3874b7266381b10e6c10f",
+      "render_manifest_sha256": "9ad139fb5da87307ad436657ec061bf0fa7e52d55ce152671cde5c52a0726aa5",
       "renderer_script": "scripts/render_crank_workspace_b601.py",
-      "renderer_script_sha256": "044dbdef6cb84bd5659e923e46aad50fe9183034f36a089214765fdc2e0ae299"
+      "renderer_script_sha256": "a4fde3314fe8621e2ae4ac49125f6cd3b155af061de0debd8de3e75a1d69a0e1"
     },
     "BATTERY": {
       "panel": "e",
       "image": "battery_workspace.png",
-      "image_sha256": "5e0c12aa2a60142850112a30cf3e702b01a4f73d0b01fa5c520e553a5d7f62a0",
+      "image_sha256": "fdedbf3f2b6e9eb1df5652b89a084301aac799663732b6e94b4306374c434063",
       "clean_image": "battery_workspace_clean.png",
-      "clean_image_sha256": "47b672789d2e235987aa1c731a3176a043cc9ff529dac23363f3aca35b2c6a67",
+      "clean_image_sha256": "f7e513b22477c4bcf073c373374db6b1b68eaa344493d1389a1a8a1d90617872",
       "render_manifest": "battery_workspace_manifest.json",
-      "render_manifest_sha256": "f3d39a4ca21a48aab0af614ebb11f2cc09b62dd6c5d22c0f3936967944f5bf26",
+      "render_manifest_sha256": "ab8dc40e3c4f0a8be44ef36bfaa949e42613f0a63e6ec148c72bc5f53891c5eb",
       "renderer_script": "scripts/render_battery_workspace_b601.py",
-      "renderer_script_sha256": "9d7c8b5a393d45d01f3df9b1ac9989d9dd0cde831fd7a000ff63de5218466453"
+      "renderer_script_sha256": "d65647e1f15d81cf0a0e5d31635d49718cf8106cd7809c9c39bf4a8a63bc8ba9"
     },
     "PRY": {
       "panel": "f",
       "image": "pry_workspace.png",
-      "image_sha256": "48e60b4351794b83068e09bd924667190c8d43c8c763a15aa56ee783c0fe7bc0",
+      "image_sha256": "cbda3483d7e252f5d62ac6ce2b27086de362b9fb437c281e170defbad0ee5ef6",
       "clean_image": "pry_workspace_clean.png",
-      "clean_image_sha256": "37acd3b3090263ee4e88ada76bf20966074b2ac1c25fae8d1a6f2da922bf16d7",
+      "clean_image_sha256": "4954528e7581cf36fba1d38c8783ed1d8c4969cf1a80b9ce06514dc29d2f7535",
       "render_manifest": "pry_workspace_manifest.json",
-      "render_manifest_sha256": "29a724a36612b05c156a5f854bd76d36a2fa16196ff2935e7ecfa941ae908911",
+      "render_manifest_sha256": "784bb562d2c3c913ac5d9700bd52e198cca67a5ae6cb25e89bfc3e0bab1e0cc9",
       "renderer_script": "scripts/render_pry_workspace_b601.py",
-      "renderer_script_sha256": "2ba5ee0198e798f532a63bf0db431617ae6687a2b10f7156bf22c4811c3c7dc8"
+      "renderer_script_sha256": "71e3050153fad23bce27818344607fa9ee491694796da788d61b9ce132c22680"
     }
   }
 }
