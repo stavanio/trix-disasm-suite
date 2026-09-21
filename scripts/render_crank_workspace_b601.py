@@ -1,12 +1,12 @@
 #!/usr/bin/env python3
 """Frozen CRANK trace with a bearing fixture, rotary handle and real B601."""
-import json
 import math
 from pathlib import Path
 
 import b601_render_common as b601
 import numpy as np
 import pybullet as p
+from workspace_environment import prepare_environment, body_geometry
 from workspace_render_cli import DEFAULT_OUTPUT_DIR, DEFAULT_PROVENANCE, run_renderer
 from workspace_render_utils import (
     annulus,
@@ -18,18 +18,15 @@ from workspace_render_utils import (
 from workspace_wrench import force, metadata, torque
 
 
-def render(*, output_dir=DEFAULT_OUTPUT_DIR, provenance_path=DEFAULT_PROVENANCE, debug=False):
+def render(*, output_dir=DEFAULT_OUTPUT_DIR, provenance_path=DEFAULT_PROVENANCE, environment=None, debug=False):
     output_dir = Path(output_dir)
     output_dir.mkdir(parents=True, exist_ok=True)
     provenance_path = Path(provenance_path)
-    entry = json.loads(provenance_path.read_text())["states"]["CRANK"]
-    if entry["trace_step"] != 199:
-        raise ValueError("Expected CRANK trace step 199")
-    state = entry["frame"]["state"]
-    theta_raw = float(state["theta_rad"])
+    env, model, entry, binding = prepare_environment("CRANK", provenance_path, environment)
+    theta_raw = float(env.theta)
     theta = theta_raw % (2 * math.pi)
-    z = float(state["z_m"])
-    radius = 0.10  # crank_env_v2.RADIUS
+    z = float(env.z)
+    radius = model.RADIUS
     radial = np.array([math.cos(theta), math.sin(theta), 0])
     tangent = np.array([-math.sin(theta), math.cos(theta), 0])
     handle_xy = radius * radial
@@ -37,7 +34,7 @@ def render(*, output_dir=DEFAULT_OUTPUT_DIR, provenance_path=DEFAULT_PROVENANCE,
     q = p.getQuaternionFromEuler([0, 0, theta])
     cid = p.connect(p.DIRECT)
     try:
-        rounded_box(cid, [0.061, 0.052, 0.008], [0, 0, -0.008], [0.22, 0.24, 0.27, 1], radius=0.007)
+        fixture = rounded_box(cid, [0.061, 0.052, 0.008], [0, 0, -0.008], [0.22, 0.24, 0.27, 1], radius=0.007)
         for x in (-0.047, 0.047):
             for y in (-0.038, 0.038):
                 annulus(cid, 0.002, 0.004, 0.0005, [x, y, 0.00025], [0.53, 0.56, 0.60, 1])
@@ -74,7 +71,7 @@ def render(*, output_dir=DEFAULT_OUTPUT_DIR, provenance_path=DEFAULT_PROVENANCE,
                     else 0.0025 / math.cos((a + math.pi / 6) % (math.pi / 3) - math.pi / 6)
                 )
                 height = hub_z + (0.005 if ring % 2 == 0 else 0.008)
-                vertices.append([r * math.cos(a), r * math.sin(a), height])
+                vertices.append([r * math.cos(a + theta), r * math.sin(a + theta), height])
         for i in range(n):
             j = (i + 1) % n
             for a, b, c, d in (
@@ -89,7 +86,7 @@ def render(*, output_dir=DEFAULT_OUTPUT_DIR, provenance_path=DEFAULT_PROVENANCE,
         b601.make_cyl(cid, 0.0032, 0.012, stem.tolist(), [0.66, 0.70, 0.75, 1])
         grip_z = hub_z + 0.0205
         grip = handle_xy + np.array([0, 0, grip_z])
-        annulus(cid, 0, 0.007, 0.027, grip.tolist(), [0.86, 0.87, 0.84, 1])
+        handle = annulus(cid, 0, 0.007, 0.027, grip.tolist(), [0.86, 0.87, 0.84, 1])
         for zz in (grip_z - 0.0125, grip_z + 0.0125):
             annulus(cid, 0.0032, 0.00715, 0.001, [*handle_xy[:2], zz], [0.61, 0.65, 0.67, 1])
         b601.make_cyl(cid, 0.0028, 0.0005, [*handle_xy[:2], grip_z + 0.0137], [0.45, 0.49, 0.53, 1])
@@ -133,6 +130,8 @@ def render(*, output_dir=DEFAULT_OUTPUT_DIR, provenance_path=DEFAULT_PROVENANCE,
                 output_dir / "crank_workspace_manifest.json",
                 "CRANK",
                 entry,
+                environment=binding,
+                rendered_bodies=body_geometry(cid, fixture=fixture, handle=handle, gripper=robot),
                 camera=camera,
                 grasp=grasp,
                 **metadata(wrenches),
