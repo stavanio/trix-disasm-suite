@@ -5,61 +5,10 @@ from pathlib import Path
 
 import numpy as np
 import pybullet as p
-from b601_render_common import make_box, make_cyl
+from b601_render_common import make_box
 from workspace_environment import prepare_environment, body_geometry
 from workspace_render_cli import DEFAULT_OUTPUT_DIR, DEFAULT_PROVENANCE, run_renderer
 from workspace_wrench import force, metadata, torque
-
-
-def wooden_fixture(cid, top_z):
-    """Fixed wood blank with deterministic procedural grain and a flush insert."""
-    from PIL import Image
-    import tempfile
-
-    size = 512
-    yy, xx = np.mgrid[0:1:complex(size), 0:1:complex(size)]
-    rng = np.random.default_rng(1701)
-    atlas = np.empty((2 * size, 3 * size, 3), dtype=np.uint8)
-    for face in range(6):
-        if face in (2, 3):  # End grain across the cut ends.
-            coordinate = np.sqrt((yy + 0.6)**2 + (0.6 * xx + 0.2)**2)
-        else:
-            coordinate = yy + 0.035*np.sin(5*xx + face) + 0.011*np.sin(13*xx+2*yy)
-        growth = np.sin(2*np.pi*(7*coordinate + 0.10*np.sin(9*coordinate)))
-        fibers = np.maximum(0, np.cos(2*np.pi*77*coordinate))**12
-        variation = 7*growth - 16*fibers + rng.normal(0, 1.1, xx.shape)
-        base = np.array([195, 151, 98]) * (0.91 if face in (2, 3) else 1)
-        tile = np.clip(base + variation[..., None]*[1, .85, .6], 0, 255).astype(np.uint8)
-        row, col = divmod(face, 3)
-        atlas[row*size:(row+1)*size, col*size:(col+1)*size] = tile
-
-    hx, hy, hz = .060, .042, (top_z + .016)/2
-    # Four vertices per face retain flat shading and independent grain UVs.
-    faces = [
-        ([[-hx,-hy,hz],[hx,-hy,hz],[hx,hy,hz],[-hx,hy,hz]], [0,0,1]),
-        ([[-hx,hy,-hz],[hx,hy,-hz],[hx,-hy,-hz],[-hx,-hy,-hz]], [0,0,-1]),
-        ([[hx,-hy,-hz],[hx,hy,-hz],[hx,hy,hz],[hx,-hy,hz]], [1,0,0]),
-        ([[-hx,hy,-hz],[-hx,-hy,-hz],[-hx,-hy,hz],[-hx,hy,hz]], [-1,0,0]),
-        ([[-hx,-hy,-hz],[hx,-hy,-hz],[hx,-hy,hz],[-hx,-hy,hz]], [0,-1,0]),
-        ([[hx,hy,-hz],[-hx,hy,-hz],[-hx,hy,hz],[hx,hy,hz]], [0,1,0]),
-    ]
-    vertices, indices, normals, uvs = [], [], [], []
-    for face, (corners, normal) in enumerate(faces):
-        first = len(vertices); vertices.extend(corners); normals.extend([normal]*4)
-        indices.extend([first, first+1, first+2, first, first+2, first+3])
-        row, col = divmod(face, 3)
-        u0, u1 = (col+.003)/3, (col+.997)/3
-        v0, v1 = 1-(row+.997)/2, 1-(row+.003)/2
-        uvs.extend([[u0,v0],[u1,v0],[u1,v1],[u0,v1]])
-    visual = p.createVisualShape(p.GEOM_MESH, vertices=vertices, indices=indices,
-        normals=normals, uvs=uvs, rgbaColor=[1,1,1,1], specularColor=[.05]*3, physicsClientId=cid)
-    body = p.createMultiBody(0,-1,visual,[0,0,(top_z-.016)/2],physicsClientId=cid)
-    with tempfile.TemporaryDirectory(prefix='trix-wood-') as directory:
-        texture_path = Path(directory)/'grain.png'
-        Image.fromarray(atlas).save(texture_path)
-        texture = p.loadTexture(str(texture_path),physicsClientId=cid)
-    p.changeVisualShape(body,-1,textureUniqueId=texture,physicsClientId=cid)
-    return body
 
 
 def render(*, output_dir=DEFAULT_OUTPUT_DIR, provenance_path=DEFAULT_PROVENANCE, environment=None, debug=False):
@@ -83,10 +32,16 @@ def render(*, output_dir=DEFAULT_OUTPUT_DIR, provenance_path=DEFAULT_PROVENANCE,
     head_z = fixture_top + lift + 0.003
     cid = p.connect(p.DIRECT)
     try:
-        fixture = wooden_fixture(cid, fixture_top)
-        # A flush M8 threaded insert preserves the modeled 1.25 mm thread.
-        annulus(cid, crest_radius+.0003, .0065, .0006, [0,0,fixture_top+.0003], [.65,.51,.26,1])
-        annulus(cid, 0, crest_radius+.0003, .00005, [0,0,fixture_top+.00006], [.11,.09,.065,1])
+        # Fixed metal fixture for the modeled metric machine thread.
+        fixture = rounded_box(
+            cid, [.060, .042, .015], [0, 0, fixture_top - .015],
+            [.46, .51, .57, 1], radius=.002, bevel=.0006,
+        )
+        # Machined bore mouth; the visible screw helix uses the model pitch.
+        annulus(cid, crest_radius+.0003, .0065, .0006,
+                [0, 0, fixture_top+.0003], [.68, .72, .77, 1])
+        annulus(cid, 0, crest_radius+.0003, .00005,
+                [0, 0, fixture_top+.00006], [.08, .10, .13, 1])
 
         # A continuous 1.25 mm helical ridge around the screw's root.
         bottom, top = head_z - 0.029, head_z - 0.003
@@ -188,16 +143,16 @@ def render(*, output_dir=DEFAULT_OUTPUT_DIR, provenance_path=DEFAULT_PROVENANCE,
                 camera=camera,
                 grasp=grasp,
                 **metadata(wrenches),
-                fixture_material="wood blank with flush M8 threaded insert",
+                fixture_material="machined metal block with M8 tapped bore",
                 fixture_dimensions_m=[.120,.084,.030],
-                wood_grain_source="deterministic procedural texture in renderer",
+                thread_capacity_N=model.F_THREAD_CAPACITY,
                 thread_pitch_m=pitch,
                 thread_core_geometry="explicit radius mesh",
                 head_diameter_m=0.016,
                 contact_radial_error_m=[r - 0.008 for r in contact_radii],
                 thread_root_radius_m=root_radius,
                 thread_crest_radius_m=crest_radius,
-                head_bottom_above_insert_m=lift,
+                head_bottom_above_fixture_m=lift,
                 fixture_top_m=fixture_top,
                 theta_rad=theta,
                 lift_m=lift,

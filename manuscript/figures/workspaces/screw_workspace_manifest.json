@@ -49,7 +49,7 @@
         "position_m": [
           0.0,
           0.0,
-          -0.001
+          -0.0009999999999999992
         ],
         "quaternion_xyzw": [
           0.0,
@@ -730,13 +730,13 @@
     ],
     "wrench_values_measured": false,
     "wrench_arrow_scale": "schematic; lengths do not encode magnitude",
-    "fixture_material": "wood blank with flush M8 threaded insert",
+    "fixture_material": "machined metal block with M8 tapped bore",
     "fixture_dimensions_m": [
       0.12,
       0.084,
       0.03
     ],
-    "wood_grain_source": "deterministic procedural texture in renderer",
+    "thread_capacity_N": 35.0,
     "thread_pitch_m": 0.00125,
     "thread_core_geometry": "explicit radius mesh",
     "head_diameter_m": 0.016,
@@ -746,7 +746,7 @@
     ],
     "thread_root_radius_m": 0.0034,
     "thread_crest_radius_m": 0.004,
-    "head_bottom_above_insert_m": 0.00827067345380783,
+    "head_bottom_above_fixture_m": 0.00827067345380783,
     "fixture_top_m": 0.014,
     "theta_rad": 41.555973052978516,
     "lift_m": 0.00827067345380783,
