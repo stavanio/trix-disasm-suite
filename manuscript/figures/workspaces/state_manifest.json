@@ -277,13 +277,13 @@
     "SCREW": {
       "panel": "a",
       "image": "screw_workspace.png",
-      "image_sha256": "6aa4d88449980a3b55d918c994a2f972ed309bfca9ed3343e3d4a2b340bb13b2",
+      "image_sha256": "ba495e6ad663b71d83e0a0afab5662ff0fe169bf3258f4690675d6be978ecb62",
       "clean_image": "screw_workspace_clean.png",
-      "clean_image_sha256": "730d820ee35bdc6be6e48bc553740ba23694f30b2cc9def307f2d4c31dbb5e51",
+      "clean_image_sha256": "9a1455ca7ecc2d33650edb243a8f6b5a5113ee3f14efff7227e6dd0080e24ed9",
       "render_manifest": "screw_workspace_manifest.json",
-      "render_manifest_sha256": "a87008aca8941c1d0c397a017f13be1fabbd790ddd7bcb1d307e8552ec31d971",
+      "render_manifest_sha256": "dbbf6751cbafec8ea75ee0053f55545ef494cff2ab11290deff7267273721869",
       "renderer_script": "scripts/render_screw_workspace_b601.py",
-      "renderer_script_sha256": "d83acf2216c3fdb5be888cf814a82b702a59587c4d8391d08ce212eac0eb312d"
+      "renderer_script_sha256": "1623ab1e522b27604f4af9b5239c133d9a70c397dbfbc1b24fe00781f519b8e9"
     },
     "PCB": {
       "panel": "b",
@@ -321,13 +321,13 @@
     "BATTERY": {
       "panel": "e",
       "image": "battery_workspace.png",
-      "image_sha256": "fdedbf3f2b6e9eb1df5652b89a084301aac799663732b6e94b4306374c434063",
+      "image_sha256": "84ebeca93546e6e227ecf3674d6bb11a10134a2c73ec66f45d0b004abc5e5972",
       "clean_image": "battery_workspace_clean.png",
       "clean_image_sha256": "f7e513b22477c4bcf073c373374db6b1b68eaa344493d1389a1a8a1d90617872",
       "render_manifest": "battery_workspace_manifest.json",
-      "render_manifest_sha256": "ab8dc40e3c4f0a8be44ef36bfaa949e42613f0a63e6ec148c72bc5f53891c5eb",
+      "render_manifest_sha256": "39d7c776d418a88638326e463bb347b5ab0584537d4dd648d5fc04cf6a6d38e5",
       "renderer_script": "scripts/render_battery_workspace_b601.py",
-      "renderer_script_sha256": "d65647e1f15d81cf0a0e5d31635d49718cf8106cd7809c9c39bf4a8a63bc8ba9"
+      "renderer_script_sha256": "0670307facfed18ad06b58b07ff92e8cb1c75d912d2ca25939c8babd0502b72c"
     },
     "PRY": {
       "panel": "f",

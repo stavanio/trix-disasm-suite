@@ -220,8 +220,9 @@ The reduced environment does not constrain a rigid tool against a housing
 fulcrum. The renderer therefore does not warp the blade or force heel contact.
 That missing contact constraint remains a model limitation.
 
-The fixed fixtures are task-specific: SCREW has a procedurally textured wood
-blank with a flush M8 threaded insert; PCB is a bare motherboard on three
+The fixed fixtures are task-specific: SCREW has a machined metal block with an
+M8 tapped bore, matching the model's 1.25 mm pitch and 35 N thread capacity;
+PCB is a bare motherboard on three
 spacers with sparse routed traces; CRANK has a circular bearing pedestal;
 BATTERY sits in a thin device tray; PRY uses its enclosure shell directly.
 These CAD materials and mounts do not modify the frozen analytical dynamics.
@@ -233,12 +234,13 @@ cell, tab and gripper all translate by the same `env.z`. The manifest records
 contact patch errors, tab-local contacts and the unchanging tab mesh.
 
 SCREW step 188 remains partially withdrawn: the head underside is 8.270673 mm
-above the insert, with the remaining shaft still inside it; this was accepted
+above the tapped metal fixture, with the remaining shaft still engaged; this was accepted
 as equivalent to the requested 8.25 mm presentation.
 
 Purple arrows show schematic wrench directions. Dotted leaders locate their
 application points where visible; the SCREW leaders are omitted to keep the
-fastener clear. Arrow lengths do not represent magnitudes. They are projected
+fastener clear. BATTERY's F_peel label sits to the left of the force arrow, clear
+of the jaw bracket. Arrow lengths do not represent magnitudes. They are projected
 with the scene camera and do not add objects or forces to the archived state.
 No measured force or torque samples are available in the saved frames.
 
