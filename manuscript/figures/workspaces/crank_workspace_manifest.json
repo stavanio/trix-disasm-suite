@@ -730,6 +730,7 @@
     ],
     "wrench_values_measured": false,
     "wrench_arrow_scale": "schematic; lengths do not encode magnitude",
+    "fixture_material": "circular metal bearing pedestal with three flange mounts",
     "handle_geometry": "explicit radius mesh",
     "theta_raw_rad": -5.115796089172363,
     "theta_display_rad": 1.167389218007223,
@@ -748,8 +749,8 @@
     "coordinate_reference": "world-aligned simulator display frame; camera-projected XY grid",
     "coordinate_style": "B601-inspired RGB arrows with Isaac-style square plane handles",
     "display_frame_origin_world_m": [
-      -0.10000000000000003,
       -0.06000000000000005,
+      -0.08000000000000004,
       -0.0161
     ],
     "display_frame_axes_world": [

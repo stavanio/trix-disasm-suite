@@ -34,11 +34,12 @@ def render(*, output_dir=DEFAULT_OUTPUT_DIR, provenance_path=DEFAULT_PROVENANCE,
     q = p.getQuaternionFromEuler([0, 0, theta])
     cid = p.connect(p.DIRECT)
     try:
-        fixture = rounded_box(cid, [0.061, 0.052, 0.008], [0, 0, -0.008], [0.22, 0.24, 0.27, 1], radius=0.007)
-        for x in (-0.047, 0.047):
-            for y in (-0.038, 0.038):
-                annulus(cid, 0.002, 0.004, 0.0005, [x, y, 0.00025], [0.53, 0.56, 0.60, 1])
-                b601.make_cyl(cid, 0.002, 0.00025, [x, y, 0.0001], [0.06, 0.07, 0.085, 1])
+        # Circular bearing pedestal distinguishes the rotary fixture.
+        fixture = annulus(cid,0,.050,.016,[0,0,-.008],[.40,.44,.47,1])
+        for angle in (math.radians(30),math.radians(150),math.radians(270)):
+            x,y=.040*math.cos(angle),.040*math.sin(angle)
+            annulus(cid,.002,.004,.0005,[x,y,.00025],[.63,.66,.68,1])
+            b601.make_cyl(cid,.002,.0002,[x,y,.0001],[.075,.09,.10,1])
         rounded_box(cid, [0.027, 0.023, 0.005], [0, 0, 0.005], [0.11, 0.13, 0.16, 1], radius=0.006)
         annulus(cid, 0.0095, 0.018, 0.014, [0, 0, 0.017], [0.15, 0.175, 0.21, 1])
         annulus(cid, 0.009, 0.0155, 0.0015, [0, 0, 0.0245], [0.55, 0.59, 0.64, 1])
@@ -135,6 +136,7 @@ def render(*, output_dir=DEFAULT_OUTPUT_DIR, provenance_path=DEFAULT_PROVENANCE,
                 camera=camera,
                 grasp=grasp,
                 **metadata(wrenches),
+                fixture_material="circular metal bearing pedestal with three flange mounts",
                 handle_geometry="explicit radius mesh",
                 theta_raw_rad=theta_raw,
                 theta_display_rad=theta,
