@@ -1,0 +1,342 @@
+{
+  "purpose": "Representative state-conditioned DISASM-Bench workspace visualization",
+  "note": "Workpiece poses come from recorded analytical-environment states. Values in states use the renders/tasks/state_manifest.json field convention; full unwrapped environment fields and observations are preserved below. No experiment is recomputed.",
+  "states": {
+    "SCREW": {
+      "theta": 3.8568612099009982,
+      "z": 0.00827067345380783,
+      "engagement": 0.9999748468399048
+    },
+    "PCB": {
+      "lift": 0.008312500081956387,
+      "tilt_x": 0.006588201969861984,
+      "tilt_y": 0.0035398832987993956,
+      "tilt": 0.007478982481916388,
+      "condition": "normal"
+    },
+    "SNAP": {
+      "delta": 0.005133796017616987,
+      "z": 0.0008084868895821273,
+      "released": false,
+      "broken": false
+    },
+    "CRANK": {
+      "theta": 1.167389218007223,
+      "z": -0.0020000000949949026
+    },
+    "BATTERY": {
+      "z": 0.006753831636160612,
+      "deform": 0.0,
+      "short": false,
+      "temperature": 25.0
+    },
+    "PRY": {
+      "theta": 0.24900600127576666,
+      "gap": 0.007237697020173073,
+      "insertion_depth": 0.004303334280848503,
+      "crack": 0.0
+    }
+  },
+  "provenance_source": "assets/workspaces/frozen_frames.json",
+  "provenance_sha256": "7cef22ddeab8ad4b20997f55286ecb4813e37435f8a61c8ba4c807ae512c1165",
+  "trace_provenance": {
+    "SCREW": {
+      "trace_file": "screw_canonical_trace.json",
+      "trace_sha256": "e7f2fd80daf7a23cb55674fb0d6bfea5d855684ceb55ad64834dd1186d078b32",
+      "evaluation_arm": "trix",
+      "training_seed": 0,
+      "checkpoint_step": 2000,
+      "episode_seed": 880000,
+      "trace_step": 188
+    },
+    "PCB": {
+      "trace_file": "pcb_canonical_trace.json",
+      "trace_sha256": "ec8bc42d904b161754cb1f403b4edd9e8bdc84bbaee4d638172402a0a164517f",
+      "evaluation_arm": "trix",
+      "training_seed": 0,
+      "checkpoint_step": 2000,
+      "episode_seed": 844000,
+      "trace_step": 133
+    },
+    "SNAP": {
+      "trace_file": "snap_canonical_trace.json",
+      "trace_sha256": "409980337e887eed02abaf7c493173805871ac31f87eb32cb1c89c7e61cef0b7",
+      "evaluation_arm": "trix",
+      "training_seed": 5,
+      "checkpoint_step": 10000,
+      "episode_seed": 874000,
+      "trace_step": 5
+    },
+    "CRANK": {
+      "trace_file": "crank_canonical_trace.json",
+      "trace_sha256": "fcf0c9a03750ab7a158b9ce3762bbdddbcf47dfb32316c8d87bce46fa78db153",
+      "evaluation_arm": "trix",
+      "training_seed": 4,
+      "checkpoint_step": 12000,
+      "episode_seed": 872000,
+      "trace_step": 199
+    },
+    "BATTERY": {
+      "trace_file": "battery_canonical_trace.json",
+      "trace_sha256": "9a5fcd043e0e9f12403c2ee50040ceeaca938ba75493e334be7d539fdac77042",
+      "evaluation_arm": "trix_preventive",
+      "training_seed": 0,
+      "checkpoint_step": 2000,
+      "episode_seed": 850000,
+      "trace_step": 329
+    },
+    "PRY": {
+      "trace_file": "pry_canonical_trace.json",
+      "trace_sha256": "c71cfc50b19c282c3ca364ef8e8a05c29a2b6bff07dae60e6655429e670cf635",
+      "evaluation_arm": "trix",
+      "training_seed": 2,
+      "checkpoint_step": 7000,
+      "episode_seed": 892000,
+      "trace_step": 576
+    }
+  },
+  "visualization_scope": "PyBullet renders the recorded analytical-benchmark state. B601 grasps follow the workpiece or tool frame. Static CAD dimensions are fixed; articulated arm and gripper contact dynamics are not simulated.",
+  "units": {
+    "length": "m",
+    "angle": "rad",
+    "angular_velocity": "rad/s",
+    "linear_velocity": "m/s",
+    "temperature": "deg C"
+  },
+  "state_conventions": {
+    "screw_crank_theta": "orientation modulo 2*pi in [0, 2*pi); unwrapped theta is retained in environment_states",
+    "pry_theta": "orientation as remainder(theta, 2*pi) in [-pi, pi]; applied as Ry(-theta)",
+    "pcb_tilt": "Euclidean norm of tilt_x and tilt_y; components map to environment theta[0] and theta[1]",
+    "battery_short": "boolean short flag; continuous severity is retained in environment_states.short_state"
+  },
+  "environment_states": {
+    "SCREW": {
+      "theta_rad": 41.555973052978516,
+      "z_m": 0.00827067345380783,
+      "omega_rad_s": 56.40332794189453,
+      "v_z_m_s": 0.011220908723771572,
+      "engagement": 0.9999748468399048,
+      "helix_error": -1.7683721059702506e-07
+    },
+    "PCB": {
+      "lift_m": 0.008312500081956387,
+      "tilt_x_rad": 0.006588201969861984,
+      "tilt_y_rad": 0.0035398832987993956,
+      "v_z_m_s": 0.014999999664723873,
+      "omega_rad_s": [
+        -1.698651909828186,
+        0.25156694650650024
+      ],
+      "damage": 0.0,
+      "fractured": false
+    },
+    "SNAP": {
+      "delta_m": 0.005133796017616987,
+      "delta_dot_m_s": -0.027169644832611084,
+      "z_m": 0.0008084868895821273,
+      "v_z_m_s": 0.05000000074505806,
+      "released": false,
+      "latch_damage": 0.0,
+      "latch_broken": false,
+      "phase_release_or_later": true
+    },
+    "CRANK": {
+      "theta_rad": -5.115796089172363,
+      "omega_rad_s": -6.890850067138672,
+      "z_m": -0.0020000000949949026,
+      "v_z_m_s": -0.03896580636501312,
+      "damage": 0.0,
+      "rotation_complete": false
+    },
+    "BATTERY": {
+      "z_m": 0.006753831636160612,
+      "v_z_m_s": 0.00368444062769413,
+      "deformation": 0.0,
+      "short_state": 0.0,
+      "temperature_C": 25.0,
+      "short_flag": false
+    },
+    "PRY": {
+      "theta_rad": 144.76226806640625,
+      "omega_rad_s": 67.71357727050781,
+      "gap_m": 0.007237697020173073,
+      "insertion_depth_m": 0.004303334280848503,
+      "friction_state": 1.0,
+      "crack": 0.0
+    }
+  },
+  "recorded_observations": {
+    "SCREW": [
+      41.555973052978516,
+      0.00827067345380783,
+      56.40332794189453,
+      0.011220908723771572,
+      0.9999748468399048,
+      -1.7678969754797436e-07,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "PCB": [
+      0.008312500081956387,
+      0.014999999664723873,
+      0.006588201969861984,
+      0.0035398832987993956,
+      -1.698651909828186,
+      0.25156694650650024,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "SNAP": [
+      0.005133796017616987,
+      -0.027169644832611084,
+      0.0008084868895821273,
+      0.05000000074505806,
+      0.0,
+      0.0,
+      0.0,
+      1.0,
+      0.0,
+      0.0
+    ],
+    "CRANK": [
+      -5.115796089172363,
+      -6.890850067138672,
+      0.3925544023513794,
+      0.9197288155555725,
+      -0.0020000000949949026,
+      -0.03896580636501312,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "BATTERY": [
+      0.006753831636160612,
+      0.00368444062769413,
+      0.0,
+      0.0,
+      0.25,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "PRY": [
+      144.76226806640625,
+      67.71357727050781,
+      0.007237697020173073,
+      1.0,
+      0.004303334280848503,
+      1.4354499578475952,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ]
+  },
+  "environment_provenance": {
+    "SCREW": {
+      "environment_class": "envs.screw_env_v3.ScrewEnvV3",
+      "environment_source_sha256": "cead3313396797e07977bec323028bd35d398887d540512150ac2dd632678949",
+      "constraint_hash": "beb88f8d0baf5e4a"
+    },
+    "PCB": {
+      "environment_class": "envs.pcb_env_v2.PCBEnvV2",
+      "environment_source_sha256": "4b82b27bee6829c0db014f4c8789095067e3bc085ee757ef01b76dfeeb6f2643",
+      "constraint_hash": "53fcd8e18d341d5d"
+    },
+    "SNAP": {
+      "environment_class": "envs.snap_env_v2.SnapEnvV2",
+      "environment_source_sha256": "6464ed3ff2a228c2f094267fc6874b4b3ffe64ffcaafea91f93eb5dab785de30",
+      "constraint_hash": "044763e531cb6bcb"
+    },
+    "CRANK": {
+      "environment_class": "envs.crank_env_v2.CrankEnvV2",
+      "environment_source_sha256": "4dc0bfd35b07c1b4a187ab76278db219058f216e949383432f5b8a2863890afe",
+      "constraint_hash": "bc6cc80449c95466"
+    },
+    "BATTERY": {
+      "environment_class": "envs.battery_env_v2.BatteryEnvV2",
+      "environment_source_sha256": "28505bec3a739b0639690fc182d1751ac6832351324925a74bec1b392cb3e343",
+      "constraint_hash": "09a4ae5d933db6bf"
+    },
+    "PRY": {
+      "environment_class": "envs.pry_env_v2.PryEnvV2",
+      "environment_source_sha256": "2f62bbed3ef875c97d0825c60af273335c1fd683040f797127d8eb329957c831",
+      "constraint_hash": "52be08aa340982f6"
+    }
+  },
+  "panels": {
+    "SCREW": {
+      "panel": "a",
+      "image": "screw_workspace.png",
+      "image_sha256": "285bc6078ac4927a3b966e4a02288ef82600b91e63d94f3f12d6bc75cb58e053",
+      "clean_image": "screw_workspace_clean.png",
+      "clean_image_sha256": "ebbaec3eb276c766d380d04ac3d990fda202c188ff6f8ab5daa8609c35fda609",
+      "render_manifest": "screw_workspace_manifest.json",
+      "render_manifest_sha256": "34c3bf62213e126b40315911501b80f48f405a453431be45941d8bccdc996a90",
+      "renderer_script": "scripts/render_screw_workspace_b601.py",
+      "renderer_script_sha256": "e35a4a9e2fcc1fb711b8ccdb51118e02551e3303e3f9160bc89a49cb83d93cbb"
+    },
+    "PCB": {
+      "panel": "b",
+      "image": "pcb_workspace.png",
+      "image_sha256": "9c347f18112e026558c7b204c8c55bf0357fcdcab40af1e8269b1dd1ebd7fdff",
+      "clean_image": "pcb_workspace_clean.png",
+      "clean_image_sha256": "f80bb3d3f96ecacc8c675af9cefea151bff36737488056d7febe43ef85a8c950",
+      "render_manifest": "pcb_workspace_manifest.json",
+      "render_manifest_sha256": "fb67aef06dc6b1af088bfb356386c422ece5fc0d7707f1a856c4976f48d696fe",
+      "renderer_script": "scripts/render_pcb_workspace_b601.py",
+      "renderer_script_sha256": "bf818c8964cd24c5361e4fbbaa809e6bb01d7e330e716da15b9dd326dee1ef8b"
+    },
+    "SNAP": {
+      "panel": "c",
+      "image": "snap_workspace.png",
+      "image_sha256": "ca65b87447e95664cb1eb83fb158d7ff7bc07451a33199fd237f712017721a63",
+      "clean_image": "snap_workspace_clean.png",
+      "clean_image_sha256": "29d27d180ad7517cda63b0198f50e434d7f412a641442491def1683713ad07f3",
+      "render_manifest": "snap_workspace_manifest.json",
+      "render_manifest_sha256": "0d8a8f0728b77614be31693e94e23ed76a2a88ba721f0a1ebd926b74c4a77247",
+      "renderer_script": "scripts/render_snap_workspace_b601.py",
+      "renderer_script_sha256": "c1109a64fc9a9790a2c001ebf4063f07ed0dca5d0f4d9497b162bcb2d11b9b3c"
+    },
+    "CRANK": {
+      "panel": "d",
+      "image": "crank_workspace.png",
+      "image_sha256": "a2ffce17fc5c02d218379fa7e556e303b455d31fc8770150460a1c3620c8b5a3",
+      "clean_image": "crank_workspace_clean.png",
+      "clean_image_sha256": "5fc2e039a8d33c6fde34dea97a3f457662d34a77a9d9658f9a8b7a498ac15284",
+      "render_manifest": "crank_workspace_manifest.json",
+      "render_manifest_sha256": "b1d80c642aae76cd2c146811ac01b3f93513ea2ae6f3874b7266381b10e6c10f",
+      "renderer_script": "scripts/render_crank_workspace_b601.py",
+      "renderer_script_sha256": "044dbdef6cb84bd5659e923e46aad50fe9183034f36a089214765fdc2e0ae299"
+    },
+    "BATTERY": {
+      "panel": "e",
+      "image": "battery_workspace.png",
+      "image_sha256": "5e0c12aa2a60142850112a30cf3e702b01a4f73d0b01fa5c520e553a5d7f62a0",
+      "clean_image": "battery_workspace_clean.png",
+      "clean_image_sha256": "47b672789d2e235987aa1c731a3176a043cc9ff529dac23363f3aca35b2c6a67",
+      "render_manifest": "battery_workspace_manifest.json",
+      "render_manifest_sha256": "f3d39a4ca21a48aab0af614ebb11f2cc09b62dd6c5d22c0f3936967944f5bf26",
+      "renderer_script": "scripts/render_battery_workspace_b601.py",
+      "renderer_script_sha256": "9d7c8b5a393d45d01f3df9b1ac9989d9dd0cde831fd7a000ff63de5218466453"
+    },
+    "PRY": {
+      "panel": "f",
+      "image": "pry_workspace.png",
+      "image_sha256": "48e60b4351794b83068e09bd924667190c8d43c8c763a15aa56ee783c0fe7bc0",
+      "clean_image": "pry_workspace_clean.png",
+      "clean_image_sha256": "37acd3b3090263ee4e88ada76bf20966074b2ac1c25fae8d1a6f2da922bf16d7",
+      "render_manifest": "pry_workspace_manifest.json",
+      "render_manifest_sha256": "29a724a36612b05c156a5f854bd76d36a2fa16196ff2935e7ecfa941ae908911",
+      "renderer_script": "scripts/render_pry_workspace_b601.py",
+      "renderer_script_sha256": "2ba5ee0198e798f532a63bf0db431617ae6687a2b10f7156bf22c4811c3c7dc8"
+    }
+  }
+}

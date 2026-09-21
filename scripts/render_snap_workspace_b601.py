@@ -544,7 +544,8 @@ def render(*, output_dir=DEFAULT_OUTPUT_DIR, provenance_path=DEFAULT_PROVENANCE,
                 offset=[0.004, -0.005, 0.002],
                 length=0.020,
                 label="F_latch",
-                label_offset=(18, -5),
+                # Place the common label style in the white margin above the base.
+                label_offset=(25, -130),
             ),
         ]
         Image.fromarray(image).save(output_dir / "snap_workspace_clean.png", dpi=(300, 300))

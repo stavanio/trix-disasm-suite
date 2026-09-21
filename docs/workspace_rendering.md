@@ -144,6 +144,35 @@ This writes `manuscript/figures/disasm_bench_workspaces.png` and
 existing panels; it does not regenerate scene geometry. Alternative directories
 can be selected with `--workspace-dir` and `--output-dir`.
 
+## Per-panel state manifest
+
+Composition also writes `manuscript/figures/workspaces/state_manifest.json`.
+Its `states` and `trace_provenance` fields follow the existing
+`renders/tasks/state_manifest.json` format: one entry for each of the six tasks.
+Lengths are metres, angles are radians, and temperatures are degrees Celsius.
+The PCB curvature is the norm of its two recorded tilt components:
+0.007478982481916388 rad (about 0.429 degrees).
+
+SCREW/CRANK `theta` stores orientation modulo 2π; PRY uses the signed remainder.
+The full accumulated angles, continuous damage fields and raw observations are
+retained in `environment_states` and `recorded_observations`. Each panel records
+its letter, renderer path, environment fingerprint, trace seed/step identifiers,
+and SHA-256 hashes of its PNGs, renderer and detailed manifest. The input archive
+path and hash identify the recorded source.
+
+The compositor regenerates this manifest and rejects discrepancies between the
+recorded observation, environment binding, and rendered pose fields. To verify
+an existing figure's manifest without modifying it:
+
+```bash
+.venv-renders/bin/python scripts/workspace_state_manifest.py --check
+```
+
+The manifest can also be regenerated independently with the same command without
+`--check`. The caption reports the small PCB curvature numerically; its geometry
+is unchanged. SNAP's latch-force label uses the common label styling in a clear
+white margin above the base.
+
 ## Coordinate graphics
 
 The world frame is right-handed with Z up. X, Y, and Z use red, green, and blue
@@ -245,6 +274,7 @@ perturbations are mapping tests, not new benchmark rollouts or paper results.
 - `workspace_wrench.py`: camera-projected force and torque annotations.
 - `workspace_render_cli.py`: shared paths and command-line options.
 - `workspace_environment.py`: environment restoration, source checks and state validation.
+- `workspace_state_manifest.py`: consolidated states, provenance and file integrity checks.
 - `verify_workspace_state_mapping.py`: tests over multiple states and actual rendered bodies.
 - `envs/*_env_v*.py`: unmodified analytical environments.
 - `compose_b601_workspaces.py`: the publication figure layout.

@@ -14,16 +14,20 @@ import matplotlib
 matplotlib.use("Agg")
 import matplotlib.pyplot as plt
 from PIL import Image
+from workspace_state_manifest import write_manifest
+from workspace_render_cli import DEFAULT_PROVENANCE
 
 ROOT = Path(__file__).resolve().parents[1]
 FIGURES = ROOT / "manuscript" / "figures"
 TASKS = ("SCREW", "PCB", "SNAP", "CRANK", "BATTERY", "PRY")
 
 
-def compose(workspace_dir=FIGURES / "workspaces", output_dir=FIGURES):
+def compose(workspace_dir=FIGURES / "workspaces", output_dir=FIGURES, provenance_path=DEFAULT_PROVENANCE):
     workspace_dir = Path(workspace_dir)
     output_dir = Path(output_dir)
     output_dir.mkdir(parents=True, exist_ok=True)
+    manifest_path = write_manifest(workspace_dir, provenance_path)
+    print(manifest_path)
     figure, axes = plt.subplots(2, 3, figsize=(10.8, 6.2), facecolor="white")
     for letter, task, axis in zip("abcdef", TASKS, axes.flat):
         path = workspace_dir / f"{task.lower()}_workspace.png"
@@ -63,5 +67,6 @@ if __name__ == "__main__":
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--workspace-dir", type=Path, default=FIGURES / "workspaces")
     parser.add_argument("--output-dir", type=Path, default=FIGURES)
+    parser.add_argument("--state-file", type=Path, default=DEFAULT_PROVENANCE)
     args = parser.parse_args()
-    compose(args.workspace_dir, args.output_dir)
+    compose(args.workspace_dir, args.output_dir, args.state_file)
