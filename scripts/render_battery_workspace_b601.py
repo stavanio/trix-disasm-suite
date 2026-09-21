@@ -232,7 +232,10 @@ def render(*, output_dir=DEFAULT_OUTPUT_DIR, provenance_path=DEFAULT_PROVENANCE,
             )
 
             wrenches = [
-                force(contact_center, [0, 0, 1], offset=[-0.030, -0.027, 0.014], label="F_peel")
+                force(
+                    contact_center, [0, 0, 1], offset=[-0.030, -0.027, 0.014],
+                    label="F_peel", label_offset=(-120, -24),
+                )
             ]
             Image.fromarray(image).save(output_dir / "battery_workspace_clean.png", dpi=(300, 300))
             annotated = add_coordinate_reference(
