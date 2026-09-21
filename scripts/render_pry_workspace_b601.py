@@ -8,10 +8,10 @@ from pathlib import Path
 import b601_render_common as b601
 import numpy as np
 import pybullet as p
-from b601_render_common import black_meshes, fingertip_geometry
 from PIL import Image
+from workspace_environment import prepare_environment, body_geometry
 from workspace_render_cli import DEFAULT_OUTPUT_DIR, DEFAULT_PROVENANCE, run_renderer
-from workspace_render_utils import rounded_outline, rounded_solid
+from workspace_render_utils import grasp_b601, rounded_outline, rounded_solid
 from workspace_wrench import annotate, metadata, torque
 
 
@@ -51,21 +51,16 @@ def hollow_housing(cid, half_x, half_y, wall_top):
     return body
 
 
-def blade_mesh(cid, stations, tool_y):
-    """A continuous thin steel blade, including the upturned working tip.
-
-    Each station is x, center z, width, vertical thickness.  The short
-    bend gives the toe and heel distinct contacts; the straight shank
-    beyond the heel follows the recorded tool orientation.
-    """
+def blade_mesh(cid, stations, origin, quaternion):
+    """One rigid local-space steel mesh; state changes only its body transform."""
     vertices = []
     for x, z, width, thickness in stations:
         vertices.extend(
             [
-                [x, tool_y - width / 2, z - thickness / 2],
-                [x, tool_y + width / 2, z - thickness / 2],
-                [x, tool_y + width / 2, z + thickness / 2],
-                [x, tool_y - width / 2, z + thickness / 2],
+                [x, -width / 2, z - thickness / 2],
+                [x, width / 2, z - thickness / 2],
+                [x, width / 2, z + thickness / 2],
+                [x, -width / 2, z + thickness / 2],
             ]
         )
     indices = [0, 2, 1, 0, 3, 2]
@@ -76,99 +71,30 @@ def blade_mesh(cid, stations, tool_y):
             indices.extend([a, b, c, a, c, d])
     end = 4 * (len(stations) - 1)
     indices.extend([end, end + 1, end + 2, end, end + 2, end + 3])
-    return mesh_body(cid, vertices, indices, [0.71, 0.75, 0.78, 1])
+    body = mesh_body(cid, vertices, indices, [0.71, 0.75, 0.78, 1])
+    p.resetBasePositionAndOrientation(body, origin, quaternion, physicsClientId=cid)
+    return body, vertices
 
 
-def place_gripper(cid, center, handle_width):
-    scale, _ = b601.choose_visual_scale()
-    robot = b601.load_robot(cid, scale)
-    limits = [float(p.getJointInfo(robot, j, physicsClientId=cid)[9]) for j in (7, 8)]
-
-    def opening(fraction):
-        for joint, limit in zip((7, 8), limits):
-            p.resetJointState(robot, joint, fraction * limit, physicsClientId=cid)
-
-    opening(1)
-    ref_pos, ref_quat, _, local_frame = b601.local_tool_frame(robot, cid)
-    world_frame = np.array([[0, -1, 0], [1, 0, 0], [0, 0, 1]])
-    b601.orient_robot(robot, cid, world_frame @ local_frame.T, ref_pos, ref_quat)
-    meshes = black_meshes()
-    front, back = fingertip_geometry(robot, cid, scale, meshes)
-    max_gap = back["inner_y"] - front["inner_y"]
-    opening(0)
-    front, back = fingertip_geometry(robot, cid, scale, meshes)
-    min_gap = back["inner_y"] - front["inner_y"]
-    fraction = (handle_width - min_gap) / (max_gap - min_gap)
-    if not 0 <= fraction <= 1:
-        raise RuntimeError("Tool handle exceeds the B601 jaw range")
-    opening(fraction)
-    front, back = fingertip_geometry(robot, cid, scale, meshes)
-    contact = np.array(
-        [
-            0.5 * (front["center_x"] + back["center_x"]),
-            0.5 * (front["inner_y"] + back["inner_y"]),
-            0.5 * (front["bottom_z"] + back["bottom_z"]),
-        ]
-    )
-    b601.translate_robot(robot, cid, np.asarray(center) - contact)
-    front, back = fingertip_geometry(robot, cid, scale, meshes)
-    gap = back["inner_y"] - front["inner_y"]
-    if not (
-        abs(gap - handle_width) < 0.0001
-        and abs(front["inner_y"] - center[1] + handle_width / 2) < 0.0001
-        and abs(back["inner_y"] - center[1] - handle_width / 2) < 0.0001
-        and all(abs(t["center_x"] - center[0]) < 0.0001 for t in (front, back))
-    ):
-        raise RuntimeError("B601 fingertips do not meet both handle sides")
-    lo, hi = b601.visible_bounds(robot, cid)
-    ax, ay = 0.5 * (lo[:2] + hi[:2])
-    b601.make_cyl(cid, 0.011, 0.008, [ax, ay, hi[2] + 0.004], [0.48, 0.50, 0.53, 1])
-    b601.make_box(cid, [0.010, 0.010, 0.015], [ax, ay, hi[2] + 0.023], [0.14, 0.16, 0.19, 1])
-    return {
-        "visual_scale": scale,
-        "opening_fraction": fraction,
-        "gap_m": gap,
-        "fingertips": [front, back],
-    }
-
-
-def render(*, output_dir=DEFAULT_OUTPUT_DIR, provenance_path=DEFAULT_PROVENANCE):
+def render(*, output_dir=DEFAULT_OUTPUT_DIR, provenance_path=DEFAULT_PROVENANCE, environment=None):
     output_dir = Path(output_dir)
     output_dir.mkdir(parents=True, exist_ok=True)
     provenance_path = Path(provenance_path)
-    entry = json.loads(provenance_path.read_text())["states"]["PRY"]
+    env, model, entry, binding = prepare_environment("PRY", provenance_path, environment)
     state = entry["frame"]["state"]
-    if entry["trace_step"] != 576 or state["crack"] != 0:
-        raise RuntimeError("Expected the intact frozen PRY frame at step 576")
-    gap = float(state["gap_m"])
-    insertion = float(state["insertion_depth_m"])
-    # theta is an unbounded accumulated rotation in the reduced-order model.
-    # Modulo 2*pi preserves its exact physical orientation.
-    theta = math.remainder(float(state["theta_rad"]), 2 * math.pi)
+    gap, insertion = float(env.state.position[2]), float(env.state.position[0])
+    theta = math.remainder(float(env.state.theta), 2 * math.pi)
     half_x, half_y, wall_top = 0.054, 0.038, 0.020
-    tool_y = -0.017
-    thickness = 0.0045
-    if not (0 < insertion < 0.010 and 0 < gap < 2 * half_x):
-        raise RuntimeError("Archived seam state is outside this illustrative tool geometry")
-
-    # The scalar gap is shown at the lifted lid edge.  The opposite edge
-    # remains in contact with the housing; this tilt is derived geometry,
-    # not an extra angle read from the benchmark.
-    lid_angle = math.asin(gap / (2 * half_x))
-    lid_q = p.getQuaternionFromEuler([0, -lid_angle, 0])
-    lid_rotation = np.asarray(p.getMatrixFromQuaternion(lid_q)).reshape(3, 3)
-    pivot = np.array([-half_x, 0, wall_top])
-
+    tool_y, thickness = -0.017, 0.0045
+    # There is one translational separation coordinate, and no lid hinge state.
+    lid_q = [0, 0, 0, 1]
     def lid_point(local):
-        return pivot + lid_rotation @ (np.asarray(local) + [half_x, 0, 0])
-
-    def underside_z(x):
-        return wall_top + (x + half_x) * math.tan(lid_angle)
+        return np.asarray(local) + [0, 0, wall_top + gap]
 
     output_dir.mkdir(parents=True, exist_ok=True)
     cid = p.connect(p.DIRECT)
     try:
-        b601.make_box(cid, [0.068, 0.051, 0.005], [0, 0, -0.005], [0.17, 0.18, 0.20, 1])
+        fixture = b601.make_box(cid, [0.068, 0.051, 0.005], [0, 0, -0.005], [0.17, 0.18, 0.20, 1])
         hollow_housing(cid, half_x, half_y, wall_top)
         # Empty fastening bosses and a recessed cavity identify the lower shell.
         for x in (-0.044, 0.044):
@@ -201,35 +127,22 @@ def render(*, output_dir=DEFAULT_OUTPUT_DIR, provenance_path=DEFAULT_PROVENANCE)
                 hole = b601.make_cyl(cid, 0.0017, 0.00014, pos.tolist(), [0.06, 0.07, 0.08, 1])
                 p.resetBasePositionAndOrientation(hole, pos, lid_q, physicsClientId=cid)
 
-        # The blade toe contacts the lid underside at the exact insertion;
-        # the bend's heel rests on the outer housing rim.
-        tip_x = half_x - insertion
-        toe_thickness, heel_thickness = 0.0006, 0.0014
-        toe_contact = np.array([tip_x, tool_y, underside_z(tip_x)])
-        heel = np.array([half_x, tool_y, wall_top + heel_thickness / 2])
-        axis = np.array([math.cos(theta), 0, math.sin(theta)])
-        shoulder = heel + 0.010 * axis
-        tang_end = heel + 0.047 * axis
-        stations = [
-            [tip_x, toe_contact[2] - toe_thickness / 2, 0.008, toe_thickness],
-            [tip_x + 0.0012, toe_contact[2] - 0.0009, 0.009, 0.0008],
-            [heel[0], heel[2], 0.010, heel_thickness],
-            [shoulder[0], shoulder[2], 0.009, 0.0014],
-            [tang_end[0], tang_end[2], 0.008, 0.0014],
-        ]
-        # Check the entire inserted ribbon against the housing and lid planes.
-        for first, second in zip(stations, stations[1:]):
-            for t in np.linspace(0, 1, 101):
-                x, z, _, height = (1 - t) * np.asarray(first) + t * np.asarray(second)
-                if x <= half_x:
-                    if z - height / 2 < wall_top - 1e-9 or z + height / 2 > underside_z(x) + 1e-9:
-                        raise RuntimeError("Inserted blade intersects the housing or lid")
-        blade_mesh(cid, stations, tool_y)
-
-        handle_center = heel + 0.053 * axis
-        handle_width = 0.018
+        # State-to-CAD convention: local toe is the insertion/gap origin;
+        # positive model angle rotates the shank upward about world -Y.
+        # The model has no rigid-contact/fulcrum constraint. Never reshape the
+        # blade or move the housing to create contact absent from these states.
+        toe_origin = np.array([half_x - insertion, tool_y, wall_top + gap])
         tool_q = p.getQuaternionFromEuler([0, -theta, 0])
         tool_rotation = np.asarray(p.getMatrixFromQuaternion(tool_q)).reshape(3, 3)
+        stations = [
+            [0, -0.0003, 0.008, 0.0006],
+            [0.006, -0.003, 0.010, 0.0014],
+            [0.014, -0.009, 0.010, 0.0014],
+            [model.LEVER_LENGTH - 0.027, -0.009, 0.008, 0.0014],
+        ]
+        blade, blade_local_vertices = blade_mesh(cid, stations, toe_origin, tool_q)
+        handle_center = toe_origin + tool_rotation @ [model.LEVER_LENGTH - 0.019, 0, -0.009]
+        handle_width = 0.018
         handle = rounded_solid(
             cid,
             0.019,
@@ -250,21 +163,31 @@ def render(*, output_dir=DEFAULT_OUTPUT_DIR, provenance_path=DEFAULT_PROVENANCE)
                 [0.29, 0.13, 0.06, 1],
                 orn=(0, -theta, 0),
             )
-        grasp = place_gripper(cid, handle_center - [0, 0, 0.0025], handle_width)
-
-        # Geometric invariants use the same coordinates as the rendered mesh.
-        edge = lid_point([half_x, 0, 0])
+        # Close across the handle, with the finger approach normal to its
+        # upper face. The tool angle remains the archived rotation; only the
+        # gripper pose changes to follow it. Use actual STL surface contacts.
+        robot, grasp = grasp_b601(
+            cid,
+            handle_center,
+            handle_width,
+            closing=tool_rotation[:, 1],
+            approach=tool_rotation[:, 2],
+            tip_depth=0.002,
+        )
+        handle_contacts = (np.asarray(grasp["contacts_m"]) - handle_center) @ tool_rotation
+        handle_side_errors = np.abs(np.abs(handle_contacts[:, 1]) - handle_width / 2)
         if not (
-            abs(edge[2] - wall_top - gap) < 1e-9
-            and abs(half_x - tip_x - insertion) < 1e-9
-            and abs(stations[2][1] - heel_thickness / 2 - wall_top) < 1e-9
+            np.max(handle_side_errors) < 0.00005
+            and np.max(np.abs(handle_contacts[:, 0])) < 0.015
+            and np.max(np.abs(handle_contacts[:, 2])) < 0.0033
+            and np.dot(grasp["approach_axis"], tool_rotation[:, 2]) > 1 - 1e-9
         ):
-            raise RuntimeError("PRY contacts no longer represent the frozen state")
+            raise RuntimeError("PRY fingertips do not contact the handle's flat side faces")
 
         width, height = 1800, 1400
         camera = {
-            "target": [0.030, -0.004, 0.048],
-            "distance": 0.330,
+            "target": [0.065, -0.004, 0.058],
+            "distance": 0.490,
             "yaw": 35,
             "pitch": -28,
             "fov": 36,
@@ -300,8 +223,8 @@ def render(*, output_dir=DEFAULT_OUTPUT_DIR, provenance_path=DEFAULT_PROVENANCE)
 
         wrenches = [
             torque(
-                heel,
-                [0, 1, 0],
+                toe_origin,
+                [0, -1, 0],
                 radius=0.026,
                 start_deg=-45,
                 sweep_deg=210,
@@ -312,9 +235,14 @@ def render(*, output_dir=DEFAULT_OUTPUT_DIR, provenance_path=DEFAULT_PROVENANCE)
         ]
         Image.fromarray(image).save(output_dir / "pry_workspace_clean.png", dpi=(300, 300))
         annotated = add_coordinate_reference(
-            image, depth, view, projection, -0.0101, [-0.09, 0.16, -0.08, 0.095]
+            image, depth, view, projection, -0.0101, [-0.09, 0.24, -0.10, 0.12]
         )
-        annotate(annotated, view, projection, wrenches).save(
+        notes = [dict(
+            anchor_world_m=(handle_center + tool_rotation @ [0.017, 0, 0.004]).tolist(),
+            position_px=[1470, 1140],
+            text="Tool grip",
+        )]
+        annotate(annotated, view, projection, wrenches, notes).save(
             output_dir / "pry_workspace.png", dpi=(300, 300)
         )
         manifest = {
@@ -331,18 +259,30 @@ def render(*, output_dir=DEFAULT_OUTPUT_DIR, provenance_path=DEFAULT_PROVENANCE)
                 )
             },
             "state": state,
+            "observation": entry["frame"]["obs"],
             "interpretation": "B601-held bent pry blade lifting a vented enclosure lid at its seam",
             "visualization": {
+                "environment": binding,
+                "rendered_bodies": body_geometry(cid, fixture=fixture, lid=lid, blade=blade, handle=handle, gripper=robot),
                 "gap_m": gap,
-                "gap_reference": "vertical separation at raised lid edge",
+                "gap_reference": "vertical lid translation: env.state.position[2]",
                 "insertion_depth_m": insertion,
-                "insertion_reference": "housing outer edge to blade tip along X",
+                "insertion_reference": "housing outer edge to tool origin along X: env.state.position[0]",
                 "tool_axis_angle_rad": theta,
-                "lid_tilt_rad": lid_angle,
-                "lid_tilt_source": "illustrative tilt derived from recorded gap and enclosure width",
-                "toe_contact_m": toe_contact.tolist(),
-                "heel_contact_m": [float(heel[0]), tool_y, wall_top],
-                "gripper": grasp,
+                "tool_rotation_source": "Ry(-env.state.theta)",
+                "toe_origin_m": toe_origin.tolist(),
+                "blade_local_vertices_m": blade_local_vertices,
+                "lever_length_m": model.LEVER_LENGTH,
+                "contact_constraints_in_environment": False,
+                "grasp": grasp,
+                "handle_center_m": handle_center.tolist(),
+                "handle_dimensions_m": [0.038, handle_width, 0.008],
+                "handle_rotation_world": tool_rotation.tolist(),
+                "handle_contacts_local_m": handle_contacts.tolist(),
+                "handle_side_contact_error_m": handle_side_errors.tolist(),
+                "handle_material": "orange polymer grip on the continuous steel pry tool",
+                "gripper_alignment": "closing across handle width; approach normal to handle top",
+                "geometry_annotations": notes,
                 "camera": camera,
                 **coordinate_metadata(),
                 **metadata(wrenches),
@@ -356,7 +296,7 @@ def render(*, output_dir=DEFAULT_OUTPUT_DIR, provenance_path=DEFAULT_PROVENANCE)
         print("PRY gap mm:", gap * 1000)
         print("Insertion mm:", insertion * 1000)
         print("Tool angle degrees (modulo 360):", math.degrees(theta))
-        print("Handle grasp gap mm:", grasp["gap_m"] * 1000)
+        print("Handle grasp gap mm:", grasp["actual_gap_m"] * 1000)
         print("WROTE:", output_dir / "pry_workspace.png")
     finally:
         p.disconnect(cid)
