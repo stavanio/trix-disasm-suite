@@ -1,17 +1,17 @@
 #!/usr/bin/env python3
 """Render the archived SCREW frame with a threaded fastener and B601 grasp."""
-import json
 import math
 from pathlib import Path
 
 import numpy as np
 import pybullet as p
 from b601_render_common import make_box, make_cyl
+from workspace_environment import prepare_environment, body_geometry
 from workspace_render_cli import DEFAULT_OUTPUT_DIR, DEFAULT_PROVENANCE, run_renderer
 from workspace_wrench import force, metadata, torque
 
 
-def render(*, output_dir=DEFAULT_OUTPUT_DIR, provenance_path=DEFAULT_PROVENANCE, debug=False):
+def render(*, output_dir=DEFAULT_OUTPUT_DIR, provenance_path=DEFAULT_PROVENANCE, environment=None, debug=False):
     output_dir = Path(output_dir)
     output_dir.mkdir(parents=True, exist_ok=True)
     provenance_path = Path(provenance_path)
@@ -24,19 +24,15 @@ def render(*, output_dir=DEFAULT_OUTPUT_DIR, provenance_path=DEFAULT_PROVENANCE,
         write_manifest,
     )
 
-    entry = json.loads(provenance_path.read_text())["states"]["SCREW"]
-    if entry["trace_step"] != 188:
-        raise ValueError("Expected SCREW trace step 188")
-    state = entry["frame"]["state"]
-    theta, lift = float(state["theta_rad"]), float(state["z_m"])
-    # The archived helical state is unchanged. Dimensions below describe
-    # the illustrative fixture; pitch matches screw_env_v3.PITCH.
-    pitch = 0.00125
+    env, model, entry, binding = prepare_environment("SCREW", provenance_path, environment)
+    theta, lift = float(env.theta), float(env.z)
+    pitch = model.PITCH
+    crest_radius, root_radius = model.RADIUS, 0.85 * model.RADIUS
     fixture_top = 0.014
     head_z = fixture_top + lift + 0.003
     cid = p.connect(p.DIRECT)
     try:
-        rounded_box(cid, [0.060, 0.048, 0.008], [0, 0, -0.008], [0.22, 0.24, 0.27, 1], radius=0.007)
+        fixture = rounded_box(cid, [0.060, 0.048, 0.008], [0, 0, -0.008], [0.22, 0.24, 0.27, 1], radius=0.007)
         for x in (-0.047, 0.047):
             for y in (-0.035, 0.035):
                 annulus(cid, 0.0022, 0.0041, 0.0006, [x, y, 0.0003], [0.51, 0.54, 0.58, 1])
@@ -48,13 +44,13 @@ def render(*, output_dir=DEFAULT_OUTPUT_DIR, provenance_path=DEFAULT_PROVENANCE,
         bottom, top = head_z - 0.029, head_z - 0.003
         # Use an explicit mesh: the TinyRenderer cylinder primitive expands
         # its silhouette beyond the nominal radius and hides the thread flanks.
-        annulus(cid, 0, 0.00425, top - bottom, [0, 0, (top + bottom) / 2], [0.24, 0.28, 0.33, 1])
+        annulus(cid, 0, root_radius, top - bottom, [0, 0, (top + bottom) / 2], [0.24, 0.28, 0.33, 1])
         vertices, indices = [], []
         count = int((top - bottom) / pitch * 72)
         for angle in np.linspace(0, (top - bottom) / pitch * 2 * math.pi, count):
             a = angle + theta
             z = bottom + angle * pitch / (2 * math.pi)
-            for radius, dz in ((0.00423, -pitch * 0.30), (0.0052, 0), (0.00423, pitch * 0.30)):
+            for radius, dz in ((root_radius, -pitch * 0.30), (crest_radius, 0), (root_radius, pitch * 0.30)):
                 vertices.append([radius * math.cos(a), radius * math.sin(a), z + dz])
         for i in range(count - 1):
             for j in range(2):
@@ -64,7 +60,7 @@ def render(*, output_dir=DEFAULT_OUTPUT_DIR, provenance_path=DEFAULT_PROVENANCE,
         mesh_body(cid, vertices, indices, [0.69, 0.73, 0.78, 1], flat=True)
 
         # Recessed slot: two metal half-discs above a lower screw-head body.
-        annulus(cid, 0, 0.008, 0.005, [0, 0, head_z - 0.0005], [0.61, 0.65, 0.71, 1])
+        head = annulus(cid, 0, 0.008, 0.005, [0, 0, head_z - 0.0005], [0.61, 0.65, 0.71, 1])
         make_box(
             cid,
             [0.0078, 0.0012, 0.00004],
@@ -96,7 +92,7 @@ def render(*, output_dir=DEFAULT_OUTPUT_DIR, provenance_path=DEFAULT_PROVENANCE,
                 p.getQuaternionFromEuler([0, 0, theta]),
                 flat=True,
             )
-        robot, grasp = grasp_b601(cid, [0, 0, head_z], 0.016, tip_depth=0.002, debug=debug)
+        robot, grasp = grasp_b601(cid, [0, 0, head_z], 0.016, closing=[math.cos(theta), math.sin(theta), 0], tip_depth=0.002, debug=debug)
         contact_radii = [np.linalg.norm(np.asarray(pt)[:2]) for pt in grasp["contacts_m"]]
         if max(abs(r - 0.008) for r in contact_radii) > 0.0001:
             raise RuntimeError("SCREW fingertips do not contact the head surface")
@@ -115,7 +111,7 @@ def render(*, output_dir=DEFAULT_OUTPUT_DIR, provenance_path=DEFAULT_PROVENANCE,
         ]
         notes = [
             dict(
-                anchor_world_m=[0.0052, 0, fixture_top + lift * 0.45],
+                anchor_world_m=[crest_radius, 0, fixture_top + lift * 0.45],
                 position_px=[1290, 900],
                 text="p = 1.25 mm",
             )
@@ -138,6 +134,8 @@ def render(*, output_dir=DEFAULT_OUTPUT_DIR, provenance_path=DEFAULT_PROVENANCE,
                 output_dir / "screw_workspace_manifest.json",
                 "SCREW",
                 entry,
+                environment=binding,
+                rendered_bodies=body_geometry(cid, fixture=fixture, head=head, gripper=robot),
                 camera=camera,
                 grasp=grasp,
                 **metadata(wrenches),
@@ -145,8 +143,8 @@ def render(*, output_dir=DEFAULT_OUTPUT_DIR, provenance_path=DEFAULT_PROVENANCE,
                 thread_core_geometry="explicit radius mesh",
                 head_diameter_m=0.016,
                 contact_radial_error_m=[r - 0.008 for r in contact_radii],
-                thread_root_radius_m=0.00425,
-                thread_crest_radius_m=0.0052,
+                thread_root_radius_m=root_radius,
+                thread_crest_radius_m=crest_radius,
                 head_bottom_above_insert_m=lift,
                 fixture_top_m=fixture_top,
                 theta_rad=theta,
