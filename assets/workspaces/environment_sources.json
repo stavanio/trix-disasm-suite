@@ -1,0 +1,15 @@
+{
+  "purpose": "Unmodified analytical environment sources used to restore/render environment state. This is an observable-state rendering adapter, not a resumable episode checkpoint.",
+  "files": {
+    "envs/screw_env_v3.py": "cead3313396797e07977bec323028bd35d398887d540512150ac2dd632678949",
+    "envs/pcb_env_v2.py": "4b82b27bee6829c0db014f4c8789095067e3bc085ee757ef01b76dfeeb6f2643",
+    "envs/snap_env_v2.py": "6464ed3ff2a228c2f094267fc6874b4b3ffe64ffcaafea91f93eb5dab785de30",
+    "envs/crank_env_v2.py": "4dc0bfd35b07c1b4a187ab76278db219058f216e949383432f5b8a2863890afe",
+    "envs/battery_env_v2.py": "28505bec3a739b0639690fc182d1751ac6832351324925a74bec1b392cb3e343",
+    "envs/pry_env_v2.py": "2f62bbed3ef875c97d0825c60af273335c1fd683040f797127d8eb329957c831",
+    "benchmark/outcome.py": "4089d1be55f5b62b541e3fb3967f67beac577d60702e56c13645fa944bf582e5",
+    "benchmark/disasm_bench.py": "8f35f87a687194ce696161afec440dbca442c19a09ff852d6d2bb7ac3ab530dc",
+    "envs/__init__.py": "a7bd4deda6beba50c1ff11688b7fd7d143d6377a129674c7cbb1b96f98ff7ca2",
+    "benchmark/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  }
+}
