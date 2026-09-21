@@ -49,7 +49,7 @@
         "position_m": [
           0.0,
           0.0,
-          -0.008
+          -0.001
         ],
         "quaternion_xyzw": [
           0.0,
@@ -303,7 +303,8 @@
         "label_offset_px": [
           22,
           -16
-        ]
+        ],
+        "show_leader": false
       },
       {
         "kind": "torque",
@@ -723,11 +724,19 @@
         "label_offset_px": [
           20,
           8
-        ]
+        ],
+        "show_leader": false
       }
     ],
     "wrench_values_measured": false,
     "wrench_arrow_scale": "schematic; lengths do not encode magnitude",
+    "fixture_material": "wood blank with flush M8 threaded insert",
+    "fixture_dimensions_m": [
+      0.12,
+      0.084,
+      0.03
+    ],
+    "wood_grain_source": "deterministic procedural texture in renderer",
     "thread_pitch_m": 0.00125,
     "thread_core_geometry": "explicit radius mesh",
     "head_diameter_m": 0.016,
