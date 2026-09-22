@@ -7,6 +7,7 @@ not yet submitted in this form. Authors and citation metadata: [CITATION.cff](CI
 ## Start here
 
 - [Editable paper](manuscript/TRIX_REVISION.tex)
+- [Reviewer response draft](manuscript/TRIX_RESPONSE.tex) and [comment-to-evidence map](docs/REVIEWER_MAP.md)
 - [Every figure and table → source, data and check](docs/PAPER_MAP.md)
 - [Commands and recorded environments](docs/REPRODUCING.md)
 - [Historical corrections](docs/provenance.md) and [BATTERY aggregation correction](docs/battery_aggregation_correction.md)
@@ -20,13 +21,16 @@ The manuscript states the scope and limitations of the recorded evidence.
 ## Three checks
 
 ```bash
-python3 -B scripts/check_paper_repository.py
+make check
 python3 -B scripts/audit_vlm_reconciliation.py --archive-root . --out build/vlm.json
 make paper
 ```
 
 The repository check uses Python's standard library. The VLM audit also needs
 NumPy; compilation needs XeLaTeX. See the command guide before running training.
+`make response` builds the paper, refreshes response page references and builds
+the response letter. Its 34 comment summaries still require checking against
+the original decision letter; E.4/R1.6's quantitative timing request remains open.
 
 ## Repository and archive
 

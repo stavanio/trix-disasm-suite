@@ -79,7 +79,7 @@ def main():
     assert {x for x in labels if x.startswith(('fig:', 'tab:'))} == covered
     for source in re.findall(r'\\(?:includegraphics(?:\[[^]]*\])?|input)\{([^}]+)\}', tex):
         assert source in files, source
-    for p in [ROOT/'README.md', ROOT/'docs/PAPER_MAP.md', ROOT/'docs/REPRODUCING.md']:
+    for p in [ROOT/'README.md', ROOT/'docs/PAPER_MAP.md', ROOT/'docs/REPRODUCING.md', ROOT/'docs/REVIEWER_MAP.md']:
         for link in re.findall(r'\]\(([^)]+)\)', p.read_text()):
             if '://' not in link and not link.startswith('#'):
                 target = (p.parent / link.split('#')[0]).resolve()

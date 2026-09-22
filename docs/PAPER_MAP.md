@@ -3,6 +3,11 @@
 Figure/table labels below are stable TeX labels. Numbering refers to the current
 70-page revision. Source citations refer to bibliography IDs in the manuscript.
 
+Reviewer requests are separately mapped to manuscript locations and evidence in
+[REVIEWER_MAP.md](REVIEWER_MAP.md), with an editable
+[response letter](../manuscript/TRIX_RESPONSE.tex). `make response` refreshes the
+page references and `make check` rejects stale source/evidence mappings.
+
 ## Figure 1 — execution architecture
 
 `fig:submitted-1`

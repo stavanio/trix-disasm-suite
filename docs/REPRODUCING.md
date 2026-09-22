@@ -34,6 +34,7 @@ enforces its own lean file inventory. The archive has no remote URL yet.
 
 ```bash
 make paper
+make response
 python3 scripts/build_revision_seed_statistics.py
 ```
 
@@ -42,6 +43,13 @@ counts. That table is included directly by the TeX, with no second inline copy.
 To rebuild counts from shards, pass `--archive-root "$TRIX_EVIDENCE_ROOT/research"`.
 The full archive's original result files remain unchanged; the BATTERY correction
 is recorded in [the correction note](battery_aggregation_correction.md).
+
+`make response` first builds the paper, then regenerates the response's section,
+page and bibliography references from that build. The response map records exact
+TeX source ranges and hashes; they are not journal margin line numbers.
+`make check` also detects stale response mappings without requiring a TeX runtime.
+Original reviewer wording and the quantitative timing request remain review gates;
+see [the response map](REVIEWER_MAP.md).
 
 ## Training and experiment entrypoints
 

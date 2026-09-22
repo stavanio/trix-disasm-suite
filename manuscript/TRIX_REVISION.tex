@@ -142,6 +142,7 @@ VLMs and LLMs have substantially expanded the semantic capabilities available to
 Semantic competence, however, does not imply physical admissibility. A model may identify the intended operation correctly while proposing a command that is inconsistent with the current manipulation phase, task coordinate frame, coupled kinematics, or allowable contact condition. Conversely, a model may refuse to propose an action, produce a semantically incorrect command, or refer to content that is not grounded in the observed scene. These outcomes should not be conflated.
 
 Accordingly, throughout this work we reserve \emph{hallucination} for outputs that invent or refer to nonexistent content, and distinguish it from refusal, semantic error, ungroundable output, and physically inadmissible action. Our controlled VLM experiment uses 91 shared images from 28 base configurations and a common command interface. We compare archived provider runs descriptively, retaining repeated visual conditions within each configuration rather than treating them as independent physical trials.
+Figure~\ref{fig:submitted-1} shows how TRiX mediates a proposal before execution.
 
 \begin{figure}[t]
 \centering
@@ -832,7 +833,7 @@ general rigid-body simulator. This permits the physical quantity responsible
 for each modeled violation to be explicit and independently perturbed. We do
 not interpret agreement with the equations used to construct an environment as
 independent physical validation. Model validation and sensitivity are treated
-separately in Section~4.8.
+separately in Section~\ref{sec:model-validation}.
 
 Each environment has a versioned constraint fingerprint. The frozen revised
 environment hashes are:
@@ -1246,6 +1247,7 @@ of geometric superiority.
 
 
 \subsection{Model Validation, Sensitivity, and Solver Controls}
+\label{sec:model-validation}
 
 The analytical implementation is checked at three levels.
 
@@ -2236,7 +2238,7 @@ captures, run-time repository state, and checksums, is preserved at checkpoint
 \texttt{633730c}.
 
 We then evaluated the frozen final V4 implementation in three continuous-video
-grasp-and-return trials. Each trial validated the symbolic sequence before
+grasp-and-return trials (Figure~\ref{fig:b601-hardware}). Each trial validated the symbolic sequence before
 motion and executed ten TRiX-governed decisions spanning gripper opening,
 approach, preshape, low and deep hover, engagement, retraction, and return.
 The governed portion of the three trials therefore contained 30 physical
@@ -3158,11 +3160,14 @@ Maximum steps & 2500 & 1500 & 1500 & 3000 & 3000 & 4000\\
 \end{tabular}
 \end{center}
 
-No manuscript-wide 100-Hz or 240-Hz control-frequency claim is used for the
-revised analytical benchmark. Time discretization is an environment
-specification and is fingerprinted with that environment. The physical B601-RS
-controller is a separate approximately 200-Hz hardware implementation and is
-not used to redefine the simulation timestep.
+All six environments import the outer timestep\label{para:simulation-timestep}
+\(\Delta t=1/240\) s from \nolinkurl{benchmark/disasm_bench.py}:
+one environment action step advances 4.167 ms of simulated time.
+SCREW integrates 40 internal substeps per action; PCB, SNAP, CRANK and
+BATTERY integrate ten, while PRY updates directly at the outer timestep.
+These internal integration steps are distinct from policy action updates.
+The physical B601-RS controller is a separate approximately 200-Hz
+implementation. The submitted 100-Hz simulation statement is withdrawn.
 
 
 \subsection{Reward and Progress Contract}
