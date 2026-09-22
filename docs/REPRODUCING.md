@@ -51,6 +51,20 @@ TeX source ranges and hashes; they are not journal margin line numbers.
 Original reviewer wording and the quantitative timing request remain review gates;
 see [the response map](REVIEWER_MAP.md).
 
+The response letter uses XeLaTeX with 12-point TeX Gyre Termes text, matching
+TeX Gyre Termes Math, and Latin Modern Mono for literal code identifiers.
+These are OpenType fonts distributed with TeX Live; install the TeX Gyre,
+TeX Gyre Math and Latin Modern fonts if the build cannot locate them.
+All PDF fonts should be embedded (`pdffonts manuscript/build/TRIX_RESPONSE.pdf`);
+the letter's text, equations and table remain vectors, with no rasterized text.
+The serif typeface and spacing are readability choices, not a mandatory Nature
+response-letter template. The journal's [revised-submission guide](https://www.nature.com/commseng/submit/guide-to-authors)
+requires point-by-point replies and compliance with the editor's decision letter.
+[Nature's rebuttal advice](https://blogs.nature.com/blog/how-to-write-a-rebuttal-letter/)
+recommends clearly distinguishing comments and replies. The draft does this
+with italic dark-blue comment summaries and black responses; it still requires
+the original reviewer reports before those summaries can be verified.
+
 ## Training and experiment entrypoints
 
 Production: `training/stage1.py` and `training/stage2.py`; both expose `--help`.
