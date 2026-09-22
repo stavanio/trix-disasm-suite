@@ -1,0 +1,69 @@
+# Reproduction commands
+
+Run commands from the repository root. Python 3.12.3 is the recorded scientific
+runtime. The repository checker requires Python 3.11 or later; offline numerical
+audits use NumPy 1.26.4 from `requirements.txt`.
+
+## Read-only checks
+
+```bash
+make check
+make audit-vlm
+python3 -B -m unittest tests.test_exact_arm_aggregation
+```
+
+These check the source map, raw VLM decisions and the aggregation fix without
+training or model/API/hardware execution. `make audit-vlm` writes under `build/`.
+The retained tests also include simulation and SB3 acceptance gates; running the
+entire suite can train short test policies. No full-suite run is implied here.
+
+## Full evidence audit
+
+Obtain the private archive identified in [archive_manifest.json](../assets/evidence/archive_manifest.json).
+Set `TRIX_EVIDENCE_ROOT` to its directory, then run:
+
+```bash
+python3 -B scripts/audit_reproducibility_release.py --package-root "$TRIX_EVIDENCE_ROOT" --verify-hashes
+```
+
+The archive contains its historical source tree and verification entrypoint.
+The command checks that frozen payload. The current repository separately
+enforces its own lean file inventory. The archive has no remote URL yet.
+
+## Build the paper and statistics
+
+```bash
+make paper
+python3 scripts/build_revision_seed_statistics.py
+```
+
+The statistics command regenerates the 13-contrast table from the compact saved
+counts. That table is included directly by the TeX, with no second inline copy.
+To rebuild counts from shards, pass `--archive-root "$TRIX_EVIDENCE_ROOT/research"`.
+The full archive's original result files remain unchanged; the BATTERY correction
+is recorded in [the correction note](battery_aggregation_correction.md).
+
+## Training and experiment entrypoints
+
+Production: `training/stage1.py` and `training/stage2.py`; both expose `--help`.
+The default task set is the six main tasks. BAYONET uses explicit task and output
+arguments as recorded in `benchmark/bayonet_protocol.py` and the preregistration.
+Auxiliary experiments are listed by figure/table in [PAPER_MAP.md](PAPER_MAP.md).
+VLM collection requires provider credentials; the offline VLM audit does not.
+
+`requirements-training.txt` preserves the recorded direct versions (PyTorch
+2.13.0+cpu, SB3 2.9.0, Gymnasium 1.3.0). SciPy, OSQP and quadprog are declared
+imports whose historical versions were not recorded. This is not a recovered
+transitive lockfile or a claim of a fresh training reproduction.
+
+Rendering uses [requirements-workspace-renders.txt](../requirements-workspace-renders.txt)
+and [the unchanged workspace guide](workspace_rendering.md). Its exact meshes
+and fonts are supplied in the evidence archive, with their hashes pinned here.
+No renderer was run during Git curation.
+
+## Artwork provenance
+
+Figure 1 is editable SVG. Figure 4 retains the archived PDF and its checked
+80-point CSV; the original plotting script was not recovered. Figure 5 is an
+archived hardware image, supported by the separate run-to-video mapping.
+These provenance limits are explicit; no invented generator is supplied.

@@ -1,0 +1,45 @@
+{
+  "environment_source": "envs/screw_env_v3.py",
+  "environment_sha256": "cead3313396797e07977bec323028bd35d398887d540512150ac2dd632678949",
+  "constants": {
+    "PITCH": 0.00125,
+    "V_CMD_MAX": 0.05,
+    "OMEGA_CMD_MAX": 60.0,
+    "EPS_HELIX": 0.001
+  },
+  "radial_action": 0,
+  "metric": "Euclidean distance in normalized (angular, axial) action coordinates",
+  "illustrative_box_is_experimental_arm": false,
+  "coupled_area_fraction": 0.02,
+  "enclosing_box_half_height": 0.258732414637843,
+  "projection_target_helix_error_m_per_s": 0.000999999,
+  "points": {
+    "proposal": {
+      "normalized_angular_axial": [
+        0.36666666666666664,
+        0.64
+      ],
+      "omega_rad_per_s": 22.0,
+      "v_m_per_s": 0.032,
+      "absolute_helix_error_m_per_s": 0.02762323906497288
+    },
+    "box_clip": {
+      "normalized_angular_axial": [
+        0.36666666666666664,
+        0.258732414637843
+      ],
+      "omega_rad_per_s": 22.0,
+      "v_m_per_s": 0.012936620731892152,
+      "absolute_helix_error_m_per_s": 0.00855985979686503
+    },
+    "coupled_projection": {
+      "normalized_angular_axial": [
+        0.48692913556145023,
+        0.13624574829010264
+      ],
+      "omega_rad_per_s": 29.215748133687015,
+      "v_m_per_s": 0.006812287414505132,
+      "absolute_helix_error_m_per_s": 0.0009999990000000014
+    }
+  }
+}

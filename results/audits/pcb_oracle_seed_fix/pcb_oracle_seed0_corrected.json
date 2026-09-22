@@ -1,0 +1,135 @@
+{
+  "reason": "Correct oracle_tangent PCB seed0 cells to the same historical test episodes used by none/box_clip/trix.",
+  "records": [
+    {
+      "task": "PCB",
+      "algorithm": "sac",
+      "training_seed": 0,
+      "selected_step": 4000,
+      "arm": "oracle_tangent",
+      "historical_wrong_seed_range": [
+        861000,
+        861099
+      ],
+      "corrected_paired_seed_range": [
+        850000,
+        850099
+      ],
+      "summary": {
+        "task": "PCB",
+        "method": "sac+oracle_tangent",
+        "seed": 0,
+        "constraint_hash": "53fcd8e18d341d5d",
+        "episodes": 100,
+        "completion_rate": 100.0,
+        "safe_completion_rate": 100.0,
+        "unsafe_completion_intact_rate": 0.0,
+        "destructive_completion_rate": 0.0,
+        "mechanical_failure_rate": 0.0,
+        "timeout_rate": 0.0,
+        "damage_breakdown_rate": {
+          "intact": 100.0
+        },
+        "episodes_with_any_violation_rate": 0.0,
+        "violations_per_episode_mean": 0.0,
+        "violating_timestep_rate": 0.0,
+        "episodes_with_any_flag_rate": 0.0,
+        "episodes_with_diagnostic_rate": 0.0,
+        "diagnostic_timestep_rate": 0.0,
+        "first_violation_step_mean": null,
+        "exceedance_mean_all_steps": 0.0,
+        "exceedance_mean_violating_steps": null,
+        "exceedance_max": 0.0,
+        "cumulative_exceedance_per_episode_mean": 0.0,
+        "violations_by_constraint": {},
+        "completion_steps_median": 241.0,
+        "completion_steps_p90": 241.0,
+        "return_mean": 3615.0,
+        "return_std": 0.0,
+        "intervention_norm_mean": 1.2577820607975845,
+        "intervention_norm_p95": 1.2595570786001637,
+        "projection_latency_us_p50": null,
+        "projection_latency_us_p95": null,
+        "projection_latency_us_p99": null,
+        "infeasibility_rate": 0.0,
+        "recovery_event_rate": 0.0,
+        "counts": {
+          "episodes": 100,
+          "safe_completions": 100,
+          "unsafe_completions_intact": 0,
+          "destructive_completions": 0,
+          "mechanical_failures": 0,
+          "timeouts": 0,
+          "episodes_with_violation": 0,
+          "total_steps": 24100,
+          "violating_steps": 0
+        }
+      }
+    },
+    {
+      "task": "PCB",
+      "algorithm": "ppo",
+      "training_seed": 0,
+      "selected_step": 13000,
+      "arm": "oracle_tangent",
+      "historical_wrong_seed_range": [
+        861000,
+        861099
+      ],
+      "corrected_paired_seed_range": [
+        850000,
+        850099
+      ],
+      "summary": {
+        "task": "PCB",
+        "method": "ppo+oracle_tangent",
+        "seed": 0,
+        "constraint_hash": "53fcd8e18d341d5d",
+        "episodes": 100,
+        "completion_rate": 51.0,
+        "safe_completion_rate": 51.0,
+        "unsafe_completion_intact_rate": 0.0,
+        "destructive_completion_rate": 0.0,
+        "mechanical_failure_rate": 0.0,
+        "timeout_rate": 49.0,
+        "damage_breakdown_rate": {
+          "intact": 100.0
+        },
+        "episodes_with_any_violation_rate": 0.0,
+        "violations_per_episode_mean": 0.0,
+        "violating_timestep_rate": 0.0,
+        "episodes_with_any_flag_rate": 0.0,
+        "episodes_with_diagnostic_rate": 0.0,
+        "diagnostic_timestep_rate": 0.0,
+        "first_violation_step_mean": null,
+        "exceedance_mean_all_steps": 0.0,
+        "exceedance_mean_violating_steps": null,
+        "exceedance_max": 0.0,
+        "cumulative_exceedance_per_episode_mean": 0.0,
+        "violations_by_constraint": {},
+        "completion_steps_median": 269.0,
+        "completion_steps_p90": 923.0,
+        "return_mean": 1937.1314715945039,
+        "return_std": 1698.1691717581825,
+        "intervention_norm_mean": 0.0,
+        "intervention_norm_p95": 0.0,
+        "projection_latency_us_p50": null,
+        "projection_latency_us_p95": null,
+        "projection_latency_us_p99": null,
+        "infeasibility_rate": 0.0,
+        "recovery_event_rate": 0.0,
+        "counts": {
+          "episodes": 100,
+          "safe_completions": 51,
+          "unsafe_completions_intact": 0,
+          "destructive_completions": 0,
+          "mechanical_failures": 0,
+          "timeouts": 49,
+          "episodes_with_violation": 0,
+          "total_steps": 93409,
+          "violating_steps": 0
+        }
+      }
+    }
+  ]
+}

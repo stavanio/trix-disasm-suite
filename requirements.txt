@@ -1,8 +1,2 @@
-numpy>=1.21
-# Optional (for figures):
-# matplotlib>=3.5
-# Optional (for PyTorch reference implementation):
-# torch>=1.12
-# Optional (for PyBullet environments):
-# pybullet>=3.2
-# gymnasium>=0.26
+# Core numerical dependency; Python 3.12 is the recorded runtime.
+numpy==1.26.4

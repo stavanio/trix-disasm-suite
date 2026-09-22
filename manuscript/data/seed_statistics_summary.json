@@ -1,0 +1,281 @@
+{
+  "method": "exact discrete percentile bootstrap of seed-paired mean differences",
+  "confidence_level": 0.95,
+  "experimental_unit": "training seed",
+  "multiplicity_adjustment": null,
+  "input_sha256": "8913c568e9d864a29eb51f997c607f291ad8ef3ad0bd51fa07451cdcd87663e5",
+  "records_audited": 220,
+  "shards_audited": 4400,
+  "figure4_points_checked": 80,
+  "contrasts": [
+    {
+      "group": "post_hoc",
+      "task": "SCREW",
+      "algorithm": "sac",
+      "stage_a": "stage1",
+      "arm_a": "trix",
+      "stage_b": "stage1",
+      "arm_b": "none",
+      "n_seed_pairs": 10,
+      "mean_a_percent": 88.7,
+      "mean_b_percent": 0.0,
+      "mean_difference_pp": 88.7,
+      "median_difference_pp": 99.0,
+      "ci95_percentile_bootstrap_pp": [
+        68.7,
+        99.3
+      ],
+      "different_episode_seed_ids": []
+    },
+    {
+      "group": "post_hoc",
+      "task": "SCREW",
+      "algorithm": "sac",
+      "stage_a": "stage1",
+      "arm_a": "trix",
+      "stage_b": "stage1",
+      "arm_b": "qp_matched",
+      "n_seed_pairs": 10,
+      "mean_a_percent": 88.7,
+      "mean_b_percent": 88.7,
+      "mean_difference_pp": 0.0,
+      "median_difference_pp": 0.0,
+      "ci95_percentile_bootstrap_pp": [
+        0.0,
+        0.0
+      ],
+      "different_episode_seed_ids": []
+    },
+    {
+      "group": "post_hoc",
+      "task": "SCREW",
+      "algorithm": "ppo",
+      "stage_a": "stage1",
+      "arm_a": "trix",
+      "stage_b": "stage1",
+      "arm_b": "none",
+      "n_seed_pairs": 10,
+      "mean_a_percent": 60.0,
+      "mean_b_percent": 0.0,
+      "mean_difference_pp": 60.0,
+      "median_difference_pp": 100.0,
+      "ci95_percentile_bootstrap_pp": [
+        30.0,
+        90.0
+      ],
+      "different_episode_seed_ids": []
+    },
+    {
+      "group": "post_hoc",
+      "task": "SCREW",
+      "algorithm": "ppo",
+      "stage_a": "stage1",
+      "arm_a": "trix",
+      "stage_b": "stage1",
+      "arm_b": "qp_matched",
+      "n_seed_pairs": 10,
+      "mean_a_percent": 60.0,
+      "mean_b_percent": 60.0,
+      "mean_difference_pp": 0.0,
+      "median_difference_pp": 0.0,
+      "ci95_percentile_bootstrap_pp": [
+        0.0,
+        0.0
+      ],
+      "different_episode_seed_ids": []
+    },
+    {
+      "group": "post_hoc",
+      "task": "PCB",
+      "algorithm": "sac",
+      "stage_a": "stage1",
+      "arm_a": "trix",
+      "stage_b": "stage1",
+      "arm_b": "box_clip",
+      "n_seed_pairs": 10,
+      "mean_a_percent": 100.0,
+      "mean_b_percent": 0.0,
+      "mean_difference_pp": 100.0,
+      "median_difference_pp": 100.0,
+      "ci95_percentile_bootstrap_pp": [
+        100.0,
+        100.0
+      ],
+      "different_episode_seed_ids": []
+    },
+    {
+      "group": "post_hoc",
+      "task": "PCB",
+      "algorithm": "ppo",
+      "stage_a": "stage1",
+      "arm_a": "trix",
+      "stage_b": "stage1",
+      "arm_b": "box_clip",
+      "n_seed_pairs": 10,
+      "mean_a_percent": 44.4,
+      "mean_b_percent": 44.4,
+      "mean_difference_pp": 0.0,
+      "median_difference_pp": 0.0,
+      "ci95_percentile_bootstrap_pp": [
+        0.0,
+        0.0
+      ],
+      "different_episode_seed_ids": []
+    },
+    {
+      "group": "post_hoc",
+      "task": "SNAP",
+      "algorithm": "sac",
+      "stage_a": "stage1",
+      "arm_a": "trix",
+      "stage_b": "stage1",
+      "arm_b": "static_clip",
+      "n_seed_pairs": 10,
+      "mean_a_percent": 95.5,
+      "mean_b_percent": 9.7,
+      "mean_difference_pp": 85.8,
+      "median_difference_pp": 96.0,
+      "ci95_percentile_bootstrap_pp": [
+        66.3,
+        96.5
+      ],
+      "different_episode_seed_ids": []
+    },
+    {
+      "group": "filter_aware",
+      "task": "PCB",
+      "algorithm": "sac",
+      "stage_a": "stage2",
+      "arm_a": "trix",
+      "stage_b": "stage2",
+      "arm_b": "box_clip",
+      "n_seed_pairs": 10,
+      "mean_a_percent": 99.8,
+      "mean_b_percent": 100.0,
+      "mean_difference_pp": -0.2,
+      "median_difference_pp": 0.0,
+      "ci95_percentile_bootstrap_pp": [
+        -0.5,
+        0.0
+      ],
+      "different_episode_seed_ids": []
+    },
+    {
+      "group": "filter_aware",
+      "task": "SNAP",
+      "algorithm": "sac",
+      "stage_a": "stage2",
+      "arm_a": "trix",
+      "stage_b": "stage2",
+      "arm_b": "static_clip",
+      "n_seed_pairs": 10,
+      "mean_a_percent": 96.5,
+      "mean_b_percent": 5.2,
+      "mean_difference_pp": 91.3,
+      "median_difference_pp": 96.0,
+      "ci95_percentile_bootstrap_pp": [
+        80.1,
+        97.4
+      ],
+      "different_episode_seed_ids": []
+    },
+    {
+      "group": "filter_aware",
+      "task": "CRANK",
+      "algorithm": "sac",
+      "stage_a": "stage2",
+      "arm_a": "trix",
+      "stage_b": "stage2",
+      "arm_b": "static_clip",
+      "n_seed_pairs": 10,
+      "mean_a_percent": 49.4,
+      "mean_b_percent": 0.0,
+      "mean_difference_pp": 49.4,
+      "median_difference_pp": 48.5,
+      "ci95_percentile_bootstrap_pp": [
+        19.7,
+        79.2
+      ],
+      "different_episode_seed_ids": []
+    },
+    {
+      "group": "filter_aware",
+      "task": "PRY",
+      "algorithm": "sac",
+      "stage_a": "stage2",
+      "arm_a": "trix",
+      "stage_b": "stage2",
+      "arm_b": "static_clip",
+      "n_seed_pairs": 10,
+      "mean_a_percent": 89.1,
+      "mean_b_percent": 88.5,
+      "mean_difference_pp": 0.6,
+      "median_difference_pp": 0.0,
+      "ci95_percentile_bootstrap_pp": [
+        -0.2,
+        1.4
+      ],
+      "different_episode_seed_ids": []
+    },
+    {
+      "group": "filter_aware",
+      "task": "BATTERY",
+      "algorithm": "sac",
+      "stage_a": "stage2",
+      "arm_a": "trix_preventive",
+      "stage_b": "stage2",
+      "arm_b": "box_clip_preventive",
+      "n_seed_pairs": 10,
+      "mean_a_percent": 100.0,
+      "mean_b_percent": 100.0,
+      "mean_difference_pp": 0.0,
+      "median_difference_pp": 0.0,
+      "ci95_percentile_bootstrap_pp": [
+        0.0,
+        0.0
+      ],
+      "different_episode_seed_ids": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9
+      ]
+    },
+    {
+      "group": "across_regimes",
+      "task": "PCB",
+      "algorithm": "sac",
+      "stage_a": "stage2",
+      "arm_a": "box_clip",
+      "stage_b": "stage1",
+      "arm_b": "box_clip",
+      "n_seed_pairs": 10,
+      "mean_a_percent": 100.0,
+      "mean_b_percent": 0.0,
+      "mean_difference_pp": 100.0,
+      "median_difference_pp": 100.0,
+      "ci95_percentile_bootstrap_pp": [
+        100.0,
+        100.0
+      ],
+      "different_episode_seed_ids": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9
+      ]
+    }
+  ]
+}

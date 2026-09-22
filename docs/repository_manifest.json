@@ -1,0 +1,1386 @@
+{
+  "schema": 1,
+  "purpose": "Exact Git file set and paper/source traceability; external evidence is separately hashed.",
+  "files": {
+    ".gitattributes": {
+      "role": "Preserve archived data and generated artwork bytes across platforms",
+      "references": [
+        "docs/REPRODUCING.md"
+      ]
+    },
+    ".gitignore": {
+      "role": "build metadata",
+      "references": [
+        "docs/PAPER_MAP.md"
+      ]
+    },
+    "CITATION.cff": {
+      "role": "documentation or pinned asset metadata",
+      "references": [
+        "docs/PAPER_MAP.md"
+      ]
+    },
+    "LICENSE": {
+      "role": "documentation or pinned asset metadata",
+      "references": [
+        "docs/PAPER_MAP.md"
+      ]
+    },
+    "Makefile": {
+      "role": "build metadata",
+      "references": [
+        "docs/PAPER_MAP.md"
+      ]
+    },
+    "README.md": {
+      "role": "documentation or pinned asset metadata",
+      "references": [
+        "docs/PAPER_MAP.md"
+      ]
+    },
+    "assets/evidence/archive_manifest.json": {
+      "role": "documentation or pinned asset metadata",
+      "references": [
+        "fig:b601-hardware",
+        "tab:b601-hardware"
+      ]
+    },
+    "assets/workspaces/b601_assets.json": {
+      "role": "documentation or pinned asset metadata",
+      "references": [
+        "docs/PAPER_MAP.md"
+      ]
+    },
+    "assets/workspaces/environment_sources.json": {
+      "role": "documentation or pinned asset metadata",
+      "references": [
+        "docs/PAPER_MAP.md"
+      ]
+    },
+    "assets/workspaces/frozen_frames.json": {
+      "role": "documentation or pinned asset metadata",
+      "references": [
+        "fig:disasm-workspaces"
+      ]
+    },
+    "assets/workspaces/reference_environment.json": {
+      "role": "documentation or pinned asset metadata",
+      "references": [
+        "docs/PAPER_MAP.md"
+      ]
+    },
+    "baselines/__init__.py": {
+      "role": "imported module or package initializer",
+      "references": [
+        "docs/REPRODUCING.md"
+      ]
+    },
+    "baselines/bayonet_filters.py": {
+      "role": "imported module or package initializer",
+      "references": [
+        "docs/REPRODUCING.md"
+      ]
+    },
+    "baselines/learned_cost.py": {
+      "role": "imported module or package initializer",
+      "references": [
+        "tab:submitted-3"
+      ]
+    },
+    "baselines/pcb_filters.py": {
+      "role": "imported module or package initializer",
+      "references": [
+        "docs/REPRODUCING.md"
+      ]
+    },
+    "baselines/phase_filters.py": {
+      "role": "imported module or package initializer",
+      "references": [
+        "docs/REPRODUCING.md"
+      ]
+    },
+    "baselines/screw_filters.py": {
+      "role": "imported module or package initializer",
+      "references": [
+        "docs/REPRODUCING.md"
+      ]
+    },
+    "baselines/screw_solvers.py": {
+      "role": "imported module or package initializer",
+      "references": [
+        "docs/REPRODUCING.md"
+      ]
+    },
+    "baselines/task_filters.py": {
+      "role": "imported module or package initializer",
+      "references": [
+        "docs/REPRODUCING.md"
+      ]
+    },
+    "benchmark/__init__.py": {
+      "role": "imported module or package initializer",
+      "references": [
+        "docs/REPRODUCING.md"
+      ]
+    },
+    "benchmark/bayonet_protocol.py": {
+      "role": "imported module or package initializer",
+      "references": [
+        "docs/REPRODUCING.md"
+      ]
+    },
+    "benchmark/criterion.py": {
+      "role": "entrypoint",
+      "references": [
+        "docs/REPRODUCING.md"
+      ]
+    },
+    "benchmark/disasm_bench.py": {
+      "role": "imported module or package initializer",
+      "references": [
+        "docs/REPRODUCING.md"
+      ]
+    },
+    "benchmark/geometry_gen.py": {
+      "role": "imported module or package initializer",
+      "references": [
+        "tab:procedural-geometry"
+      ]
+    },
+    "benchmark/gym_adapter.py": {
+      "role": "imported module or package initializer",
+      "references": [
+        "tab:submitted-10"
+      ]
+    },
+    "benchmark/margin.py": {
+      "role": "imported module or package initializer",
+      "references": [
+        "docs/REPRODUCING.md"
+      ]
+    },
+    "benchmark/margin_policy.py": {
+      "role": "imported module or package initializer",
+      "references": [
+        "docs/REPRODUCING.md"
+      ]
+    },
+    "benchmark/metrics.py": {
+      "role": "imported module or package initializer",
+      "references": [
+        "docs/REPRODUCING.md"
+      ]
+    },
+    "benchmark/outcome.py": {
+      "role": "imported module or package initializer",
+      "references": [
+        "tab:submitted-8"
+      ]
+    },
+    "benchmark/protocol.py": {
+      "role": "imported module or package initializer",
+      "references": [
+        "tab:submitted-10"
+      ]
+    },
+    "benchmark/registry.py": {
+      "role": "imported module or package initializer",
+      "references": [
+        "tab:submitted-3"
+      ]
+    },
+    "benchmark/run_record.py": {
+      "role": "imported module or package initializer",
+      "references": [
+        "docs/REPRODUCING.md"
+      ]
+    },
+    "benchmark/selection.py": {
+      "role": "imported module or package initializer",
+      "references": [
+        "tab:submitted-10"
+      ]
+    },
+    "benchmark/taxonomy.py": {
+      "role": "imported module or package initializer",
+      "references": [
+        "tab:submitted-8"
+      ]
+    },
+    "docs/PAPER_MAP.md": {
+      "role": "documentation or pinned asset metadata",
+      "references": [
+        "docs/PAPER_MAP.md"
+      ]
+    },
+    "docs/REPRODUCING.md": {
+      "role": "documentation or pinned asset metadata",
+      "references": [
+        "docs/PAPER_MAP.md"
+      ]
+    },
+    "docs/battery_aggregation_correction.md": {
+      "role": "documentation or pinned asset metadata",
+      "references": [
+        "docs/PAPER_MAP.md"
+      ]
+    },
+    "docs/bayonet_implementation_freeze.md": {
+      "role": "documentation or pinned asset metadata",
+      "references": [
+        "docs/PAPER_MAP.md"
+      ]
+    },
+    "docs/bayonet_preregistration.md": {
+      "role": "documentation or pinned asset metadata",
+      "references": [
+        "docs/PAPER_MAP.md"
+      ]
+    },
+    "docs/provenance.md": {
+      "role": "documentation or pinned asset metadata",
+      "references": [
+        "docs/PAPER_MAP.md"
+      ]
+    },
+    "docs/repository_manifest.json": {
+      "role": "documentation or pinned asset metadata",
+      "references": [
+        "docs/PAPER_MAP.md"
+      ]
+    },
+    "docs/workspace_rendering.md": {
+      "role": "documentation or pinned asset metadata",
+      "references": [
+        "docs/PAPER_MAP.md"
+      ]
+    },
+    "envs/__init__.py": {
+      "role": "imported module or package initializer",
+      "references": [
+        "docs/REPRODUCING.md"
+      ]
+    },
+    "envs/battery_env_v2.py": {
+      "role": "imported module or package initializer",
+      "references": [
+        "tab:submitted-2",
+        "tab:submitted-7",
+        "tab:submitted-8",
+        "tab:submitted-9"
+      ]
+    },
+    "envs/bayonet_env.py": {
+      "role": "imported module or package initializer",
+      "references": [
+        "docs/REPRODUCING.md"
+      ]
+    },
+    "envs/crank_env_v2.py": {
+      "role": "imported module or package initializer",
+      "references": [
+        "tab:submitted-2",
+        "tab:submitted-7",
+        "tab:submitted-8",
+        "tab:submitted-9"
+      ]
+    },
+    "envs/pcb_env_v2.py": {
+      "role": "imported module or package initializer",
+      "references": [
+        "tab:submitted-2",
+        "tab:submitted-7",
+        "tab:submitted-8",
+        "tab:submitted-9"
+      ]
+    },
+    "envs/pry_env_v2.py": {
+      "role": "imported module or package initializer",
+      "references": [
+        "tab:submitted-2",
+        "tab:submitted-7",
+        "tab:submitted-8",
+        "tab:submitted-9"
+      ]
+    },
+    "envs/render.py": {
+      "role": "imported module or package initializer",
+      "references": [
+        "docs/REPRODUCING.md"
+      ]
+    },
+    "envs/screw_env_v3.py": {
+      "role": "imported module or package initializer",
+      "references": [
+        "fig:submitted-2",
+        "tab:submitted-2",
+        "tab:submitted-7",
+        "tab:submitted-8",
+        "tab:submitted-9"
+      ]
+    },
+    "envs/snap_env_v2.py": {
+      "role": "imported module or package initializer",
+      "references": [
+        "tab:submitted-2",
+        "tab:submitted-7",
+        "tab:submitted-8",
+        "tab:submitted-9"
+      ]
+    },
+    "experiments/__init__.py": {
+      "role": "imported module or package initializer",
+      "references": [
+        "docs/REPRODUCING.md"
+      ]
+    },
+    "experiments/geometry_bench.py": {
+      "role": "entrypoint",
+      "references": [
+        "tab:procedural-geometry"
+      ]
+    },
+    "experiments/pry_control.py": {
+      "role": "entrypoint",
+      "references": [
+        "docs/REPRODUCING.md"
+      ]
+    },
+    "experiments/safelayer_decomposition.py": {
+      "role": "entrypoint",
+      "references": [
+        "docs/REPRODUCING.md"
+      ]
+    },
+    "experiments/sensitivity.py": {
+      "role": "entrypoint",
+      "references": [
+        "docs/REPRODUCING.md"
+      ]
+    },
+    "experiments/vlm_bank.py": {
+      "role": "entrypoint",
+      "references": [
+        "tab:vlm-results"
+      ]
+    },
+    "experiments/vlm_client.py": {
+      "role": "imported module or package initializer",
+      "references": [
+        "docs/REPRODUCING.md"
+      ]
+    },
+    "experiments/vlm_primitives.py": {
+      "role": "imported module or package initializer",
+      "references": [
+        "docs/REPRODUCING.md"
+      ]
+    },
+    "experiments/vlm_trial.py": {
+      "role": "entrypoint",
+      "references": [
+        "tab:vlm-results"
+      ]
+    },
+    "manuscript/TRIX_REVISION.tex": {
+      "role": "manuscript source or figure/data dependency",
+      "references": [
+        "fig:submitted-1",
+        "tab:submitted-1"
+      ]
+    },
+    "manuscript/data/battery_aggregation_correction.json": {
+      "role": "manuscript source or figure/data dependency",
+      "references": [
+        "tab:submitted-4"
+      ]
+    },
+    "manuscript/data/seed_statistics_input.json": {
+      "role": "manuscript source or figure/data dependency",
+      "references": [
+        "tab:submitted-11"
+      ]
+    },
+    "manuscript/data/seed_statistics_pairs.csv": {
+      "role": "manuscript source or figure/data dependency",
+      "references": [
+        "tab:submitted-11"
+      ]
+    },
+    "manuscript/data/seed_statistics_summary.json": {
+      "role": "manuscript source or figure/data dependency",
+      "references": [
+        "tab:submitted-11"
+      ]
+    },
+    "manuscript/data/vlm_reconciliation.json": {
+      "role": "manuscript source or figure/data dependency",
+      "references": [
+        "docs/PAPER_MAP.md"
+      ]
+    },
+    "manuscript/data/vlm_trial_ledger.json": {
+      "role": "manuscript source or figure/data dependency",
+      "references": [
+        "docs/PAPER_MAP.md"
+      ]
+    },
+    "manuscript/figures/b601_hardware_sequence.jpg": {
+      "role": "manuscript source or figure/data dependency",
+      "references": [
+        "fig:b601-hardware"
+      ]
+    },
+    "manuscript/figures/disasm_bench_workspaces.pdf": {
+      "role": "manuscript source or figure/data dependency",
+      "references": [
+        "fig:disasm-workspaces"
+      ]
+    },
+    "manuscript/figures/disasm_bench_workspaces.png": {
+      "role": "manuscript source or figure/data dependency",
+      "references": [
+        "docs/PAPER_MAP.md"
+      ]
+    },
+    "manuscript/figures/figure2_geometry.json": {
+      "role": "manuscript source or figure/data dependency",
+      "references": [
+        "fig:submitted-2"
+      ]
+    },
+    "manuscript/figures/figure2_representation_gap.pdf": {
+      "role": "manuscript source or figure/data dependency",
+      "references": [
+        "fig:submitted-2"
+      ]
+    },
+    "manuscript/figures/figure2_representation_gap.svg": {
+      "role": "manuscript source or figure/data dependency",
+      "references": [
+        "fig:submitted-2"
+      ]
+    },
+    "manuscript/figures/figure4_seed_data.csv": {
+      "role": "manuscript source or figure/data dependency",
+      "references": [
+        "fig:seed-distributions"
+      ]
+    },
+    "manuscript/figures/figure4_seed_distributions.pdf": {
+      "role": "manuscript source or figure/data dependency",
+      "references": [
+        "fig:seed-distributions"
+      ]
+    },
+    "manuscript/figures/trix_architecture_fig1.pdf": {
+      "role": "manuscript source or figure/data dependency",
+      "references": [
+        "fig:submitted-1"
+      ]
+    },
+    "manuscript/figures/trix_architecture_fig1.svg": {
+      "role": "manuscript source or figure/data dependency",
+      "references": [
+        "fig:submitted-1"
+      ]
+    },
+    "manuscript/figures/workspaces/battery_workspace.png": {
+      "role": "manuscript source or figure/data dependency",
+      "references": [
+        "docs/PAPER_MAP.md"
+      ]
+    },
+    "manuscript/figures/workspaces/battery_workspace_clean.png": {
+      "role": "manuscript source or figure/data dependency",
+      "references": [
+        "docs/PAPER_MAP.md"
+      ]
+    },
+    "manuscript/figures/workspaces/battery_workspace_manifest.json": {
+      "role": "manuscript source or figure/data dependency",
+      "references": [
+        "docs/PAPER_MAP.md"
+      ]
+    },
+    "manuscript/figures/workspaces/crank_workspace.png": {
+      "role": "manuscript source or figure/data dependency",
+      "references": [
+        "docs/PAPER_MAP.md"
+      ]
+    },
+    "manuscript/figures/workspaces/crank_workspace_clean.png": {
+      "role": "manuscript source or figure/data dependency",
+      "references": [
+        "docs/PAPER_MAP.md"
+      ]
+    },
+    "manuscript/figures/workspaces/crank_workspace_manifest.json": {
+      "role": "manuscript source or figure/data dependency",
+      "references": [
+        "docs/PAPER_MAP.md"
+      ]
+    },
+    "manuscript/figures/workspaces/pcb_workspace.png": {
+      "role": "manuscript source or figure/data dependency",
+      "references": [
+        "docs/PAPER_MAP.md"
+      ]
+    },
+    "manuscript/figures/workspaces/pcb_workspace_clean.png": {
+      "role": "manuscript source or figure/data dependency",
+      "references": [
+        "docs/PAPER_MAP.md"
+      ]
+    },
+    "manuscript/figures/workspaces/pcb_workspace_manifest.json": {
+      "role": "manuscript source or figure/data dependency",
+      "references": [
+        "docs/PAPER_MAP.md"
+      ]
+    },
+    "manuscript/figures/workspaces/pry_workspace.png": {
+      "role": "manuscript source or figure/data dependency",
+      "references": [
+        "docs/PAPER_MAP.md"
+      ]
+    },
+    "manuscript/figures/workspaces/pry_workspace_clean.png": {
+      "role": "manuscript source or figure/data dependency",
+      "references": [
+        "docs/PAPER_MAP.md"
+      ]
+    },
+    "manuscript/figures/workspaces/pry_workspace_manifest.json": {
+      "role": "manuscript source or figure/data dependency",
+      "references": [
+        "docs/PAPER_MAP.md"
+      ]
+    },
+    "manuscript/figures/workspaces/screw_workspace.png": {
+      "role": "manuscript source or figure/data dependency",
+      "references": [
+        "docs/PAPER_MAP.md"
+      ]
+    },
+    "manuscript/figures/workspaces/screw_workspace_clean.png": {
+      "role": "manuscript source or figure/data dependency",
+      "references": [
+        "docs/PAPER_MAP.md"
+      ]
+    },
+    "manuscript/figures/workspaces/screw_workspace_manifest.json": {
+      "role": "manuscript source or figure/data dependency",
+      "references": [
+        "docs/PAPER_MAP.md"
+      ]
+    },
+    "manuscript/figures/workspaces/snap_workspace.png": {
+      "role": "manuscript source or figure/data dependency",
+      "references": [
+        "docs/PAPER_MAP.md"
+      ]
+    },
+    "manuscript/figures/workspaces/snap_workspace_clean.png": {
+      "role": "manuscript source or figure/data dependency",
+      "references": [
+        "docs/PAPER_MAP.md"
+      ]
+    },
+    "manuscript/figures/workspaces/snap_workspace_manifest.json": {
+      "role": "manuscript source or figure/data dependency",
+      "references": [
+        "docs/PAPER_MAP.md"
+      ]
+    },
+    "manuscript/figures/workspaces/state_manifest.json": {
+      "role": "manuscript source or figure/data dependency",
+      "references": [
+        "fig:disasm-workspaces"
+      ]
+    },
+    "manuscript/tables/seed_statistics.tex": {
+      "role": "manuscript source or figure/data dependency",
+      "references": [
+        "tab:submitted-11"
+      ]
+    },
+    "requirements-training.txt": {
+      "role": "build metadata",
+      "references": [
+        "tab:submitted-10"
+      ]
+    },
+    "requirements-workspace-renders.txt": {
+      "role": "build metadata",
+      "references": [
+        "docs/PAPER_MAP.md"
+      ]
+    },
+    "requirements.txt": {
+      "role": "build metadata",
+      "references": [
+        "docs/PAPER_MAP.md"
+      ]
+    },
+    "results/audits/pcb_oracle_seed_fix/pcb_oracle_seed0_corrected.json": {
+      "role": "compact archived result",
+      "references": [
+        "tab:submitted-4"
+      ]
+    },
+    "results/bayonet/stage1_records.json": {
+      "role": "compact archived result",
+      "references": [
+        "docs/PAPER_MAP.md"
+      ]
+    },
+    "results/bayonet2/stage2_records.json": {
+      "role": "compact archived result",
+      "references": [
+        "docs/PAPER_MAP.md"
+      ]
+    },
+    "results/control/pry_control.json": {
+      "role": "compact archived result",
+      "references": [
+        "docs/PAPER_MAP.md"
+      ]
+    },
+    "results/geometry_bench_heldout.json": {
+      "role": "compact archived result",
+      "references": [
+        "tab:procedural-geometry"
+      ]
+    },
+    "results/geometry_bench_train.json": {
+      "role": "compact archived result",
+      "references": [
+        "tab:procedural-geometry"
+      ]
+    },
+    "results/geometry_bench_val.json": {
+      "role": "compact archived result",
+      "references": [
+        "tab:procedural-geometry"
+      ]
+    },
+    "results/safelayer_decomposition.json": {
+      "role": "compact archived result",
+      "references": [
+        "docs/PAPER_MAP.md"
+      ]
+    },
+    "results/sensitivity.json": {
+      "role": "compact archived result",
+      "references": [
+        "docs/PAPER_MAP.md"
+      ]
+    },
+    "results/stage1/stage1_records.json": {
+      "role": "compact archived result",
+      "references": [
+        "tab:submitted-4"
+      ]
+    },
+    "results/stage2/stage2_records.json": {
+      "role": "compact archived result",
+      "references": [
+        "tab:stage2-key"
+      ]
+    },
+    "results/vlm/vlm_anthropic.json": {
+      "role": "compact archived result",
+      "references": [
+        "tab:vlm-results"
+      ]
+    },
+    "results/vlm/vlm_google.json": {
+      "role": "compact archived result",
+      "references": [
+        "tab:vlm-results"
+      ]
+    },
+    "results/vlm/vlm_openai.json": {
+      "role": "compact archived result",
+      "references": [
+        "tab:vlm-results"
+      ]
+    },
+    "results/vlm_bank/manifest.json": {
+      "role": "compact archived result",
+      "references": [
+        "tab:vlm-results"
+      ]
+    },
+    "scripts/__init__.py": {
+      "role": "imported module or package initializer",
+      "references": [
+        "docs/REPRODUCING.md"
+      ]
+    },
+    "scripts/audit_reproducibility_release.py": {
+      "role": "entrypoint",
+      "references": [
+        "tab:submitted-4"
+      ]
+    },
+    "scripts/audit_revision_claims.py": {
+      "role": "entrypoint",
+      "references": [
+        "tab:b601-hardware"
+      ]
+    },
+    "scripts/audit_vlm_reconciliation.py": {
+      "role": "entrypoint",
+      "references": [
+        "tab:vlm-results"
+      ]
+    },
+    "scripts/b601_render_common.py": {
+      "role": "imported module or package initializer",
+      "references": [
+        "docs/REPRODUCING.md"
+      ]
+    },
+    "scripts/build_revision_figure2.py": {
+      "role": "entrypoint",
+      "references": [
+        "fig:submitted-2"
+      ]
+    },
+    "scripts/build_revision_seed_statistics.py": {
+      "role": "entrypoint",
+      "references": [
+        "fig:seed-distributions",
+        "tab:submitted-11"
+      ]
+    },
+    "scripts/check_paper_repository.py": {
+      "role": "entrypoint",
+      "references": [
+        "docs/REPRODUCING.md"
+      ]
+    },
+    "scripts/compose_b601_workspaces.py": {
+      "role": "entrypoint",
+      "references": [
+        "fig:disasm-workspaces"
+      ]
+    },
+    "scripts/render_battery_workspace_b601.py": {
+      "role": "entrypoint",
+      "references": [
+        "fig:disasm-workspaces"
+      ]
+    },
+    "scripts/render_crank_workspace_b601.py": {
+      "role": "entrypoint",
+      "references": [
+        "fig:disasm-workspaces"
+      ]
+    },
+    "scripts/render_pcb_workspace_b601.py": {
+      "role": "entrypoint",
+      "references": [
+        "fig:disasm-workspaces"
+      ]
+    },
+    "scripts/render_pry_workspace_b601.py": {
+      "role": "entrypoint",
+      "references": [
+        "fig:disasm-workspaces"
+      ]
+    },
+    "scripts/render_screw_workspace_b601.py": {
+      "role": "entrypoint",
+      "references": [
+        "fig:disasm-workspaces"
+      ]
+    },
+    "scripts/render_snap_workspace_b601.py": {
+      "role": "entrypoint",
+      "references": [
+        "fig:disasm-workspaces"
+      ]
+    },
+    "scripts/verify_workspace_renders.py": {
+      "role": "entrypoint",
+      "references": [
+        "docs/REPRODUCING.md"
+      ]
+    },
+    "scripts/verify_workspace_state_mapping.py": {
+      "role": "entrypoint",
+      "references": [
+        "docs/REPRODUCING.md"
+      ]
+    },
+    "scripts/workspace_environment.py": {
+      "role": "imported module or package initializer",
+      "references": [
+        "docs/REPRODUCING.md"
+      ]
+    },
+    "scripts/workspace_render_cli.py": {
+      "role": "imported module or package initializer",
+      "references": [
+        "docs/REPRODUCING.md"
+      ]
+    },
+    "scripts/workspace_render_utils.py": {
+      "role": "imported module or package initializer",
+      "references": [
+        "docs/REPRODUCING.md"
+      ]
+    },
+    "scripts/workspace_state_manifest.py": {
+      "role": "imported module or package initializer",
+      "references": [
+        "docs/REPRODUCING.md"
+      ]
+    },
+    "scripts/workspace_wrench.py": {
+      "role": "imported module or package initializer",
+      "references": [
+        "docs/REPRODUCING.md"
+      ]
+    },
+    "setup.py": {
+      "role": "build metadata",
+      "references": [
+        "docs/REPRODUCING.md"
+      ]
+    },
+    "tests/__init__.py": {
+      "role": "imported module or package initializer",
+      "references": [
+        "docs/REPRODUCING.md"
+      ]
+    },
+    "tests/test_battery_v2.py": {
+      "role": "regression test",
+      "references": [
+        "docs/REPRODUCING.md"
+      ]
+    },
+    "tests/test_bayonet.py": {
+      "role": "regression test",
+      "references": [
+        "docs/REPRODUCING.md"
+      ]
+    },
+    "tests/test_crank_v2.py": {
+      "role": "regression test",
+      "references": [
+        "docs/REPRODUCING.md"
+      ]
+    },
+    "tests/test_exact_arm_aggregation.py": {
+      "role": "regression test",
+      "references": [
+        "docs/REPRODUCING.md"
+      ]
+    },
+    "tests/test_margin_policy.py": {
+      "role": "regression test",
+      "references": [
+        "docs/REPRODUCING.md"
+      ]
+    },
+    "tests/test_metrics.py": {
+      "role": "regression test",
+      "references": [
+        "docs/REPRODUCING.md"
+      ]
+    },
+    "tests/test_pcb_v2.py": {
+      "role": "regression test",
+      "references": [
+        "docs/REPRODUCING.md"
+      ]
+    },
+    "tests/test_phase_filters.py": {
+      "role": "regression test",
+      "references": [
+        "docs/REPRODUCING.md"
+      ]
+    },
+    "tests/test_progress.py": {
+      "role": "regression test",
+      "references": [
+        "docs/REPRODUCING.md"
+      ]
+    },
+    "tests/test_protocol.py": {
+      "role": "regression test",
+      "references": [
+        "docs/REPRODUCING.md"
+      ]
+    },
+    "tests/test_pry_v2.py": {
+      "role": "regression test",
+      "references": [
+        "docs/REPRODUCING.md"
+      ]
+    },
+    "tests/test_registry_e2e.py": {
+      "role": "regression test",
+      "references": [
+        "docs/REPRODUCING.md"
+      ]
+    },
+    "tests/test_sb3_gate.py": {
+      "role": "regression test",
+      "references": [
+        "docs/REPRODUCING.md"
+      ]
+    },
+    "tests/test_screw_v3.py": {
+      "role": "regression test",
+      "references": [
+        "docs/REPRODUCING.md"
+      ]
+    },
+    "tests/test_selection.py": {
+      "role": "regression test",
+      "references": [
+        "docs/REPRODUCING.md"
+      ]
+    },
+    "tests/test_selection_seed_determinism.py": {
+      "role": "regression test",
+      "references": [
+        "docs/REPRODUCING.md"
+      ]
+    },
+    "tests/test_snap_v2.py": {
+      "role": "regression test",
+      "references": [
+        "docs/REPRODUCING.md"
+      ]
+    },
+    "training/__init__.py": {
+      "role": "imported module or package initializer",
+      "references": [
+        "docs/REPRODUCING.md"
+      ]
+    },
+    "training/sb3_runner.py": {
+      "role": "imported module or package initializer",
+      "references": [
+        "tab:submitted-3",
+        "tab:submitted-10"
+      ]
+    },
+    "training/stage1.py": {
+      "role": "entrypoint",
+      "references": [
+        "tab:submitted-4"
+      ]
+    },
+    "training/stage2.py": {
+      "role": "entrypoint",
+      "references": [
+        "tab:stage2-key"
+      ]
+    }
+  },
+  "entrypoints": [
+    "benchmark/criterion.py",
+    "experiments/geometry_bench.py",
+    "experiments/pry_control.py",
+    "experiments/safelayer_decomposition.py",
+    "experiments/sensitivity.py",
+    "experiments/vlm_bank.py",
+    "experiments/vlm_trial.py",
+    "scripts/audit_reproducibility_release.py",
+    "scripts/audit_revision_claims.py",
+    "scripts/audit_vlm_reconciliation.py",
+    "scripts/build_revision_figure2.py",
+    "scripts/build_revision_seed_statistics.py",
+    "scripts/check_paper_repository.py",
+    "scripts/compose_b601_workspaces.py",
+    "scripts/render_battery_workspace_b601.py",
+    "scripts/render_crank_workspace_b601.py",
+    "scripts/render_pcb_workspace_b601.py",
+    "scripts/render_pry_workspace_b601.py",
+    "scripts/render_screw_workspace_b601.py",
+    "scripts/render_snap_workspace_b601.py",
+    "scripts/verify_workspace_renders.py",
+    "scripts/verify_workspace_state_mapping.py",
+    "training/stage1.py",
+    "training/stage2.py"
+  ],
+  "tests": [
+    "tests/test_battery_v2.py",
+    "tests/test_bayonet.py",
+    "tests/test_crank_v2.py",
+    "tests/test_exact_arm_aggregation.py",
+    "tests/test_margin_policy.py",
+    "tests/test_metrics.py",
+    "tests/test_pcb_v2.py",
+    "tests/test_phase_filters.py",
+    "tests/test_progress.py",
+    "tests/test_protocol.py",
+    "tests/test_pry_v2.py",
+    "tests/test_registry_e2e.py",
+    "tests/test_sb3_gate.py",
+    "tests/test_screw_v3.py",
+    "tests/test_selection.py",
+    "tests/test_selection_seed_determinism.py",
+    "tests/test_snap_v2.py"
+  ],
+  "explicit_dependencies": {
+    "scripts/workspace_environment.py": [
+      "envs/screw_env_v3.py",
+      "envs/pcb_env_v2.py",
+      "envs/snap_env_v2.py",
+      "envs/crank_env_v2.py",
+      "envs/battery_env_v2.py",
+      "envs/pry_env_v2.py"
+    ],
+    "scripts/verify_workspace_renders.py": [
+      "scripts/render_screw_workspace_b601.py",
+      "scripts/render_pcb_workspace_b601.py",
+      "scripts/render_snap_workspace_b601.py",
+      "scripts/render_crank_workspace_b601.py",
+      "scripts/render_battery_workspace_b601.py",
+      "scripts/render_pry_workspace_b601.py"
+    ],
+    "scripts/verify_workspace_state_mapping.py": [
+      "scripts/render_screw_workspace_b601.py",
+      "scripts/render_pcb_workspace_b601.py",
+      "scripts/render_snap_workspace_b601.py",
+      "scripts/render_crank_workspace_b601.py",
+      "scripts/render_battery_workspace_b601.py",
+      "scripts/render_pry_workspace_b601.py"
+    ],
+    "scripts/audit_vlm_reconciliation.py": [
+      "experiments/vlm_primitives.py",
+      "experiments/vlm_client.py",
+      "experiments/vlm_bank.py",
+      "envs/render.py"
+    ],
+    "scripts/audit_revision_claims.py": [
+      "experiments/vlm_primitives.py"
+    ],
+    "scripts/audit_reproducibility_release.py": [
+      "scripts/audit_revision_claims.py",
+      "scripts/audit_vlm_reconciliation.py",
+      "scripts/build_revision_seed_statistics.py"
+    ]
+  },
+  "paper_items": [
+    {
+      "label": "fig:submitted-1",
+      "title": "Figure 1 \u2014 execution architecture",
+      "files": [
+        "manuscript/TRIX_REVISION.tex",
+        "manuscript/figures/trix_architecture_fig1.svg",
+        "manuscript/figures/trix_architecture_fig1.pdf"
+      ],
+      "command_or_check": "Editable SVG source; paper compilation verifies the exported figure.",
+      "citations": []
+    },
+    {
+      "label": "fig:submitted-2",
+      "title": "Figure 2 \u2014 command representation",
+      "files": [
+        "scripts/build_revision_figure2.py",
+        "envs/screw_env_v3.py",
+        "manuscript/figures/figure2_geometry.json",
+        "manuscript/figures/figure2_representation_gap.pdf",
+        "manuscript/figures/figure2_representation_gap.svg"
+      ],
+      "command_or_check": "python3 scripts/build_revision_figure2.py",
+      "citations": []
+    },
+    {
+      "label": "fig:disasm-workspaces",
+      "title": "Figure 3 \u2014 six workspaces",
+      "files": [
+        "scripts/render_screw_workspace_b601.py",
+        "scripts/render_pcb_workspace_b601.py",
+        "scripts/render_snap_workspace_b601.py",
+        "scripts/render_crank_workspace_b601.py",
+        "scripts/render_battery_workspace_b601.py",
+        "scripts/render_pry_workspace_b601.py",
+        "scripts/compose_b601_workspaces.py",
+        "assets/workspaces/frozen_frames.json",
+        "manuscript/figures/workspaces/state_manifest.json",
+        "manuscript/figures/disasm_bench_workspaces.pdf"
+      ],
+      "command_or_check": "Individual commands and asset/state hashes: docs/workspace_rendering.md.",
+      "citations": [
+        "ref33"
+      ]
+    },
+    {
+      "label": "fig:seed-distributions",
+      "title": "Figure 4 \u2014 seed distributions",
+      "files": [
+        "manuscript/figures/figure4_seed_distributions.pdf",
+        "manuscript/figures/figure4_seed_data.csv",
+        "scripts/build_revision_seed_statistics.py"
+      ],
+      "command_or_check": "Full archive audit checks all 80 plotted points; original plot generator unavailable.",
+      "citations": []
+    },
+    {
+      "label": "fig:b601-hardware",
+      "title": "Figure 5 \u2014 B601 execution",
+      "files": [
+        "manuscript/figures/b601_hardware_sequence.jpg",
+        "assets/evidence/archive_manifest.json"
+      ],
+      "command_or_check": "Archive: hardware/results/hardware/v4_confirmation/final_submission/HARDWARE_EVIDENCE_README.md; three linked videos.",
+      "citations": []
+    },
+    {
+      "label": "tab:submitted-1",
+      "title": "Table 1 \u2014 related methods",
+      "files": [
+        "manuscript/TRIX_REVISION.tex"
+      ],
+      "command_or_check": "Bibliography ref16\u2013ref26; editorial comparison, no generated experiment.",
+      "citations": [
+        "ref16",
+        "ref17",
+        "ref18",
+        "ref19",
+        "ref20",
+        "ref21",
+        "ref22",
+        "ref23",
+        "ref24",
+        "ref25",
+        "ref26"
+      ]
+    },
+    {
+      "label": "tab:submitted-2",
+      "title": "Table 2 \u2014 task definitions",
+      "files": [
+        "envs/screw_env_v3.py",
+        "envs/pcb_env_v2.py",
+        "envs/snap_env_v2.py",
+        "envs/crank_env_v2.py",
+        "envs/battery_env_v2.py",
+        "envs/pry_env_v2.py"
+      ],
+      "command_or_check": "Environment constants, reset(), step() and _get_obs(); source hashes pinned in assets/workspaces/environment_sources.json.",
+      "citations": []
+    },
+    {
+      "label": "tab:submitted-3",
+      "title": "Table 3 \u2014 algorithm and runtime-arm taxonomy",
+      "files": [
+        "benchmark/registry.py",
+        "training/sb3_runner.py",
+        "baselines/learned_cost.py"
+      ],
+      "command_or_check": "Registry FILTERS and SB3 ALGOS; learned-cost study identified separately.",
+      "citations": [
+        "ref21",
+        "ref31",
+        "ref32"
+      ]
+    },
+    {
+      "label": "tab:submitted-4",
+      "title": "Table 4 \u2014 post-hoc governance",
+      "files": [
+        "training/stage1.py",
+        "results/stage1/stage1_records.json",
+        "results/audits/pcb_oracle_seed_fix/pcb_oracle_seed0_corrected.json",
+        "manuscript/data/battery_aggregation_correction.json",
+        "scripts/audit_reproducibility_release.py"
+      ],
+      "command_or_check": "Full archive audit checks exact-arm shards and all 50 displayed cells.",
+      "citations": []
+    },
+    {
+      "label": "tab:stage2-key",
+      "title": "Table 5 \u2014 filter-aware governance",
+      "files": [
+        "training/stage2.py",
+        "results/stage2/stage2_records.json"
+      ],
+      "command_or_check": "Full archive audit; training arms stay separate from Stage 1.",
+      "citations": []
+    },
+    {
+      "label": "tab:procedural-geometry",
+      "title": "Table 6 \u2014 procedural geometry",
+      "files": [
+        "experiments/geometry_bench.py",
+        "benchmark/geometry_gen.py",
+        "results/geometry_bench_train.json",
+        "results/geometry_bench_val.json",
+        "results/geometry_bench_heldout.json"
+      ],
+      "command_or_check": "scripts/audit_revision_claims.py against the full archive; 200 held-out geometries.",
+      "citations": []
+    },
+    {
+      "label": "tab:vlm-results",
+      "title": "Table 7 \u2014 VLM decisions",
+      "files": [
+        "scripts/audit_vlm_reconciliation.py",
+        "experiments/vlm_trial.py",
+        "experiments/vlm_bank.py",
+        "results/vlm_bank/manifest.json",
+        "results/vlm/vlm_anthropic.json",
+        "results/vlm/vlm_openai.json",
+        "results/vlm/vlm_google.json"
+      ],
+      "command_or_check": "make audit-vlm: 273 decisions; visibility scaling and unavailable backend/retry IDs disclosed.",
+      "citations": [
+        "ref36",
+        "ref37",
+        "ref38"
+      ]
+    },
+    {
+      "label": "tab:b601-hardware",
+      "title": "Table 8 \u2014 hardware confirmation",
+      "files": [
+        "assets/evidence/archive_manifest.json",
+        "scripts/audit_revision_claims.py"
+      ],
+      "command_or_check": "Archive: hardware/results/hardware/v4_confirmation/final_submission/tables/hardware_results.csv; six logs, three video-backed trials.",
+      "citations": []
+    },
+    {
+      "label": "tab:submitted-7",
+      "title": "Table 9 \u2014 observations",
+      "files": [
+        "envs/screw_env_v3.py",
+        "envs/pcb_env_v2.py",
+        "envs/snap_env_v2.py",
+        "envs/crank_env_v2.py",
+        "envs/battery_env_v2.py",
+        "envs/pry_env_v2.py"
+      ],
+      "command_or_check": "Trace each row to _get_obs(); units and indices checked against current environment definitions.",
+      "citations": []
+    },
+    {
+      "label": "tab:submitted-8",
+      "title": "Table 10 \u2014 constraints and outcomes",
+      "files": [
+        "envs/screw_env_v3.py",
+        "envs/pcb_env_v2.py",
+        "envs/snap_env_v2.py",
+        "envs/crank_env_v2.py",
+        "envs/battery_env_v2.py",
+        "envs/pry_env_v2.py",
+        "benchmark/outcome.py",
+        "benchmark/taxonomy.py"
+      ],
+      "command_or_check": "Environment step()/episode_summary() and classify(); no new physics parameters.",
+      "citations": []
+    },
+    {
+      "label": "tab:submitted-9",
+      "title": "Table 11 \u2014 reset randomisation",
+      "files": [
+        "envs/screw_env_v3.py",
+        "envs/pcb_env_v2.py",
+        "envs/snap_env_v2.py",
+        "envs/crank_env_v2.py",
+        "envs/battery_env_v2.py",
+        "envs/pry_env_v2.py"
+      ],
+      "command_or_check": "Environment reset() and noise constants.",
+      "citations": []
+    },
+    {
+      "label": "tab:submitted-10",
+      "title": "Table 12 \u2014 training configuration",
+      "files": [
+        "training/sb3_runner.py",
+        "benchmark/protocol.py",
+        "benchmark/selection.py",
+        "benchmark/gym_adapter.py",
+        "requirements-training.txt"
+      ],
+      "command_or_check": "Recorded fingerprints in the archive; requested and actual PPO step counts distinguished.",
+      "citations": [
+        "ref31",
+        "ref32"
+      ]
+    },
+    {
+      "label": "tab:submitted-11",
+      "title": "Table 13 \u2014 seed contrasts",
+      "files": [
+        "scripts/build_revision_seed_statistics.py",
+        "manuscript/data/seed_statistics_input.json",
+        "manuscript/data/seed_statistics_summary.json",
+        "manuscript/data/seed_statistics_pairs.csv",
+        "manuscript/tables/seed_statistics.tex"
+      ],
+      "command_or_check": "python3 scripts/build_revision_seed_statistics.py; 13 contrasts, 220 records, 4,400 source shards.",
+      "citations": []
+    }
+  ],
+  "locked_renderer_files": {
+    "manuscript/figures/trix_architecture_fig1.svg": "16c29baebbd3a323f58c79cfce34f5c99e1543979e1be7c97e26ce7f1e8e8ace",
+    "manuscript/figures/figure4_seed_distributions.pdf": "399ed017a0b0b4d55509cf7782c0396e67dc132649e033fac0255eba6ce73e79",
+    "manuscript/figures/b601_hardware_sequence.jpg": "be8c2837c63eef4af3d71ca6c7e70a4085e1472270259b63cabd84c2cf72d205",
+    "manuscript/figures/disasm_bench_workspaces.pdf": "13d4c9de927fcfd2096512ca1d9c7f0d930ca1bb1eaa27de82483ccb82f76755",
+    "manuscript/figures/disasm_bench_workspaces.png": "a7dfeb1cedd89c1c173483234b6045f2db66863a3787c6c8461c371ca2002c36",
+    "manuscript/figures/trix_architecture_fig1.pdf": "4030c8911674a0d20dbaf8b45024322ce7e74ca3506f956214193f1786b43134",
+    "manuscript/figures/workspaces/snap_workspace_manifest.json": "0d8a8f0728b77614be31693e94e23ed76a2a88ba721f0a1ebd926b74c4a77247",
+    "manuscript/figures/workspaces/snap_workspace.png": "ca65b87447e95664cb1eb83fb158d7ff7bc07451a33199fd237f712017721a63",
+    "manuscript/figures/workspaces/state_manifest.json": "cb842db1e9ab541871e33b77fd95a25436c7717821d1d2d4aa34b17f0283b6fc",
+    "manuscript/figures/workspaces/pry_workspace_manifest.json": "784bb562d2c3c913ac5d9700bd52e198cca67a5ae6cb25e89bfc3e0bab1e0cc9",
+    "manuscript/figures/workspaces/crank_workspace_manifest.json": "9ad139fb5da87307ad436657ec061bf0fa7e52d55ce152671cde5c52a0726aa5",
+    "manuscript/figures/workspaces/screw_workspace_manifest.json": "dbbf6751cbafec8ea75ee0053f55545ef494cff2ab11290deff7267273721869",
+    "manuscript/figures/workspaces/pcb_workspace.png": "93517a843e9c6471638b7d13b63221af4742f251d2e7f3a8970d3093e8761ad1",
+    "manuscript/figures/workspaces/battery_workspace.png": "84ebeca93546e6e227ecf3674d6bb11a10134a2c73ec66f45d0b004abc5e5972",
+    "manuscript/figures/workspaces/crank_workspace.png": "b25cb5001a482d66da65644fd8b9e1977923e19e92038f6dde709da87fe0743d",
+    "manuscript/figures/workspaces/screw_workspace_clean.png": "9a1455ca7ecc2d33650edb243a8f6b5a5113ee3f14efff7227e6dd0080e24ed9",
+    "manuscript/figures/workspaces/screw_workspace.png": "ba495e6ad663b71d83e0a0afab5662ff0fe169bf3258f4690675d6be978ecb62",
+    "manuscript/figures/workspaces/pry_workspace_clean.png": "4954528e7581cf36fba1d38c8783ed1d8c4969cf1a80b9ce06514dc29d2f7535",
+    "manuscript/figures/workspaces/pcb_workspace_clean.png": "929f9b9af68b08201dcc6a80e223330216ad92c55d3af399b53e592d1dc94de1",
+    "manuscript/figures/workspaces/crank_workspace_clean.png": "dcbd534f6c44d337ac26a7f7da4e3395e2634c0d4035be433be071e5b6848a60",
+    "manuscript/figures/workspaces/pry_workspace.png": "cbda3483d7e252f5d62ac6ce2b27086de362b9fb437c281e170defbad0ee5ef6",
+    "manuscript/figures/workspaces/snap_workspace_clean.png": "29d27d180ad7517cda63b0198f50e434d7f412a641442491def1683713ad07f3",
+    "manuscript/figures/workspaces/pcb_workspace_manifest.json": "3851b78298b76989d27994a17cf15da2b070d6dbb1ac24c8cc2f68ff7dd82379",
+    "manuscript/figures/workspaces/battery_workspace_clean.png": "f7e513b22477c4bcf073c373374db6b1b68eaa344493d1389a1a8a1d90617872",
+    "manuscript/figures/workspaces/battery_workspace_manifest.json": "39d7c776d418a88638326e463bb347b5ab0584537d4dd648d5fc04cf6a6d38e5",
+    "assets/workspaces/b601_assets.json": "57e10758cc75400fd6129ea1f618040ce9e9a3980530ee0374506452a5d8e26f",
+    "assets/workspaces/environment_sources.json": "02a785b8d705ae8997eece97e6a1f8453a8009a96587d4d732125e661e6b0220",
+    "assets/workspaces/frozen_frames.json": "7cef22ddeab8ad4b20997f55286ecb4813e37435f8a61c8ba4c807ae512c1165",
+    "assets/workspaces/reference_environment.json": "1b24d2c4770441f45f24cc3bdb87362091a83cc547711849f5bc8bcd7083ec4a",
+    "envs/__init__.py": "a7bd4deda6beba50c1ff11688b7fd7d143d6377a129674c7cbb1b96f98ff7ca2",
+    "envs/battery_env_v2.py": "28505bec3a739b0639690fc182d1751ac6832351324925a74bec1b392cb3e343",
+    "envs/crank_env_v2.py": "4dc0bfd35b07c1b4a187ab76278db219058f216e949383432f5b8a2863890afe",
+    "envs/pcb_env_v2.py": "4b82b27bee6829c0db014f4c8789095067e3bc085ee757ef01b76dfeeb6f2643",
+    "envs/pry_env_v2.py": "2f62bbed3ef875c97d0825c60af273335c1fd683040f797127d8eb329957c831",
+    "envs/screw_env_v3.py": "cead3313396797e07977bec323028bd35d398887d540512150ac2dd632678949",
+    "envs/snap_env_v2.py": "6464ed3ff2a228c2f094267fc6874b4b3ffe64ffcaafea91f93eb5dab785de30",
+    "scripts/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "scripts/b601_render_common.py": "3a2892613257655b85580e5be0dc0bd98c815e46e6dd76f28ebcf78ea2436a76",
+    "scripts/compose_b601_workspaces.py": "f501d415b493f664e1d2cf3d87f22316d11b9cccff41eb7ea0282b2a3310a4cc",
+    "scripts/render_battery_workspace_b601.py": "0670307facfed18ad06b58b07ff92e8cb1c75d912d2ca25939c8babd0502b72c",
+    "scripts/render_crank_workspace_b601.py": "a4fde3314fe8621e2ae4ac49125f6cd3b155af061de0debd8de3e75a1d69a0e1",
+    "scripts/render_pcb_workspace_b601.py": "d7eedee065ceb2b405e5e926f95cce09be05d73b8aae55da6aa82ae7e5af4b4b",
+    "scripts/render_pry_workspace_b601.py": "71e3050153fad23bce27818344607fa9ee491694796da788d61b9ce132c22680",
+    "scripts/render_screw_workspace_b601.py": "1623ab1e522b27604f4af9b5239c133d9a70c397dbfbc1b24fe00781f519b8e9",
+    "scripts/render_snap_workspace_b601.py": "c1109a64fc9a9790a2c001ebf4063f07ed0dca5d0f4d9497b162bcb2d11b9b3c",
+    "scripts/verify_workspace_renders.py": "d0c3adf985b28642097731c6b53fde228a68dc5b46c87a8b7a2278adbad3e1a7",
+    "scripts/verify_workspace_state_mapping.py": "adb0c883e1c1be9f5927916f2abb1d8529b7b0fa782cb0320125f373591256fe",
+    "scripts/workspace_environment.py": "985f8a9cd2d677ff950dd8a9d340d186d86382cd1be3e8079793a0d937ad5749",
+    "scripts/workspace_render_cli.py": "1a6dbea2729b9213baa10531ee4d06b18d33ce1d6cc5f143eaa063bcae31093f",
+    "scripts/workspace_render_utils.py": "193194d8e319333afaeccf497924cdee74591d54d20a5430f76657a36315325d",
+    "scripts/workspace_state_manifest.py": "1fdac5d2dcd28cd8e4e8f56fb139a521123f91f9816bc7eb1b0b3384eb815cc4",
+    "scripts/workspace_wrench.py": "5db7efaff31698edbe807562a8789bb65b67a43b1cc4d765896f823e4673c07f",
+    "benchmark/outcome.py": "4089d1be55f5b62b541e3fb3967f67beac577d60702e56c13645fa944bf582e5",
+    "benchmark/disasm_bench.py": "8f35f87a687194ce696161afec440dbca442c19a09ff852d6d2bb7ac3ab530dc",
+    "benchmark/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  }
+}

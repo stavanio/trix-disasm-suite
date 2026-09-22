@@ -1,0 +1,1585 @@
+{
+ "spec": {
+  "version": "1.0",
+  "frozen_on": "2026-08-11",
+  "strata": {
+   "interior": [
+    0.5,
+    1.0
+   ],
+   "mid": [
+    0.2,
+    0.5
+   ],
+   "near_boundary": [
+    0.02,
+    0.2
+   ]
+  },
+  "per_stratum": 7,
+  "paired": [
+   "normal",
+   "rotated",
+   "occluded",
+   "misleading"
+  ],
+  "tilt_range": [
+   0.0,
+   0.9
+  ],
+  "lift_range": [
+   0.0,
+   0.01
+  ]
+ },
+ "bank_hash": "b3bb5dac2ef5a8fa",
+ "images": [
+  {
+   "image": "s00_normal.png",
+   "state_id": 0,
+   "paired": true,
+   "condition": "normal",
+   "state": {
+    "tilt": 0.3248,
+    "lift": 0.00797,
+    "tilt_norm": 0.0629
+   },
+   "stratum": "interior",
+   "margin": 0.6391,
+   "tilt_norm": 0.0629,
+   "tilt": 0.3248,
+   "lift": 0.00797,
+   "clutter_seed": 2924
+  },
+  {
+   "image": "s00_rotated.png",
+   "state_id": 0,
+   "paired": true,
+   "condition": "rotated",
+   "state": {
+    "tilt": 0.3248,
+    "lift": 0.00797,
+    "tilt_norm": 0.0629
+   },
+   "stratum": "interior",
+   "margin": 0.6391,
+   "tilt_norm": 0.0629,
+   "tilt": 0.3248,
+   "lift": 0.00797,
+   "clutter_seed": 2924
+  },
+  {
+   "image": "s00_occluded.png",
+   "state_id": 0,
+   "paired": true,
+   "condition": "occluded",
+   "state": {
+    "tilt": 0.3248,
+    "lift": 0.00797,
+    "tilt_norm": 0.0629
+   },
+   "stratum": "interior",
+   "margin": 0.6391,
+   "tilt_norm": 0.0629,
+   "tilt": 0.3248,
+   "lift": 0.00797,
+   "clutter_seed": 2924
+  },
+  {
+   "image": "s00_misleading.png",
+   "state_id": 0,
+   "paired": true,
+   "condition": "misleading",
+   "state": {
+    "tilt": 0.3248,
+    "lift": 0.00797,
+    "tilt_norm": 0.0629
+   },
+   "stratum": "interior",
+   "margin": 0.6391,
+   "tilt_norm": 0.0629,
+   "tilt": 0.3248,
+   "lift": 0.00797,
+   "clutter_seed": 2924
+  },
+  {
+   "image": "s01_normal.png",
+   "state_id": 1,
+   "paired": true,
+   "condition": "normal",
+   "state": {
+    "tilt": 0.2879,
+    "lift": 0.00576,
+    "tilt_norm": 0.0557
+   },
+   "stratum": "interior",
+   "margin": 0.6801,
+   "tilt_norm": 0.0557,
+   "tilt": 0.2879,
+   "lift": 0.00576,
+   "clutter_seed": 5038
+  },
+  {
+   "image": "s01_rotated.png",
+   "state_id": 1,
+   "paired": true,
+   "condition": "rotated",
+   "state": {
+    "tilt": 0.2879,
+    "lift": 0.00576,
+    "tilt_norm": 0.0557
+   },
+   "stratum": "interior",
+   "margin": 0.6801,
+   "tilt_norm": 0.0557,
+   "tilt": 0.2879,
+   "lift": 0.00576,
+   "clutter_seed": 5038
+  },
+  {
+   "image": "s01_occluded.png",
+   "state_id": 1,
+   "paired": true,
+   "condition": "occluded",
+   "state": {
+    "tilt": 0.2879,
+    "lift": 0.00576,
+    "tilt_norm": 0.0557
+   },
+   "stratum": "interior",
+   "margin": 0.6801,
+   "tilt_norm": 0.0557,
+   "tilt": 0.2879,
+   "lift": 0.00576,
+   "clutter_seed": 5038
+  },
+  {
+   "image": "s01_misleading.png",
+   "state_id": 1,
+   "paired": true,
+   "condition": "misleading",
+   "state": {
+    "tilt": 0.2879,
+    "lift": 0.00576,
+    "tilt_norm": 0.0557
+   },
+   "stratum": "interior",
+   "margin": 0.6801,
+   "tilt_norm": 0.0557,
+   "tilt": 0.2879,
+   "lift": 0.00576,
+   "clutter_seed": 5038
+  },
+  {
+   "image": "s02_normal.png",
+   "state_id": 2,
+   "paired": true,
+   "condition": "normal",
+   "state": {
+    "tilt": -0.1164,
+    "lift": 0.00042,
+    "tilt_norm": -0.0225
+   },
+   "stratum": "interior",
+   "margin": 0.8706,
+   "tilt_norm": -0.0225,
+   "tilt": -0.1164,
+   "lift": 0.00042,
+   "clutter_seed": 6457
+  },
+  {
+   "image": "s02_rotated.png",
+   "state_id": 2,
+   "paired": true,
+   "condition": "rotated",
+   "state": {
+    "tilt": -0.1164,
+    "lift": 0.00042,
+    "tilt_norm": -0.0225
+   },
+   "stratum": "interior",
+   "margin": 0.8706,
+   "tilt_norm": -0.0225,
+   "tilt": -0.1164,
+   "lift": 0.00042,
+   "clutter_seed": 6457
+  },
+  {
+   "image": "s02_occluded.png",
+   "state_id": 2,
+   "paired": true,
+   "condition": "occluded",
+   "state": {
+    "tilt": -0.1164,
+    "lift": 0.00042,
+    "tilt_norm": -0.0225
+   },
+   "stratum": "interior",
+   "margin": 0.8706,
+   "tilt_norm": -0.0225,
+   "tilt": -0.1164,
+   "lift": 0.00042,
+   "clutter_seed": 6457
+  },
+  {
+   "image": "s02_misleading.png",
+   "state_id": 2,
+   "paired": true,
+   "condition": "misleading",
+   "state": {
+    "tilt": -0.1164,
+    "lift": 0.00042,
+    "tilt_norm": -0.0225
+   },
+   "stratum": "interior",
+   "margin": 0.8706,
+   "tilt_norm": -0.0225,
+   "tilt": -0.1164,
+   "lift": 0.00042,
+   "clutter_seed": 6457
+  },
+  {
+   "image": "s03_normal.png",
+   "state_id": 3,
+   "paired": true,
+   "condition": "normal",
+   "state": {
+    "tilt": -0.0041,
+    "lift": 0.00669,
+    "tilt_norm": -0.0008
+   },
+   "stratum": "interior",
+   "margin": 0.9954,
+   "tilt_norm": -0.0008,
+   "tilt": -0.0041,
+   "lift": 0.00669,
+   "clutter_seed": 8735
+  },
+  {
+   "image": "s03_rotated.png",
+   "state_id": 3,
+   "paired": true,
+   "condition": "rotated",
+   "state": {
+    "tilt": -0.0041,
+    "lift": 0.00669,
+    "tilt_norm": -0.0008
+   },
+   "stratum": "interior",
+   "margin": 0.9954,
+   "tilt_norm": -0.0008,
+   "tilt": -0.0041,
+   "lift": 0.00669,
+   "clutter_seed": 8735
+  },
+  {
+   "image": "s03_occluded.png",
+   "state_id": 3,
+   "paired": true,
+   "condition": "occluded",
+   "state": {
+    "tilt": -0.0041,
+    "lift": 0.00669,
+    "tilt_norm": -0.0008
+   },
+   "stratum": "interior",
+   "margin": 0.9954,
+   "tilt_norm": -0.0008,
+   "tilt": -0.0041,
+   "lift": 0.00669,
+   "clutter_seed": 8735
+  },
+  {
+   "image": "s03_misleading.png",
+   "state_id": 3,
+   "paired": true,
+   "condition": "misleading",
+   "state": {
+    "tilt": -0.0041,
+    "lift": 0.00669,
+    "tilt_norm": -0.0008
+   },
+   "stratum": "interior",
+   "margin": 0.9954,
+   "tilt_norm": -0.0008,
+   "tilt": -0.0041,
+   "lift": 0.00669,
+   "clutter_seed": 8735
+  },
+  {
+   "image": "s04_normal.png",
+   "state_id": 4,
+   "paired": true,
+   "condition": "normal",
+   "state": {
+    "tilt": 0.3863,
+    "lift": 0.00156,
+    "tilt_norm": 0.0748
+   },
+   "stratum": "interior",
+   "margin": 0.5707,
+   "tilt_norm": 0.0748,
+   "tilt": 0.3863,
+   "lift": 0.00156,
+   "clutter_seed": 3304
+  },
+  {
+   "image": "s04_rotated.png",
+   "state_id": 4,
+   "paired": true,
+   "condition": "rotated",
+   "state": {
+    "tilt": 0.3863,
+    "lift": 0.00156,
+    "tilt_norm": 0.0748
+   },
+   "stratum": "interior",
+   "margin": 0.5707,
+   "tilt_norm": 0.0748,
+   "tilt": 0.3863,
+   "lift": 0.00156,
+   "clutter_seed": 3304
+  },
+  {
+   "image": "s04_occluded.png",
+   "state_id": 4,
+   "paired": true,
+   "condition": "occluded",
+   "state": {
+    "tilt": 0.3863,
+    "lift": 0.00156,
+    "tilt_norm": 0.0748
+   },
+   "stratum": "interior",
+   "margin": 0.5707,
+   "tilt_norm": 0.0748,
+   "tilt": 0.3863,
+   "lift": 0.00156,
+   "clutter_seed": 3304
+  },
+  {
+   "image": "s04_misleading.png",
+   "state_id": 4,
+   "paired": true,
+   "condition": "misleading",
+   "state": {
+    "tilt": 0.3863,
+    "lift": 0.00156,
+    "tilt_norm": 0.0748
+   },
+   "stratum": "interior",
+   "margin": 0.5707,
+   "tilt_norm": 0.0748,
+   "tilt": 0.3863,
+   "lift": 0.00156,
+   "clutter_seed": 3304
+  },
+  {
+   "image": "s05_normal.png",
+   "state_id": 5,
+   "paired": true,
+   "condition": "normal",
+   "state": {
+    "tilt": 0.0067,
+    "lift": 0.00275,
+    "tilt_norm": 0.0013
+   },
+   "stratum": "interior",
+   "margin": 0.9926,
+   "tilt_norm": 0.0013,
+   "tilt": 0.0067,
+   "lift": 0.00275,
+   "clutter_seed": 1128
+  },
+  {
+   "image": "s05_rotated.png",
+   "state_id": 5,
+   "paired": true,
+   "condition": "rotated",
+   "state": {
+    "tilt": 0.0067,
+    "lift": 0.00275,
+    "tilt_norm": 0.0013
+   },
+   "stratum": "interior",
+   "margin": 0.9926,
+   "tilt_norm": 0.0013,
+   "tilt": 0.0067,
+   "lift": 0.00275,
+   "clutter_seed": 1128
+  },
+  {
+   "image": "s05_occluded.png",
+   "state_id": 5,
+   "paired": true,
+   "condition": "occluded",
+   "state": {
+    "tilt": 0.0067,
+    "lift": 0.00275,
+    "tilt_norm": 0.0013
+   },
+   "stratum": "interior",
+   "margin": 0.9926,
+   "tilt_norm": 0.0013,
+   "tilt": 0.0067,
+   "lift": 0.00275,
+   "clutter_seed": 1128
+  },
+  {
+   "image": "s05_misleading.png",
+   "state_id": 5,
+   "paired": true,
+   "condition": "misleading",
+   "state": {
+    "tilt": 0.0067,
+    "lift": 0.00275,
+    "tilt_norm": 0.0013
+   },
+   "stratum": "interior",
+   "margin": 0.9926,
+   "tilt_norm": 0.0013,
+   "tilt": 0.0067,
+   "lift": 0.00275,
+   "clutter_seed": 1128
+  },
+  {
+   "image": "s06_normal.png",
+   "state_id": 6,
+   "paired": true,
+   "condition": "normal",
+   "state": {
+    "tilt": -0.3194,
+    "lift": 0.00077,
+    "tilt_norm": -0.0618
+   },
+   "stratum": "interior",
+   "margin": 0.6451,
+   "tilt_norm": -0.0618,
+   "tilt": -0.3194,
+   "lift": 0.00077,
+   "clutter_seed": 658
+  },
+  {
+   "image": "s06_rotated.png",
+   "state_id": 6,
+   "paired": true,
+   "condition": "rotated",
+   "state": {
+    "tilt": -0.3194,
+    "lift": 0.00077,
+    "tilt_norm": -0.0618
+   },
+   "stratum": "interior",
+   "margin": 0.6451,
+   "tilt_norm": -0.0618,
+   "tilt": -0.3194,
+   "lift": 0.00077,
+   "clutter_seed": 658
+  },
+  {
+   "image": "s06_occluded.png",
+   "state_id": 6,
+   "paired": true,
+   "condition": "occluded",
+   "state": {
+    "tilt": -0.3194,
+    "lift": 0.00077,
+    "tilt_norm": -0.0618
+   },
+   "stratum": "interior",
+   "margin": 0.6451,
+   "tilt_norm": -0.0618,
+   "tilt": -0.3194,
+   "lift": 0.00077,
+   "clutter_seed": 658
+  },
+  {
+   "image": "s06_misleading.png",
+   "state_id": 6,
+   "paired": true,
+   "condition": "misleading",
+   "state": {
+    "tilt": -0.3194,
+    "lift": 0.00077,
+    "tilt_norm": -0.0618
+   },
+   "stratum": "interior",
+   "margin": 0.6451,
+   "tilt_norm": -0.0618,
+   "tilt": -0.3194,
+   "lift": 0.00077,
+   "clutter_seed": 658
+  },
+  {
+   "image": "s07_normal.png",
+   "state_id": 7,
+   "paired": true,
+   "condition": "normal",
+   "state": {
+    "tilt": 0.511,
+    "lift": 0.00058,
+    "tilt_norm": 0.0989
+   },
+   "stratum": "mid",
+   "margin": 0.4322,
+   "tilt_norm": 0.0989,
+   "tilt": 0.511,
+   "lift": 0.00058,
+   "clutter_seed": 9047
+  },
+  {
+   "image": "s07_rotated.png",
+   "state_id": 7,
+   "paired": true,
+   "condition": "rotated",
+   "state": {
+    "tilt": 0.511,
+    "lift": 0.00058,
+    "tilt_norm": 0.0989
+   },
+   "stratum": "mid",
+   "margin": 0.4322,
+   "tilt_norm": 0.0989,
+   "tilt": 0.511,
+   "lift": 0.00058,
+   "clutter_seed": 9047
+  },
+  {
+   "image": "s07_occluded.png",
+   "state_id": 7,
+   "paired": true,
+   "condition": "occluded",
+   "state": {
+    "tilt": 0.511,
+    "lift": 0.00058,
+    "tilt_norm": 0.0989
+   },
+   "stratum": "mid",
+   "margin": 0.4322,
+   "tilt_norm": 0.0989,
+   "tilt": 0.511,
+   "lift": 0.00058,
+   "clutter_seed": 9047
+  },
+  {
+   "image": "s07_misleading.png",
+   "state_id": 7,
+   "paired": true,
+   "condition": "misleading",
+   "state": {
+    "tilt": 0.511,
+    "lift": 0.00058,
+    "tilt_norm": 0.0989
+   },
+   "stratum": "mid",
+   "margin": 0.4322,
+   "tilt_norm": 0.0989,
+   "tilt": 0.511,
+   "lift": 0.00058,
+   "clutter_seed": 9047
+  },
+  {
+   "image": "s08_normal.png",
+   "state_id": 8,
+   "paired": true,
+   "condition": "normal",
+   "state": {
+    "tilt": -0.5776,
+    "lift": 0.00624,
+    "tilt_norm": -0.1118
+   },
+   "stratum": "mid",
+   "margin": 0.3582,
+   "tilt_norm": -0.1118,
+   "tilt": -0.5776,
+   "lift": 0.00624,
+   "clutter_seed": 8795
+  },
+  {
+   "image": "s08_rotated.png",
+   "state_id": 8,
+   "paired": true,
+   "condition": "rotated",
+   "state": {
+    "tilt": -0.5776,
+    "lift": 0.00624,
+    "tilt_norm": -0.1118
+   },
+   "stratum": "mid",
+   "margin": 0.3582,
+   "tilt_norm": -0.1118,
+   "tilt": -0.5776,
+   "lift": 0.00624,
+   "clutter_seed": 8795
+  },
+  {
+   "image": "s08_occluded.png",
+   "state_id": 8,
+   "paired": true,
+   "condition": "occluded",
+   "state": {
+    "tilt": -0.5776,
+    "lift": 0.00624,
+    "tilt_norm": -0.1118
+   },
+   "stratum": "mid",
+   "margin": 0.3582,
+   "tilt_norm": -0.1118,
+   "tilt": -0.5776,
+   "lift": 0.00624,
+   "clutter_seed": 8795
+  },
+  {
+   "image": "s08_misleading.png",
+   "state_id": 8,
+   "paired": true,
+   "condition": "misleading",
+   "state": {
+    "tilt": -0.5776,
+    "lift": 0.00624,
+    "tilt_norm": -0.1118
+   },
+   "stratum": "mid",
+   "margin": 0.3582,
+   "tilt_norm": -0.1118,
+   "tilt": -0.5776,
+   "lift": 0.00624,
+   "clutter_seed": 8795
+  },
+  {
+   "image": "s09_normal.png",
+   "state_id": 9,
+   "paired": true,
+   "condition": "normal",
+   "state": {
+    "tilt": 0.4707,
+    "lift": 0.0001,
+    "tilt_norm": 0.0911
+   },
+   "stratum": "mid",
+   "margin": 0.477,
+   "tilt_norm": 0.0911,
+   "tilt": 0.4707,
+   "lift": 0.0001,
+   "clutter_seed": 4870
+  },
+  {
+   "image": "s09_rotated.png",
+   "state_id": 9,
+   "paired": true,
+   "condition": "rotated",
+   "state": {
+    "tilt": 0.4707,
+    "lift": 0.0001,
+    "tilt_norm": 0.0911
+   },
+   "stratum": "mid",
+   "margin": 0.477,
+   "tilt_norm": 0.0911,
+   "tilt": 0.4707,
+   "lift": 0.0001,
+   "clutter_seed": 4870
+  },
+  {
+   "image": "s09_occluded.png",
+   "state_id": 9,
+   "paired": true,
+   "condition": "occluded",
+   "state": {
+    "tilt": 0.4707,
+    "lift": 0.0001,
+    "tilt_norm": 0.0911
+   },
+   "stratum": "mid",
+   "margin": 0.477,
+   "tilt_norm": 0.0911,
+   "tilt": 0.4707,
+   "lift": 0.0001,
+   "clutter_seed": 4870
+  },
+  {
+   "image": "s09_misleading.png",
+   "state_id": 9,
+   "paired": true,
+   "condition": "misleading",
+   "state": {
+    "tilt": 0.4707,
+    "lift": 0.0001,
+    "tilt_norm": 0.0911
+   },
+   "stratum": "mid",
+   "margin": 0.477,
+   "tilt_norm": 0.0911,
+   "tilt": 0.4707,
+   "lift": 0.0001,
+   "clutter_seed": 4870
+  },
+  {
+   "image": "s10_normal.png",
+   "state_id": 10,
+   "paired": true,
+   "condition": "normal",
+   "state": {
+    "tilt": 0.6759,
+    "lift": 0.00972,
+    "tilt_norm": 0.1308
+   },
+   "stratum": "mid",
+   "margin": 0.249,
+   "tilt_norm": 0.1308,
+   "tilt": 0.6759,
+   "lift": 0.00972,
+   "clutter_seed": 5508
+  },
+  {
+   "image": "s10_rotated.png",
+   "state_id": 10,
+   "paired": true,
+   "condition": "rotated",
+   "state": {
+    "tilt": 0.6759,
+    "lift": 0.00972,
+    "tilt_norm": 0.1308
+   },
+   "stratum": "mid",
+   "margin": 0.249,
+   "tilt_norm": 0.1308,
+   "tilt": 0.6759,
+   "lift": 0.00972,
+   "clutter_seed": 5508
+  },
+  {
+   "image": "s10_occluded.png",
+   "state_id": 10,
+   "paired": true,
+   "condition": "occluded",
+   "state": {
+    "tilt": 0.6759,
+    "lift": 0.00972,
+    "tilt_norm": 0.1308
+   },
+   "stratum": "mid",
+   "margin": 0.249,
+   "tilt_norm": 0.1308,
+   "tilt": 0.6759,
+   "lift": 0.00972,
+   "clutter_seed": 5508
+  },
+  {
+   "image": "s10_misleading.png",
+   "state_id": 10,
+   "paired": true,
+   "condition": "misleading",
+   "state": {
+    "tilt": 0.6759,
+    "lift": 0.00972,
+    "tilt_norm": 0.1308
+   },
+   "stratum": "mid",
+   "margin": 0.249,
+   "tilt_norm": 0.1308,
+   "tilt": 0.6759,
+   "lift": 0.00972,
+   "clutter_seed": 5508
+  },
+  {
+   "image": "s11_normal.png",
+   "state_id": 11,
+   "paired": true,
+   "condition": "normal",
+   "state": {
+    "tilt": 0.6564,
+    "lift": 0.00666,
+    "tilt_norm": 0.127
+   },
+   "stratum": "mid",
+   "margin": 0.2707,
+   "tilt_norm": 0.127,
+   "tilt": 0.6564,
+   "lift": 0.00666,
+   "clutter_seed": 7305
+  },
+  {
+   "image": "s11_rotated.png",
+   "state_id": 11,
+   "paired": true,
+   "condition": "rotated",
+   "state": {
+    "tilt": 0.6564,
+    "lift": 0.00666,
+    "tilt_norm": 0.127
+   },
+   "stratum": "mid",
+   "margin": 0.2707,
+   "tilt_norm": 0.127,
+   "tilt": 0.6564,
+   "lift": 0.00666,
+   "clutter_seed": 7305
+  },
+  {
+   "image": "s11_occluded.png",
+   "state_id": 11,
+   "paired": true,
+   "condition": "occluded",
+   "state": {
+    "tilt": 0.6564,
+    "lift": 0.00666,
+    "tilt_norm": 0.127
+   },
+   "stratum": "mid",
+   "margin": 0.2707,
+   "tilt_norm": 0.127,
+   "tilt": 0.6564,
+   "lift": 0.00666,
+   "clutter_seed": 7305
+  },
+  {
+   "image": "s11_misleading.png",
+   "state_id": 11,
+   "paired": true,
+   "condition": "misleading",
+   "state": {
+    "tilt": 0.6564,
+    "lift": 0.00666,
+    "tilt_norm": 0.127
+   },
+   "stratum": "mid",
+   "margin": 0.2707,
+   "tilt_norm": 0.127,
+   "tilt": 0.6564,
+   "lift": 0.00666,
+   "clutter_seed": 7305
+  },
+  {
+   "image": "s12_normal.png",
+   "state_id": 12,
+   "paired": true,
+   "condition": "normal",
+   "state": {
+    "tilt": 0.6282,
+    "lift": 0.0087,
+    "tilt_norm": 0.1216
+   },
+   "stratum": "mid",
+   "margin": 0.3019,
+   "tilt_norm": 0.1216,
+   "tilt": 0.6282,
+   "lift": 0.0087,
+   "clutter_seed": 4391
+  },
+  {
+   "image": "s12_rotated.png",
+   "state_id": 12,
+   "paired": true,
+   "condition": "rotated",
+   "state": {
+    "tilt": 0.6282,
+    "lift": 0.0087,
+    "tilt_norm": 0.1216
+   },
+   "stratum": "mid",
+   "margin": 0.3019,
+   "tilt_norm": 0.1216,
+   "tilt": 0.6282,
+   "lift": 0.0087,
+   "clutter_seed": 4391
+  },
+  {
+   "image": "s12_occluded.png",
+   "state_id": 12,
+   "paired": true,
+   "condition": "occluded",
+   "state": {
+    "tilt": 0.6282,
+    "lift": 0.0087,
+    "tilt_norm": 0.1216
+   },
+   "stratum": "mid",
+   "margin": 0.3019,
+   "tilt_norm": 0.1216,
+   "tilt": 0.6282,
+   "lift": 0.0087,
+   "clutter_seed": 4391
+  },
+  {
+   "image": "s12_misleading.png",
+   "state_id": 12,
+   "paired": true,
+   "condition": "misleading",
+   "state": {
+    "tilt": 0.6282,
+    "lift": 0.0087,
+    "tilt_norm": 0.1216
+   },
+   "stratum": "mid",
+   "margin": 0.3019,
+   "tilt_norm": 0.1216,
+   "tilt": 0.6282,
+   "lift": 0.0087,
+   "clutter_seed": 4391
+  },
+  {
+   "image": "s13_normal.png",
+   "state_id": 13,
+   "paired": true,
+   "condition": "normal",
+   "state": {
+    "tilt": -0.6868,
+    "lift": 0.00569,
+    "tilt_norm": -0.1329
+   },
+   "stratum": "mid",
+   "margin": 0.2368,
+   "tilt_norm": -0.1329,
+   "tilt": -0.6868,
+   "lift": 0.00569,
+   "clutter_seed": 3812
+  },
+  {
+   "image": "s13_rotated.png",
+   "state_id": 13,
+   "paired": true,
+   "condition": "rotated",
+   "state": {
+    "tilt": -0.6868,
+    "lift": 0.00569,
+    "tilt_norm": -0.1329
+   },
+   "stratum": "mid",
+   "margin": 0.2368,
+   "tilt_norm": -0.1329,
+   "tilt": -0.6868,
+   "lift": 0.00569,
+   "clutter_seed": 3812
+  },
+  {
+   "image": "s13_occluded.png",
+   "state_id": 13,
+   "paired": true,
+   "condition": "occluded",
+   "state": {
+    "tilt": -0.6868,
+    "lift": 0.00569,
+    "tilt_norm": -0.1329
+   },
+   "stratum": "mid",
+   "margin": 0.2368,
+   "tilt_norm": -0.1329,
+   "tilt": -0.6868,
+   "lift": 0.00569,
+   "clutter_seed": 3812
+  },
+  {
+   "image": "s13_misleading.png",
+   "state_id": 13,
+   "paired": true,
+   "condition": "misleading",
+   "state": {
+    "tilt": -0.6868,
+    "lift": 0.00569,
+    "tilt_norm": -0.1329
+   },
+   "stratum": "mid",
+   "margin": 0.2368,
+   "tilt_norm": -0.1329,
+   "tilt": -0.6868,
+   "lift": 0.00569,
+   "clutter_seed": 3812
+  },
+  {
+   "image": "s14_normal.png",
+   "state_id": 14,
+   "paired": true,
+   "condition": "normal",
+   "state": {
+    "tilt": -0.8564,
+    "lift": 0.00107,
+    "tilt_norm": -0.1657
+   },
+   "stratum": "near_boundary",
+   "margin": 0.0485,
+   "tilt_norm": -0.1657,
+   "tilt": -0.8564,
+   "lift": 0.00107,
+   "clutter_seed": 6079
+  },
+  {
+   "image": "s14_rotated.png",
+   "state_id": 14,
+   "paired": true,
+   "condition": "rotated",
+   "state": {
+    "tilt": -0.8564,
+    "lift": 0.00107,
+    "tilt_norm": -0.1657
+   },
+   "stratum": "near_boundary",
+   "margin": 0.0485,
+   "tilt_norm": -0.1657,
+   "tilt": -0.8564,
+   "lift": 0.00107,
+   "clutter_seed": 6079
+  },
+  {
+   "image": "s14_occluded.png",
+   "state_id": 14,
+   "paired": true,
+   "condition": "occluded",
+   "state": {
+    "tilt": -0.8564,
+    "lift": 0.00107,
+    "tilt_norm": -0.1657
+   },
+   "stratum": "near_boundary",
+   "margin": 0.0485,
+   "tilt_norm": -0.1657,
+   "tilt": -0.8564,
+   "lift": 0.00107,
+   "clutter_seed": 6079
+  },
+  {
+   "image": "s14_misleading.png",
+   "state_id": 14,
+   "paired": true,
+   "condition": "misleading",
+   "state": {
+    "tilt": -0.8564,
+    "lift": 0.00107,
+    "tilt_norm": -0.1657
+   },
+   "stratum": "near_boundary",
+   "margin": 0.0485,
+   "tilt_norm": -0.1657,
+   "tilt": -0.8564,
+   "lift": 0.00107,
+   "clutter_seed": 6079
+  },
+  {
+   "image": "s15_normal.png",
+   "state_id": 15,
+   "paired": true,
+   "condition": "normal",
+   "state": {
+    "tilt": 0.8229,
+    "lift": 0.00207,
+    "tilt_norm": 0.1592
+   },
+   "stratum": "near_boundary",
+   "margin": 0.0857,
+   "tilt_norm": 0.1592,
+   "tilt": 0.8229,
+   "lift": 0.00207,
+   "clutter_seed": 2322
+  },
+  {
+   "image": "s15_rotated.png",
+   "state_id": 15,
+   "paired": true,
+   "condition": "rotated",
+   "state": {
+    "tilt": 0.8229,
+    "lift": 0.00207,
+    "tilt_norm": 0.1592
+   },
+   "stratum": "near_boundary",
+   "margin": 0.0857,
+   "tilt_norm": 0.1592,
+   "tilt": 0.8229,
+   "lift": 0.00207,
+   "clutter_seed": 2322
+  },
+  {
+   "image": "s15_occluded.png",
+   "state_id": 15,
+   "paired": true,
+   "condition": "occluded",
+   "state": {
+    "tilt": 0.8229,
+    "lift": 0.00207,
+    "tilt_norm": 0.1592
+   },
+   "stratum": "near_boundary",
+   "margin": 0.0857,
+   "tilt_norm": 0.1592,
+   "tilt": 0.8229,
+   "lift": 0.00207,
+   "clutter_seed": 2322
+  },
+  {
+   "image": "s15_misleading.png",
+   "state_id": 15,
+   "paired": true,
+   "condition": "misleading",
+   "state": {
+    "tilt": 0.8229,
+    "lift": 0.00207,
+    "tilt_norm": 0.1592
+   },
+   "stratum": "near_boundary",
+   "margin": 0.0857,
+   "tilt_norm": 0.1592,
+   "tilt": 0.8229,
+   "lift": 0.00207,
+   "clutter_seed": 2322
+  },
+  {
+   "image": "s16_normal.png",
+   "state_id": 16,
+   "paired": true,
+   "condition": "normal",
+   "state": {
+    "tilt": -0.7398,
+    "lift": 0.00281,
+    "tilt_norm": -0.1432
+   },
+   "stratum": "near_boundary",
+   "margin": 0.178,
+   "tilt_norm": -0.1432,
+   "tilt": -0.7398,
+   "lift": 0.00281,
+   "clutter_seed": 8554
+  },
+  {
+   "image": "s16_rotated.png",
+   "state_id": 16,
+   "paired": true,
+   "condition": "rotated",
+   "state": {
+    "tilt": -0.7398,
+    "lift": 0.00281,
+    "tilt_norm": -0.1432
+   },
+   "stratum": "near_boundary",
+   "margin": 0.178,
+   "tilt_norm": -0.1432,
+   "tilt": -0.7398,
+   "lift": 0.00281,
+   "clutter_seed": 8554
+  },
+  {
+   "image": "s16_occluded.png",
+   "state_id": 16,
+   "paired": true,
+   "condition": "occluded",
+   "state": {
+    "tilt": -0.7398,
+    "lift": 0.00281,
+    "tilt_norm": -0.1432
+   },
+   "stratum": "near_boundary",
+   "margin": 0.178,
+   "tilt_norm": -0.1432,
+   "tilt": -0.7398,
+   "lift": 0.00281,
+   "clutter_seed": 8554
+  },
+  {
+   "image": "s16_misleading.png",
+   "state_id": 16,
+   "paired": true,
+   "condition": "misleading",
+   "state": {
+    "tilt": -0.7398,
+    "lift": 0.00281,
+    "tilt_norm": -0.1432
+   },
+   "stratum": "near_boundary",
+   "margin": 0.178,
+   "tilt_norm": -0.1432,
+   "tilt": -0.7398,
+   "lift": 0.00281,
+   "clutter_seed": 8554
+  },
+  {
+   "image": "s17_normal.png",
+   "state_id": 17,
+   "paired": true,
+   "condition": "normal",
+   "state": {
+    "tilt": -0.7414,
+    "lift": 0.00416,
+    "tilt_norm": -0.1435
+   },
+   "stratum": "near_boundary",
+   "margin": 0.1763,
+   "tilt_norm": -0.1435,
+   "tilt": -0.7414,
+   "lift": 0.00416,
+   "clutter_seed": 6757
+  },
+  {
+   "image": "s17_rotated.png",
+   "state_id": 17,
+   "paired": true,
+   "condition": "rotated",
+   "state": {
+    "tilt": -0.7414,
+    "lift": 0.00416,
+    "tilt_norm": -0.1435
+   },
+   "stratum": "near_boundary",
+   "margin": 0.1763,
+   "tilt_norm": -0.1435,
+   "tilt": -0.7414,
+   "lift": 0.00416,
+   "clutter_seed": 6757
+  },
+  {
+   "image": "s17_occluded.png",
+   "state_id": 17,
+   "paired": true,
+   "condition": "occluded",
+   "state": {
+    "tilt": -0.7414,
+    "lift": 0.00416,
+    "tilt_norm": -0.1435
+   },
+   "stratum": "near_boundary",
+   "margin": 0.1763,
+   "tilt_norm": -0.1435,
+   "tilt": -0.7414,
+   "lift": 0.00416,
+   "clutter_seed": 6757
+  },
+  {
+   "image": "s17_misleading.png",
+   "state_id": 17,
+   "paired": true,
+   "condition": "misleading",
+   "state": {
+    "tilt": -0.7414,
+    "lift": 0.00416,
+    "tilt_norm": -0.1435
+   },
+   "stratum": "near_boundary",
+   "margin": 0.1763,
+   "tilt_norm": -0.1435,
+   "tilt": -0.7414,
+   "lift": 0.00416,
+   "clutter_seed": 6757
+  },
+  {
+   "image": "s18_normal.png",
+   "state_id": 18,
+   "paired": true,
+   "condition": "normal",
+   "state": {
+    "tilt": -0.8153,
+    "lift": 0.0048,
+    "tilt_norm": -0.1578
+   },
+   "stratum": "near_boundary",
+   "margin": 0.0941,
+   "tilt_norm": -0.1578,
+   "tilt": -0.8153,
+   "lift": 0.0048,
+   "clutter_seed": 6761
+  },
+  {
+   "image": "s18_rotated.png",
+   "state_id": 18,
+   "paired": true,
+   "condition": "rotated",
+   "state": {
+    "tilt": -0.8153,
+    "lift": 0.0048,
+    "tilt_norm": -0.1578
+   },
+   "stratum": "near_boundary",
+   "margin": 0.0941,
+   "tilt_norm": -0.1578,
+   "tilt": -0.8153,
+   "lift": 0.0048,
+   "clutter_seed": 6761
+  },
+  {
+   "image": "s18_occluded.png",
+   "state_id": 18,
+   "paired": true,
+   "condition": "occluded",
+   "state": {
+    "tilt": -0.8153,
+    "lift": 0.0048,
+    "tilt_norm": -0.1578
+   },
+   "stratum": "near_boundary",
+   "margin": 0.0941,
+   "tilt_norm": -0.1578,
+   "tilt": -0.8153,
+   "lift": 0.0048,
+   "clutter_seed": 6761
+  },
+  {
+   "image": "s18_misleading.png",
+   "state_id": 18,
+   "paired": true,
+   "condition": "misleading",
+   "state": {
+    "tilt": -0.8153,
+    "lift": 0.0048,
+    "tilt_norm": -0.1578
+   },
+   "stratum": "near_boundary",
+   "margin": 0.0941,
+   "tilt_norm": -0.1578,
+   "tilt": -0.8153,
+   "lift": 0.0048,
+   "clutter_seed": 6761
+  },
+  {
+   "image": "s19_normal.png",
+   "state_id": 19,
+   "paired": true,
+   "condition": "normal",
+   "state": {
+    "tilt": -0.7753,
+    "lift": 0.00063,
+    "tilt_norm": -0.15
+   },
+   "stratum": "near_boundary",
+   "margin": 0.1386,
+   "tilt_norm": -0.15,
+   "tilt": -0.7753,
+   "lift": 0.00063,
+   "clutter_seed": 3507
+  },
+  {
+   "image": "s19_rotated.png",
+   "state_id": 19,
+   "paired": true,
+   "condition": "rotated",
+   "state": {
+    "tilt": -0.7753,
+    "lift": 0.00063,
+    "tilt_norm": -0.15
+   },
+   "stratum": "near_boundary",
+   "margin": 0.1386,
+   "tilt_norm": -0.15,
+   "tilt": -0.7753,
+   "lift": 0.00063,
+   "clutter_seed": 3507
+  },
+  {
+   "image": "s19_occluded.png",
+   "state_id": 19,
+   "paired": true,
+   "condition": "occluded",
+   "state": {
+    "tilt": -0.7753,
+    "lift": 0.00063,
+    "tilt_norm": -0.15
+   },
+   "stratum": "near_boundary",
+   "margin": 0.1386,
+   "tilt_norm": -0.15,
+   "tilt": -0.7753,
+   "lift": 0.00063,
+   "clutter_seed": 3507
+  },
+  {
+   "image": "s19_misleading.png",
+   "state_id": 19,
+   "paired": true,
+   "condition": "misleading",
+   "state": {
+    "tilt": -0.7753,
+    "lift": 0.00063,
+    "tilt_norm": -0.15
+   },
+   "stratum": "near_boundary",
+   "margin": 0.1386,
+   "tilt_norm": -0.15,
+   "tilt": -0.7753,
+   "lift": 0.00063,
+   "clutter_seed": 3507
+  },
+  {
+   "image": "s20_normal.png",
+   "state_id": 20,
+   "paired": true,
+   "condition": "normal",
+   "state": {
+    "tilt": -0.8789,
+    "lift": 0.00815,
+    "tilt_norm": -0.1701
+   },
+   "stratum": "near_boundary",
+   "margin": 0.0234,
+   "tilt_norm": -0.1701,
+   "tilt": -0.8789,
+   "lift": 0.00815,
+   "clutter_seed": 6621
+  },
+  {
+   "image": "s20_rotated.png",
+   "state_id": 20,
+   "paired": true,
+   "condition": "rotated",
+   "state": {
+    "tilt": -0.8789,
+    "lift": 0.00815,
+    "tilt_norm": -0.1701
+   },
+   "stratum": "near_boundary",
+   "margin": 0.0234,
+   "tilt_norm": -0.1701,
+   "tilt": -0.8789,
+   "lift": 0.00815,
+   "clutter_seed": 6621
+  },
+  {
+   "image": "s20_occluded.png",
+   "state_id": 20,
+   "paired": true,
+   "condition": "occluded",
+   "state": {
+    "tilt": -0.8789,
+    "lift": 0.00815,
+    "tilt_norm": -0.1701
+   },
+   "stratum": "near_boundary",
+   "margin": 0.0234,
+   "tilt_norm": -0.1701,
+   "tilt": -0.8789,
+   "lift": 0.00815,
+   "clutter_seed": 6621
+  },
+  {
+   "image": "s20_misleading.png",
+   "state_id": 20,
+   "paired": true,
+   "condition": "misleading",
+   "state": {
+    "tilt": -0.8789,
+    "lift": 0.00815,
+    "tilt_norm": -0.1701
+   },
+   "stratum": "near_boundary",
+   "margin": 0.0234,
+   "tilt_norm": -0.1701,
+   "tilt": -0.8789,
+   "lift": 0.00815,
+   "clutter_seed": 6621
+  },
+  {
+   "image": "p00_partial.png",
+   "state_id": 100,
+   "paired": false,
+   "condition": "partial",
+   "state": {
+    "tilt": 0.1033,
+    "lift": 0.01208,
+    "tilt_norm": 0.1148
+   },
+   "stratum": "partial",
+   "margin": null,
+   "tilt_norm": 0.1148,
+   "tilt": 0.1033,
+   "lift": 0.01208,
+   "clutter_seed": 7932
+  },
+  {
+   "image": "p01_partial.png",
+   "state_id": 101,
+   "paired": false,
+   "condition": "partial",
+   "state": {
+    "tilt": 0.1215,
+    "lift": 0.00869,
+    "tilt_norm": 0.135
+   },
+   "stratum": "partial",
+   "margin": null,
+   "tilt_norm": 0.135,
+   "tilt": 0.1215,
+   "lift": 0.00869,
+   "clutter_seed": 6471
+  },
+  {
+   "image": "p02_partial.png",
+   "state_id": 102,
+   "paired": false,
+   "condition": "partial",
+   "state": {
+    "tilt": 0.1069,
+    "lift": 0.00865,
+    "tilt_norm": 0.1188
+   },
+   "stratum": "partial",
+   "margin": null,
+   "tilt_norm": 0.1188,
+   "tilt": 0.1069,
+   "lift": 0.00865,
+   "clutter_seed": 9222
+  },
+  {
+   "image": "p03_partial.png",
+   "state_id": 103,
+   "paired": false,
+   "condition": "partial",
+   "state": {
+    "tilt": 0.193,
+    "lift": 0.01054,
+    "tilt_norm": 0.2145
+   },
+   "stratum": "partial",
+   "margin": null,
+   "tilt_norm": 0.2145,
+   "tilt": 0.193,
+   "lift": 0.01054,
+   "clutter_seed": 3457
+  },
+  {
+   "image": "p04_partial.png",
+   "state_id": 104,
+   "paired": false,
+   "condition": "partial",
+   "state": {
+    "tilt": 0.2131,
+    "lift": 0.0097,
+    "tilt_norm": 0.2367
+   },
+   "stratum": "partial",
+   "margin": null,
+   "tilt_norm": 0.2367,
+   "tilt": 0.2131,
+   "lift": 0.0097,
+   "clutter_seed": 7231
+  },
+  {
+   "image": "p05_partial.png",
+   "state_id": 105,
+   "paired": false,
+   "condition": "partial",
+   "state": {
+    "tilt": 0.123,
+    "lift": 0.00855,
+    "tilt_norm": 0.1366
+   },
+   "stratum": "partial",
+   "margin": null,
+   "tilt_norm": 0.1366,
+   "tilt": 0.123,
+   "lift": 0.00855,
+   "clutter_seed": 6734
+  },
+  {
+   "image": "p06_partial.png",
+   "state_id": 106,
+   "paired": false,
+   "condition": "partial",
+   "state": {
+    "tilt": 0.1261,
+    "lift": 0.01065,
+    "tilt_norm": 0.1401
+   },
+   "stratum": "partial",
+   "margin": null,
+   "tilt_norm": 0.1401,
+   "tilt": 0.1261,
+   "lift": 0.01065,
+   "clutter_seed": 3741
+  }
+ ]
+}

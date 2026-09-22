@@ -1,0 +1,59 @@
+{
+  "schema": 1,
+  "id": "trix-evidence-2026-09-22",
+  "access": "private local archive",
+  "directory_name": "TRIX_reproducibility_release",
+  "remote_uri": null,
+  "sha256_manifest": "00d1f97690f4ab90b11ae7da55fabcbe1c866c9d6dbe893eb1c15f3dcf292710",
+  "payload_files": 109004,
+  "payload_bytes": 24550012038,
+  "manifest_name": "SHA256SUMS.jsonl",
+  "source_provenance": "SOURCE_PROVENANCE.json",
+  "evidence_map": "EVIDENCE_MAP.md",
+  "hardware_repository": "https://github.com/stavanio/bhujab601",
+  "hardware_commit": "d296e6e8d37b05e4d8a60d6d4b95f24890111f6f",
+  "snapshots": [
+    {
+      "name": "research",
+      "commit": "b6f59694195d88f093f5031973940850cd11fb8d",
+      "archive": "source_snapshots/research-b6f59694195d.tar.gz",
+      "sha256": "438301ed25b40122cd41e2d6647f12e190742ff1104a4b425227aab071bc2772"
+    },
+    {
+      "name": "hardware",
+      "commit": "d296e6e8d37b05e4d8a60d6d4b95f24890111f6f",
+      "archive": "source_snapshots/hardware-d296e6e8d37b.tar.gz",
+      "sha256": "4f24e61873da73f622d9846d45f1100b2576afd0d9218b434709e72b590cf6eb"
+    },
+    {
+      "name": "frozen-workspaces",
+      "commit": "df1061eb53a5e45420f00bcaa0e2168356652081",
+      "archive": "source_snapshots/frozen-workspaces-df1061eb53a5.tar.gz",
+      "sha256": "1bcbe0fa84b469a1f6bbf61f851224bf424f385a84dc2d4995bf765ad08a26bc"
+    },
+    {
+      "name": "recorded-policy-source",
+      "commit": "7a15c8f8b468dd0fae5fcd702f9da98137f939a9",
+      "archive": "source_snapshots/recorded-policy-source-7a15c8f8b468.tar.gz",
+      "sha256": "60fa43fe457ceffc05b0329c5cc2c2797d090bef051d7b0758e2bbcd03767ca9"
+    },
+    {
+      "name": "recorded-policy-source",
+      "commit": "94737c178204b116943f2ae8e51ea587b58b3b30",
+      "archive": "source_snapshots/recorded-policy-source-94737c178204.tar.gz",
+      "sha256": "79ede77e38839b51ec33563b9023a21090493f665f69896452d17f5dbf1bb05e"
+    },
+    {
+      "name": "recorded-policy-source",
+      "commit": "bb21022afcacb63b254f6aa74f83034d58450392",
+      "archive": "source_snapshots/recorded-policy-source-bb21022afcac.tar.gz",
+      "sha256": "8c340a81cbd403866c39059cce9fab1f82cdacacdd796a286ce1c082fd6b72ab"
+    },
+    {
+      "name": "hardware-intervention-source",
+      "commit": "633730c839b5e96b9dff3ddfad78316832e8a223",
+      "archive": "source_snapshots/hardware-intervention-source-633730c839b5.tar.gz",
+      "sha256": "217abcf6607f0f400f0f528aa1c026610dbe9e61ceac372af267d30c2e30000b"
+    }
+  ]
+}

@@ -1,0 +1,7 @@
+# Preserve hashed scientific records and generated artwork byte for byte.
+*.json -text
+*.csv -text whitespace=cr-at-eol
+*.svg -text -whitespace
+*.png -text -diff
+*.jpg -text -diff
+*.pdf -text -diff

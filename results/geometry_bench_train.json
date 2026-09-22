@@ -1,0 +1,5166 @@
+{
+ "spec_hash": "ea589d6f3fcb4315",
+ "split": "train",
+ "rows": [
+  {
+   "id": "train_0000",
+   "family": "box",
+   "predicted": false,
+   "methods": {
+    "clip": {
+     "feasible": 100.0,
+     "intervention": 0.567452199761965,
+     "required_displacement": 0.0,
+     "retains_required": true
+    },
+    "affine": {
+     "feasible": 100.0,
+     "intervention": 1.7309827596686902,
+     "required_displacement": 1.5883444575952552,
+     "retains_required": false
+    },
+    "nonlinear": {
+     "feasible": 100.0,
+     "intervention": 0.7447093377425286,
+     "required_displacement": 0.16433463893712968,
+     "retains_required": false
+    },
+    "oracle_cf": {
+     "feasible": 100.0,
+     "intervention": 0.5674522009229639,
+     "required_displacement": 0.0,
+     "retains_required": true
+    },
+    "oracle_ctx": {
+     "feasible": 100.0,
+     "intervention": 0.5674522009229639,
+     "required_displacement": 0.0,
+     "retains_required": true
+    },
+    "exact": {
+     "feasible": 100.0,
+     "intervention": 0.567452199761965,
+     "required_displacement": 0.0,
+     "retains_required": true
+    }
+   }
+  },
+  {
+   "id": "train_0001",
+   "family": "ellipsoid",
+   "predicted": true,
+   "methods": {
+    "clip": {
+     "feasible": 100.0,
+     "intervention": 1.1478182729624242,
+     "required_displacement": 0.06624378131163078,
+     "retains_required": false
+    },
+    "affine": {
+     "feasible": 100.0,
+     "intervention": 1.5179058975429018,
+     "required_displacement": 0.4731512843646152,
+     "retains_required": false
+    },
+    "nonlinear": {
+     "feasible": 100.0,
+     "intervention": 1.4383212271600252,
+     "required_displacement": 0.25245671789538066,
+     "retains_required": false
+    },
+    "oracle_cf": {
+     "feasible": 100.0,
+     "intervention": 1.1478182729624242,
+     "required_displacement": 0.06624378131163078,
+     "retains_required": false
+    },
+    "oracle_ctx": {
+     "feasible": 100.0,
+     "intervention": 1.1478182729624242,
+     "required_displacement": 0.06624378131163078,
+     "retains_required": false
+    },
+    "exact": {
+     "feasible": 100.0,
+     "intervention": 1.0435102803117835,
+     "required_displacement": 0.0,
+     "retains_required": true
+    }
+   }
+  },
+  {
+   "id": "train_0002",
+   "family": "polytope",
+   "predicted": true,
+   "methods": {
+    "clip": {
+     "feasible": 100.0,
+     "intervention": 1.0258617056663866,
+     "required_displacement": 0.5806949100253685,
+     "retains_required": false
+    },
+    "affine": {
+     "feasible": 100.0,
+     "intervention": 1.5059633843902227,
+     "required_displacement": 1.2210423119585252,
+     "retains_required": false
+    },
+    "nonlinear": {
+     "feasible": 100.0,
+     "intervention": 1.0258617056663866,
+     "required_displacement": 0.5806949100253685,
+     "retains_required": false
+    },
+    "oracle_cf": {
+     "feasible": 100.0,
+     "intervention": 1.0258617057477315,
+     "required_displacement": 0.5806949100253685,
+     "retains_required": false
+    },
+    "oracle_ctx": {
+     "feasible": 100.0,
+     "intervention": 1.0258617057477315,
+     "required_displacement": 0.5806949100253685,
+     "retains_required": false
+    },
+    "exact": {
+     "feasible": 100.0,
+     "intervention": 0.543840483440506,
+     "required_displacement": 0.0,
+     "retains_required": true
+    }
+   }
+  },
+  {
+   "id": "train_0003",
+   "family": "state_scaled",
+   "predicted": true,
+   "methods": {
+    "clip": {
+     "feasible": 100.0,
+     "intervention": 0.9989938665185106,
+     "required_displacement": 0.19554054728034348,
+     "retains_required": false
+    },
+    "affine": {
+     "feasible": 100.0,
+     "intervention": 1.499434765246778,
+     "required_displacement": 1.0878437104781766,
+     "retains_required": false
+    },
+    "nonlinear": {
+     "feasible": 100.0,
+     "intervention": 1.2360787256942773,
+     "required_displacement": 0.4787696390725568,
+     "retains_required": false
+    },
+    "oracle_cf": {
+     "feasible": 100.0,
+     "intervention": 0.9989938665185106,
+     "required_displacement": 0.19554054728034348,
+     "retains_required": false
+    },
+    "oracle_ctx": {
+     "feasible": 100.0,
+     "intervention": 0.7363866523591747,
+     "required_displacement": 0.0,
+     "retains_required": true
+    },
+    "exact": {
+     "feasible": 100.0,
+     "intervention": 0.7363866511312455,
+     "required_displacement": 0.0,
+     "retains_required": true
+    }
+   }
+  },
+  {
+   "id": "train_0004",
+   "family": "rotating",
+   "predicted": true,
+   "methods": {
+    "clip": {
+     "feasible": 100.0,
+     "intervention": 1.3198974631932978,
+     "required_displacement": 0.1376373855857876,
+     "retains_required": false
+    },
+    "affine": {
+     "feasible": 100.0,
+     "intervention": 1.408622564091985,
+     "required_displacement": 0.14984533045681211,
+     "retains_required": false
+    },
+    "nonlinear": {
+     "feasible": 100.0,
+     "intervention": 1.3750350465426502,
+     "required_displacement": 0.2793034084860063,
+     "retains_required": false
+    },
+    "oracle_cf": {
+     "feasible": 100.0,
+     "intervention": 1.3198974631932978,
+     "required_displacement": 0.1376373855857876,
+     "retains_required": false
+    },
+    "oracle_ctx": {
+     "feasible": 100.0,
+     "intervention": 1.3019935351474599,
+     "required_displacement": 0.13029192256508468,
+     "retains_required": false
+    },
+    "exact": {
+     "feasible": 100.0,
+     "intervention": 1.164781840494847,
+     "required_displacement": 0.0,
+     "retains_required": true
+    }
+   }
+  },
+  {
+   "id": "train_0005",
+   "family": "phase_gated",
+   "predicted": true,
+   "methods": {
+    "clip": {
+     "feasible": 100.0,
+     "intervention": 0.9343595327029708,
+     "required_displacement": 0.12427681347363594,
+     "retains_required": false
+    },
+    "affine": {
+     "feasible": 100.0,
+     "intervention": 1.6126554389740841,
+     "required_displacement": 1.4119928986814143,
+     "retains_required": false
+    },
+    "nonlinear": {
+     "feasible": 100.0,
+     "intervention": 1.4636434226430328,
+     "required_displacement": 0.6994011170331688,
+     "retains_required": false
+    },
+    "oracle_cf": {
+     "feasible": 100.0,
+     "intervention": 0.9343595333369973,
+     "required_displacement": 0.12427681347363594,
+     "retains_required": false
+    },
+    "oracle_ctx": {
+     "feasible": 100.0,
+     "intervention": 0.805632202708143,
+     "required_displacement": 0.0,
+     "retains_required": true
+    },
+    "exact": {
+     "feasible": 100.0,
+     "intervention": 0.8056322014534573,
+     "required_displacement": 0.0,
+     "retains_required": true
+    }
+   }
+  },
+  {
+   "id": "train_0006",
+   "family": "box",
+   "predicted": false,
+   "methods": {
+    "clip": {
+     "feasible": 100.0,
+     "intervention": 0.6218411277823229,
+     "required_displacement": 0.0,
+     "retains_required": true
+    },
+    "affine": {
+     "feasible": 100.0,
+     "intervention": 1.7296977669903368,
+     "required_displacement": 0.8942853119635162,
+     "retains_required": false
+    },
+    "nonlinear": {
+     "feasible": 100.0,
+     "intervention": 0.8168886623878931,
+     "required_displacement": 0.02526489418139832,
+     "retains_required": false
+    },
+    "oracle_cf": {
+     "feasible": 100.0,
+     "intervention": 0.6218411289439868,
+     "required_displacement": 0.0,
+     "retains_required": true
+    },
+    "oracle_ctx": {
+     "feasible": 100.0,
+     "intervention": 0.6218411289439868,
+     "required_displacement": 0.0,
+     "retains_required": true
+    },
+    "exact": {
+     "feasible": 100.0,
+     "intervention": 0.6218411277823229,
+     "required_displacement": 0.0,
+     "retains_required": true
+    }
+   }
+  },
+  {
+   "id": "train_0007",
+   "family": "ellipsoid",
+   "predicted": true,
+   "methods": {
+    "clip": {
+     "feasible": 100.0,
+     "intervention": 1.1579263681596736,
+     "required_displacement": 0.061190548804070245,
+     "retains_required": false
+    },
+    "affine": {
+     "feasible": 100.0,
+     "intervention": 1.4565541449979835,
+     "required_displacement": 0.5380897868584947,
+     "retains_required": false
+    },
+    "nonlinear": {
+     "feasible": 100.0,
+     "intervention": 1.3325873024964823,
+     "required_displacement": 0.25924433714734674,
+     "retains_required": false
+    },
+    "oracle_cf": {
+     "feasible": 100.0,
+     "intervention": 1.1579263681596736,
+     "required_displacement": 0.061190548804070245,
+     "retains_required": false
+    },
+    "oracle_ctx": {
+     "feasible": 100.0,
+     "intervention": 1.1579263681596736,
+     "required_displacement": 0.061190548804070245,
+     "retains_required": false
+    },
+    "exact": {
+     "feasible": 100.0,
+     "intervention": 1.039615896504829,
+     "required_displacement": 0.0,
+     "retains_required": true
+    }
+   }
+  },
+  {
+   "id": "train_0008",
+   "family": "polytope",
+   "predicted": true,
+   "methods": {
+    "clip": {
+     "feasible": 100.0,
+     "intervention": 0.8960445408996967,
+     "required_displacement": 3.0021735944840335,
+     "retains_required": false
+    },
+    "affine": {
+     "feasible": 100.0,
+     "intervention": 1.5504720728320074,
+     "required_displacement": 3.3648498710327854,
+     "retains_required": false
+    },
+    "nonlinear": {
+     "feasible": 100.0,
+     "intervention": 0.8960445408996967,
+     "required_displacement": 3.0021735944840335,
+     "retains_required": false
+    },
+    "oracle_cf": {
+     "feasible": 100.0,
+     "intervention": 0.8960445409339826,
+     "required_displacement": 3.0021735944840335,
+     "retains_required": false
+    },
+    "oracle_ctx": {
+     "feasible": 100.0,
+     "intervention": 0.8960445409339826,
+     "required_displacement": 3.0021735944840335,
+     "retains_required": false
+    },
+    "exact": {
+     "feasible": 100.0,
+     "intervention": 0.47985295358041247,
+     "required_displacement": 0.0,
+     "retains_required": true
+    }
+   }
+  },
+  {
+   "id": "train_0009",
+   "family": "state_scaled",
+   "predicted": true,
+   "methods": {
+    "clip": {
+     "feasible": 100.0,
+     "intervention": 1.2691214721114248,
+     "required_displacement": 0.28280431729409455,
+     "retains_required": false
+    },
+    "affine": {
+     "feasible": 100.0,
+     "intervention": 1.440493936506496,
+     "required_displacement": 0.6736761082164735,
+     "retains_required": false
+    },
+    "nonlinear": {
+     "feasible": 100.0,
+     "intervention": 1.407460538881461,
+     "required_displacement": 0.5610641350678203,
+     "retains_required": false
+    },
+    "oracle_cf": {
+     "feasible": 100.0,
+     "intervention": 1.2691214721114248,
+     "required_displacement": 0.28280431729409455,
+     "retains_required": false
+    },
+    "oracle_ctx": {
+     "feasible": 100.0,
+     "intervention": 0.8128125019447907,
+     "required_displacement": 0.0,
+     "retains_required": true
+    },
+    "exact": {
+     "feasible": 100.0,
+     "intervention": 0.8128125006523678,
+     "required_displacement": 0.0,
+     "retains_required": true
+    }
+   }
+  },
+  {
+   "id": "train_0010",
+   "family": "rotating",
+   "predicted": true,
+   "methods": {
+    "clip": {
+     "feasible": 100.0,
+     "intervention": 1.2176521652816443,
+     "required_displacement": 0.22199483830473257,
+     "retains_required": false
+    },
+    "affine": {
+     "feasible": 100.0,
+     "intervention": 1.4519901221986868,
+     "required_displacement": 0.6757888393746154,
+     "retains_required": false
+    },
+    "nonlinear": {
+     "feasible": 100.0,
+     "intervention": 1.2347796267563076,
+     "required_displacement": 0.3943830760114056,
+     "retains_required": false
+    },
+    "oracle_cf": {
+     "feasible": 100.0,
+     "intervention": 1.2176521652816443,
+     "required_displacement": 0.22199483830473257,
+     "retains_required": false
+    },
+    "oracle_ctx": {
+     "feasible": 100.0,
+     "intervention": 1.1729405051314596,
+     "required_displacement": 0.14483902559684034,
+     "retains_required": false
+    },
+    "exact": {
+     "feasible": 100.0,
+     "intervention": 1.0349001523323862,
+     "required_displacement": 0.0,
+     "retains_required": true
+    }
+   }
+  },
+  {
+   "id": "train_0011",
+   "family": "phase_gated",
+   "predicted": false,
+   "methods": {
+    "clip": {
+     "feasible": 100.0,
+     "intervention": 0.985000722427674,
+     "required_displacement": 0.0,
+     "retains_required": true
+    },
+    "affine": {
+     "feasible": 100.0,
+     "intervention": 1.5811332737250074,
+     "required_displacement": 1.0843786032247797,
+     "retains_required": false
+    },
+    "nonlinear": {
+     "feasible": 100.0,
+     "intervention": 1.4550913257115952,
+     "required_displacement": 0.4786850860739119,
+     "retains_required": false
+    },
+    "oracle_cf": {
+     "feasible": 100.0,
+     "intervention": 0.9850007237972824,
+     "required_displacement": 0.0,
+     "retains_required": true
+    },
+    "oracle_ctx": {
+     "feasible": 100.0,
+     "intervention": 0.9850007237972824,
+     "required_displacement": 0.0,
+     "retains_required": true
+    },
+    "exact": {
+     "feasible": 100.0,
+     "intervention": 0.985000722427674,
+     "required_displacement": 0.0,
+     "retains_required": true
+    }
+   }
+  },
+  {
+   "id": "train_0012",
+   "family": "box",
+   "predicted": false,
+   "methods": {
+    "clip": {
+     "feasible": 100.0,
+     "intervention": 0.5495333643292366,
+     "required_displacement": 0.0,
+     "retains_required": true
+    },
+    "affine": {
+     "feasible": 100.0,
+     "intervention": 1.7731149676005091,
+     "required_displacement": 1.491861924557281,
+     "retains_required": false
+    },
+    "nonlinear": {
+     "feasible": 100.0,
+     "intervention": 0.6590972679454526,
+     "required_displacement": 0.0,
+     "retains_required": true
+    },
+    "oracle_cf": {
+     "feasible": 100.0,
+     "intervention": 0.549533365462954,
+     "required_displacement": 0.0,
+     "retains_required": true
+    },
+    "oracle_ctx": {
+     "feasible": 100.0,
+     "intervention": 0.549533365462954,
+     "required_displacement": 0.0,
+     "retains_required": true
+    },
+    "exact": {
+     "feasible": 100.0,
+     "intervention": 0.5495333643292366,
+     "required_displacement": 0.0,
+     "retains_required": true
+    }
+   }
+  },
+  {
+   "id": "train_0013",
+   "family": "ellipsoid",
+   "predicted": false,
+   "methods": {
+    "clip": {
+     "feasible": 100.0,
+     "intervention": 1.0071731351681386,
+     "required_displacement": 0.0,
+     "retains_required": true
+    },
+    "affine": {
+     "feasible": 100.0,
+     "intervention": 1.571585975340144,
+     "required_displacement": 0.47858683939966334,
+     "retains_required": false
+    },
+    "nonlinear": {
+     "feasible": 100.0,
+     "intervention": 1.4289860265028818,
+     "required_displacement": 0.5684493561337531,
+     "retains_required": false
+    },
+    "oracle_cf": {
+     "feasible": 100.0,
+     "intervention": 1.0071731351681386,
+     "required_displacement": 0.0,
+     "retains_required": true
+    },
+    "oracle_ctx": {
+     "feasible": 100.0,
+     "intervention": 1.0071731351681386,
+     "required_displacement": 0.0,
+     "retains_required": true
+    },
+    "exact": {
+     "feasible": 100.0,
+     "intervention": 1.2088762273958558,
+     "required_displacement": 0.0,
+     "retains_required": true
+    }
+   }
+  },
+  {
+   "id": "train_0014",
+   "family": "polytope",
+   "predicted": true,
+   "methods": {
+    "clip": {
+     "feasible": 100.0,
+     "intervention": 0.9432120901944103,
+     "required_displacement": 4.856679736151548,
+     "retains_required": false
+    },
+    "affine": {
+     "feasible": 100.0,
+     "intervention": 1.4856926204086522,
+     "required_displacement": 4.856679736151548,
+     "retains_required": false
+    },
+    "nonlinear": {
+     "feasible": 100.0,
+     "intervention": 0.9443862716753156,
+     "required_displacement": 4.856679736151548,
+     "retains_required": false
+    },
+    "oracle_cf": {
+     "feasible": 100.0,
+     "intervention": 0.9432120902242551,
+     "required_displacement": 4.856679736151548,
+     "retains_required": false
+    },
+    "oracle_ctx": {
+     "feasible": 100.0,
+     "intervention": 0.9432120902242551,
+     "required_displacement": 4.856679736151548,
+     "retains_required": false
+    },
+    "exact": {
+     "feasible": 100.0,
+     "intervention": 0.3471633158780704,
+     "required_displacement": 0.0,
+     "retains_required": true
+    }
+   }
+  },
+  {
+   "id": "train_0015",
+   "family": "state_scaled",
+   "predicted": true,
+   "methods": {
+    "clip": {
+     "feasible": 100.0,
+     "intervention": 1.251347597219267,
+     "required_displacement": 0.3266255311158041,
+     "retains_required": false
+    },
+    "affine": {
+     "feasible": 100.0,
+     "intervention": 1.43725778955297,
+     "required_displacement": 0.6566750323432288,
+     "retains_required": false
+    },
+    "nonlinear": {
+     "feasible": 100.0,
+     "intervention": 1.251347597219267,
+     "required_displacement": 0.3266255311158041,
+     "retains_required": false
+    },
+    "oracle_cf": {
+     "feasible": 100.0,
+     "intervention": 1.251347597219267,
+     "required_displacement": 0.3266255311158041,
+     "retains_required": false
+    },
+    "oracle_ctx": {
+     "feasible": 100.0,
+     "intervention": 0.8808210830416653,
+     "required_displacement": 0.0,
+     "retains_required": true
+    },
+    "exact": {
+     "feasible": 100.0,
+     "intervention": 0.8808210817167199,
+     "required_displacement": 0.0,
+     "retains_required": true
+    }
+   }
+  },
+  {
+   "id": "train_0016",
+   "family": "rotating",
+   "predicted": true,
+   "methods": {
+    "clip": {
+     "feasible": 100.0,
+     "intervention": 1.0623226377060349,
+     "required_displacement": 0.15916624338866847,
+     "retains_required": false
+    },
+    "affine": {
+     "feasible": 100.0,
+     "intervention": 1.5214788746193688,
+     "required_displacement": 0.9131120121250735,
+     "retains_required": false
+    },
+    "nonlinear": {
+     "feasible": 100.0,
+     "intervention": 1.0641536667130955,
+     "required_displacement": 0.15916624338866847,
+     "retains_required": false
+    },
+    "oracle_cf": {
+     "feasible": 100.0,
+     "intervention": 1.0623226377060349,
+     "required_displacement": 0.15916624338866847,
+     "retains_required": false
+    },
+    "oracle_ctx": {
+     "feasible": 100.0,
+     "intervention": 1.022521231854227,
+     "required_displacement": 0.11891963746954631,
+     "retains_required": false
+    },
+    "exact": {
+     "feasible": 100.0,
+     "intervention": 0.8249421675274601,
+     "required_displacement": 0.0,
+     "retains_required": true
+    }
+   }
+  },
+  {
+   "id": "train_0017",
+   "family": "phase_gated",
+   "predicted": false,
+   "methods": {
+    "clip": {
+     "feasible": 100.0,
+     "intervention": 0.7827734014408796,
+     "required_displacement": 0.0,
+     "retains_required": true
+    },
+    "affine": {
+     "feasible": 100.0,
+     "intervention": 1.7082957918209167,
+     "required_displacement": 1.4043220739488762,
+     "retains_required": false
+    },
+    "nonlinear": {
+     "feasible": 100.0,
+     "intervention": 0.8932716363337907,
+     "required_displacement": 0.1771462758579553,
+     "retains_required": false
+    },
+    "oracle_cf": {
+     "feasible": 100.0,
+     "intervention": 0.7827734026759751,
+     "required_displacement": 0.0,
+     "retains_required": true
+    },
+    "oracle_ctx": {
+     "feasible": 100.0,
+     "intervention": 0.7827734026759751,
+     "required_displacement": 0.0,
+     "retains_required": true
+    },
+    "exact": {
+     "feasible": 100.0,
+     "intervention": 0.7827734014408796,
+     "required_displacement": 0.0,
+     "retains_required": true
+    }
+   }
+  },
+  {
+   "id": "train_0018",
+   "family": "box",
+   "predicted": false,
+   "methods": {
+    "clip": {
+     "feasible": 100.0,
+     "intervention": 0.6723681409857559,
+     "required_displacement": 0.0,
+     "retains_required": true
+    },
+    "affine": {
+     "feasible": 100.0,
+     "intervention": 1.6651342317932853,
+     "required_displacement": 1.485302847229568,
+     "retains_required": false
+    },
+    "nonlinear": {
+     "feasible": 100.0,
+     "intervention": 0.8776794488666454,
+     "required_displacement": 0.0,
+     "retains_required": true
+    },
+    "oracle_cf": {
+     "feasible": 100.0,
+     "intervention": 0.672368142204823,
+     "required_displacement": 0.0,
+     "retains_required": true
+    },
+    "oracle_ctx": {
+     "feasible": 100.0,
+     "intervention": 0.672368142204823,
+     "required_displacement": 0.0,
+     "retains_required": true
+    },
+    "exact": {
+     "feasible": 100.0,
+     "intervention": 0.6723681409857559,
+     "required_displacement": 0.0,
+     "retains_required": true
+    }
+   }
+  },
+  {
+   "id": "train_0019",
+   "family": "ellipsoid",
+   "predicted": true,
+   "methods": {
+    "clip": {
+     "feasible": 100.0,
+     "intervention": 1.063226558901421,
+     "required_displacement": 0.08375145995157263,
+     "retains_required": false
+    },
+    "affine": {
+     "feasible": 100.0,
+     "intervention": 1.5144312355726726,
+     "required_displacement": 0.32098042543960753,
+     "retains_required": false
+    },
+    "nonlinear": {
+     "feasible": 100.0,
+     "intervention": 1.366363743001174,
+     "required_displacement": 0.2991221337073059,
+     "retains_required": false
+    },
+    "oracle_cf": {
+     "feasible": 100.0,
+     "intervention": 1.063226558901421,
+     "required_displacement": 0.08375145995157263,
+     "retains_required": false
+    },
+    "oracle_ctx": {
+     "feasible": 100.0,
+     "intervention": 1.063226558901421,
+     "required_displacement": 0.08375145995157263,
+     "retains_required": false
+    },
+    "exact": {
+     "feasible": 100.0,
+     "intervention": 0.9501339835066073,
+     "required_displacement": 0.0,
+     "retains_required": true
+    }
+   }
+  },
+  {
+   "id": "train_0020",
+   "family": "polytope",
+   "predicted": true,
+   "methods": {
+    "clip": {
+     "feasible": 100.0,
+     "intervention": 1.0325168709732744,
+     "required_displacement": 0.7496501682767592,
+     "retains_required": false
+    },
+    "affine": {
+     "feasible": 100.0,
+     "intervention": 1.5157115907093757,
+     "required_displacement": 1.0313479395779013,
+     "retains_required": false
+    },
+    "nonlinear": {
+     "feasible": 100.0,
+     "intervention": 1.0325168709732744,
+     "required_displacement": 0.7496501682767592,
+     "retains_required": false
+    },
+    "oracle_cf": {
+     "feasible": 100.0,
+     "intervention": 1.032516871040986,
+     "required_displacement": 0.7496501682767592,
+     "retains_required": false
+    },
+    "oracle_ctx": {
+     "feasible": 100.0,
+     "intervention": 1.032516871040986,
+     "required_displacement": 0.7496501682767592,
+     "retains_required": false
+    },
+    "exact": {
+     "feasible": 100.0,
+     "intervention": 0.47128006854725896,
+     "required_displacement": 0.0,
+     "retains_required": true
+    }
+   }
+  },
+  {
+   "id": "train_0021",
+   "family": "state_scaled",
+   "predicted": true,
+   "methods": {
+    "clip": {
+     "feasible": 100.0,
+     "intervention": 1.3469473125867861,
+     "required_displacement": 0.21490765336421122,
+     "retains_required": false
+    },
+    "affine": {
+     "feasible": 100.0,
+     "intervention": 1.4912474271031453,
+     "required_displacement": 0.37105302398529066,
+     "retains_required": false
+    },
+    "nonlinear": {
+     "feasible": 100.0,
+     "intervention": 1.4000522735461403,
+     "required_displacement": 0.21490765336421122,
+     "retains_required": false
+    },
+    "oracle_cf": {
+     "feasible": 100.0,
+     "intervention": 1.3469473125867861,
+     "required_displacement": 0.21490765336421122,
+     "retains_required": false
+    },
+    "oracle_ctx": {
+     "feasible": 100.0,
+     "intervention": 1.1154365043674486,
+     "required_displacement": 0.0,
+     "retains_required": true
+    },
+    "exact": {
+     "feasible": 100.0,
+     "intervention": 1.115436502939801,
+     "required_displacement": 0.0,
+     "retains_required": true
+    }
+   }
+  },
+  {
+   "id": "train_0022",
+   "family": "rotating",
+   "predicted": true,
+   "methods": {
+    "clip": {
+     "feasible": 100.0,
+     "intervention": 1.083306451193524,
+     "required_displacement": 0.030595608568415616,
+     "retains_required": false
+    },
+    "affine": {
+     "feasible": 100.0,
+     "intervention": 1.494592528530066,
+     "required_displacement": 0.5061938663852581,
+     "retains_required": false
+    },
+    "nonlinear": {
+     "feasible": 100.0,
+     "intervention": 1.3685194168825716,
+     "required_displacement": 0.4236557842532571,
+     "retains_required": false
+    },
+    "oracle_cf": {
+     "feasible": 100.0,
+     "intervention": 1.083306451193524,
+     "required_displacement": 0.030595608568415616,
+     "retains_required": false
+    },
+    "oracle_ctx": {
+     "feasible": 100.0,
+     "intervention": 1.0811036435867083,
+     "required_displacement": 0.029167478036964484,
+     "retains_required": false
+    },
+    "exact": {
+     "feasible": 100.0,
+     "intervention": 1.0333147951676183,
+     "required_displacement": 0.0,
+     "retains_required": true
+    }
+   }
+  },
+  {
+   "id": "train_0023",
+   "family": "phase_gated",
+   "predicted": false,
+   "methods": {
+    "clip": {
+     "feasible": 100.0,
+     "intervention": 0.9308804830254972,
+     "required_displacement": 0.0,
+     "retains_required": true
+    },
+    "affine": {
+     "feasible": 100.0,
+     "intervention": 1.5376543614451434,
+     "required_displacement": 0.8436414013593023,
+     "retains_required": false
+    },
+    "nonlinear": {
+     "feasible": 100.0,
+     "intervention": 1.438619930025439,
+     "required_displacement": 0.743446164638763,
+     "retains_required": false
+    },
+    "oracle_cf": {
+     "feasible": 100.0,
+     "intervention": 0.9308804843818567,
+     "required_displacement": 0.0,
+     "retains_required": true
+    },
+    "oracle_ctx": {
+     "feasible": 100.0,
+     "intervention": 0.9308804843818567,
+     "required_displacement": 0.0,
+     "retains_required": true
+    },
+    "exact": {
+     "feasible": 100.0,
+     "intervention": 0.9308804830254972,
+     "required_displacement": 0.0,
+     "retains_required": true
+    }
+   }
+  },
+  {
+   "id": "train_0024",
+   "family": "box",
+   "predicted": false,
+   "methods": {
+    "clip": {
+     "feasible": 100.0,
+     "intervention": 0.5982113824751825,
+     "required_displacement": 0.0,
+     "retains_required": true
+    },
+    "affine": {
+     "feasible": 100.0,
+     "intervention": 1.704682574409648,
+     "required_displacement": 0.6319983016048235,
+     "retains_required": false
+    },
+    "nonlinear": {
+     "feasible": 100.0,
+     "intervention": 0.7731479294027926,
+     "required_displacement": 0.0,
+     "retains_required": true
+    },
+    "oracle_cf": {
+     "feasible": 100.0,
+     "intervention": 0.5982113836491171,
+     "required_displacement": 0.0,
+     "retains_required": true
+    },
+    "oracle_ctx": {
+     "feasible": 100.0,
+     "intervention": 0.5982113836491171,
+     "required_displacement": 0.0,
+     "retains_required": true
+    },
+    "exact": {
+     "feasible": 100.0,
+     "intervention": 0.5982113824751825,
+     "required_displacement": 0.0,
+     "retains_required": true
+    }
+   }
+  },
+  {
+   "id": "train_0025",
+   "family": "ellipsoid",
+   "predicted": true,
+   "methods": {
+    "clip": {
+     "feasible": 100.0,
+     "intervention": 1.1134643709772554,
+     "required_displacement": 0.031355050672290205,
+     "retains_required": false
+    },
+    "affine": {
+     "feasible": 100.0,
+     "intervention": 1.5114120902177222,
+     "required_displacement": 0.44697693706584973,
+     "retains_required": false
+    },
+    "nonlinear": {
+     "feasible": 100.0,
+     "intervention": 1.3864652486892561,
+     "required_displacement": 0.10924662750316164,
+     "retains_required": false
+    },
+    "oracle_cf": {
+     "feasible": 100.0,
+     "intervention": 1.1134643709772554,
+     "required_displacement": 0.031355050672290205,
+     "retains_required": false
+    },
+    "oracle_ctx": {
+     "feasible": 100.0,
+     "intervention": 1.1134643709772554,
+     "required_displacement": 0.031355050672290205,
+     "retains_required": false
+    },
+    "exact": {
+     "feasible": 100.0,
+     "intervention": 1.1457414124911431,
+     "required_displacement": 0.0,
+     "retains_required": true
+    }
+   }
+  },
+  {
+   "id": "train_0026",
+   "family": "polytope",
+   "predicted": true,
+   "methods": {
+    "clip": {
+     "feasible": 100.0,
+     "intervention": 1.0048929419040196,
+     "required_displacement": 0.5895140836989458,
+     "retains_required": false
+    },
+    "affine": {
+     "feasible": 100.0,
+     "intervention": 1.485032493521766,
+     "required_displacement": 0.6057146080289758,
+     "retains_required": false
+    },
+    "nonlinear": {
+     "feasible": 100.0,
+     "intervention": 1.0070426143768771,
+     "required_displacement": 0.5895140836989458,
+     "retains_required": false
+    },
+    "oracle_cf": {
+     "feasible": 100.0,
+     "intervention": 1.0048929419425814,
+     "required_displacement": 0.5895140836989458,
+     "retains_required": false
+    },
+    "oracle_ctx": {
+     "feasible": 100.0,
+     "intervention": 1.0048929419425814,
+     "required_displacement": 0.5895140836989458,
+     "retains_required": false
+    },
+    "exact": {
+     "feasible": 100.0,
+     "intervention": 0.6368742023039774,
+     "required_displacement": 0.0,
+     "retains_required": true
+    }
+   }
+  },
+  {
+   "id": "train_0027",
+   "family": "state_scaled",
+   "predicted": true,
+   "methods": {
+    "clip": {
+     "feasible": 100.0,
+     "intervention": 1.0027318648072596,
+     "required_displacement": 0.32316806408655924,
+     "retains_required": false
+    },
+    "affine": {
+     "feasible": 100.0,
+     "intervention": 1.5038224855271904,
+     "required_displacement": 1.3408600413634602,
+     "retains_required": false
+    },
+    "nonlinear": {
+     "feasible": 100.0,
+     "intervention": 1.0027318648072596,
+     "required_displacement": 0.32316806408655924,
+     "retains_required": false
+    },
+    "oracle_cf": {
+     "feasible": 100.0,
+     "intervention": 1.0027318648072596,
+     "required_displacement": 0.32316806408655924,
+     "retains_required": false
+    },
+    "oracle_ctx": {
+     "feasible": 100.0,
+     "intervention": 0.6659082043704632,
+     "required_displacement": 0.0,
+     "retains_required": true
+    },
+    "exact": {
+     "feasible": 100.0,
+     "intervention": 0.6659082031987157,
+     "required_displacement": 0.0,
+     "retains_required": true
+    }
+   }
+  },
+  {
+   "id": "train_0028",
+   "family": "rotating",
+   "predicted": true,
+   "methods": {
+    "clip": {
+     "feasible": 100.0,
+     "intervention": 1.2814894751702501,
+     "required_displacement": 0.02747859127827859,
+     "retains_required": false
+    },
+    "affine": {
+     "feasible": 100.0,
+     "intervention": 1.443213649240358,
+     "required_displacement": 0.3371037725795998,
+     "retains_required": false
+    },
+    "nonlinear": {
+     "feasible": 100.0,
+     "intervention": 1.3669870247511338,
+     "required_displacement": 0.0403442120535439,
+     "retains_required": false
+    },
+    "oracle_cf": {
+     "feasible": 100.0,
+     "intervention": 1.2814894751702501,
+     "required_displacement": 0.02747859127827859,
+     "retains_required": false
+    },
+    "oracle_ctx": {
+     "feasible": 100.0,
+     "intervention": 1.1831442507113592,
+     "required_displacement": 0.004460907000362335,
+     "retains_required": false
+    },
+    "exact": {
+     "feasible": 100.0,
+     "intervention": 1.1337432625632582,
+     "required_displacement": 0.0,
+     "retains_required": true
+    }
+   }
+  },
+  {
+   "id": "train_0029",
+   "family": "phase_gated",
+   "predicted": true,
+   "methods": {
+    "clip": {
+     "feasible": 100.0,
+     "intervention": 1.0231333670743916,
+     "required_displacement": 0.07364499906546373,
+     "retains_required": false
+    },
+    "affine": {
+     "feasible": 100.0,
+     "intervention": 1.5224655999718606,
+     "required_displacement": 0.581770449311575,
+     "retains_required": false
+    },
+    "nonlinear": {
+     "feasible": 100.0,
+     "intervention": 1.468448819969491,
+     "required_displacement": 0.7528735570641044,
+     "retains_required": false
+    },
+    "oracle_cf": {
+     "feasible": 100.0,
+     "intervention": 1.0231333679303405,
+     "required_displacement": 0.07364499906546373,
+     "retains_required": false
+    },
+    "oracle_ctx": {
+     "feasible": 100.0,
+     "intervention": 0.9309608774467394,
+     "required_displacement": 0.0,
+     "retains_required": true
+    },
+    "exact": {
+     "feasible": 100.0,
+     "intervention": 0.9309608760786628,
+     "required_displacement": 0.0,
+     "retains_required": true
+    }
+   }
+  },
+  {
+   "id": "train_0030",
+   "family": "box",
+   "predicted": false,
+   "methods": {
+    "clip": {
+     "feasible": 100.0,
+     "intervention": 0.6243666562651972,
+     "required_displacement": 0.0,
+     "retains_required": true
+    },
+    "affine": {
+     "feasible": 100.0,
+     "intervention": 1.7450577942049788,
+     "required_displacement": 1.1120934212217204,
+     "retains_required": false
+    },
+    "nonlinear": {
+     "feasible": 100.0,
+     "intervention": 0.787522471841641,
+     "required_displacement": 0.2629447295821887,
+     "retains_required": false
+    },
+    "oracle_cf": {
+     "feasible": 100.0,
+     "intervention": 0.6243666574311718,
+     "required_displacement": 0.0,
+     "retains_required": true
+    },
+    "oracle_ctx": {
+     "feasible": 100.0,
+     "intervention": 0.6243666574311718,
+     "required_displacement": 0.0,
+     "retains_required": true
+    },
+    "exact": {
+     "feasible": 100.0,
+     "intervention": 0.6243666562651972,
+     "required_displacement": 0.0,
+     "retains_required": true
+    }
+   }
+  },
+  {
+   "id": "train_0031",
+   "family": "ellipsoid",
+   "predicted": true,
+   "methods": {
+    "clip": {
+     "feasible": 100.0,
+     "intervention": 1.2671376528074927,
+     "required_displacement": 0.13664108040779008,
+     "retains_required": false
+    },
+    "affine": {
+     "feasible": 100.0,
+     "intervention": 1.438187762121414,
+     "required_displacement": 0.47487789532195646,
+     "retains_required": false
+    },
+    "nonlinear": {
+     "feasible": 100.0,
+     "intervention": 1.3679427895664946,
+     "required_displacement": 0.1610226371024783,
+     "retains_required": false
+    },
+    "oracle_cf": {
+     "feasible": 100.0,
+     "intervention": 1.2671376528074927,
+     "required_displacement": 0.13664108040779008,
+     "retains_required": false
+    },
+    "oracle_ctx": {
+     "feasible": 100.0,
+     "intervention": 1.2671376528074927,
+     "required_displacement": 0.13664108040779008,
+     "retains_required": false
+    },
+    "exact": {
+     "feasible": 100.0,
+     "intervention": 1.1072625199407877,
+     "required_displacement": 0.0,
+     "retains_required": true
+    }
+   }
+  },
+  {
+   "id": "train_0032",
+   "family": "polytope",
+   "predicted": true,
+   "methods": {
+    "clip": {
+     "feasible": 100.0,
+     "intervention": 1.1218492351930542,
+     "required_displacement": 1.7408322420665787,
+     "retains_required": false
+    },
+    "affine": {
+     "feasible": 100.0,
+     "intervention": 1.4426911143003758,
+     "required_displacement": 1.7859880001515738,
+     "retains_required": false
+    },
+    "nonlinear": {
+     "feasible": 100.0,
+     "intervention": 1.1245505194532537,
+     "required_displacement": 1.7408322420665787,
+     "retains_required": false
+    },
+    "oracle_cf": {
+     "feasible": 100.0,
+     "intervention": 1.121849235286537,
+     "required_displacement": 1.7408322420665787,
+     "retains_required": false
+    },
+    "oracle_ctx": {
+     "feasible": 100.0,
+     "intervention": 1.121849235286537,
+     "required_displacement": 1.7408322420665787,
+     "retains_required": false
+    },
+    "exact": {
+     "feasible": 100.0,
+     "intervention": 0.7130827619698494,
+     "required_displacement": 0.0,
+     "retains_required": true
+    }
+   }
+  },
+  {
+   "id": "train_0033",
+   "family": "state_scaled",
+   "predicted": true,
+   "methods": {
+    "clip": {
+     "feasible": 100.0,
+     "intervention": 1.1222088516979956,
+     "required_displacement": 0.47518568350352525,
+     "retains_required": false
+    },
+    "affine": {
+     "feasible": 100.0,
+     "intervention": 1.5094047158903867,
+     "required_displacement": 1.0547047654252992,
+     "retains_required": false
+    },
+    "nonlinear": {
+     "feasible": 100.0,
+     "intervention": 1.1222088516979956,
+     "required_displacement": 0.47518568350352525,
+     "retains_required": false
+    },
+    "oracle_cf": {
+     "feasible": 100.0,
+     "intervention": 1.1222088516979956,
+     "required_displacement": 0.47518568350352525,
+     "retains_required": false
+    },
+    "oracle_ctx": {
+     "feasible": 100.0,
+     "intervention": 0.6354867177557834,
+     "required_displacement": 0.0,
+     "retains_required": true
+    },
+    "exact": {
+     "feasible": 100.0,
+     "intervention": 0.6354867165667403,
+     "required_displacement": 0.0,
+     "retains_required": true
+    }
+   }
+  },
+  {
+   "id": "train_0034",
+   "family": "rotating",
+   "predicted": false,
+   "methods": {
+    "clip": {
+     "feasible": 100.0,
+     "intervention": 1.2072671176498708,
+     "required_displacement": 0.0,
+     "retains_required": true
+    },
+    "affine": {
+     "feasible": 100.0,
+     "intervention": 1.439488568188896,
+     "required_displacement": 0.2644108878876559,
+     "retains_required": false
+    },
+    "nonlinear": {
+     "feasible": 100.0,
+     "intervention": 1.3351259035328424,
+     "required_displacement": 0.0581025128711122,
+     "retains_required": false
+    },
+    "oracle_cf": {
+     "feasible": 100.0,
+     "intervention": 1.2072671176498708,
+     "required_displacement": 0.0,
+     "retains_required": true
+    },
+    "oracle_ctx": {
+     "feasible": 100.0,
+     "intervention": 1.1805874841752428,
+     "required_displacement": 0.0,
+     "retains_required": true
+    },
+    "exact": {
+     "feasible": 100.0,
+     "intervention": 1.033611934449947,
+     "required_displacement": 0.0,
+     "retains_required": true
+    }
+   }
+  },
+  {
+   "id": "train_0035",
+   "family": "phase_gated",
+   "predicted": false,
+   "methods": {
+    "clip": {
+     "feasible": 100.0,
+     "intervention": 0.9848692403006285,
+     "required_displacement": 0.0,
+     "retains_required": true
+    },
+    "affine": {
+     "feasible": 100.0,
+     "intervention": 1.6284599646763445,
+     "required_displacement": 0.3540955676180546,
+     "retains_required": false
+    },
+    "nonlinear": {
+     "feasible": 100.0,
+     "intervention": 1.4778011633417905,
+     "required_displacement": 0.3021633250274967,
+     "retains_required": false
+    },
+    "oracle_cf": {
+     "feasible": 100.0,
+     "intervention": 0.9848692416480906,
+     "required_displacement": 0.0,
+     "retains_required": true
+    },
+    "oracle_ctx": {
+     "feasible": 100.0,
+     "intervention": 0.9848692416480906,
+     "required_displacement": 0.0,
+     "retains_required": true
+    },
+    "exact": {
+     "feasible": 100.0,
+     "intervention": 0.9848692403006285,
+     "required_displacement": 0.0,
+     "retains_required": true
+    }
+   }
+  },
+  {
+   "id": "train_0036",
+   "family": "box",
+   "predicted": false,
+   "methods": {
+    "clip": {
+     "feasible": 100.0,
+     "intervention": 0.6713381762929012,
+     "required_displacement": 0.0,
+     "retains_required": true
+    },
+    "affine": {
+     "feasible": 100.0,
+     "intervention": 1.6935140133354083,
+     "required_displacement": 0.7763920949875585,
+     "retains_required": false
+    },
+    "nonlinear": {
+     "feasible": 100.0,
+     "intervention": 0.911993365468266,
+     "required_displacement": 0.0,
+     "retains_required": true
+    },
+    "oracle_cf": {
+     "feasible": 100.0,
+     "intervention": 0.6713381774887544,
+     "required_displacement": 0.0,
+     "retains_required": true
+    },
+    "oracle_ctx": {
+     "feasible": 100.0,
+     "intervention": 0.6713381774887544,
+     "required_displacement": 0.0,
+     "retains_required": true
+    },
+    "exact": {
+     "feasible": 100.0,
+     "intervention": 0.6713381762929012,
+     "required_displacement": 0.0,
+     "retains_required": true
+    }
+   }
+  },
+  {
+   "id": "train_0037",
+   "family": "ellipsoid",
+   "predicted": false,
+   "methods": {
+    "clip": {
+     "feasible": 100.0,
+     "intervention": 1.0974015853912737,
+     "required_displacement": 0.0,
+     "retains_required": true
+    },
+    "affine": {
+     "feasible": 100.0,
+     "intervention": 1.4754197677435843,
+     "required_displacement": 0.6527786383769143,
+     "retains_required": false
+    },
+    "nonlinear": {
+     "feasible": 100.0,
+     "intervention": 1.3330650594128906,
+     "required_displacement": 0.18968779765949975,
+     "retains_required": false
+    },
+    "oracle_cf": {
+     "feasible": 100.0,
+     "intervention": 1.0974015853912737,
+     "required_displacement": 0.0,
+     "retains_required": true
+    },
+    "oracle_ctx": {
+     "feasible": 100.0,
+     "intervention": 1.0974015853912737,
+     "required_displacement": 0.0,
+     "retains_required": true
+    },
+    "exact": {
+     "feasible": 100.0,
+     "intervention": 0.9985628960480767,
+     "required_displacement": 0.0,
+     "retains_required": true
+    }
+   }
+  },
+  {
+   "id": "train_0038",
+   "family": "polytope",
+   "predicted": true,
+   "methods": {
+    "clip": {
+     "feasible": 100.0,
+     "intervention": 1.0419028840295232,
+     "required_displacement": 6.06078035389522,
+     "retains_required": false
+    },
+    "affine": {
+     "feasible": 100.0,
+     "intervention": 1.4228604049933753,
+     "required_displacement": 6.08998290208242,
+     "retains_required": false
+    },
+    "nonlinear": {
+     "feasible": 100.0,
+     "intervention": 1.0435322670044618,
+     "required_displacement": 6.06078035389522,
+     "retains_required": false
+    },
+    "oracle_cf": {
+     "feasible": 100.0,
+     "intervention": 1.0419028840900348,
+     "required_displacement": 6.06078035389522,
+     "retains_required": false
+    },
+    "oracle_ctx": {
+     "feasible": 100.0,
+     "intervention": 1.0419028840900348,
+     "required_displacement": 6.06078035389522,
+     "retains_required": false
+    },
+    "exact": {
+     "feasible": 100.0,
+     "intervention": 0.5619788851843819,
+     "required_displacement": 0.0,
+     "retains_required": true
+    }
+   }
+  },
+  {
+   "id": "train_0039",
+   "family": "state_scaled",
+   "predicted": true,
+   "methods": {
+    "clip": {
+     "feasible": 100.0,
+     "intervention": 1.1782532457027524,
+     "required_displacement": 0.22294619906714688,
+     "retains_required": false
+    },
+    "affine": {
+     "feasible": 100.0,
+     "intervention": 1.4516975437194224,
+     "required_displacement": 0.7159875108362641,
+     "retains_required": false
+    },
+    "nonlinear": {
+     "feasible": 100.0,
+     "intervention": 1.3433003583046468,
+     "required_displacement": 0.38528640575759915,
+     "retains_required": false
+    },
+    "oracle_cf": {
+     "feasible": 100.0,
+     "intervention": 1.1782532457027524,
+     "required_displacement": 0.22294619906714688,
+     "retains_required": false
+    },
+    "oracle_ctx": {
+     "feasible": 100.0,
+     "intervention": 0.8730970680563843,
+     "required_displacement": 0.0,
+     "retains_required": true
+    },
+    "exact": {
+     "feasible": 100.0,
+     "intervention": 0.8730970667497288,
+     "required_displacement": 0.0,
+     "retains_required": true
+    }
+   }
+  },
+  {
+   "id": "train_0040",
+   "family": "rotating",
+   "predicted": true,
+   "methods": {
+    "clip": {
+     "feasible": 100.0,
+     "intervention": 1.341303049046374,
+     "required_displacement": 0.015104276802897033,
+     "retains_required": false
+    },
+    "affine": {
+     "feasible": 100.0,
+     "intervention": 1.44149250994824,
+     "required_displacement": 0.16393904456059055,
+     "retains_required": false
+    },
+    "nonlinear": {
+     "feasible": 100.0,
+     "intervention": 1.4287473545742047,
+     "required_displacement": 0.11882107399208228,
+     "retains_required": false
+    },
+    "oracle_cf": {
+     "feasible": 100.0,
+     "intervention": 1.341303049046374,
+     "required_displacement": 0.015104276802897033,
+     "retains_required": false
+    },
+    "oracle_ctx": {
+     "feasible": 100.0,
+     "intervention": 1.3163147035703082,
+     "required_displacement": 0.009645389067308156,
+     "retains_required": false
+    },
+    "exact": {
+     "feasible": 100.0,
+     "intervention": 1.2273967461235962,
+     "required_displacement": 0.0,
+     "retains_required": true
+    }
+   }
+  },
+  {
+   "id": "train_0041",
+   "family": "phase_gated",
+   "predicted": false,
+   "methods": {
+    "clip": {
+     "feasible": 100.0,
+     "intervention": 0.6353624844668186,
+     "required_displacement": 0.0,
+     "retains_required": true
+    },
+    "affine": {
+     "feasible": 100.0,
+     "intervention": 1.8584138026685082,
+     "required_displacement": 1.656233857147056,
+     "retains_required": false
+    },
+    "nonlinear": {
+     "feasible": 100.0,
+     "intervention": 0.7641072738422097,
+     "required_displacement": 0.11866710954233288,
+     "retains_required": false
+    },
+    "oracle_cf": {
+     "feasible": 100.0,
+     "intervention": 0.6353624855875332,
+     "required_displacement": 0.0,
+     "retains_required": true
+    },
+    "oracle_ctx": {
+     "feasible": 100.0,
+     "intervention": 0.6353624855875332,
+     "required_displacement": 0.0,
+     "retains_required": true
+    },
+    "exact": {
+     "feasible": 100.0,
+     "intervention": 0.6353624844668186,
+     "required_displacement": 0.0,
+     "retains_required": true
+    }
+   }
+  },
+  {
+   "id": "train_0042",
+   "family": "box",
+   "predicted": false,
+   "methods": {
+    "clip": {
+     "feasible": 100.0,
+     "intervention": 0.5575474677016926,
+     "required_displacement": 0.0,
+     "retains_required": true
+    },
+    "affine": {
+     "feasible": 100.0,
+     "intervention": 1.772418813515751,
+     "required_displacement": 0.29005127867144115,
+     "retains_required": false
+    },
+    "nonlinear": {
+     "feasible": 100.0,
+     "intervention": 0.6682733989293473,
+     "required_displacement": 0.0,
+     "retains_required": true
+    },
+    "oracle_cf": {
+     "feasible": 100.0,
+     "intervention": 0.5575474688471895,
+     "required_displacement": 0.0,
+     "retains_required": true
+    },
+    "oracle_ctx": {
+     "feasible": 100.0,
+     "intervention": 0.5575474688471895,
+     "required_displacement": 0.0,
+     "retains_required": true
+    },
+    "exact": {
+     "feasible": 100.0,
+     "intervention": 0.5575474677016926,
+     "required_displacement": 0.0,
+     "retains_required": true
+    }
+   }
+  },
+  {
+   "id": "train_0043",
+   "family": "ellipsoid",
+   "predicted": true,
+   "methods": {
+    "clip": {
+     "feasible": 100.0,
+     "intervention": 1.1309405106850614,
+     "required_displacement": 0.020801645760088798,
+     "retains_required": false
+    },
+    "affine": {
+     "feasible": 100.0,
+     "intervention": 1.5142726296468652,
+     "required_displacement": 0.4517629905600869,
+     "retains_required": false
+    },
+    "nonlinear": {
+     "feasible": 100.0,
+     "intervention": 1.2137721203442773,
+     "required_displacement": 0.4561233704077861,
+     "retains_required": false
+    },
+    "oracle_cf": {
+     "feasible": 100.0,
+     "intervention": 1.1309405106850614,
+     "required_displacement": 0.020801645760088798,
+     "retains_required": false
+    },
+    "oracle_ctx": {
+     "feasible": 100.0,
+     "intervention": 1.1309405106850614,
+     "required_displacement": 0.020801645760088798,
+     "retains_required": false
+    },
+    "exact": {
+     "feasible": 100.0,
+     "intervention": 1.2196537909157736,
+     "required_displacement": 0.0,
+     "retains_required": true
+    }
+   }
+  },
+  {
+   "id": "train_0044",
+   "family": "polytope",
+   "predicted": true,
+   "methods": {
+    "clip": {
+     "feasible": 100.0,
+     "intervention": 1.1241109303369103,
+     "required_displacement": 2.8157042567865456,
+     "retains_required": false
+    },
+    "affine": {
+     "feasible": 100.0,
+     "intervention": 1.3493833929789463,
+     "required_displacement": 2.8157042567865456,
+     "retains_required": false
+    },
+    "nonlinear": {
+     "feasible": 100.0,
+     "intervention": 1.1241109303369103,
+     "required_displacement": 2.8157042567865456,
+     "retains_required": false
+    },
+    "oracle_cf": {
+     "feasible": 100.0,
+     "intervention": 1.1241109304215622,
+     "required_displacement": 2.8157042567865456,
+     "retains_required": false
+    },
+    "oracle_ctx": {
+     "feasible": 100.0,
+     "intervention": 1.1241109304215622,
+     "required_displacement": 2.8157042567865456,
+     "retains_required": false
+    },
+    "exact": {
+     "feasible": 100.0,
+     "intervention": 0.42128378628746943,
+     "required_displacement": 0.0,
+     "retains_required": true
+    }
+   }
+  },
+  {
+   "id": "train_0045",
+   "family": "state_scaled",
+   "predicted": false,
+   "methods": {
+    "clip": {
+     "feasible": 100.0,
+     "intervention": 1.1268511200375568,
+     "required_displacement": 0.0,
+     "retains_required": true
+    },
+    "affine": {
+     "feasible": 100.0,
+     "intervention": 1.441770395554677,
+     "required_displacement": 0.6294211347187659,
+     "retains_required": false
+    },
+    "nonlinear": {
+     "feasible": 100.0,
+     "intervention": 1.3019128381831289,
+     "required_displacement": 0.20787990646205856,
+     "retains_required": false
+    },
+    "oracle_cf": {
+     "feasible": 100.0,
+     "intervention": 1.1268511200375568,
+     "required_displacement": 0.0,
+     "retains_required": true
+    },
+    "oracle_ctx": {
+     "feasible": 100.0,
+     "intervention": 1.1080683180874722,
+     "required_displacement": 0.0,
+     "retains_required": true
+    },
+    "exact": {
+     "feasible": 100.0,
+     "intervention": 1.108068316651224,
+     "required_displacement": 0.0,
+     "retains_required": true
+    }
+   }
+  },
+  {
+   "id": "train_0046",
+   "family": "rotating",
+   "predicted": true,
+   "methods": {
+    "clip": {
+     "feasible": 100.0,
+     "intervention": 1.0536906357657272,
+     "required_displacement": 0.10915790673155898,
+     "retains_required": false
+    },
+    "affine": {
+     "feasible": 100.0,
+     "intervention": 1.5051502817096212,
+     "required_displacement": 0.9095132150154466,
+     "retains_required": false
+    },
+    "nonlinear": {
+     "feasible": 100.0,
+     "intervention": 1.4494885792352323,
+     "required_displacement": 0.4142755689231272,
+     "retains_required": false
+    },
+    "oracle_cf": {
+     "feasible": 100.0,
+     "intervention": 1.0536906357657272,
+     "required_displacement": 0.10915790673155898,
+     "retains_required": false
+    },
+    "oracle_ctx": {
+     "feasible": 100.0,
+     "intervention": 1.0459836661249187,
+     "required_displacement": 0.09793512422455256,
+     "retains_required": false
+    },
+    "exact": {
+     "feasible": 100.0,
+     "intervention": 0.9961023208578561,
+     "required_displacement": 0.0,
+     "retains_required": true
+    }
+   }
+  },
+  {
+   "id": "train_0047",
+   "family": "phase_gated",
+   "predicted": true,
+   "methods": {
+    "clip": {
+     "feasible": 100.0,
+     "intervention": 0.8252061111074789,
+     "required_displacement": 0.07607400330358219,
+     "retains_required": false
+    },
+    "affine": {
+     "feasible": 100.0,
+     "intervention": 1.6139268001066533,
+     "required_displacement": 1.2935779502966283,
+     "retains_required": false
+    },
+    "nonlinear": {
+     "feasible": 100.0,
+     "intervention": 1.1364405945602005,
+     "required_displacement": 0.41032054919725564,
+     "retains_required": false
+    },
+    "oracle_cf": {
+     "feasible": 100.0,
+     "intervention": 0.8252061116971303,
+     "required_displacement": 0.07607400330358219,
+     "retains_required": false
+    },
+    "oracle_ctx": {
+     "feasible": 100.0,
+     "intervention": 0.7257591229097884,
+     "required_displacement": 0.0,
+     "retains_required": true
+    },
+    "exact": {
+     "feasible": 100.0,
+     "intervention": 0.7257591216964201,
+     "required_displacement": 0.0,
+     "retains_required": true
+    }
+   }
+  },
+  {
+   "id": "train_0048",
+   "family": "box",
+   "predicted": false,
+   "methods": {
+    "clip": {
+     "feasible": 100.0,
+     "intervention": 0.42366743552382474,
+     "required_displacement": 0.0,
+     "retains_required": true
+    },
+    "affine": {
+     "feasible": 100.0,
+     "intervention": 1.8625908967914255,
+     "required_displacement": 1.5730629553761593,
+     "retains_required": false
+    },
+    "nonlinear": {
+     "feasible": 100.0,
+     "intervention": 0.5866937249528147,
+     "required_displacement": 0.22969565973469494,
+     "retains_required": false
+    },
+    "oracle_cf": {
+     "feasible": 100.0,
+     "intervention": 0.4236674365550306,
+     "required_displacement": 0.0,
+     "retains_required": true
+    },
+    "oracle_ctx": {
+     "feasible": 100.0,
+     "intervention": 0.4236674365550306,
+     "required_displacement": 0.0,
+     "retains_required": true
+    },
+    "exact": {
+     "feasible": 100.0,
+     "intervention": 0.42366743552382474,
+     "required_displacement": 0.0,
+     "retains_required": true
+    }
+   }
+  },
+  {
+   "id": "train_0049",
+   "family": "ellipsoid",
+   "predicted": true,
+   "methods": {
+    "clip": {
+     "feasible": 100.0,
+     "intervention": 1.1924349971972652,
+     "required_displacement": 0.2540414009294989,
+     "retains_required": false
+    },
+    "affine": {
+     "feasible": 100.0,
+     "intervention": 1.4689268386496064,
+     "required_displacement": 0.300065233481688,
+     "retains_required": false
+    },
+    "nonlinear": {
+     "feasible": 100.0,
+     "intervention": 1.4321703948727542,
+     "required_displacement": 0.7057465729537362,
+     "retains_required": false
+    },
+    "oracle_cf": {
+     "feasible": 100.0,
+     "intervention": 1.1924349971972652,
+     "required_displacement": 0.2540414009294989,
+     "retains_required": false
+    },
+    "oracle_ctx": {
+     "feasible": 100.0,
+     "intervention": 1.1924349971972652,
+     "required_displacement": 0.2540414009294989,
+     "retains_required": false
+    },
+    "exact": {
+     "feasible": 100.0,
+     "intervention": 0.9828370918537561,
+     "required_displacement": 0.0,
+     "retains_required": true
+    }
+   }
+  },
+  {
+   "id": "train_0050",
+   "family": "polytope",
+   "predicted": true,
+   "methods": {
+    "clip": {
+     "feasible": 100.0,
+     "intervention": 1.0280677000871412,
+     "required_displacement": 0.1028990091535984,
+     "retains_required": false
+    },
+    "affine": {
+     "feasible": 100.0,
+     "intervention": 1.2964668949858105,
+     "required_displacement": 0.7224837972446303,
+     "retains_required": false
+    },
+    "nonlinear": {
+     "feasible": 100.0,
+     "intervention": 1.0280677000871412,
+     "required_displacement": 0.1028990091535984,
+     "retains_required": false
+    },
+    "oracle_cf": {
+     "feasible": 100.0,
+     "intervention": 1.0280677001627296,
+     "required_displacement": 0.1028990091535984,
+     "retains_required": false
+    },
+    "oracle_ctx": {
+     "feasible": 100.0,
+     "intervention": 1.0280677001627296,
+     "required_displacement": 0.1028990091535984,
+     "retains_required": false
+    },
+    "exact": {
+     "feasible": 100.0,
+     "intervention": 0.4124141935029963,
+     "required_displacement": 0.0,
+     "retains_required": true
+    }
+   }
+  },
+  {
+   "id": "train_0051",
+   "family": "state_scaled",
+   "predicted": false,
+   "methods": {
+    "clip": {
+     "feasible": 100.0,
+     "intervention": 1.1246422195981851,
+     "required_displacement": 0.0,
+     "retains_required": true
+    },
+    "affine": {
+     "feasible": 100.0,
+     "intervention": 1.4991167735591202,
+     "required_displacement": 0.7878948413102544,
+     "retains_required": false
+    },
+    "nonlinear": {
+     "feasible": 100.0,
+     "intervention": 1.446110547270181,
+     "required_displacement": 0.549799167281925,
+     "retains_required": false
+    },
+    "oracle_cf": {
+     "feasible": 100.0,
+     "intervention": 1.1246422195981851,
+     "required_displacement": 0.0,
+     "retains_required": true
+    },
+    "oracle_ctx": {
+     "feasible": 100.0,
+     "intervention": 1.044781208004705,
+     "required_displacement": 0.0,
+     "retains_required": true
+    },
+    "exact": {
+     "feasible": 100.0,
+     "intervention": 1.0447812066169373,
+     "required_displacement": 0.0,
+     "retains_required": true
+    }
+   }
+  },
+  {
+   "id": "train_0052",
+   "family": "rotating",
+   "predicted": true,
+   "methods": {
+    "clip": {
+     "feasible": 100.0,
+     "intervention": 1.2596125324682674,
+     "required_displacement": 0.0652637400182882,
+     "retains_required": false
+    },
+    "affine": {
+     "feasible": 100.0,
+     "intervention": 1.4130027409658128,
+     "required_displacement": 0.21499935677880466,
+     "retains_required": false
+    },
+    "nonlinear": {
+     "feasible": 100.0,
+     "intervention": 1.3166188072730756,
+     "required_displacement": 0.25772903402613123,
+     "retains_required": false
+    },
+    "oracle_cf": {
+     "feasible": 100.0,
+     "intervention": 1.2596125324682674,
+     "required_displacement": 0.0652637400182882,
+     "retains_required": false
+    },
+    "oracle_ctx": {
+     "feasible": 100.0,
+     "intervention": 1.0610561208071,
+     "required_displacement": 0.0,
+     "retains_required": true
+    },
+    "exact": {
+     "feasible": 100.0,
+     "intervention": 1.0832868183394735,
+     "required_displacement": 0.0,
+     "retains_required": true
+    }
+   }
+  },
+  {
+   "id": "train_0053",
+   "family": "phase_gated",
+   "predicted": false,
+   "methods": {
+    "clip": {
+     "feasible": 100.0,
+     "intervention": 0.8443176435620257,
+     "required_displacement": 0.0,
+     "retains_required": true
+    },
+    "affine": {
+     "feasible": 100.0,
+     "intervention": 1.5989374267882226,
+     "required_displacement": 0.8377634335403958,
+     "retains_required": false
+    },
+    "nonlinear": {
+     "feasible": 100.0,
+     "intervention": 1.267607323264203,
+     "required_displacement": 0.23958435911794135,
+     "retains_required": false
+    },
+    "oracle_cf": {
+     "feasible": 100.0,
+     "intervention": 0.844317644858516,
+     "required_displacement": 0.0,
+     "retains_required": true
+    },
+    "oracle_ctx": {
+     "feasible": 100.0,
+     "intervention": 0.844317644858516,
+     "required_displacement": 0.0,
+     "retains_required": true
+    },
+    "exact": {
+     "feasible": 100.0,
+     "intervention": 0.8443176435620257,
+     "required_displacement": 0.0,
+     "retains_required": true
+    }
+   }
+  },
+  {
+   "id": "train_0054",
+   "family": "box",
+   "predicted": false,
+   "methods": {
+    "clip": {
+     "feasible": 100.0,
+     "intervention": 0.8030934099499024,
+     "required_displacement": 0.0,
+     "retains_required": true
+    },
+    "affine": {
+     "feasible": 100.0,
+     "intervention": 1.6922889850406226,
+     "required_displacement": 0.5747883774312426,
+     "retains_required": false
+    },
+    "nonlinear": {
+     "feasible": 100.0,
+     "intervention": 1.0105820237553953,
+     "required_displacement": 0.0,
+     "retains_required": true
+    },
+    "oracle_cf": {
+     "feasible": 100.0,
+     "intervention": 0.8030934112035797,
+     "required_displacement": 0.0,
+     "retains_required": true
+    },
+    "oracle_ctx": {
+     "feasible": 100.0,
+     "intervention": 0.8030934112035797,
+     "required_displacement": 0.0,
+     "retains_required": true
+    },
+    "exact": {
+     "feasible": 100.0,
+     "intervention": 0.8030934099499024,
+     "required_displacement": 0.0,
+     "retains_required": true
+    }
+   }
+  },
+  {
+   "id": "train_0055",
+   "family": "ellipsoid",
+   "predicted": true,
+   "methods": {
+    "clip": {
+     "feasible": 100.0,
+     "intervention": 1.0112092865004323,
+     "required_displacement": 0.016447158765761152,
+     "retains_required": false
+    },
+    "affine": {
+     "feasible": 100.0,
+     "intervention": 1.5186170141067297,
+     "required_displacement": 0.3977826013975406,
+     "retains_required": false
+    },
+    "nonlinear": {
+     "feasible": 100.0,
+     "intervention": 1.295806021053022,
+     "required_displacement": 0.05450492573560885,
+     "retains_required": false
+    },
+    "oracle_cf": {
+     "feasible": 100.0,
+     "intervention": 1.0112092865004323,
+     "required_displacement": 0.016447158765761152,
+     "retains_required": false
+    },
+    "oracle_ctx": {
+     "feasible": 100.0,
+     "intervention": 1.0112092865004323,
+     "required_displacement": 0.016447158765761152,
+     "retains_required": false
+    },
+    "exact": {
+     "feasible": 100.0,
+     "intervention": 1.1013353309520406,
+     "required_displacement": 0.0,
+     "retains_required": true
+    }
+   }
+  },
+  {
+   "id": "train_0056",
+   "family": "polytope",
+   "predicted": true,
+   "methods": {
+    "clip": {
+     "feasible": 100.0,
+     "intervention": 1.0195107269321384,
+     "required_displacement": 0.3428746121322546,
+     "retains_required": false
+    },
+    "affine": {
+     "feasible": 100.0,
+     "intervention": 1.4629912178154965,
+     "required_displacement": 0.47134762717179096,
+     "retains_required": false
+    },
+    "nonlinear": {
+     "feasible": 100.0,
+     "intervention": 1.019864961418536,
+     "required_displacement": 0.3428746121322546,
+     "retains_required": false
+    },
+    "oracle_cf": {
+     "feasible": 100.0,
+     "intervention": 1.0195107269913226,
+     "required_displacement": 0.3428746121322546,
+     "retains_required": false
+    },
+    "oracle_ctx": {
+     "feasible": 100.0,
+     "intervention": 1.0195107269913226,
+     "required_displacement": 0.3428746121322546,
+     "retains_required": false
+    },
+    "exact": {
+     "feasible": 100.0,
+     "intervention": 0.6286639398458714,
+     "required_displacement": 0.0,
+     "retains_required": true
+    }
+   }
+  },
+  {
+   "id": "train_0057",
+   "family": "state_scaled",
+   "predicted": true,
+   "methods": {
+    "clip": {
+     "feasible": 100.0,
+     "intervention": 0.9070258791903535,
+     "required_displacement": 0.08741419507092571,
+     "retains_required": false
+    },
+    "affine": {
+     "feasible": 100.0,
+     "intervention": 1.5337637651894818,
+     "required_displacement": 0.7697623458569145,
+     "retains_required": false
+    },
+    "nonlinear": {
+     "feasible": 100.0,
+     "intervention": 0.9785949848047961,
+     "required_displacement": 0.17241305132816842,
+     "retains_required": false
+    },
+    "oracle_cf": {
+     "feasible": 100.0,
+     "intervention": 0.9070258791903535,
+     "required_displacement": 0.08741419507092571,
+     "retains_required": false
+    },
+    "oracle_ctx": {
+     "feasible": 100.0,
+     "intervention": 0.7644211597262429,
+     "required_displacement": 0.0,
+     "retains_required": true
+    },
+    "exact": {
+     "feasible": 100.0,
+     "intervention": 0.7644211584401178,
+     "required_displacement": 0.0,
+     "retains_required": true
+    }
+   }
+  },
+  {
+   "id": "train_0058",
+   "family": "rotating",
+   "predicted": false,
+   "methods": {
+    "clip": {
+     "feasible": 100.0,
+     "intervention": 1.2493167867255093,
+     "required_displacement": 0.0,
+     "retains_required": true
+    },
+    "affine": {
+     "feasible": 100.0,
+     "intervention": 1.4635318046850523,
+     "required_displacement": 0.3082699330997094,
+     "retains_required": false
+    },
+    "nonlinear": {
+     "feasible": 100.0,
+     "intervention": 1.42371516630581,
+     "required_displacement": 0.3082699330997094,
+     "retains_required": false
+    },
+    "oracle_cf": {
+     "feasible": 100.0,
+     "intervention": 1.2493167867255093,
+     "required_displacement": 0.0,
+     "retains_required": true
+    },
+    "oracle_ctx": {
+     "feasible": 100.0,
+     "intervention": 1.2268202896938607,
+     "required_displacement": 0.0,
+     "retains_required": true
+    },
+    "exact": {
+     "feasible": 100.0,
+     "intervention": 1.1456487373195483,
+     "required_displacement": 0.0,
+     "retains_required": true
+    }
+   }
+  },
+  {
+   "id": "train_0059",
+   "family": "phase_gated",
+   "predicted": false,
+   "methods": {
+    "clip": {
+     "feasible": 100.0,
+     "intervention": 0.8378620465771658,
+     "required_displacement": 0.0,
+     "retains_required": true
+    },
+    "affine": {
+     "feasible": 100.0,
+     "intervention": 1.6262226736596415,
+     "required_displacement": 1.3926645793460035,
+     "retains_required": false
+    },
+    "nonlinear": {
+     "feasible": 100.0,
+     "intervention": 1.432285715619048,
+     "required_displacement": 0.24576800892817857,
+     "retains_required": false
+    },
+    "oracle_cf": {
+     "feasible": 100.0,
+     "intervention": 0.8378620478603837,
+     "required_displacement": 0.0,
+     "retains_required": true
+    },
+    "oracle_ctx": {
+     "feasible": 100.0,
+     "intervention": 0.8378620478603837,
+     "required_displacement": 0.0,
+     "retains_required": true
+    },
+    "exact": {
+     "feasible": 100.0,
+     "intervention": 0.8378620465771658,
+     "required_displacement": 0.0,
+     "retains_required": true
+    }
+   }
+  },
+  {
+   "id": "train_0060",
+   "family": "box",
+   "predicted": false,
+   "methods": {
+    "clip": {
+     "feasible": 100.0,
+     "intervention": 0.5448055874549103,
+     "required_displacement": 0.0,
+     "retains_required": true
+    },
+    "affine": {
+     "feasible": 100.0,
+     "intervention": 1.7598556180348397,
+     "required_displacement": 2.0084936379182103,
+     "retains_required": false
+    },
+    "nonlinear": {
+     "feasible": 100.0,
+     "intervention": 0.6594174553229784,
+     "required_displacement": 0.14094470089648534,
+     "retains_required": false
+    },
+    "oracle_cf": {
+     "feasible": 100.0,
+     "intervention": 0.5448055885580847,
+     "required_displacement": 0.0,
+     "retains_required": true
+    },
+    "oracle_ctx": {
+     "feasible": 100.0,
+     "intervention": 0.5448055885580847,
+     "required_displacement": 0.0,
+     "retains_required": true
+    },
+    "exact": {
+     "feasible": 100.0,
+     "intervention": 0.5448055874549103,
+     "required_displacement": 0.0,
+     "retains_required": true
+    }
+   }
+  },
+  {
+   "id": "train_0061",
+   "family": "ellipsoid",
+   "predicted": true,
+   "methods": {
+    "clip": {
+     "feasible": 100.0,
+     "intervention": 1.11021562303163,
+     "required_displacement": 0.007077350652552258,
+     "retains_required": false
+    },
+    "affine": {
+     "feasible": 100.0,
+     "intervention": 1.4429784137638837,
+     "required_displacement": 0.4217855884081068,
+     "retains_required": false
+    },
+    "nonlinear": {
+     "feasible": 100.0,
+     "intervention": 1.3084521319776008,
+     "required_displacement": 0.2686728313770762,
+     "retains_required": false
+    },
+    "oracle_cf": {
+     "feasible": 100.0,
+     "intervention": 1.11021562303163,
+     "required_displacement": 0.007077350652552258,
+     "retains_required": false
+    },
+    "oracle_ctx": {
+     "feasible": 100.0,
+     "intervention": 1.11021562303163,
+     "required_displacement": 0.007077350652552258,
+     "retains_required": false
+    },
+    "exact": {
+     "feasible": 100.0,
+     "intervention": 1.0983480000061123,
+     "required_displacement": 0.0,
+     "retains_required": true
+    }
+   }
+  },
+  {
+   "id": "train_0062",
+   "family": "polytope",
+   "predicted": true,
+   "methods": {
+    "clip": {
+     "feasible": 100.0,
+     "intervention": 1.0969146722281302,
+     "required_displacement": 2.9430615874756216,
+     "retains_required": false
+    },
+    "affine": {
+     "feasible": 100.0,
+     "intervention": 1.4731808957782078,
+     "required_displacement": 2.952678570255606,
+     "retains_required": false
+    },
+    "nonlinear": {
+     "feasible": 100.0,
+     "intervention": 1.0969146722281302,
+     "required_displacement": 2.9430615874756216,
+     "retains_required": false
+    },
+    "oracle_cf": {
+     "feasible": 100.0,
+     "intervention": 1.0969146722826562,
+     "required_displacement": 2.9430615874756216,
+     "retains_required": false
+    },
+    "oracle_ctx": {
+     "feasible": 100.0,
+     "intervention": 1.0969146722826562,
+     "required_displacement": 2.9430615874756216,
+     "retains_required": false
+    },
+    "exact": {
+     "feasible": 100.0,
+     "intervention": 0.49253235962036607,
+     "required_displacement": 0.0,
+     "retains_required": true
+    }
+   }
+  },
+  {
+   "id": "train_0063",
+   "family": "state_scaled",
+   "predicted": true,
+   "methods": {
+    "clip": {
+     "feasible": 100.0,
+     "intervention": 1.2006320171907132,
+     "required_displacement": 0.07982237619809296,
+     "retains_required": false
+    },
+    "affine": {
+     "feasible": 100.0,
+     "intervention": 1.438149994111873,
+     "required_displacement": 0.5204072803044815,
+     "retains_required": false
+    },
+    "nonlinear": {
+     "feasible": 100.0,
+     "intervention": 1.4088292263399378,
+     "required_displacement": 0.3641292170966526,
+     "retains_required": false
+    },
+    "oracle_cf": {
+     "feasible": 100.0,
+     "intervention": 1.2006320171907132,
+     "required_displacement": 0.07982237619809296,
+     "retains_required": false
+    },
+    "oracle_ctx": {
+     "feasible": 100.0,
+     "intervention": 0.9855555584919773,
+     "required_displacement": 0.0,
+     "retains_required": true
+    },
+    "exact": {
+     "feasible": 100.0,
+     "intervention": 0.9855555571170465,
+     "required_displacement": 0.0,
+     "retains_required": true
+    }
+   }
+  },
+  {
+   "id": "train_0064",
+   "family": "rotating",
+   "predicted": true,
+   "methods": {
+    "clip": {
+     "feasible": 100.0,
+     "intervention": 1.2612443810740532,
+     "required_displacement": 0.007228262459274021,
+     "retains_required": false
+    },
+    "affine": {
+     "feasible": 100.0,
+     "intervention": 1.460701183100924,
+     "required_displacement": 0.27998457241076335,
+     "retains_required": false
+    },
+    "nonlinear": {
+     "feasible": 100.0,
+     "intervention": 1.4142957032004027,
+     "required_displacement": 0.16430965556747273,
+     "retains_required": false
+    },
+    "oracle_cf": {
+     "feasible": 100.0,
+     "intervention": 1.2612443810740532,
+     "required_displacement": 0.007228262459274021,
+     "retains_required": false
+    },
+    "oracle_ctx": {
+     "feasible": 100.0,
+     "intervention": 1.071463159537904,
+     "required_displacement": 0.0011765777508914027,
+     "retains_required": true
+    },
+    "exact": {
+     "feasible": 100.0,
+     "intervention": 1.1657683172198219,
+     "required_displacement": 0.0,
+     "retains_required": true
+    }
+   }
+  },
+  {
+   "id": "train_0065",
+   "family": "phase_gated",
+   "predicted": false,
+   "methods": {
+    "clip": {
+     "feasible": 100.0,
+     "intervention": 0.8876773760512049,
+     "required_displacement": 0.0,
+     "retains_required": true
+    },
+    "affine": {
+     "feasible": 100.0,
+     "intervention": 1.6078847009055885,
+     "required_displacement": 1.2279374544412816,
+     "retains_required": false
+    },
+    "nonlinear": {
+     "feasible": 100.0,
+     "intervention": 1.480004680233389,
+     "required_displacement": 1.4145850315119062,
+     "retains_required": false
+    },
+    "oracle_cf": {
+     "feasible": 100.0,
+     "intervention": 0.8876773773687799,
+     "required_displacement": 0.0,
+     "retains_required": true
+    },
+    "oracle_ctx": {
+     "feasible": 100.0,
+     "intervention": 0.8876773773687799,
+     "required_displacement": 0.0,
+     "retains_required": true
+    },
+    "exact": {
+     "feasible": 100.0,
+     "intervention": 0.8876773760512049,
+     "required_displacement": 0.0,
+     "retains_required": true
+    }
+   }
+  },
+  {
+   "id": "train_0066",
+   "family": "box",
+   "predicted": false,
+   "methods": {
+    "clip": {
+     "feasible": 100.0,
+     "intervention": 0.714296988092305,
+     "required_displacement": 0.0,
+     "retains_required": true
+    },
+    "affine": {
+     "feasible": 100.0,
+     "intervention": 1.7180322088780928,
+     "required_displacement": 1.841682566221996,
+     "retains_required": false
+    },
+    "nonlinear": {
+     "feasible": 100.0,
+     "intervention": 0.9865856805253912,
+     "required_displacement": 0.28372595471367285,
+     "retains_required": false
+    },
+    "oracle_cf": {
+     "feasible": 100.0,
+     "intervention": 0.7142969893444069,
+     "required_displacement": 0.0,
+     "retains_required": true
+    },
+    "oracle_ctx": {
+     "feasible": 100.0,
+     "intervention": 0.7142969893444069,
+     "required_displacement": 0.0,
+     "retains_required": true
+    },
+    "exact": {
+     "feasible": 100.0,
+     "intervention": 0.714296988092305,
+     "required_displacement": 0.0,
+     "retains_required": true
+    }
+   }
+  },
+  {
+   "id": "train_0067",
+   "family": "ellipsoid",
+   "predicted": true,
+   "methods": {
+    "clip": {
+     "feasible": 100.0,
+     "intervention": 0.9365081642882259,
+     "required_displacement": 0.07913323956317384,
+     "retains_required": false
+    },
+    "affine": {
+     "feasible": 100.0,
+     "intervention": 1.5523611655915954,
+     "required_displacement": 0.8025817342664,
+     "retains_required": false
+    },
+    "nonlinear": {
+     "feasible": 100.0,
+     "intervention": 1.3577591466813685,
+     "required_displacement": 0.2579728748760781,
+     "retains_required": false
+    },
+    "oracle_cf": {
+     "feasible": 100.0,
+     "intervention": 0.9365081642882259,
+     "required_displacement": 0.07913323956317384,
+     "retains_required": false
+    },
+    "oracle_ctx": {
+     "feasible": 100.0,
+     "intervention": 0.9365081642882259,
+     "required_displacement": 0.07913323956317384,
+     "retains_required": false
+    },
+    "exact": {
+     "feasible": 100.0,
+     "intervention": 0.9731234396830678,
+     "required_displacement": 0.0,
+     "retains_required": true
+    }
+   }
+  },
+  {
+   "id": "train_0068",
+   "family": "polytope",
+   "predicted": true,
+   "methods": {
+    "clip": {
+     "feasible": 100.0,
+     "intervention": 1.0697356242605534,
+     "required_displacement": 0.3233896618023998,
+     "retains_required": false
+    },
+    "affine": {
+     "feasible": 100.0,
+     "intervention": 1.472044965236348,
+     "required_displacement": 0.4937879670872078,
+     "retains_required": false
+    },
+    "nonlinear": {
+     "feasible": 100.0,
+     "intervention": 1.0697356242605534,
+     "required_displacement": 0.3233896618023998,
+     "retains_required": false
+    },
+    "oracle_cf": {
+     "feasible": 100.0,
+     "intervention": 1.069735624316557,
+     "required_displacement": 0.3233896618023998,
+     "retains_required": false
+    },
+    "oracle_ctx": {
+     "feasible": 100.0,
+     "intervention": 1.069735624316557,
+     "required_displacement": 0.3233896618023998,
+     "retains_required": false
+    },
+    "exact": {
+     "feasible": 100.0,
+     "intervention": 0.513996491004218,
+     "required_displacement": 0.0,
+     "retains_required": true
+    }
+   }
+  },
+  {
+   "id": "train_0069",
+   "family": "state_scaled",
+   "predicted": true,
+   "methods": {
+    "clip": {
+     "feasible": 100.0,
+     "intervention": 1.073726091616794,
+     "required_displacement": 0.1375842993974274,
+     "retains_required": false
+    },
+    "affine": {
+     "feasible": 100.0,
+     "intervention": 1.4991372166563124,
+     "required_displacement": 1.0234658584310212,
+     "retains_required": false
+    },
+    "nonlinear": {
+     "feasible": 100.0,
+     "intervention": 1.1310688184493474,
+     "required_displacement": 0.22667507329705758,
+     "retains_required": false
+    },
+    "oracle_cf": {
+     "feasible": 100.0,
+     "intervention": 1.073726091616794,
+     "required_displacement": 0.1375842993974274,
+     "retains_required": false
+    },
+    "oracle_ctx": {
+     "feasible": 100.0,
+     "intervention": 0.8910888037031935,
+     "required_displacement": 0.0,
+     "retains_required": true
+    },
+    "exact": {
+     "feasible": 100.0,
+     "intervention": 0.8910888023669625,
+     "required_displacement": 0.0,
+     "retains_required": true
+    }
+   }
+  },
+  {
+   "id": "train_0070",
+   "family": "rotating",
+   "predicted": true,
+   "methods": {
+    "clip": {
+     "feasible": 100.0,
+     "intervention": 1.2760233457225378,
+     "required_displacement": 0.0053354865098886595,
+     "retains_required": false
+    },
+    "affine": {
+     "feasible": 100.0,
+     "intervention": 1.4231105251299703,
+     "required_displacement": 0.07706062581189413,
+     "retains_required": false
+    },
+    "nonlinear": {
+     "feasible": 100.0,
+     "intervention": 1.3549850202904543,
+     "required_displacement": 0.13095098145511647,
+     "retains_required": false
+    },
+    "oracle_cf": {
+     "feasible": 100.0,
+     "intervention": 1.2760233457225378,
+     "required_displacement": 0.0053354865098886595,
+     "retains_required": false
+    },
+    "oracle_ctx": {
+     "feasible": 100.0,
+     "intervention": 1.0593953527612765,
+     "required_displacement": 0.0,
+     "retains_required": true
+    },
+    "exact": {
+     "feasible": 100.0,
+     "intervention": 1.1489161305030855,
+     "required_displacement": 0.0,
+     "retains_required": true
+    }
+   }
+  },
+  {
+   "id": "train_0071",
+   "family": "phase_gated",
+   "predicted": true,
+   "methods": {
+    "clip": {
+     "feasible": 100.0,
+     "intervention": 0.7245128749035789,
+     "required_displacement": 0.058208483198727345,
+     "retains_required": false
+    },
+    "affine": {
+     "feasible": 100.0,
+     "intervention": 1.7266265906586693,
+     "required_displacement": 1.1744824574693837,
+     "retains_required": false
+    },
+    "nonlinear": {
+     "feasible": 100.0,
+     "intervention": 0.8181339056958074,
+     "required_displacement": 0.058208483198727345,
+     "retains_required": false
+    },
+    "oracle_cf": {
+     "feasible": 100.0,
+     "intervention": 0.7245128756385487,
+     "required_displacement": 0.058208483198727345,
+     "retains_required": false
+    },
+    "oracle_ctx": {
+     "feasible": 100.0,
+     "intervention": 0.5924512344721077,
+     "required_displacement": 0.0,
+     "retains_required": true
+    },
+    "exact": {
+     "feasible": 100.0,
+     "intervention": 0.5924512333420505,
+     "required_displacement": 0.0,
+     "retains_required": true
+    }
+   }
+  },
+  {
+   "id": "train_0072",
+   "family": "box",
+   "predicted": false,
+   "methods": {
+    "clip": {
+     "feasible": 100.0,
+     "intervention": 0.7121114779860426,
+     "required_displacement": 0.0,
+     "retains_required": true
+    },
+    "affine": {
+     "feasible": 100.0,
+     "intervention": 1.7015805275315452,
+     "required_displacement": 1.0758683579222639,
+     "retains_required": false
+    },
+    "nonlinear": {
+     "feasible": 100.0,
+     "intervention": 0.9493782954844611,
+     "required_displacement": 0.0,
+     "retains_required": true
+    },
+    "oracle_cf": {
+     "feasible": 100.0,
+     "intervention": 0.712111479229601,
+     "required_displacement": 0.0,
+     "retains_required": true
+    },
+    "oracle_ctx": {
+     "feasible": 100.0,
+     "intervention": 0.712111479229601,
+     "required_displacement": 0.0,
+     "retains_required": true
+    },
+    "exact": {
+     "feasible": 100.0,
+     "intervention": 0.7121114779860426,
+     "required_displacement": 0.0,
+     "retains_required": true
+    }
+   }
+  },
+  {
+   "id": "train_0073",
+   "family": "ellipsoid",
+   "predicted": false,
+   "methods": {
+    "clip": {
+     "feasible": 100.0,
+     "intervention": 1.1761826844724421,
+     "required_displacement": 0.0,
+     "retains_required": true
+    },
+    "affine": {
+     "feasible": 100.0,
+     "intervention": 1.4714687386669758,
+     "required_displacement": 0.33345499157996394,
+     "retains_required": false
+    },
+    "nonlinear": {
+     "feasible": 100.0,
+     "intervention": 1.3048604021262242,
+     "required_displacement": 0.2573890548404123,
+     "retains_required": false
+    },
+    "oracle_cf": {
+     "feasible": 100.0,
+     "intervention": 1.1761826844724421,
+     "required_displacement": 0.0,
+     "retains_required": true
+    },
+    "oracle_ctx": {
+     "feasible": 100.0,
+     "intervention": 1.1761826844724421,
+     "required_displacement": 0.0,
+     "retains_required": true
+    },
+    "exact": {
+     "feasible": 100.0,
+     "intervention": 1.1771399361015105,
+     "required_displacement": 0.0,
+     "retains_required": true
+    }
+   }
+  },
+  {
+   "id": "train_0074",
+   "family": "polytope",
+   "predicted": true,
+   "methods": {
+    "clip": {
+     "feasible": 100.0,
+     "intervention": 0.7910256143421642,
+     "required_displacement": 0.3573437158051802,
+     "retains_required": false
+    },
+    "affine": {
+     "feasible": 100.0,
+     "intervention": 0.8721466113155847,
+     "required_displacement": 0.3573437158051802,
+     "retains_required": false
+    },
+    "nonlinear": {
+     "feasible": 100.0,
+     "intervention": 0.7910256143421642,
+     "required_displacement": 0.3573437158051802,
+     "retains_required": false
+    },
+    "oracle_cf": {
+     "feasible": 100.0,
+     "intervention": 0.7910256143775097,
+     "required_displacement": 0.3573437158051802,
+     "retains_required": false
+    },
+    "oracle_ctx": {
+     "feasible": 100.0,
+     "intervention": 0.7910256143775097,
+     "required_displacement": 0.3573437158051802,
+     "retains_required": false
+    },
+    "exact": {
+     "feasible": 100.0,
+     "intervention": 0.22859309143672177,
+     "required_displacement": 0.0,
+     "retains_required": true
+    }
+   }
+  },
+  {
+   "id": "train_0075",
+   "family": "state_scaled",
+   "predicted": true,
+   "methods": {
+    "clip": {
+     "feasible": 100.0,
+     "intervention": 0.9045865420838289,
+     "required_displacement": 0.08094871252888651,
+     "retains_required": false
+    },
+    "affine": {
+     "feasible": 100.0,
+     "intervention": 1.59269450541469,
+     "required_displacement": 1.3048014404583106,
+     "retains_required": false
+    },
+    "nonlinear": {
+     "feasible": 100.0,
+     "intervention": 0.9449250107010445,
+     "required_displacement": 0.20068514939139712,
+     "retains_required": false
+    },
+    "oracle_cf": {
+     "feasible": 100.0,
+     "intervention": 0.9045865420838289,
+     "required_displacement": 0.08094871252888651,
+     "retains_required": false
+    },
+    "oracle_ctx": {
+     "feasible": 100.0,
+     "intervention": 0.7632334873193827,
+     "required_displacement": 0.0,
+     "retains_required": true
+    },
+    "exact": {
+     "feasible": 100.0,
+     "intervention": 0.7632334860344789,
+     "required_displacement": 0.0,
+     "retains_required": true
+    }
+   }
+  },
+  {
+   "id": "train_0076",
+   "family": "rotating",
+   "predicted": true,
+   "methods": {
+    "clip": {
+     "feasible": 100.0,
+     "intervention": 1.2009679120831513,
+     "required_displacement": 0.24932790551551953,
+     "retains_required": false
+    },
+    "affine": {
+     "feasible": 100.0,
+     "intervention": 1.4482855949006288,
+     "required_displacement": 0.5996884766307873,
+     "retains_required": false
+    },
+    "nonlinear": {
+     "feasible": 100.0,
+     "intervention": 1.3656523729169587,
+     "required_displacement": 0.5004626887694804,
+     "retains_required": false
+    },
+    "oracle_cf": {
+     "feasible": 100.0,
+     "intervention": 1.2009679120831513,
+     "required_displacement": 0.24932790551551953,
+     "retains_required": false
+    },
+    "oracle_ctx": {
+     "feasible": 100.0,
+     "intervention": 1.163607816406766,
+     "required_displacement": 0.19600047995168374,
+     "retains_required": false
+    },
+    "exact": {
+     "feasible": 100.0,
+     "intervention": 1.0147626004602317,
+     "required_displacement": 0.0,
+     "retains_required": true
+    }
+   }
+  },
+  {
+   "id": "train_0077",
+   "family": "phase_gated",
+   "predicted": true,
+   "methods": {
+    "clip": {
+     "feasible": 100.0,
+     "intervention": 0.9642128569645864,
+     "required_displacement": 0.13924722364914693,
+     "retains_required": false
+    },
+    "affine": {
+     "feasible": 100.0,
+     "intervention": 1.5350398307921187,
+     "required_displacement": 0.9423400619545437,
+     "retains_required": false
+    },
+    "nonlinear": {
+     "feasible": 100.0,
+     "intervention": 1.4607357109873829,
+     "required_displacement": 0.6669998762900002,
+     "retains_required": false
+    },
+    "oracle_cf": {
+     "feasible": 100.0,
+     "intervention": 0.9642128578135001,
+     "required_displacement": 0.13924722364914693,
+     "retains_required": false
+    },
+    "oracle_ctx": {
+     "feasible": 100.0,
+     "intervention": 0.8665900672014137,
+     "required_displacement": 0.0,
+     "retains_required": true
+    },
+    "exact": {
+     "feasible": 100.0,
+     "intervention": 0.8665900658806295,
+     "required_displacement": 0.0,
+     "retains_required": true
+    }
+   }
+  },
+  {
+   "id": "train_0078",
+   "family": "box",
+   "predicted": false,
+   "methods": {
+    "clip": {
+     "feasible": 100.0,
+     "intervention": 0.5820921997005027,
+     "required_displacement": 0.0,
+     "retains_required": true
+    },
+    "affine": {
+     "feasible": 100.0,
+     "intervention": 1.8065750680908323,
+     "required_displacement": 0.7369848692450065,
+     "retains_required": false
+    },
+    "nonlinear": {
+     "feasible": 100.0,
+     "intervention": 0.7725280975970352,
+     "required_displacement": 0.02660650100774129,
+     "retains_required": false
+    },
+    "oracle_cf": {
+     "feasible": 100.0,
+     "intervention": 0.5820922008234622,
+     "required_displacement": 0.0,
+     "retains_required": true
+    },
+    "oracle_ctx": {
+     "feasible": 100.0,
+     "intervention": 0.5820922008234622,
+     "required_displacement": 0.0,
+     "retains_required": true
+    },
+    "exact": {
+     "feasible": 100.0,
+     "intervention": 0.5820921997005027,
+     "required_displacement": 0.0,
+     "retains_required": true
+    }
+   }
+  },
+  {
+   "id": "train_0079",
+   "family": "ellipsoid",
+   "predicted": false,
+   "methods": {
+    "clip": {
+     "feasible": 100.0,
+     "intervention": 1.160635215397834,
+     "required_displacement": 0.0,
+     "retains_required": true
+    },
+    "affine": {
+     "feasible": 100.0,
+     "intervention": 1.4920682672953227,
+     "required_displacement": 0.4860874548075452,
+     "retains_required": false
+    },
+    "nonlinear": {
+     "feasible": 100.0,
+     "intervention": 1.455955087308989,
+     "required_displacement": 0.2735855530744612,
+     "retains_required": false
+    },
+    "oracle_cf": {
+     "feasible": 100.0,
+     "intervention": 1.160635215397834,
+     "required_displacement": 0.0,
+     "retains_required": true
+    },
+    "oracle_ctx": {
+     "feasible": 100.0,
+     "intervention": 1.160635215397834,
+     "required_displacement": 0.0,
+     "retains_required": true
+    },
+    "exact": {
+     "feasible": 100.0,
+     "intervention": 1.2162625685137802,
+     "required_displacement": 0.0,
+     "retains_required": true
+    }
+   }
+  },
+  {
+   "id": "train_0080",
+   "family": "polytope",
+   "predicted": true,
+   "methods": {
+    "clip": {
+     "feasible": 100.0,
+     "intervention": 1.1092229963649756,
+     "required_displacement": 0.7258246451905818,
+     "retains_required": false
+    },
+    "affine": {
+     "feasible": 100.0,
+     "intervention": 1.5118374564989718,
+     "required_displacement": 0.9978179139103996,
+     "retains_required": false
+    },
+    "nonlinear": {
+     "feasible": 100.0,
+     "intervention": 1.1328003699838525,
+     "required_displacement": 0.7258246451905818,
+     "retains_required": false
+    },
+    "oracle_cf": {
+     "feasible": 100.0,
+     "intervention": 1.1092229964166567,
+     "required_displacement": 0.7258246451905818,
+     "retains_required": false
+    },
+    "oracle_ctx": {
+     "feasible": 100.0,
+     "intervention": 1.1092229964166567,
+     "required_displacement": 0.7258246451905818,
+     "retains_required": false
+    },
+    "exact": {
+     "feasible": 100.0,
+     "intervention": 0.7698348852264238,
+     "required_displacement": 0.0,
+     "retains_required": true
+    }
+   }
+  },
+  {
+   "id": "train_0081",
+   "family": "state_scaled",
+   "predicted": true,
+   "methods": {
+    "clip": {
+     "feasible": 100.0,
+     "intervention": 0.8525663880120455,
+     "required_displacement": 0.10430523310056211,
+     "retains_required": false
+    },
+    "affine": {
+     "feasible": 100.0,
+     "intervention": 1.6419395875888254,
+     "required_displacement": 0.7827900921071995,
+     "retains_required": false
+    },
+    "nonlinear": {
+     "feasible": 100.0,
+     "intervention": 0.8547397293326457,
+     "required_displacement": 0.10430523310056211,
+     "retains_required": false
+    },
+    "oracle_cf": {
+     "feasible": 100.0,
+     "intervention": 0.8525663880120455,
+     "required_displacement": 0.10430523310056211,
+     "retains_required": false
+    },
+    "oracle_ctx": {
+     "feasible": 100.0,
+     "intervention": 0.6385252031300666,
+     "required_displacement": 0.0,
+     "retains_required": true
+    },
+    "exact": {
+     "feasible": 100.0,
+     "intervention": 0.6385252019237274,
+     "required_displacement": 0.0,
+     "retains_required": true
+    }
+   }
+  },
+  {
+   "id": "train_0082",
+   "family": "rotating",
+   "predicted": false,
+   "methods": {
+    "clip": {
+     "feasible": 100.0,
+     "intervention": 1.0640607889924527,
+     "required_displacement": 0.0,
+     "retains_required": true
+    },
+    "affine": {
+     "feasible": 100.0,
+     "intervention": 1.4870359363304606,
+     "required_displacement": 0.13362694663169652,
+     "retains_required": false
+    },
+    "nonlinear": {
+     "feasible": 100.0,
+     "intervention": 1.068002569566484,
+     "required_displacement": 0.0,
+     "retains_required": true
+    },
+    "oracle_cf": {
+     "feasible": 100.0,
+     "intervention": 1.0640607889924527,
+     "required_displacement": 0.0,
+     "retains_required": true
+    },
+    "oracle_ctx": {
+     "feasible": 100.0,
+     "intervention": 1.0139792887603647,
+     "required_displacement": 0.0,
+     "retains_required": true
+    },
+    "exact": {
+     "feasible": 100.0,
+     "intervention": 0.792704910125412,
+     "required_displacement": 0.0,
+     "retains_required": true
+    }
+   }
+  },
+  {
+   "id": "train_0083",
+   "family": "phase_gated",
+   "predicted": false,
+   "methods": {
+    "clip": {
+     "feasible": 100.0,
+     "intervention": 0.6149374876965134,
+     "required_displacement": 0.0,
+     "retains_required": true
+    },
+    "affine": {
+     "feasible": 100.0,
+     "intervention": 1.837110899245082,
+     "required_displacement": 1.286562536004486,
+     "retains_required": false
+    },
+    "nonlinear": {
+     "feasible": 100.0,
+     "intervention": 0.844297121822493,
+     "required_displacement": 0.0,
+     "retains_required": true
+    },
+    "oracle_cf": {
+     "feasible": 100.0,
+     "intervention": 0.614937488824721,
+     "required_displacement": 0.0,
+     "retains_required": true
+    },
+    "oracle_ctx": {
+     "feasible": 100.0,
+     "intervention": 0.614937488824721,
+     "required_displacement": 0.0,
+     "retains_required": true
+    },
+    "exact": {
+     "feasible": 100.0,
+     "intervention": 0.6149374876965134,
+     "required_displacement": 0.0,
+     "retains_required": true
+    }
+   }
+  },
+  {
+   "id": "train_0084",
+   "family": "box",
+   "predicted": false,
+   "methods": {
+    "clip": {
+     "feasible": 100.0,
+     "intervention": 0.39317774310357906,
+     "required_displacement": 0.0,
+     "retains_required": true
+    },
+    "affine": {
+     "feasible": 100.0,
+     "intervention": 1.9692599809114626,
+     "required_displacement": 1.4791988098409903,
+     "retains_required": false
+    },
+    "nonlinear": {
+     "feasible": 100.0,
+     "intervention": 0.4987825545858331,
+     "required_displacement": 0.0,
+     "retains_required": true
+    },
+    "oracle_cf": {
+     "feasible": 100.0,
+     "intervention": 0.39317774409141537,
+     "required_displacement": 0.0,
+     "retains_required": true
+    },
+    "oracle_ctx": {
+     "feasible": 100.0,
+     "intervention": 0.39317774409141537,
+     "required_displacement": 0.0,
+     "retains_required": true
+    },
+    "exact": {
+     "feasible": 100.0,
+     "intervention": 0.39317774310357906,
+     "required_displacement": 0.0,
+     "retains_required": true
+    }
+   }
+  },
+  {
+   "id": "train_0085",
+   "family": "ellipsoid",
+   "predicted": true,
+   "methods": {
+    "clip": {
+     "feasible": 100.0,
+     "intervention": 1.218483541603955,
+     "required_displacement": 0.035245949028345686,
+     "retains_required": false
+    },
+    "affine": {
+     "feasible": 100.0,
+     "intervention": 1.4820760682502014,
+     "required_displacement": 0.4176233447467213,
+     "retains_required": false
+    },
+    "nonlinear": {
+     "feasible": 100.0,
+     "intervention": 1.3981609289911234,
+     "required_displacement": 0.40370324956445713,
+     "retains_required": false
+    },
+    "oracle_cf": {
+     "feasible": 100.0,
+     "intervention": 1.218483541603955,
+     "required_displacement": 0.035245949028345686,
+     "retains_required": false
+    },
+    "oracle_ctx": {
+     "feasible": 100.0,
+     "intervention": 1.218483541603955,
+     "required_displacement": 0.035245949028345686,
+     "retains_required": false
+    },
+    "exact": {
+     "feasible": 100.0,
+     "intervention": 1.1121643696551988,
+     "required_displacement": 0.0,
+     "retains_required": true
+    }
+   }
+  },
+  {
+   "id": "train_0086",
+   "family": "polytope",
+   "predicted": true,
+   "methods": {
+    "clip": {
+     "feasible": 100.0,
+     "intervention": 1.0516654115480513,
+     "required_displacement": 0.32076744597582113,
+     "retains_required": false
+    },
+    "affine": {
+     "feasible": 100.0,
+     "intervention": 1.5299938586516788,
+     "required_displacement": 0.6020621168834414,
+     "retains_required": false
+    },
+    "nonlinear": {
+     "feasible": 100.0,
+     "intervention": 1.0516654115480513,
+     "required_displacement": 0.32076744597582113,
+     "retains_required": false
+    },
+    "oracle_cf": {
+     "feasible": 100.0,
+     "intervention": 1.0516654116017679,
+     "required_displacement": 0.32076744597582113,
+     "retains_required": false
+    },
+    "oracle_ctx": {
+     "feasible": 100.0,
+     "intervention": 1.0516654116017679,
+     "required_displacement": 0.32076744597582113,
+     "retains_required": false
+    },
+    "exact": {
+     "feasible": 100.0,
+     "intervention": 0.4090436434576585,
+     "required_displacement": 0.0,
+     "retains_required": true
+    }
+   }
+  },
+  {
+   "id": "train_0087",
+   "family": "state_scaled",
+   "predicted": true,
+   "methods": {
+    "clip": {
+     "feasible": 100.0,
+     "intervention": 1.0182612930954245,
+     "required_displacement": 0.4731593266167165,
+     "retains_required": false
+    },
+    "affine": {
+     "feasible": 100.0,
+     "intervention": 1.510422810825801,
+     "required_displacement": 0.922592901537226,
+     "retains_required": false
+    },
+    "nonlinear": {
+     "feasible": 100.0,
+     "intervention": 1.0182612930954245,
+     "required_displacement": 0.4731593266167165,
+     "retains_required": false
+    },
+    "oracle_cf": {
+     "feasible": 100.0,
+     "intervention": 1.0182612930954245,
+     "required_displacement": 0.4731593266167165,
+     "retains_required": false
+    },
+    "oracle_ctx": {
+     "feasible": 100.0,
+     "intervention": 0.5790710924209819,
+     "required_displacement": 0.0,
+     "retains_required": true
+    },
+    "exact": {
+     "feasible": 100.0,
+     "intervention": 0.5790710912654298,
+     "required_displacement": 0.0,
+     "retains_required": true
+    }
+   }
+  },
+  {
+   "id": "train_0088",
+   "family": "rotating",
+   "predicted": true,
+   "methods": {
+    "clip": {
+     "feasible": 100.0,
+     "intervention": 1.199483906095677,
+     "required_displacement": 0.0558230974902669,
+     "retains_required": false
+    },
+    "affine": {
+     "feasible": 100.0,
+     "intervention": 1.4595968842610958,
+     "required_displacement": 0.4014879790612649,
+     "retains_required": false
+    },
+    "nonlinear": {
+     "feasible": 100.0,
+     "intervention": 1.3383673026768588,
+     "required_displacement": 0.06374597371607767,
+     "retains_required": false
+    },
+    "oracle_cf": {
+     "feasible": 100.0,
+     "intervention": 1.199483906095677,
+     "required_displacement": 0.0558230974902669,
+     "retains_required": false
+    },
+    "oracle_ctx": {
+     "feasible": 100.0,
+     "intervention": 1.0150327077085246,
+     "required_displacement": 0.04522196761172592,
+     "retains_required": false
+    },
+    "exact": {
+     "feasible": 100.0,
+     "intervention": 1.0054127509725197,
+     "required_displacement": 0.0,
+     "retains_required": true
+    }
+   }
+  },
+  {
+   "id": "train_0089",
+   "family": "phase_gated",
+   "predicted": false,
+   "methods": {
+    "clip": {
+     "feasible": 100.0,
+     "intervention": 0.700442154550868,
+     "required_displacement": 0.0,
+     "retains_required": true
+    },
+    "affine": {
+     "feasible": 100.0,
+     "intervention": 1.7230332634909067,
+     "required_displacement": 0.4114012189402395,
+     "retains_required": false
+    },
+    "nonlinear": {
+     "feasible": 100.0,
+     "intervention": 0.7583723324921418,
+     "required_displacement": 0.0,
+     "retains_required": true
+    },
+    "oracle_cf": {
+     "feasible": 100.0,
+     "intervention": 0.7004421551778813,
+     "required_displacement": 0.0,
+     "retains_required": true
+    },
+    "oracle_ctx": {
+     "feasible": 100.0,
+     "intervention": 0.5398736744246592,
+     "required_displacement": 0.0,
+     "retains_required": true
+    },
+    "exact": {
+     "feasible": 100.0,
+     "intervention": 0.5398736732880673,
+     "required_displacement": 0.0,
+     "retains_required": true
+    }
+   }
+  },
+  {
+   "id": "train_0090",
+   "family": "box",
+   "predicted": false,
+   "methods": {
+    "clip": {
+     "feasible": 100.0,
+     "intervention": 0.6509778511589155,
+     "required_displacement": 0.0,
+     "retains_required": true
+    },
+    "affine": {
+     "feasible": 100.0,
+     "intervention": 1.7560773738614177,
+     "required_displacement": 0.35671503069564936,
+     "retains_required": false
+    },
+    "nonlinear": {
+     "feasible": 100.0,
+     "intervention": 0.8299490460552669,
+     "required_displacement": 0.041704130887548346,
+     "retains_required": false
+    },
+    "oracle_cf": {
+     "feasible": 100.0,
+     "intervention": 0.6509778523160342,
+     "required_displacement": 0.0,
+     "retains_required": true
+    },
+    "oracle_ctx": {
+     "feasible": 100.0,
+     "intervention": 0.6509778523160342,
+     "required_displacement": 0.0,
+     "retains_required": true
+    },
+    "exact": {
+     "feasible": 100.0,
+     "intervention": 0.6509778511589155,
+     "required_displacement": 0.0,
+     "retains_required": true
+    }
+   }
+  },
+  {
+   "id": "train_0091",
+   "family": "ellipsoid",
+   "predicted": true,
+   "methods": {
+    "clip": {
+     "feasible": 100.0,
+     "intervention": 1.046020601820455,
+     "required_displacement": 0.003158726866496958,
+     "retains_required": false
+    },
+    "affine": {
+     "feasible": 100.0,
+     "intervention": 1.586006564986277,
+     "required_displacement": 0.6071663116529732,
+     "retains_required": false
+    },
+    "nonlinear": {
+     "feasible": 100.0,
+     "intervention": 1.4635878089989374,
+     "required_displacement": 0.08284756178957545,
+     "retains_required": false
+    },
+    "oracle_cf": {
+     "feasible": 100.0,
+     "intervention": 1.046020601820455,
+     "required_displacement": 0.003158726866496958,
+     "retains_required": false
+    },
+    "oracle_ctx": {
+     "feasible": 100.0,
+     "intervention": 1.046020601820455,
+     "required_displacement": 0.003158726866496958,
+     "retains_required": false
+    },
+    "exact": {
+     "feasible": 100.0,
+     "intervention": 1.2575255449879759,
+     "required_displacement": 0.0,
+     "retains_required": true
+    }
+   }
+  },
+  {
+   "id": "train_0092",
+   "family": "polytope",
+   "predicted": true,
+   "methods": {
+    "clip": {
+     "feasible": 100.0,
+     "intervention": 1.0614610722698365,
+     "required_displacement": 0.23584204057226815,
+     "retains_required": false
+    },
+    "affine": {
+     "feasible": 100.0,
+     "intervention": 1.5111648668261757,
+     "required_displacement": 0.23584204057226815,
+     "retains_required": false
+    },
+    "nonlinear": {
+     "feasible": 100.0,
+     "intervention": 1.0614610722698365,
+     "required_displacement": 0.23584204057226815,
+     "retains_required": false
+    },
+    "oracle_cf": {
+     "feasible": 100.0,
+     "intervention": 1.0614610723146662,
+     "required_displacement": 0.23584204057226815,
+     "retains_required": false
+    },
+    "oracle_ctx": {
+     "feasible": 100.0,
+     "intervention": 1.0614610723146662,
+     "required_displacement": 0.23584204057226815,
+     "retains_required": false
+    },
+    "exact": {
+     "feasible": 100.0,
+     "intervention": 0.5880323846576716,
+     "required_displacement": 0.0,
+     "retains_required": true
+    }
+   }
+  },
+  {
+   "id": "train_0093",
+   "family": "state_scaled",
+   "predicted": false,
+   "methods": {
+    "clip": {
+     "feasible": 100.0,
+     "intervention": 0.8814460905324156,
+     "required_displacement": 0.0,
+     "retains_required": true
+    },
+    "affine": {
+     "feasible": 100.0,
+     "intervention": 1.5337095529990246,
+     "required_displacement": 0.9433019814019429,
+     "retains_required": false
+    },
+    "nonlinear": {
+     "feasible": 100.0,
+     "intervention": 0.8834313782792869,
+     "required_displacement": 0.0,
+     "retains_required": true
+    },
+    "oracle_cf": {
+     "feasible": 100.0,
+     "intervention": 0.8814460905324156,
+     "required_displacement": 0.0,
+     "retains_required": true
+    },
+    "oracle_ctx": {
+     "feasible": 100.0,
+     "intervention": 0.6817443748264054,
+     "required_displacement": 0.0,
+     "retains_required": true
+    },
+    "exact": {
+     "feasible": 100.0,
+     "intervention": 0.6817443736120781,
+     "required_displacement": 0.0,
+     "retains_required": true
+    }
+   }
+  },
+  {
+   "id": "train_0094",
+   "family": "rotating",
+   "predicted": true,
+   "methods": {
+    "clip": {
+     "feasible": 100.0,
+     "intervention": 1.1420186915246149,
+     "required_displacement": 0.0005225262895292015,
+     "retains_required": true
+    },
+    "affine": {
+     "feasible": 100.0,
+     "intervention": 1.4898583864790103,
+     "required_displacement": 0.31243196279807994,
+     "retains_required": false
+    },
+    "nonlinear": {
+     "feasible": 100.0,
+     "intervention": 1.4473676999949134,
+     "required_displacement": 0.49328539119430964,
+     "retains_required": false
+    },
+    "oracle_cf": {
+     "feasible": 100.0,
+     "intervention": 1.1420186915246149,
+     "required_displacement": 0.0005225262895292015,
+     "retains_required": true
+    },
+    "oracle_ctx": {
+     "feasible": 100.0,
+     "intervention": 1.1013734134850446,
+     "required_displacement": 0.0,
+     "retains_required": true
+    },
+    "exact": {
+     "feasible": 100.0,
+     "intervention": 1.0017934685312582,
+     "required_displacement": 0.0,
+     "retains_required": true
+    }
+   }
+  },
+  {
+   "id": "train_0095",
+   "family": "phase_gated",
+   "predicted": true,
+   "methods": {
+    "clip": {
+     "feasible": 100.0,
+     "intervention": 0.6253220748821097,
+     "required_displacement": 0.359850191976261,
+     "retains_required": false
+    },
+    "affine": {
+     "feasible": 100.0,
+     "intervention": 1.820705058550862,
+     "required_displacement": 1.1659552572226473,
+     "retains_required": false
+    },
+    "nonlinear": {
+     "feasible": 100.0,
+     "intervention": 0.6535501679766809,
+     "required_displacement": 0.3660092541711814,
+     "retains_required": false
+    },
+    "oracle_cf": {
+     "feasible": 100.0,
+     "intervention": 0.6253220754771541,
+     "required_displacement": 0.359850191976261,
+     "retains_required": false
+    },
+    "oracle_ctx": {
+     "feasible": 100.0,
+     "intervention": 0.4196233844101438,
+     "required_displacement": 0.0,
+     "retains_required": true
+    },
+    "exact": {
+     "feasible": 100.0,
+     "intervention": 0.41962338337869154,
+     "required_displacement": 0.0,
+     "retains_required": true
+    }
+   }
+  },
+  {
+   "id": "train_0096",
+   "family": "box",
+   "predicted": false,
+   "methods": {
+    "clip": {
+     "feasible": 100.0,
+     "intervention": 0.6217139067408262,
+     "required_displacement": 0.0,
+     "retains_required": true
+    },
+    "affine": {
+     "feasible": 100.0,
+     "intervention": 1.5574079028883916,
+     "required_displacement": 1.3580153072365249,
+     "retains_required": false
+    },
+    "nonlinear": {
+     "feasible": 100.0,
+     "intervention": 0.7810545100168418,
+     "required_displacement": 0.07167488761221065,
+     "retains_required": false
+    },
+    "oracle_cf": {
+     "feasible": 100.0,
+     "intervention": 0.6217139079375893,
+     "required_displacement": 0.0,
+     "retains_required": true
+    },
+    "oracle_ctx": {
+     "feasible": 100.0,
+     "intervention": 0.6217139079375893,
+     "required_displacement": 0.0,
+     "retains_required": true
+    },
+    "exact": {
+     "feasible": 100.0,
+     "intervention": 0.6217139067408262,
+     "required_displacement": 0.0,
+     "retains_required": true
+    }
+   }
+  },
+  {
+   "id": "train_0097",
+   "family": "ellipsoid",
+   "predicted": true,
+   "methods": {
+    "clip": {
+     "feasible": 100.0,
+     "intervention": 1.0847277214380253,
+     "required_displacement": 0.07317895963458006,
+     "retains_required": false
+    },
+    "affine": {
+     "feasible": 100.0,
+     "intervention": 1.4880210958112507,
+     "required_displacement": 0.7457062434980681,
+     "retains_required": false
+    },
+    "nonlinear": {
+     "feasible": 100.0,
+     "intervention": 1.3718410811634565,
+     "required_displacement": 0.4112255819542535,
+     "retains_required": false
+    },
+    "oracle_cf": {
+     "feasible": 100.0,
+     "intervention": 1.0847277214380253,
+     "required_displacement": 0.07317895963458006,
+     "retains_required": false
+    },
+    "oracle_ctx": {
+     "feasible": 100.0,
+     "intervention": 1.0847277214380253,
+     "required_displacement": 0.07317895963458006,
+     "retains_required": false
+    },
+    "exact": {
+     "feasible": 100.0,
+     "intervention": 0.9738919465748527,
+     "required_displacement": 0.0,
+     "retains_required": true
+    }
+   }
+  },
+  {
+   "id": "train_0098",
+   "family": "polytope",
+   "predicted": true,
+   "methods": {
+    "clip": {
+     "feasible": 100.0,
+     "intervention": 1.068588474037745,
+     "required_displacement": 0.8015509938939487,
+     "retains_required": false
+    },
+    "affine": {
+     "feasible": 100.0,
+     "intervention": 1.504997735860551,
+     "required_displacement": 1.3301183937707903,
+     "retains_required": false
+    },
+    "nonlinear": {
+     "feasible": 100.0,
+     "intervention": 1.0704428968107556,
+     "required_displacement": 0.8015509938939487,
+     "retains_required": false
+    },
+    "oracle_cf": {
+     "feasible": 100.0,
+     "intervention": 1.0685884740877416,
+     "required_displacement": 0.8015509938939487,
+     "retains_required": false
+    },
+    "oracle_ctx": {
+     "feasible": 100.0,
+     "intervention": 1.0685884740877416,
+     "required_displacement": 0.8015509938939487,
+     "retains_required": false
+    },
+    "exact": {
+     "feasible": 100.0,
+     "intervention": 0.6266798542627573,
+     "required_displacement": 0.0,
+     "retains_required": true
+    }
+   }
+  },
+  {
+   "id": "train_0099",
+   "family": "state_scaled",
+   "predicted": false,
+   "methods": {
+    "clip": {
+     "feasible": 100.0,
+     "intervention": 0.9638993300282587,
+     "required_displacement": 0.0,
+     "retains_required": true
+    },
+    "affine": {
+     "feasible": 100.0,
+     "intervention": 1.5253838663970969,
+     "required_displacement": 0.20701410281073235,
+     "retains_required": false
+    },
+    "nonlinear": {
+     "feasible": 100.0,
+     "intervention": 1.4648979643833582,
+     "required_displacement": 0.14274800762609746,
+     "retains_required": false
+    },
+    "oracle_cf": {
+     "feasible": 100.0,
+     "intervention": 0.9638993300282587,
+     "required_displacement": 0.0,
+     "retains_required": true
+    },
+    "oracle_ctx": {
+     "feasible": 100.0,
+     "intervention": 0.9165170167308295,
+     "required_displacement": 0.0,
+     "retains_required": true
+    },
+    "exact": {
+     "feasible": 100.0,
+     "intervention": 0.9165170154072482,
+     "required_displacement": 0.0,
+     "retains_required": true
+    }
+   }
+  },
+  {
+   "id": "train_0100",
+   "family": "rotating",
+   "predicted": true,
+   "methods": {
+    "clip": {
+     "feasible": 100.0,
+     "intervention": 1.3687280895171614,
+     "required_displacement": 0.11294889482812064,
+     "retains_required": false
+    },
+    "affine": {
+     "feasible": 100.0,
+     "intervention": 1.4567387062452501,
+     "required_displacement": 0.20875116305724545,
+     "retains_required": false
+    },
+    "nonlinear": {
+     "feasible": 100.0,
+     "intervention": 1.434321722359249,
+     "required_displacement": 0.2375202702970537,
+     "retains_required": false
+    },
+    "oracle_cf": {
+     "feasible": 100.0,
+     "intervention": 1.3687280895171614,
+     "required_displacement": 0.11294889482812064,
+     "retains_required": false
+    },
+    "oracle_ctx": {
+     "feasible": 100.0,
+     "intervention": 1.3570726807231261,
+     "required_displacement": 0.10077488230821763,
+     "retains_required": false
+    },
+    "exact": {
+     "feasible": 100.0,
+     "intervention": 1.2470500601311745,
+     "required_displacement": 0.0,
+     "retains_required": true
+    }
+   }
+  },
+  {
+   "id": "train_0101",
+   "family": "phase_gated",
+   "predicted": true,
+   "methods": {
+    "clip": {
+     "feasible": 100.0,
+     "intervention": 0.8346453543482495,
+     "required_displacement": 0.02627898739562251,
+     "retains_required": false
+    },
+    "affine": {
+     "feasible": 100.0,
+     "intervention": 1.6312624021885396,
+     "required_displacement": 0.5305500228338266,
+     "retains_required": false
+    },
+    "nonlinear": {
+     "feasible": 100.0,
+     "intervention": 0.9982569374082212,
+     "required_displacement": 0.06869410279024177,
+     "retains_required": false
+    },
+    "oracle_cf": {
+     "feasible": 100.0,
+     "intervention": 0.8346453549764061,
+     "required_displacement": 0.02627898739562251,
+     "retains_required": false
+    },
+    "oracle_ctx": {
+     "feasible": 100.0,
+     "intervention": 0.7430656623730175,
+     "required_displacement": 0.0,
+     "retains_required": true
+    },
+    "exact": {
+     "feasible": 100.0,
+     "intervention": 0.7430656611572053,
+     "required_displacement": 0.0,
+     "retains_required": true
+    }
+   }
+  },
+  {
+   "id": "train_0102",
+   "family": "box",
+   "predicted": false,
+   "methods": {
+    "clip": {
+     "feasible": 100.0,
+     "intervention": 0.5278139568056356,
+     "required_displacement": 0.0,
+     "retains_required": true
+    },
+    "affine": {
+     "feasible": 100.0,
+     "intervention": 1.854753966259048,
+     "required_displacement": 2.180619248714191,
+     "retains_required": false
+    },
+    "nonlinear": {
+     "feasible": 100.0,
+     "intervention": 0.6624974736221547,
+     "required_displacement": 0.0,
+     "retains_required": true
+    },
+    "oracle_cf": {
+     "feasible": 100.0,
+     "intervention": 0.5278139578741232,
+     "required_displacement": 0.0,
+     "retains_required": true
+    },
+    "oracle_ctx": {
+     "feasible": 100.0,
+     "intervention": 0.5278139578741232,
+     "required_displacement": 0.0,
+     "retains_required": true
+    },
+    "exact": {
+     "feasible": 100.0,
+     "intervention": 0.5278139568056356,
+     "required_displacement": 0.0,
+     "retains_required": true
+    }
+   }
+  },
+  {
+   "id": "train_0103",
+   "family": "ellipsoid",
+   "predicted": true,
+   "methods": {
+    "clip": {
+     "feasible": 100.0,
+     "intervention": 0.979646592587307,
+     "required_displacement": 0.02405743072141934,
+     "retains_required": false
+    },
+    "affine": {
+     "feasible": 100.0,
+     "intervention": 1.5746088691943603,
+     "required_displacement": 0.6236824933182057,
+     "retains_required": false
+    },
+    "nonlinear": {
+     "feasible": 100.0,
+     "intervention": 1.4338539888758997,
+     "required_displacement": 0.19075616650860888,
+     "retains_required": false
+    },
+    "oracle_cf": {
+     "feasible": 100.0,
+     "intervention": 0.979646592587307,
+     "required_displacement": 0.02405743072141934,
+     "retains_required": false
+    },
+    "oracle_ctx": {
+     "feasible": 100.0,
+     "intervention": 0.979646592587307,
+     "required_displacement": 0.02405743072141934,
+     "retains_required": false
+    },
+    "exact": {
+     "feasible": 100.0,
+     "intervention": 1.2017971649838588,
+     "required_displacement": 0.0,
+     "retains_required": true
+    }
+   }
+  },
+  {
+   "id": "train_0104",
+   "family": "polytope",
+   "predicted": true,
+   "methods": {
+    "clip": {
+     "feasible": 100.0,
+     "intervention": 0.9366384999800625,
+     "required_displacement": 0.34737739293808945,
+     "retains_required": false
+    },
+    "affine": {
+     "feasible": 100.0,
+     "intervention": 1.4899601978776884,
+     "required_displacement": 1.147006418256952,
+     "retains_required": false
+    },
+    "nonlinear": {
+     "feasible": 100.0,
+     "intervention": 0.9366384999800625,
+     "required_displacement": 0.34737739293808945,
+     "retains_required": false
+    },
+    "oracle_cf": {
+     "feasible": 100.0,
+     "intervention": 0.9366385000218519,
+     "required_displacement": 0.34737739293808945,
+     "retains_required": false
+    },
+    "oracle_ctx": {
+     "feasible": 100.0,
+     "intervention": 0.9366385000218519,
+     "required_displacement": 0.34737739293808945,
+     "retains_required": false
+    },
+    "exact": {
+     "feasible": 100.0,
+     "intervention": 0.4634218250402551,
+     "required_displacement": 0.0,
+     "retains_required": true
+    }
+   }
+  },
+  {
+   "id": "train_0105",
+   "family": "state_scaled",
+   "predicted": true,
+   "methods": {
+    "clip": {
+     "feasible": 100.0,
+     "intervention": 1.0426390666137855,
+     "required_displacement": 0.1347967151126596,
+     "retains_required": false
+    },
+    "affine": {
+     "feasible": 100.0,
+     "intervention": 1.5421766783882023,
+     "required_displacement": 0.1347967151126596,
+     "retains_required": false
+    },
+    "nonlinear": {
+     "feasible": 100.0,
+     "intervention": 1.2911162313857278,
+     "required_displacement": 0.40836805213594496,
+     "retains_required": false
+    },
+    "oracle_cf": {
+     "feasible": 100.0,
+     "intervention": 1.0426390666137855,
+     "required_displacement": 0.1347967151126596,
+     "retains_required": false
+    },
+    "oracle_ctx": {
+     "feasible": 100.0,
+     "intervention": 0.890355943347577,
+     "required_displacement": 0.0,
+     "retains_required": true
+    },
+    "exact": {
+     "feasible": 100.0,
+     "intervention": 0.8903559420182277,
+     "required_displacement": 0.0,
+     "retains_required": true
+    }
+   }
+  },
+  {
+   "id": "train_0106",
+   "family": "rotating",
+   "predicted": true,
+   "methods": {
+    "clip": {
+     "feasible": 100.0,
+     "intervention": 1.3557371971390644,
+     "required_displacement": 0.00513566256116129,
+     "retains_required": false
+    },
+    "affine": {
+     "feasible": 100.0,
+     "intervention": 1.4206448758545935,
+     "required_displacement": 0.09633607356873727,
+     "retains_required": false
+    },
+    "nonlinear": {
+     "feasible": 100.0,
+     "intervention": 1.4234049348745148,
+     "required_displacement": 0.09091803656413687,
+     "retains_required": false
+    },
+    "oracle_cf": {
+     "feasible": 100.0,
+     "intervention": 1.3557371971390644,
+     "required_displacement": 0.00513566256116129,
+     "retains_required": false
+    },
+    "oracle_ctx": {
+     "feasible": 100.0,
+     "intervention": 1.2457275049361456,
+     "required_displacement": 0.005061005088932036,
+     "retains_required": false
+    },
+    "exact": {
+     "feasible": 100.0,
+     "intervention": 1.2303260933972864,
+     "required_displacement": 0.0,
+     "retains_required": true
+    }
+   }
+  },
+  {
+   "id": "train_0107",
+   "family": "phase_gated",
+   "predicted": false,
+   "methods": {
+    "clip": {
+     "feasible": 100.0,
+     "intervention": 0.7239644727771851,
+     "required_displacement": 0.0,
+     "retains_required": true
+    },
+    "affine": {
+     "feasible": 100.0,
+     "intervention": 1.7714304131692995,
+     "required_displacement": 0.4438861320490577,
+     "retains_required": false
+    },
+    "nonlinear": {
+     "feasible": 100.0,
+     "intervention": 0.8722318527472602,
+     "required_displacement": 0.016402795455174275,
+     "retains_required": false
+    },
+    "oracle_cf": {
+     "feasible": 100.0,
+     "intervention": 0.7239644739474591,
+     "required_displacement": 0.0,
+     "retains_required": true
+    },
+    "oracle_ctx": {
+     "feasible": 100.0,
+     "intervention": 0.7239644739474591,
+     "required_displacement": 0.0,
+     "retains_required": true
+    },
+    "exact": {
+     "feasible": 100.0,
+     "intervention": 0.7239644727771851,
+     "required_displacement": 0.0,
+     "retains_required": true
+    }
+   }
+  },
+  {
+   "id": "train_0108",
+   "family": "box",
+   "predicted": false,
+   "methods": {
+    "clip": {
+     "feasible": 100.0,
+     "intervention": 0.639374794674347,
+     "required_displacement": 0.0,
+     "retains_required": true
+    },
+    "affine": {
+     "feasible": 100.0,
+     "intervention": 1.7290446266021022,
+     "required_displacement": 0.39043374022281774,
+     "retains_required": false
+    },
+    "nonlinear": {
+     "feasible": 100.0,
+     "intervention": 0.7820550776951884,
+     "required_displacement": 0.016313708706092063,
+     "retains_required": false
+    },
+    "oracle_cf": {
+     "feasible": 100.0,
+     "intervention": 0.6393747958097744,
+     "required_displacement": 0.0,
+     "retains_required": true
+    },
+    "oracle_ctx": {
+     "feasible": 100.0,
+     "intervention": 0.6393747958097744,
+     "required_displacement": 0.0,
+     "retains_required": true
+    },
+    "exact": {
+     "feasible": 100.0,
+     "intervention": 0.639374794674347,
+     "required_displacement": 0.0,
+     "retains_required": true
+    }
+   }
+  },
+  {
+   "id": "train_0109",
+   "family": "ellipsoid",
+   "predicted": true,
+   "methods": {
+    "clip": {
+     "feasible": 100.0,
+     "intervention": 0.9417224447887801,
+     "required_displacement": 0.004751274524589011,
+     "retains_required": true
+    },
+    "affine": {
+     "feasible": 100.0,
+     "intervention": 1.5900545131524655,
+     "required_displacement": 1.0218093450172168,
+     "retains_required": false
+    },
+    "nonlinear": {
+     "feasible": 100.0,
+     "intervention": 1.3741831153948199,
+     "required_displacement": 0.5316554070955374,
+     "retains_required": false
+    },
+    "oracle_cf": {
+     "feasible": 100.0,
+     "intervention": 0.9417224447887801,
+     "required_displacement": 0.004751274524589011,
+     "retains_required": true
+    },
+    "oracle_ctx": {
+     "feasible": 100.0,
+     "intervention": 0.9417224447887801,
+     "required_displacement": 0.004751274524589011,
+     "retains_required": true
+    },
+    "exact": {
+     "feasible": 100.0,
+     "intervention": 1.0629420716293254,
+     "required_displacement": 0.0,
+     "retains_required": true
+    }
+   }
+  },
+  {
+   "id": "train_0110",
+   "family": "polytope",
+   "predicted": true,
+   "methods": {
+    "clip": {
+     "feasible": 100.0,
+     "intervention": 1.0728461385992158,
+     "required_displacement": 1.3297746674059392,
+     "retains_required": false
+    },
+    "affine": {
+     "feasible": 100.0,
+     "intervention": 1.5104776617337654,
+     "required_displacement": 1.3297746674059392,
+     "retains_required": false
+    },
+    "nonlinear": {
+     "feasible": 100.0,
+     "intervention": 1.0728461385992158,
+     "required_displacement": 1.3297746674059392,
+     "retains_required": false
+    },
+    "oracle_cf": {
+     "feasible": 100.0,
+     "intervention": 1.072846138682675,
+     "required_displacement": 1.3297746674059392,
+     "retains_required": false
+    },
+    "oracle_ctx": {
+     "feasible": 100.0,
+     "intervention": 1.072846138682675,
+     "required_displacement": 1.3297746674059392,
+     "retains_required": false
+    },
+    "exact": {
+     "feasible": 100.0,
+     "intervention": 0.5684070146287872,
+     "required_displacement": 0.0,
+     "retains_required": true
+    }
+   }
+  },
+  {
+   "id": "train_0111",
+   "family": "state_scaled",
+   "predicted": true,
+   "methods": {
+    "clip": {
+     "feasible": 100.0,
+     "intervention": 0.9921067913152936,
+     "required_displacement": 0.09638601894276681,
+     "retains_required": false
+    },
+    "affine": {
+     "feasible": 100.0,
+     "intervention": 1.5237762577362992,
+     "required_displacement": 1.0024158208842355,
+     "retains_required": false
+    },
+    "nonlinear": {
+     "feasible": 100.0,
+     "intervention": 0.9921067913152936,
+     "required_displacement": 0.09638601894276681,
+     "retains_required": false
+    },
+    "oracle_cf": {
+     "feasible": 100.0,
+     "intervention": 0.9921067913152936,
+     "required_displacement": 0.09638601894276681,
+     "retains_required": false
+    },
+    "oracle_ctx": {
+     "feasible": 100.0,
+     "intervention": 0.6866746992349876,
+     "required_displacement": 0.0,
+     "retains_required": true
+    },
+    "exact": {
+     "feasible": 100.0,
+     "intervention": 0.68667469800021,
+     "required_displacement": 0.0,
+     "retains_required": true
+    }
+   }
+  },
+  {
+   "id": "train_0112",
+   "family": "rotating",
+   "predicted": true,
+   "methods": {
+    "clip": {
+     "feasible": 100.0,
+     "intervention": 1.2731739333658196,
+     "required_displacement": 0.0438599058483912,
+     "retains_required": false
+    },
+    "affine": {
+     "feasible": 100.0,
+     "intervention": 1.4308623317950384,
+     "required_displacement": 0.3408822274482111,
+     "retains_required": false
+    },
+    "nonlinear": {
+     "feasible": 100.0,
+     "intervention": 1.3681587909669923,
+     "required_displacement": 0.3287501678538979,
+     "retains_required": false
+    },
+    "oracle_cf": {
+     "feasible": 100.0,
+     "intervention": 1.2731739333658196,
+     "required_displacement": 0.0438599058483912,
+     "retains_required": false
+    },
+    "oracle_ctx": {
+     "feasible": 100.0,
+     "intervention": 1.107148491809937,
+     "required_displacement": 0.0230121119061045,
+     "retains_required": false
+    },
+    "exact": {
+     "feasible": 100.0,
+     "intervention": 1.1321507424347157,
+     "required_displacement": 0.0,
+     "retains_required": true
+    }
+   }
+  },
+  {
+   "id": "train_0113",
+   "family": "phase_gated",
+   "predicted": false,
+   "methods": {
+    "clip": {
+     "feasible": 100.0,
+     "intervention": 0.6512603473997913,
+     "required_displacement": 0.0,
+     "retains_required": true
+    },
+    "affine": {
+     "feasible": 100.0,
+     "intervention": 1.8132528772124339,
+     "required_displacement": 2.228667442508767,
+     "retains_required": false
+    },
+    "nonlinear": {
+     "feasible": 100.0,
+     "intervention": 0.769687120616374,
+     "required_displacement": 0.13162156967510422,
+     "retains_required": false
+    },
+    "oracle_cf": {
+     "feasible": 100.0,
+     "intervention": 0.6512603485384107,
+     "required_displacement": 0.0,
+     "retains_required": true
+    },
+    "oracle_ctx": {
+     "feasible": 100.0,
+     "intervention": 0.6512603485384107,
+     "required_displacement": 0.0,
+     "retains_required": true
+    },
+    "exact": {
+     "feasible": 100.0,
+     "intervention": 0.6512603473997913,
+     "required_displacement": 0.0,
+     "retains_required": true
+    }
+   }
+  },
+  {
+   "id": "train_0114",
+   "family": "box",
+   "predicted": false,
+   "methods": {
+    "clip": {
+     "feasible": 100.0,
+     "intervention": 0.6569663229495022,
+     "required_displacement": 0.0,
+     "retains_required": true
+    },
+    "affine": {
+     "feasible": 100.0,
+     "intervention": 1.8193169012189963,
+     "required_displacement": 1.6958136012655545,
+     "retains_required": false
+    },
+    "nonlinear": {
+     "feasible": 100.0,
+     "intervention": 0.916138341547326,
+     "required_displacement": 0.25844210283297236,
+     "retains_required": false
+    },
+    "oracle_cf": {
+     "feasible": 100.0,
+     "intervention": 0.6569663241268415,
+     "required_displacement": 0.0,
+     "retains_required": true
+    },
+    "oracle_ctx": {
+     "feasible": 100.0,
+     "intervention": 0.6569663241268415,
+     "required_displacement": 0.0,
+     "retains_required": true
+    },
+    "exact": {
+     "feasible": 100.0,
+     "intervention": 0.6569663229495022,
+     "required_displacement": 0.0,
+     "retains_required": true
+    }
+   }
+  },
+  {
+   "id": "train_0115",
+   "family": "ellipsoid",
+   "predicted": true,
+   "methods": {
+    "clip": {
+     "feasible": 100.0,
+     "intervention": 1.088009163253874,
+     "required_displacement": 0.023370451984307733,
+     "retains_required": false
+    },
+    "affine": {
+     "feasible": 100.0,
+     "intervention": 1.516630031309826,
+     "required_displacement": 0.5357073111054161,
+     "retains_required": false
+    },
+    "nonlinear": {
+     "feasible": 100.0,
+     "intervention": 1.4330231460236866,
+     "required_displacement": 0.3156922742035323,
+     "retains_required": false
+    },
+    "oracle_cf": {
+     "feasible": 100.0,
+     "intervention": 1.088009163253874,
+     "required_displacement": 0.023370451984307733,
+     "retains_required": false
+    },
+    "oracle_ctx": {
+     "feasible": 100.0,
+     "intervention": 1.088009163253874,
+     "required_displacement": 0.023370451984307733,
+     "retains_required": false
+    },
+    "exact": {
+     "feasible": 100.0,
+     "intervention": 1.1542384032243496,
+     "required_displacement": 0.0,
+     "retains_required": true
+    }
+   }
+  },
+  {
+   "id": "train_0116",
+   "family": "polytope",
+   "predicted": true,
+   "methods": {
+    "clip": {
+     "feasible": 100.0,
+     "intervention": 1.1057745344713945,
+     "required_displacement": 0.6479906841021269,
+     "retains_required": false
+    },
+    "affine": {
+     "feasible": 100.0,
+     "intervention": 1.454209918247044,
+     "required_displacement": 0.940775553967498,
+     "retains_required": false
+    },
+    "nonlinear": {
+     "feasible": 100.0,
+     "intervention": 1.1089159062092246,
+     "required_displacement": 0.6479906841021269,
+     "retains_required": false
+    },
+    "oracle_cf": {
+     "feasible": 100.0,
+     "intervention": 1.1057745345389598,
+     "required_displacement": 0.6479906841021269,
+     "retains_required": false
+    },
+    "oracle_ctx": {
+     "feasible": 100.0,
+     "intervention": 1.1057745345389598,
+     "required_displacement": 0.6479906841021269,
+     "retains_required": false
+    },
+    "exact": {
+     "feasible": 100.0,
+     "intervention": 0.7421171211375516,
+     "required_displacement": 0.0,
+     "retains_required": true
+    }
+   }
+  },
+  {
+   "id": "train_0117",
+   "family": "state_scaled",
+   "predicted": false,
+   "methods": {
+    "clip": {
+     "feasible": 100.0,
+     "intervention": 0.9916542816736521,
+     "required_displacement": 0.0,
+     "retains_required": true
+    },
+    "affine": {
+     "feasible": 100.0,
+     "intervention": 1.5739816843070196,
+     "required_displacement": 0.9268205839790643,
+     "retains_required": false
+    },
+    "nonlinear": {
+     "feasible": 100.0,
+     "intervention": 1.0401979706660078,
+     "required_displacement": 0.1281991321806459,
+     "retains_required": false
+    },
+    "oracle_cf": {
+     "feasible": 100.0,
+     "intervention": 0.9916542816736521,
+     "required_displacement": 0.0,
+     "retains_required": true
+    },
+    "oracle_ctx": {
+     "feasible": 100.0,
+     "intervention": 0.7870745664888767,
+     "required_displacement": 0.0,
+     "retains_required": true
+    },
+    "exact": {
+     "feasible": 100.0,
+     "intervention": 0.7870745651990282,
+     "required_displacement": 0.0,
+     "retains_required": true
+    }
+   }
+  },
+  {
+   "id": "train_0118",
+   "family": "rotating",
+   "predicted": true,
+   "methods": {
+    "clip": {
+     "feasible": 100.0,
+     "intervention": 1.1288488656978557,
+     "required_displacement": 0.2911473714506549,
+     "retains_required": false
+    },
+    "affine": {
+     "feasible": 100.0,
+     "intervention": 1.4793390936545225,
+     "required_displacement": 0.7944497435027116,
+     "retains_required": false
+    },
+    "nonlinear": {
+     "feasible": 100.0,
+     "intervention": 1.1685445471655087,
+     "required_displacement": 0.2911473714506549,
+     "retains_required": false
+    },
+    "oracle_cf": {
+     "feasible": 100.0,
+     "intervention": 1.1288488656978557,
+     "required_displacement": 0.2911473714506549,
+     "retains_required": false
+    },
+    "oracle_ctx": {
+     "feasible": 100.0,
+     "intervention": 1.0842619619328602,
+     "required_displacement": 0.2497330591537351,
+     "retains_required": false
+    },
+    "exact": {
+     "feasible": 100.0,
+     "intervention": 0.9281452417143456,
+     "required_displacement": 0.0,
+     "retains_required": true
+    }
+   }
+  },
+  {
+   "id": "train_0119",
+   "family": "phase_gated",
+   "predicted": true,
+   "methods": {
+    "clip": {
+     "feasible": 100.0,
+     "intervention": 0.7938124520055613,
+     "required_displacement": 0.07135570842440919,
+     "retains_required": false
+    },
+    "affine": {
+     "feasible": 100.0,
+     "intervention": 1.5999904558643934,
+     "required_displacement": 1.3142935977967947,
+     "retains_required": false
+    },
+    "nonlinear": {
+     "feasible": 100.0,
+     "intervention": 0.8777311887779834,
+     "required_displacement": 0.07135570842440919,
+     "retains_required": false
+    },
+    "oracle_cf": {
+     "feasible": 100.0,
+     "intervention": 0.7938124527034919,
+     "required_displacement": 0.07135570842440919,
+     "retains_required": false
+    },
+    "oracle_ctx": {
+     "feasible": 100.0,
+     "intervention": 0.6943690913792533,
+     "required_displacement": 0.0,
+     "retains_required": true
+    },
+    "exact": {
+     "feasible": 100.0,
+     "intervention": 0.6943690901548082,
+     "required_displacement": 0.0,
+     "retains_required": true
+    }
+   }
+  }
+ ]
+}

@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg data-dc-tpl="6" id="trix-figure" viewBox="0 0 1660 780" width="1660" xmlns="http://www.w3.org/2000/svg" data-om-id="ab5ebf4f:11" style="max-width: 1660px; height: auto; display: block;" height="780">
+    <defs data-dc-tpl="7" data-om-id="ab5ebf4f:12">
+      <marker data-dc-tpl="8" id="tx-arrow" viewBox="0 0 8 6" refX="7" refY="3" markerWidth="7" markerHeight="5.2" orient="auto-start-reverse" data-om-id="ab5ebf4f:13">
+        <path data-dc-tpl="9" d="M0,0 L8,3 L0,6 z" fill="#111" data-om-id="ab5ebf4f:14"/>
+      </marker>
+    </defs>
+    <rect data-dc-tpl="10" x="0" y="0" width="1660" height="780" fill="#ffffff" data-om-id="ab5ebf4f:15"/>
+
+    <g data-dc-tpl="11" fill="none" stroke="#111" stroke-width="1.7" data-om-id="ab5ebf4f:16">
+      <rect data-dc-tpl="12" x="40" y="324" width="260" height="112" rx="10" data-om-id="ab5ebf4f:17"/>
+      <rect data-dc-tpl="13" x="360" y="324" width="150" height="112" rx="10" data-om-id="ab5ebf4f:18"/>
+      <rect data-dc-tpl="14" x="620" y="250" width="340" height="260" rx="12" data-om-id="ab5ebf4f:19"/>
+      <rect data-dc-tpl="15" x="1090" y="324" width="270" height="112" rx="10" data-om-id="ab5ebf4f:20"/>
+      <rect data-dc-tpl="16" x="1420" y="324" width="200" height="112" rx="10" data-om-id="ab5ebf4f:21"/>
+      <rect data-dc-tpl="17" x="620" y="70" width="150" height="90" rx="10" data-om-id="ab5ebf4f:22"/>
+      <rect data-dc-tpl="18" x="810" y="70" width="150" height="90" rx="10" data-om-id="ab5ebf4f:23"/>
+      <rect data-dc-tpl="19" x="400" y="600" width="180" height="100" rx="9" data-om-id="ab5ebf4f:24"/>
+      <rect data-dc-tpl="20" x="600" y="600" width="180" height="100" rx="9" data-om-id="ab5ebf4f:25"/>
+    </g>
+    <g data-dc-tpl="21" stroke="#111" stroke-width="1.7" fill="#f6f6f6" data-om-id="ab5ebf4f:26">
+      <rect data-dc-tpl="22" x="800" y="600" width="180" height="100" rx="9" data-om-id="ab5ebf4f:27"/>
+      <rect data-dc-tpl="23" x="1000" y="600" width="180" height="100" rx="9" data-om-id="ab5ebf4f:28"/>
+    </g>
+
+    <g data-dc-tpl="24" font-size="19" font-weight="700" fill="#111" text-anchor="middle" letter-spacing="0.2" data-om-id="ab5ebf4f:29">
+      <text data-dc-tpl="25" x="170" y="366" data-om-id="ab5ebf4f:30">Upstream proposer</text>
+      <text data-dc-tpl="26" x="435" y="366" data-om-id="ab5ebf4f:31">Proposal</text>
+      <text data-dc-tpl="27" x="790" y="318" data-om-id="ab5ebf4f:32">TRiX governor</text>
+      <text data-dc-tpl="28" x="1225" y="362" data-om-id="ab5ebf4f:33">Execution bridge</text>
+      <text data-dc-tpl="29" x="1520" y="370" data-om-id="ab5ebf4f:34">Plant</text>
+      <text data-dc-tpl="30" x="695" y="110" font-size="17" data-om-id="ab5ebf4f:35">Task state</text>
+      <text data-dc-tpl="31" x="885" y="110" font-size="17" data-om-id="ab5ebf4f:36">Task context</text>
+      <text data-dc-tpl="32" x="490" y="640" font-size="17" letter-spacing="1.1" data-om-id="ab5ebf4f:37">ALLOW</text>
+      <text data-dc-tpl="33" x="690" y="640" font-size="17" letter-spacing="1.1" data-om-id="ab5ebf4f:38">PROJECT</text>
+      <text data-dc-tpl="34" x="890" y="638" font-size="17" letter-spacing="1.1" data-om-id="ab5ebf4f:39">REJECT</text>
+      <text data-dc-tpl="35" x="1090" y="634" font-size="16" letter-spacing="1" data-om-id="ab5ebf4f:40">INFEASIBLE</text>
+    </g>
+
+    <g data-dc-tpl="36" font-size="15" fill="#3d3d3d" text-anchor="middle" data-om-id="ab5ebf4f:41">
+      <text data-dc-tpl="37" x="170" y="394" data-om-id="ab5ebf4f:42">RL policy, VLM planner,</text>
+      <text data-dc-tpl="38" x="170" y="414" data-om-id="ab5ebf4f:43">or other controller</text>
+      <text data-dc-tpl="39" x="790" y="374" data-om-id="ab5ebf4f:44">Evaluate proposal against</text>
+      <text data-dc-tpl="40" x="790" y="396" data-om-id="ab5ebf4f:45">task-conditioned admissibility</text>
+      <text data-dc-tpl="41" x="1225" y="390" data-om-id="ab5ebf4f:46">Approved command</text>
+      <text data-dc-tpl="42" x="1520" y="398" data-om-id="ab5ebf4f:47">Robot / environment</text>
+      <text data-dc-tpl="43" x="890" y="666" data-om-id="ab5ebf4f:48">no command</text>
+      <text data-dc-tpl="44" x="1090" y="660" data-om-id="ab5ebf4f:49">no admissible</text>
+      <text data-dc-tpl="45" x="1090" y="680" data-om-id="ab5ebf4f:50">command</text>
+    </g>
+
+    <g data-dc-tpl="46" font-family="STIX Two Text, Times New Roman, serif" font-style="italic" fill="#111" text-anchor="middle" data-om-id="ab5ebf4f:51">
+      <text data-dc-tpl="47" x="435" y="404" font-size="21" data-om-id="ab5ebf4f:52">ũ</text>
+      <text data-dc-tpl="48" x="695" y="142" font-size="20" data-om-id="ab5ebf4f:53">x</text>
+      <text data-dc-tpl="49" x="885" y="142" font-size="20" data-om-id="ab5ebf4f:54">c</text>
+      <text data-dc-tpl="50" x="790" y="428" font-size="20" data-om-id="ab5ebf4f:55"><tspan data-dc-tpl="51" font-style="normal" data-om-id="ab5ebf4f:56">𝒜</tspan>(x, c)</text>
+      <text data-dc-tpl="52" x="1225" y="416" font-size="20" data-om-id="ab5ebf4f:57">u</text>
+      <text data-dc-tpl="53" x="490" y="672" font-size="20" data-om-id="ab5ebf4f:58">u = ũ</text>
+      <text data-dc-tpl="54" x="690" y="674" font-size="20" data-om-id="ab5ebf4f:59">u = <tspan data-dc-tpl="55" font-style="normal" data-om-id="ab5ebf4f:60">Π</tspan><tspan data-dc-tpl="56" font-size="13" dy="5" font-style="normal" data-om-id="ab5ebf4f:61">𝒜</tspan><tspan data-dc-tpl="57" dy="-5" data-om-id="ab5ebf4f:62">(ũ)</tspan></text>
+    </g>
+
+    <g data-dc-tpl="58" stroke="#111" stroke-width="1.5" fill="none" marker-end="url(#tx-arrow)" data-om-id="ab5ebf4f:63">
+      <path data-dc-tpl="59" d="M300,380 H352" data-om-id="ab5ebf4f:64"/>
+      <path data-dc-tpl="60" d="M510,380 H612" data-om-id="ab5ebf4f:65"/>
+      <path data-dc-tpl="61" d="M960,380 H1082" data-om-id="ab5ebf4f:66"/>
+      <path data-dc-tpl="62" d="M1360,380 H1412" data-om-id="ab5ebf4f:67"/>
+      <path data-dc-tpl="63" d="M695,160 V242" data-om-id="ab5ebf4f:68"/>
+      <path data-dc-tpl="64" d="M885,160 V242" data-om-id="ab5ebf4f:69"/>
+      <path data-dc-tpl="65" d="M680,510 V560 H490 V594" data-om-id="ab5ebf4f:70"/>
+      <path data-dc-tpl="66" d="M745,510 V535 H690 V594" data-om-id="ab5ebf4f:71"/>
+      <path data-dc-tpl="67" d="M835,510 V535 H890 V594" data-om-id="ab5ebf4f:72"/>
+      <path data-dc-tpl="68" d="M900,510 V560 H1090 V594" data-om-id="ab5ebf4f:73"/>
+    </g>
+
+
+    <g data-dc-tpl="74" display="inline" data-om-id="ab5ebf4f:79">
+      <path data-dc-tpl="75" d="M560,140 V525" stroke="#8a8a8a" stroke-width="1.3" stroke-dasharray="7 6" fill="none" data-om-id="ab5ebf4f:80"/>
+      <path data-dc-tpl="76" d="M1010,140 V525" stroke="#8a8a8a" stroke-width="1.3" stroke-dasharray="7 6" fill="none" data-om-id="ab5ebf4f:81"/>
+      <text data-dc-tpl="77" transform="translate(540,278) rotate(-90)" font-size="11.5" letter-spacing="1.6" fill="#6b6b6b" data-om-id="ab5ebf4f:82">PROPOSAL BOUNDARY</text>
+      <text data-dc-tpl="78" transform="translate(1024,282) rotate(-90)" font-size="11.5" letter-spacing="1.6" fill="#6b6b6b" data-om-id="ab5ebf4f:83">EXECUTION BOUNDARY</text>
+    </g>
+
+    <rect data-dc-tpl="79" x="957" y="342" width="132" height="20" fill="#ffffff" data-om-id="ab5ebf4f:84"/>
+    <text data-dc-tpl="80" x="1023" y="357" font-size="13" font-weight="700" letter-spacing="1.1" fill="#111" text-anchor="middle" data-om-id="ab5ebf4f:85">ALLOW / PROJECT</text>
+  </svg>

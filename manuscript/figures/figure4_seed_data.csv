@@ -1,0 +1,81 @@
+panel,condition,seed,safe_completion_rate
+a,PCB post-hoc box,0,0.0
+a,PCB post-hoc box,1,0.0
+a,PCB post-hoc box,2,0.0
+a,PCB post-hoc box,3,0.0
+a,PCB post-hoc box,4,0.0
+a,PCB post-hoc box,5,0.0
+a,PCB post-hoc box,6,0.0
+a,PCB post-hoc box,7,0.0
+a,PCB post-hoc box,8,0.0
+a,PCB post-hoc box,9,0.0
+a,PCB filter-aware box,0,100.0
+a,PCB filter-aware box,1,100.0
+a,PCB filter-aware box,2,100.0
+a,PCB filter-aware box,3,100.0
+a,PCB filter-aware box,4,100.0
+a,PCB filter-aware box,5,100.0
+a,PCB filter-aware box,6,100.0
+a,PCB filter-aware box,7,100.0
+a,PCB filter-aware box,8,100.0
+a,PCB filter-aware box,9,100.0
+b,SNAP static,0,0.0
+b,SNAP static,1,0.0
+b,SNAP static,2,0.0
+b,SNAP static,3,0.0
+b,SNAP static,4,0.0
+b,SNAP static,5,0.0
+b,SNAP static,6,0.0
+b,SNAP static,7,0.0
+b,SNAP static,8,0.0
+b,SNAP static,9,52.0
+b,SNAP TRiX,0,96.0
+b,SNAP TRiX,1,98.0
+b,SNAP TRiX,2,96.0
+b,SNAP TRiX,3,97.0
+b,SNAP TRiX,4,95.0
+b,SNAP TRiX,5,99.0
+b,SNAP TRiX,6,98.0
+b,SNAP TRiX,7,96.0
+b,SNAP TRiX,8,96.0
+b,SNAP TRiX,9,94.0
+c,CRANK static,0,0.0
+c,CRANK static,1,0.0
+c,CRANK static,2,0.0
+c,CRANK static,3,0.0
+c,CRANK static,4,0.0
+c,CRANK static,5,0.0
+c,CRANK static,6,0.0
+c,CRANK static,7,0.0
+c,CRANK static,8,0.0
+c,CRANK static,9,0.0
+c,CRANK TRiX,0,97.0
+c,CRANK TRiX,1,0.0
+c,CRANK TRiX,2,99.0
+c,CRANK TRiX,3,0.0
+c,CRANK TRiX,4,100.0
+c,CRANK TRiX,5,0.0
+c,CRANK TRiX,6,0.0
+c,CRANK TRiX,7,99.0
+c,CRANK TRiX,8,99.0
+c,CRANK TRiX,9,0.0
+d,PRY static,0,98.0
+d,PRY static,1,96.0
+d,PRY static,2,98.0
+d,PRY static,3,0.0
+d,PRY static,4,100.0
+d,PRY static,5,97.0
+d,PRY static,6,100.0
+d,PRY static,7,98.0
+d,PRY static,8,98.0
+d,PRY static,9,100.0
+d,PRY TRiX,0,97.0
+d,PRY TRiX,1,96.0
+d,PRY TRiX,2,100.0
+d,PRY TRiX,3,0.0
+d,PRY TRiX,4,99.0
+d,PRY TRiX,5,100.0
+d,PRY TRiX,6,100.0
+d,PRY TRiX,7,100.0
+d,PRY TRiX,8,99.0
+d,PRY TRiX,9,100.0

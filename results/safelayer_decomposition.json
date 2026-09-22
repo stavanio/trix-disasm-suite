@@ -1,0 +1,87 @@
+{
+ "config": {
+  "samples": 20000,
+  "test": 2000,
+  "seed": 0,
+  "sweep": [
+   500,
+   2000,
+   6000,
+   20000
+  ],
+  "out": "results"
+ },
+ "arms": [
+  {
+   "arm": "componentwise clipping",
+   "feasible_pct": 2.9,
+   "latency_us": 3.9423620037268847
+  },
+  {
+   "arm": "learned action-affine",
+   "feasible_pct": 0.0,
+   "latency_us": 6.029622003552504
+  },
+  {
+   "arm": "learned nonlinear, one step",
+   "feasible_pct": 78.0,
+   "latency_us": 83.33281399973202
+  },
+  {
+   "arm": "learned nonlinear, iterated",
+   "feasible_pct": 92.3,
+   "latency_us": 530.654656511615
+  },
+  {
+   "arm": "per-action oracle tangent",
+   "feasible_pct": 100.0,
+   "latency_us": 4.870200500590727
+  },
+  {
+   "arm": "exact structured projection",
+   "feasible_pct": 100.0,
+   "latency_us": 1.571373490151018
+  }
+ ],
+ "sweep": [
+  {
+   "n": 500,
+   "rmse": 0.28081697712058873,
+   "feasible_pct": 0.0
+  },
+  {
+   "n": 2000,
+   "rmse": 0.27974953954304943,
+   "feasible_pct": 0.0
+  },
+  {
+   "n": 6000,
+   "rmse": 0.27978412063576685,
+   "feasible_pct": 0.0
+  },
+  {
+   "n": 20000,
+   "rmse": 0.2795390370532849,
+   "feasible_pct": 0.0
+  }
+ ],
+ "gradient": {
+  "affine_cos": 0.008195131245476637,
+  "affine_mag": 0.020890912570987512,
+  "nonlinear_cos": 0.9722993248724658,
+  "nonlinear_mag": 0.9865360870238467
+ },
+ "provenance": {
+  "python": "3.12.3",
+  "numpy": "1.26.4",
+  "torch": "2.13.0+cpu",
+  "platform": "Linux-7.0.0-28-generic-x86_64-with-glibc2.39",
+  "cpu": "x86_64",
+  "torch_deterministic": false,
+  "torch_num_threads": 1,
+  "omp_num_threads": "1",
+  "mkl_num_threads": "1",
+  "cuda": null,
+  "git_commit": "41e4342dd45e00c3aaacf0cd5717e728ff5db941"
+ }
+}

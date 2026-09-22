@@ -1,0 +1,16 @@
+cff-version: 1.2.0
+message: "Cite the manuscript and the exact Git commit used. This revision is unreleased."
+type: software
+title: "TRiX: Neuro-Symbolic Safety for Foundation Model Agents in Robotic Disassembly"
+authors:
+  - family-names: Dholakia
+    given-names: Stavan
+  - family-names: Shukla
+    given-names: Shivani
+  - family-names: Singh
+    given-names: Abhishek
+  - family-names: Gazta
+    given-names: Aditya
+repository-code: "https://github.com/stavanio/trix-disasm-suite"
+version: unreleased
+license: MIT
