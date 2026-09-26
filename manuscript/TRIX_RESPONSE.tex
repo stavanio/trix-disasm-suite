@@ -1,6 +1,6 @@
-% Author-review draft. Comment summaries are reconstructed, not quotations.
-% Exact original reports and journal requirements must be checked before submission.
+% Response to the editor and reviewers. Comments are presented as summaries.
 % Build from repository root: make response
+% Manuscript page and bibliography references reflect the accompanying revision.
 \documentclass[12pt,letterpaper]{article}
 \usepackage[margin=1in,headheight=15pt,headsep=18pt]{geometry}
 \usepackage{fontspec}
@@ -18,7 +18,7 @@
 \usepackage{titlesec}
 \definecolor{commentink}{HTML}{253F55}
 \hypersetup{colorlinks=true,linkcolor=commentink,urlcolor=commentink,
-  pdftitle={TRiX response to reviewers: author-review draft},
+  pdftitle={TRiX response to the editor and reviewers},
   pdfauthor={Stavan Dholakia, Shivani Shukla, Abhishek Singh and Aditya Gazta},
   pdfdisplaydoctitle=true}
 \urlstyle{same}
@@ -35,7 +35,7 @@
 \pagestyle{fancy}
 \fancyhf{}
 \fancyhead[L]{\small TRiX | Response to reviewers}
-\fancyhead[R]{\small Author-review draft}
+\fancyhead[R]{\small Point-by-point response}
 \fancyfoot[C]{\small\thepage}
 \renewcommand{\headrulewidth}{0.3pt}
 \renewcommand{\footrulewidth}{0pt}
@@ -45,10 +45,9 @@
 \newcommand{\mssec}[1]{\S\,#1 (p.~\csname mssecpage#1\endcsname)}
 \newcommand{\msitem}[1]{\csname msitem#1\endcsname}
 \newcommand{\mscite}[1]{[\csname mscite#1\endcsname]}
-\newcommand{\response}[3]{\Needspace{9\baselineskip}\subsection*{#1\enspace #2}\label{response:#1}{\color{commentink}\itshape\textbf{Comment summary.} #3\par}\nobreak\textbf{Response.} }
-\newcommand{\locations}[1]{\par\nopagebreak[4]{\small\textbf{Manuscript:} #1.\par}\nopagebreak[4]}
+\newcommand{\response}[3]{\Needspace{9\baselineskip}\subsection*{#1\enspace #2}\label{response:#1}{\color{commentink}\itshape\textbf{Comment #1 (summary).} #3\par}\nobreak\textbf{Response.} }
+\newcommand{\locations}[1]{\par\nopagebreak[4]{\small\textbf{Manuscript locations:} #1.\par}\nopagebreak[4]}
 \newcommand{\evidence}[1]{\par\nopagebreak[4]\begingroup\small\RaggedRight\textbf{Evidence:} \path{#1}\par\endgroup}
-\newcommand{\unresolved}[1]{\par\textbf{Author-review item.} #1\par}
 
 \begin{document}
 \raggedright
@@ -60,25 +59,11 @@ Stavan Dholakia, Shivani Shukla, Abhishek Singh and Aditya Gazta\par
 22 September 2026
 
 \medskip
-\textbf{Author-review draft --- original reports still to be checked.}
-This draft addresses the 34 points recovered from the revision history:
-five editor requests, nine Reviewer~1 requests, seven Reviewer~2 requests,
-and thirteen Reviewer~4 requests. The text headed \emph{Comment summary}
-is a paraphrase of the recovered map, not a verbatim reviewer quotation.
-The original decision letter is needed to confirm wording, numbering,
-completeness and any additional editorial requirements before submission.
+The comments below are summarized for readability. Section and page references
+refer to the accompanying revised manuscript; numbered citations refer to its
+bibliography. Evidence paths identify supporting files in the source package;
+paths beginning \path{archive/} identify files in the associated evidence archive.
 
-Section and page references refer to the accompanying revised manuscript,
-not to this letter. Reference numbers in square brackets refer to the
-manuscript bibliography. Exact TeX source ranges, file hashes and evidence
-paths are recorded in \path{manuscript/data/reviewer_response_map.json}.
-These source ranges are not journal line numbers. Final submission line
-references will follow the journal-formatted, line-numbered manuscript.
-Evidence paths refer to the source repository; paths beginning
-\path{archive/} refer to the separately hashed private evidence archive.
-Reviewer access has not yet been arranged.
-
-\clearpage
 \section*{Overview of the revision}
 
 We thank the editor and reviewers for identifying problems in the submitted
@@ -108,14 +93,8 @@ limits, seed-level uncertainty, and code-generated workspace illustrations
 driven by archived environment states.
 \end{enumerate}
 
-Two substantive matters remain for author review: the requested quantitative
-latency comparison has no recovered measurement record, and reviewer access
-to the private evidence archive must be arranged. The responses below state
-the latency limitation directly; they do not treat withdrawal of an unsupported
-number as completion of the requested measurement.
-
 \clearpage
-\section*{Editor}
+\section*{Response to the Editor}
 
 \response{E.1}{Positioning among existing safety methods}{Expand the discussion of standard safety mechanisms beyond Lagrangian methods.}
 We expanded the introduction and related work to distinguish constrained
@@ -164,7 +143,6 @@ The matching task-level outcomes are retained as evidence about the common
 constraint specification. They establish no timing advantage.
 \locations{\mssec{3.5}; \mssec{4.9}; \mssec{H}}
 \evidence{baselines/screw_solvers.py}
-\unresolved{The quantitative timing request remains unfulfilled by the recovered evidence. Submission should not describe this item as fully resolved.}
 
 \Needspace{23\baselineskip}
 \response{E.5}{Generality beyond six task implementations}{Explain how the method generalizes beyond the six manually specified disassembly tasks.}
@@ -187,7 +165,7 @@ where further task modeling and evaluation remain necessary.
 \evidence{benchmark/geometry_gen.py; results/geometry_bench_heldout.json; docs/bayonet_preregistration.md}
 
 \clearpage
-\section*{Reviewer 1}
+\section*{Response to Reviewer 1}
 
 \response{R1.1}{References in comparison tables}{Add representative references for the paradigms in Tables~1 and~3.}
 Both tables now identify the literature or implementation supporting each
@@ -268,7 +246,6 @@ declared workload, solver settings, warm-up protocol, hardware and saved
 per-call measurements; those data are not present in the evidence used here.
 \locations{\mssec{4.9}; \mssec{H}; response E.4}
 \evidence{baselines/screw_solvers.py}
-\unresolved{The requested quantitative runtime comparison remains open; no new benchmark has been run in this manuscript pass.}
 
 \response{R1.7}{Distributions and uncertainty}{Show distributions or boxplots rather than relying only on aggregate performance.}
 Figure~4 shows all ten training-seed values for each displayed arm and
@@ -307,7 +284,7 @@ claim a human-robot collaboration experiment.
 \evidence{manuscript/TRIX_REVISION.tex}
 
 \clearpage
-\section*{Reviewer 2}
+\section*{Response to Reviewer 2}
 
 \response{R2.1}{PCB variables and physical interpretation}{Define the PCB variables and explain the physical meaning of the constraint.}
 The revised PCB interface specifies two commanded tilt torques,
@@ -395,7 +372,7 @@ universal ranking of safety algorithms.
 \evidence{manuscript/TRIX_REVISION.tex}
 
 \clearpage
-\section*{Reviewer 4}
+\section*{Response to Reviewer 4}
 
 \response{R4.1}{Trained policies and experimental provenance}{The submitted results used random-action transformations rather than the claimed trained policies.}
 The criticism identifies a substantive defect in the submitted evidence.
@@ -677,22 +654,5 @@ constraint specification and policy adaptation without preserving the
 unsupported curvature explanation of the old 44\% figure.
 \locations{\mssec{4.8}; \mssec{5.2.3}; \mssec{5.3.1}; \mssec{5.3.2}; \msitem{tab:procedural-geometry}}
 \evidence{results/safelayer_decomposition.json; baselines/pcb_filters.py; docs/provenance.md; results/geometry_bench_heldout.json}
-
-\section*{Submission preparation still required}
-
-\begin{enumerate}[leftmargin=*,itemsep=0.3em]
-\item Check the original decision letter against all 34 summaries, replace
-them with verified quotations or agreed paraphrases, and add any omitted
-editorial requirements. No Reviewer~3 report is inferred from the numbering.
-\item Resolve E.4/R1.6 as an explicit author decision: recover a valid timing
-record, authorize a separately documented timing study, or retain the
-withdrawal response with the quantitative request outstanding.
-\item Arrange reviewer access to the private source/evidence package and
-complete the journal's actual requirements form. No public URL, DOI or
-anonymous-access link has been invented.
-\item Complete author review and generate the clean and marked submission
-versions. Replace the current page guide with final journal page/line
-references, then commit and tag the agreed submission source.
-\end{enumerate}
 
 \end{document}

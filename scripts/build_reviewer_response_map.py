@@ -56,7 +56,7 @@ def response_entries(text):
         for _ in range(3):
             value, cursor = group(text, cursor)
             values.append(norm(value))
-        end = starts[n + 1].start() if n + 1 < len(starts) else text.index('\\section*{Submission preparation')
+        end = starts[n + 1].start() if n + 1 < len(starts) else text.index('\\end{document}')
         body = text[cursor:end]
         paths = re.findall(r'\\evidence\{([^}]+)\}', body)
         entries.append(dict(id=values[0], title=values[1], comment_summary=values[2],
