@@ -1020,11 +1020,13 @@ starts at one, BATTERY starts at $25\,{}^{\circ}$C, and PRY starts in
 \begin{longtable}{@{}L{0.75in}L{1.30in}L{2.26in}L{1.72in}@{}}
 \caption{Reset-time parameter randomisation in the six revised environments.
 $U(a,b)$ denotes a uniform multiplier drawn separately for each listed
-parameter at every reset. The same distributions are used for training,
-validation, and held-out policy evaluation (train/val/test). The evaluation-use
-column distinguishes these common ranges from a widened out-of-distribution
-(OOD) reset test, which was not performed. Distributions are transcribed
-from the frozen \texttt{reset()} implementations.}
+parameter at every reset. These distributions are used for training,
+validation, and the original held-out policy evaluation (train/val/test).
+The evaluation-use column distinguishes these common ranges from the added
+revision study in Section~S14: $1.5\times$ and $2\times$ half-width widening
+and a $2\times$ outside-support shell. Native ranges are transcribed from the
+frozen \texttt{reset()} implementations; Table~\ref{tab:ood-ranges} gives
+all added ranges.}
 \label{tab:submitted-9}\\
 \toprule
 Task & Sampled code field & Distribution and numerical range & Evaluation use\\
@@ -1040,27 +1042,27 @@ SCREW v3 &
 $0.61\,U(0.9,1.1)$: $0.549$--$0.671$.\par
 $0.47\,U(0.9,1.1)$: $0.423$--$0.517$.\par
 Both coefficients are dimensionless.
-& Train/val/test: same range.\par OOD: not evaluated.\\
+& Train/val/test: same range.\par OOD: $1.5\times$, $2\times$, shell; S14.\\
 \midrule
 PCB v2 & \texttt{f\_clip} &
 $25\,U(0.85,1.15)$ N:\par $21.25$--$28.75$ N.
-& Train/val/test: same range.\par OOD: not evaluated.\\
+& Train/val/test: same range.\par OOD: $1.5\times$, $2\times$, shell; S14.\\
 \midrule
 SNAP v2 & \texttt{k\_latch} &
 $5000\,U(0.9,1.1)$ N\,m$^{-1}$:\par $4500$--$5500$ N\,m$^{-1}$.
-& Train/val/test: same range.\par OOD: not evaluated.\\
+& Train/val/test: same range.\par OOD: $1.5\times$, $2\times$, shell; S14.\\
 \midrule
 CRANK v2 & \texttt{mu\_k} &
 $0.47\,U(0.9,1.1)$:\par $0.423$--$0.517$ (dimensionless).
-& Train/val/test: same range.\par OOD: not evaluated.\\
+& Train/val/test: same range.\par OOD: $1.5\times$, $2\times$, shell; S14.\\
 \midrule
 BATTERY\par v2 & \texttt{adhesive} &
 $8\,U(0.9,1.1)$ N:\par $7.2$--$8.8$ N.
-& Train/val/test: same range.\par OOD: not evaluated.\\
+& Train/val/test: same range.\par OOD: $1.5\times$, $2\times$, shell; S14.\\
 \midrule
 PRY v2 & None &
 Deterministic reset; stochastic variation enters through per-step noise.
-& Train/val/test: deterministic.\par OOD: not evaluated.\\
+& Train/val/test: deterministic.\par OOD widening: not applicable.\\
 \bottomrule
 \end{longtable}
 \endgroup
@@ -1109,9 +1111,12 @@ historical seed-pairing exceptions and their treatment remain as documented
 in the reproducibility section. Held-out evaluation changes the seed stream,
 not the parameter ranges or noise distribution. It is therefore an
 in-distribution held-out evaluation, not a widened out-of-distribution
-parameter sweep. The separate constant-sensitivity study is not part of this
-reset-time randomisation specification, and the submitted wider random-action
-sweep is not the primary revised evaluation.
+parameter sweep. The added revision experiment in Section~S14 separately
+evaluates the selected policies on declared widened ranges and an outside-support
+shell without retraining or reselection. Its episode seeds, reset parameters
+and distribution hashes are saved separately. The constant-sensitivity study
+remains a distinct scripted perturbation experiment; the submitted wider
+random-action sweep is not the primary revised evaluation.
 
 The constraint identifiers above match the frozen v2/v3 modules. They do not
 hash the complete observation and reset implementations. Reproducing those
@@ -2199,6 +2204,132 @@ basis.
 
 
 
+\section{Prospective evaluation under shifted reset distributions}
+\label{sec:si-ood}
+\subsection{Protocol and evaluation conditions}
+
+This experiment was added during revision to evaluate selected policies under
+reset-parameter distributions extending beyond their training support.
+The protocol and implementation were committed as \texttt{9bc2242} before
+any OOD policy rollout. The declaration, checkpoint hashes, source hashes,
+seed lists and analysis rules are retained in
+\path{docs/ood_reset_protocol.json}; its SHA-256 begins
+\texttt{c3e9f59d9bf19485}. No policy was retrained or reselected. The original
+in-range estimates in \mainref{tab:policy-summary} are unchanged.
+
+The scope comprises the seven comparisons in that table involving SCREW
+(SAC and PPO, Stage~1), PCB (SAC, Stages~1 and 2), and SNAP, CRANK and
+BATTERY (SAC, Stage~2). Both arms and all ten training seeds are retained,
+including arms with zero in-range safe completion. BATTERY uses the matched
+15-N preventive box and TRiX specifications. PRY is not applicable to this
+range-widening experiment because its physical reset is deterministic;
+no new bond-strength randomisation was introduced.
+
+For a training interval with centre $c$ and half-width $h$, the first two
+conditions draw uniform proposals from $[c-kh,c+kh]$ at $k=1.5$ and $k=2$.
+The third, primary OOD condition uses the $k=2$ region conditioned on being
+outside the original training support. For one parameter, this shell consists
+of the two outer intervals. For SCREW, at least one of the two coefficients
+must lie outside its original interval. These are declared simulation
+stress-test ranges, not new measurements of physical population variability.
+
+\begin{table}[!htbp]
+\centering\small
+\caption{Declared added reset ranges. Training ranges are in
+Table~\ref{tab:submitted-9}. The shell is the $2\times$ region with the original
+training region removed. SCREW additionally conditions the joint proposal on
+$\mu_s\geq\mu_k$ in every added condition.}
+\label{tab:ood-ranges}
+\begin{tabular}{@{}llrr@{}}
+\toprule Task & Parameter & $1.5\times$ half-width & $2\times$ half-width\\
+\midrule
+SCREW & $\mu_s$ & $[0.5185,0.7015]$ & $[0.488,0.732]$\\
+SCREW & $\mu_k$ & $[0.3995,0.5405]$ & $[0.376,0.564]$\\
+PCB & Clip force (N) & $[19.375,30.625]$ & $[17.5,32.5]$\\
+SNAP & Latch stiffness (N\,m$^{-1}$) & $[4250,5750]$ & $[4000,6000]$\\
+CRANK & $\mu_k$ & $[0.3995,0.5405]$ & $[0.376,0.564]$\\
+BATTERY & Adhesive force (N) & $[6.8,9.2]$ & $[6.4,9.6]$\\
+\bottomrule
+\end{tabular}
+\end{table}
+
+SCREW samples independent uniform proposals and rejects the entire pair if
+$\mu_s<\mu_k$. Its accepted distribution is therefore uniform on the
+physically ordered part of the rectangle, with dependent marginals. The
+shell also rejects pairs inside the original rectangle. Values are never
+clipped or sorted. For a single parameter, the full widened distributions
+place one third and one half of their probability outside training support;
+those fractions do not describe SCREW's joint conditional distribution.
+The records retain every accepted draw, support classification and rejection
+count, and the tables report observed support denominators.
+
+\subsection{Execution integrity and analysis}
+
+The evaluator loads 110 distinct selected checkpoints and executes 100
+episodes for each of 420 policy-seed/arm/condition cells, totalling 42,000
+episodes. Stage~1 reuses the same nominal policy across governors; Stage~2
+retains each separately trained policy. The task-specific episode lists
+begin at $1{,}200{,}000$ plus 1,000 times the existing fixed task offset and are disjoint
+from the historical training, validation and test schedules. Within a task,
+the same lists and reset draws are shared across arms and training seeds.
+
+The original reset runs first. The evaluator then changes only the existing
+per-instance friction, clip-force, latch-stiffness or adhesive field before
+encoding the observation. It changes no module constant, governor, threshold,
+margin, observation channel, action scale, episode cap or noise distribution.
+Parameter sampling has an independent deterministic random stream, so its
+rejection draws cannot consume per-step noise samples. Environment-constraint,
+margin-policy and outcome-taxonomy hashes match the historical records before
+and after every cell; executable source hashes additionally preserve the
+actual governor implementations and their existing margin routing.
+
+Each record stores its evaluation-distribution specification and hash
+separately. The record checker refuses to pool different or absent distribution
+hashes. Comparisons across distributions are explicit contrasts. Safe completion
+uses the same outcome contract as the original study. The training seed is
+the unit: ten-seed absolute rates, changes from historical in-range rates and
+paired-arm differences use the exact percentile bootstrap implementation in
+main Methods Section~4.6. Historical comparisons are paired by training-seed
+identifier, not by episode. Changes from historical estimates therefore include
+episode-sampling variation as well as the distribution change. These intervals describe training-seed variability on the fixed episode
+schedules; identical outcomes across all seeds produce degenerate intervals.
+Within/outside-support strata have varying
+denominators and are reported descriptively, without a new inferential method.
+
+\subsection{Complete outcomes}
+
+Table~\ref{tab:ood-safe} reports all three conditions and their changes from
+the retained in-range estimates. Table~\ref{tab:ood-outcomes} gives the complete
+terminal-outcome partition, violation counts and support-stratum denominators.
+All seed values, absolute-rate intervals and paired-arm intervals are retained
+in \path{results/ood_reset/summary.json} and
+\path{results/ood_reset/seed_records.json}. These results concern the declared
+parameter shifts within the analytical environments; they do not calibrate
+the physical models or test arbitrary unseen dynamics.
+
+
+The largest loss occurs on SNAP. Under TRiX, safe completion is 85.1\%,
+78.2\% and 59.9\% in the $1.5\times$, $2\times$ and shell conditions,
+respectively, compared with 96.5\% in range. Destructive completions are
+136, 201 and 369 per 1,000 episodes, with 13, 17 and 32 timeouts. The shell
+change in safe completion is $-36.6$, with a 95\% interval of $[-40.3,-33.3]$
+percentage points. The static comparator reaches 4.7\%, 4.4\% and 3.5\%
+safe completion and has 891, 891 and 886 destructive completions. Thus the
+between-arm advantage coexists with substantial damage under the shifted
+SNAP dynamics.
+
+The matched SCREW arms remain equal in every condition. PCB retains its
+regime distinction. CRANK TRiX reaches 47.6\% safe completion in each added
+condition, versus 49.4\% in range; each condition includes 22 destructive
+completions and 500 timeouts per 1,000 episodes. The static CRANK arm times
+out in all 1,000 episodes in each condition. Both preventive BATTERY arms retain 100.0\% safe completion in all three
+conditions, with no destructive completions. No
+zero-performing arm or unfavourable condition is excluded. These aggregate outcomes do not
+identify a unique dynamical mechanism for the SNAP damage increase.
+
+\input{manuscript/data/ood_reset_results.tex}
+
+\clearpage
 \begin{thebibliography}{99}
 
 \bibitem{ref31} Schulman, J., Wolski, F., Dhariwal, P., Radford, A. \& Klimov, O. Proximal policy optimization algorithms. Preprint at arXiv:1707.06347 (2017).

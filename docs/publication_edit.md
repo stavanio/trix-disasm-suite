@@ -1,13 +1,14 @@
 # Publication edit: main paper and Supplementary Information
 
-Date: 25 September 2026. Source before this edit: `44e0e76`.
+Updated: 26 September 2026. Source before the original publication edit: `44e0e76`.
 
 The previous 72-page combined manuscript has been edited into a concise main
 paper and a separately compiled supplement. Internal XeLaTeX builds produce
-22 main-paper pages after the editorial review below, including Methods and references, and 43 supplementary
-pages. The remapped response letter has 20 pages after the submission follow-up below. This is an editorial reorganization
-of the recorded evidence. Results, environment definitions and frozen artwork
-retain their existing provenance and qualifications.
+23 main-paper pages including Methods and references, 50 supplementary pages,
+and a 21-page response letter after the prospective OOD study below. The original
+reorganization preserved recorded evidence; the subsequent R2.4 study adds
+42,000 prospectively declared evaluations. Historical results, environment
+definitions and frozen artwork retain their provenance and qualifications.
 
 ## Content destinations
 
@@ -22,9 +23,10 @@ retain their existing provenance and qualifications.
 | Physical deployment | Results 2.6, Figure 5, Methods 4.7 | S12 implementation details and trial records |
 | Computational cost | Results 2.7, Methods 4.8 | S8 full measured workload and latency table |
 | Model/specification and reactive-governance failures | Discussion, Methods 4.4 | S7 sensitivity/implementation analysis and S13 failure mechanisms |
+| Prospective reset-distribution evaluation | Results 2.3, Discussion, Methods 4.1/4.6 | S4.6 use column and S14 full protocol/results, Tables S12-S14 |
 
-The main manuscript has five figures and five tables. The supplement has eleven
-tables. Existing stable labels are preserved when material moves; two compact
+The main manuscript has five figures and five tables. The supplement has fourteen
+tables, including three for the added R2.4 study. Existing stable labels are preserved when material moves; two compact
 new tables give the main policy contrasts and complete physical action scales.
 [The figure/table map](PAPER_MAP.md) records current numbers, files and checks.
 
@@ -163,3 +165,41 @@ are on page 18. Title declarations remain in the editor email and R4 introductio
 The source remains an author-review draft. The original decision/reviewer reports
 and an operational reviewer-access route are still required before submission.
 The availability text has not been rewritten to claim unestablished access.
+
+
+## Completed prospective R2.4 evaluation, 26 September 2026
+
+This subsection supersedes the earlier no-OOD statements as a new experiment,
+not as a reinterpretation of the historical tests. Protocol and implementation
+were committed as `9bc2242` before any OOD policy rollout. All 420 cells and
+42,000 episodes completed under that freeze, across five eligible tasks, seven
+Table 4 comparisons, both arms, ten training seeds and three conditions.
+PRY is not applicable because its reset is deterministic. No training,
+checkpoint reselection, governor change or outcome-based exclusion occurred.
+
+- Main Results 2.3 and Discussion state SNAP's adverse shell result: safe
+  completion drops from 96.5% to 59.9%, with 369 destructive completions per
+  1,000 episodes under TRiX. Static gives 3.5% and 886 destructive completions.
+- CRANK TRiX reaches 47.6% in all added conditions versus 49.4% in range,
+  with 22 destructive completions per 1,000. Static remains at zero. Matched
+  SCREW arms remain equal; PCB retains its regime distinction; both preventive
+  BATTERY arms remain at 100% in all three conditions.
+- Table S4 now names the added use conditions. S14 and Tables S12-S14 give
+  ranges, complete rates/deltas/intervals, all terminal outcomes and support
+  denominators. R2.4 reports the new study and its adverse results directly.
+- The original 105-case sensitivity experiment is separate. The new study
+  reuses the exact percentile seed bootstrap, with historical pairing only
+  by training seed; deltas include episode-sampling variation.
+- `results/ood_reset/` retains the summary, all 420 seed records, 1,500 unique
+  reset draws and hashes for all raw cells. The separate approximately 31 MB
+  evidence directory preserves all episode outcomes and the frozen source.
+  The historical 24.5 GB archive is unchanged.
+- The table builder and every new file are mapped. The current inventory has
+  215 files, 94 Python files, 18 tests and 24 display items, with zero orphan
+  code. All 55 pinned environment/renderer/artwork hashes remain unchanged.
+
+The main, SI and response now compile to 23, 50 and 21 pages respectively.
+Editable TeX and refreshed source/Overleaf ZIPs are the deliverables; PDFs are
+internal layout checks. Original-report verification, author review and a
+working private reviewer-access route remain submission gates. No Git push,
+archive upload, new access claim or renderer change accompanies this update.

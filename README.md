@@ -13,6 +13,7 @@ not yet submitted in this form. Authors and citation metadata: [CITATION.cff](CI
 - [Commands and recorded environments](docs/REPRODUCING.md)
 - [Historical corrections](docs/provenance.md) and [BATTERY aggregation correction](docs/battery_aggregation_correction.md)
 - [Archive identity and source commits](assets/evidence/archive_manifest.json)
+- [Completed prospective OOD evaluation and complete outcomes](docs/ood_reset_results.md)
 
 TRiX governs commands at execution. The paper evaluates post-hoc governance
 of frozen policies separately from filter-aware learning. PPO and SAC use
@@ -27,8 +28,8 @@ python3 -B scripts/audit_vlm_reconciliation.py --archive-root . --out build/vlm.
 make paper
 ```
 
-The repository check uses Python's standard library. The VLM audit also needs
-NumPy; compilation needs XeLaTeX. See the command guide before running training.
+The source inventory check uses Python's standard library. The OOD table and
+VLM audits also need NumPy; compilation needs XeLaTeX. See the command guide before running training.
 `make paper` builds both the main paper and supplement.
 `make response` builds both documents, refreshes response page references and builds
 the response letter. Its 34 comment summaries still require checking against
@@ -45,6 +46,9 @@ The **24.5 GB evidence archive** holds checkpoints, evaluation shards, raw video
 large image banks and historical snapshots. Its manifest hash pins the exact
 payload. It remains private and local; no public download URL or DOI exists yet.
 Old custom agents and scratch experiments remain in those historical snapshots.
+The new approximately 31 MB `TRIX_ood_reset_evidence` companion preserves all
+42,000 added episode outcomes and the prospective source freeze. Its raw-cell
+hashes and curated records are mapped in [the OOD results](docs/ood_reset_results.md).
 
 `benchmark/disasm_bench.py` remains because frozen environments import its shared
 state types and constants. Its old command-line benchmark is not a paper entrypoint.

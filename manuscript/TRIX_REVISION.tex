@@ -420,6 +420,21 @@ Supplementary Section~S9 reports the full policy tables and these controls;
 exceptions. Nominal-policy failure on some tasks leaves frozen-policy arms
 at zero, which limits the ranking those cells can support.
 
+A prospectively declared revision experiment evaluates 42,000 additional
+episodes across the five tasks with stochastic physical resets, retaining
+selected checkpoints and governors. In the primary outside-training-support
+shell, SNAP TRiX safe completion falls from 96.5\% to 59.9\%, with 369
+destructive completions per 1,000 episodes; the static arm reaches 3.5\%,
+with 886 destructive completions. CRANK reaches 47.6\% under TRiX versus
+0.0\% under the static arm, with 22 destructive completions per 1,000
+episodes under TRiX. Matched SCREW arms remain equal (87.9\% SAC;
+59.9\% PPO). PCB yields 0.0\%/99.6\% in Stage~1 and 100.0\%/99.8\%
+in Stage~2 for box/TRiX; preventive BATTERY gives 100.0\%/100.0\%.
+PRY is not applicable because its physical reset is deterministic.
+Supplementary Section~S14 and \suppref{tab:ood-safe} report all three declared
+conditions, changes and intervals; \suppref{tab:ood-outcomes} reports every
+outcome category. The original in-range results remain unchanged.
+
 \subsection{Representation controls identify losses of required authority}
 \label{sec:representation-results}
 The PCB representation study distinguishes learned constraint models from
@@ -618,6 +633,14 @@ test is inconclusive because neither policy algorithm reaches the predeclared
 competence gate. These results remain part of the evidence, rather than
 being removed to produce a cleaner success narrative.
 
+The added reset-distribution evaluation exposes a further limit. Holding the
+governor and policy fixed while changing the reset distribution does not
+preserve SNAP's in-range safety: the outside-support shell produces 36.9\%
+destructive completions under TRiX. Its higher safe-completion rate than the
+static comparator therefore cannot be read as a damage-prevention guarantee.
+The complete outcomes in Supplementary Section~S14 distinguish these damaging
+outcomes from timeouts and from tasks retaining their in-range performance.
+
 Generalization consequently has several meanings here. The procedural study
 varies set family and task context, but fits learned models on each evaluated
 geometry. The VLM study uses a fixed PCB command interface and visibility-scaled
@@ -648,7 +671,11 @@ violations, destructive completion and the remaining unsuccessful outcomes;
 diagnostic events are recorded separately. Reset parameters, distributions,
 ranges and training/evaluation use are tabulated in \suppref{tab:submitted-9}
 and detailed in Supplementary Section~S4.6. Held-out tests use the training
-ranges; no widened OOD reset distribution is evaluated. PyBullet provides the workspace
+ranges in the original evaluation. The added prospective evaluation widens
+existing reset half-widths by $1.5\times$ and $2\times$ and samples a
+$2\times$ outside-support shell, with selected policies and governors fixed.
+Supplementary Section~S14 and \suppref{tab:ood-ranges} give its committed
+protocol, explicit reset interface and complete ranges. PyBullet provides the workspace
 illustrations, with a per-panel state manifest; it is not a second validation
 of the analytical equations or a simulated articulated-arm controller.
 An earlier PyBullet helical-constraint prototype imposed the same screw pitch
@@ -768,7 +795,11 @@ Intervals are descriptive, not multiplicity-adjusted tests. Same-policy
 Stage~1 contrasts are distinguished from separately trained Stage~2 and
 cross-regime pairs. The preventive BATTERY and PCB cross-regime contrasts
 also have recorded episode-seed mismatches, so pairing is only at training-seed
-level (\suppref{tab:submitted-11}). Procedural instances are the units in the
+level (\suppref{tab:submitted-11}). The added reset-distribution study uses
+the same estimator and training-seed pairing. Its changes from historical
+in-range estimates include episode-sampling variation because the schedules
+differ; within/outside-support strata are descriptive (Supplementary
+Section~S14). Procedural instances are the units in the
 geometry study. VLM counts are descriptive over paired images and commands;
 views clustered within 28 configurations are not independent physical
 replicates, and no inferential cross-model test is reported.

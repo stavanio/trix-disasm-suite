@@ -268,6 +268,14 @@
         "R2.4"
       ]
     },
+    "docs/ood_reset_results.md": {
+      "role": "Complete OOD results, adverse outcomes and evidence provenance",
+      "references": [
+        "tab:ood-safe",
+        "tab:ood-outcomes",
+        "docs/ood_reset_results.md"
+      ]
+    },
     "docs/provenance.md": {
       "role": "documentation or pinned asset metadata",
       "references": [
@@ -489,6 +497,14 @@
         "scripts/build_reviewer_response_map.py",
         "manuscript/TRIX_REVISION.tex",
         "manuscript/TRIX_SUPPLEMENT.tex"
+      ]
+    },
+    "manuscript/data/ood_reset_results.tex": {
+      "role": "Generated OOD rates, deltas, intervals, terminal outcomes and support strata",
+      "references": [
+        "tab:ood-safe",
+        "tab:ood-outcomes",
+        "docs/ood_reset_results.md"
       ]
     },
     "manuscript/data/response_locations.tex": {
@@ -850,6 +866,38 @@
         "tab:procedural-geometry"
       ]
     },
+    "results/ood_reset/manifest.json": {
+      "role": "Hash linkage to every full raw OOD cell and frozen source snapshot",
+      "references": [
+        "tab:ood-safe",
+        "tab:ood-outcomes",
+        "docs/ood_reset_results.md"
+      ]
+    },
+    "results/ood_reset/reset_draws.json": {
+      "role": "All 1500 unique task-condition episode reset draws",
+      "references": [
+        "tab:ood-safe",
+        "tab:ood-outcomes",
+        "docs/ood_reset_results.md"
+      ]
+    },
+    "results/ood_reset/seed_records.json": {
+      "role": "All 420 OOD policy-seed records and frozen metadata",
+      "references": [
+        "tab:ood-safe",
+        "tab:ood-outcomes",
+        "docs/ood_reset_results.md"
+      ]
+    },
+    "results/ood_reset/summary.json": {
+      "role": "Verified all-condition OOD analysis including paired intervals",
+      "references": [
+        "tab:ood-safe",
+        "tab:ood-outcomes",
+        "docs/ood_reset_results.md"
+      ]
+    },
     "results/runtime/inputs.npz": {
       "role": "Recorded filter timing measurement, input or provenance",
       "references": [
@@ -1052,6 +1100,14 @@
       "role": "imported module or package initializer",
       "references": [
         "docs/REPRODUCING.md"
+      ]
+    },
+    "scripts/build_ood_reset_tables.py": {
+      "role": "Rebuild and verify complete OOD result tables from retained seed records",
+      "references": [
+        "tab:ood-safe",
+        "tab:ood-outcomes",
+        "docs/ood_reset_results.md"
       ]
     },
     "scripts/build_overleaf_bundle.py": {
@@ -1328,6 +1384,7 @@
   "entrypoints": [
     "benchmark/criterion.py",
     "experiments/geometry_bench.py",
+    "experiments/ood_reset.py",
     "experiments/pry_control.py",
     "experiments/runtime_benchmark.py",
     "experiments/safelayer_decomposition.py",
@@ -1337,6 +1394,7 @@
     "scripts/audit_reproducibility_release.py",
     "scripts/audit_revision_claims.py",
     "scripts/audit_vlm_reconciliation.py",
+    "scripts/build_ood_reset_tables.py",
     "scripts/build_overleaf_bundle.py",
     "scripts/build_reviewer_response_map.py",
     "scripts/build_revision_figure2.py",
@@ -1353,8 +1411,7 @@
     "scripts/verify_workspace_renders.py",
     "scripts/verify_workspace_state_mapping.py",
     "training/stage1.py",
-    "training/stage2.py",
-    "experiments/ood_reset.py"
+    "training/stage2.py"
   ],
   "tests": [
     "tests/test_battery_v2.py",
@@ -1774,6 +1831,63 @@
       "citations": [],
       "document": "manuscript/TRIX_SUPPLEMENT.tex",
       "number": "S11"
+    },
+    {
+      "label": "tab:ood-ranges",
+      "title": "Supplementary Table S12: Added reset ranges",
+      "files": [
+        "docs/ood_reset_protocol.json",
+        "docs/ood_reset_results.md",
+        "experiments/ood_reset.py",
+        "scripts/build_ood_reset_tables.py",
+        "manuscript/data/ood_reset_results.tex",
+        "results/ood_reset/summary.json",
+        "results/ood_reset/seed_records.json",
+        "results/ood_reset/reset_draws.json",
+        "results/ood_reset/manifest.json"
+      ],
+      "command_or_check": "python3 -B scripts/build_ood_reset_tables.py --check; raw archive: experiments/ood_reset.py report --out PATH",
+      "citations": [],
+      "document": "manuscript/TRIX_SUPPLEMENT.tex",
+      "number": "S12"
+    },
+    {
+      "label": "tab:ood-safe",
+      "title": "Supplementary Table S13: OOD safe completion and changes",
+      "files": [
+        "docs/ood_reset_protocol.json",
+        "docs/ood_reset_results.md",
+        "experiments/ood_reset.py",
+        "scripts/build_ood_reset_tables.py",
+        "manuscript/data/ood_reset_results.tex",
+        "results/ood_reset/summary.json",
+        "results/ood_reset/seed_records.json",
+        "results/ood_reset/reset_draws.json",
+        "results/ood_reset/manifest.json"
+      ],
+      "command_or_check": "python3 -B scripts/build_ood_reset_tables.py --check; raw archive: experiments/ood_reset.py report --out PATH",
+      "citations": [],
+      "document": "manuscript/TRIX_SUPPLEMENT.tex",
+      "number": "S13"
+    },
+    {
+      "label": "tab:ood-outcomes",
+      "title": "Supplementary Table S14: OOD outcomes and support strata",
+      "files": [
+        "docs/ood_reset_protocol.json",
+        "docs/ood_reset_results.md",
+        "experiments/ood_reset.py",
+        "scripts/build_ood_reset_tables.py",
+        "manuscript/data/ood_reset_results.tex",
+        "results/ood_reset/summary.json",
+        "results/ood_reset/seed_records.json",
+        "results/ood_reset/reset_draws.json",
+        "results/ood_reset/manifest.json"
+      ],
+      "command_or_check": "python3 -B scripts/build_ood_reset_tables.py --check; raw archive: experiments/ood_reset.py report --out PATH",
+      "citations": [],
+      "document": "manuscript/TRIX_SUPPLEMENT.tex",
+      "number": "S14"
     }
   ],
   "locked_renderer_files": {

@@ -208,5 +208,42 @@ The [reset-distribution amendment](ood_reset_protocol.md) maps
 [execution and analysis](../experiments/ood_reset.py),
 [distribution interface](../benchmark/evaluation_distribution.py) and
 [acceptance tests](../tests/test_ood_reset.py) to R2.4 and the evaluation-use
-column of Supplementary Table S4. It declares a new study; the existing
-main/SI/response text is not changed to claim results before evaluation.
+column of Supplementary Table S4. All 42,000 episodes are now complete and
+reported in main Results 2.3, Methods 4.1/4.6, Supplementary S14 and R2.4.
+[Results and provenance](ood_reset_results.md) retain adverse outcomes.
+
+## Supplementary Table S12: Added reset ranges
+
+`tab:ood-ranges` in Supplementary S14.
+
+[Protocol](ood_reset_protocol.json), [results](ood_reset_results.md),
+[summary](../results/ood_reset/summary.json), [seed records](../results/ood_reset/seed_records.json),
+[reset draws](../results/ood_reset/reset_draws.json), [raw-file manifest](../results/ood_reset/manifest.json),
+[table builder](../scripts/build_ood_reset_tables.py) and
+[generated TeX](../manuscript/data/ood_reset_results.tex).
+
+`python3 -B scripts/build_ood_reset_tables.py --check`.
+
+## Supplementary Table S13: OOD safe completion and changes
+
+`tab:ood-safe` in Supplementary S14.
+
+[Protocol](ood_reset_protocol.json), [results](ood_reset_results.md),
+[summary](../results/ood_reset/summary.json), [seed records](../results/ood_reset/seed_records.json),
+[reset draws](../results/ood_reset/reset_draws.json), [raw-file manifest](../results/ood_reset/manifest.json),
+[table builder](../scripts/build_ood_reset_tables.py) and
+[generated TeX](../manuscript/data/ood_reset_results.tex).
+
+`python3 -B scripts/build_ood_reset_tables.py --check`.
+
+## Supplementary Table S14: OOD outcomes and support strata
+
+`tab:ood-outcomes` in Supplementary S14.
+
+[Protocol](ood_reset_protocol.json), [results](ood_reset_results.md),
+[summary](../results/ood_reset/summary.json), [seed records](../results/ood_reset/seed_records.json),
+[reset draws](../results/ood_reset/reset_draws.json), [raw-file manifest](../results/ood_reset/manifest.json),
+[table builder](../scripts/build_ood_reset_tables.py) and
+[generated TeX](../manuscript/data/ood_reset_results.tex).
+
+`python3 -B scripts/build_ood_reset_tables.py --check`.

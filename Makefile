@@ -4,6 +4,7 @@ PYTHON ?= python3
 check:
 	$(PYTHON) -B scripts/check_paper_repository.py
 	$(PYTHON) -B scripts/build_revision_figure4.py --check-only
+	$(PYTHON) -B scripts/build_ood_reset_tables.py --check
 	$(PYTHON) -B scripts/build_reviewer_response_map.py --check
 
 audit-vlm:

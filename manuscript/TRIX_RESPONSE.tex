@@ -57,7 +57,7 @@
 {\bfseries\raggedright TRiX: Task-conditioned execution governance\\for robotic disassembly\par}
 Manuscript COMMSENG-26-0216-T\par
 Stavan Dholakia, Shivani Shukla, Abhishek Singh and Aditya Gazta\par
-25 September 2026
+26 September 2026
 
 \medskip
 Comments are summaries. Locations identify the main manuscript or S-prefixed
@@ -356,27 +356,48 @@ avoiding a violation.
 \evidence{benchmark/outcome.py; training/stage1.py; envs/pcb_env_v2.py; manuscript/TRIX_SUPPLEMENT.tex}
 
 \response{R2.4}{Domain randomisation appendix}{Fill the empty appendix with parameters, distributions, ranges and training versus out-of-distribution use.}
-The requested table is now \msitem{tab:submitted-9} in Supplementary
-Section~S4.6; Supplementary Section~S4.5 describes
-chance-constraint margins. The table records each reset-sampled parameter,
-distribution and range directly from the frozen environments, and separates
-reset variation from per-step Gaussian noise. Its evaluation-use column
-explicitly identifies the common training, validation and held-out test ranges.
-No parameters were randomised under a separate out-of-distribution reset
-distribution: the recorded policy evaluation is in-distribution, with disjoint
-episode seeds. PRY has no reset-time parameter sampling, as the table states.
+The requested systematic table is now \msitem{tab:submitted-9} in
+Supplementary Section~S4.6. It lists each reset parameter, distribution,
+numerical range and training/validation/test use, separately from per-step
+Gaussian noise. The original held-out evaluation uses the training ranges.
 
-The perturbation evidence available is a separate 105-case sensitivity sweep:
-21 constants at multipliers 0.5, 0.75, 1.0, 1.5 and 2.0, with eight scripted
-episodes per arm and case. The prescribed task-specific ordering holds in
-96/105 cases; Supplementary Section~S7 diagnoses the nine exceptions.
-This sweep tests changes to the declared physical/specification constants
-using scripted actions. It does not establish out-of-distribution generalisation
-of the trained policies or substitute for the requested OOD reset evaluation,
-which was not performed. The protocol and all outcomes are retained in
-\path{experiments/sensitivity.py} and \path{results/sensitivity.json}.
-\locations{\mssec{S4.5}; \mssec{S4.6}; \mssec{4.4}; \mssec{S7}; \msitem{tab:submitted-9}}
-\evidence{envs/screw_env_v3.py; envs/pcb_env_v2.py; envs/snap_env_v2.py; envs/crank_env_v2.py; envs/battery_env_v2.py; envs/pry_env_v2.py; experiments/sensitivity.py; results/sensitivity.json; manuscript/TRIX_SUPPLEMENT.tex}
+To address the OOD-use request with direct policy evidence, we added a new
+experiment during revision. Its declaration and implementation were committed
+as \texttt{9bc2242} before any OOD rollout. We evaluated the seven eligible
+Table~4 comparisons across five tasks, both arms, ten training seeds and
+100 episodes per cell under three declared conditions: $1.5\times$ and
+$2\times$ reset half-widths and a $2\times$ outside-support shell. All 420
+cells and 42,000 episodes are reported. The 110 selected checkpoints were
+neither retrained nor reselected. Governor definitions, margins, thresholds,
+noise and episode caps remained fixed, with matching constraint, margin and
+taxonomy hashes and separately recorded evaluation-distribution hashes.
+SCREW uses a jointly sampled friction pair conditioned on $\mu_s\geq\mu_k$.
+PRY is marked not applicable because its physical reset is deterministic;
+we did not introduce a new bond-strength randomisation.
+
+\msitem{tab:ood-ranges} gives the added ranges; \msitem{tab:ood-safe} reports
+absolute safe completion, changes from historical in-range values and exact
+seed-bootstrap intervals for every condition. \msitem{tab:ood-outcomes}
+reports destructive, unsafe intact, mechanical-failure, timeout and violation
+counts, plus within/outside-support denominators. The same training-seed
+estimator is used as in main Section~4.6; historical comparisons are not
+episode-paired and therefore include episode-sampling variation.
+
+The results include an adverse finding. In SNAP's outside-support shell,
+TRiX safe completion falls from 96.5\% to 59.9\%, with 369 destructive
+completions in 1,000 episodes. The static comparator reaches 3.5\% safe
+completion with 886 destructive completions. This damaging outcome is stated
+in the main Results and Discussion, not treated as a timeout-only loss or
+omitted from the comparison. Original in-range results and all previously
+reported studies remain unchanged.
+
+The separate 105-case sensitivity sweep in Supplementary Section~S7 remains
+a scripted study of physical/specification constants, with 96/105 cases
+meeting its prescribed ordering. It is not pooled with this new reset-distribution
+evaluation and does not substitute for it. Neither study establishes independent
+physical calibration or generalisation to arbitrary unseen dynamics.
+\locations{\mssec{4.1}; \mssec{4.6}; \mssec{S4.6}; \mssec{S14}; \msitem{tab:submitted-9}; \msitem{tab:ood-ranges}; \msitem{tab:ood-safe}; \msitem{tab:ood-outcomes}}
+\evidence{docs/ood_reset_protocol.md; docs/ood_reset_protocol.json; experiments/ood_reset.py; benchmark/evaluation_distribution.py; training/sb3_runner.py; results/ood_reset/summary.json; results/ood_reset/seed_records.json; results/ood_reset/reset_draws.json; results/ood_reset/manifest.json; docs/ood_reset_results.md; experiments/sensitivity.py; results/sensitivity.json}
 
 \response{R2.5}{Placement of runtime discussion}{Move computational timing out of the theoretical derivation.}
 The helical-coupling subsection now contains only the model, normalization

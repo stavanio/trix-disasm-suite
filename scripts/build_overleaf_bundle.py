@@ -25,7 +25,7 @@ separate pagination and bibliographies. S-prefixed sections/tables are in
 the supplement. Cross-document numbers are supplied in a generated input;
 neither document requires the other document's compiled auxiliary files.
 
-All five figure assets, both included table fragments, cross-references and
+All five figure assets, all included table fragments, cross-references and
 exact text/math fonts with their licence are included. No bibliography
 program or separate bibliography file is required. The root documents are
 exact copies of manuscript/TRIX_REVISION.tex and manuscript/TRIX_SUPPLEMENT.tex

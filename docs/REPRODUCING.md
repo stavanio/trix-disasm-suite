@@ -38,7 +38,7 @@ Run `make overleaf` to create `build/TRIX_overleaf.zip`. In Overleaf, select
 **New Project > Upload Project**, upload the ZIP, and set **Main document** to
 `TRIX_MAIN.tex` and **Compiler** to **XeLaTeX**. Keep all directories from the ZIP.
 Select `TRIX_SUPPLEMENT.tex` to compile the separate supplement.
-The package includes both documents, five figures, two table fragments, cross-references and the exact
+The package includes both documents, five figures, all table fragments, cross-references and the exact
 DejaVu text/math fonts with their licence. Fonts are loaded by file path, so
 the build does not require those fonts to be installed on Overleaf.
 The standalone manuscript TeX file alone does not include its dependencies.
@@ -153,7 +153,8 @@ The [protocol amendment](ood_reset_protocol.md) and
 [machine-readable freeze](ood_reset_protocol.json) specify five eligible tasks,
 three distribution conditions, 110 selected checkpoints and 42,000 new episodes.
 PRY is not applicable because its reset is deterministic. The original source
-evidence remains frozen. No result is claimed by the declaration itself.
+evidence remains frozen. The complete added results are in
+[the results account](ood_reset_results.md) and Supplementary Section S14.
 
 ```bash
 python3 -B -m pytest -q tests/test_ood_reset.py tests/test_registry_e2e.py
@@ -168,3 +169,18 @@ declaration after observing OOD results. New raw outputs are separate from
 the historical archive. Legacy records without a distribution field remain
 unchanged and are rejected by the new strict pooling check; baseline contrasts
 use their explicitly pinned counts rather than rewriting historical records.
+
+
+The curated OOD files under `results/ood_reset/` contain the complete summary,
+420 seed records, 1,500 unique reset draws and the hash manifest for all raw
+cells. Regenerate the two result tables without running policies:
+
+```bash
+python3 -B scripts/build_ood_reset_tables.py
+python3 -B scripts/build_ood_reset_tables.py --check
+```
+
+Full episode outcomes, the execution log, native replay check and frozen source
+snapshot are retained in the separate `TRIX_ood_reset_evidence` directory.
+Its `SHA256SUMS.json` covers every payload file. Place it beside the unchanged
+historical evidence archive. No remote URL or DOI is assigned to either package.
