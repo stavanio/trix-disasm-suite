@@ -36,7 +36,7 @@ enforces its own lean file inventory. The archive has no remote URL yet.
 
 Run `make overleaf` to create `build/TRIX_overleaf.zip`. In Overleaf, select
 **New Project > Upload Project**, upload the ZIP, and set **Main document** to
-`main.tex` and **Compiler** to **XeLaTeX**. Keep all directories from the ZIP.
+`TRIX_MAIN.tex` and **Compiler** to **XeLaTeX**. Keep all directories from the ZIP.
 The package includes the five figures, two table fragments and the exact
 DejaVu text/math fonts with their licence. Fonts are loaded by file path, so
 the build does not require those fonts to be installed on Overleaf.
@@ -44,10 +44,10 @@ The standalone manuscript TeX file alone does not include its dependencies.
 
 The [bundle builder](../scripts/build_overleaf_bundle.py) follows the declared
 TeX/figure inputs and verifies [font hashes](../manuscript/fonts/manifest.json).
-Its root `main.tex` is byte-identical to the canonical manuscript. The ZIP
+Its root `TRIX_MAIN.tex` is byte-identical to the canonical manuscript. The ZIP
 contains a file-to-source/hash manifest and a XeLaTeX `latexmkrc`. It omits
 build products and unrelated research records. For local verification, extract
-the ZIP into a new directory and run `latexmk main.tex` there.
+the ZIP into a new directory and run `latexmk TRIX_MAIN.tex` there.
 See Overleaf's [project upload instructions](https://docs.overleaf.com/managing-projects-and-files/uploading-a-project)
 and [compiler settings](https://docs.overleaf.com/getting-started/recompiling-your-project/selecting-a-tex-live-version-and-latex-compiler).
 
