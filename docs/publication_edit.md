@@ -5,7 +5,7 @@ Date: 25 September 2026. Source before this edit: `44e0e76`.
 The previous 72-page combined manuscript has been edited into a concise main
 paper and a separately compiled supplement. Internal XeLaTeX builds produce
 22 main-paper pages after the editorial review below, including Methods and references, and 43 supplementary
-pages. The remapped response letter has 19 pages. This is an editorial reorganization
+pages. The remapped response letter has 20 pages after the submission follow-up below. This is an editorial reorganization
 of the recorded evidence. Results, environment definitions and frozen artwork
 retain their existing provenance and qualifications.
 
@@ -113,3 +113,37 @@ guarantee. No experiment, figure, renderer or result artifact was changed.
 This update adds one main-paper page at the existing 12-point body size.
 Reviewer access and verification against the original decision letter remain
 submission tasks; no public archive or access arrangement is claimed.
+
+
+## Submission follow-up: identity, audit, randomisation and Figure 4
+
+Manuscript COMMSENG-26-0216-T is identified in the response cover and the
+new editor email draft. Both that email and the Reviewer 4 introduction name
+the submitted and revised titles and state that no autonomous agent loop was
+evaluated. The email is a draft for author review, not a sent message.
+
+The BATTERY correction is explicitly linked from R4.1 and R4.10 to
+`docs/battery_aggregation_correction.md` and the archive's
+`verification/policy_record_linkage.json`. The latter records
+`exact_arm_group_means["stage1/BATTERY/sac/trix"] = 20.0`, from ten seed rates
+`[0,0,0,100,0,0,0,0,0,100]`. The historical pooled files remain intact.
+
+Supplementary S4.6 already contained the six-task reset table and separate
+per-step noise account. Table S4 now includes an evaluation-use column:
+training, validation and held-out tests share the listed ranges; a widened
+OOD reset distribution was not evaluated. The six constraint identifiers are
+preserved beneath the table. Main Methods 4.1 and R2.4 point to this table.
+
+Figure 4 was regenerated from the unchanged 80-point CSV using the newly
+supplied `scripts/build_revision_figure4.py`. This is a replacement generator,
+not a recovered historical script. It checks each value against the retained
+audited seed counts before plotting and preserves the four panels, distributions
+and means. Its pinned dependencies and build manifest support reproduction.
+Two builds under NumPy 1.26.4 and Matplotlib 3.6.3 yielded identical PDF bytes;
+the vector output embeds TrueType fonts. No new experiment was run.
+
+This authorized regeneration supersedes the earlier Figure 4 artwork hash.
+The previous PDF remains in Git history and the frozen archive. The other
+54 pinned files retain their prior hashes, including all six workspace renders.
+Main and Supplement remain 22 and 43 pages; the response is 20 pages. The
+source inventory now has 203 files and 90 mapped Python files, with no orphan code.

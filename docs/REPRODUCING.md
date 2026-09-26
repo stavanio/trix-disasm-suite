@@ -130,7 +130,19 @@ No renderer was run during Git curation.
 
 ## Artwork provenance
 
-Figure 1 is editable SVG. Figure 4 retains the archived PDF and its checked
-80-point CSV; the original plotting script was not recovered. Figure 5 is an
-archived hardware image, supported by the separate run-to-video mapping.
-These provenance limits are explicit; no invented generator is supplied.
+Figure 1 is editable SVG. Figure 4 is regenerated from the retained 80-point
+CSV by the supplied replacement builder; the historical plotting script remains
+unavailable. Figure 5 is an archived hardware image, supported by the separate
+run-to-video mapping.
+
+```bash
+python3 -m pip install -r requirements-figures.txt
+python3 scripts/build_revision_figure4.py
+```
+
+The builder verifies every point against `manuscript/data/seed_statistics_input.json`,
+uses fixed horizontal seed offsets without perturbing the measured values, and
+writes a vector PDF with embedded TrueType fonts. `figure4_rebuild.json` records
+the builder, data and output hashes plus NumPy/Matplotlib versions. It explicitly
+identifies this as a replacement generator. `make check` includes its 80-point
+audit without importing Matplotlib. The six workspace renders remain frozen.

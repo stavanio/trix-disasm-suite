@@ -3,6 +3,7 @@ PYTHON ?= python3
 .PHONY: check paper response audit-vlm overleaf
 check:
 	$(PYTHON) -B scripts/check_paper_repository.py
+	$(PYTHON) -B scripts/build_revision_figure4.py --check-only
 	$(PYTHON) -B scripts/build_reviewer_response_map.py --check
 
 audit-vlm:

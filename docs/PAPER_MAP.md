@@ -40,7 +40,12 @@ Citations: `ref33`.
 
 [manuscript/figures/figure4_seed_distributions.pdf](../manuscript/figures/figure4_seed_distributions.pdf); [manuscript/figures/figure4_seed_data.csv](../manuscript/figures/figure4_seed_data.csv); [scripts/build_revision_seed_statistics.py](../scripts/build_revision_seed_statistics.py).
 
-Full archive audit checks all 80 plotted points; original plot generator unavailable.
+[Replacement Figure 4 builder](../scripts/build_revision_figure4.py) and
+[build manifest](../manuscript/figures/figure4_rebuild.json).
+
+`python3 scripts/build_revision_figure4.py` regenerates the vector PDF from the
+retained CSV after checking all 80 points against the audited seed counts.
+The historical generator remains unavailable; no original-source recovery is claimed.
 
 ## Figure 5: B601 execution
 

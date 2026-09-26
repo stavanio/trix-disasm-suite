@@ -55,23 +55,22 @@
 {\fontsize{20}{24}\selectfont\bfseries Response to the editor\\and reviewers\par}
 \medskip
 {\bfseries\raggedright TRiX: Task-conditioned execution governance\\for robotic disassembly\par}
+Manuscript COMMSENG-26-0216-T\par
 Stavan Dholakia, Shivani Shukla, Abhishek Singh and Aditya Gazta\par
 25 September 2026
 
 \medskip
-The comments are summaries. Locations refer to the accompanying main manuscript
-or S-prefixed Supplementary Information, each with its own pagination. Citations
-use the main bibliography. Evidence paths identify source-package files;
-\path{archive/} paths refer to the separate evidence archive.
+Comments are summaries. Locations identify the main manuscript or S-prefixed
+Supplementary Information, each with separate pagination. Citations use the main
+bibliography; \path{archive/} identifies the separate evidence archive.
 
 \section*{Overview of the revision}
 
-We thank the editor and reviewers for their comments. The revision replaces
-unsupported policy results and synthetic VLM evidence, reformulates the
-theoretical claims, and links each response to recorded evidence. Its central
-contribution is a task-conditioned boundary between upstream proposals and
-actuation.
-The revised title names this execution-governance contribution directly.
+For manuscript COMMSENG-26-0216-T, we changed the submitted title,
+``TRiX: Neuro-Symbolic Safety for Foundation Model Agents in Robotic
+Disassembly'', to ``TRiX: Task-conditioned execution governance for robotic
+disassembly''. No autonomous agent loop was evaluated; the model study
+measures governance of recorded proposals. The new title makes that scope explicit.
 
 The main changes are:
 \begin{enumerate}[leftmargin=*,itemsep=0.3em]
@@ -290,11 +289,13 @@ the submitted learning-curve plot from a different environment with seed-level
 results from the revised production records. Its caption identifies the
 post-hoc and filter-aware regimes, trained algorithm and episode count. The
 saved 80 plotted values reconcile with the corresponding revised results.
-The original plotting script for this frozen PDF was not recovered; the
-vector artwork and checked numerical source are preserved, and this provenance
-limit is stated in the reproduction guide.
+Figure~4 has been regenerated from the retained 80 seed-level values using
+\path{scripts/build_revision_figure4.py}. This replacement builder checks every
+value against the retained audited seed counts before plotting. The historical
+plotting script remains unavailable; the replacement and its input/output hashes
+are supplied with the source.
 \locations{\mssec{1}; \mssec{2.1}; \mssec{2.2}; \mssec{2.3}; \mssec{2.6}; \msitem{fig:seed-distributions}}
-\evidence{manuscript/figures/figure4_seed_distributions.pdf; manuscript/figures/figure4_seed_data.csv; docs/REPRODUCING.md}
+\evidence{manuscript/figures/figure4_seed_distributions.pdf; manuscript/figures/figure4_seed_data.csv; scripts/build_revision_figure4.py; manuscript/figures/figure4_rebuild.json; docs/REPRODUCING.md}
 
 \response{R1.9}{Foundation-model robotics literature}{Expand discussion of LLM/VLM methods in collaborative and embodied robotics.}
 The introduction cites PaLM-E, RT-2, SayCan, Code as Policies and
@@ -359,8 +360,10 @@ The requested table is now \msitem{tab:submitted-9} in Supplementary
 Section~S4.6; Supplementary Section~S4.5 describes
 chance-constraint margins. The table records each reset-sampled parameter,
 distribution and range directly from the frozen environments, and separates
-reset variation from per-step Gaussian noise. Training and held-out episodes
-use the same reset distributions with disjoint episode seeds. The sensitivity
+reset variation from per-step Gaussian noise. Its evaluation-use column
+explicitly identifies the common training, validation and held-out test ranges,
+and the absence of a widened OOD reset distribution. Training and held-out
+episodes use disjoint episode seeds. The sensitivity
 sweep and BAYONET experiment are described separately rather than relabeled
 as held-out reset randomisation. PRY has no reset-time parameter sampling,
 which is stated explicitly.
@@ -403,6 +406,13 @@ universal ranking of safety algorithms.
 \clearpage
 \section*{Response to Reviewer 4}
 
+\textbf{Title change.} For manuscript COMMSENG-26-0216-T, we changed the submitted title,
+``TRiX: Neuro-Symbolic Safety for Foundation Model Agents in Robotic
+Disassembly'', to ``TRiX: Task-conditioned execution governance for robotic
+disassembly''. No autonomous agent loop was evaluated; the model study
+measures governance of recorded proposals. The new title makes that scope explicit.
+
+
 \response{R4.1}{Trained policies and experimental provenance}{The submitted results used random-action transformations rather than the claimed trained policies.}
 The criticism identifies a substantive defect in the submitted evidence.
 We replaced those headline results with recorded Stable-Baselines3 PPO and
@@ -422,8 +432,11 @@ audit links 1,020 recorded aggregates to 20,400 exact-arm test shards.
 The audit also found a BATTERY filename-prefix collision that pooled distinct
 arms in 30 historical aggregates. Counts were recomputed from the shards of
 the recorded selected checkpoints. The Stage~1 SAC/TRiX value in \msitem{tab:submitted-4} is 20.0\%,
-replacing the intermediate draft's 59.8\%. The original files are retained,
-and both the correction and the source matcher fix are documented. No
+replacing the intermediate draft's 59.8\%. The exact-arm audit is
+\path{docs/battery_aggregation_correction.md}; the archive's
+\path{verification/policy_record_linkage.json} records the corresponding
+\texttt{stage1/BATTERY/sac/trix} group and each contributing shard.
+The original files and source matcher correction are retained. No
 checkpoint was reselected or rerun; this correction does not establish that
 repeating historical selection would choose the same checkpoint. The separate
 PCB oracle seed correction is also retained. Seed-level statistical inference
@@ -644,10 +657,13 @@ with the same preventive 15-N target and margin construction. Both attain
 100\% safe completion, so the earlier difference cannot be attributed to
 projection form. Separately, the aggregate audit corrected the Stage~1
 SAC/TRiX value in \msitem{tab:submitted-4} to 20.0\% after removing pooled preventive-arm shards.
-The physical specification correction and the bookkeeping correction are
-both documented, and the original records remain preserved.
+The exact-arm audit in \path{docs/battery_aggregation_correction.md} and
+\path{verification/policy_record_linkage.json} in the evidence archive identifies
+the \texttt{stage1/BATTERY/sac/trix} group and its shards. The physical
+specification correction and bookkeeping correction are documented separately,
+and the original records remain preserved.
 \locations{\mssec{2.3}; \mssec{3}; \mssec{4.3}; \mssec{S2.3}; \mssec{S7.1}; \mssec{S9.4}; \mssec{S13.1}; \msitem{tab:submitted-4}; \msitem{tab:submitted-8}}
-\evidence{envs/battery_env_v2.py; docs/battery_aggregation_correction.md; manuscript/data/seed_statistics_summary.json; manuscript/TRIX_SUPPLEMENT.tex}
+\evidence{envs/battery_env_v2.py; docs/battery_aggregation_correction.md; archive/verification/policy_record_linkage.json; manuscript/data/seed_statistics_summary.json; manuscript/TRIX_SUPPLEMENT.tex}
 
 \response{R4.11}{Simulation and control rates}{Resolve the inconsistent 240-Hz and 100-Hz descriptions.}
 All six revised analytical environments import $\Delta t=1/240$ s from
@@ -668,11 +684,12 @@ comparisons, using the frozen production records reported in the revision.
 Its caption explicitly distinguishes the regimes. The corresponding
 post-hoc and filter-aware summaries are now \msitem{tab:submitted-4}
 and \msitem{tab:stage2-key}, respectively. Main Table~4 gives the key contrasts.
-All 80 plotted seed values have been checked against their recorded source
-cells. No curve from a simplified environment is used to explain another
+Figure~4 was regenerated from the retained seed-level data with the supplied
+replacement plotting script. All 80 plotted values are checked against their
+recorded source cells before plotting. No curve from a simplified environment is used to explain another
 environment's absolute rates.
 \locations{\mssec{2.3}; \mssec{S9}; \msitem{tab:submitted-4}; \msitem{tab:stage2-key}; \msitem{fig:seed-distributions}}
-\evidence{manuscript/figures/figure4_seed_data.csv; results/stage1/stage1_records.json; results/stage2/stage2_records.json; manuscript/TRIX_SUPPLEMENT.tex}
+\evidence{manuscript/figures/figure4_seed_data.csv; scripts/build_revision_figure4.py; manuscript/figures/figure4_rebuild.json; results/stage1/stage1_records.json; results/stage2/stage2_records.json; manuscript/TRIX_SUPPLEMENT.tex}
 
 \response{R4.13}{PCB residual violations and representation analysis}{Explain the reported PCB failures instead of attributing them generically to curvature or linearity.}
 We replaced the submitted interpretation with a decomposition of the

@@ -1,4 +1,4 @@
-# BATTERY aggregation correction — 22 September 2026
+# BATTERY aggregation correction: 22 September 2026
 
 The complete shard audit identified a filename-prefix collision in historical
 `training/stage1.py:gather` and `training/stage2.py:gather`. Matching a prefix
@@ -19,7 +19,7 @@ all 1,020 production records.
 | Stage 2 BATTERY/SAC/box_clip | 40.0 | 0.0 |
 | Stage 2 BATTERY/PPO/box_clip | 81.0 | 71.0 |
 
-Table 4 now displays **20.0** for BATTERY/SAC/TRiX and explains the correction.
+Supplementary Table S8 now displays **20.0** for BATTERY/SAC/TRiX; main Results 2.3 and Supplementary S9.4 explain the correction.
 The Stage 2 historical non-preventive box values in this audit table are not
 numerical results claimed in the current manuscript. They are reported here
 to account for the entire archive. No checkpoint was reselected or rerun;
@@ -27,13 +27,18 @@ exact-arm counts refer to the archived selected checkpoint. This audit does
 not assert that redoing historical selection would select the same checkpoint.
 
 The matched preventive arms remain **100.0% versus 100.0%**. Their distinct
-full arm names were not pooled. All 13 Table 13 contrasts and all 80 Figure 4
+full arm names were not pooled. All 13 Supplementary Table S6 contrasts and all 80 Figure 4
 points remain unchanged, as do the VLM, geometry, sensitivity and hardware
 results. The separate PCB seed-0 oracle correction remains in force.
 
 The original result files and source snapshots are preserved byte for byte.
 `verification/policy_record_linkage.json` records each exact-arm shard list,
 historical pooled method names/counts, selected checkpoint and derived rate.
+The exact lookup is `exact_arm_group_means["stage1/BATTERY/sac/trix"] = 20.0`.
+The ten rates under `exact_arm_group_seed_rates` for that key are
+`[0, 0, 0, 100, 0, 0, 0, 0, 0, 100]`, each from 100 unique held-out episodes.
+This exact-arm group supersedes the historical pooled aggregate; the preserved
+historical JSON is not silently rewritten.
 `research/manuscript/data/battery_aggregation_correction.json` is the compact
 reporting correction accompanying the paper.
 

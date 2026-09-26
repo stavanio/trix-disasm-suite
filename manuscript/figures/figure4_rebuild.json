@@ -1,0 +1,36 @@
+{
+  "schema": 1,
+  "generator": "scripts/build_revision_figure4.py",
+  "provenance": "Replacement generator from retained seed-level data; historical generator unavailable.",
+  "historical_pdf_sha256": "399ed017a0b0b4d55509cf7782c0396e67dc132649e033fac0255eba6ce73e79",
+  "generator_sha256": "0f3ac07162bedbcfc94b89c2927d619be5da41b1f94dcefc342dfadafcacbb39",
+  "inputs": {
+    "manuscript/figures/figure4_seed_data.csv": "d2394c3785a12a568761866cab5c3a2a8d73004ce9461c030c13b1ee7d35b417",
+    "manuscript/data/seed_statistics_input.json": "8913c568e9d864a29eb51f997c607f291ad8ef3ad0bd51fa07451cdcd87663e5"
+  },
+  "software": {
+    "matplotlib": "3.6.3",
+    "numpy": "1.26.4"
+  },
+  "points_checked": 80,
+  "training_seeds_per_arm": 10,
+  "held_out_episodes_per_seed": 100,
+  "means": {
+    "PCB post-hoc box": 0.0,
+    "PCB filter-aware box": 100.0,
+    "SNAP static": 5.2,
+    "SNAP TRiX": 96.5,
+    "CRANK static": 0.0,
+    "CRANK TRiX": 49.4,
+    "PRY static": 88.5,
+    "PRY TRiX": 89.1
+  },
+  "plotting": {
+    "box_whiskers": "1.5 IQR",
+    "triangles": "arithmetic means",
+    "seed_offsets": "fixed horizontal offsets only",
+    "seed_colors": "tab10, seed order 0-9"
+  },
+  "pdf_sha256": "f9172744c34e5e46c2aff672c338b47e826bc2425bf9397cecaa17131457ca53",
+  "new_experiments": false
+}

@@ -412,8 +412,9 @@ BATTERY provides a specification control. Historical arms compared the
 20-N flagged peel boundary with a 15-N preventive deformation threshold.
 When both componentwise and TRiX arms use the same preventive target and
 margin construction, both reach 100\% safe completion. Historical aggregation
-also pooled similarly named BATTERY arms; the exact-arm audit corrects the
-Stage~1 SAC/TRiX value to 20.0\%, with original records retained.
+also pooled similarly named BATTERY arms; the exact-arm audit in Supplementary
+Section~S9.4 corrects Stage~1 SAC/TRiX safe completion to 20.0\%, with original
+records retained.
 Supplementary Section~S9 reports the full policy tables and these controls;
 \suppref{tab:submitted-11} supplies training-seed intervals and pairing
 exceptions. Nominal-policy failure on some tasks leaves frozen-policy arms
@@ -644,8 +645,10 @@ internal integration substeps; PCB, SNAP, CRANK and BATTERY use ten; PRY
 updates directly. Progress and termination are task-specific. The outcome
 contract distinguishes safe completion, completion with outcome-affecting
 violations, destructive completion and the remaining unsuccessful outcomes;
-diagnostic events are recorded separately. Risk allocations, noise and reset
-variation come from the frozen source. PyBullet provides the workspace
+diagnostic events are recorded separately. Reset parameters, distributions,
+ranges and training/evaluation use are tabulated in \suppref{tab:submitted-9}
+and detailed in Supplementary Section~S4.6. Held-out tests use the training
+ranges; no widened OOD reset distribution is evaluated. PyBullet provides the workspace
 illustrations, with a per-panel state manifest; it is not a second validation
 of the analytical equations or a simulated articulated-arm controller.
 An earlier PyBullet helical-constraint prototype imposed the same screw pitch
@@ -805,9 +808,9 @@ Every experimental record is linked to the applicable environment, policy,
 constraint, margin and outcome specifications. The curated source map links
 all main and supplementary figures and tables to data or executable source.
 Correction notes retain affected historical files. Independent physical
-calibration, unresolved backend identities and the unavailable original
-Figure~4 plotting script are stated provenance limits rather than reconstructed
-metadata.
+calibration and unresolved backend identities remain provenance limits.
+Figure~4 was regenerated from the retained seed-level data using a supplied
+replacement plotting script; the original plotting script remains unavailable.
 
 \section*{Author Contributions}
 Stavan Dholakia: Conceptualization, Methodology, Software, Validation, Writing

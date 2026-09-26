@@ -1021,17 +1021,18 @@ starts at one, BATTERY starts at $25\,{}^{\circ}$C, and PRY starts in
 \caption{Reset-time parameter randomisation in the six revised environments.
 $U(a,b)$ denotes a uniform multiplier drawn separately for each listed
 parameter at every reset. The same distributions are used for training,
-validation, and held-out policy evaluation. Constraint identifiers associate
-the rows with the revised environment versions; the distributions are
-transcribed from \texttt{reset()}, not inferred from the identifiers.}
+validation, and held-out policy evaluation (train/val/test). The evaluation-use
+column distinguishes these common ranges from a widened out-of-distribution
+(OOD) reset test, which was not performed. Distributions are transcribed
+from the frozen \texttt{reset()} implementations.}
 \label{tab:submitted-9}\\
 \toprule
-Task & Sampled code field & Distribution and numerical range & Constraint identifier\\
+Task & Sampled code field & Distribution and numerical range & Evaluation use\\
 \midrule
 \endfirsthead
 \multicolumn{4}{l}{\small\itshape Table~\ref{tab:submitted-9} (continued)}\\[4pt]
 \toprule
-Task & Sampled code field & Distribution and numerical range & Constraint identifier\\
+Task & Sampled code field & Distribution and numerical range & Evaluation use\\
 \midrule
 \endhead
 SCREW v3 &
@@ -1039,30 +1040,35 @@ SCREW v3 &
 $0.61\,U(0.9,1.1)$: $0.549$--$0.671$.\par
 $0.47\,U(0.9,1.1)$: $0.423$--$0.517$.\par
 Both coefficients are dimensionless.
-& \texttt{beb88f8d0baf5e4a}\\
+& Train/val/test: same range.\par OOD: not evaluated.\\
 \midrule
 PCB v2 & \texttt{f\_clip} &
 $25\,U(0.85,1.15)$ N:\par $21.25$--$28.75$ N.
-& \texttt{53fcd8e18d341d5d}\\
+& Train/val/test: same range.\par OOD: not evaluated.\\
 \midrule
 SNAP v2 & \texttt{k\_latch} &
 $5000\,U(0.9,1.1)$ N\,m$^{-1}$:\par $4500$--$5500$ N\,m$^{-1}$.
-& \texttt{044763e531cb6bcb}\\
+& Train/val/test: same range.\par OOD: not evaluated.\\
 \midrule
 CRANK v2 & \texttt{mu\_k} &
 $0.47\,U(0.9,1.1)$:\par $0.423$--$0.517$ (dimensionless).
-& \texttt{bc6cc80449c95466}\\
+& Train/val/test: same range.\par OOD: not evaluated.\\
 \midrule
 BATTERY\par v2 & \texttt{adhesive} &
 $8\,U(0.9,1.1)$ N:\par $7.2$--$8.8$ N.
-& \texttt{09a4ae5d933db6bf}\\
+& Train/val/test: same range.\par OOD: not evaluated.\\
 \midrule
 PRY v2 & None &
 Deterministic reset; stochastic variation enters through per-step noise.
-& \texttt{52be08aa340982f6}\\
+& Train/val/test: deterministic.\par OOD: not evaluated.\\
 \bottomrule
 \end{longtable}
 \endgroup
+
+The associated constraint identifiers are SCREW \texttt{beb88f8d0baf5e4a},
+PCB \texttt{53fcd8e18d341d5d}, SNAP \texttt{044763e531cb6bcb},
+CRANK \texttt{bc6cc80449c95466}, BATTERY \texttt{09a4ae5d933db6bf},
+and PRY \texttt{52be08aa340982f6}.
 
 \paragraph{Per-step noise.}
 The production training and evaluation entry points instantiate the registered

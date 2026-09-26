@@ -8,7 +8,7 @@ not yet submitted in this form. Authors and citation metadata: [CITATION.cff](CI
 
 - [Main manuscript](manuscript/TRIX_REVISION.tex) and [Supplementary Information](manuscript/TRIX_SUPPLEMENT.tex)
 - [Publication edit and content migration](docs/publication_edit.md)
-- [Reviewer response draft](manuscript/TRIX_RESPONSE.tex) and [comment-to-evidence map](docs/REVIEWER_MAP.md)
+- [Reviewer response draft](manuscript/TRIX_RESPONSE.tex), [editor email draft](manuscript/EDITOR_EMAIL.md) and [comment-to-evidence map](docs/REVIEWER_MAP.md)
 - [Every figure and table → source, data and check](docs/PAPER_MAP.md)
 - [Commands and recorded environments](docs/REPRODUCING.md)
 - [Historical corrections](docs/provenance.md) and [BATTERY aggregation correction](docs/battery_aggregation_correction.md)
