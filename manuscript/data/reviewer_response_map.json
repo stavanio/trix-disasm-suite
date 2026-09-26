@@ -1968,10 +1968,10 @@
     "baselines/screw_solvers.py": "d29ed937cda9743bfc9039ad50ee494165e78affeed4b6899870864d0c239e8b",
     "benchmark/disasm_bench.py": "8f35f87a687194ce696161afec440dbca442c19a09ff852d6d2bb7ac3ab530dc",
     "benchmark/geometry_gen.py": "ce77567dbfe74904541487db4f0b92994a1fc9169f424ac85683f32527a39143",
-    "benchmark/gym_adapter.py": "69dde1ada3a9b63cccc987fc337314ab9079274c670500044cb59a88c0957271",
+    "benchmark/gym_adapter.py": "04eb3dfe0c8b38ca2ca9afb7d691992ab5095c352377062e9697095a54bd2c7b",
     "benchmark/outcome.py": "4089d1be55f5b62b541e3fb3967f67beac577d60702e56c13645fa944bf582e5",
     "benchmark/registry.py": "f002fcec502883ea5c1a0c09f39144b69ed2ed933530567536efcfffebd42372",
-    "docs/REPRODUCING.md": "e952abc9a890336f39541b4333194421be1860bb5b3ae61d870417681a3ac285",
+    "docs/REPRODUCING.md": "73f6481146c4b72a925a0818bbc15e5fbe4ffa802dc8dd886a7e149038f33bc7",
     "docs/battery_aggregation_correction.md": "088bbc2bde148190da08be8193957b419caf63e26fdce78c0322bab2cdf1c7d8",
     "docs/bayonet_preregistration.md": "d20236c37881c69f6e5c18cf1dcbf06c6b2c65941ed3fa9c2932dc70e4fb9fb9",
     "docs/provenance.md": "75d9204f4a3bc7d783cd6e167e70e0eb980aee35d8594b77eadc3c7c2b3a7a88",
@@ -2011,7 +2011,7 @@
     "scripts/build_revision_figure4.py": "0f3ac07162bedbcfc94b89c2927d619be5da41b1f94dcefc342dfadafcacbb39",
     "scripts/build_revision_seed_statistics.py": "d693516363c74a3764430b94ddc05bcd30aa86c0a391c369c6fdea31f5d26ef1",
     "scripts/workspace_environment.py": "985f8a9cd2d677ff950dd8a9d340d186d86382cd1be3e8079793a0d937ad5749",
-    "training/sb3_runner.py": "7a327b6b605b2730af330b5775d48992292e9cb746ca987168595a301563dab8",
+    "training/sb3_runner.py": "b5d002c16ee48e3480e2be0130399e1b3252782579c27e7ba54676f7d580c491",
     "training/stage1.py": "99984f765f6a5f40ac58fab382291ad17dbf14b125366ee63d52d963fc7d70fe"
   },
   "archive_evidence_paths": [

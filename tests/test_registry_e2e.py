@@ -160,6 +160,9 @@ def test_9_records_spanning_definitions_cannot_be_aggregated():
             "protocol_freeze_hash": "dd", "training_mode": "nominal",
             "evaluation_arm": "trix", "algorithm": "sac",
             "margin_policy": {"sigma": 4.3}}
+    from benchmark import evaluation_distribution as ED
+    base["evaluation_distribution"] = ED.specification("SCREW")
+    base["evaluation_distribution_hash"] = ED.canonical_hash(base["evaluation_distribution"])
     other = dict(base, constraint_hash="bbbb")
     diff_margin = dict(base, margin_policy={"sigma": 3.0})
     RR.check_comparable([base, copy.deepcopy(base)])

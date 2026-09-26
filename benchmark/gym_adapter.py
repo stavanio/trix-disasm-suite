@@ -20,6 +20,7 @@ import numpy as np
 from gymnasium import spaces
 
 from benchmark.registry import ENVS, get_filter
+from benchmark import evaluation_distribution as ED
 
 
 CAPS = {"SCREW": 2500, "PCB": 1500, "SNAP": 1500,
@@ -39,11 +40,15 @@ class DisasmEnv(gym.Env):
 
     metadata = {"render_modes": []}
 
-    def __init__(self, task, filter_name=None, cap=None):
+    def __init__(self, task, filter_name=None, cap=None,
+                 evaluation_distribution=None):
         super().__init__()
         if task not in ENVS:
             raise KeyError(f"unknown task {task!r}")
         self.task = task
+        self.evaluation_distribution = evaluation_distribution
+        if evaluation_distribution is not None:
+            ED.validate(evaluation_distribution, task)
         self.filter_name = filter_name
         self._filter = get_filter(task, filter_name) if filter_name else None
         self.cap = cap or CAPS[task]
@@ -59,7 +64,12 @@ class DisasmEnv(gym.Env):
         super().reset(seed=seed)
         obs = self._env.reset(seed=seed)
         self._steps = 0
-        return np.asarray(obs, dtype=np.float32), {}
+        reset_info = {}
+        if self.evaluation_distribution is not None:
+            reset_info = ED.apply_after_native_reset(
+                self._env, self.evaluation_distribution, seed)
+            obs = self._env._get_obs()
+        return np.asarray(obs, dtype=np.float32), reset_info
 
     def step(self, action):
         a = np.asarray(action, dtype=np.float64)
@@ -90,8 +100,10 @@ class DisasmEnv(gym.Env):
         return self._env
 
 
-def make(task, filter_name=None, cap=None, seed=None):
-    env = DisasmEnv(task, filter_name=filter_name, cap=cap)
+def make(task, filter_name=None, cap=None, seed=None,
+         evaluation_distribution=None):
+    env = DisasmEnv(task, filter_name=filter_name, cap=cap,
+                   evaluation_distribution=evaluation_distribution)
     if seed is not None:
         env.reset(seed=seed)
     return env

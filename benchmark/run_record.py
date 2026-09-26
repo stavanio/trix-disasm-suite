@@ -21,6 +21,7 @@ from benchmark import margin as M
 from benchmark import margin_policy as MP
 from benchmark import protocol as PROTO
 from benchmark import taxonomy as TAX
+from benchmark import evaluation_distribution as ED
 
 
 def git_commit():
@@ -68,7 +69,8 @@ class HashMismatch(RuntimeError):
 
 def make_record(task, method, seed, summary, expected_hash,
                 margin=None, extra=None, training_mode=None,
-                evaluation_arm=None, algorithm=None):
+                evaluation_arm=None, algorithm=None,
+                evaluation_distribution=None):
     """Assemble a cell record, refusing to build one whose environment
     hash does not match what the registry declared."""
     got = summary.get("constraint_hash")
@@ -76,6 +78,9 @@ def make_record(task, method, seed, summary, expected_hash,
         raise HashMismatch(
             f"{task}/{method}/seed{seed}: environment reported "
             f"{got!r} but the registry expects {expected_hash!r}")
+    distribution = (ED.specification(task) if evaluation_distribution is None
+                    else evaluation_distribution)
+    distribution_hash = ED.validate(distribution, task)
     rec = {
         "task": task,
         "method": method,
@@ -97,8 +102,12 @@ def make_record(task, method, seed, summary, expected_hash,
         "training_mode": training_mode,
         "evaluation_arm": evaluation_arm,
         "algorithm": algorithm,
+        "evaluation_distribution": distribution,
+        "evaluation_distribution_hash": distribution_hash,
     }
     if extra:
+        if set(extra) & set(rec):
+            raise ValueError("Extra fields cannot replace record provenance")
         rec.update(extra)
     return rec
 
@@ -107,7 +116,8 @@ def make_record(task, method, seed, summary, expected_hash,
 # present: two records both missing a hash would otherwise produce {None}
 # and pass, which is exactly the silent compatibility this guards against.
 REQUIRED_HASHES = ("constraint_hash", "robust_margin_hash",
-                   "taxonomy_hash", "protocol_freeze_hash")
+                   "taxonomy_hash", "protocol_freeze_hash",
+                   "evaluation_distribution_hash")
 
 # Records can share every hash and still mean different things. A nominal
 # policy filtered at evaluation and a filter-aware policy answer different
@@ -130,6 +140,13 @@ def check_comparable(records, require_execution_keys=True):
         by_task.setdefault(r["task"], []).append(r)
 
     for task, rs in by_task.items():
+        for r in rs:
+            try:
+                digest = ED.validate(r.get("evaluation_distribution"), task)
+            except (ValueError, TypeError) as exc:
+                raise HashMismatch(f"{task}: missing or invalid evaluation distribution") from exc
+            if digest != r.get("evaluation_distribution_hash"):
+                raise HashMismatch(f"{task}: evaluation distribution hash mismatch")
         for field in REQUIRED_HASHES:
             vals = {r.get(field) for r in rs}
             if None in vals:

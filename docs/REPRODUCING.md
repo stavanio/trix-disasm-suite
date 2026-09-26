@@ -146,3 +146,25 @@ writes a vector PDF with embedded TrueType fonts. `figure4_rebuild.json` records
 the builder, data and output hashes plus NumPy/Matplotlib versions. It explicitly
 identifies this as a replacement generator. `make check` includes its 80-point
 audit without importing Matplotlib. The six workspace renders remain frozen.
+
+## Prospective R2.4 reset-distribution evaluation
+
+The [protocol amendment](ood_reset_protocol.md) and
+[machine-readable freeze](ood_reset_protocol.json) specify five eligible tasks,
+three distribution conditions, 110 selected checkpoints and 42,000 new episodes.
+PRY is not applicable because its reset is deterministic. The original source
+evidence remains frozen. No result is claimed by the declaration itself.
+
+```bash
+python3 -B -m pytest -q tests/test_ood_reset.py tests/test_registry_e2e.py
+python3 -B experiments/ood_reset.py verify-native --archive "$TRIX_EVIDENCE_ROOT" --out build/ood_reset_preflight
+python3 -B experiments/ood_reset.py run --archive "$TRIX_EVIDENCE_ROOT" --out build/ood_reset --workers 16
+python3 -B experiments/ood_reset.py report --out build/ood_reset
+```
+
+The execution command refuses uncommitted source or a changed declaration.
+`prepare` is used only before the prospective freeze, never to refresh a
+declaration after observing OOD results. New raw outputs are separate from
+the historical archive. Legacy records without a distribution field remain
+unchanged and are rejected by the new strict pooling check; baseline contrasts
+use their explicitly pinned counts rather than rewriting historical records.

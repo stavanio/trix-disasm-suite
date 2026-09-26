@@ -200,3 +200,13 @@ Archive: hardware/results/hardware/v4_confirmation/final_submission/tables/hardw
 
 The separate private archive is identified by [its manifest](../assets/evidence/archive_manifest.json).
 Every retained file has a declared role in the [checked inventory](repository_manifest.json).
+
+## Prospective R2.4 addition
+
+The [reset-distribution amendment](ood_reset_protocol.md) maps
+[its declaration](ood_reset_protocol.json),
+[execution and analysis](../experiments/ood_reset.py),
+[distribution interface](../benchmark/evaluation_distribution.py) and
+[acceptance tests](../tests/test_ood_reset.py) to R2.4 and the evaluation-use
+column of Supplementary Table S4. It declares a new study; the existing
+main/SI/response text is not changed to claim results before evaluation.

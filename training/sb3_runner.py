@@ -31,6 +31,7 @@ from benchmark.registry import constraint_hashes, get_filter
 from benchmark.metrics import EpisodeRecorder
 from benchmark import selection as SEL
 from benchmark import margin_policy as MP
+from benchmark import evaluation_distribution as ED
 
 ALGOS = {"ppo": PPO, "sac": SAC}
 NET_ARCH = [256, 256]
@@ -101,17 +102,26 @@ def load(path, task):
     return ALGOS[algo].load(path, device="cpu")
 
 
-def evaluate_frozen(model, task, filter_name, seeds, recorder):
+def evaluate_frozen(model, task, filter_name, seeds, recorder,
+                    evaluation_distribution=None):
     """Run one frozen policy through one filter on a fixed seed list.
 
     Filtering happens here rather than inside the environment so the
     nominal action is recoverable and every arm sees the same proposal.
     """
     filt = get_filter(task, filter_name)
-    env = make(task)
+    spec = (ED.specification(task) if evaluation_distribution is None
+            else evaluation_distribution)
+    digest = ED.validate(spec, task)
+    if recorder.episodes:
+        raise ValueError("Frozen evaluation requires an empty recorder")
+    recorder.evaluation_distribution = spec
+    env = make(task, evaluation_distribution=spec)
     cap = CAPS[task]
     for s in seeds:
-        obs, _ = env.reset(seed=int(s))
+        obs, reset_info = env.reset(seed=int(s))
+        if reset_info["evaluation_distribution_hash"] != digest:
+            raise ValueError("Environment used a different reset distribution")
         recorder.start_episode()
         terminated = truncated = False
         for _ in range(cap):
@@ -129,4 +139,5 @@ def evaluate_frozen(model, task, filter_name, seeds, recorder):
             if terminated or truncated:
                 break
         recorder.end_episode(env.unwrapped_task, completed=bool(terminated))
+        recorder.episodes[-1]["evaluation_reset"] = reset_info
     return recorder

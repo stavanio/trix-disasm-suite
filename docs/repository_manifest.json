@@ -141,6 +141,14 @@
         "docs/REPRODUCING.md"
       ]
     },
+    "benchmark/evaluation_distribution.py": {
+      "role": "Explicit reset-only evaluation distributions with independent sampling and hashes",
+      "references": [
+        "docs/ood_reset_protocol.md",
+        "docs/REPRODUCING.md",
+        "R2.4"
+      ]
+    },
     "benchmark/geometry_gen.py": {
       "role": "imported module or package initializer",
       "references": [
@@ -242,6 +250,22 @@
       "role": "documentation or pinned asset metadata",
       "references": [
         "docs/PAPER_MAP.md"
+      ]
+    },
+    "docs/ood_reset_protocol.json": {
+      "role": "Pre-evaluation selected-checkpoint, baseline, software and distribution manifest",
+      "references": [
+        "docs/ood_reset_protocol.md",
+        "docs/REPRODUCING.md",
+        "R2.4"
+      ]
+    },
+    "docs/ood_reset_protocol.md": {
+      "role": "Prospective R2.4 amendment with scope, distributions and reporting rules",
+      "references": [
+        "docs/ood_reset_protocol.md",
+        "docs/REPRODUCING.md",
+        "R2.4"
       ]
     },
     "docs/provenance.md": {
@@ -367,6 +391,14 @@
       "role": "entrypoint",
       "references": [
         "tab:procedural-geometry"
+      ]
+    },
+    "experiments/ood_reset.py": {
+      "role": "Prospective R2.4 frozen-policy evaluation, preflight, execution and analysis",
+      "references": [
+        "docs/ood_reset_protocol.md",
+        "docs/REPRODUCING.md",
+        "R2.4"
       ]
     },
     "experiments/pry_control.py": {
@@ -1193,6 +1225,14 @@
         "docs/REPRODUCING.md"
       ]
     },
+    "tests/test_ood_reset.py": {
+      "role": "Reset/interface/governor invariance and distribution pooling acceptance gates",
+      "references": [
+        "docs/ood_reset_protocol.md",
+        "docs/REPRODUCING.md",
+        "R2.4"
+      ]
+    },
     "tests/test_pcb_v2.py": {
       "role": "regression test",
       "references": [
@@ -1313,7 +1353,8 @@
     "scripts/verify_workspace_renders.py",
     "scripts/verify_workspace_state_mapping.py",
     "training/stage1.py",
-    "training/stage2.py"
+    "training/stage2.py",
+    "experiments/ood_reset.py"
   ],
   "tests": [
     "tests/test_battery_v2.py",
@@ -1332,7 +1373,8 @@
     "tests/test_screw_v3.py",
     "tests/test_selection.py",
     "tests/test_selection_seed_determinism.py",
-    "tests/test_snap_v2.py"
+    "tests/test_snap_v2.py",
+    "tests/test_ood_reset.py"
   ],
   "explicit_dependencies": {
     "scripts/workspace_environment.py": [
