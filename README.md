@@ -1,7 +1,7 @@
 # TRiX: paper reference
 
-Source and compact evidence for **TRiX: Neuro-Symbolic Safety for Foundation
-Model Agents in Robotic Disassembly**. Current manuscript: private revision,
+Source and compact evidence for **TRiX: Task-conditioned execution governance
+for robotic disassembly**. Current manuscript: private revision,
 not yet submitted in this form. Authors and citation metadata: [CITATION.cff](CITATION.cff).
 
 ## Start here

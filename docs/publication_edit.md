@@ -4,7 +4,7 @@ Date: 25 September 2026. Source before this edit: `44e0e76`.
 
 The previous 72-page combined manuscript has been edited into a concise main
 paper and a separately compiled supplement. Internal XeLaTeX builds produce
-21 main-paper pages, including Methods and references, and 43 supplementary
+22 main-paper pages after the editorial review below, including Methods and references, and 43 supplementary
 pages. The remapped response letter has 19 pages. This is an editorial reorganization
 of the recorded evidence. Results, environment definitions and frozen artwork
 retain their existing provenance and qualifications.
@@ -74,3 +74,42 @@ was checked for abstract length, manuscript organization, main-text length and
 display-item count. Meeting those checks is not a declaration that submission
 preparation is complete: original decision-letter verification, author review,
 reviewer access and final clean/marked submission files remain open.
+
+## Editorial review follow-up, 25 September 2026
+
+The review of the condensed manuscript was checked against the frozen records
+before editing. The title is now **TRiX: Task-conditioned execution governance
+for robotic disassembly**, synchronized across the main paper, supplement,
+response letter, README and citation metadata.
+
+- The abstract specifies post-hoc application to a trained policy and restores
+  the observed absence of an inadmissible image shared across all three runs.
+- Results 2.5 places the visibility-scaled image qualification beside the 31
+  prevented constraint-violation cases. Methods 4.5, S11.4 and R4.9 distinguish
+  descriptive stratum counts from an interpretation of model behavior that
+  would require an unscaled-image control. The seven partial views remain separate.
+- Introduction and R1.9 now cite Rrapi et al., DOI
+  [10.1016/j.rcim.2026.103269](https://doi.org/10.1016/j.rcim.2026.103269),
+  corresponding to supplied PII S0736584526000487, for its survey of reasoning,
+  planning and interaction in collaborative robotics.
+- Methods 4.1 and R4.7 explicitly explain the withdrawn PyBullet pitch-validation
+  argument. The archived prototype imposed the analytical pitch through a gear
+  constraint. Its location is `research/experiments/pybullet_helix.py` in the
+  frozen evidence archive, SHA-256
+  `4b4e1f2aec3d71e96aa070444a458787478a11893d4b1271fce622247c360e6e`.
+  No saved result is used to claim independent validation or a measured outcome
+  from that prototype. The response evidence map identifies the archived source.
+- Discussion explicitly limits the latency advantage to the scalar
+  implementation and saved workload. It names the sensitivity exceptions as
+  six PCB, one CRANK and two BATTERY cases; the BATTERY cases have zero
+  destructive completions in both arms.
+
+The verified PCB decomposition remains 2.9%, 78.0% and 92.3% on 2,000 held-out
+proposals. Gemini remains 65 admissible and 26 inadmissible decisions from its
+existing 91-row artifact. E.4 and R1.6 retain the recorded 12.578-microsecond
+active-set QP median. The 96/105 sensitivity result is not recast as a 96/96
+guarantee. No experiment, figure, renderer or result artifact was changed.
+
+This update adds one main-paper page at the existing 12-point body size.
+Reviewer access and verification against the original decision letter remain
+submission tasks; no public archive or access arrangement is claimed.

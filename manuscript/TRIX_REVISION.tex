@@ -65,7 +65,7 @@
 \setlength{\parindent}{0pt}
 \hypersetup{colorlinks=true,linkcolor=blue,citecolor=blue,urlcolor=blue}
 
-\title{TRiX: Neuro-Symbolic Safety for Foundation Model Agents in Robotic Disassembly}
+\title{TRiX: Task-conditioned execution governance for robotic disassembly}
 \author{Stavan Dholakia\thanks{Cloud and AI, Microsoft, One Microsoft Way, Redmond, WA 98052, USA.} \and
 Shivani Shukla\thanks{Analytics and Information Systems, University of San Francisco, 2130 Fulton St, San Francisco, CA 94117, USA. Corresponding author: sgshukla@usfca.edu} \and
 Abhishek Singh\thanks{GCP, Google, 15303 Dallas Pkwy, Addison, TX 75001, USA.} \and
@@ -85,14 +85,16 @@ execution governor that accepts, projects or rejects proposals using explicit
 task-conditioned command sets. Across six simulated disassembly tasks, we
 separate governance of frozen policies from learning with the governor active.
 On printed-circuit-board extraction, the same componentwise restriction changes
-from 0\% safe completion after training to 100\% when included during training.
+from 0\% safe completion when applied post hoc to a trained policy to 100\%
+when included during training.
 Adaptation does not resolve every restriction: on crank extraction, a static
 restriction remains at 0\%, while the task-conditioned governor reaches 49.4\%.
 Matched analytical and quadratic-program controls coincide on screw extraction,
 and a 200-instance procedural study identifies losses of required command
 authority. For 273 recorded vision-language-model decisions on 91 shared images,
 paired replay of 257 grounded commands shows that TRiX prevents 31
-constraint-violation cases and introduces none. Physical B601-RS experiments
+constraint-violation cases and introduces none. No image elicits an inadmissible
+proposal in all three recorded runs. Physical B601-RS experiments
 show rejection and correction before actuation and three video-backed
 grasp-and-return trials. These results support evaluating an execution governor
 jointly with its proposal policy, constraint specification and available task
@@ -112,8 +114,10 @@ more than the identity of the component: threaded motion couples translation
 and rotation, snap removal requires a released latch, and extraction forces
 may be restricted in a moving task frame. Vision-language models (VLMs),
 language models and learned policies expand the range of actions a robot can
-propose \cite{ref8,ref9,ref10,ref11,ref12,ref13}. They also sharpen the need for
-an explicit decision about which proposals may reach the actuators.
+propose \cite{ref8,ref9,ref10,ref11,ref12,ref13}. Rrapi et al.\ survey their
+emerging roles in reasoning, planning and interaction in collaborative
+robotics \cite{ref39}. These capabilities sharpen the need for an explicit
+decision about which proposals may reach the actuators.
 
 Existing approaches address different parts of this problem. Constrained
 reinforcement learning optimizes a policy under cost constraints
@@ -484,6 +488,9 @@ Total         & 16 & 219 & 38 & 257 & 31 & 31\\
 \end{table}
 
 TRiX prevents all 31 observed constraint-violation cases and introduces none.
+The commands were elicited from visibility-scaled PCB images whose displayed
+tilts can exceed the model's intact-board range; this result measures
+governance of those recorded commands under mechanical replay.
 A prevented case has at least one violation during the unfiltered replay and
 none under governance from the same restored state and seed. Merely changing
 a command receives no prevention credit. The three inadmissible Claude
@@ -496,9 +503,9 @@ without task completion or mechanical failure. The endpoint is prevented
 constraint violations, not fractures or successful extraction.
 
 Thirty-five images elicit an inadmissible proposal in at least one run; none
-does so in all three. Claude's three and GPT-4o's nine inadmissible image sets
-are disjoint, including at base-state level, so the absence of a three-way
-overlap holds regardless of Gemini's failure set with those records fixed.
+does so in all three. Claude's three inadmissible cases and GPT-4o's nine
+do not overlap, even when grouped by base configuration. Holding those
+responses fixed, no Gemini failure set can create a three-way overlap.
 The result supports execution governance for actual model outputs while
 retaining the visual-encoding and provenance limits in Methods. It measures
 one proposal per image, with repeated views of 28 configurations, and makes
@@ -575,7 +582,10 @@ quality can improve substantially with an expressive representation and
 iteration. The contribution is an auditable execution contract and an
 experimental account of the conditions under which different implemented
 restrictions suffice. It does not establish a universal advantage of symbolic
-projection over learned or classical safety methods.
+projection over learned or classical safety methods. The timing comparison
+likewise demonstrates an advantage for the scalar implementation on the saved
+workload, not an inherent speed advantage of analytical projection over QP:
+the NumPy analytical implementation is slower than both matched QP controls.
 
 The VLM and hardware experiments extend this contract to generative proposals
 and physical actuation. The VLM result demonstrates prevention of recorded
@@ -600,8 +610,9 @@ in Supplementary Section~S13.
 
 The sensitivity study reinforces that these boundaries are empirical. Its
 prescribed task-specific ordering holds in 96 of 105 perturbation cases;
-the nine exceptions include PCB boundary/model inconsistencies, a CRANK
-feasibility failure and BATTERY completion trade-offs. A prospective BAYONET
+the nine exceptions comprise six PCB boundary/model cases, one CRANK
+feasibility failure and two BATTERY completion trade-offs with zero destructive
+completions in both arms (Supplementary Section~S7). A prospective BAYONET
 test is inconclusive because neither policy algorithm reaches the predeclared
 competence gate. These results remain part of the evidence, rather than
 being removed to produce a cleaner success narrative.
@@ -637,6 +648,9 @@ diagnostic events are recorded separately. Risk allocations, noise and reset
 variation come from the frozen source. PyBullet provides the workspace
 illustrations, with a per-panel state manifest; it is not a second validation
 of the analytical equations or a simulated articulated-arm controller.
+An earlier PyBullet helical-constraint prototype imposed the same screw pitch
+through a gear constraint. It therefore could not independently validate that
+pitch; we withdrew the associated validation argument.
 
 \subsection{Policy training and checkpoint selection}
 \label{sec:training-methods}
@@ -726,6 +740,9 @@ pose need not be a realizable intact-board state. Positive scaling preserves
 ordering within the 84 main-stratum images, but not physical distance to a
 boundary; all margin comparisons exclude the seven partial views. Rendering
 reproducibility does not establish fidelity to mechanical tilt.
+The stratum counts describe responses to this encoding. Without an unscaled
+image control, effects of visual scaling cannot be separated from differences
+between model runs.
 
 The fixed parser maps outputs to \texttt{LIFT}, \texttt{TILT\_X},
 \texttt{TILT\_Y}, \texttt{PRESS}, \texttt{HOLD} or \texttt{ABORT}.
@@ -844,6 +861,8 @@ The authors declare no competing interests.
 \bibitem{ref12} Wang, G. et al. Voyager: An open-ended embodied agent with large language models. Preprint at arXiv:2305.16291 (2023).
 
 \bibitem{ref13} Vemprala, S., Bonatti, R., Bucker, A. \& Kapoor, A. ChatGPT for robotics: Design principles and model abilities. Preprint at \href{https://arxiv.org/abs/2306.17582}{arXiv:2306.17582} (2023).
+
+\bibitem{ref39} Rrapi, F., Portelli, B., Serra, G. \& Scalera, L. From AI foundations to Large Language Models: A survey on challenges and opportunities in collaborative robotics. Robot. Comput.-Integr. Manuf. 100, 103269 (2026). \url{https://doi.org/10.1016/j.rcim.2026.103269}.
 
 \bibitem{ref16} Achiam, J., Held, D., Tamar, A. \& Abbeel, P. Constrained policy optimization. in Proc. ICML 22--31 (2017).
 

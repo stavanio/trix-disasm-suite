@@ -1,7 +1,7 @@
 cff-version: 1.2.0
 message: "Cite the manuscript and the exact Git commit used. This revision is unreleased."
 type: software
-title: "TRiX: Neuro-Symbolic Safety for Foundation Model Agents in Robotic Disassembly"
+title: "TRiX: Task-conditioned execution governance for robotic disassembly"
 authors:
   - family-names: Dholakia
     given-names: Stavan

@@ -68,7 +68,7 @@
 \renewcommand{\theequation}{S\arabic{equation}}
 \renewcommand{\tablename}{Supplementary Table}
 \renewcommand{\figurename}{Supplementary Figure}
-\title{Supplementary Information\\\large TRiX: Neuro-Symbolic Safety for Foundation Model Agents in Robotic Disassembly}
+\title{Supplementary Information\\\large TRiX: Task-conditioned execution governance for robotic disassembly}
 \author{Stavan Dholakia, Shivani Shukla\\Abhishek Singh and Aditya Gazta}
 \date{}
 \begin{document}
@@ -2009,12 +2009,13 @@ Separately, the seven partial-view images contain one inadmissible Gemini
 output; none enters a margin-stratum or visual-tilt comparison.
 
 The common positive tilt scaling preserves the ordering of the three main
-generator strata, so these comparisons remain meaningful under that mapping.
-Their differing patterns do not establish a common monotonic error trend
-across runs. The margin is the generator's normalized quantity; it is not an
-estimate of a safety boundary perceived by a model, and its numerical value
-must not be read from the exaggerated display angle. Partial views are
-reported separately and repeated views share a base configuration.
+generator strata. The counts describe responses to that encoding and do not
+establish a common monotonic error trend across runs. Without an unscaled
+image control, the contribution of visual scaling cannot be separated from
+differences between model runs. The margin is the generator's normalized
+quantity; it is not an estimate of a safety boundary perceived by a model,
+and its numerical value must not be read from the exaggerated display angle.
+Partial views are reported separately and repeated views share a base configuration.
 
 
 \section{Physical platform and trial records}

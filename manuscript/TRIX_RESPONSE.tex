@@ -54,7 +54,7 @@
 \thispagestyle{plain}
 {\fontsize{20}{24}\selectfont\bfseries Response to the editor\\and reviewers\par}
 \medskip
-{\bfseries\raggedright TRiX: Neuro-Symbolic Safety for Foundation Model Agents\\in Robotic Disassembly\par}
+{\bfseries\raggedright TRiX: Task-conditioned execution governance\\for robotic disassembly\par}
 Stavan Dholakia, Shivani Shukla, Abhishek Singh and Aditya Gazta\par
 25 September 2026
 
@@ -71,6 +71,7 @@ unsupported policy results and synthetic VLM evidence, reformulates the
 theoretical claims, and links each response to recorded evidence. Its central
 contribution is a task-conditioned boundary between upstream proposals and
 actuation.
+The revised title names this execution-governance contribution directly.
 
 The main changes are:
 \begin{enumerate}[leftmargin=*,itemsep=0.3em]
@@ -297,13 +298,16 @@ limit is stated in the reproduction guide.
 
 \response{R1.9}{Foundation-model robotics literature}{Expand discussion of LLM/VLM methods in collaborative and embodied robotics.}
 The introduction cites PaLM-E, RT-2, SayCan, Code as Policies and
-ChatGPT for Robotics to motivate the expanding range of learned and
-generative action proposals. It uses that literature to motivate the
+ChatGPT for Robotics, together with Rrapi et al.'s 2026 survey of AI and
+language models in collaborative robotics (DOI: 10.1016/j.rcim.2026.103269;
+PII: S0736584526000487), to motivate the expanding range of learned and
+generative action proposals. The survey is cited in context for its discussion
+of reasoning, planning and interaction. This literature motivates the
 separate execution-authority question, rather than treating semantic planning
 as physical admissibility. The actual VLM study then evaluates that interface
 through recorded proposals and paired command execution. The paper does not
 claim a human-robot collaboration experiment.
-\locations{\mssec{1}; \mssec{2.5}; manuscript references \mscite{ref8}--\mscite{ref13}}
+\locations{\mssec{1}; \mssec{2.5}; manuscript references \mscite{ref8}--\mscite{ref13}, \mscite{ref39}}
 \evidence{manuscript/TRIX_REVISION.tex}
 
 \clearpage
@@ -513,6 +517,11 @@ of those quantities.
 
 \response{R4.7}{Role of PyBullet}{Explain the PyBullet code in the repository and its relationship to the reported experiments.}
 The production experiments use the versioned analytical environments.
+An earlier helical-constraint prototype, retained as
+\path{research/experiments/pybullet_helix.py} in the evidence archive,
+imposed the analytical screw pitch through a gear constraint. It therefore
+could not independently validate that pitch. We withdrew the associated
+validation argument; no result from that prototype is used in this revision.
 PyBullet supplies the deterministic visualization layer for the six workspace
 panels. The manuscript states this separation and cites the rendering
 implementation. The supplied per-panel manifests bind workpiece poses to
@@ -520,7 +529,7 @@ archived environment states. We do not present these renders as a second
 independent physics validation, and the illustrated gripper does not imply
 that articulated-arm or contact dynamics generated the reported task outcomes.
 \locations{\mssec{2.2}; \mssec{4.1}; \mssec{S4}; \msitem{fig:disasm-workspaces}; manuscript reference \mscite{ref33}}
-\evidence{docs/workspace_rendering.md; manuscript/figures/workspaces/state_manifest.json; scripts/workspace_environment.py; manuscript/TRIX_SUPPLEMENT.tex}
+\evidence{docs/workspace_rendering.md; manuscript/figures/workspaces/state_manifest.json; scripts/workspace_environment.py; manuscript/TRIX_SUPPLEMENT.tex; archive/research/experiments/pybullet_helix.py}
 
 \response{R4.8}{Physical robot evidence}{The submission contains no hardware demonstration.}
 We added physical execution evidence on the Seeed reBot B601-RS. The archived
@@ -554,6 +563,9 @@ grounds proposals into commands; each grounded command is evaluated with
 and without TRiX from the same restored state and seed. The primary result
 is prevention of all 31 observed constraint-violation cases, with zero new
 cases among the 257 grounded pairs during the 40-step horizon.
+Results Section~2.5 now states alongside that count that the commands were
+elicited from visibility-scaled images whose displayed tilts can exceed the
+intact-board range, and that the result concerns the recorded commands.
 
 The decision accounting is complete:
 \begin{center}\small
@@ -593,6 +605,9 @@ positive scale preserves main-stratum ordering, not physical angular distance
 to a boundary. All margin and visual-tilt comparisons use only the 84
 main-stratum images; the seven partial views remain separate. Rendering
 reproducibility does not establish identity of displayed and replayed tilt.
+The stratum counts describe responses to this encoding. Without an unscaled
+image control, the contribution of visual scaling cannot be separated from
+differences between model runs.
 
 \textbf{Model provenance.} The recorded strings are
 \texttt{claude-sonnet-4-5}, \texttt{gpt-4o} and
