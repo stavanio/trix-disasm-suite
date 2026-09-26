@@ -247,3 +247,18 @@ reported in main Results 2.3, Methods 4.1/4.6, Supplementary S14 and R2.4.
 [generated TeX](../manuscript/data/ood_reset_results.tex).
 
 `python3 -B scripts/build_ood_reset_tables.py --check`.
+
+
+## Post-hoc SNAP attribution supporting the OOD outcome interpretation
+
+[Plan](snap_ood_attribution_plan.md), [results](snap_ood_attribution_results.md),
+[diagnostic source](../experiments/snap_ood_attribution.py),
+[summary](../results/snap_ood_attribution/summary.json),
+[6,000 episode attributions](../results/snap_ood_attribution/episode_attribution.json),
+[verification](../results/snap_ood_attribution/verification.json) and
+[raw-trace manifest](../results/snap_ood_attribution/manifest.json).
+
+The checks concern the existing S14/Table S14 SNAP records. No manuscript
+claim or primary result was changed during this diagnostic. The new account
+separates broken/degraded states from completion status and checks membership
+in the exact frozen executable command set.

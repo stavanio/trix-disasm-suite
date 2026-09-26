@@ -1,0 +1,3368 @@
+{
+  "all_episode_records_exactly_matched": true,
+  "freeze_sha256": "00948ff99469233a78e65910b7b2e8b21572f7d247b1c3265a1facd25c024b95",
+  "groups": [
+    {
+      "arm": "static_clip",
+      "by_seed": [
+        {
+          "categories": {
+            "destructive_completion": 100
+          },
+          "command_equilibrium_exceeds_limit_steps_before_break": 0,
+          "damage_states_all_episodes": {
+            "broken": 28,
+            "degraded": 72
+          },
+          "damage_states_destructive_completions": {
+            "broken": 28,
+            "degraded": 72
+          },
+          "episodes": 100,
+          "episodes_with_first_pull_damage": 100,
+          "episodes_with_phase_reengagement": 14,
+          "first_break_routes": {
+            "overdeflection": 28
+          },
+          "own_set_max_residual": 0.0,
+          "own_set_outside_strict": 0,
+          "own_set_outside_tolerance": 0,
+          "phase_reengagement_substeps": 120,
+          "premature_substeps": 352,
+          "registry_set_max_residual": 0.9575116634368896,
+          "registry_set_outside_tolerance": 1117,
+          "seed": 0,
+          "steps": 5800,
+          "trix_set_max_residual": 0.9575116634368896,
+          "trix_set_outside_strict": 1117,
+          "trix_set_outside_tolerance": 1117,
+          "violations_by_family_episodes": {
+            "vio_lateral": 89,
+            "vio_overstress": 28,
+            "vio_premature": 100
+          }
+        },
+        {
+          "categories": {
+            "destructive_completion": 100
+          },
+          "command_equilibrium_exceeds_limit_steps_before_break": 0,
+          "damage_states_all_episodes": {
+            "broken": 23,
+            "degraded": 77
+          },
+          "damage_states_destructive_completions": {
+            "broken": 23,
+            "degraded": 77
+          },
+          "episodes": 100,
+          "episodes_with_first_pull_damage": 100,
+          "episodes_with_phase_reengagement": 14,
+          "first_break_routes": {
+            "overdeflection": 23
+          },
+          "own_set_max_residual": 0.0,
+          "own_set_outside_strict": 0,
+          "own_set_outside_tolerance": 0,
+          "phase_reengagement_substeps": 119,
+          "premature_substeps": 352,
+          "registry_set_max_residual": 0.9675874710083008,
+          "registry_set_outside_tolerance": 5449,
+          "seed": 1,
+          "steps": 5800,
+          "trix_set_max_residual": 0.9675874710083008,
+          "trix_set_outside_strict": 5402,
+          "trix_set_outside_tolerance": 5402,
+          "violations_by_family_episodes": {
+            "vio_lateral": 23,
+            "vio_overstress": 23,
+            "vio_premature": 100
+          }
+        },
+        {
+          "categories": {
+            "destructive_completion": 100
+          },
+          "command_equilibrium_exceeds_limit_steps_before_break": 0,
+          "damage_states_all_episodes": {
+            "broken": 17,
+            "degraded": 83
+          },
+          "damage_states_destructive_completions": {
+            "broken": 17,
+            "degraded": 83
+          },
+          "episodes": 100,
+          "episodes_with_first_pull_damage": 100,
+          "episodes_with_phase_reengagement": 14,
+          "first_break_routes": {
+            "overdeflection": 17
+          },
+          "own_set_max_residual": 0.0,
+          "own_set_outside_strict": 0,
+          "own_set_outside_tolerance": 0,
+          "phase_reengagement_substeps": 126,
+          "premature_substeps": 367,
+          "registry_set_max_residual": 0.98663330078125,
+          "registry_set_outside_tolerance": 975,
+          "seed": 2,
+          "steps": 5800,
+          "trix_set_max_residual": 0.98663330078125,
+          "trix_set_outside_strict": 975,
+          "trix_set_outside_tolerance": 975,
+          "violations_by_family_episodes": {
+            "vio_lateral": 17,
+            "vio_overstress": 17,
+            "vio_premature": 100
+          }
+        },
+        {
+          "categories": {
+            "destructive_completion": 100
+          },
+          "command_equilibrium_exceeds_limit_steps_before_break": 0,
+          "damage_states_all_episodes": {
+            "broken": 23,
+            "degraded": 77
+          },
+          "damage_states_destructive_completions": {
+            "broken": 23,
+            "degraded": 77
+          },
+          "episodes": 100,
+          "episodes_with_first_pull_damage": 100,
+          "episodes_with_phase_reengagement": 14,
+          "first_break_routes": {
+            "overdeflection": 23
+          },
+          "own_set_max_residual": 0.0,
+          "own_set_outside_strict": 0,
+          "own_set_outside_tolerance": 0,
+          "phase_reengagement_substeps": 117,
+          "premature_substeps": 343,
+          "registry_set_max_residual": 0.9919462203979492,
+          "registry_set_outside_tolerance": 5449,
+          "seed": 3,
+          "steps": 5800,
+          "trix_set_max_residual": 0.9919462203979492,
+          "trix_set_outside_strict": 5449,
+          "trix_set_outside_tolerance": 5449,
+          "violations_by_family_episodes": {
+            "vio_lateral": 45,
+            "vio_overstress": 23,
+            "vio_premature": 100
+          }
+        },
+        {
+          "categories": {
+            "destructive_completion": 100
+          },
+          "command_equilibrium_exceeds_limit_steps_before_break": 0,
+          "damage_states_all_episodes": {
+            "broken": 26,
+            "degraded": 74
+          },
+          "damage_states_destructive_completions": {
+            "broken": 26,
+            "degraded": 74
+          },
+          "episodes": 100,
+          "episodes_with_first_pull_damage": 100,
+          "episodes_with_phase_reengagement": 0,
+          "first_break_routes": {
+            "overdeflection": 26
+          },
+          "own_set_max_residual": 0.0,
+          "own_set_outside_strict": 0,
+          "own_set_outside_tolerance": 0,
+          "phase_reengagement_substeps": 0,
+          "premature_substeps": 100,
+          "registry_set_max_residual": 0.973365306854248,
+          "registry_set_outside_tolerance": 1374,
+          "seed": 4,
+          "steps": 5800,
+          "trix_set_max_residual": 0.973365306854248,
+          "trix_set_outside_strict": 1374,
+          "trix_set_outside_tolerance": 1374,
+          "violations_by_family_episodes": {
+            "vio_lateral": 60,
+            "vio_overstress": 26,
+            "vio_premature": 100
+          }
+        },
+        {
+          "categories": {
+            "destructive_completion": 100
+          },
+          "command_equilibrium_exceeds_limit_steps_before_break": 0,
+          "damage_states_all_episodes": {
+            "broken": 12,
+            "degraded": 88
+          },
+          "damage_states_destructive_completions": {
+            "broken": 12,
+            "degraded": 88
+          },
+          "episodes": 100,
+          "episodes_with_first_pull_damage": 100,
+          "episodes_with_phase_reengagement": 12,
+          "first_break_routes": {
+            "overdeflection": 12
+          },
+          "own_set_max_residual": 0.0,
+          "own_set_outside_strict": 0,
+          "own_set_outside_tolerance": 0,
+          "phase_reengagement_substeps": 112,
+          "premature_substeps": 339,
+          "registry_set_max_residual": 0.9892013072967529,
+          "registry_set_outside_tolerance": 792,
+          "seed": 5,
+          "steps": 5800,
+          "trix_set_max_residual": 0.9892013072967529,
+          "trix_set_outside_strict": 791,
+          "trix_set_outside_tolerance": 791,
+          "violations_by_family_episodes": {
+            "vio_lateral": 64,
+            "vio_overstress": 12,
+            "vio_premature": 100
+          }
+        },
+        {
+          "categories": {
+            "destructive_completion": 78,
+            "timeout": 22
+          },
+          "command_equilibrium_exceeds_limit_steps_before_break": 0,
+          "damage_states_all_episodes": {
+            "broken": 22,
+            "degraded": 78
+          },
+          "damage_states_destructive_completions": {
+            "degraded": 78
+          },
+          "episodes": 100,
+          "episodes_with_first_pull_damage": 100,
+          "episodes_with_phase_reengagement": 0,
+          "first_break_routes": {
+            "overdeflection": 22
+          },
+          "own_set_max_residual": 0.0,
+          "own_set_outside_strict": 0,
+          "own_set_outside_tolerance": 0,
+          "phase_reengagement_substeps": 0,
+          "premature_substeps": 100,
+          "registry_set_max_residual": 0.9496798515319824,
+          "registry_set_outside_tolerance": 32956,
+          "seed": 6,
+          "steps": 37524,
+          "trix_set_max_residual": 0.9496798515319824,
+          "trix_set_outside_strict": 32956,
+          "trix_set_outside_tolerance": 32956,
+          "violations_by_family_episodes": {
+            "vio_lateral": 22,
+            "vio_overstress": 22,
+            "vio_premature": 100
+          }
+        },
+        {
+          "categories": {
+            "destructive_completion": 100
+          },
+          "command_equilibrium_exceeds_limit_steps_before_break": 0,
+          "damage_states_all_episodes": {
+            "broken": 23,
+            "degraded": 77
+          },
+          "damage_states_destructive_completions": {
+            "broken": 23,
+            "degraded": 77
+          },
+          "episodes": 100,
+          "episodes_with_first_pull_damage": 100,
+          "episodes_with_phase_reengagement": 14,
+          "first_break_routes": {
+            "overdeflection": 23
+          },
+          "own_set_max_residual": 0.0,
+          "own_set_outside_strict": 0,
+          "own_set_outside_tolerance": 0,
+          "phase_reengagement_substeps": 126,
+          "premature_substeps": 371,
+          "registry_set_max_residual": 0.9610884189605713,
+          "registry_set_outside_tolerance": 715,
+          "seed": 7,
+          "steps": 5800,
+          "trix_set_max_residual": 0.9610884189605713,
+          "trix_set_outside_strict": 715,
+          "trix_set_outside_tolerance": 715,
+          "violations_by_family_episodes": {
+            "vio_lateral": 65,
+            "vio_overstress": 23,
+            "vio_premature": 100
+          }
+        },
+        {
+          "categories": {
+            "destructive_completion": 100
+          },
+          "command_equilibrium_exceeds_limit_steps_before_break": 0,
+          "damage_states_all_episodes": {
+            "broken": 21,
+            "degraded": 79
+          },
+          "damage_states_destructive_completions": {
+            "broken": 21,
+            "degraded": 79
+          },
+          "episodes": 100,
+          "episodes_with_first_pull_damage": 100,
+          "episodes_with_phase_reengagement": 13,
+          "first_break_routes": {
+            "overdeflection": 21
+          },
+          "own_set_max_residual": 0.0,
+          "own_set_outside_strict": 0,
+          "own_set_outside_tolerance": 0,
+          "phase_reengagement_substeps": 67,
+          "premature_substeps": 448,
+          "registry_set_max_residual": 0.9827828407287598,
+          "registry_set_outside_tolerance": 1430,
+          "seed": 8,
+          "steps": 5800,
+          "trix_set_max_residual": 0.9827828407287598,
+          "trix_set_outside_strict": 1421,
+          "trix_set_outside_tolerance": 1421,
+          "violations_by_family_episodes": {
+            "vio_lateral": 64,
+            "vio_overstress": 21,
+            "vio_premature": 100
+          }
+        },
+        {
+          "categories": {
+            "destructive_completion": 13,
+            "safe_completion": 47,
+            "unsafe_completion_intact": 40
+          },
+          "command_equilibrium_exceeds_limit_steps_before_break": 0,
+          "damage_states_all_episodes": {
+            "broken": 13,
+            "intact": 87
+          },
+          "damage_states_destructive_completions": {
+            "broken": 13
+          },
+          "episodes": 100,
+          "episodes_with_first_pull_damage": 13,
+          "episodes_with_phase_reengagement": 0,
+          "first_break_routes": {
+            "overdeflection": 13
+          },
+          "own_set_max_residual": 0.0,
+          "own_set_outside_strict": 0,
+          "own_set_outside_tolerance": 0,
+          "phase_reengagement_substeps": 0,
+          "premature_substeps": 762,
+          "registry_set_max_residual": 0.9319391250610352,
+          "registry_set_outside_tolerance": 881,
+          "seed": 9,
+          "steps": 6021,
+          "trix_set_max_residual": 0.9319391250610352,
+          "trix_set_outside_strict": 880,
+          "trix_set_outside_tolerance": 880,
+          "violations_by_family_episodes": {
+            "vio_lateral": 53,
+            "vio_overstress": 13,
+            "vio_premature": 13
+          }
+        }
+      ],
+      "condition": "wide_1p5",
+      "strata": {
+        "all": {
+          "categories": {
+            "destructive_completion": 891,
+            "safe_completion": 47,
+            "timeout": 22,
+            "unsafe_completion_intact": 40
+          },
+          "command_equilibrium_exceeds_limit_steps_before_break": 0,
+          "damage_states_all_episodes": {
+            "broken": 208,
+            "degraded": 705,
+            "intact": 87
+          },
+          "damage_states_destructive_completions": {
+            "broken": 186,
+            "degraded": 705
+          },
+          "episodes": 1000,
+          "episodes_with_first_pull_damage": 913,
+          "episodes_with_phase_reengagement": 95,
+          "first_break_routes": {
+            "overdeflection": 208
+          },
+          "own_set_max_residual": 0.0,
+          "own_set_outside_strict": 0,
+          "own_set_outside_tolerance": 0,
+          "phase_reengagement_substeps": 787,
+          "premature_substeps": 3534,
+          "registry_set_max_residual": 0.9919462203979492,
+          "registry_set_outside_tolerance": 51138,
+          "steps": 89945,
+          "trix_set_max_residual": 0.9919462203979492,
+          "trix_set_outside_strict": 51080,
+          "trix_set_outside_tolerance": 51080,
+          "violations_by_family_episodes": {
+            "vio_lateral": 502,
+            "vio_overstress": 208,
+            "vio_premature": 913
+          }
+        },
+        "lower_outside": {
+          "categories": {
+            "destructive_completion": 132,
+            "safe_completion": 3,
+            "timeout": 14,
+            "unsafe_completion_intact": 1
+          },
+          "command_equilibrium_exceeds_limit_steps_before_break": 0,
+          "damage_states_all_episodes": {
+            "broken": 134,
+            "degraded": 12,
+            "intact": 4
+          },
+          "damage_states_destructive_completions": {
+            "broken": 120,
+            "degraded": 12
+          },
+          "episodes": 150,
+          "episodes_with_first_pull_damage": 146,
+          "episodes_with_phase_reengagement": 76,
+          "first_break_routes": {
+            "overdeflection": 134
+          },
+          "own_set_max_residual": 0.0,
+          "own_set_outside_strict": 0,
+          "own_set_outside_tolerance": 0,
+          "phase_reengagement_substeps": 609,
+          "premature_substeps": 2200,
+          "registry_set_max_residual": 0.9915294647216797,
+          "registry_set_outside_tolerance": 26829,
+          "steps": 28935,
+          "trix_set_max_residual": 0.9915294647216797,
+          "trix_set_outside_strict": 26828,
+          "trix_set_outside_tolerance": 26828,
+          "violations_by_family_episodes": {
+            "vio_lateral": 141,
+            "vio_overstress": 134,
+            "vio_premature": 146
+          }
+        },
+        "outside": {
+          "categories": {
+            "destructive_completion": 285,
+            "safe_completion": 12,
+            "timeout": 14,
+            "unsafe_completion_intact": 9
+          },
+          "command_equilibrium_exceeds_limit_steps_before_break": 0,
+          "damage_states_all_episodes": {
+            "broken": 134,
+            "degraded": 165,
+            "intact": 21
+          },
+          "damage_states_destructive_completions": {
+            "broken": 120,
+            "degraded": 165
+          },
+          "episodes": 320,
+          "episodes_with_first_pull_damage": 299,
+          "episodes_with_phase_reengagement": 76,
+          "first_break_routes": {
+            "overdeflection": 134
+          },
+          "own_set_max_residual": 0.0,
+          "own_set_outside_strict": 0,
+          "own_set_outside_tolerance": 0,
+          "phase_reengagement_substeps": 609,
+          "premature_substeps": 2353,
+          "registry_set_max_residual": 0.9915294647216797,
+          "registry_set_outside_tolerance": 28986,
+          "steps": 38829,
+          "trix_set_max_residual": 0.9915294647216797,
+          "trix_set_outside_strict": 28971,
+          "trix_set_outside_tolerance": 28971,
+          "violations_by_family_episodes": {
+            "vio_lateral": 203,
+            "vio_overstress": 134,
+            "vio_premature": 299
+          }
+        },
+        "upper_outside": {
+          "categories": {
+            "destructive_completion": 153,
+            "safe_completion": 9,
+            "unsafe_completion_intact": 8
+          },
+          "command_equilibrium_exceeds_limit_steps_before_break": 0,
+          "damage_states_all_episodes": {
+            "degraded": 153,
+            "intact": 17
+          },
+          "damage_states_destructive_completions": {
+            "degraded": 153
+          },
+          "episodes": 170,
+          "episodes_with_first_pull_damage": 153,
+          "episodes_with_phase_reengagement": 0,
+          "first_break_routes": {},
+          "own_set_max_residual": 0.0,
+          "own_set_outside_strict": 0,
+          "own_set_outside_tolerance": 0,
+          "phase_reengagement_substeps": 0,
+          "premature_substeps": 153,
+          "registry_set_max_residual": 0.9892013072967529,
+          "registry_set_outside_tolerance": 2157,
+          "steps": 9894,
+          "trix_set_max_residual": 0.9892013072967529,
+          "trix_set_outside_strict": 2143,
+          "trix_set_outside_tolerance": 2143,
+          "violations_by_family_episodes": {
+            "vio_lateral": 62,
+            "vio_overstress": 0,
+            "vio_premature": 153
+          }
+        },
+        "within": {
+          "categories": {
+            "destructive_completion": 606,
+            "safe_completion": 35,
+            "timeout": 8,
+            "unsafe_completion_intact": 31
+          },
+          "command_equilibrium_exceeds_limit_steps_before_break": 0,
+          "damage_states_all_episodes": {
+            "broken": 74,
+            "degraded": 540,
+            "intact": 66
+          },
+          "damage_states_destructive_completions": {
+            "broken": 66,
+            "degraded": 540
+          },
+          "episodes": 680,
+          "episodes_with_first_pull_damage": 614,
+          "episodes_with_phase_reengagement": 19,
+          "first_break_routes": {
+            "overdeflection": 74
+          },
+          "own_set_max_residual": 0.0,
+          "own_set_outside_strict": 0,
+          "own_set_outside_tolerance": 0,
+          "phase_reengagement_substeps": 178,
+          "premature_substeps": 1181,
+          "registry_set_max_residual": 0.9919462203979492,
+          "registry_set_outside_tolerance": 22152,
+          "steps": 51116,
+          "trix_set_max_residual": 0.9919462203979492,
+          "trix_set_outside_strict": 22109,
+          "trix_set_outside_tolerance": 22109,
+          "violations_by_family_episodes": {
+            "vio_lateral": 299,
+            "vio_overstress": 74,
+            "vio_premature": 614
+          }
+        }
+      }
+    },
+    {
+      "arm": "static_clip",
+      "by_seed": [
+        {
+          "categories": {
+            "destructive_completion": 100
+          },
+          "command_equilibrium_exceeds_limit_steps_before_break": 6,
+          "damage_states_all_episodes": {
+            "broken": 33,
+            "degraded": 67
+          },
+          "damage_states_destructive_completions": {
+            "broken": 33,
+            "degraded": 67
+          },
+          "episodes": 100,
+          "episodes_with_first_pull_damage": 100,
+          "episodes_with_phase_reengagement": 18,
+          "first_break_routes": {
+            "overdeflection": 33
+          },
+          "own_set_max_residual": 0.0,
+          "own_set_outside_strict": 0,
+          "own_set_outside_tolerance": 0,
+          "phase_reengagement_substeps": 167,
+          "premature_substeps": 438,
+          "registry_set_max_residual": 0.9575116634368896,
+          "registry_set_outside_tolerance": 1221,
+          "seed": 0,
+          "steps": 5800,
+          "trix_set_max_residual": 0.9575116634368896,
+          "trix_set_outside_strict": 1218,
+          "trix_set_outside_tolerance": 1218,
+          "violations_by_family_episodes": {
+            "vio_lateral": 90,
+            "vio_overstress": 33,
+            "vio_premature": 100
+          }
+        },
+        {
+          "categories": {
+            "destructive_completion": 100
+          },
+          "command_equilibrium_exceeds_limit_steps_before_break": 6,
+          "damage_states_all_episodes": {
+            "broken": 32,
+            "degraded": 68
+          },
+          "damage_states_destructive_completions": {
+            "broken": 32,
+            "degraded": 68
+          },
+          "episodes": 100,
+          "episodes_with_first_pull_damage": 100,
+          "episodes_with_phase_reengagement": 18,
+          "first_break_routes": {
+            "overdeflection": 32
+          },
+          "own_set_max_residual": 0.0,
+          "own_set_outside_strict": 0,
+          "own_set_outside_tolerance": 0,
+          "phase_reengagement_substeps": 165,
+          "premature_substeps": 438,
+          "registry_set_max_residual": 0.9682061672210693,
+          "registry_set_outside_tolerance": 5466,
+          "seed": 1,
+          "steps": 5800,
+          "trix_set_max_residual": 0.9682061672210693,
+          "trix_set_outside_strict": 5425,
+          "trix_set_outside_tolerance": 5425,
+          "violations_by_family_episodes": {
+            "vio_lateral": 30,
+            "vio_overstress": 32,
+            "vio_premature": 100
+          }
+        },
+        {
+          "categories": {
+            "destructive_completion": 100
+          },
+          "command_equilibrium_exceeds_limit_steps_before_break": 6,
+          "damage_states_all_episodes": {
+            "broken": 24,
+            "degraded": 76
+          },
+          "damage_states_destructive_completions": {
+            "broken": 24,
+            "degraded": 76
+          },
+          "episodes": 100,
+          "episodes_with_first_pull_damage": 100,
+          "episodes_with_phase_reengagement": 18,
+          "first_break_routes": {
+            "overdeflection": 24
+          },
+          "own_set_max_residual": 0.0,
+          "own_set_outside_strict": 0,
+          "own_set_outside_tolerance": 0,
+          "phase_reengagement_substeps": 176,
+          "premature_substeps": 457,
+          "registry_set_max_residual": 0.9868522882461548,
+          "registry_set_outside_tolerance": 1358,
+          "seed": 2,
+          "steps": 5800,
+          "trix_set_max_residual": 0.9868522882461548,
+          "trix_set_outside_strict": 1358,
+          "trix_set_outside_tolerance": 1358,
+          "violations_by_family_episodes": {
+            "vio_lateral": 24,
+            "vio_overstress": 24,
+            "vio_premature": 100
+          }
+        },
+        {
+          "categories": {
+            "destructive_completion": 100
+          },
+          "command_equilibrium_exceeds_limit_steps_before_break": 6,
+          "damage_states_all_episodes": {
+            "broken": 31,
+            "degraded": 69
+          },
+          "damage_states_destructive_completions": {
+            "broken": 31,
+            "degraded": 69
+          },
+          "episodes": 100,
+          "episodes_with_first_pull_damage": 100,
+          "episodes_with_phase_reengagement": 18,
+          "first_break_routes": {
+            "overdeflection": 31
+          },
+          "own_set_max_residual": 0.0,
+          "own_set_outside_strict": 0,
+          "own_set_outside_tolerance": 0,
+          "phase_reengagement_substeps": 160,
+          "premature_substeps": 423,
+          "registry_set_max_residual": 0.992161750793457,
+          "registry_set_outside_tolerance": 5466,
+          "seed": 3,
+          "steps": 5800,
+          "trix_set_max_residual": 0.992161750793457,
+          "trix_set_outside_strict": 5466,
+          "trix_set_outside_tolerance": 5466,
+          "violations_by_family_episodes": {
+            "vio_lateral": 53,
+            "vio_overstress": 31,
+            "vio_premature": 100
+          }
+        },
+        {
+          "categories": {
+            "destructive_completion": 100
+          },
+          "command_equilibrium_exceeds_limit_steps_before_break": 6,
+          "damage_states_all_episodes": {
+            "broken": 33,
+            "degraded": 67
+          },
+          "damage_states_destructive_completions": {
+            "broken": 33,
+            "degraded": 67
+          },
+          "episodes": 100,
+          "episodes_with_first_pull_damage": 100,
+          "episodes_with_phase_reengagement": 0,
+          "first_break_routes": {
+            "overdeflection": 33
+          },
+          "own_set_max_residual": 0.0,
+          "own_set_outside_strict": 0,
+          "own_set_outside_tolerance": 0,
+          "phase_reengagement_substeps": 0,
+          "premature_substeps": 100,
+          "registry_set_max_residual": 0.973365306854248,
+          "registry_set_outside_tolerance": 1645,
+          "seed": 4,
+          "steps": 5800,
+          "trix_set_max_residual": 0.973365306854248,
+          "trix_set_outside_strict": 1645,
+          "trix_set_outside_tolerance": 1645,
+          "violations_by_family_episodes": {
+            "vio_lateral": 63,
+            "vio_overstress": 33,
+            "vio_premature": 100
+          }
+        },
+        {
+          "categories": {
+            "destructive_completion": 100
+          },
+          "command_equilibrium_exceeds_limit_steps_before_break": 4,
+          "damage_states_all_episodes": {
+            "broken": 17,
+            "degraded": 83
+          },
+          "damage_states_destructive_completions": {
+            "broken": 17,
+            "degraded": 83
+          },
+          "episodes": 100,
+          "episodes_with_first_pull_damage": 100,
+          "episodes_with_phase_reengagement": 17,
+          "first_break_routes": {
+            "overdeflection": 17
+          },
+          "own_set_max_residual": 0.0,
+          "own_set_outside_strict": 0,
+          "own_set_outside_tolerance": 0,
+          "phase_reengagement_substeps": 157,
+          "premature_substeps": 426,
+          "registry_set_max_residual": 0.9892013072967529,
+          "registry_set_outside_tolerance": 914,
+          "seed": 5,
+          "steps": 5800,
+          "trix_set_max_residual": 0.9892013072967529,
+          "trix_set_outside_strict": 914,
+          "trix_set_outside_tolerance": 914,
+          "violations_by_family_episodes": {
+            "vio_lateral": 66,
+            "vio_overstress": 17,
+            "vio_premature": 100
+          }
+        },
+        {
+          "categories": {
+            "destructive_completion": 72,
+            "timeout": 28
+          },
+          "command_equilibrium_exceeds_limit_steps_before_break": 6,
+          "damage_states_all_episodes": {
+            "broken": 28,
+            "degraded": 72
+          },
+          "damage_states_destructive_completions": {
+            "degraded": 72
+          },
+          "episodes": 100,
+          "episodes_with_first_pull_damage": 100,
+          "episodes_with_phase_reengagement": 0,
+          "first_break_routes": {
+            "overdeflection": 28
+          },
+          "own_set_max_residual": 0.0,
+          "own_set_outside_strict": 0,
+          "own_set_outside_tolerance": 0,
+          "phase_reengagement_substeps": 0,
+          "premature_substeps": 100,
+          "registry_set_max_residual": 0.9496798515319824,
+          "registry_set_outside_tolerance": 41859,
+          "seed": 6,
+          "steps": 46176,
+          "trix_set_max_residual": 0.9496798515319824,
+          "trix_set_outside_strict": 41859,
+          "trix_set_outside_tolerance": 41859,
+          "violations_by_family_episodes": {
+            "vio_lateral": 28,
+            "vio_overstress": 28,
+            "vio_premature": 100
+          }
+        },
+        {
+          "categories": {
+            "destructive_completion": 100
+          },
+          "command_equilibrium_exceeds_limit_steps_before_break": 6,
+          "damage_states_all_episodes": {
+            "broken": 31,
+            "degraded": 69
+          },
+          "damage_states_destructive_completions": {
+            "broken": 31,
+            "degraded": 69
+          },
+          "episodes": 100,
+          "episodes_with_first_pull_damage": 100,
+          "episodes_with_phase_reengagement": 18,
+          "first_break_routes": {
+            "overdeflection": 31
+          },
+          "own_set_max_residual": 0.0,
+          "own_set_outside_strict": 0,
+          "own_set_outside_tolerance": 0,
+          "phase_reengagement_substeps": 178,
+          "premature_substeps": 469,
+          "registry_set_max_residual": 0.961776614189148,
+          "registry_set_outside_tolerance": 903,
+          "seed": 7,
+          "steps": 5800,
+          "trix_set_max_residual": 0.961776614189148,
+          "trix_set_outside_strict": 903,
+          "trix_set_outside_tolerance": 903,
+          "violations_by_family_episodes": {
+            "vio_lateral": 67,
+            "vio_overstress": 31,
+            "vio_premature": 100
+          }
+        },
+        {
+          "categories": {
+            "destructive_completion": 100
+          },
+          "command_equilibrium_exceeds_limit_steps_before_break": 4,
+          "damage_states_all_episodes": {
+            "broken": 28,
+            "degraded": 72
+          },
+          "damage_states_destructive_completions": {
+            "broken": 28,
+            "degraded": 72
+          },
+          "episodes": 100,
+          "episodes_with_first_pull_damage": 100,
+          "episodes_with_phase_reengagement": 18,
+          "first_break_routes": {
+            "overdeflection": 28
+          },
+          "own_set_max_residual": 0.0,
+          "own_set_outside_strict": 0,
+          "own_set_outside_tolerance": 0,
+          "phase_reengagement_substeps": 88,
+          "premature_substeps": 589,
+          "registry_set_max_residual": 0.9832887649536133,
+          "registry_set_outside_tolerance": 1721,
+          "seed": 8,
+          "steps": 5800,
+          "trix_set_max_residual": 0.9832887649536133,
+          "trix_set_outside_strict": 1713,
+          "trix_set_outside_tolerance": 1713,
+          "violations_by_family_episodes": {
+            "vio_lateral": 66,
+            "vio_overstress": 28,
+            "vio_premature": 100
+          }
+        },
+        {
+          "categories": {
+            "destructive_completion": 19,
+            "safe_completion": 44,
+            "unsafe_completion_intact": 37
+          },
+          "command_equilibrium_exceeds_limit_steps_before_break": 1,
+          "damage_states_all_episodes": {
+            "broken": 19,
+            "intact": 81
+          },
+          "damage_states_destructive_completions": {
+            "broken": 19
+          },
+          "episodes": 100,
+          "episodes_with_first_pull_damage": 19,
+          "episodes_with_phase_reengagement": 0,
+          "first_break_routes": {
+            "overdeflection": 19
+          },
+          "own_set_max_residual": 0.0,
+          "own_set_outside_strict": 0,
+          "own_set_outside_tolerance": 0,
+          "phase_reengagement_substeps": 0,
+          "premature_substeps": 1074,
+          "registry_set_max_residual": 0.9338874816894531,
+          "registry_set_outside_tolerance": 1237,
+          "seed": 9,
+          "steps": 6030,
+          "trix_set_max_residual": 0.9338874816894531,
+          "trix_set_outside_strict": 1236,
+          "trix_set_outside_tolerance": 1236,
+          "violations_by_family_episodes": {
+            "vio_lateral": 56,
+            "vio_overstress": 19,
+            "vio_premature": 19
+          }
+        }
+      ],
+      "condition": "wide_2",
+      "strata": {
+        "all": {
+          "categories": {
+            "destructive_completion": 891,
+            "safe_completion": 44,
+            "timeout": 28,
+            "unsafe_completion_intact": 37
+          },
+          "command_equilibrium_exceeds_limit_steps_before_break": 51,
+          "damage_states_all_episodes": {
+            "broken": 276,
+            "degraded": 643,
+            "intact": 81
+          },
+          "damage_states_destructive_completions": {
+            "broken": 248,
+            "degraded": 643
+          },
+          "episodes": 1000,
+          "episodes_with_first_pull_damage": 919,
+          "episodes_with_phase_reengagement": 125,
+          "first_break_routes": {
+            "overdeflection": 276
+          },
+          "own_set_max_residual": 0.0,
+          "own_set_outside_strict": 0,
+          "own_set_outside_tolerance": 0,
+          "phase_reengagement_substeps": 1091,
+          "premature_substeps": 4514,
+          "registry_set_max_residual": 0.992161750793457,
+          "registry_set_outside_tolerance": 61790,
+          "steps": 98606,
+          "trix_set_max_residual": 0.992161750793457,
+          "trix_set_outside_strict": 61737,
+          "trix_set_outside_tolerance": 61737,
+          "violations_by_family_episodes": {
+            "vio_lateral": 543,
+            "vio_overstress": 276,
+            "vio_premature": 919
+          }
+        },
+        "lower_outside": {
+          "categories": {
+            "destructive_completion": 226,
+            "safe_completion": 7,
+            "timeout": 24,
+            "unsafe_completion_intact": 3
+          },
+          "command_equilibrium_exceeds_limit_steps_before_break": 51,
+          "damage_states_all_episodes": {
+            "broken": 227,
+            "degraded": 23,
+            "intact": 10
+          },
+          "damage_states_destructive_completions": {
+            "broken": 203,
+            "degraded": 23
+          },
+          "episodes": 260,
+          "episodes_with_first_pull_damage": 250,
+          "episodes_with_phase_reengagement": 104,
+          "first_break_routes": {
+            "overdeflection": 227
+          },
+          "own_set_max_residual": 0.0,
+          "own_set_outside_strict": 0,
+          "own_set_outside_tolerance": 0,
+          "phase_reengagement_substeps": 897,
+          "premature_substeps": 3155,
+          "registry_set_max_residual": 0.992161750793457,
+          "registry_set_outside_tolerance": 45231,
+          "steps": 49764,
+          "trix_set_max_residual": 0.992161750793457,
+          "trix_set_outside_strict": 45227,
+          "trix_set_outside_tolerance": 45227,
+          "violations_by_family_episodes": {
+            "vio_lateral": 241,
+            "vio_overstress": 227,
+            "vio_premature": 250
+          }
+        },
+        "outside": {
+          "categories": {
+            "destructive_completion": 424,
+            "safe_completion": 18,
+            "timeout": 24,
+            "unsafe_completion_intact": 14
+          },
+          "command_equilibrium_exceeds_limit_steps_before_break": 51,
+          "damage_states_all_episodes": {
+            "broken": 227,
+            "degraded": 221,
+            "intact": 32
+          },
+          "damage_states_destructive_completions": {
+            "broken": 203,
+            "degraded": 221
+          },
+          "episodes": 480,
+          "episodes_with_first_pull_damage": 448,
+          "episodes_with_phase_reengagement": 104,
+          "first_break_routes": {
+            "overdeflection": 227
+          },
+          "own_set_max_residual": 0.0,
+          "own_set_outside_strict": 0,
+          "own_set_outside_tolerance": 0,
+          "phase_reengagement_substeps": 897,
+          "premature_substeps": 3353,
+          "registry_set_max_residual": 0.992161750793457,
+          "registry_set_outside_tolerance": 48023,
+          "steps": 62568,
+          "trix_set_max_residual": 0.992161750793457,
+          "trix_set_outside_strict": 48004,
+          "trix_set_outside_tolerance": 48004,
+          "violations_by_family_episodes": {
+            "vio_lateral": 320,
+            "vio_overstress": 227,
+            "vio_premature": 448
+          }
+        },
+        "upper_outside": {
+          "categories": {
+            "destructive_completion": 198,
+            "safe_completion": 11,
+            "unsafe_completion_intact": 11
+          },
+          "command_equilibrium_exceeds_limit_steps_before_break": 0,
+          "damage_states_all_episodes": {
+            "degraded": 198,
+            "intact": 22
+          },
+          "damage_states_destructive_completions": {
+            "degraded": 198
+          },
+          "episodes": 220,
+          "episodes_with_first_pull_damage": 198,
+          "episodes_with_phase_reengagement": 0,
+          "first_break_routes": {},
+          "own_set_max_residual": 0.0,
+          "own_set_outside_strict": 0,
+          "own_set_outside_tolerance": 0,
+          "phase_reengagement_substeps": 0,
+          "premature_substeps": 198,
+          "registry_set_max_residual": 0.9892013072967529,
+          "registry_set_outside_tolerance": 2792,
+          "steps": 12804,
+          "trix_set_max_residual": 0.9892013072967529,
+          "trix_set_outside_strict": 2777,
+          "trix_set_outside_tolerance": 2777,
+          "violations_by_family_episodes": {
+            "vio_lateral": 79,
+            "vio_overstress": 0,
+            "vio_premature": 198
+          }
+        },
+        "within": {
+          "categories": {
+            "destructive_completion": 467,
+            "safe_completion": 26,
+            "timeout": 4,
+            "unsafe_completion_intact": 23
+          },
+          "command_equilibrium_exceeds_limit_steps_before_break": 0,
+          "damage_states_all_episodes": {
+            "broken": 49,
+            "degraded": 422,
+            "intact": 49
+          },
+          "damage_states_destructive_completions": {
+            "broken": 45,
+            "degraded": 422
+          },
+          "episodes": 520,
+          "episodes_with_first_pull_damage": 471,
+          "episodes_with_phase_reengagement": 21,
+          "first_break_routes": {
+            "overdeflection": 49
+          },
+          "own_set_max_residual": 0.0,
+          "own_set_outside_strict": 0,
+          "own_set_outside_tolerance": 0,
+          "phase_reengagement_substeps": 194,
+          "premature_substeps": 1161,
+          "registry_set_max_residual": 0.9919469356536865,
+          "registry_set_outside_tolerance": 13767,
+          "steps": 36038,
+          "trix_set_max_residual": 0.9919469356536865,
+          "trix_set_outside_strict": 13733,
+          "trix_set_outside_tolerance": 13733,
+          "violations_by_family_episodes": {
+            "vio_lateral": 223,
+            "vio_overstress": 49,
+            "vio_premature": 471
+          }
+        }
+      }
+    },
+    {
+      "arm": "static_clip",
+      "by_seed": [
+        {
+          "categories": {
+            "destructive_completion": 100
+          },
+          "command_equilibrium_exceeds_limit_steps_before_break": 13,
+          "damage_states_all_episodes": {
+            "broken": 52,
+            "degraded": 48
+          },
+          "damage_states_destructive_completions": {
+            "broken": 52,
+            "degraded": 48
+          },
+          "episodes": 100,
+          "episodes_with_first_pull_damage": 100,
+          "episodes_with_phase_reengagement": 36,
+          "first_break_routes": {
+            "overdeflection": 52
+          },
+          "own_set_max_residual": 0.0,
+          "own_set_outside_strict": 0,
+          "own_set_outside_tolerance": 0,
+          "phase_reengagement_substeps": 314,
+          "premature_substeps": 738,
+          "registry_set_max_residual": 0.9575116634368896,
+          "registry_set_outside_tolerance": 1710,
+          "seed": 0,
+          "steps": 5800,
+          "trix_set_max_residual": 0.9575116634368896,
+          "trix_set_outside_strict": 1706,
+          "trix_set_outside_tolerance": 1706,
+          "violations_by_family_episodes": {
+            "vio_lateral": 94,
+            "vio_overstress": 52,
+            "vio_premature": 100
+          }
+        },
+        {
+          "categories": {
+            "destructive_completion": 100
+          },
+          "command_equilibrium_exceeds_limit_steps_before_break": 13,
+          "damage_states_all_episodes": {
+            "broken": 52,
+            "degraded": 48
+          },
+          "damage_states_destructive_completions": {
+            "broken": 52,
+            "degraded": 48
+          },
+          "episodes": 100,
+          "episodes_with_first_pull_damage": 100,
+          "episodes_with_phase_reengagement": 36,
+          "first_break_routes": {
+            "overdeflection": 52
+          },
+          "own_set_max_residual": 0.0,
+          "own_set_outside_strict": 0,
+          "own_set_outside_tolerance": 0,
+          "phase_reengagement_substeps": 309,
+          "premature_substeps": 730,
+          "registry_set_max_residual": 0.9682061672210693,
+          "registry_set_outside_tolerance": 5526,
+          "seed": 1,
+          "steps": 5800,
+          "trix_set_max_residual": 0.9682061672210693,
+          "trix_set_outside_strict": 5500,
+          "trix_set_outside_tolerance": 5500,
+          "violations_by_family_episodes": {
+            "vio_lateral": 51,
+            "vio_overstress": 52,
+            "vio_premature": 100
+          }
+        },
+        {
+          "categories": {
+            "destructive_completion": 100
+          },
+          "command_equilibrium_exceeds_limit_steps_before_break": 13,
+          "damage_states_all_episodes": {
+            "broken": 44,
+            "degraded": 56
+          },
+          "damage_states_destructive_completions": {
+            "broken": 44,
+            "degraded": 56
+          },
+          "episodes": 100,
+          "episodes_with_first_pull_damage": 100,
+          "episodes_with_phase_reengagement": 36,
+          "first_break_routes": {
+            "overdeflection": 44
+          },
+          "own_set_max_residual": 0.0,
+          "own_set_outside_strict": 0,
+          "own_set_outside_tolerance": 0,
+          "phase_reengagement_substeps": 326,
+          "premature_substeps": 764,
+          "registry_set_max_residual": 0.9868761301040649,
+          "registry_set_outside_tolerance": 2411,
+          "seed": 2,
+          "steps": 5800,
+          "trix_set_max_residual": 0.9868761301040649,
+          "trix_set_outside_strict": 2411,
+          "trix_set_outside_tolerance": 2411,
+          "violations_by_family_episodes": {
+            "vio_lateral": 44,
+            "vio_overstress": 44,
+            "vio_premature": 100
+          }
+        },
+        {
+          "categories": {
+            "destructive_completion": 100
+          },
+          "command_equilibrium_exceeds_limit_steps_before_break": 13,
+          "damage_states_all_episodes": {
+            "broken": 51,
+            "degraded": 49
+          },
+          "damage_states_destructive_completions": {
+            "broken": 51,
+            "degraded": 49
+          },
+          "episodes": 100,
+          "episodes_with_first_pull_damage": 100,
+          "episodes_with_phase_reengagement": 36,
+          "first_break_routes": {
+            "overdeflection": 51
+          },
+          "own_set_max_residual": 0.0,
+          "own_set_outside_strict": 0,
+          "own_set_outside_tolerance": 0,
+          "phase_reengagement_substeps": 302,
+          "premature_substeps": 709,
+          "registry_set_max_residual": 0.992161750793457,
+          "registry_set_outside_tolerance": 5526,
+          "seed": 3,
+          "steps": 5800,
+          "trix_set_max_residual": 0.992161750793457,
+          "trix_set_outside_strict": 5526,
+          "trix_set_outside_tolerance": 5526,
+          "violations_by_family_episodes": {
+            "vio_lateral": 64,
+            "vio_overstress": 51,
+            "vio_premature": 100
+          }
+        },
+        {
+          "categories": {
+            "destructive_completion": 100
+          },
+          "command_equilibrium_exceeds_limit_steps_before_break": 13,
+          "damage_states_all_episodes": {
+            "broken": 52,
+            "degraded": 48
+          },
+          "damage_states_destructive_completions": {
+            "broken": 52,
+            "degraded": 48
+          },
+          "episodes": 100,
+          "episodes_with_first_pull_damage": 100,
+          "episodes_with_phase_reengagement": 0,
+          "first_break_routes": {
+            "overdeflection": 52
+          },
+          "own_set_max_residual": 0.0,
+          "own_set_outside_strict": 0,
+          "own_set_outside_tolerance": 0,
+          "phase_reengagement_substeps": 0,
+          "premature_substeps": 100,
+          "registry_set_max_residual": 0.973365306854248,
+          "registry_set_outside_tolerance": 2712,
+          "seed": 4,
+          "steps": 5800,
+          "trix_set_max_residual": 0.973365306854248,
+          "trix_set_outside_strict": 2712,
+          "trix_set_outside_tolerance": 2712,
+          "violations_by_family_episodes": {
+            "vio_lateral": 75,
+            "vio_overstress": 52,
+            "vio_premature": 100
+          }
+        },
+        {
+          "categories": {
+            "destructive_completion": 100
+          },
+          "command_equilibrium_exceeds_limit_steps_before_break": 10,
+          "damage_states_all_episodes": {
+            "broken": 33,
+            "degraded": 67
+          },
+          "damage_states_destructive_completions": {
+            "broken": 33,
+            "degraded": 67
+          },
+          "episodes": 100,
+          "episodes_with_first_pull_damage": 100,
+          "episodes_with_phase_reengagement": 33,
+          "first_break_routes": {
+            "overdeflection": 33
+          },
+          "own_set_max_residual": 0.0,
+          "own_set_outside_strict": 0,
+          "own_set_outside_tolerance": 0,
+          "phase_reengagement_substeps": 305,
+          "premature_substeps": 737,
+          "registry_set_max_residual": 0.9892013072967529,
+          "registry_set_outside_tolerance": 1304,
+          "seed": 5,
+          "steps": 5800,
+          "trix_set_max_residual": 0.9892013072967529,
+          "trix_set_outside_strict": 1303,
+          "trix_set_outside_tolerance": 1303,
+          "violations_by_family_episodes": {
+            "vio_lateral": 72,
+            "vio_overstress": 33,
+            "vio_premature": 100
+          }
+        },
+        {
+          "categories": {
+            "destructive_completion": 51,
+            "timeout": 49
+          },
+          "command_equilibrium_exceeds_limit_steps_before_break": 13,
+          "damage_states_all_episodes": {
+            "broken": 49,
+            "degraded": 51
+          },
+          "damage_states_destructive_completions": {
+            "degraded": 51
+          },
+          "episodes": 100,
+          "episodes_with_first_pull_damage": 100,
+          "episodes_with_phase_reengagement": 0,
+          "first_break_routes": {
+            "overdeflection": 49
+          },
+          "own_set_max_residual": 0.0,
+          "own_set_outside_strict": 0,
+          "own_set_outside_tolerance": 0,
+          "phase_reengagement_substeps": 0,
+          "premature_substeps": 100,
+          "registry_set_max_residual": 0.9496798515319824,
+          "registry_set_outside_tolerance": 73222,
+          "seed": 6,
+          "steps": 76458,
+          "trix_set_max_residual": 0.9496798515319824,
+          "trix_set_outside_strict": 73222,
+          "trix_set_outside_tolerance": 73222,
+          "violations_by_family_episodes": {
+            "vio_lateral": 49,
+            "vio_overstress": 49,
+            "vio_premature": 100
+          }
+        },
+        {
+          "categories": {
+            "destructive_completion": 100
+          },
+          "command_equilibrium_exceeds_limit_steps_before_break": 13,
+          "damage_states_all_episodes": {
+            "broken": 51,
+            "degraded": 49
+          },
+          "damage_states_destructive_completions": {
+            "broken": 51,
+            "degraded": 49
+          },
+          "episodes": 100,
+          "episodes_with_first_pull_damage": 100,
+          "episodes_with_phase_reengagement": 36,
+          "first_break_routes": {
+            "overdeflection": 51
+          },
+          "own_set_max_residual": 0.0,
+          "own_set_outside_strict": 0,
+          "own_set_outside_tolerance": 0,
+          "phase_reengagement_substeps": 333,
+          "premature_substeps": 791,
+          "registry_set_max_residual": 0.961776614189148,
+          "registry_set_outside_tolerance": 1477,
+          "seed": 7,
+          "steps": 5800,
+          "trix_set_max_residual": 0.961776614189148,
+          "trix_set_outside_strict": 1477,
+          "trix_set_outside_tolerance": 1477,
+          "violations_by_family_episodes": {
+            "vio_lateral": 76,
+            "vio_overstress": 51,
+            "vio_premature": 100
+          }
+        },
+        {
+          "categories": {
+            "destructive_completion": 100
+          },
+          "command_equilibrium_exceeds_limit_steps_before_break": 10,
+          "damage_states_all_episodes": {
+            "broken": 49,
+            "degraded": 51
+          },
+          "damage_states_destructive_completions": {
+            "broken": 49,
+            "degraded": 51
+          },
+          "episodes": 100,
+          "episodes_with_first_pull_damage": 100,
+          "episodes_with_phase_reengagement": 36,
+          "first_break_routes": {
+            "overdeflection": 49
+          },
+          "own_set_max_residual": 0.0,
+          "own_set_outside_strict": 0,
+          "own_set_outside_tolerance": 0,
+          "phase_reengagement_substeps": 191,
+          "premature_substeps": 1068,
+          "registry_set_max_residual": 0.9837501049041748,
+          "registry_set_outside_tolerance": 2750,
+          "seed": 8,
+          "steps": 5800,
+          "trix_set_max_residual": 0.9837501049041748,
+          "trix_set_outside_strict": 2741,
+          "trix_set_outside_tolerance": 2741,
+          "violations_by_family_episodes": {
+            "vio_lateral": 75,
+            "vio_overstress": 49,
+            "vio_premature": 100
+          }
+        },
+        {
+          "categories": {
+            "destructive_completion": 35,
+            "safe_completion": 35,
+            "unsafe_completion_intact": 30
+          },
+          "command_equilibrium_exceeds_limit_steps_before_break": 5,
+          "damage_states_all_episodes": {
+            "broken": 35,
+            "intact": 65
+          },
+          "damage_states_destructive_completions": {
+            "broken": 35
+          },
+          "episodes": 100,
+          "episodes_with_first_pull_damage": 35,
+          "episodes_with_phase_reengagement": 0,
+          "first_break_routes": {
+            "overdeflection": 35
+          },
+          "own_set_max_residual": 0.0,
+          "own_set_outside_strict": 0,
+          "own_set_outside_tolerance": 0,
+          "phase_reengagement_substeps": 0,
+          "premature_substeps": 2006,
+          "registry_set_max_residual": 0.9338874816894531,
+          "registry_set_outside_tolerance": 2195,
+          "seed": 9,
+          "steps": 6057,
+          "trix_set_max_residual": 0.9338874816894531,
+          "trix_set_outside_strict": 2195,
+          "trix_set_outside_tolerance": 2195,
+          "violations_by_family_episodes": {
+            "vio_lateral": 65,
+            "vio_overstress": 35,
+            "vio_premature": 35
+          }
+        }
+      ],
+      "condition": "shell_2",
+      "strata": {
+        "all": {
+          "categories": {
+            "destructive_completion": 886,
+            "safe_completion": 35,
+            "timeout": 49,
+            "unsafe_completion_intact": 30
+          },
+          "command_equilibrium_exceeds_limit_steps_before_break": 116,
+          "damage_states_all_episodes": {
+            "broken": 468,
+            "degraded": 467,
+            "intact": 65
+          },
+          "damage_states_destructive_completions": {
+            "broken": 419,
+            "degraded": 467
+          },
+          "episodes": 1000,
+          "episodes_with_first_pull_damage": 935,
+          "episodes_with_phase_reengagement": 249,
+          "first_break_routes": {
+            "overdeflection": 468
+          },
+          "own_set_max_residual": 0.0,
+          "own_set_outside_strict": 0,
+          "own_set_outside_tolerance": 0,
+          "phase_reengagement_substeps": 2080,
+          "premature_substeps": 7743,
+          "registry_set_max_residual": 0.992161750793457,
+          "registry_set_outside_tolerance": 98833,
+          "steps": 128915,
+          "trix_set_max_residual": 0.992161750793457,
+          "trix_set_outside_strict": 98793,
+          "trix_set_outside_tolerance": 98793,
+          "violations_by_family_episodes": {
+            "vio_lateral": 665,
+            "vio_overstress": 468,
+            "vio_premature": 935
+          }
+        },
+        "lower_outside": {
+          "categories": {
+            "destructive_completion": 454,
+            "safe_completion": 11,
+            "timeout": 49,
+            "unsafe_completion_intact": 6
+          },
+          "command_equilibrium_exceeds_limit_steps_before_break": 116,
+          "damage_states_all_episodes": {
+            "broken": 468,
+            "degraded": 35,
+            "intact": 17
+          },
+          "damage_states_destructive_completions": {
+            "broken": 419,
+            "degraded": 35
+          },
+          "episodes": 520,
+          "episodes_with_first_pull_damage": 503,
+          "episodes_with_phase_reengagement": 249,
+          "first_break_routes": {
+            "overdeflection": 468
+          },
+          "own_set_max_residual": 0.0,
+          "own_set_outside_strict": 0,
+          "own_set_outside_tolerance": 0,
+          "phase_reengagement_substeps": 2080,
+          "premature_substeps": 7311,
+          "registry_set_max_residual": 0.992161750793457,
+          "registry_set_outside_tolerance": 92742,
+          "steps": 100979,
+          "trix_set_max_residual": 0.992161750793457,
+          "trix_set_outside_strict": 92734,
+          "trix_set_outside_tolerance": 92734,
+          "violations_by_family_episodes": {
+            "vio_lateral": 489,
+            "vio_overstress": 468,
+            "vio_premature": 503
+          }
+        },
+        "outside": {
+          "categories": {
+            "destructive_completion": 886,
+            "safe_completion": 35,
+            "timeout": 49,
+            "unsafe_completion_intact": 30
+          },
+          "command_equilibrium_exceeds_limit_steps_before_break": 116,
+          "damage_states_all_episodes": {
+            "broken": 468,
+            "degraded": 467,
+            "intact": 65
+          },
+          "damage_states_destructive_completions": {
+            "broken": 419,
+            "degraded": 467
+          },
+          "episodes": 1000,
+          "episodes_with_first_pull_damage": 935,
+          "episodes_with_phase_reengagement": 249,
+          "first_break_routes": {
+            "overdeflection": 468
+          },
+          "own_set_max_residual": 0.0,
+          "own_set_outside_strict": 0,
+          "own_set_outside_tolerance": 0,
+          "phase_reengagement_substeps": 2080,
+          "premature_substeps": 7743,
+          "registry_set_max_residual": 0.992161750793457,
+          "registry_set_outside_tolerance": 98833,
+          "steps": 128915,
+          "trix_set_max_residual": 0.992161750793457,
+          "trix_set_outside_strict": 98793,
+          "trix_set_outside_tolerance": 98793,
+          "violations_by_family_episodes": {
+            "vio_lateral": 665,
+            "vio_overstress": 468,
+            "vio_premature": 935
+          }
+        },
+        "upper_outside": {
+          "categories": {
+            "destructive_completion": 432,
+            "safe_completion": 24,
+            "unsafe_completion_intact": 24
+          },
+          "command_equilibrium_exceeds_limit_steps_before_break": 0,
+          "damage_states_all_episodes": {
+            "degraded": 432,
+            "intact": 48
+          },
+          "damage_states_destructive_completions": {
+            "degraded": 432
+          },
+          "episodes": 480,
+          "episodes_with_first_pull_damage": 432,
+          "episodes_with_phase_reengagement": 0,
+          "first_break_routes": {},
+          "own_set_max_residual": 0.0,
+          "own_set_outside_strict": 0,
+          "own_set_outside_tolerance": 0,
+          "phase_reengagement_substeps": 0,
+          "premature_substeps": 432,
+          "registry_set_max_residual": 0.9892013072967529,
+          "registry_set_outside_tolerance": 6091,
+          "steps": 27936,
+          "trix_set_max_residual": 0.9892013072967529,
+          "trix_set_outside_strict": 6059,
+          "trix_set_outside_tolerance": 6059,
+          "violations_by_family_episodes": {
+            "vio_lateral": 176,
+            "vio_overstress": 0,
+            "vio_premature": 432
+          }
+        },
+        "within": {
+          "categories": {},
+          "command_equilibrium_exceeds_limit_steps_before_break": 0,
+          "damage_states_all_episodes": {},
+          "damage_states_destructive_completions": {},
+          "episodes": 0,
+          "episodes_with_first_pull_damage": 0,
+          "episodes_with_phase_reengagement": 0,
+          "first_break_routes": {},
+          "own_set_max_residual": 0.0,
+          "own_set_outside_strict": 0,
+          "own_set_outside_tolerance": 0,
+          "phase_reengagement_substeps": 0,
+          "premature_substeps": 0,
+          "registry_set_max_residual": 0.0,
+          "registry_set_outside_tolerance": 0,
+          "steps": 0,
+          "trix_set_max_residual": 0.0,
+          "trix_set_outside_strict": 0,
+          "trix_set_outside_tolerance": 0,
+          "violations_by_family_episodes": {
+            "vio_lateral": 0,
+            "vio_overstress": 0,
+            "vio_premature": 0
+          }
+        }
+      }
+    },
+    {
+      "arm": "trix",
+      "by_seed": [
+        {
+          "categories": {
+            "destructive_completion": 18,
+            "safe_completion": 82
+          },
+          "command_equilibrium_exceeds_limit_steps_before_break": 0,
+          "damage_states_all_episodes": {
+            "broken": 18,
+            "intact": 82
+          },
+          "damage_states_destructive_completions": {
+            "broken": 18
+          },
+          "episodes": 100,
+          "episodes_with_first_pull_damage": 11,
+          "episodes_with_phase_reengagement": 11,
+          "first_break_routes": {
+            "overdeflection": 18
+          },
+          "own_set_max_residual": 0.0,
+          "own_set_outside_strict": 0,
+          "own_set_outside_tolerance": 0,
+          "phase_reengagement_substeps": 4313,
+          "premature_substeps": 4313,
+          "registry_set_max_residual": 0.007552586240159198,
+          "registry_set_outside_tolerance": 2648,
+          "seed": 0,
+          "steps": 7760,
+          "trix_set_max_residual": 0.0,
+          "trix_set_outside_strict": 0,
+          "trix_set_outside_tolerance": 0,
+          "violations_by_family_episodes": {
+            "vio_lateral": 0,
+            "vio_overstress": 18,
+            "vio_premature": 11
+          }
+        },
+        {
+          "categories": {
+            "safe_completion": 87,
+            "timeout": 13
+          },
+          "command_equilibrium_exceeds_limit_steps_before_break": 0,
+          "damage_states_all_episodes": {
+            "broken": 13,
+            "intact": 87
+          },
+          "damage_states_destructive_completions": {},
+          "episodes": 100,
+          "episodes_with_first_pull_damage": 0,
+          "episodes_with_phase_reengagement": 0,
+          "first_break_routes": {
+            "overdeflection": 13
+          },
+          "own_set_max_residual": 0.0,
+          "own_set_outside_strict": 0,
+          "own_set_outside_tolerance": 0,
+          "phase_reengagement_substeps": 0,
+          "premature_substeps": 0,
+          "registry_set_max_residual": 0.007552586240159198,
+          "registry_set_outside_tolerance": 24085,
+          "seed": 1,
+          "steps": 24720,
+          "trix_set_max_residual": 0.0,
+          "trix_set_outside_strict": 0,
+          "trix_set_outside_tolerance": 0,
+          "violations_by_family_episodes": {
+            "vio_lateral": 0,
+            "vio_overstress": 13,
+            "vio_premature": 0
+          }
+        },
+        {
+          "categories": {
+            "destructive_completion": 13,
+            "safe_completion": 87
+          },
+          "command_equilibrium_exceeds_limit_steps_before_break": 0,
+          "damage_states_all_episodes": {
+            "broken": 13,
+            "intact": 87
+          },
+          "damage_states_destructive_completions": {
+            "broken": 13
+          },
+          "episodes": 100,
+          "episodes_with_first_pull_damage": 12,
+          "episodes_with_phase_reengagement": 12,
+          "first_break_routes": {
+            "overdeflection": 13
+          },
+          "own_set_max_residual": 0.0,
+          "own_set_outside_strict": 0,
+          "own_set_outside_tolerance": 0,
+          "phase_reengagement_substeps": 62,
+          "premature_substeps": 62,
+          "registry_set_max_residual": 0.007552586240159198,
+          "registry_set_outside_tolerance": 6048,
+          "seed": 2,
+          "steps": 6064,
+          "trix_set_max_residual": 0.0,
+          "trix_set_outside_strict": 0,
+          "trix_set_outside_tolerance": 0,
+          "violations_by_family_episodes": {
+            "vio_lateral": 0,
+            "vio_overstress": 13,
+            "vio_premature": 12
+          }
+        },
+        {
+          "categories": {
+            "destructive_completion": 13,
+            "safe_completion": 87
+          },
+          "command_equilibrium_exceeds_limit_steps_before_break": 0,
+          "damage_states_all_episodes": {
+            "broken": 13,
+            "intact": 87
+          },
+          "damage_states_destructive_completions": {
+            "broken": 13
+          },
+          "episodes": 100,
+          "episodes_with_first_pull_damage": 13,
+          "episodes_with_phase_reengagement": 13,
+          "first_break_routes": {
+            "overdeflection": 13
+          },
+          "own_set_max_residual": 0.0,
+          "own_set_outside_strict": 0,
+          "own_set_outside_tolerance": 0,
+          "phase_reengagement_substeps": 292,
+          "premature_substeps": 292,
+          "registry_set_max_residual": 0.007552586240159198,
+          "registry_set_outside_tolerance": 5207,
+          "seed": 3,
+          "steps": 6012,
+          "trix_set_max_residual": 0.0,
+          "trix_set_outside_strict": 0,
+          "trix_set_outside_tolerance": 0,
+          "violations_by_family_episodes": {
+            "vio_lateral": 0,
+            "vio_overstress": 13,
+            "vio_premature": 13
+          }
+        },
+        {
+          "categories": {
+            "destructive_completion": 23,
+            "safe_completion": 77
+          },
+          "command_equilibrium_exceeds_limit_steps_before_break": 0,
+          "damage_states_all_episodes": {
+            "broken": 23,
+            "intact": 77
+          },
+          "damage_states_destructive_completions": {
+            "broken": 23
+          },
+          "episodes": 100,
+          "episodes_with_first_pull_damage": 14,
+          "episodes_with_phase_reengagement": 14,
+          "first_break_routes": {
+            "overdeflection": 23
+          },
+          "own_set_max_residual": 0.0,
+          "own_set_outside_strict": 0,
+          "own_set_outside_tolerance": 0,
+          "phase_reengagement_substeps": 691,
+          "premature_substeps": 691,
+          "registry_set_max_residual": 0.007552586240159198,
+          "registry_set_outside_tolerance": 2063,
+          "seed": 4,
+          "steps": 6302,
+          "trix_set_max_residual": 0.0,
+          "trix_set_outside_strict": 0,
+          "trix_set_outside_tolerance": 0,
+          "violations_by_family_episodes": {
+            "vio_lateral": 0,
+            "vio_overstress": 23,
+            "vio_premature": 14
+          }
+        },
+        {
+          "categories": {
+            "destructive_completion": 11,
+            "safe_completion": 89
+          },
+          "command_equilibrium_exceeds_limit_steps_before_break": 0,
+          "damage_states_all_episodes": {
+            "broken": 11,
+            "intact": 89
+          },
+          "damage_states_destructive_completions": {
+            "broken": 11
+          },
+          "episodes": 100,
+          "episodes_with_first_pull_damage": 6,
+          "episodes_with_phase_reengagement": 6,
+          "first_break_routes": {
+            "overdeflection": 11
+          },
+          "own_set_max_residual": 0.0,
+          "own_set_outside_strict": 0,
+          "own_set_outside_tolerance": 0,
+          "phase_reengagement_substeps": 15,
+          "premature_substeps": 15,
+          "registry_set_max_residual": 0.007552586240159198,
+          "registry_set_outside_tolerance": 1905,
+          "seed": 5,
+          "steps": 6995,
+          "trix_set_max_residual": 0.0,
+          "trix_set_outside_strict": 0,
+          "trix_set_outside_tolerance": 0,
+          "violations_by_family_episodes": {
+            "vio_lateral": 0,
+            "vio_overstress": 11,
+            "vio_premature": 6
+          }
+        },
+        {
+          "categories": {
+            "destructive_completion": 8,
+            "safe_completion": 92
+          },
+          "command_equilibrium_exceeds_limit_steps_before_break": 0,
+          "damage_states_all_episodes": {
+            "broken": 8,
+            "intact": 92
+          },
+          "damage_states_destructive_completions": {
+            "broken": 8
+          },
+          "episodes": 100,
+          "episodes_with_first_pull_damage": 0,
+          "episodes_with_phase_reengagement": 0,
+          "first_break_routes": {
+            "overdeflection": 8
+          },
+          "own_set_max_residual": 0.0,
+          "own_set_outside_strict": 0,
+          "own_set_outside_tolerance": 0,
+          "phase_reengagement_substeps": 0,
+          "premature_substeps": 0,
+          "registry_set_max_residual": 0.007552586240159198,
+          "registry_set_outside_tolerance": 5331,
+          "seed": 6,
+          "steps": 5976,
+          "trix_set_max_residual": 0.0,
+          "trix_set_outside_strict": 0,
+          "trix_set_outside_tolerance": 0,
+          "violations_by_family_episodes": {
+            "vio_lateral": 0,
+            "vio_overstress": 8,
+            "vio_premature": 0
+          }
+        },
+        {
+          "categories": {
+            "destructive_completion": 14,
+            "safe_completion": 86
+          },
+          "command_equilibrium_exceeds_limit_steps_before_break": 0,
+          "damage_states_all_episodes": {
+            "broken": 14,
+            "intact": 86
+          },
+          "damage_states_destructive_completions": {
+            "broken": 14
+          },
+          "episodes": 100,
+          "episodes_with_first_pull_damage": 14,
+          "episodes_with_phase_reengagement": 14,
+          "first_break_routes": {
+            "overdeflection": 14
+          },
+          "own_set_max_residual": 0.0,
+          "own_set_outside_strict": 0,
+          "own_set_outside_tolerance": 0,
+          "phase_reengagement_substeps": 66,
+          "premature_substeps": 66,
+          "registry_set_max_residual": 0.007552586240159198,
+          "registry_set_outside_tolerance": 6458,
+          "seed": 7,
+          "steps": 6999,
+          "trix_set_max_residual": 0.0,
+          "trix_set_outside_strict": 0,
+          "trix_set_outside_tolerance": 0,
+          "violations_by_family_episodes": {
+            "vio_lateral": 0,
+            "vio_overstress": 14,
+            "vio_premature": 14
+          }
+        },
+        {
+          "categories": {
+            "destructive_completion": 15,
+            "safe_completion": 85
+          },
+          "command_equilibrium_exceeds_limit_steps_before_break": 0,
+          "damage_states_all_episodes": {
+            "broken": 15,
+            "intact": 85
+          },
+          "damage_states_destructive_completions": {
+            "broken": 15
+          },
+          "episodes": 100,
+          "episodes_with_first_pull_damage": 15,
+          "episodes_with_phase_reengagement": 15,
+          "first_break_routes": {
+            "overdeflection": 15
+          },
+          "own_set_max_residual": 0.0,
+          "own_set_outside_strict": 0,
+          "own_set_outside_tolerance": 0,
+          "phase_reengagement_substeps": 69,
+          "premature_substeps": 69,
+          "registry_set_max_residual": 0.007552586240159198,
+          "registry_set_outside_tolerance": 1384,
+          "seed": 8,
+          "steps": 6244,
+          "trix_set_max_residual": 0.0,
+          "trix_set_outside_strict": 0,
+          "trix_set_outside_tolerance": 0,
+          "violations_by_family_episodes": {
+            "vio_lateral": 0,
+            "vio_overstress": 15,
+            "vio_premature": 15
+          }
+        },
+        {
+          "categories": {
+            "destructive_completion": 21,
+            "safe_completion": 79
+          },
+          "command_equilibrium_exceeds_limit_steps_before_break": 0,
+          "damage_states_all_episodes": {
+            "broken": 21,
+            "intact": 79
+          },
+          "damage_states_destructive_completions": {
+            "broken": 21
+          },
+          "episodes": 100,
+          "episodes_with_first_pull_damage": 0,
+          "episodes_with_phase_reengagement": 0,
+          "first_break_routes": {
+            "overdeflection": 21
+          },
+          "own_set_max_residual": 0.0,
+          "own_set_outside_strict": 0,
+          "own_set_outside_tolerance": 0,
+          "phase_reengagement_substeps": 0,
+          "premature_substeps": 0,
+          "registry_set_max_residual": 0.007552586240159198,
+          "registry_set_outside_tolerance": 4931,
+          "seed": 9,
+          "steps": 5905,
+          "trix_set_max_residual": 0.0,
+          "trix_set_outside_strict": 0,
+          "trix_set_outside_tolerance": 0,
+          "violations_by_family_episodes": {
+            "vio_lateral": 0,
+            "vio_overstress": 21,
+            "vio_premature": 0
+          }
+        }
+      ],
+      "condition": "wide_1p5",
+      "strata": {
+        "all": {
+          "categories": {
+            "destructive_completion": 136,
+            "safe_completion": 851,
+            "timeout": 13
+          },
+          "command_equilibrium_exceeds_limit_steps_before_break": 0,
+          "damage_states_all_episodes": {
+            "broken": 149,
+            "intact": 851
+          },
+          "damage_states_destructive_completions": {
+            "broken": 136
+          },
+          "episodes": 1000,
+          "episodes_with_first_pull_damage": 85,
+          "episodes_with_phase_reengagement": 85,
+          "first_break_routes": {
+            "overdeflection": 149
+          },
+          "own_set_max_residual": 0.0,
+          "own_set_outside_strict": 0,
+          "own_set_outside_tolerance": 0,
+          "phase_reengagement_substeps": 5508,
+          "premature_substeps": 5508,
+          "registry_set_max_residual": 0.007552586240159198,
+          "registry_set_outside_tolerance": 60060,
+          "steps": 82977,
+          "trix_set_max_residual": 0.0,
+          "trix_set_outside_strict": 0,
+          "trix_set_outside_tolerance": 0,
+          "violations_by_family_episodes": {
+            "vio_lateral": 0,
+            "vio_overstress": 149,
+            "vio_premature": 85
+          }
+        },
+        "lower_outside": {
+          "categories": {
+            "destructive_completion": 104,
+            "safe_completion": 35,
+            "timeout": 11
+          },
+          "command_equilibrium_exceeds_limit_steps_before_break": 0,
+          "damage_states_all_episodes": {
+            "broken": 115,
+            "intact": 35
+          },
+          "damage_states_destructive_completions": {
+            "broken": 104
+          },
+          "episodes": 150,
+          "episodes_with_first_pull_damage": 71,
+          "episodes_with_phase_reengagement": 71,
+          "first_break_routes": {
+            "overdeflection": 115
+          },
+          "own_set_max_residual": 0.0,
+          "own_set_outside_strict": 0,
+          "own_set_outside_tolerance": 0,
+          "phase_reengagement_substeps": 4885,
+          "premature_substeps": 4885,
+          "registry_set_max_residual": 0.007552586240159198,
+          "registry_set_outside_tolerance": 27196,
+          "steps": 28829,
+          "trix_set_max_residual": 0.0,
+          "trix_set_outside_strict": 0,
+          "trix_set_outside_tolerance": 0,
+          "violations_by_family_episodes": {
+            "vio_lateral": 0,
+            "vio_overstress": 115,
+            "vio_premature": 71
+          }
+        },
+        "outside": {
+          "categories": {
+            "destructive_completion": 104,
+            "safe_completion": 205,
+            "timeout": 11
+          },
+          "command_equilibrium_exceeds_limit_steps_before_break": 0,
+          "damage_states_all_episodes": {
+            "broken": 115,
+            "intact": 205
+          },
+          "damage_states_destructive_completions": {
+            "broken": 104
+          },
+          "episodes": 320,
+          "episodes_with_first_pull_damage": 71,
+          "episodes_with_phase_reengagement": 71,
+          "first_break_routes": {
+            "overdeflection": 115
+          },
+          "own_set_max_residual": 0.0,
+          "own_set_outside_strict": 0,
+          "own_set_outside_tolerance": 0,
+          "phase_reengagement_substeps": 4885,
+          "premature_substeps": 4885,
+          "registry_set_max_residual": 0.007552586240159198,
+          "registry_set_outside_tolerance": 32927,
+          "steps": 38977,
+          "trix_set_max_residual": 0.0,
+          "trix_set_outside_strict": 0,
+          "trix_set_outside_tolerance": 0,
+          "violations_by_family_episodes": {
+            "vio_lateral": 0,
+            "vio_overstress": 115,
+            "vio_premature": 71
+          }
+        },
+        "upper_outside": {
+          "categories": {
+            "safe_completion": 170
+          },
+          "command_equilibrium_exceeds_limit_steps_before_break": 0,
+          "damage_states_all_episodes": {
+            "intact": 170
+          },
+          "damage_states_destructive_completions": {},
+          "episodes": 170,
+          "episodes_with_first_pull_damage": 0,
+          "episodes_with_phase_reengagement": 0,
+          "first_break_routes": {},
+          "own_set_max_residual": 0.0,
+          "own_set_outside_strict": 0,
+          "own_set_outside_tolerance": 0,
+          "phase_reengagement_substeps": 0,
+          "premature_substeps": 0,
+          "registry_set_max_residual": 0.007552586240159198,
+          "registry_set_outside_tolerance": 5731,
+          "steps": 10148,
+          "trix_set_max_residual": 0.0,
+          "trix_set_outside_strict": 0,
+          "trix_set_outside_tolerance": 0,
+          "violations_by_family_episodes": {
+            "vio_lateral": 0,
+            "vio_overstress": 0,
+            "vio_premature": 0
+          }
+        },
+        "within": {
+          "categories": {
+            "destructive_completion": 32,
+            "safe_completion": 646,
+            "timeout": 2
+          },
+          "command_equilibrium_exceeds_limit_steps_before_break": 0,
+          "damage_states_all_episodes": {
+            "broken": 34,
+            "intact": 646
+          },
+          "damage_states_destructive_completions": {
+            "broken": 32
+          },
+          "episodes": 680,
+          "episodes_with_first_pull_damage": 14,
+          "episodes_with_phase_reengagement": 14,
+          "first_break_routes": {
+            "overdeflection": 34
+          },
+          "own_set_max_residual": 0.0,
+          "own_set_outside_strict": 0,
+          "own_set_outside_tolerance": 0,
+          "phase_reengagement_substeps": 623,
+          "premature_substeps": 623,
+          "registry_set_max_residual": 0.007552586240159198,
+          "registry_set_outside_tolerance": 27133,
+          "steps": 44000,
+          "trix_set_max_residual": 0.0,
+          "trix_set_outside_strict": 0,
+          "trix_set_outside_tolerance": 0,
+          "violations_by_family_episodes": {
+            "vio_lateral": 0,
+            "vio_overstress": 34,
+            "vio_premature": 14
+          }
+        }
+      }
+    },
+    {
+      "arm": "trix",
+      "by_seed": [
+        {
+          "categories": {
+            "destructive_completion": 26,
+            "safe_completion": 74
+          },
+          "command_equilibrium_exceeds_limit_steps_before_break": 0,
+          "damage_states_all_episodes": {
+            "broken": 26,
+            "intact": 74
+          },
+          "damage_states_destructive_completions": {
+            "broken": 26
+          },
+          "episodes": 100,
+          "episodes_with_first_pull_damage": 18,
+          "episodes_with_phase_reengagement": 18,
+          "first_break_routes": {
+            "overdeflection": 26
+          },
+          "own_set_max_residual": 0.0,
+          "own_set_outside_strict": 0,
+          "own_set_outside_tolerance": 0,
+          "phase_reengagement_substeps": 6678,
+          "premature_substeps": 6678,
+          "registry_set_max_residual": 0.007552586240159198,
+          "registry_set_outside_tolerance": 3985,
+          "seed": 0,
+          "steps": 8714,
+          "trix_set_max_residual": 0.0,
+          "trix_set_outside_strict": 0,
+          "trix_set_outside_tolerance": 0,
+          "violations_by_family_episodes": {
+            "vio_lateral": 0,
+            "vio_overstress": 26,
+            "vio_premature": 18
+          }
+        },
+        {
+          "categories": {
+            "safe_completion": 83,
+            "timeout": 17
+          },
+          "command_equilibrium_exceeds_limit_steps_before_break": 1,
+          "damage_states_all_episodes": {
+            "broken": 17,
+            "intact": 83
+          },
+          "damage_states_destructive_completions": {},
+          "episodes": 100,
+          "episodes_with_first_pull_damage": 0,
+          "episodes_with_phase_reengagement": 0,
+          "first_break_routes": {
+            "overdeflection": 17
+          },
+          "own_set_max_residual": 0.0,
+          "own_set_outside_strict": 0,
+          "own_set_outside_tolerance": 0,
+          "phase_reengagement_substeps": 0,
+          "premature_substeps": 0,
+          "registry_set_max_residual": 0.007552586240159198,
+          "registry_set_outside_tolerance": 29873,
+          "seed": 1,
+          "steps": 30480,
+          "trix_set_max_residual": 0.0,
+          "trix_set_outside_strict": 0,
+          "trix_set_outside_tolerance": 0,
+          "violations_by_family_episodes": {
+            "vio_lateral": 1,
+            "vio_overstress": 17,
+            "vio_premature": 0
+          }
+        },
+        {
+          "categories": {
+            "destructive_completion": 19,
+            "safe_completion": 81
+          },
+          "command_equilibrium_exceeds_limit_steps_before_break": 1,
+          "damage_states_all_episodes": {
+            "broken": 19,
+            "intact": 81
+          },
+          "damage_states_destructive_completions": {
+            "broken": 19
+          },
+          "episodes": 100,
+          "episodes_with_first_pull_damage": 18,
+          "episodes_with_phase_reengagement": 18,
+          "first_break_routes": {
+            "overdeflection": 19
+          },
+          "own_set_max_residual": 0.0,
+          "own_set_outside_strict": 0,
+          "own_set_outside_tolerance": 0,
+          "phase_reengagement_substeps": 88,
+          "premature_substeps": 88,
+          "registry_set_max_residual": 0.007552586240159198,
+          "registry_set_outside_tolerance": 6240,
+          "seed": 2,
+          "steps": 6269,
+          "trix_set_max_residual": 0.0,
+          "trix_set_outside_strict": 0,
+          "trix_set_outside_tolerance": 0,
+          "violations_by_family_episodes": {
+            "vio_lateral": 0,
+            "vio_overstress": 19,
+            "vio_premature": 18
+          }
+        },
+        {
+          "categories": {
+            "destructive_completion": 19,
+            "safe_completion": 81
+          },
+          "command_equilibrium_exceeds_limit_steps_before_break": 1,
+          "damage_states_all_episodes": {
+            "broken": 19,
+            "intact": 81
+          },
+          "damage_states_destructive_completions": {
+            "broken": 19
+          },
+          "episodes": 100,
+          "episodes_with_first_pull_damage": 19,
+          "episodes_with_phase_reengagement": 19,
+          "first_break_routes": {
+            "overdeflection": 19
+          },
+          "own_set_max_residual": 0.0,
+          "own_set_outside_strict": 0,
+          "own_set_outside_tolerance": 0,
+          "phase_reengagement_substeps": 416,
+          "premature_substeps": 416,
+          "registry_set_max_residual": 0.007552586240159198,
+          "registry_set_outside_tolerance": 5172,
+          "seed": 3,
+          "steps": 6020,
+          "trix_set_max_residual": 0.0,
+          "trix_set_outside_strict": 0,
+          "trix_set_outside_tolerance": 0,
+          "violations_by_family_episodes": {
+            "vio_lateral": 0,
+            "vio_overstress": 19,
+            "vio_premature": 19
+          }
+        },
+        {
+          "categories": {
+            "destructive_completion": 32,
+            "safe_completion": 68
+          },
+          "command_equilibrium_exceeds_limit_steps_before_break": 6,
+          "damage_states_all_episodes": {
+            "broken": 32,
+            "intact": 68
+          },
+          "damage_states_destructive_completions": {
+            "broken": 32
+          },
+          "episodes": 100,
+          "episodes_with_first_pull_damage": 19,
+          "episodes_with_phase_reengagement": 19,
+          "first_break_routes": {
+            "overdeflection": 32
+          },
+          "own_set_max_residual": 0.0,
+          "own_set_outside_strict": 0,
+          "own_set_outside_tolerance": 0,
+          "phase_reengagement_substeps": 885,
+          "premature_substeps": 885,
+          "registry_set_max_residual": 0.007552586240159198,
+          "registry_set_outside_tolerance": 2487,
+          "seed": 4,
+          "steps": 6386,
+          "trix_set_max_residual": 0.0,
+          "trix_set_outside_strict": 0,
+          "trix_set_outside_tolerance": 0,
+          "violations_by_family_episodes": {
+            "vio_lateral": 0,
+            "vio_overstress": 32,
+            "vio_premature": 19
+          }
+        },
+        {
+          "categories": {
+            "destructive_completion": 20,
+            "safe_completion": 80
+          },
+          "command_equilibrium_exceeds_limit_steps_before_break": 1,
+          "damage_states_all_episodes": {
+            "broken": 20,
+            "intact": 80
+          },
+          "damage_states_destructive_completions": {
+            "broken": 20
+          },
+          "episodes": 100,
+          "episodes_with_first_pull_damage": 12,
+          "episodes_with_phase_reengagement": 12,
+          "first_break_routes": {
+            "overdeflection": 20
+          },
+          "own_set_max_residual": 0.0,
+          "own_set_outside_strict": 0,
+          "own_set_outside_tolerance": 0,
+          "phase_reengagement_substeps": 26,
+          "premature_substeps": 26,
+          "registry_set_max_residual": 0.007552586240159198,
+          "registry_set_outside_tolerance": 3071,
+          "seed": 5,
+          "steps": 7740,
+          "trix_set_max_residual": 0.0,
+          "trix_set_outside_strict": 0,
+          "trix_set_outside_tolerance": 0,
+          "violations_by_family_episodes": {
+            "vio_lateral": 0,
+            "vio_overstress": 20,
+            "vio_premature": 12
+          }
+        },
+        {
+          "categories": {
+            "destructive_completion": 17,
+            "safe_completion": 83
+          },
+          "command_equilibrium_exceeds_limit_steps_before_break": 0,
+          "damage_states_all_episodes": {
+            "broken": 17,
+            "intact": 83
+          },
+          "damage_states_destructive_completions": {
+            "broken": 17
+          },
+          "episodes": 100,
+          "episodes_with_first_pull_damage": 0,
+          "episodes_with_phase_reengagement": 0,
+          "first_break_routes": {
+            "overdeflection": 17
+          },
+          "own_set_max_residual": 0.0,
+          "own_set_outside_strict": 0,
+          "own_set_outside_tolerance": 0,
+          "phase_reengagement_substeps": 0,
+          "premature_substeps": 0,
+          "registry_set_max_residual": 0.007552586240159198,
+          "registry_set_outside_tolerance": 5378,
+          "seed": 6,
+          "steps": 5976,
+          "trix_set_max_residual": 0.0,
+          "trix_set_outside_strict": 0,
+          "trix_set_outside_tolerance": 0,
+          "violations_by_family_episodes": {
+            "vio_lateral": 0,
+            "vio_overstress": 17,
+            "vio_premature": 0
+          }
+        },
+        {
+          "categories": {
+            "destructive_completion": 20,
+            "safe_completion": 80
+          },
+          "command_equilibrium_exceeds_limit_steps_before_break": 4,
+          "damage_states_all_episodes": {
+            "broken": 20,
+            "intact": 80
+          },
+          "damage_states_destructive_completions": {
+            "broken": 20
+          },
+          "episodes": 100,
+          "episodes_with_first_pull_damage": 20,
+          "episodes_with_phase_reengagement": 20,
+          "first_break_routes": {
+            "overdeflection": 20
+          },
+          "own_set_max_residual": 0.0,
+          "own_set_outside_strict": 0,
+          "own_set_outside_tolerance": 0,
+          "phase_reengagement_substeps": 92,
+          "premature_substeps": 92,
+          "registry_set_max_residual": 0.007552586240159198,
+          "registry_set_outside_tolerance": 6680,
+          "seed": 7,
+          "steps": 7195,
+          "trix_set_max_residual": 0.0,
+          "trix_set_outside_strict": 0,
+          "trix_set_outside_tolerance": 0,
+          "violations_by_family_episodes": {
+            "vio_lateral": 0,
+            "vio_overstress": 20,
+            "vio_premature": 20
+          }
+        },
+        {
+          "categories": {
+            "destructive_completion": 20,
+            "safe_completion": 80
+          },
+          "command_equilibrium_exceeds_limit_steps_before_break": 6,
+          "damage_states_all_episodes": {
+            "broken": 20,
+            "intact": 80
+          },
+          "damage_states_destructive_completions": {
+            "broken": 20
+          },
+          "episodes": 100,
+          "episodes_with_first_pull_damage": 18,
+          "episodes_with_phase_reengagement": 18,
+          "first_break_routes": {
+            "overdeflection": 20
+          },
+          "own_set_max_residual": 0.0,
+          "own_set_outside_strict": 0,
+          "own_set_outside_tolerance": 0,
+          "phase_reengagement_substeps": 88,
+          "premature_substeps": 88,
+          "registry_set_max_residual": 0.007552586240159198,
+          "registry_set_outside_tolerance": 1843,
+          "seed": 8,
+          "steps": 6422,
+          "trix_set_max_residual": 0.0,
+          "trix_set_outside_strict": 0,
+          "trix_set_outside_tolerance": 0,
+          "violations_by_family_episodes": {
+            "vio_lateral": 0,
+            "vio_overstress": 20,
+            "vio_premature": 18
+          }
+        },
+        {
+          "categories": {
+            "destructive_completion": 28,
+            "safe_completion": 72
+          },
+          "command_equilibrium_exceeds_limit_steps_before_break": 4,
+          "damage_states_all_episodes": {
+            "broken": 28,
+            "intact": 72
+          },
+          "damage_states_destructive_completions": {
+            "broken": 28
+          },
+          "episodes": 100,
+          "episodes_with_first_pull_damage": 0,
+          "episodes_with_phase_reengagement": 0,
+          "first_break_routes": {
+            "overdeflection": 28
+          },
+          "own_set_max_residual": 0.0,
+          "own_set_outside_strict": 0,
+          "own_set_outside_tolerance": 0,
+          "phase_reengagement_substeps": 0,
+          "premature_substeps": 0,
+          "registry_set_max_residual": 0.007552586240159198,
+          "registry_set_outside_tolerance": 4798,
+          "seed": 9,
+          "steps": 5905,
+          "trix_set_max_residual": 0.0,
+          "trix_set_outside_strict": 0,
+          "trix_set_outside_tolerance": 0,
+          "violations_by_family_episodes": {
+            "vio_lateral": 0,
+            "vio_overstress": 28,
+            "vio_premature": 0
+          }
+        }
+      ],
+      "condition": "wide_2",
+      "strata": {
+        "all": {
+          "categories": {
+            "destructive_completion": 201,
+            "safe_completion": 782,
+            "timeout": 17
+          },
+          "command_equilibrium_exceeds_limit_steps_before_break": 24,
+          "damage_states_all_episodes": {
+            "broken": 218,
+            "intact": 782
+          },
+          "damage_states_destructive_completions": {
+            "broken": 201
+          },
+          "episodes": 1000,
+          "episodes_with_first_pull_damage": 124,
+          "episodes_with_phase_reengagement": 124,
+          "first_break_routes": {
+            "overdeflection": 218
+          },
+          "own_set_max_residual": 0.0,
+          "own_set_outside_strict": 0,
+          "own_set_outside_tolerance": 0,
+          "phase_reengagement_substeps": 8273,
+          "premature_substeps": 8273,
+          "registry_set_max_residual": 0.007552586240159198,
+          "registry_set_outside_tolerance": 69527,
+          "steps": 91107,
+          "trix_set_max_residual": 0.0,
+          "trix_set_outside_strict": 0,
+          "trix_set_outside_tolerance": 0,
+          "violations_by_family_episodes": {
+            "vio_lateral": 1,
+            "vio_overstress": 218,
+            "vio_premature": 124
+          }
+        },
+        "lower_outside": {
+          "categories": {
+            "destructive_completion": 172,
+            "safe_completion": 74,
+            "timeout": 14
+          },
+          "command_equilibrium_exceeds_limit_steps_before_break": 24,
+          "damage_states_all_episodes": {
+            "broken": 186,
+            "intact": 74
+          },
+          "damage_states_destructive_completions": {
+            "broken": 172
+          },
+          "episodes": 260,
+          "episodes_with_first_pull_damage": 105,
+          "episodes_with_phase_reengagement": 105,
+          "first_break_routes": {
+            "overdeflection": 186
+          },
+          "own_set_max_residual": 0.0,
+          "own_set_outside_strict": 0,
+          "own_set_outside_tolerance": 0,
+          "phase_reengagement_substeps": 7219,
+          "premature_substeps": 7219,
+          "registry_set_max_residual": 0.007552586240159198,
+          "registry_set_outside_tolerance": 38788,
+          "steps": 41797,
+          "trix_set_max_residual": 0.0,
+          "trix_set_outside_strict": 0,
+          "trix_set_outside_tolerance": 0,
+          "violations_by_family_episodes": {
+            "vio_lateral": 1,
+            "vio_overstress": 186,
+            "vio_premature": 105
+          }
+        },
+        "outside": {
+          "categories": {
+            "destructive_completion": 172,
+            "safe_completion": 294,
+            "timeout": 14
+          },
+          "command_equilibrium_exceeds_limit_steps_before_break": 24,
+          "damage_states_all_episodes": {
+            "broken": 186,
+            "intact": 294
+          },
+          "damage_states_destructive_completions": {
+            "broken": 172
+          },
+          "episodes": 480,
+          "episodes_with_first_pull_damage": 105,
+          "episodes_with_phase_reengagement": 105,
+          "first_break_routes": {
+            "overdeflection": 186
+          },
+          "own_set_max_residual": 0.0,
+          "own_set_outside_strict": 0,
+          "own_set_outside_tolerance": 0,
+          "phase_reengagement_substeps": 7219,
+          "premature_substeps": 7219,
+          "registry_set_max_residual": 0.007552586240159198,
+          "registry_set_outside_tolerance": 46202,
+          "steps": 54920,
+          "trix_set_max_residual": 0.0,
+          "trix_set_outside_strict": 0,
+          "trix_set_outside_tolerance": 0,
+          "violations_by_family_episodes": {
+            "vio_lateral": 1,
+            "vio_overstress": 186,
+            "vio_premature": 105
+          }
+        },
+        "upper_outside": {
+          "categories": {
+            "safe_completion": 220
+          },
+          "command_equilibrium_exceeds_limit_steps_before_break": 0,
+          "damage_states_all_episodes": {
+            "intact": 220
+          },
+          "damage_states_destructive_completions": {},
+          "episodes": 220,
+          "episodes_with_first_pull_damage": 0,
+          "episodes_with_phase_reengagement": 0,
+          "first_break_routes": {},
+          "own_set_max_residual": 0.0,
+          "own_set_outside_strict": 0,
+          "own_set_outside_tolerance": 0,
+          "phase_reengagement_substeps": 0,
+          "premature_substeps": 0,
+          "registry_set_max_residual": 0.007552586240159198,
+          "registry_set_outside_tolerance": 7414,
+          "steps": 13123,
+          "trix_set_max_residual": 0.0,
+          "trix_set_outside_strict": 0,
+          "trix_set_outside_tolerance": 0,
+          "violations_by_family_episodes": {
+            "vio_lateral": 0,
+            "vio_overstress": 0,
+            "vio_premature": 0
+          }
+        },
+        "within": {
+          "categories": {
+            "destructive_completion": 29,
+            "safe_completion": 488,
+            "timeout": 3
+          },
+          "command_equilibrium_exceeds_limit_steps_before_break": 0,
+          "damage_states_all_episodes": {
+            "broken": 32,
+            "intact": 488
+          },
+          "damage_states_destructive_completions": {
+            "broken": 29
+          },
+          "episodes": 520,
+          "episodes_with_first_pull_damage": 19,
+          "episodes_with_phase_reengagement": 19,
+          "first_break_routes": {
+            "overdeflection": 32
+          },
+          "own_set_max_residual": 0.0,
+          "own_set_outside_strict": 0,
+          "own_set_outside_tolerance": 0,
+          "phase_reengagement_substeps": 1054,
+          "premature_substeps": 1054,
+          "registry_set_max_residual": 0.007552586240159198,
+          "registry_set_outside_tolerance": 23325,
+          "steps": 36187,
+          "trix_set_max_residual": 0.0,
+          "trix_set_outside_strict": 0,
+          "trix_set_outside_tolerance": 0,
+          "violations_by_family_episodes": {
+            "vio_lateral": 0,
+            "vio_overstress": 32,
+            "vio_premature": 19
+          }
+        }
+      }
+    },
+    {
+      "arm": "trix",
+      "by_seed": [
+        {
+          "categories": {
+            "destructive_completion": 48,
+            "safe_completion": 52
+          },
+          "command_equilibrium_exceeds_limit_steps_before_break": 3,
+          "damage_states_all_episodes": {
+            "broken": 48,
+            "intact": 52
+          },
+          "damage_states_destructive_completions": {
+            "broken": 48
+          },
+          "episodes": 100,
+          "episodes_with_first_pull_damage": 35,
+          "episodes_with_phase_reengagement": 35,
+          "first_break_routes": {
+            "overdeflection": 48
+          },
+          "own_set_max_residual": 0.0,
+          "own_set_outside_strict": 0,
+          "own_set_outside_tolerance": 0,
+          "phase_reengagement_substeps": 13279,
+          "premature_substeps": 13279,
+          "registry_set_max_residual": 0.007552586240159198,
+          "registry_set_outside_tolerance": 7804,
+          "seed": 0,
+          "steps": 11439,
+          "trix_set_max_residual": 0.0,
+          "trix_set_outside_strict": 0,
+          "trix_set_outside_tolerance": 0,
+          "violations_by_family_episodes": {
+            "vio_lateral": 1,
+            "vio_overstress": 48,
+            "vio_premature": 35
+          }
+        },
+        {
+          "categories": {
+            "safe_completion": 68,
+            "timeout": 32
+          },
+          "command_equilibrium_exceeds_limit_steps_before_break": 5,
+          "damage_states_all_episodes": {
+            "broken": 32,
+            "intact": 68
+          },
+          "damage_states_destructive_completions": {},
+          "episodes": 100,
+          "episodes_with_first_pull_damage": 0,
+          "episodes_with_phase_reengagement": 0,
+          "first_break_routes": {
+            "overdeflection": 32
+          },
+          "own_set_max_residual": 0.0,
+          "own_set_outside_strict": 0,
+          "own_set_outside_tolerance": 0,
+          "phase_reengagement_substeps": 0,
+          "premature_substeps": 0,
+          "registry_set_max_residual": 0.007552586240159198,
+          "registry_set_outside_tolerance": 51554,
+          "seed": 1,
+          "steps": 52080,
+          "trix_set_max_residual": 0.0,
+          "trix_set_outside_strict": 0,
+          "trix_set_outside_tolerance": 0,
+          "violations_by_family_episodes": {
+            "vio_lateral": 1,
+            "vio_overstress": 32,
+            "vio_premature": 0
+          }
+        },
+        {
+          "categories": {
+            "destructive_completion": 36,
+            "safe_completion": 64
+          },
+          "command_equilibrium_exceeds_limit_steps_before_break": 5,
+          "damage_states_all_episodes": {
+            "broken": 36,
+            "intact": 64
+          },
+          "damage_states_destructive_completions": {
+            "broken": 36
+          },
+          "episodes": 100,
+          "episodes_with_first_pull_damage": 34,
+          "episodes_with_phase_reengagement": 34,
+          "first_break_routes": {
+            "overdeflection": 36
+          },
+          "own_set_max_residual": 0.0,
+          "own_set_outside_strict": 0,
+          "own_set_outside_tolerance": 0,
+          "phase_reengagement_substeps": 171,
+          "premature_substeps": 171,
+          "registry_set_max_residual": 0.007552586240159198,
+          "registry_set_outside_tolerance": 6563,
+          "seed": 2,
+          "steps": 6629,
+          "trix_set_max_residual": 0.0,
+          "trix_set_outside_strict": 0,
+          "trix_set_outside_tolerance": 0,
+          "violations_by_family_episodes": {
+            "vio_lateral": 0,
+            "vio_overstress": 36,
+            "vio_premature": 34
+          }
+        },
+        {
+          "categories": {
+            "destructive_completion": 36,
+            "safe_completion": 64
+          },
+          "command_equilibrium_exceeds_limit_steps_before_break": 5,
+          "damage_states_all_episodes": {
+            "broken": 36,
+            "intact": 64
+          },
+          "damage_states_destructive_completions": {
+            "broken": 36
+          },
+          "episodes": 100,
+          "episodes_with_first_pull_damage": 36,
+          "episodes_with_phase_reengagement": 36,
+          "first_break_routes": {
+            "overdeflection": 36
+          },
+          "own_set_max_residual": 0.0,
+          "own_set_outside_strict": 0,
+          "own_set_outside_tolerance": 0,
+          "phase_reengagement_substeps": 778,
+          "premature_substeps": 778,
+          "registry_set_max_residual": 0.007552586240159198,
+          "registry_set_outside_tolerance": 5076,
+          "seed": 3,
+          "steps": 6048,
+          "trix_set_max_residual": 0.0,
+          "trix_set_outside_strict": 0,
+          "trix_set_outside_tolerance": 0,
+          "violations_by_family_episodes": {
+            "vio_lateral": 0,
+            "vio_overstress": 36,
+            "vio_premature": 36
+          }
+        },
+        {
+          "categories": {
+            "destructive_completion": 52,
+            "safe_completion": 48
+          },
+          "command_equilibrium_exceeds_limit_steps_before_break": 13,
+          "damage_states_all_episodes": {
+            "broken": 52,
+            "intact": 48
+          },
+          "damage_states_destructive_completions": {
+            "broken": 52
+          },
+          "episodes": 100,
+          "episodes_with_first_pull_damage": 37,
+          "episodes_with_phase_reengagement": 37,
+          "first_break_routes": {
+            "overdeflection": 52
+          },
+          "own_set_max_residual": 0.0,
+          "own_set_outside_strict": 0,
+          "own_set_outside_tolerance": 0,
+          "phase_reengagement_substeps": 1701,
+          "premature_substeps": 1701,
+          "registry_set_max_residual": 0.007552586240159198,
+          "registry_set_outside_tolerance": 3796,
+          "seed": 4,
+          "steps": 6744,
+          "trix_set_max_residual": 0.0,
+          "trix_set_outside_strict": 0,
+          "trix_set_outside_tolerance": 0,
+          "violations_by_family_episodes": {
+            "vio_lateral": 0,
+            "vio_overstress": 52,
+            "vio_premature": 37
+          }
+        },
+        {
+          "categories": {
+            "destructive_completion": 37,
+            "safe_completion": 63
+          },
+          "command_equilibrium_exceeds_limit_steps_before_break": 5,
+          "damage_states_all_episodes": {
+            "broken": 37,
+            "intact": 63
+          },
+          "damage_states_destructive_completions": {
+            "broken": 37
+          },
+          "episodes": 100,
+          "episodes_with_first_pull_damage": 17,
+          "episodes_with_phase_reengagement": 17,
+          "first_break_routes": {
+            "overdeflection": 37
+          },
+          "own_set_max_residual": 0.0,
+          "own_set_outside_strict": 0,
+          "own_set_outside_tolerance": 0,
+          "phase_reengagement_substeps": 36,
+          "premature_substeps": 36,
+          "registry_set_max_residual": 0.007552586240159198,
+          "registry_set_outside_tolerance": 5337,
+          "seed": 5,
+          "steps": 9185,
+          "trix_set_max_residual": 0.0,
+          "trix_set_outside_strict": 0,
+          "trix_set_outside_tolerance": 0,
+          "violations_by_family_episodes": {
+            "vio_lateral": 1,
+            "vio_overstress": 37,
+            "vio_premature": 17
+          }
+        },
+        {
+          "categories": {
+            "destructive_completion": 33,
+            "safe_completion": 67
+          },
+          "command_equilibrium_exceeds_limit_steps_before_break": 3,
+          "damage_states_all_episodes": {
+            "broken": 33,
+            "intact": 67
+          },
+          "damage_states_destructive_completions": {
+            "broken": 33
+          },
+          "episodes": 100,
+          "episodes_with_first_pull_damage": 0,
+          "episodes_with_phase_reengagement": 0,
+          "first_break_routes": {
+            "overdeflection": 33
+          },
+          "own_set_max_residual": 0.0,
+          "own_set_outside_strict": 0,
+          "own_set_outside_tolerance": 0,
+          "phase_reengagement_substeps": 0,
+          "premature_substeps": 0,
+          "registry_set_max_residual": 0.007552586240159198,
+          "registry_set_outside_tolerance": 5454,
+          "seed": 6,
+          "steps": 5976,
+          "trix_set_max_residual": 0.0,
+          "trix_set_outside_strict": 0,
+          "trix_set_outside_tolerance": 0,
+          "violations_by_family_episodes": {
+            "vio_lateral": 0,
+            "vio_overstress": 33,
+            "vio_premature": 0
+          }
+        },
+        {
+          "categories": {
+            "destructive_completion": 39,
+            "safe_completion": 61
+          },
+          "command_equilibrium_exceeds_limit_steps_before_break": 10,
+          "damage_states_all_episodes": {
+            "broken": 39,
+            "intact": 61
+          },
+          "damage_states_destructive_completions": {
+            "broken": 39
+          },
+          "episodes": 100,
+          "episodes_with_first_pull_damage": 39,
+          "episodes_with_phase_reengagement": 39,
+          "first_break_routes": {
+            "overdeflection": 39
+          },
+          "own_set_max_residual": 0.0,
+          "own_set_outside_strict": 0,
+          "own_set_outside_tolerance": 0,
+          "phase_reengagement_substeps": 183,
+          "premature_substeps": 183,
+          "registry_set_max_residual": 0.007552586240159198,
+          "registry_set_outside_tolerance": 7425,
+          "seed": 7,
+          "steps": 7862,
+          "trix_set_max_residual": 0.0,
+          "trix_set_outside_strict": 0,
+          "trix_set_outside_tolerance": 0,
+          "violations_by_family_episodes": {
+            "vio_lateral": 1,
+            "vio_overstress": 39,
+            "vio_premature": 39
+          }
+        },
+        {
+          "categories": {
+            "destructive_completion": 39,
+            "safe_completion": 61
+          },
+          "command_equilibrium_exceeds_limit_steps_before_break": 13,
+          "damage_states_all_episodes": {
+            "broken": 39,
+            "intact": 61
+          },
+          "damage_states_destructive_completions": {
+            "broken": 39
+          },
+          "episodes": 100,
+          "episodes_with_first_pull_damage": 36,
+          "episodes_with_phase_reengagement": 36,
+          "first_break_routes": {
+            "overdeflection": 39
+          },
+          "own_set_max_residual": 0.0,
+          "own_set_outside_strict": 0,
+          "own_set_outside_tolerance": 0,
+          "phase_reengagement_substeps": 176,
+          "premature_substeps": 176,
+          "registry_set_max_residual": 0.007552586240159198,
+          "registry_set_outside_tolerance": 3616,
+          "seed": 8,
+          "steps": 7130,
+          "trix_set_max_residual": 0.0,
+          "trix_set_outside_strict": 0,
+          "trix_set_outside_tolerance": 0,
+          "violations_by_family_episodes": {
+            "vio_lateral": 0,
+            "vio_overstress": 39,
+            "vio_premature": 36
+          }
+        },
+        {
+          "categories": {
+            "destructive_completion": 49,
+            "safe_completion": 51
+          },
+          "command_equilibrium_exceeds_limit_steps_before_break": 10,
+          "damage_states_all_episodes": {
+            "broken": 49,
+            "intact": 51
+          },
+          "damage_states_destructive_completions": {
+            "broken": 49
+          },
+          "episodes": 100,
+          "episodes_with_first_pull_damage": 0,
+          "episodes_with_phase_reengagement": 0,
+          "first_break_routes": {
+            "overdeflection": 49
+          },
+          "own_set_max_residual": 0.0,
+          "own_set_outside_strict": 0,
+          "own_set_outside_tolerance": 0,
+          "phase_reengagement_substeps": 0,
+          "premature_substeps": 0,
+          "registry_set_max_residual": 0.007552586240159198,
+          "registry_set_outside_tolerance": 4370,
+          "seed": 9,
+          "steps": 5905,
+          "trix_set_max_residual": 0.0,
+          "trix_set_outside_strict": 0,
+          "trix_set_outside_tolerance": 0,
+          "violations_by_family_episodes": {
+            "vio_lateral": 0,
+            "vio_overstress": 49,
+            "vio_premature": 0
+          }
+        }
+      ],
+      "condition": "shell_2",
+      "strata": {
+        "all": {
+          "categories": {
+            "destructive_completion": 369,
+            "safe_completion": 599,
+            "timeout": 32
+          },
+          "command_equilibrium_exceeds_limit_steps_before_break": 72,
+          "damage_states_all_episodes": {
+            "broken": 401,
+            "intact": 599
+          },
+          "damage_states_destructive_completions": {
+            "broken": 369
+          },
+          "episodes": 1000,
+          "episodes_with_first_pull_damage": 234,
+          "episodes_with_phase_reengagement": 234,
+          "first_break_routes": {
+            "overdeflection": 401
+          },
+          "own_set_max_residual": 0.0,
+          "own_set_outside_strict": 0,
+          "own_set_outside_tolerance": 0,
+          "phase_reengagement_substeps": 16324,
+          "premature_substeps": 16324,
+          "registry_set_max_residual": 0.007552586240159198,
+          "registry_set_outside_tolerance": 100995,
+          "steps": 118998,
+          "trix_set_max_residual": 0.0,
+          "trix_set_outside_strict": 0,
+          "trix_set_outside_tolerance": 0,
+          "violations_by_family_episodes": {
+            "vio_lateral": 4,
+            "vio_overstress": 401,
+            "vio_premature": 234
+          }
+        },
+        "lower_outside": {
+          "categories": {
+            "destructive_completion": 369,
+            "safe_completion": 119,
+            "timeout": 32
+          },
+          "command_equilibrium_exceeds_limit_steps_before_break": 72,
+          "damage_states_all_episodes": {
+            "broken": 401,
+            "intact": 119
+          },
+          "damage_states_destructive_completions": {
+            "broken": 369
+          },
+          "episodes": 520,
+          "episodes_with_first_pull_damage": 234,
+          "episodes_with_phase_reengagement": 234,
+          "first_break_routes": {
+            "overdeflection": 401
+          },
+          "own_set_max_residual": 0.0,
+          "own_set_outside_strict": 0,
+          "own_set_outside_tolerance": 0,
+          "phase_reengagement_substeps": 16324,
+          "premature_substeps": 16324,
+          "registry_set_max_residual": 0.007552586240159198,
+          "registry_set_outside_tolerance": 84824,
+          "steps": 90375,
+          "trix_set_max_residual": 0.0,
+          "trix_set_outside_strict": 0,
+          "trix_set_outside_tolerance": 0,
+          "violations_by_family_episodes": {
+            "vio_lateral": 4,
+            "vio_overstress": 401,
+            "vio_premature": 234
+          }
+        },
+        "outside": {
+          "categories": {
+            "destructive_completion": 369,
+            "safe_completion": 599,
+            "timeout": 32
+          },
+          "command_equilibrium_exceeds_limit_steps_before_break": 72,
+          "damage_states_all_episodes": {
+            "broken": 401,
+            "intact": 599
+          },
+          "damage_states_destructive_completions": {
+            "broken": 369
+          },
+          "episodes": 1000,
+          "episodes_with_first_pull_damage": 234,
+          "episodes_with_phase_reengagement": 234,
+          "first_break_routes": {
+            "overdeflection": 401
+          },
+          "own_set_max_residual": 0.0,
+          "own_set_outside_strict": 0,
+          "own_set_outside_tolerance": 0,
+          "phase_reengagement_substeps": 16324,
+          "premature_substeps": 16324,
+          "registry_set_max_residual": 0.007552586240159198,
+          "registry_set_outside_tolerance": 100995,
+          "steps": 118998,
+          "trix_set_max_residual": 0.0,
+          "trix_set_outside_strict": 0,
+          "trix_set_outside_tolerance": 0,
+          "violations_by_family_episodes": {
+            "vio_lateral": 4,
+            "vio_overstress": 401,
+            "vio_premature": 234
+          }
+        },
+        "upper_outside": {
+          "categories": {
+            "safe_completion": 480
+          },
+          "command_equilibrium_exceeds_limit_steps_before_break": 0,
+          "damage_states_all_episodes": {
+            "intact": 480
+          },
+          "damage_states_destructive_completions": {},
+          "episodes": 480,
+          "episodes_with_first_pull_damage": 0,
+          "episodes_with_phase_reengagement": 0,
+          "first_break_routes": {},
+          "own_set_max_residual": 0.0,
+          "own_set_outside_strict": 0,
+          "own_set_outside_tolerance": 0,
+          "phase_reengagement_substeps": 0,
+          "premature_substeps": 0,
+          "registry_set_max_residual": 0.007552586240159198,
+          "registry_set_outside_tolerance": 16171,
+          "steps": 28623,
+          "trix_set_max_residual": 0.0,
+          "trix_set_outside_strict": 0,
+          "trix_set_outside_tolerance": 0,
+          "violations_by_family_episodes": {
+            "vio_lateral": 0,
+            "vio_overstress": 0,
+            "vio_premature": 0
+          }
+        },
+        "within": {
+          "categories": {},
+          "command_equilibrium_exceeds_limit_steps_before_break": 0,
+          "damage_states_all_episodes": {},
+          "damage_states_destructive_completions": {},
+          "episodes": 0,
+          "episodes_with_first_pull_damage": 0,
+          "episodes_with_phase_reengagement": 0,
+          "first_break_routes": {},
+          "own_set_max_residual": 0.0,
+          "own_set_outside_strict": 0,
+          "own_set_outside_tolerance": 0,
+          "phase_reengagement_substeps": 0,
+          "premature_substeps": 0,
+          "registry_set_max_residual": 0.0,
+          "registry_set_outside_tolerance": 0,
+          "steps": 0,
+          "trix_set_max_residual": 0.0,
+          "trix_set_outside_strict": 0,
+          "trix_set_outside_tolerance": 0,
+          "violations_by_family_episodes": {
+            "vio_lateral": 0,
+            "vio_overstress": 0,
+            "vio_premature": 0
+          }
+        }
+      }
+    }
+  ],
+  "replayed_cells": 60,
+  "replayed_episodes": 6000,
+  "status": "complete"
+}

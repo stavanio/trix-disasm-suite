@@ -184,3 +184,25 @@ Full episode outcomes, the execution log, native replay check and frozen source
 snapshot are retained in the separate `TRIX_ood_reset_evidence` directory.
 Its `SHA256SUMS.json` covers every payload file. Place it beside the unchanged
 historical evidence archive. No remote URL or DOI is assigned to either package.
+
+
+## Post-hoc SNAP command and damage attribution
+
+The [diagnostic](snap_ood_attribution_results.md) replays 6,000 existing episodes.
+It performs no training and requires exact agreement with every original
+outcome and cell count. Full command traces are in the separate
+`TRIX_snap_ood_attribution_evidence` directory.
+
+```bash
+OMP_NUM_THREADS=1 MKL_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 NUMEXPR_NUM_THREADS=1 \
+python3 -u -B experiments/snap_ood_attribution.py run \
+  --archive "$TRIX_EVIDENCE_ROOT" \
+  --raw "$TRIX_OOD_EVIDENCE_ROOT/raw" \
+  --out build/snap-attribution-replication --workers 16
+python3 -B experiments/snap_ood_attribution.py report --out build/snap-attribution-replication
+```
+
+Use a new output directory. The run preserves its code/plan hashes and refuses
+to overwrite an earlier attempt. All 39 scientific files from the prospective
+freeze must still match. This is a diagnostic of the original states and
+policies, not a new evaluation population or a corrected-governor result.

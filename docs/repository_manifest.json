@@ -310,6 +310,20 @@
         "docs/runtime_benchmark_results.md"
       ]
     },
+    "docs/snap_ood_attribution_plan.md": {
+      "role": "Declared scope of post-hoc SNAP attribution; not a prospective primary amendment",
+      "references": [
+        "docs/snap_ood_attribution_results.md",
+        "tab:ood-outcomes"
+      ]
+    },
+    "docs/snap_ood_attribution_results.md": {
+      "role": "Verified command membership, damage subtype and outside-support comparator account",
+      "references": [
+        "docs/snap_ood_attribution_results.md",
+        "tab:ood-outcomes"
+      ]
+    },
     "docs/workspace_rendering.md": {
       "role": "documentation or pinned asset metadata",
       "references": [
@@ -432,6 +446,13 @@
       "role": "entrypoint",
       "references": [
         "docs/REPRODUCING.md"
+      ]
+    },
+    "experiments/snap_ood_attribution.py": {
+      "role": "Post-hoc exact SNAP replay with passive command and damage-path observers",
+      "references": [
+        "docs/snap_ood_attribution_results.md",
+        "tab:ood-outcomes"
       ]
     },
     "experiments/vlm_bank.py": {
@@ -1036,6 +1057,34 @@
         "docs/PAPER_MAP.md"
       ]
     },
+    "results/snap_ood_attribution/episode_attribution.json": {
+      "role": "Compact diagnostic fields for all 6000 exactly matched episodes",
+      "references": [
+        "docs/snap_ood_attribution_results.md",
+        "tab:ood-outcomes"
+      ]
+    },
+    "results/snap_ood_attribution/manifest.json": {
+      "role": "Hash linkage to all diagnostic cells and full command traces",
+      "references": [
+        "docs/snap_ood_attribution_results.md",
+        "tab:ood-outcomes"
+      ]
+    },
+    "results/snap_ood_attribution/summary.json": {
+      "role": "All 60 diagnostic cells summarized by arm, condition, seed and support stratum",
+      "references": [
+        "docs/snap_ood_attribution_results.md",
+        "tab:ood-outcomes"
+      ]
+    },
+    "results/snap_ood_attribution/verification.json": {
+      "role": "Saved command, projection, continuity, hash and original-outcome checks",
+      "references": [
+        "docs/snap_ood_attribution_results.md",
+        "tab:ood-outcomes"
+      ]
+    },
     "results/stage1/stage1_records.json": {
       "role": "compact archived result",
       "references": [
@@ -1389,6 +1438,7 @@
     "experiments/runtime_benchmark.py",
     "experiments/safelayer_decomposition.py",
     "experiments/sensitivity.py",
+    "experiments/snap_ood_attribution.py",
     "experiments/vlm_bank.py",
     "experiments/vlm_trial.py",
     "scripts/audit_reproducibility_release.py",

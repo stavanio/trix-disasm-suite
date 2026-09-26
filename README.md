@@ -14,6 +14,7 @@ not yet submitted in this form. Authors and citation metadata: [CITATION.cff](CI
 - [Historical corrections](docs/provenance.md) and [BATTERY aggregation correction](docs/battery_aggregation_correction.md)
 - [Archive identity and source commits](assets/evidence/archive_manifest.json)
 - [Completed prospective OOD evaluation and complete outcomes](docs/ood_reset_results.md)
+- [SNAP command-membership and damage attribution](docs/snap_ood_attribution_results.md)
 
 TRiX governs commands at execution. The paper evaluates post-hoc governance
 of frozen policies separately from filter-aware learning. PPO and SAC use

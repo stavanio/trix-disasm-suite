@@ -1,0 +1,17 @@
+{
+  "all_saved_bounds_match_independent_formula": true,
+  "cells": 60,
+  "diagnostic_plan_sha256": "1f4e58f35c5b4e54021acc3f239a71377253ffa8c209573bd59af6be68344a97",
+  "diagnostic_source_sha256": "4d757b830a17d81eef871aea351ef20f7e36b37c8e60556cab53f0ff1bbec741",
+  "episodes": 6000,
+  "exact_observation_continuity_in_saved_traces": true,
+  "exact_original_cell_counts": true,
+  "exact_original_episode_fields": true,
+  "frozen_scientific_source_files": 39,
+  "independent_projection_max_difference": 0.0,
+  "original_ood_protocol_sha256": "c3e9f59d9bf1948565ba0f58a74f7dbb5b3c03a1d4b0feca8656fd64ea2ef5b5",
+  "own_set_strict_violations": 0,
+  "primary_evidence_unchanged": true,
+  "saved_commands_verified": 610548,
+  "status": "passed"
+}
