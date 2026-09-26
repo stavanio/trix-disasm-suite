@@ -37,17 +37,20 @@ enforces its own lean file inventory. The archive has no remote URL yet.
 Run `make overleaf` to create `build/TRIX_overleaf.zip`. In Overleaf, select
 **New Project > Upload Project**, upload the ZIP, and set **Main document** to
 `TRIX_MAIN.tex` and **Compiler** to **XeLaTeX**. Keep all directories from the ZIP.
-The package includes the five figures, two table fragments and the exact
+Select `TRIX_SUPPLEMENT.tex` to compile the separate supplement.
+The package includes both documents, five figures, two table fragments, cross-references and the exact
 DejaVu text/math fonts with their licence. Fonts are loaded by file path, so
 the build does not require those fonts to be installed on Overleaf.
 The standalone manuscript TeX file alone does not include its dependencies.
 
 The [bundle builder](../scripts/build_overleaf_bundle.py) follows the declared
 TeX/figure inputs and verifies [font hashes](../manuscript/fonts/manifest.json).
-Its root `TRIX_MAIN.tex` is byte-identical to the canonical manuscript. The ZIP
+Its root `TRIX_MAIN.tex` and `TRIX_SUPPLEMENT.tex` are byte-identical to the
+canonical main and supplement sources. The ZIP
 contains a file-to-source/hash manifest and a XeLaTeX `latexmkrc`. It omits
 build products and unrelated research records. For local verification, extract
-the ZIP into a new directory and run `latexmk TRIX_MAIN.tex` there.
+the ZIP into a new directory and run `latexmk TRIX_MAIN.tex` and
+`latexmk TRIX_SUPPLEMENT.tex` there.
 See Overleaf's [project upload instructions](https://docs.overleaf.com/managing-projects-and-files/uploading-a-project)
 and [compiler settings](https://docs.overleaf.com/getting-started/recompiling-your-project/selecting-a-tex-live-version-and-latex-compiler).
 
@@ -65,7 +68,9 @@ To rebuild counts from shards, pass `--archive-root "$TRIX_EVIDENCE_ROOT/researc
 The full archive's original result files remain unchanged; the BATTERY correction
 is recorded in [the correction note](battery_aggregation_correction.md).
 
-`make response` first builds the paper, then regenerates the response's section,
+`make paper` builds the main paper and Supplementary Information separately.
+Their generated cross-document references are checked against both builds.
+`make response` first builds both documents, then regenerates the response's section,
 page and bibliography references from that build. The response map records exact
 TeX source ranges and hashes; they are not journal margin line numbers.
 `make check` also detects stale response mappings without requiring a TeX runtime.

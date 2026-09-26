@@ -6,9 +6,38 @@ import json
 from pathlib import Path
 import re
 import subprocess
+import statistics
 
 ROOT = Path(__file__).resolve().parents[1]
 PACKAGES = {'baselines', 'benchmark', 'envs', 'experiments', 'scripts', 'training', 'tests'}
+
+
+def policy_summary(tex):
+    """Reconcile the condensed main table with recorded selected-policy counts."""
+    start = tex.index(r'\label{tab:policy-summary}')
+    table = tex[start:tex.index(r'\end{table}', start)]
+    rows = re.findall(
+        r'^(\w+) & (SAC|PPO) & Stage ([12]) & ([^&]+) & ([\d.]+) & ([\d.]+)',
+        table, re.M)
+    assert len(rows) == 8
+    checked = 0
+    for task, algorithm, stage, pair, first, second in rows:
+        records = json.loads((ROOT / f'results/stage{stage}/stage{stage}_records.json').read_text())['records']
+        names = {'Matched QP': 'qp_matched', 'Box': 'box_clip',
+                 'Static': 'static_clip', 'Preventive box': 'box_clip_preventive',
+                 'TRiX': 'trix_preventive' if task == 'BATTERY' else 'trix'}
+        arms = [names[name.strip()] for name in pair.split('/')]
+        for arm, printed in zip(arms, (first, second)):
+            selected = [r for r in records if r['task'] == task
+                        and r['algorithm'] == algorithm.lower()
+                        and r['evaluation_arm'] == arm]
+            assert sorted(r['seed'] for r in selected) == list(range(10))
+            assert all(r['counts']['episodes'] == 100 for r in selected)
+            mean = statistics.mean(100*r['counts']['safe_completions']/r['counts']['episodes']
+                                   for r in selected)
+            assert abs(mean-float(printed)) < 0.000001, (task, algorithm, stage, arm, mean, printed)
+            checked += 1
+    return checked
 
 
 def imports(paths):
@@ -65,10 +94,14 @@ def main():
     assert not code - reached - initializers, f'Orphan code: {sorted(code - reached - initializers)}'
     for test in manifest['tests']:
         assert edges[test] - initializers, f'Test has no retained source dependency: {test}'
-    tex = (ROOT / 'manuscript/TRIX_REVISION.tex').read_text()
-    for included in re.findall(r'\\input\{([^}]+)\}', tex):
-        tex += '\n' + (ROOT / included).read_text()
+    def expand(path):
+        source = (ROOT / path).read_text()
+        return source + ''.join('\n' + expand(name)
+            for name in re.findall(r'\\input\{([^}]+)\}', source))
+    tex = '\n'.join(expand(path) for path in
+        ['manuscript/TRIX_REVISION.tex', 'manuscript/TRIX_SUPPLEMENT.tex'])
     labels = set(re.findall(r'\\label\{([^}]+)\}', tex))
+    table_cells = policy_summary(tex)
     refs = set(re.findall(r'\\bibitem\{([^}]+)\}', tex))
     covered = set()
     for item in manifest['paper_items']:
@@ -93,6 +126,7 @@ def main():
     sizes = sum((ROOT/p).stat().st_size for p in files)
     print(json.dumps(dict(files=len(files), bytes=sizes, code_files=len(code),
         paper_figures_and_tables=len(covered), tests=len(manifest['tests']),
+        policy_summary_cells_verified=table_cells,
         orphan_code=0, missing_local_dependencies=0, broken_map_links=0,
         locked_renderer_files=len(manifest['locked_renderer_files'])), indent=2))
 

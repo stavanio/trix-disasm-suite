@@ -12,6 +12,8 @@ import re
 
 ROOT = Path(__file__).resolve().parents[1]
 PAPER = 'manuscript/TRIX_REVISION.tex'
+SUPPLEMENT = 'manuscript/TRIX_SUPPLEMENT.tex'
+CROSS = 'manuscript/data/cross_document_refs.tex'
 LETTER = 'manuscript/TRIX_RESPONSE.tex'
 MAP = 'manuscript/data/reviewer_response_map.json'
 LOCATIONS = 'manuscript/data/response_locations.tex'
@@ -74,7 +76,41 @@ def response_entries(text):
     return entries
 
 
-def paper_locations(text, aux):
+def expanded_tex(path):
+    text = (ROOT / path).read_text()
+    def include(match):
+        name = match.group(1)
+        return '' if name == CROSS else expanded_tex(name)
+    return re.sub(r'\\input\{([^}]+)\}', include, text)
+
+
+def cross_items():
+    items = {}
+    for source, prefix in [(PAPER, ''), (SUPPLEMENT, 'S')]:
+        counters = {'fig:': 0, 'tab:': 0}
+        for label in re.findall(r'\\label\{([^}]+)\}', expanded_tex(source)):
+            family = next((k for k in counters if label.startswith(k)), None)
+            if family:
+                assert label not in items, label
+                counters[family] += 1
+                items[label] = dict(source=source, number=prefix+str(counters[family]),
+                    kind='Figure' if family == 'fig:' else 'Table')
+    return items
+
+
+def cross_tex():
+    lines = ['% Generated from display-item order; checked against both compiled documents.',
+        r'\newcommand{\suppref}[1]{\csname supitem#1\endcsname}',
+        r'\newcommand{\mainref}[1]{\csname mainitem#1\endcsname}']
+    for label, item in cross_items().items():
+        is_si = item['source'] == SUPPLEMENT
+        macro = 'supitem' if is_si else 'mainitem'
+        prefix = 'Supplementary ' if is_si else 'main '
+        lines.append(f"\\expandafter\\def\\csname {macro}{label}\\endcsname{{{prefix}{item['kind']}~{item['number']}}}")
+    return '\n'.join(lines)+'\n'
+
+
+def paper_locations(text, aux, document=PAPER):
     source = []
     pattern = r'^\\(section|subsection|subsubsection)\{'
     for m in re.finditer(pattern, text, re.M):
@@ -98,11 +134,11 @@ def paper_locations(text, aux):
                 end = later['line'] - 1
                 break
         sections[t['number']] = dict(title=t['title'], page=t['page'],
-            source=PAPER, source_lines=[s['line'], end], heading_level=s['level'])
+            source=document, source_lines=[s['line'], end], heading_level=s['level'])
     labels = {}
     for m in re.finditer(r'\\newlabel\{([^}]+)\}\{\{([^}]+)\}\{(\d+)\}', aux):
         name = m.group(1)
-        owner = PAPER
+        owner = document
         raw = text
         if f'\\label{{{name}}}' not in raw:
             for included in re.findall(r'\\input\{([^}]+)\}', text):
@@ -112,7 +148,7 @@ def paper_locations(text, aux):
                     break
         literal = f'\\label{{{name}}}'
         assert literal in raw, name
-        labels[name] = dict(number=m.group(2), page=int(m.group(3)), source=owner,
+        labels[name] = dict(number=m.group(2), page=int(m.group(3)), source=owner, document=document,
                             source_line=raw[:raw.index(literal)].count('\n') + 1)
     citations = dict(re.findall(r'\\bibcite\{([^}]+)\}\{([^}]+)\}', aux))
     return sections, labels, citations
@@ -125,10 +161,14 @@ def location_tex(data):
     used_items = {k for e in data['responses'] for k in e['items']}
     used_cites = {k for e in data['responses'] for k in e['citations']}
     for k in sorted(used_sections):
-        lines.append(f"\\expandafter\\def\\csname mssecpage{k}\\endcsname{{{data['sections'][k]['page']}}}")
+        value = data['sections'][k]
+        prefix = 'Supplementary ' if value['source'] == SUPPLEMENT else ''
+        lines.append(f"\\expandafter\\def\\csname mssection{k}\\endcsname{{{prefix}\\S\\,{k} (p.~{value['page']})}}")
     for k in sorted(used_items):
         value = data['labels'][k]
         kind = 'Figure' if k.startswith('fig:') else 'Table' if k.startswith('tab:') else 'Section'
+        if value['document'] == SUPPLEMENT:
+            kind = 'Supplementary ' + kind
         lines.append(f"\\expandafter\\def\\csname msitem{k}\\endcsname{{{kind}~{value['number']} (p.~{value['page']})}}")
     for k in sorted(used_cites):
         lines.append(f"\\expandafter\\def\\csname mscite{k}\\endcsname{{{data['citations'][k]}}}")
@@ -137,13 +177,25 @@ def location_tex(data):
 
 def check(data, archive_root=None):
     assert digest(ROOT / PAPER) == data['manuscript_sha256'], 'Manuscript changed; rebuild response map.'
+    assert digest(ROOT / SUPPLEMENT) == data['supplement_sha256'], 'Supplement changed; rebuild response map.'
     assert digest(ROOT / LETTER) == data['response_sha256'], 'Response changed; rebuild response map.'
     assert response_entries((ROOT / LETTER).read_text()) == data['responses']
     assert (ROOT / LOCATIONS).read_text() == location_tex(data)
     assert data['comment_source']['original_reports_available'] is False
-    paper_lines = (ROOT / PAPER).read_text().splitlines()
     for s in data['sections'].values():
+        paper_lines = (ROOT / s['source']).read_text().splitlines()
         assert s['title'] in norm(paper_lines[s['source_lines'][0] - 1])
+    assert (ROOT / CROSS).read_text() == cross_tex()
+    manifest = json.loads((ROOT/'docs/repository_manifest.json').read_text())
+    mapped_items = {item['label']: item for item in manifest['paper_items']}
+    for label, item in cross_items().items():
+        assert data['labels'][label]['number'] == item['number'], label
+        assert mapped_items[label]['number'] == item['number'], label
+        assert mapped_items[label]['document'] == item['source'], label
+    for path in (PAPER, SUPPLEMENT):
+        for macro, label in re.findall(r'\\(suppref|mainref)\{([^}]+)\}', (ROOT/path).read_text()):
+            target = SUPPLEMENT if macro == 'suppref' else PAPER
+            assert data['labels'][label]['document'] == target, label
     for label, info in data['labels'].items():
         line = (ROOT / info['source']).read_text().splitlines()[info['source_line'] - 1]
         assert f'\\label{{{label}}}' in line
@@ -179,8 +231,12 @@ def check(data, archive_root=None):
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--check', action='store_true')
+    parser.add_argument('--cross-references', action='store_true')
     parser.add_argument('--archive-root', type=Path)
     args = parser.parse_args()
+    if args.cross_references:
+        (ROOT / CROSS).write_text(cross_tex())
+        return
     if args.check:
         check(json.loads((ROOT/MAP).read_text()), args.archive_root)
         return
@@ -188,20 +244,28 @@ def main():
     letter = (ROOT/LETTER).read_text()
     aux = (ROOT/'manuscript/build/TRIX_REVISION.aux').read_text()
     sections, labels, citations = paper_locations(text, aux)
+    si_sections, si_labels, _ = paper_locations((ROOT/SUPPLEMENT).read_text(),
+        (ROOT/'manuscript/build/TRIX_SUPPLEMENT.aux').read_text(), SUPPLEMENT)
+    assert not sections.keys() & si_sections.keys()
+    assert not labels.keys() & si_labels.keys()
+    sections.update(si_sections)
+    labels.update(si_labels)
     entries = response_entries(letter)
     paths = {p for e in entries for p in e['evidence_paths']}
     local_paths = sorted(p for p in paths if not p.startswith('archive/'))
     archive = json.loads((ROOT/'assets/evidence/archive_manifest.json').read_text())
-    data = dict(schema=1, stage='author_review_draft',
+    data = dict(schema=2, stage='author_review_draft',
         manuscript_sha256=digest(ROOT/PAPER), response_sha256=digest(ROOT/LETTER),
+        supplement_sha256=digest(ROOT/SUPPLEMENT),
         manuscript_pdf_sha256_at_build=digest(ROOT/'manuscript/build/TRIX_REVISION.pdf'),
+        supplement_pdf_sha256_at_build=digest(ROOT/'manuscript/build/TRIX_SUPPLEMENT.pdf'),
         archive_manifest_sha256=archive['sha256_manifest'],
         comment_source=dict(original_reports_available=False,
             kind='paraphrases of historical revision map, not reviewer quotations',
             conversation_title='Trix v2.0', conversation_id='6a8e8a3e-0758-83e8-b35d-daf5c8c0e92f',
             turn_id='69543ecc-f4f8-4fa0-87fd-7c4face44268',
             current_evidence_overrides_historical_summary=True),
-        page_reference_basis='Accompanying manuscript build; source lines are not journal line numbers',
+        page_reference_basis='Separate main/supplement builds; S-prefixed sections/items belong to the supplement; source lines are not typeset line numbers',
         sections=sections, labels=labels, citations=citations, responses=entries,
         local_evidence_sha256={p:digest(ROOT/p) for p in local_paths},
         archive_evidence_paths=sorted(p[8:] for p in paths if p.startswith('archive/')),
@@ -222,7 +286,8 @@ def main():
         '[Response LaTeX](../manuscript/TRIX_RESPONSE.tex) ·',
         '[Exact source ranges and evidence hashes](../manuscript/data/reviewer_response_map.json)',
         '', 'Build: `make response`. Check without TeX: `make check`.', '',
-        'Section/page references are generated from the manuscript build. Source ranges',
+        'Section/page references come from separate main and supplement builds. S-prefixed',
+        'locations belong to Supplementary Information. Source ranges',
         'are TeX file lines, not journal margin line numbers.', '',
         '| ID | Request | Draft status | Manuscript sections |', '|---|---|---|---|']
     for e in entries:

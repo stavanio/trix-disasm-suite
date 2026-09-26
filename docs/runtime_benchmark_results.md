@@ -28,7 +28,7 @@ Registered TRiX medians across the six tasks range from 1.123 microseconds
 (PCB) to 11.770 microseconds (CRANK); BATTERY preventive takes 3.122
 microseconds. All implementation/stratum/process summaries, maxima and
 reported infeasible/recovery counts are retained in the machine-readable
-summary. The script regenerates the manuscript's Table 14 from these records.
+summary. The script regenerates the Supplementary Table S7 from these records.
 
 The scalar implementation is faster than the matched QP implementations on
 this host and workload. The NumPy implementation of the same analytical

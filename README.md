@@ -1,4 +1,4 @@
-# TRiX — paper reference
+# TRiX: paper reference
 
 Source and compact evidence for **TRiX: Neuro-Symbolic Safety for Foundation
 Model Agents in Robotic Disassembly**. Current manuscript: private revision,
@@ -6,7 +6,8 @@ not yet submitted in this form. Authors and citation metadata: [CITATION.cff](CI
 
 ## Start here
 
-- [Editable paper](manuscript/TRIX_REVISION.tex)
+- [Main manuscript](manuscript/TRIX_REVISION.tex) and [Supplementary Information](manuscript/TRIX_SUPPLEMENT.tex)
+- [Publication edit and content migration](docs/publication_edit.md)
 - [Reviewer response draft](manuscript/TRIX_RESPONSE.tex) and [comment-to-evidence map](docs/REVIEWER_MAP.md)
 - [Every figure and table → source, data and check](docs/PAPER_MAP.md)
 - [Commands and recorded environments](docs/REPRODUCING.md)
@@ -28,7 +29,8 @@ make paper
 
 The repository check uses Python's standard library. The VLM audit also needs
 NumPy; compilation needs XeLaTeX. See the command guide before running training.
-`make response` builds the paper, refreshes response page references and builds
+`make paper` builds both the main paper and supplement.
+`make response` builds both documents, refreshes response page references and builds
 the response letter. Its 34 comment summaries still require checking against
 the original decision letter. E.4/R1.6 now have a [recorded runtime benchmark](docs/runtime_benchmark_results.md),
 with all raw calls and an independently regenerable table.

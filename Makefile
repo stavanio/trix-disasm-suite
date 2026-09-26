@@ -13,8 +13,9 @@ overleaf:
 
 paper:
 	mkdir -p manuscript/build
-	xelatex -interaction=nonstopmode -halt-on-error -output-directory=manuscript/build manuscript/TRIX_REVISION.tex
-	xelatex -interaction=nonstopmode -halt-on-error -output-directory=manuscript/build manuscript/TRIX_REVISION.tex
+	$(PYTHON) -B scripts/build_reviewer_response_map.py --cross-references
+	latexmk -xelatex -interaction=nonstopmode -halt-on-error -outdir=manuscript/build manuscript/TRIX_REVISION.tex
+	latexmk -xelatex -interaction=nonstopmode -halt-on-error -outdir=manuscript/build manuscript/TRIX_SUPPLEMENT.tex
 
 response: paper
 	$(PYTHON) -B scripts/build_reviewer_response_map.py

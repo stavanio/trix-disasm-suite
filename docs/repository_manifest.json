@@ -250,6 +250,14 @@
         "docs/PAPER_MAP.md"
       ]
     },
+    "docs/publication_edit.md": {
+      "role": "Scope, content migration, numerical preservation and layout checks for the condensed revision",
+      "references": [
+        "manuscript/TRIX_REVISION.tex",
+        "manuscript/TRIX_SUPPLEMENT.tex",
+        "docs/REVIEWER_MAP.md"
+      ]
+    },
     "docs/repository_manifest.json": {
       "role": "documentation or pinned asset metadata",
       "references": [
@@ -423,10 +431,25 @@
         "tab:submitted-1"
       ]
     },
+    "manuscript/TRIX_SUPPLEMENT.tex": {
+      "role": "Detailed methods, proofs and extended evidence accompanying the main paper",
+      "references": [
+        "docs/PAPER_MAP.md",
+        "manuscript/TRIX_REVISION.tex"
+      ]
+    },
     "manuscript/data/battery_aggregation_correction.json": {
       "role": "manuscript source or figure/data dependency",
       "references": [
         "tab:submitted-4"
+      ]
+    },
+    "manuscript/data/cross_document_refs.tex": {
+      "role": "Generated main/supplement display-item numbers checked against both compiled sources",
+      "references": [
+        "scripts/build_reviewer_response_map.py",
+        "manuscript/TRIX_REVISION.tex",
+        "manuscript/TRIX_SUPPLEMENT.tex"
       ]
     },
     "manuscript/data/response_locations.tex": {
@@ -1326,18 +1349,20 @@
   "paper_items": [
     {
       "label": "fig:submitted-1",
-      "title": "Figure 1 \u2014 execution architecture",
+      "title": "Figure 1: execution architecture",
       "files": [
         "manuscript/TRIX_REVISION.tex",
         "manuscript/figures/trix_architecture_fig1.svg",
         "manuscript/figures/trix_architecture_fig1.pdf"
       ],
       "command_or_check": "Editable SVG source; paper compilation verifies the exported figure.",
-      "citations": []
+      "citations": [],
+      "document": "manuscript/TRIX_REVISION.tex",
+      "number": "1"
     },
     {
       "label": "fig:submitted-2",
-      "title": "Figure 2 \u2014 command representation",
+      "title": "Figure 2: command representation",
       "files": [
         "scripts/build_revision_figure2.py",
         "envs/screw_env_v3.py",
@@ -1346,11 +1371,13 @@
         "manuscript/figures/figure2_representation_gap.svg"
       ],
       "command_or_check": "python3 scripts/build_revision_figure2.py",
-      "citations": []
+      "citations": [],
+      "document": "manuscript/TRIX_REVISION.tex",
+      "number": "2"
     },
     {
       "label": "fig:disasm-workspaces",
-      "title": "Figure 3 \u2014 six workspaces",
+      "title": "Figure 3: six workspaces",
       "files": [
         "scripts/render_screw_workspace_b601.py",
         "scripts/render_pcb_workspace_b601.py",
@@ -1366,32 +1393,38 @@
       "command_or_check": "Individual commands and asset/state hashes: docs/workspace_rendering.md.",
       "citations": [
         "ref33"
-      ]
+      ],
+      "document": "manuscript/TRIX_REVISION.tex",
+      "number": "3"
     },
     {
       "label": "fig:seed-distributions",
-      "title": "Figure 4 \u2014 seed distributions",
+      "title": "Figure 4: seed distributions",
       "files": [
         "manuscript/figures/figure4_seed_distributions.pdf",
         "manuscript/figures/figure4_seed_data.csv",
         "scripts/build_revision_seed_statistics.py"
       ],
       "command_or_check": "Full archive audit checks all 80 plotted points; original plot generator unavailable.",
-      "citations": []
+      "citations": [],
+      "document": "manuscript/TRIX_REVISION.tex",
+      "number": "4"
     },
     {
       "label": "fig:b601-hardware",
-      "title": "Figure 5 \u2014 B601 execution",
+      "title": "Figure 5: B601 execution",
       "files": [
         "manuscript/figures/b601_hardware_sequence.jpg",
         "assets/evidence/archive_manifest.json"
       ],
       "command_or_check": "Archive: hardware/results/hardware/v4_confirmation/final_submission/HARDWARE_EVIDENCE_README.md; three linked videos.",
-      "citations": []
+      "citations": [],
+      "document": "manuscript/TRIX_REVISION.tex",
+      "number": "5"
     },
     {
       "label": "tab:submitted-1",
-      "title": "Table 1 \u2014 related methods",
+      "title": "Table 1: related methods",
       "files": [
         "manuscript/TRIX_REVISION.tex"
       ],
@@ -1408,11 +1441,13 @@
         "ref24",
         "ref25",
         "ref26"
-      ]
+      ],
+      "document": "manuscript/TRIX_REVISION.tex",
+      "number": "1"
     },
     {
       "label": "tab:submitted-2",
-      "title": "Table 2 \u2014 task definitions",
+      "title": "Table 2: task definitions",
       "files": [
         "envs/screw_env_v3.py",
         "envs/pcb_env_v2.py",
@@ -1422,11 +1457,13 @@
         "envs/pry_env_v2.py"
       ],
       "command_or_check": "Environment constants, reset(), step() and _get_obs(); source hashes pinned in assets/workspaces/environment_sources.json.",
-      "citations": []
+      "citations": [],
+      "document": "manuscript/TRIX_REVISION.tex",
+      "number": "2"
     },
     {
       "label": "tab:submitted-3",
-      "title": "Table 3 \u2014 algorithm and runtime-arm taxonomy",
+      "title": "Table 3: algorithm and runtime-arm taxonomy",
       "files": [
         "benchmark/registry.py",
         "training/sb3_runner.py",
@@ -1437,47 +1474,28 @@
         "ref21",
         "ref31",
         "ref32"
-      ]
+      ],
+      "document": "manuscript/TRIX_REVISION.tex",
+      "number": "3"
     },
     {
-      "label": "tab:submitted-4",
-      "title": "Table 4 \u2014 post-hoc governance",
+      "label": "tab:policy-summary",
+      "title": "Table 4: Policy-adaptation comparisons",
       "files": [
-        "training/stage1.py",
+        "manuscript/TRIX_REVISION.tex",
         "results/stage1/stage1_records.json",
-        "results/audits/pcb_oracle_seed_fix/pcb_oracle_seed0_corrected.json",
-        "manuscript/data/battery_aggregation_correction.json",
-        "scripts/audit_reproducibility_release.py"
+        "results/stage2/stage2_records.json",
+        "manuscript/data/seed_statistics_summary.json",
+        "manuscript/data/battery_aggregation_correction.json"
       ],
-      "command_or_check": "Full archive audit checks exact-arm shards and all 50 displayed cells.",
-      "citations": []
-    },
-    {
-      "label": "tab:stage2-key",
-      "title": "Table 5 \u2014 filter-aware governance",
-      "files": [
-        "training/stage2.py",
-        "results/stage2/stage2_records.json"
-      ],
-      "command_or_check": "Full archive audit; training arms stay separate from Stage 1.",
-      "citations": []
-    },
-    {
-      "label": "tab:procedural-geometry",
-      "title": "Table 6 \u2014 procedural geometry",
-      "files": [
-        "experiments/geometry_bench.py",
-        "benchmark/geometry_gen.py",
-        "results/geometry_bench_train.json",
-        "results/geometry_bench_val.json",
-        "results/geometry_bench_heldout.json"
-      ],
-      "command_or_check": "scripts/audit_revision_claims.py against the full archive; 200 held-out geometries.",
-      "citations": []
+      "citations": [],
+      "command_or_check": "Compare the eight displayed pairs with the frozen Stage 1/Stage 2 records and paired-seed statistics; details in docs/publication_edit.md.",
+      "document": "manuscript/TRIX_REVISION.tex",
+      "number": "4"
     },
     {
       "label": "tab:vlm-results",
-      "title": "Table 7 \u2014 VLM decisions",
+      "title": "Table 5: VLM decisions",
       "files": [
         "scripts/audit_vlm_reconciliation.py",
         "experiments/vlm_trial.py",
@@ -1492,21 +1510,13 @@
         "ref36",
         "ref37",
         "ref38"
-      ]
-    },
-    {
-      "label": "tab:b601-hardware",
-      "title": "Table 8 \u2014 hardware confirmation",
-      "files": [
-        "assets/evidence/archive_manifest.json",
-        "scripts/audit_revision_claims.py"
       ],
-      "command_or_check": "Archive: hardware/results/hardware/v4_confirmation/final_submission/tables/hardware_results.csv; six logs, three video-backed trials.",
-      "citations": []
+      "document": "manuscript/TRIX_REVISION.tex",
+      "number": "5"
     },
     {
       "label": "tab:submitted-7",
-      "title": "Table 9 \u2014 observations",
+      "title": "Supplementary Table S1: observations",
       "files": [
         "envs/screw_env_v3.py",
         "envs/pcb_env_v2.py",
@@ -1516,11 +1526,30 @@
         "envs/pry_env_v2.py"
       ],
       "command_or_check": "Trace each row to _get_obs(); units and indices checked against current environment definitions.",
-      "citations": []
+      "citations": [],
+      "document": "manuscript/TRIX_SUPPLEMENT.tex",
+      "number": "S1"
+    },
+    {
+      "label": "tab:action-scales",
+      "title": "Supplementary Table S2: Physical command scales",
+      "files": [
+        "envs/screw_env_v3.py",
+        "envs/pcb_env_v2.py",
+        "envs/snap_env_v2.py",
+        "envs/crank_env_v2.py",
+        "envs/battery_env_v2.py",
+        "envs/pry_env_v2.py",
+        "manuscript/TRIX_SUPPLEMENT.tex"
+      ],
+      "citations": [],
+      "command_or_check": "Check ACTION_SCALE in each frozen environment; no rollout.",
+      "document": "manuscript/TRIX_SUPPLEMENT.tex",
+      "number": "S2"
     },
     {
       "label": "tab:submitted-8",
-      "title": "Table 10 \u2014 constraints and outcomes",
+      "title": "Supplementary Table S3: constraints and outcomes",
       "files": [
         "envs/screw_env_v3.py",
         "envs/pcb_env_v2.py",
@@ -1532,11 +1561,13 @@
         "benchmark/taxonomy.py"
       ],
       "command_or_check": "Environment step()/episode_summary() and classify(); no new physics parameters.",
-      "citations": []
+      "citations": [],
+      "document": "manuscript/TRIX_SUPPLEMENT.tex",
+      "number": "S3"
     },
     {
       "label": "tab:submitted-9",
-      "title": "Table 11 \u2014 reset randomisation",
+      "title": "Supplementary Table S4: reset randomisation",
       "files": [
         "envs/screw_env_v3.py",
         "envs/pcb_env_v2.py",
@@ -1546,11 +1577,13 @@
         "envs/pry_env_v2.py"
       ],
       "command_or_check": "Environment reset() and noise constants.",
-      "citations": []
+      "citations": [],
+      "document": "manuscript/TRIX_SUPPLEMENT.tex",
+      "number": "S4"
     },
     {
       "label": "tab:submitted-10",
-      "title": "Table 12 \u2014 training configuration",
+      "title": "Supplementary Table S5: training configuration",
       "files": [
         "training/sb3_runner.py",
         "benchmark/protocol.py",
@@ -1562,11 +1595,13 @@
       "citations": [
         "ref31",
         "ref32"
-      ]
+      ],
+      "document": "manuscript/TRIX_SUPPLEMENT.tex",
+      "number": "S5"
     },
     {
       "label": "tab:submitted-11",
-      "title": "Table 13 \u2014 seed contrasts",
+      "title": "Supplementary Table S6: seed contrasts",
       "files": [
         "scripts/build_revision_seed_statistics.py",
         "manuscript/data/seed_statistics_input.json",
@@ -1575,11 +1610,13 @@
         "manuscript/tables/seed_statistics.tex"
       ],
       "command_or_check": "python3 scripts/build_revision_seed_statistics.py; 13 contrasts, 220 records, 4,400 source shards.",
-      "citations": []
+      "citations": [],
+      "document": "manuscript/TRIX_SUPPLEMENT.tex",
+      "number": "S6"
     },
     {
       "label": "tab:runtime-latency",
-      "title": "Table 14: recorded computational cost",
+      "title": "Supplementary Table S7: recorded computational cost",
       "files": [
         "experiments/runtime_benchmark.py",
         "requirements-runtime.txt",
@@ -1606,7 +1643,63 @@
         "results/runtime/summary.json"
       ],
       "command_or_check": "python3 -B experiments/runtime_benchmark.py check --out results/runtime",
-      "citations": []
+      "citations": [],
+      "document": "manuscript/TRIX_SUPPLEMENT.tex",
+      "number": "S7"
+    },
+    {
+      "label": "tab:submitted-4",
+      "title": "Supplementary Table S8: post-hoc governance",
+      "files": [
+        "training/stage1.py",
+        "results/stage1/stage1_records.json",
+        "results/audits/pcb_oracle_seed_fix/pcb_oracle_seed0_corrected.json",
+        "manuscript/data/battery_aggregation_correction.json",
+        "scripts/audit_reproducibility_release.py"
+      ],
+      "command_or_check": "Full archive audit checks exact-arm shards and all 50 displayed cells.",
+      "citations": [],
+      "document": "manuscript/TRIX_SUPPLEMENT.tex",
+      "number": "S8"
+    },
+    {
+      "label": "tab:stage2-key",
+      "title": "Supplementary Table S9: filter-aware governance",
+      "files": [
+        "training/stage2.py",
+        "results/stage2/stage2_records.json"
+      ],
+      "command_or_check": "Full archive audit; training arms stay separate from Stage 1.",
+      "citations": [],
+      "document": "manuscript/TRIX_SUPPLEMENT.tex",
+      "number": "S9"
+    },
+    {
+      "label": "tab:procedural-geometry",
+      "title": "Supplementary Table S10: procedural geometry",
+      "files": [
+        "experiments/geometry_bench.py",
+        "benchmark/geometry_gen.py",
+        "results/geometry_bench_train.json",
+        "results/geometry_bench_val.json",
+        "results/geometry_bench_heldout.json"
+      ],
+      "command_or_check": "scripts/audit_revision_claims.py against the full archive; 200 held-out geometries.",
+      "citations": [],
+      "document": "manuscript/TRIX_SUPPLEMENT.tex",
+      "number": "S10"
+    },
+    {
+      "label": "tab:b601-hardware",
+      "title": "Supplementary Table S11: hardware confirmation",
+      "files": [
+        "assets/evidence/archive_manifest.json",
+        "scripts/audit_revision_claims.py"
+      ],
+      "command_or_check": "Archive: hardware/results/hardware/v4_confirmation/final_submission/tables/hardware_results.csv; six logs, three video-backed trials.",
+      "citations": [],
+      "document": "manuscript/TRIX_SUPPLEMENT.tex",
+      "number": "S11"
     }
   ],
   "locked_renderer_files": {
