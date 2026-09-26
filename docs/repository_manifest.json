@@ -645,6 +645,55 @@
         "fig:disasm-workspaces"
       ]
     },
+    "manuscript/fonts/DejaVuMathTeXGyre.ttf": {
+      "role": "Bundled manuscript font or its licence/provenance for portable compilation",
+      "references": [
+        "manuscript/TRIX_REVISION.tex",
+        "docs/REPRODUCING.md"
+      ]
+    },
+    "manuscript/fonts/DejaVuSerif-Bold.ttf": {
+      "role": "Bundled manuscript font or its licence/provenance for portable compilation",
+      "references": [
+        "manuscript/TRIX_REVISION.tex",
+        "docs/REPRODUCING.md"
+      ]
+    },
+    "manuscript/fonts/DejaVuSerif-BoldItalic.ttf": {
+      "role": "Bundled manuscript font or its licence/provenance for portable compilation",
+      "references": [
+        "manuscript/TRIX_REVISION.tex",
+        "docs/REPRODUCING.md"
+      ]
+    },
+    "manuscript/fonts/DejaVuSerif-Italic.ttf": {
+      "role": "Bundled manuscript font or its licence/provenance for portable compilation",
+      "references": [
+        "manuscript/TRIX_REVISION.tex",
+        "docs/REPRODUCING.md"
+      ]
+    },
+    "manuscript/fonts/DejaVuSerif.ttf": {
+      "role": "Bundled manuscript font or its licence/provenance for portable compilation",
+      "references": [
+        "manuscript/TRIX_REVISION.tex",
+        "docs/REPRODUCING.md"
+      ]
+    },
+    "manuscript/fonts/LICENSE.txt": {
+      "role": "Bundled manuscript font or its licence/provenance for portable compilation",
+      "references": [
+        "manuscript/TRIX_REVISION.tex",
+        "docs/REPRODUCING.md"
+      ]
+    },
+    "manuscript/fonts/manifest.json": {
+      "role": "Bundled manuscript font or its licence/provenance for portable compilation",
+      "references": [
+        "manuscript/TRIX_REVISION.tex",
+        "docs/REPRODUCING.md"
+      ]
+    },
     "manuscript/tables/runtime_latency.tex": {
       "role": "Runtime benchmark source, protocol, environment or generated table",
       "references": [
@@ -929,6 +978,13 @@
         "docs/REPRODUCING.md"
       ]
     },
+    "scripts/build_overleaf_bundle.py": {
+      "role": "Build the complete manuscript upload ZIP with exact dependencies and hashes",
+      "references": [
+        "manuscript/TRIX_REVISION.tex",
+        "docs/REPRODUCING.md"
+      ]
+    },
     "scripts/build_reviewer_response_map.py": {
       "role": "Build and verify response locations, evidence hashes and coverage",
       "references": [
@@ -1183,6 +1239,7 @@
     "benchmark/criterion.py",
     "experiments/geometry_bench.py",
     "experiments/pry_control.py",
+    "experiments/runtime_benchmark.py",
     "experiments/safelayer_decomposition.py",
     "experiments/sensitivity.py",
     "experiments/vlm_bank.py",
@@ -1190,6 +1247,8 @@
     "scripts/audit_reproducibility_release.py",
     "scripts/audit_revision_claims.py",
     "scripts/audit_vlm_reconciliation.py",
+    "scripts/build_overleaf_bundle.py",
+    "scripts/build_reviewer_response_map.py",
     "scripts/build_revision_figure2.py",
     "scripts/build_revision_seed_statistics.py",
     "scripts/check_paper_repository.py",
@@ -1203,9 +1262,7 @@
     "scripts/verify_workspace_renders.py",
     "scripts/verify_workspace_state_mapping.py",
     "training/stage1.py",
-    "training/stage2.py",
-    "scripts/build_reviewer_response_map.py",
-    "experiments/runtime_benchmark.py"
+    "training/stage2.py"
   ],
   "tests": [
     "tests/test_battery_v2.py",

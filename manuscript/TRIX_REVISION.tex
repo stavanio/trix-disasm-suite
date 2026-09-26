@@ -14,8 +14,14 @@
 \usepackage[margin=1in]{geometry}
 \usepackage{fontspec}
 \usepackage{unicode-math}
-\setmainfont{DejaVu Serif}
-\setmathfont{DejaVu Math TeX Gyre}
+% Load the supplied fonts by file so local and Overleaf builds use the same faces.
+\setmainfont[
+  Path=manuscript/fonts/,
+  BoldFont=DejaVuSerif-Bold.ttf,
+  ItalicFont=DejaVuSerif-Italic.ttf,
+  BoldItalicFont=DejaVuSerif-BoldItalic.ttf
+]{DejaVuSerif.ttf}
+\setmathfont[Path=manuscript/fonts/]{DejaVuMathTeXGyre.ttf}
 \usepackage{microtype}
 % Allow a modest final line-breaking pass without hiding overflow warnings.
 \setlength{\emergencystretch}{2em}
