@@ -2,7 +2,7 @@
   "schema": 2,
   "stage": "author_review_draft",
   "manuscript_sha256": "ad0c803cef2623c908730afed4be46f9138eec4b3776443e7e0beda5c9c924cf",
-  "response_sha256": "05192246f8b30a281342f204f3971e57bc17ada6af1c1e75dec6217a7707c5c8",
+  "response_sha256": "5326d71f57de97e151c26158b66b8f596b8d483be4a060715d886609fcf86dc1",
   "supplement_sha256": "61fbfced130ecd5df1bf2e57bf0916ee1a81bed1cf3b1cd532257cb2a86f7ac4",
   "manuscript_pdf_sha256_at_build": "8829b228a1e39eb1e44ddcc6d04c3ea922e2d14788e1c98a14595941c4b5eb19",
   "supplement_pdf_sha256_at_build": "d92db02f0026b3bc49dcca81c34317d63ee4428c05009d6e7fc5a1710ca223f3",
