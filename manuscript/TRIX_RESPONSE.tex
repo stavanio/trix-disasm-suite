@@ -383,9 +383,13 @@ counts, plus within/outside-support denominators. The same training-seed
 estimator is used as in main Section~4.6; historical comparisons are not
 episode-paired and therefore include episode-sampling variation.
 
-In SNAP's outside-support shell, TRiX safe completion falls from 96.5\% to
-59.9\%, versus 3.5\% under static, while fractures occur in 401 versus 468
-of 1,000 episodes per arm, including timeouts. Destructive completions
+In SNAP's outside-support shell, safe completion is 59.9\% under TRiX versus
+3.5\% under static in a comparison of separately trained policy-and-governor
+systems that does not isolate the governor's causal contribution.
+The corresponding in-range rates are 96.5\% and 5.2\%; the main text now
+links the native-range and shifted-reset findings explicitly. Fractures
+occur in 401 versus 468 of 1,000 episodes per arm, including timeouts.
+Destructive completions
 number 369 versus 886; this separate category pools completed episodes with
 fracture or accumulated damage and excludes timeouts. The larger advantage
 in safe completion therefore accompanies a smaller reduction in fractures.

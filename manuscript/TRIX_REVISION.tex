@@ -340,8 +340,9 @@ adaptation while holding the implemented restriction fixed.
 
 \begin{table}[!htbp]
 \centering\small
-\caption{Key policy comparisons. Values are mean safe completion (\%) across
-10 training seeds, with 100 held-out episodes per selected policy/arm.
+\caption{Key policy comparisons within the training reset ranges. Values are
+mean safe completion (\%) across 10 training seeds, with 100 held-out episodes
+per selected policy/arm.
 Stage~1 rows compare the same frozen policy; Stage~2 rows compare separately
 trained policies. Full arm tables and seed-paired intervals are in
 Supplementary Sections~S6 and S9.}
@@ -375,16 +376,18 @@ remains at 0.0\% after filter-aware SAC training, while the implemented
 task-conditioned governor reaches 49.4\%. That mean conceals seeds near
 0\% or 100\% (Figure~\ref{fig:seed-distributions}c). The comparison changes
 both angle-conditioned axial bounds and transverse task-frame representation,
-so it does not isolate either factor. SNAP similarly separates strongly:
-5.2\% for the static restriction and 96.5\% for the task-conditioned governor.
-Its implementations differ in margin as well as latch-phase conditioning.
-These are comparisons of the supplied governors, not pure tests of geometric
-curvature or phase information alone.
+so it does not isolate either factor. Within the training reset ranges,
+SNAP reaches 5.2\% under static and 96.5\% under TRiX in a comparison of
+separately trained policy-and-governor systems that does not isolate the
+governor's causal contribution. The implementations also differ in margin
+and latch-phase conditioning. The shifted-reset evaluation below reduces
+these rates to 3.5\% and 59.9\%, respectively (Supplementary Section~S14).
 
 \begin{figure}[!htbp]
 \centering
 \includegraphics[width=\linewidth]{manuscript/figures/figure4_seed_distributions.pdf}
-\caption{Seed-level safe completion in the frozen production experiments.
+\caption{Seed-level safe completion within the training reset ranges in the
+frozen production experiments.
 Each point is one independent training seed (\(n=10\)); boxplots summarize the
 seed distribution and triangles denote arithmetic means.
 (a) PCB compares the same \texttt{box\_clip} restriction under post-hoc
@@ -423,9 +426,12 @@ at zero, which limits the ranking those cells can support.
 A prospectively declared revision experiment evaluates 42,000 additional
 episodes across the five tasks with stochastic physical resets, retaining
 selected checkpoints and governors. In the primary outside-training-support
-shell, SNAP TRiX safe completion falls from 96.5\% to 59.9\%, versus 3.5\%
-under static; latch fractures, including timeouts, occur in 401 versus 468
-of 1,000 episodes per arm. Destructive completions number 369 versus 886;
+shell, SNAP safe completion is 59.9\% under TRiX versus 3.5\% under static
+in a comparison of separately trained policy-and-governor systems that does
+not isolate the governor's causal contribution. These rates fall from the
+in-range 96.5\% and 5.2\% reported above. Latch fractures, including timeouts,
+occur in 401 versus 468 of 1,000 episodes per arm.
+Destructive completions number 369 versus 886;
 this category combines completed episodes with fracture or accumulated damage
 and excludes timeouts (\suppref{tab:snap-ood-attribution}).
 CRANK reaches 47.6\% under TRiX versus
@@ -638,14 +644,15 @@ being removed to produce a cleaner success narrative.
 
 The added reset-distribution evaluation exposes a further limit. Outside
 training support, SNAP safe completion is 59.9\% under TRiX versus 3.5\%
-under static, while fractures fall from 468 to 401 per 1,000 episodes.
+under static in a comparison of separately trained policy-and-governor
+systems that does not isolate the governor's causal contribution.
+Fractures fall from 468 to 401 per 1,000 episodes.
 A post-hoc replay audit finds every TRiX command inside the frozen executable
 bounds. Nevertheless, all 401 TRiX fractures begin through overdeflection
 in the softer-latch stratum, before pull damage; all 480 TRiX episodes in
 the harder-latch stratum complete safely. These observations distinguish
 per-step command membership from safety of the subsequent dynamic state.
-They establish neither safety throughout either stiffness interval nor the
-isolated causal contribution of the governor to the Stage~2 comparison.
+These observed counts do not establish safety throughout either stiffness interval.
 Supplementary Section~S14.4 reports the full outcome partition, traces and
 the distinction between executed margins and the later, tighter registry.
 

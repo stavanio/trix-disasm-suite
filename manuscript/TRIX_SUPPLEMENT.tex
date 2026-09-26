@@ -1569,8 +1569,9 @@ are descriptive only; the matched 15-N comparison is reported separately.
 \end{table}
 \begin{table}[htbp]
 \centering
-\caption{Representative Stage~2 filter-aware SAC results. Safe-completion
-rates are percentages aggregated over ten production training seeds.}
+\caption{Representative Stage~2 filter-aware SAC results within the training
+reset ranges. Safe-completion rates are percentages aggregated over ten
+production training seeds; arms retain separately trained policies.}
 \label{tab:stage2-key}
 \begin{tabular}{lrr}
 \toprule
@@ -1585,13 +1586,16 @@ PRY   & 88.5 & 89.1\\
 \end{table}
 \subsection{SNAP: phase-conditioned robust governance versus a static baseline}
 
-On SNAP, filter-aware SAC achieves 5.2\% safe completion with the simpler
-restriction and 96.5\% with the task-conditioned governor.
+Within the training reset ranges, SNAP reaches 5.2\% safe completion under
+static and 96.5\% under TRiX in a comparison of separately trained
+policy-and-governor systems that does not isolate the governor's causal
+contribution. These rates fall to 3.5\% and 59.9\%, respectively, in the
+outside-support shell (Section~S14).
 
 For SNAP, this is an implemented-governor comparison rather than a
 phase-only or geometry-only ablation. The static arm is phase-blind and uses
 nominal bounds, whereas the TRiX arm is phase-conditioned and uses the archived
-robust tightening. The observed gap therefore supports the combined governor
+robust tightening. The observed gap supports the combined policy-and-governor
 configuration but does not isolate phase information or tightening as the sole
 cause.
 
@@ -1602,9 +1606,8 @@ same phase-conditioned projection logic. SNAP is therefore retained as an
 implemented-governor result rather than as an ablation isolating either task
 state or margin tightening.
 
-The result therefore supports the need for \emph{context-conditioned
-admissibility} when safe and useful command authority depends on manipulation
-phase.
+This comparison evaluates context-conditioned admissibility while also
+varying the learned policy and margin specification.
 
 
 \subsection{CRANK: angle conditioning and task-frame representation vary together}
@@ -2314,9 +2317,10 @@ respectively, compared with 96.5\% in range. Destructive completions are
 136, 201 and 369 per 1,000 episodes, with 13, 17 and 32 timeouts. The shell
 change in safe completion is $-36.6$, with a 95\% interval of $[-40.3,-33.3]$
 percentage points. The static comparator reaches 4.7\%, 4.4\% and 3.5\%
-safe completion and has 891, 891 and 886 destructive completions. Thus the
-between-arm advantage coexists with substantial damage under the shifted
-SNAP dynamics. Destructive completion combines fracture with accumulated
+safe completion and has 891, 891 and 886 destructive completions. The shell
+contrast of 59.9\% versus 3.5\% compares separately trained policy-and-governor
+systems and does not isolate the governor's causal contribution.
+Destructive completion combines fracture with accumulated
 damage in completed episodes and excludes timeouts. Across all shell
 episodes, including timeouts, latch fractures number 401 under TRiX and
 468 under static; Section~S14.4 separates these outcomes.
