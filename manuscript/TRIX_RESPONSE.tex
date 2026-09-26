@@ -383,21 +383,32 @@ counts, plus within/outside-support denominators. The same training-seed
 estimator is used as in main Section~4.6; historical comparisons are not
 episode-paired and therefore include episode-sampling variation.
 
-The results include an adverse finding. In SNAP's outside-support shell,
-TRiX safe completion falls from 96.5\% to 59.9\%, with 369 destructive
-completions in 1,000 episodes. The static comparator reaches 3.5\% safe
-completion with 886 destructive completions. This damaging outcome is stated
-in the main Results and Discussion, not treated as a timeout-only loss or
-omitted from the comparison. Original in-range results and all previously
-reported studies remain unchanged.
+In SNAP's outside-support shell, TRiX safe completion falls from 96.5\% to
+59.9\%, versus 3.5\% under static, while fractures occur in 401 versus 468
+of 1,000 episodes per arm, including timeouts. Destructive completions
+number 369 versus 886; this separate category pools completed episodes with
+fracture or accumulated damage and excludes timeouts. The larger advantage
+in safe completion therefore accompanies a smaller reduction in fractures.
+Both measures are stated together in the main Results and Discussion, with
+the full partition in \msitem{tab:snap-ood-attribution}.
+
+A post-hoc audit exactly reproduced all 6,000 SNAP episodes and found all
+293,082 TRiX commands inside the frozen executable bounds. All TRiX shell
+fractures began through overdeflection in the softer-latch stratum, before
+pull damage. \mssec{S14.4} also discloses that the historical executed
+margins differ from the later, tighter registry, and quantifies that
+discrepancy without changing the projector. This result distinguishes
+command membership from episode safety. The use column now records both
+native-range evaluation and the added OOD conditions; original in-range
+results remain unchanged.
 
 The separate 105-case sensitivity sweep in Supplementary Section~S7 remains
 a scripted study of physical/specification constants, with 96/105 cases
 meeting its prescribed ordering. It is not pooled with this new reset-distribution
 evaluation and does not substitute for it. Neither study establishes independent
 physical calibration or generalisation to arbitrary unseen dynamics.
-\locations{\mssec{4.1}; \mssec{4.6}; \mssec{S4.6}; \mssec{S14}; \msitem{tab:submitted-9}; \msitem{tab:ood-ranges}; \msitem{tab:ood-safe}; \msitem{tab:ood-outcomes}}
-\evidence{docs/ood_reset_protocol.md; docs/ood_reset_protocol.json; experiments/ood_reset.py; benchmark/evaluation_distribution.py; training/sb3_runner.py; results/ood_reset/summary.json; results/ood_reset/seed_records.json; results/ood_reset/reset_draws.json; results/ood_reset/manifest.json; docs/ood_reset_results.md; experiments/sensitivity.py; results/sensitivity.json}
+\locations{\mssec{2.3}; \mssec{3}; \mssec{4.1}; \mssec{4.6}; \mssec{S4.6}; \mssec{S14}; \mssec{S14.4}; \msitem{tab:submitted-9}; \msitem{tab:ood-ranges}; \msitem{tab:ood-safe}; \msitem{tab:ood-outcomes}; \msitem{tab:snap-ood-attribution}}
+\evidence{docs/ood_reset_protocol.md; docs/ood_reset_protocol.json; experiments/ood_reset.py; benchmark/evaluation_distribution.py; training/sb3_runner.py; results/ood_reset/summary.json; results/ood_reset/seed_records.json; results/ood_reset/reset_draws.json; results/ood_reset/manifest.json; docs/ood_reset_results.md; docs/snap_ood_attribution_plan.md; docs/snap_ood_attribution_results.md; experiments/snap_ood_attribution.py; results/snap_ood_attribution/summary.json; results/snap_ood_attribution/episode_attribution.json; results/snap_ood_attribution/verification.json; results/snap_ood_attribution/manifest.json; experiments/sensitivity.py; results/sensitivity.json}
 
 \response{R2.5}{Placement of runtime discussion}{Move computational timing out of the theoretical derivation.}
 The helical-coupling subsection now contains only the model, normalization

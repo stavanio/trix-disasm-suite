@@ -249,7 +249,10 @@ reported in main Results 2.3, Methods 4.1/4.6, Supplementary S14 and R2.4.
 `python3 -B scripts/build_ood_reset_tables.py --check`.
 
 
-## Post-hoc SNAP attribution supporting the OOD outcome interpretation
+## Supplementary Table S15: SNAP command and damage attribution
+
+`tab:snap-ood-attribution` in Supplementary S14.4, cited in main Results,
+Discussion and response R2.4.
 
 [Plan](snap_ood_attribution_plan.md), [results](snap_ood_attribution_results.md),
 [diagnostic source](../experiments/snap_ood_attribution.py),
@@ -258,7 +261,12 @@ reported in main Results 2.3, Methods 4.1/4.6, Supplementary S14 and R2.4.
 [verification](../results/snap_ood_attribution/verification.json) and
 [raw-trace manifest](../results/snap_ood_attribution/manifest.json).
 
-The checks concern the existing S14/Table S14 SNAP records. No manuscript
-claim or primary result was changed during this diagnostic. The new account
-separates broken/degraded states from completion status and checks membership
-in the exact frozen executable command set.
+The checks concern the existing S14/Table S14 SNAP records. The primary
+outcomes remain unchanged. Table S15 separates broken/degraded states from
+completion status, including broken-latch timeouts. Section S14.4 checks
+membership in the exact frozen executable command set and distinguishes it
+from the later margin registry. Main Results, Discussion and R2.4 now report
+safe completion and fracture totals together.
+
+Reproduce the diagnostic with the command in [REPRODUCING.md](REPRODUCING.md),
+then check the table against the retained per-episode attributions and summary.

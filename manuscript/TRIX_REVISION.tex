@@ -423,9 +423,12 @@ at zero, which limits the ranking those cells can support.
 A prospectively declared revision experiment evaluates 42,000 additional
 episodes across the five tasks with stochastic physical resets, retaining
 selected checkpoints and governors. In the primary outside-training-support
-shell, SNAP TRiX safe completion falls from 96.5\% to 59.9\%, with 369
-destructive completions per 1,000 episodes; the static arm reaches 3.5\%,
-with 886 destructive completions. CRANK reaches 47.6\% under TRiX versus
+shell, SNAP TRiX safe completion falls from 96.5\% to 59.9\%, versus 3.5\%
+under static; latch fractures, including timeouts, occur in 401 versus 468
+of 1,000 episodes per arm. Destructive completions number 369 versus 886;
+this category combines completed episodes with fracture or accumulated damage
+and excludes timeouts (\suppref{tab:snap-ood-attribution}).
+CRANK reaches 47.6\% under TRiX versus
 0.0\% under the static arm, with 22 destructive completions per 1,000
 episodes under TRiX. Matched SCREW arms remain equal (87.9\% SAC;
 59.9\% PPO). PCB yields 0.0\%/99.6\% in Stage~1 and 100.0\%/99.8\%
@@ -633,13 +636,18 @@ test is inconclusive because neither policy algorithm reaches the predeclared
 competence gate. These results remain part of the evidence, rather than
 being removed to produce a cleaner success narrative.
 
-The added reset-distribution evaluation exposes a further limit. Holding the
-governor and policy fixed while changing the reset distribution does not
-preserve SNAP's in-range safety: the outside-support shell produces 36.9\%
-destructive completions under TRiX. Its higher safe-completion rate than the
-static comparator therefore cannot be read as a damage-prevention guarantee.
-The complete outcomes in Supplementary Section~S14 distinguish these damaging
-outcomes from timeouts and from tasks retaining their in-range performance.
+The added reset-distribution evaluation exposes a further limit. Outside
+training support, SNAP safe completion is 59.9\% under TRiX versus 3.5\%
+under static, while fractures fall from 468 to 401 per 1,000 episodes.
+A post-hoc replay audit finds every TRiX command inside the frozen executable
+bounds. Nevertheless, all 401 TRiX fractures begin through overdeflection
+in the softer-latch stratum, before pull damage; all 480 TRiX episodes in
+the harder-latch stratum complete safely. These observations distinguish
+per-step command membership from safety of the subsequent dynamic state.
+They establish neither safety throughout either stiffness interval nor the
+isolated causal contribution of the governor to the Stage~2 comparison.
+Supplementary Section~S14.4 reports the full outcome partition, traces and
+the distinction between executed margins and the later, tighter registry.
 
 Generalization consequently has several meanings here. The procedural study
 varies set family and task context, but fits learned models on each evaluated

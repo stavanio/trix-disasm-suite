@@ -2316,7 +2316,10 @@ change in safe completion is $-36.6$, with a 95\% interval of $[-40.3,-33.3]$
 percentage points. The static comparator reaches 4.7\%, 4.4\% and 3.5\%
 safe completion and has 891, 891 and 886 destructive completions. Thus the
 between-arm advantage coexists with substantial damage under the shifted
-SNAP dynamics.
+SNAP dynamics. Destructive completion combines fracture with accumulated
+damage in completed episodes and excludes timeouts. Across all shell
+episodes, including timeouts, latch fractures number 401 under TRiX and
+468 under static; Section~S14.4 separates these outcomes.
 
 The matched SCREW arms remain equal in every condition. PCB retains its
 regime distinction. CRANK TRiX reaches 47.6\% safe completion in each added
@@ -2328,6 +2331,73 @@ zero-performing arm or unfavourable condition is excluded. These aggregate outco
 identify a unique dynamical mechanism for the SNAP damage increase.
 
 \input{manuscript/data/ood_reset_results.tex}
+
+\subsection{Post-hoc SNAP command and damage attribution}
+\label{sec:si-snap-attribution}
+
+The post-hoc diagnostic replayed all 6,000 SNAP episodes across both arms
+and all three conditions, using passive command and substep observers.
+Every episode's outcome, step count, violation flag and reset metadata
+matched exactly, with the plant, filters, checkpoints and random streams
+unchanged. An independent array audit reconstructed every projection:
+all 293,082 TRiX commands and 317,466 static commands satisfied their own
+executed bounds, with zero positive residuals and no tolerance needed to
+obtain this result. This checks membership at the sampled state, not safety
+of all subsequent dynamic states.
+
+The historical SNAP TRiX filter executes $z\simeq4.3043128$; substituting the later
+registry's $z\simeq4.4266298$ in the pull and lateral bounds alone, while
+retaining the executed deflection bound, puts 230,582 of the 293,082 TRiX
+commands outside that tighter alternative by more than $10^{-7}$ normalized
+units, so the membership result applies only to the executed specification.
+This is the margin-routing discrepancy described in Section~S5.7, measured
+on the retained command traces; the projector and historical records remain
+unchanged.
+
+\begin{table}[!htbp]
+\centering\small
+\caption{SNAP damage attribution in the primary outside-support shell.
+The first five rows partition 1,000 episodes per arm: ten training seeds
+and 100 shared reset draws. Subtotals distinguish completed damage from
+all fractures, including timeouts. These post-hoc counts are descriptive.}
+\label{tab:snap-ood-attribution}
+\begin{tabular}{@{}lrr@{}}
+\toprule Outcome & TRiX & Static\\
+\midrule
+Safe completion & 599 & 35\\
+Intact completion with violation & 0 & 30\\
+Completion with broken latch & 369 & 419\\
+Completion with accumulated damage, no fracture & 0 & 467\\
+Timeout with broken latch & 32 & 49\\
+\midrule
+Total episodes & 1,000 & 1,000\\
+\midrule
+Destructive completions (subtotal) & 369 & 886\\
+Fractures across all episodes (subtotal) & 401 & 468\\
+\bottomrule
+\end{tabular}
+\end{table}
+
+In the lower shell, $4000\leq k_{\rm latch}<4500$~N\,m$^{-1}$, TRiX completes
+safely in 119 of 520 episodes and static in 11; fractures number 401 and
+468, respectively. In the upper shell, $5500<k_{\rm latch}\leq6000$~N\,m$^{-1}$,
+TRiX completes safely in all 480 episodes and static in 24. Neither arm
+fractures a latch in that stratum, but static has 432 completions with
+accumulated damage and 24 intact completions with violations.
+
+Every TRiX shell fracture first occurs when integrated deflection exceeds
+6~mm, before any pull-damage event in that episode. All commands through
+fracture remain inside the executed set. In 331 of these 401 episodes,
+no preceding commanded force has a static equilibrium magnitude
+$|F_{\rm command}/k_{\rm latch}|>6$~mm. The trace therefore cannot be explained
+by that static calculation alone. The audit locates overdeflection after
+admissible commands; it does not separate causal contributions from noise,
+stiffness and transient dynamics. The Stage~2 arms also retain separately
+trained policies and differ in phase awareness and margin specification,
+so their outcome contrast does not isolate the governor's contribution.
+
+The source map links the post-hoc plan, diagnostic code, per-episode records
+and archived command traces and first-event states.
 
 \clearpage
 \begin{thebibliography}{99}

@@ -314,14 +314,16 @@
       "role": "Declared scope of post-hoc SNAP attribution; not a prospective primary amendment",
       "references": [
         "docs/snap_ood_attribution_results.md",
-        "tab:ood-outcomes"
+        "tab:ood-outcomes",
+        "tab:snap-ood-attribution"
       ]
     },
     "docs/snap_ood_attribution_results.md": {
       "role": "Verified command membership, damage subtype and outside-support comparator account",
       "references": [
         "docs/snap_ood_attribution_results.md",
-        "tab:ood-outcomes"
+        "tab:ood-outcomes",
+        "tab:snap-ood-attribution"
       ]
     },
     "docs/workspace_rendering.md": {
@@ -452,7 +454,8 @@
       "role": "Post-hoc exact SNAP replay with passive command and damage-path observers",
       "references": [
         "docs/snap_ood_attribution_results.md",
-        "tab:ood-outcomes"
+        "tab:ood-outcomes",
+        "tab:snap-ood-attribution"
       ]
     },
     "experiments/vlm_bank.py": {
@@ -503,7 +506,8 @@
       "role": "Detailed methods, proofs and extended evidence accompanying the main paper",
       "references": [
         "docs/PAPER_MAP.md",
-        "manuscript/TRIX_REVISION.tex"
+        "manuscript/TRIX_REVISION.tex",
+        "tab:snap-ood-attribution"
       ]
     },
     "manuscript/data/battery_aggregation_correction.json": {
@@ -1061,28 +1065,32 @@
       "role": "Compact diagnostic fields for all 6000 exactly matched episodes",
       "references": [
         "docs/snap_ood_attribution_results.md",
-        "tab:ood-outcomes"
+        "tab:ood-outcomes",
+        "tab:snap-ood-attribution"
       ]
     },
     "results/snap_ood_attribution/manifest.json": {
       "role": "Hash linkage to all diagnostic cells and full command traces",
       "references": [
         "docs/snap_ood_attribution_results.md",
-        "tab:ood-outcomes"
+        "tab:ood-outcomes",
+        "tab:snap-ood-attribution"
       ]
     },
     "results/snap_ood_attribution/summary.json": {
       "role": "All 60 diagnostic cells summarized by arm, condition, seed and support stratum",
       "references": [
         "docs/snap_ood_attribution_results.md",
-        "tab:ood-outcomes"
+        "tab:ood-outcomes",
+        "tab:snap-ood-attribution"
       ]
     },
     "results/snap_ood_attribution/verification.json": {
       "role": "Saved command, projection, continuity, hash and original-outcome checks",
       "references": [
         "docs/snap_ood_attribution_results.md",
-        "tab:ood-outcomes"
+        "tab:ood-outcomes",
+        "tab:snap-ood-attribution"
       ]
     },
     "results/stage1/stage1_records.json": {
@@ -1938,6 +1946,24 @@
       "citations": [],
       "document": "manuscript/TRIX_SUPPLEMENT.tex",
       "number": "S14"
+    },
+    {
+      "label": "tab:snap-ood-attribution",
+      "title": "Supplementary Table S15: SNAP command and damage attribution",
+      "files": [
+        "manuscript/TRIX_SUPPLEMENT.tex",
+        "docs/snap_ood_attribution_plan.md",
+        "docs/snap_ood_attribution_results.md",
+        "experiments/snap_ood_attribution.py",
+        "results/snap_ood_attribution/summary.json",
+        "results/snap_ood_attribution/episode_attribution.json",
+        "results/snap_ood_attribution/verification.json",
+        "results/snap_ood_attribution/manifest.json"
+      ],
+      "command_or_check": "Replay with experiments/snap_ood_attribution.py as documented in docs/REPRODUCING.md; check disjoint outcomes and all-episode fractures against saved per-episode attributions.",
+      "citations": [],
+      "document": "manuscript/TRIX_SUPPLEMENT.tex",
+      "number": "S15"
     }
   ],
   "locked_renderer_files": {

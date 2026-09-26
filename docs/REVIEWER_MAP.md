@@ -32,7 +32,7 @@ are TeX file lines, not journal margin line numbers.
 | R2.1 | PCB variables and physical interpretation | response drafted | 2.2, 4.1, S2.2, S4.1, S4.2 |
 | R2.2 | Observation dimensionality | response drafted | 4.1, S4.1 |
 | R2.3 | Reward symbols and outcome notation | response drafted | 4.1, 4.2, S4.3, S4.4 |
-| R2.4 | Domain randomisation appendix | response drafted | 4.1, 4.6, S4.6, S14 |
+| R2.4 | Domain randomisation appendix | response drafted | S14.4, 2.3, 3, 4.1, 4.6, S4.6, S14 |
 | R2.5 | Placement of runtime discussion | response drafted | 2.1, 2.7, 4.8, S8 |
 | R2.6 | Orphaned Figure~2 reference | response drafted | 2.1 |
 | R2.7 | Narrative structure | response drafted | 1, 2.1, 2.3, 2.4, 3 |
