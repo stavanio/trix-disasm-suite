@@ -74,7 +74,8 @@ Their generated cross-document references are checked against both builds.
 page and bibliography references from that build. The response map records exact
 TeX source ranges and hashes; they are not journal margin line numbers.
 `make check` also detects stale response mappings without requiring a TeX runtime.
-Original reviewer wording remains a review gate; see [the response map](REVIEWER_MAP.md).
+The response paraphrases are checked against the original decision letter;
+see [the response map](REVIEWER_MAP.md) and its source-excerpt record.
 The new runtime benchmark supplies the measurements for E.4 and R1.6.
 
 The response letter uses XeLaTeX with 12-point TeX Gyre Termes text, matching
@@ -88,8 +89,9 @@ response-letter template. The journal's [revised-submission guide](https://www.n
 requires point-by-point replies and compliance with the editor's decision letter.
 [Nature's rebuttal advice](https://blogs.nature.com/blog/how-to-write-a-rebuttal-letter/)
 recommends clearly distinguishing comments and replies. The draft does this
-with italic dark-blue comment summaries and black responses; it still requires
-the original reviewer reports before those summaries can be verified.
+with italic dark-blue comment paraphrases and black responses. The 35 requests
+are mapped to the original decision letter dated 20 July 2026. R3 is acknowledged
+as a co-review with no separate substantive requests.
 
 ## Recorded runtime benchmark
 

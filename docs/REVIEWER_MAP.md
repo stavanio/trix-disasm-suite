@@ -1,11 +1,13 @@
 # Reviewer response map
 
-Author-review draft: all 34 recovered points have responses. Original reports
-are not available in the checked local material; summaries are paraphrases.
-Completeness against the actual decision letter is not yet verified.
+Author-review draft: all 35 requests are mapped to the original decision letter
+dated 20 July 2026 and the current manuscript. Comments are verified paraphrases.
+The earlier handoff omitted editor bullet 5. It is now E.5; generality is E.6.
+R3 is a confirmed co-review acknowledgement with no separate substantive requests.
 
 [Response LaTeX](../manuscript/TRIX_RESPONSE.tex) ·
 [Exact source ranges and evidence hashes](../manuscript/data/reviewer_response_map.json)
+[Original excerpts and requirement mapping](../manuscript/data/reviewer_comment_source.json)
 
 Build: `make response`. Check without TeX: `make check`.
 
@@ -13,13 +15,19 @@ Section/page references come from separate main and supplement builds. S-prefixe
 locations belong to Supplementary Information. Source ranges
 are TeX file lines, not journal margin line numbers.
 
+R4.1-R4.13 are response identifiers for the unnumbered original report.
+Verified coverage is not a claim of reviewer acceptance: R4.2 supplies a
+matched command-set QP, and R4.6 withdraws independent physical-validation
+claims. Those scope choices are explicit in the replies.
+
 | ID | Request | Draft status | Manuscript sections |
 |---|---|---|---|
 | E.1 | Positioning among existing safety methods | response drafted | 1, 2.1, 4.3 |
 | E.2 | Introduce the architecture figure in context | response drafted | 1, 2.1 |
 | E.3 | Safety, damage and task quality | response drafted | 3, 4.1, S1, S4.4, S13 |
 | E.4 | Quantitative latency | timing benchmark reported | 2.7, 4.8, S8 |
-| E.5 | Generality beyond six task implementations | response drafted | 2.1, 2.4, 3, 4.4, S10 |
+| E.5 | Position TRiX against the reviewed approaches | response drafted | 1, 2.2, 2.3, 4.3 |
+| E.6 | Generality beyond task examples | response drafted | 2.1, 2.4, 3, 4.4, S10 |
 | R1.1 | References in comparison tables | response drafted | 4.3 |
 | R1.2 | Accessibility of the theoretical framework | response drafted | 1, 2.1, S1, S2, S3 |
 | R1.3 | Simulated workspace and interaction | response drafted | 2.2, 4.1, S4 |
@@ -52,11 +60,19 @@ are TeX file lines, not journal margin line numbers.
 
 ## Submission gates
 
-- Check original reports and exact editorial requirements.
-- Review whether matched command-QP scope addresses original R4.2 wording.
+- Complete the actual linked editorial requirements table.
+- Author approval of the scoped R4.2 and R4.6 responses.
 - Arrange private reviewer access.
 - Author review and clean/marked submission.
 - Final journal page/line references.
+
+## Original editorial requirements
+
+- Complete the linked editorial requirements table, describing revisions and relevant notes in its right-hand column. Status: open; actual online table must be completed.
+- Supply a point-by-point response; explain any requests that cannot be addressed or are considered invalid. Status: draft mapped to all original requests; author review pending.
+- Supply a clean revised manuscript without markup. Status: final submission version pending.
+- Supply a marked manuscript with all changes highlighted in a different colour. Status: open.
+- Aim to return the revision within twelve weeks and notify the editor if substantially more time is needed. Status: scheduling instruction; no message sent.
 
 ## Evidence and privacy
 

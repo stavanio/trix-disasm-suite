@@ -51,7 +51,8 @@ new tables give the main policy contrasts and complete physical action scales.
   unchanged. The private 24.5 GB evidence archive is also unchanged.
 - All 34 response entries now refer to main or S-prefixed supplementary sections
   with separate page numbering. The map records both source hashes and rejects
-  stale references. The original reviewer reports still require verification.
+  stale references. The original decision letter was supplied and checked on
+  26 September 2026; the response map now covers all 35 substantive requests.
 
 ## Rebuild and package
 

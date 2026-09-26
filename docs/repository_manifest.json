@@ -490,7 +490,7 @@
       ]
     },
     "manuscript/TRIX_RESPONSE.tex": {
-      "role": "Author-review response draft for all 34 recovered comments",
+      "role": "Author-review response draft for 35 requests mapped to the original decision letter",
       "references": [
         "docs/REVIEWER_MAP.md"
       ]
@@ -536,6 +536,13 @@
       "role": "Generated section/page and bibliography references for response letter",
       "references": [
         "manuscript/TRIX_RESPONSE.tex"
+      ]
+    },
+    "manuscript/data/reviewer_comment_source.json": {
+      "role": "Verified decision-letter excerpts, response paraphrases and editorial requirements; excludes private mail links",
+      "references": [
+        "scripts/build_reviewer_response_map.py",
+        "docs/REVIEWER_MAP.md"
       ]
     },
     "manuscript/data/reviewer_response_map.json": {

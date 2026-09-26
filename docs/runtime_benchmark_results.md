@@ -75,5 +75,6 @@ verifies the hashes, schedules, counts and recalculated summaries. It does not
 rerun timing. `table` regenerates the table; `run --out NEW_DIRECTORY` performs
 a new timing replication. Duration bytes will naturally differ between runs.
 
-E.4 and R1.6 now have measured evidence and revised responses. Verification
-against the original reviewer reports remains a separate editorial task.
+E.4 and R1.6 have measured evidence and revised responses. Their paraphrases
+were checked against the original decision letter on 26 September 2026;
+see [the response map](REVIEWER_MAP.md).

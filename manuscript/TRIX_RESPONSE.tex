@@ -60,9 +60,16 @@ Stavan Dholakia, Shivani Shukla, Abhishek Singh and Aditya Gazta\par
 26 September 2026
 
 \medskip
-Comments are summaries. Locations identify the main manuscript or S-prefixed
+Comments are paraphrases checked against the decision letter dated 20 July 2026.
+The editor's six bullets and Reviewers 1 and 2 retain their original order;
+Reviewer 4's unnumbered report is separated into thirteen issues for reference.
+Locations identify the main manuscript or S-prefixed
 Supplementary Information, each with separate pagination. Citations use the main
 bibliography; \path{archive/} identifies the separate evidence archive.
+
+We also thank Reviewer 3 for contributing through Communications Engineering's
+early-career peer-review initiative. The decision letter contains a co-review
+acknowledgement from Reviewer 3 and no separate substantive requests.
 
 \section*{Overview of the revision}
 
@@ -130,7 +137,7 @@ as prevention of constraint-violation cases, without claiming prevented fracture
 \locations{\mssec{3}; \mssec{4.1}; \mssec{S1}; \mssec{S4.4}; \mssec{S13}; \msitem{tab:submitted-8}}
 \evidence{benchmark/outcome.py; envs/battery_env_v2.py; manuscript/TRIX_SUPPLEMENT.tex}
 
-\response{E.4}{Quantitative latency}{Replace vague claims of negligible latency with a quantitative computational comparison.}
+\response{E.4}{Quantitative latency}{Replace the imprecise claim of negligible latency with a quantitative account grounded in robotics.}
 We replaced the unsupported historical timing figures with a new recorded
 benchmark of 22 existing filter implementations across all six tasks.
 Five fresh processes each evaluate the same 2,048 saved inputs per task,
@@ -159,8 +166,23 @@ worst-case execution time or end-to-end robot latency.
 \locations{\mssec{2.7}; \mssec{4.8}; \mssec{S8}; \msitem{tab:runtime-latency}}
 \evidence{experiments/runtime_benchmark.py; docs/runtime_benchmark_protocol.md; results/runtime/manifest.json; results/runtime/summary.json; manuscript/TRIX_SUPPLEMENT.tex}
 
+\response{E.5}{Position TRiX against the reviewed approaches}{Provide a dedicated comparison positioning TRiX against the reviewed approaches, explaining the gap and TRiX's role.}
+The revised Introduction and Table~1 now position TRiX alongside constrained
+policy optimization, learned safety layers, recovery policies and control
+barrier functions. Section~2.2 and Table~3 give a dedicated account of the
+experimental comparator roles; Section~4.3 states the specification controls.
+These comparisons distinguish policy learning, constraint representation and
+runtime enforcement. They identify when a componentwise restriction is
+sufficient and when phase, orientation or coupling changes retained command
+authority. The matched SCREW comparison also shows equal task outcomes when
+analytical projection and QP enforce the same specification. The revised gap
+is therefore stated conditionally, without claiming a universal advantage
+over the reviewed safety methods.
+\locations{\mssec{1}; \mssec{2.2}; \mssec{2.3}; \mssec{4.3}; \msitem{tab:submitted-1}; \msitem{tab:submitted-3}}
+\evidence{manuscript/TRIX_REVISION.tex; baselines/screw_solvers.py; results/stage1/stage1_records.json; results/stage2/stage2_records.json}
+
 \Needspace{23\baselineskip}
-\response{E.5}{Generality beyond six task implementations}{Explain how the method generalizes beyond the six manually specified disassembly tasks.}
+\response{E.6}{Generality beyond task examples}{Explain whether TRiX is a generalizable formulation or a collection of task-specific constructions, beyond the three primitives used to introduce the formalism.}
 We define TRiX through a task-conditioned admissible set and four execution
 outcomes. The task-specific work is to identify the action units, constraint
 model, required state/context, uncertainty allowance and admissible correction
@@ -328,7 +350,7 @@ the disk--interval projection.
 \locations{\mssec{2.2}; \mssec{4.1}; \mssec{S2.2}; \mssec{S4.1}; \mssec{S4.2}; \msitem{tab:submitted-2}; \msitem{tab:action-scales}}
 \evidence{envs/pcb_env_v2.py; baselines/pcb_filters.py; manuscript/TRIX_SUPPLEMENT.tex}
 
-\response{R2.2}{Observation dimensionality}{Resolve the inconsistent state/observation dimension and provide its components.}
+\response{R2.2}{Observation dimensionality}{Provide a task-by-task allocation of all ten observation dimensions, replacing the incomplete grouped description in Appendix D.1.}
 All six revised Gymnasium observations have ten entries. Their meanings are
 task-specific; they are not a shared position/velocity/wrench vector. \msitem{tab:submitted-7}
 lists every populated index, physical meaning, derived flag and zero-padded
@@ -735,7 +757,7 @@ environment's absolute rates.
 \locations{\mssec{2.3}; \mssec{S9}; \msitem{tab:submitted-4}; \msitem{tab:stage2-key}; \msitem{fig:seed-distributions}}
 \evidence{manuscript/figures/figure4_seed_data.csv; scripts/build_revision_figure4.py; manuscript/figures/figure4_rebuild.json; results/stage1/stage1_records.json; results/stage2/stage2_records.json; manuscript/TRIX_SUPPLEMENT.tex}
 
-\response{R4.13}{PCB residual violations and representation analysis}{Explain the reported PCB failures instead of attributing them generically to curvature or linearity.}
+\response{R4.13}{PCB residual violations and representation analysis}{Analyze the reported 44\% PCB violation rate despite using the correct manifold.}
 We replaced the submitted interpretation with a decomposition of the
 implemented constraint representations and retained the specification caveat.
 In the archived PCB proposal study, clipping yields 2.9\% feasible commands;

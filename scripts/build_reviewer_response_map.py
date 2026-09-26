@@ -18,7 +18,8 @@ LETTER = 'manuscript/TRIX_RESPONSE.tex'
 MAP = 'manuscript/data/reviewer_response_map.json'
 LOCATIONS = 'manuscript/data/response_locations.tex'
 GUIDE = 'docs/REVIEWER_MAP.md'
-EXPECTED = ([f'E.{i}' for i in range(1, 6)]
+COMMENT_SOURCE = 'manuscript/data/reviewer_comment_source.json'
+EXPECTED = ([f'E.{i}' for i in range(1, 7)]
             + [f'R1.{i}' for i in range(1, 10)]
             + [f'R2.{i}' for i in range(1, 8)]
             + [f'R4.{i}' for i in range(1, 14)])
@@ -50,6 +51,7 @@ def norm(text):
 
 
 def response_entries(text):
+    originals = json.loads((ROOT / COMMENT_SOURCE).read_text())['comments']
     starts = list(re.finditer(r'^\\response\{', text, re.M))
     entries = []
     for n, match in enumerate(starts):
@@ -61,6 +63,8 @@ def response_entries(text):
         end = starts[n + 1].start() if n + 1 < len(starts) else text.index('\\end{document}')
         body = text[cursor:end]
         paths = re.findall(r'\\evidence\{([^}]+)\}', body)
+        original = originals[values[0]]
+        assert values[2] == original['verified_paraphrase'], values[0]
         entries.append(dict(id=values[0], title=values[1], comment_summary=values[2],
             response_source_lines=[text.count('\n', 0, match.start()) + 1,
                                    text.count('\n', 0, end)],
@@ -71,7 +75,9 @@ def response_entries(text):
             status=('timing_benchmark_reported' if values[0] in {'E.4', 'R1.6'}
                     else 'matched_command_QP_scope' if values[0] == 'R4.2'
                     else 'response_drafted'),
-            original_comment_verified=False))
+            original_comment_verified=original['original_comment_verified'],
+            original_source_pages=original['source_pdf_pages'],
+            coverage_status=original['coverage_status']))
     assert [e['id'] for e in entries] == EXPECTED
     return entries
 
@@ -181,7 +187,12 @@ def check(data, archive_root=None):
     assert digest(ROOT / LETTER) == data['response_sha256'], 'Response changed; rebuild response map.'
     assert response_entries((ROOT / LETTER).read_text()) == data['responses']
     assert (ROOT / LOCATIONS).read_text() == location_tex(data)
-    assert data['comment_source']['original_reports_available'] is False
+    originals = json.loads((ROOT / COMMENT_SOURCE).read_text())
+    assert data['comment_source']['original_reports_available'] is True
+    assert digest(ROOT / COMMENT_SOURCE) == data['comment_source']['excerpts_sha256']
+    assert set(originals['comments']) == set(EXPECTED)
+    assert originals['r3']['verified'] and not originals['r3']['separate_substantive_requests']
+    assert all(e['original_comment_verified'] for e in data['responses'])
     for s in data['sections'].values():
         paper_lines = (ROOT / s['source']).read_text().splitlines()
         assert s['title'] in norm(paper_lines[s['source_lines'][0] - 1])
@@ -221,7 +232,8 @@ def check(data, archive_root=None):
         for path in data['archive_evidence_paths']:
             assert (archive_root/path).exists(), path
     print(json.dumps(dict(responses=len(data['responses']),
-        original_comment_verification_pending=34, timing_requests_open=[],
+        original_comment_verification_pending=sum(not e['original_comment_verified'] for e in data['responses']),
+        editorial_requirements=len(originals['editorial_requirements']), timing_requests_open=[],
         timing_calls_verified=summary['measured_calls'],
         matched_QP_scope_explicit=True, local_evidence_files=len(data['local_evidence_sha256']),
         missing_evidence_paths=0, manuscript_source_references_verified=True,
@@ -254,17 +266,20 @@ def main():
     paths = {p for e in entries for p in e['evidence_paths']}
     local_paths = sorted(p for p in paths if not p.startswith('archive/'))
     archive = json.loads((ROOT/'assets/evidence/archive_manifest.json').read_text())
+    originals = json.loads((ROOT/COMMENT_SOURCE).read_text())
     data = dict(schema=2, stage='author_review_draft',
         manuscript_sha256=digest(ROOT/PAPER), response_sha256=digest(ROOT/LETTER),
         supplement_sha256=digest(ROOT/SUPPLEMENT),
         manuscript_pdf_sha256_at_build=digest(ROOT/'manuscript/build/TRIX_REVISION.pdf'),
         supplement_pdf_sha256_at_build=digest(ROOT/'manuscript/build/TRIX_SUPPLEMENT.pdf'),
         archive_manifest_sha256=archive['sha256_manifest'],
-        comment_source=dict(original_reports_available=False,
-            kind='paraphrases of historical revision map, not reviewer quotations',
-            conversation_title='Trix v2.0', conversation_id='6a8e8a3e-0758-83e8-b35d-daf5c8c0e92f',
-            turn_id='69543ecc-f4f8-4fa0-87fd-7c4face44268',
+        comment_source=dict(original_reports_available=True,
+            kind='paraphrases verified against the original decision letter',
+            excerpts=COMMENT_SOURCE, excerpts_sha256=digest(ROOT/COMMENT_SOURCE),
+            original_pdf=originals['source'], r3=originals['r3'],
+            numbering_note=originals['numbering_note'],
             current_evidence_overrides_historical_summary=True),
+        editorial_requirements=originals['editorial_requirements'],
         page_reference_basis='Separate main/supplement builds; S-prefixed sections/items belong to the supplement; source lines are not typeset line numbers',
         sections=sections, labels=labels, citations=citations, responses=entries,
         local_evidence_sha256={p:digest(ROOT/p) for p in local_paths},
@@ -273,26 +288,35 @@ def main():
             summary_sha256=digest(ROOT/'results/runtime/summary.json'),
             manifest='results/runtime/manifest.json',
             scope='Measured complete-filter calls across six tasks; matched SCREW solvers'),
-        submission_gates=['Check original reports and exact editorial requirements',
-            'Review whether matched command-QP scope addresses original R4.2 wording',
+        submission_gates=['Complete the actual linked editorial requirements table',
+            'Author approval of the scoped R4.2 and R4.6 responses',
             'Arrange private reviewer access', 'Author review and clean/marked submission',
             'Final journal page/line references'])
     (ROOT/MAP).write_text(json.dumps(data, indent=2)+'\n')
     (ROOT/LOCATIONS).write_text(location_tex(data))
     guide = ['# Reviewer response map', '',
-        'Author-review draft: all 34 recovered points have responses. Original reports',
-        'are not available in the checked local material; summaries are paraphrases.',
-        'Completeness against the actual decision letter is not yet verified.', '',
+        'Author-review draft: all 35 requests are mapped to the original decision letter',
+        'dated 20 July 2026 and the current manuscript. Comments are verified paraphrases.',
+        'The earlier handoff omitted editor bullet 5. It is now E.5; generality is E.6.',
+        'R3 is a confirmed co-review acknowledgement with no separate substantive requests.', '',
         '[Response LaTeX](../manuscript/TRIX_RESPONSE.tex) ·',
         '[Exact source ranges and evidence hashes](../manuscript/data/reviewer_response_map.json)',
+        '[Original excerpts and requirement mapping](../manuscript/data/reviewer_comment_source.json)',
         '', 'Build: `make response`. Check without TeX: `make check`.', '',
         'Section/page references come from separate main and supplement builds. S-prefixed',
         'locations belong to Supplementary Information. Source ranges',
         'are TeX file lines, not journal margin line numbers.', '',
+        'R4.1-R4.13 are response identifiers for the unnumbered original report.',
+        'Verified coverage is not a claim of reviewer acceptance: R4.2 supplies a',
+        'matched command-set QP, and R4.6 withdraws independent physical-validation',
+        'claims. Those scope choices are explicit in the replies.', '',
         '| ID | Request | Draft status | Manuscript sections |', '|---|---|---|---|']
     for e in entries:
         guide.append('| '+e['id']+' | '+e['title']+' | '+e['status'].replace('_',' ')+' | '+', '.join(e['sections'])+' |')
     guide += ['', '## Submission gates', ''] + ['- '+g+'.' for g in data['submission_gates']]
+    guide += ['', '## Original editorial requirements', '']
+    for requirement in originals['editorial_requirements']:
+        guide.append('- '+requirement['request']+' Status: '+requirement['status']+'.')
     guide += ['', '## Evidence and privacy', '',
         'Local evidence paths and SHA-256 values are in the JSON map. Hardware files',
         'and the complete record-to-shard map remain in the separate frozen archive',

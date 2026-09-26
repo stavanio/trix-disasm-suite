@@ -1,0 +1,466 @@
+{
+  "schema": 1,
+  "source": {
+    "kind": "Original decision letter supplied by author",
+    "manuscript_id": "COMMSENG-26-0216-T",
+    "decision_date": "2026-07-20",
+    "pdf_basename": "IEEE Mail - Fw_ [EXTERNAL] Decision on manuscript COMMSENG-26-0216-T.pdf",
+    "sha256": "e24517283c1cab07a5401c33227cb030d87483c7da5fff226506f34a0298b464",
+    "pages": 9,
+    "authoritative_copy_pages": [
+      1,
+      2,
+      3,
+      4
+    ],
+    "duplicate_forward_pages": [
+      5,
+      6,
+      7,
+      8,
+      9
+    ],
+    "private_original_in_repository": false
+  },
+  "comments": {
+    "E.1": {
+      "original_excerpt": "Introduction: Section 1.2 apparently introduce a listing (Lagrangian Mehods...). Here the reader expects other element in contrast to this. Is this the only existing standard safety mechanism you can refer to?",
+      "source_pdf_pages": [
+        1
+      ],
+      "original_ordinal": 1,
+      "split_from_unnumbered_report": false,
+      "verified_paraphrase": "Expand the discussion of standard safety mechanisms beyond Lagrangian methods.",
+      "original_comment_verified": true,
+      "coverage_status": "response and current manuscript reviewed"
+    },
+    "E.2": {
+      "original_excerpt": "Fig1 is not referenced in the text. It appears very early in the body of the manuscript, when limited knowledge about the TRiX Approach is provided yet. Would it make more sense to propose this in a later stage of the manuscript?",
+      "source_pdf_pages": [
+        1
+      ],
+      "original_ordinal": 2,
+      "split_from_unnumbered_report": false,
+      "verified_paraphrase": "Reference Figure~1 in the text and place it where its purpose is clear.",
+      "original_comment_verified": true,
+      "coverage_status": "response and current manuscript reviewed"
+    },
+    "E.3": {
+      "original_excerpt": "In section 1.3 the linearity gat is introduced: the example employed here is not apparently including safety as could be normally intended. The risk discussed ([\"Any deviation from this line, attempting to pull without rotating, or rotating without advancing results in thread damage]\") is apparently more a quality challenge rather than a saafety one. How can we fill this mismatch? Surely is a matter of wording, to provide a better definition of \"safety\", or to provide a different example. In reviewer's opinion, this is fundamental to provide a solid understanding for the reader for the upcoming content.",
+      "source_pdf_pages": [
+        1
+      ],
+      "original_ordinal": 3,
+      "split_from_unnumbered_report": false,
+      "verified_paraphrase": "Establish which failures are safety-relevant and distinguish them from quality or task-performance failures.",
+      "original_comment_verified": true,
+      "coverage_status": "response and current manuscript reviewed"
+    },
+    "E.4": {
+      "original_excerpt": "Section 1.4: given the high technicality of the discussion involved, using terms like \"negligible latency\" may appear unprecise. Is it possible to better formulate such concepts to better ground them in the robotics landscape?",
+      "source_pdf_pages": [
+        1
+      ],
+      "original_ordinal": 4,
+      "split_from_unnumbered_report": false,
+      "verified_paraphrase": "Replace the imprecise claim of negligible latency with a quantitative account grounded in robotics.",
+      "original_comment_verified": true,
+      "coverage_status": "response and current manuscript reviewed"
+    },
+    "E.5": {
+      "original_excerpt": "Section 2.3: the Authors are providing a comparison with their own approach with respect to an existing one. As this is not done for the other approached discussed in the SOA, would it be ebtter to add a 2.X Section, in which the TRiX approach is positioned against the presented approaches? This way, the readeer would hae a clear understanding of the gap in existing approaches, and how TRiX plays a role in this view.",
+      "source_pdf_pages": [
+        1
+      ],
+      "original_ordinal": 5,
+      "split_from_unnumbered_report": false,
+      "verified_paraphrase": "Provide a dedicated comparison positioning TRiX against the reviewed approaches, explaining the gap and TRiX's role.",
+      "original_comment_verified": true,
+      "coverage_status": "response and current manuscript reviewed"
+    },
+    "E.6": {
+      "original_excerpt": "Chapter 3 discusses the theoretical framework. It is difficult to understand how generalizable the proposed approach actually is. The formalism is proposed for 3 main disassembly primitives (screw extraction, battery removal, and pcb extraction). A question arises: is the approach generalizable or it is developed bottom-up based on different use cases? Fixing this would allow the reader to immediately understand how generalizable and applicable the presented approach actually is. (This also extends to Chapter 4, 5).",
+      "source_pdf_pages": [
+        1
+      ],
+      "original_ordinal": 6,
+      "split_from_unnumbered_report": false,
+      "verified_paraphrase": "Explain whether TRiX is a generalizable formulation or a collection of task-specific constructions, beyond the three primitives used to introduce the formalism.",
+      "original_comment_verified": true,
+      "coverage_status": "response and current manuscript reviewed"
+    },
+    "R1.1": {
+      "original_excerpt": "I suggest improving the table related to existing safe control paradigms (Tab. 1) by including exemplary references where the different approaches are adopted. The same applies to Tab. 3.",
+      "source_pdf_pages": [
+        2
+      ],
+      "original_ordinal": 1,
+      "split_from_unnumbered_report": false,
+      "verified_paraphrase": "Add representative references for the paradigms in Tables~1 and~3.",
+      "original_comment_verified": true,
+      "coverage_status": "response and current manuscript reviewed"
+    },
+    "R1.2": {
+      "original_excerpt": "The description of the proposed theoretical framework and experimental methodology is not always straightforward for non-expert readers. I suggest trying to simplify the description and provide additional information on the existing approaches that are recalled in the text.",
+      "source_pdf_pages": [
+        2
+      ],
+      "original_ordinal": 2,
+      "split_from_unnumbered_report": false,
+      "verified_paraphrase": "Add background and make the methodology easier for non-specialist readers to follow.",
+      "original_comment_verified": true,
+      "coverage_status": "response and current manuscript reviewed"
+    },
+    "R1.3": {
+      "original_excerpt": "It would be interesting to show an image of the simulated workspace that models a disassembly cell where an end- effector interacts with task-specific workpieces.",
+      "source_pdf_pages": [
+        2
+      ],
+      "original_ordinal": 3,
+      "split_from_unnumbered_report": false,
+      "verified_paraphrase": "Show the simulated workspaces with an end-effector interacting with task-specific workpieces.",
+      "original_comment_verified": true,
+      "coverage_status": "response and current manuscript reviewed"
+    },
+    "R1.4": {
+      "original_excerpt": "Specific examples of hallucinations and relative corrective actions proposed by TRiX should be reported in the manuscript.",
+      "source_pdf_pages": [
+        3
+      ],
+      "original_ordinal": 4,
+      "split_from_unnumbered_report": false,
+      "verified_paraphrase": "Provide concrete examples of foundation-model errors and how TRiX corrects them.",
+      "original_comment_verified": true,
+      "coverage_status": "response and current manuscript reviewed"
+    },
+    "R1.5": {
+      "original_excerpt": "How scalable is the proposed framework to the introduction of additional constraints or to the modification of an existing one?",
+      "source_pdf_pages": [
+        3
+      ],
+      "original_ordinal": 5,
+      "split_from_unnumbered_report": false,
+      "verified_paraphrase": "Explain scalability to additional tasks or modified physical constraints.",
+      "original_comment_verified": true,
+      "coverage_status": "response and current manuscript reviewed"
+    },
+    "R1.6": {
+      "original_excerpt": "More details on the computational time of the proposed approach with respect to alternative strategies should be provided in the manuscript.",
+      "source_pdf_pages": [
+        3
+      ],
+      "original_ordinal": 6,
+      "split_from_unnumbered_report": false,
+      "verified_paraphrase": "Report the computation time required by TRiX and the comparator.",
+      "original_comment_verified": true,
+      "coverage_status": "response and current manuscript reviewed"
+    },
+    "R1.7": {
+      "original_excerpt": "I suggest including additional visuals and graphs to better display the results of the work (e.g., boxplots for comparison of statistical distributions).",
+      "source_pdf_pages": [
+        3
+      ],
+      "original_ordinal": 7,
+      "split_from_unnumbered_report": false,
+      "verified_paraphrase": "Show distributions or boxplots rather than relying only on aggregate performance.",
+      "original_comment_verified": true,
+      "coverage_status": "response and current manuscript reviewed"
+    },
+    "R1.8": {
+      "original_excerpt": "All figures should be recalled in the text (e.g., Figure 1 is not mentioned in the manuscript). I also suggest improving the quality of Figure 4 in terms of style and resolution.",
+      "source_pdf_pages": [
+        3
+      ],
+      "original_ordinal": 8,
+      "split_from_unnumbered_report": false,
+      "verified_paraphrase": "Improve figure integration and the presentation of Figure~4.",
+      "original_comment_verified": true,
+      "coverage_status": "response and current manuscript reviewed"
+    },
+    "R1.9": {
+      "original_excerpt": "I suggest improving the literature review, by considering additional works on the topic of LLMs/VLMs in collaborative robotics. See for instance: https://www.sciencedirect.com/science/article/pii/S0736584526000487",
+      "source_pdf_pages": [
+        3
+      ],
+      "original_ordinal": 9,
+      "split_from_unnumbered_report": false,
+      "verified_paraphrase": "Expand discussion of LLM/VLM methods in collaborative and embodied robotics.",
+      "original_comment_verified": true,
+      "coverage_status": "response and current manuscript reviewed"
+    },
+    "R2.1": {
+      "original_excerpt": "In Section 4.2.3 (\"PCB: Planar-Constrained Extraction\"), the variables are introduced without detailed physical definition, and their role compared to the task is unclear. The Authors are invited to better explain them, possibly visually introducing the tasks with, e.g., the related force/torque directions.",
+      "source_pdf_pages": [
+        3
+      ],
+      "original_ordinal": 1,
+      "split_from_unnumbered_report": false,
+      "verified_paraphrase": "Define the PCB variables and explain the physical meaning of the constraint.",
+      "original_comment_verified": true,
+      "coverage_status": "response and current manuscript reviewed"
+    },
+    "R2.2": {
+      "original_excerpt": "In Section 4.3 (\"State and Action Spaces\") & Appendix D.1 (\"Observation Space\"), the observation space is said to be R^10 with task‑specific components, but the exact mapping of the 10 dimensions is not given for each task. The table in Appendix D.1 lumps \"position, force, temperature\" into 6 dimensions without allocation. A clear task‑by‑task breakdown is required.",
+      "source_pdf_pages": [
+        3
+      ],
+      "original_ordinal": 2,
+      "split_from_unnumbered_report": false,
+      "verified_paraphrase": "Provide a task-by-task allocation of all ten observation dimensions, replacing the incomplete grouped description in Appendix D.1.",
+      "original_comment_verified": true,
+      "coverage_status": "response and current manuscript reviewed"
+    },
+    "R2.3": {
+      "original_excerpt": "Equation (13) and (43): v_progress and I_violation are used without definition, hence they should be stated explicitly. I_violation appears to be an indicator for safety violation, but this is not explained. Moreover, the notation differs between (13) and (43) (e.g., r_progress vs v_progress); the Authors are invited to unify or explain the difference.",
+      "source_pdf_pages": [
+        3
+      ],
+      "original_ordinal": 3,
+      "split_from_unnumbered_report": false,
+      "verified_paraphrase": "Define the progress and violation terms and use consistent notation.",
+      "original_comment_verified": true,
+      "coverage_status": "response and current manuscript reviewed"
+    },
+    "R2.4": {
+      "original_excerpt": "Appendix D.5 (\"Domain Randomisation\"): This appendix heading is present but the section is completely empty. Randomisation ranges are mentioned in Section 4.2, but a systematic table of all randomised parameters (distributions, ranges, and whether used for training or out‑of‑distribution evaluation) must be supplied.",
+      "source_pdf_pages": [
+        3
+      ],
+      "original_ordinal": 4,
+      "split_from_unnumbered_report": false,
+      "verified_paraphrase": "Fill the empty appendix with parameters, distributions, ranges and training versus out-of-distribution use.",
+      "original_comment_verified": true,
+      "coverage_status": "response and current manuscript reviewed"
+    },
+    "R2.5": {
+      "original_excerpt": "The numerical latency value (\"<10 μs\") is reported at the end of the helical manifold derivation in the methodology section (3.3, \"The Helical Manifold: Screw Extraction\"). Such performance data are more suitable to be reported in the experimental sections (e.g., Section 4.6 or Table 3).",
+      "source_pdf_pages": [
+        3,
+        4
+      ],
+      "original_ordinal": 5,
+      "split_from_unnumbered_report": false,
+      "verified_paraphrase": "Move computational timing out of the theoretical derivation.",
+      "original_comment_verified": true,
+      "coverage_status": "response and current manuscript reviewed"
+    },
+    "R2.6": {
+      "original_excerpt": "The sentence fragment \"(Figure 2). The geometry of the task is the safety constraint [...]\" appears orphaned. The Authors should try to integrate the figure reference naturally into the preceding sentence.",
+      "source_pdf_pages": [
+        4
+      ],
+      "original_ordinal": 6,
+      "split_from_unnumbered_report": false,
+      "verified_paraphrase": "Repair the disconnected sentence referring to Figure~2.",
+      "original_comment_verified": true,
+      "coverage_status": "response and current manuscript reviewed"
+    },
+    "R2.7": {
+      "original_excerpt": "The manuscript uses a very rigid structure (excessive bullet points, numbered \"Fundamental Limitation\" lists, short disjointed paragraphs). While this helps skimming, it impedes narrative flow. A revision with more transitional prose, fewer enumerated lists, and a clearer logical flow (e.g., connecting the \"Linearity Gap\" directly to the design of TRiX) would greatly improve readability for the readership.",
+      "source_pdf_pages": [
+        4
+      ],
+      "original_ordinal": 7,
+      "split_from_unnumbered_report": false,
+      "verified_paraphrase": "Connect the physical constraint, the limitation of the compared representation and the resulting TRiX design.",
+      "original_comment_verified": true,
+      "coverage_status": "response and current manuscript reviewed"
+    },
+    "R4.1": {
+      "original_excerpt": "Main issue: the headline results use random actions, not trained policies.",
+      "source_pdf_pages": [
+        4
+      ],
+      "original_ordinal": null,
+      "split_from_unnumbered_report": true,
+      "verified_paraphrase": "The submitted results used random-action transformations rather than the claimed trained policies.",
+      "original_comment_verified": true,
+      "coverage_status": "response and current manuscript reviewed"
+    },
+    "R4.2": {
+      "original_excerpt": "TRiX is given true constraint equation analytically while SafeLayer has to learn it. So the comparison is between a correct constraint and a wrong one, here TRiX wins by construction. The fair baseine would be a CBF-QP given the same analytical constraint.",
+      "source_pdf_pages": [
+        4
+      ],
+      "original_ordinal": null,
+      "split_from_unnumbered_report": true,
+      "verified_paraphrase": "The SafeLayer comparison is unfair; compare against a CBF-QP supplied with the same analytical constraint.",
+      "original_comment_verified": true,
+      "coverage_status": "scoped response: matched command-set QP; no full dynamics-aware CBF study"
+    },
+    "R4.3": {
+      "original_excerpt": "Table 1 is also wrong about CBFs.",
+      "source_pdf_pages": [
+        4
+      ],
+      "original_ordinal": null,
+      "split_from_unnumbered_report": true,
+      "verified_paraphrase": "Correct Table~1's categorical statements about control barrier functions.",
+      "original_comment_verified": true,
+      "coverage_status": "response and current manuscript reviewed"
+    },
+    "R4.4": {
+      "original_excerpt": "The theorem assumes its own conclusion. Assumption 4 already requires a stable and safe nominal controller with a known Lyapunov function, then ISS follows in a few lines from non expansiveness of projection.",
+      "source_pdf_pages": [
+        4
+      ],
+      "original_ordinal": null,
+      "split_from_unnumbered_report": true,
+      "verified_paraphrase": "The submitted stability assumptions substantially supply the claimed conclusion.",
+      "original_comment_verified": true,
+      "coverage_status": "response and current manuscript reviewed"
+    },
+    "R4.5": {
+      "original_excerpt": "And non-expansiveness only holds for convex sets and affine subspaces, not the general \"differentiable manifolds\" the paper keeps claiming.",
+      "source_pdf_pages": [
+        4
+      ],
+      "original_ordinal": null,
+      "split_from_unnumbered_report": true,
+      "verified_paraphrase": "The projection argument does not hold for arbitrary differentiable manifolds.",
+      "original_comment_verified": true,
+      "coverage_status": "response and current manuscript reviewed"
+    },
+    "R4.6": {
+      "original_excerpt": "The environment is the author's own NumPy model, validated against the closed-form solutions of the same equations it implements. That's circular. TRiX's manifolds come from those same equations, so it is tested against a world it was handed the answers to.",
+      "source_pdf_pages": [
+        4
+      ],
+      "original_ordinal": null,
+      "split_from_unnumbered_report": true,
+      "verified_paraphrase": "Agreement between the NumPy environment and constraints derived from its own equations is not independent physical validation.",
+      "original_comment_verified": true,
+      "coverage_status": "claim withdrawn and scope explained; independent physical calibration not supplied"
+    },
+    "R4.7": {
+      "original_excerpt": "The PyBullet environment sits in the repo but not the paper.",
+      "source_pdf_pages": [
+        4
+      ],
+      "original_ordinal": null,
+      "split_from_unnumbered_report": true,
+      "verified_paraphrase": "Explain the PyBullet code in the repository and its relationship to the reported experiments.",
+      "original_comment_verified": true,
+      "coverage_status": "response and current manuscript reviewed"
+    },
+    "R4.8": {
+      "original_excerpt": "No hardware.",
+      "source_pdf_pages": [
+        4
+      ],
+      "original_ordinal": null,
+      "split_from_unnumbered_report": true,
+      "verified_paraphrase": "The submission contains no hardware demonstration.",
+      "original_comment_verified": true,
+      "coverage_status": "response and current manuscript reviewed"
+    },
+    "R4.9": {
+      "original_excerpt": "The VLM framing is confusing. No actual VLM is used anywhere : the \"hallucinations\" are noise the authors designed themselves, then their own projection corrects them. Either test a real model or drop this from the title and abstract. Few inconsistencies:",
+      "source_pdf_pages": [
+        4
+      ],
+      "original_ordinal": null,
+      "split_from_unnumbered_report": true,
+      "verified_paraphrase": "Synthetic hallucination injection does not establish governance of actual VLM outputs.",
+      "original_comment_verified": true,
+      "coverage_status": "response and current manuscript reviewed"
+    },
+    "R4.10": {
+      "original_excerpt": "BATTERY violations are blamed on a 20 N puncture threshold that doesn't exist in the task spec (Table 8 says T > 60 °C only), while Table 5 shows unavoidable thermal overshoot.",
+      "source_pdf_pages": [
+        4
+      ],
+      "original_ordinal": null,
+      "split_from_unnumbered_report": true,
+      "verified_paraphrase": "Reconcile the 20-N force threshold, thermal criterion and inconsistent table/text descriptions.",
+      "original_comment_verified": true,
+      "coverage_status": "response and current manuscript reviewed"
+    },
+    "R4.11": {
+      "original_excerpt": "Control rate is 240 Hz in methods, 100 Hz in discussion.",
+      "source_pdf_pages": [
+        4
+      ],
+      "original_ordinal": null,
+      "split_from_unnumbered_report": true,
+      "verified_paraphrase": "Resolve the inconsistent 240-Hz and 100-Hz descriptions.",
+      "original_comment_verified": true,
+      "coverage_status": "response and current manuscript reviewed"
+    },
+    "R4.12": {
+      "original_excerpt": "Fig. 4 uses a different \"simplified\" environment than Table 4.",
+      "source_pdf_pages": [
+        4
+      ],
+      "original_ordinal": null,
+      "split_from_unnumbered_report": true,
+      "verified_paraphrase": "Resolve the mismatch between the submitted learning curves and headline results.",
+      "original_comment_verified": true,
+      "coverage_status": "response and current manuscript reviewed"
+    },
+    "R4.13": {
+      "original_excerpt": "The PCB result (44% violations even with the right manifold) is the most interesting thing here and needs more analysis.",
+      "source_pdf_pages": [
+        4
+      ],
+      "original_ordinal": null,
+      "split_from_unnumbered_report": true,
+      "verified_paraphrase": "Analyze the reported 44\\% PCB violation rate despite using the correct manifold.",
+      "original_comment_verified": true,
+      "coverage_status": "response and current manuscript reviewed"
+    }
+  },
+  "r3": {
+    "original_statement": "I co-reviewed this manuscript with one of the reviewers who provided the listed reports. This is part of the Communications Engineering initiative to facilitate training in peer review and to provide appropriate recognition for Early Career Researchers who co-review manuscripts.",
+    "source_pdf_pages": [
+      4
+    ],
+    "verified": true,
+    "separate_substantive_requests": false
+  },
+  "editorial_requirements": [
+    {
+      "id": "ED.form",
+      "request": "Complete the linked editorial requirements table, describing revisions and relevant notes in its right-hand column.",
+      "source_pdf_pages": [
+        1,
+        2
+      ],
+      "status": "open; actual online table must be completed"
+    },
+    {
+      "id": "ED.response",
+      "request": "Supply a point-by-point response; explain any requests that cannot be addressed or are considered invalid.",
+      "source_pdf_pages": [
+        2
+      ],
+      "status": "draft mapped to all original requests; author review pending"
+    },
+    {
+      "id": "ED.clean",
+      "request": "Supply a clean revised manuscript without markup.",
+      "source_pdf_pages": [
+        2
+      ],
+      "status": "final submission version pending"
+    },
+    {
+      "id": "ED.marked",
+      "request": "Supply a marked manuscript with all changes highlighted in a different colour.",
+      "source_pdf_pages": [
+        2
+      ],
+      "status": "open"
+    },
+    {
+      "id": "ED.schedule",
+      "request": "Aim to return the revision within twelve weeks and notify the editor if substantially more time is needed.",
+      "source_pdf_pages": [
+        2
+      ],
+      "status": "scheduling instruction; no message sent"
+    }
+  ],
+  "numbering_note": "E and R1/R2 follow source order. R4.1-R4.13 are response identifiers for an unnumbered report. The previous 34-point handoff omitted editor bullet 5; generality moves from E.5 to E.6.",
+  "privacy_note": "Only review comments and submission requirements are retained here. Mail metadata, addresses, private submission links and access tokens are excluded."
+}

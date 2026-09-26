@@ -2,19 +2,92 @@
   "schema": 2,
   "stage": "author_review_draft",
   "manuscript_sha256": "ad0c803cef2623c908730afed4be46f9138eec4b3776443e7e0beda5c9c924cf",
-  "response_sha256": "5326d71f57de97e151c26158b66b8f596b8d483be4a060715d886609fcf86dc1",
+  "response_sha256": "2f8d7f9f0a7604b88c77aa5edee89f5aaa44444bfbd7107325d2d20d7d21bbf6",
   "supplement_sha256": "61fbfced130ecd5df1bf2e57bf0916ee1a81bed1cf3b1cd532257cb2a86f7ac4",
   "manuscript_pdf_sha256_at_build": "8829b228a1e39eb1e44ddcc6d04c3ea922e2d14788e1c98a14595941c4b5eb19",
   "supplement_pdf_sha256_at_build": "d92db02f0026b3bc49dcca81c34317d63ee4428c05009d6e7fc5a1710ca223f3",
   "archive_manifest_sha256": "00d1f97690f4ab90b11ae7da55fabcbe1c866c9d6dbe893eb1c15f3dcf292710",
   "comment_source": {
-    "original_reports_available": false,
-    "kind": "paraphrases of historical revision map, not reviewer quotations",
-    "conversation_title": "Trix v2.0",
-    "conversation_id": "6a8e8a3e-0758-83e8-b35d-daf5c8c0e92f",
-    "turn_id": "69543ecc-f4f8-4fa0-87fd-7c4face44268",
+    "original_reports_available": true,
+    "kind": "paraphrases verified against the original decision letter",
+    "excerpts": "manuscript/data/reviewer_comment_source.json",
+    "excerpts_sha256": "ba794f4f9b3fdef08f82939507df247d56e3d4c230cff472eb6de2a7a929fa71",
+    "original_pdf": {
+      "kind": "Original decision letter supplied by author",
+      "manuscript_id": "COMMSENG-26-0216-T",
+      "decision_date": "2026-07-20",
+      "pdf_basename": "IEEE Mail - Fw_ [EXTERNAL] Decision on manuscript COMMSENG-26-0216-T.pdf",
+      "sha256": "e24517283c1cab07a5401c33227cb030d87483c7da5fff226506f34a0298b464",
+      "pages": 9,
+      "authoritative_copy_pages": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "duplicate_forward_pages": [
+        5,
+        6,
+        7,
+        8,
+        9
+      ],
+      "private_original_in_repository": false
+    },
+    "r3": {
+      "original_statement": "I co-reviewed this manuscript with one of the reviewers who provided the listed reports. This is part of the Communications Engineering initiative to facilitate training in peer review and to provide appropriate recognition for Early Career Researchers who co-review manuscripts.",
+      "source_pdf_pages": [
+        4
+      ],
+      "verified": true,
+      "separate_substantive_requests": false
+    },
+    "numbering_note": "E and R1/R2 follow source order. R4.1-R4.13 are response identifiers for an unnumbered report. The previous 34-point handoff omitted editor bullet 5; generality moves from E.5 to E.6.",
     "current_evidence_overrides_historical_summary": true
   },
+  "editorial_requirements": [
+    {
+      "id": "ED.form",
+      "request": "Complete the linked editorial requirements table, describing revisions and relevant notes in its right-hand column.",
+      "source_pdf_pages": [
+        1,
+        2
+      ],
+      "status": "open; actual online table must be completed"
+    },
+    {
+      "id": "ED.response",
+      "request": "Supply a point-by-point response; explain any requests that cannot be addressed or are considered invalid.",
+      "source_pdf_pages": [
+        2
+      ],
+      "status": "draft mapped to all original requests; author review pending"
+    },
+    {
+      "id": "ED.clean",
+      "request": "Supply a clean revised manuscript without markup.",
+      "source_pdf_pages": [
+        2
+      ],
+      "status": "final submission version pending"
+    },
+    {
+      "id": "ED.marked",
+      "request": "Supply a marked manuscript with all changes highlighted in a different colour.",
+      "source_pdf_pages": [
+        2
+      ],
+      "status": "open"
+    },
+    {
+      "id": "ED.schedule",
+      "request": "Aim to return the revision within twelve weeks and notify the editor if substantially more time is needed.",
+      "source_pdf_pages": [
+        2
+      ],
+      "status": "scheduling instruction; no message sent"
+    }
+  ],
   "page_reference_basis": "Separate main/supplement builds; S-prefixed sections/items belong to the supplement; source lines are not typeset line numbers",
   "sections": {
     "1": {
@@ -1141,8 +1214,8 @@
       "title": "Positioning among existing safety methods",
       "comment_summary": "Expand the discussion of standard safety mechanisms beyond Lagrangian methods.",
       "response_source_lines": [
-        97,
-        109
+        104,
+        116
       ],
       "sections": [
         "1",
@@ -1160,15 +1233,19 @@
         "manuscript/TRIX_REVISION.tex"
       ],
       "status": "response_drafted",
-      "original_comment_verified": false
+      "original_comment_verified": true,
+      "original_source_pages": [
+        1
+      ],
+      "coverage_status": "response and current manuscript reviewed"
     },
     {
       "id": "E.2",
       "title": "Introduce the architecture figure in context",
       "comment_summary": "Reference Figure~1 in the text and place it where its purpose is clear.",
       "response_source_lines": [
-        110,
-        118
+        117,
+        125
       ],
       "sections": [
         "1",
@@ -1182,15 +1259,19 @@
         "manuscript/figures/trix_architecture_fig1.svg"
       ],
       "status": "response_drafted",
-      "original_comment_verified": false
+      "original_comment_verified": true,
+      "original_source_pages": [
+        1
+      ],
+      "coverage_status": "response and current manuscript reviewed"
     },
     {
       "id": "E.3",
       "title": "Safety, damage and task quality",
       "comment_summary": "Establish which failures are safety-relevant and distinguish them from quality or task-performance failures.",
       "response_source_lines": [
-        119,
-        132
+        126,
+        139
       ],
       "sections": [
         "3",
@@ -1209,15 +1290,19 @@
         "manuscript/TRIX_SUPPLEMENT.tex"
       ],
       "status": "response_drafted",
-      "original_comment_verified": false
+      "original_comment_verified": true,
+      "original_source_pages": [
+        1
+      ],
+      "coverage_status": "response and current manuscript reviewed"
     },
     {
       "id": "E.4",
       "title": "Quantitative latency",
-      "comment_summary": "Replace vague claims of negligible latency with a quantitative computational comparison.",
+      "comment_summary": "Replace the imprecise claim of negligible latency with a quantitative account grounded in robotics.",
       "response_source_lines": [
-        133,
-        162
+        140,
+        168
       ],
       "sections": [
         "2.7",
@@ -1236,15 +1321,51 @@
         "manuscript/TRIX_SUPPLEMENT.tex"
       ],
       "status": "timing_benchmark_reported",
-      "original_comment_verified": false
+      "original_comment_verified": true,
+      "original_source_pages": [
+        1
+      ],
+      "coverage_status": "response and current manuscript reviewed"
     },
     {
       "id": "E.5",
-      "title": "Generality beyond six task implementations",
-      "comment_summary": "Explain how the method generalizes beyond the six manually specified disassembly tasks.",
+      "title": "Position TRiX against the reviewed approaches",
+      "comment_summary": "Provide a dedicated comparison positioning TRiX against the reviewed approaches, explaining the gap and TRiX's role.",
       "response_source_lines": [
-        163,
+        169,
         184
+      ],
+      "sections": [
+        "1",
+        "2.2",
+        "2.3",
+        "4.3"
+      ],
+      "items": [
+        "tab:submitted-1",
+        "tab:submitted-3"
+      ],
+      "citations": [],
+      "evidence_paths": [
+        "manuscript/TRIX_REVISION.tex",
+        "baselines/screw_solvers.py",
+        "results/stage1/stage1_records.json",
+        "results/stage2/stage2_records.json"
+      ],
+      "status": "response_drafted",
+      "original_comment_verified": true,
+      "original_source_pages": [
+        1
+      ],
+      "coverage_status": "response and current manuscript reviewed"
+    },
+    {
+      "id": "E.6",
+      "title": "Generality beyond task examples",
+      "comment_summary": "Explain whether TRiX is a generalizable formulation or a collection of task-specific constructions, beyond the three primitives used to introduce the formalism.",
+      "response_source_lines": [
+        185,
+        206
       ],
       "sections": [
         "2.1",
@@ -1264,15 +1385,19 @@
         "manuscript/TRIX_SUPPLEMENT.tex"
       ],
       "status": "response_drafted",
-      "original_comment_verified": false
+      "original_comment_verified": true,
+      "original_source_pages": [
+        1
+      ],
+      "coverage_status": "response and current manuscript reviewed"
     },
     {
       "id": "R1.1",
       "title": "References in comparison tables",
       "comment_summary": "Add representative references for the paradigms in Tables~1 and~3.",
       "response_source_lines": [
-        185,
-        195
+        207,
+        217
       ],
       "sections": [
         "4.3"
@@ -1287,15 +1412,19 @@
         "training/sb3_runner.py"
       ],
       "status": "response_drafted",
-      "original_comment_verified": false
+      "original_comment_verified": true,
+      "original_source_pages": [
+        2
+      ],
+      "coverage_status": "response and current manuscript reviewed"
     },
     {
       "id": "R1.2",
       "title": "Accessibility of the theoretical framework",
       "comment_summary": "Add background and make the methodology easier for non-specialist readers to follow.",
       "response_source_lines": [
-        196,
-        207
+        218,
+        229
       ],
       "sections": [
         "1",
@@ -1314,15 +1443,19 @@
         "manuscript/TRIX_SUPPLEMENT.tex"
       ],
       "status": "response_drafted",
-      "original_comment_verified": false
+      "original_comment_verified": true,
+      "original_source_pages": [
+        2
+      ],
+      "coverage_status": "response and current manuscript reviewed"
     },
     {
       "id": "R1.3",
       "title": "Simulated workspace and interaction",
       "comment_summary": "Show the simulated workspaces with an end-effector interacting with task-specific workpieces.",
       "response_source_lines": [
-        208,
-        222
+        230,
+        244
       ],
       "sections": [
         "2.2",
@@ -1340,15 +1473,19 @@
         "manuscript/TRIX_SUPPLEMENT.tex"
       ],
       "status": "response_drafted",
-      "original_comment_verified": false
+      "original_comment_verified": true,
+      "original_source_pages": [
+        2
+      ],
+      "coverage_status": "response and current manuscript reviewed"
     },
     {
       "id": "R1.4",
       "title": "Concrete model proposals and corrections",
       "comment_summary": "Provide concrete examples of foundation-model errors and how TRiX corrects them.",
       "response_source_lines": [
-        223,
-        239
+        245,
+        261
       ],
       "sections": [
         "2.5",
@@ -1365,15 +1502,19 @@
         "manuscript/TRIX_SUPPLEMENT.tex"
       ],
       "status": "response_drafted",
-      "original_comment_verified": false
+      "original_comment_verified": true,
+      "original_source_pages": [
+        3
+      ],
+      "coverage_status": "response and current manuscript reviewed"
     },
     {
       "id": "R1.5",
       "title": "Adding or changing constraints",
       "comment_summary": "Explain scalability to additional tasks or modified physical constraints.",
       "response_source_lines": [
-        240,
-        253
+        262,
+        275
       ],
       "sections": [
         "2.1",
@@ -1391,15 +1532,19 @@
         "manuscript/TRIX_SUPPLEMENT.tex"
       ],
       "status": "response_drafted",
-      "original_comment_verified": false
+      "original_comment_verified": true,
+      "original_source_pages": [
+        3
+      ],
+      "coverage_status": "response and current manuscript reviewed"
     },
     {
       "id": "R1.6",
       "title": "Computational time",
       "comment_summary": "Report the computation time required by TRiX and the comparator.",
       "response_source_lines": [
-        254,
-        272
+        276,
+        294
       ],
       "sections": [
         "2.7",
@@ -1418,15 +1563,19 @@
         "manuscript/TRIX_SUPPLEMENT.tex"
       ],
       "status": "timing_benchmark_reported",
-      "original_comment_verified": false
+      "original_comment_verified": true,
+      "original_source_pages": [
+        3
+      ],
+      "coverage_status": "response and current manuscript reviewed"
     },
     {
       "id": "R1.7",
       "title": "Distributions and uncertainty",
       "comment_summary": "Show distributions or boxplots rather than relying only on aggregate performance.",
       "response_source_lines": [
-        273,
-        285
+        295,
+        307
       ],
       "sections": [
         "2.3",
@@ -1445,15 +1594,19 @@
         "manuscript/TRIX_SUPPLEMENT.tex"
       ],
       "status": "response_drafted",
-      "original_comment_verified": false
+      "original_comment_verified": true,
+      "original_source_pages": [
+        3
+      ],
+      "coverage_status": "response and current manuscript reviewed"
     },
     {
       "id": "R1.8",
       "title": "Figure references and Figure~4 quality",
       "comment_summary": "Improve figure integration and the presentation of Figure~4.",
       "response_source_lines": [
-        286,
-        299
+        308,
+        321
       ],
       "sections": [
         "1",
@@ -1474,15 +1627,19 @@
         "docs/REPRODUCING.md"
       ],
       "status": "response_drafted",
-      "original_comment_verified": false
+      "original_comment_verified": true,
+      "original_source_pages": [
+        3
+      ],
+      "coverage_status": "response and current manuscript reviewed"
     },
     {
       "id": "R1.9",
       "title": "Foundation-model robotics literature",
       "comment_summary": "Expand discussion of LLM/VLM methods in collaborative and embodied robotics.",
       "response_source_lines": [
-        300,
-        316
+        322,
+        338
       ],
       "sections": [
         "1",
@@ -1498,15 +1655,19 @@
         "manuscript/TRIX_REVISION.tex"
       ],
       "status": "response_drafted",
-      "original_comment_verified": false
+      "original_comment_verified": true,
+      "original_source_pages": [
+        3
+      ],
+      "coverage_status": "response and current manuscript reviewed"
     },
     {
       "id": "R2.1",
       "title": "PCB variables and physical interpretation",
       "comment_summary": "Define the PCB variables and explain the physical meaning of the constraint.",
       "response_source_lines": [
-        317,
-        330
+        339,
+        352
       ],
       "sections": [
         "2.2",
@@ -1526,15 +1687,19 @@
         "manuscript/TRIX_SUPPLEMENT.tex"
       ],
       "status": "response_drafted",
-      "original_comment_verified": false
+      "original_comment_verified": true,
+      "original_source_pages": [
+        3
+      ],
+      "coverage_status": "response and current manuscript reviewed"
     },
     {
       "id": "R2.2",
       "title": "Observation dimensionality",
-      "comment_summary": "Resolve the inconsistent state/observation dimension and provide its components.",
+      "comment_summary": "Provide a task-by-task allocation of all ten observation dimensions, replacing the incomplete grouped description in Appendix D.1.",
       "response_source_lines": [
-        331,
-        343
+        353,
+        365
       ],
       "sections": [
         "4.1",
@@ -1552,15 +1717,19 @@
         "manuscript/TRIX_SUPPLEMENT.tex"
       ],
       "status": "response_drafted",
-      "original_comment_verified": false
+      "original_comment_verified": true,
+      "original_source_pages": [
+        3
+      ],
+      "coverage_status": "response and current manuscript reviewed"
     },
     {
       "id": "R2.3",
       "title": "Reward symbols and outcome notation",
       "comment_summary": "Define the progress and violation terms and use consistent notation.",
       "response_source_lines": [
-        344,
-        357
+        366,
+        379
       ],
       "sections": [
         "4.1",
@@ -1577,15 +1746,19 @@
         "manuscript/TRIX_SUPPLEMENT.tex"
       ],
       "status": "response_drafted",
-      "original_comment_verified": false
+      "original_comment_verified": true,
+      "original_source_pages": [
+        3
+      ],
+      "coverage_status": "response and current manuscript reviewed"
     },
     {
       "id": "R2.4",
       "title": "Domain randomisation appendix",
       "comment_summary": "Fill the empty appendix with parameters, distributions, ranges and training versus out-of-distribution use.",
       "response_source_lines": [
-        358,
-        416
+        380,
+        438
       ],
       "sections": [
         "S14.4",
@@ -1626,15 +1799,19 @@
         "results/sensitivity.json"
       ],
       "status": "response_drafted",
-      "original_comment_verified": false
+      "original_comment_verified": true,
+      "original_source_pages": [
+        3
+      ],
+      "coverage_status": "response and current manuscript reviewed"
     },
     {
       "id": "R2.5",
       "title": "Placement of runtime discussion",
       "comment_summary": "Move computational timing out of the theoretical derivation.",
       "response_source_lines": [
-        417,
-        426
+        439,
+        448
       ],
       "sections": [
         "2.1",
@@ -1652,15 +1829,20 @@
         "manuscript/TRIX_SUPPLEMENT.tex"
       ],
       "status": "response_drafted",
-      "original_comment_verified": false
+      "original_comment_verified": true,
+      "original_source_pages": [
+        3,
+        4
+      ],
+      "coverage_status": "response and current manuscript reviewed"
     },
     {
       "id": "R2.6",
       "title": "Orphaned Figure~2 reference",
       "comment_summary": "Repair the disconnected sentence referring to Figure~2.",
       "response_source_lines": [
-        427,
-        436
+        449,
+        458
       ],
       "sections": [
         "2.1"
@@ -1674,15 +1856,19 @@
         "scripts/build_revision_figure2.py"
       ],
       "status": "response_drafted",
-      "original_comment_verified": false
+      "original_comment_verified": true,
+      "original_source_pages": [
+        4
+      ],
+      "coverage_status": "response and current manuscript reviewed"
     },
     {
       "id": "R2.7",
       "title": "Narrative structure",
       "comment_summary": "Connect the physical constraint, the limitation of the compared representation and the resulting TRiX design.",
       "response_source_lines": [
-        437,
-        459
+        459,
+        481
       ],
       "sections": [
         "1",
@@ -1697,15 +1883,19 @@
         "manuscript/TRIX_REVISION.tex"
       ],
       "status": "response_drafted",
-      "original_comment_verified": false
+      "original_comment_verified": true,
+      "original_source_pages": [
+        4
+      ],
+      "coverage_status": "response and current manuscript reviewed"
     },
     {
       "id": "R4.1",
       "title": "Trained policies and experimental provenance",
       "comment_summary": "The submitted results used random-action transformations rather than the claimed trained policies.",
       "response_source_lines": [
-        460,
-        490
+        482,
+        512
       ],
       "sections": [
         "4.2",
@@ -1726,15 +1916,19 @@
         "manuscript/TRIX_SUPPLEMENT.tex"
       ],
       "status": "response_drafted",
-      "original_comment_verified": false
+      "original_comment_verified": true,
+      "original_source_pages": [
+        4
+      ],
+      "coverage_status": "response and current manuscript reviewed"
     },
     {
       "id": "R4.2",
       "title": "Matched analytical comparator",
       "comment_summary": "The SafeLayer comparison is unfair; compare against a CBF-QP supplied with the same analytical constraint.",
       "response_source_lines": [
-        491,
-        510
+        513,
+        532
       ],
       "sections": [
         "2.1",
@@ -1755,15 +1949,19 @@
         "manuscript/TRIX_SUPPLEMENT.tex"
       ],
       "status": "matched_command_QP_scope",
-      "original_comment_verified": false
+      "original_comment_verified": true,
+      "original_source_pages": [
+        4
+      ],
+      "coverage_status": "scoped response: matched command-set QP; no full dynamics-aware CBF study"
     },
     {
       "id": "R4.3",
       "title": "CBF capabilities",
       "comment_summary": "Correct Table~1's categorical statements about control barrier functions.",
       "response_source_lines": [
-        511,
-        521
+        533,
+        543
       ],
       "sections": [
         "1",
@@ -1780,15 +1978,19 @@
         "manuscript/TRIX_REVISION.tex"
       ],
       "status": "response_drafted",
-      "original_comment_verified": false
+      "original_comment_verified": true,
+      "original_source_pages": [
+        4
+      ],
+      "coverage_status": "response and current manuscript reviewed"
     },
     {
       "id": "R4.4",
       "title": "ISS theorem assumptions",
       "comment_summary": "The submitted stability assumptions substantially supply the claimed conclusion.",
       "response_source_lines": [
-        522,
-        534
+        544,
+        556
       ],
       "sections": [
         "2.1",
@@ -1802,15 +2004,19 @@
         "manuscript/TRIX_SUPPLEMENT.tex"
       ],
       "status": "response_drafted",
-      "original_comment_verified": false
+      "original_comment_verified": true,
+      "original_source_pages": [
+        4
+      ],
+      "coverage_status": "response and current manuscript reviewed"
     },
     {
       "id": "R4.5",
       "title": "Non-expansiveness of projection",
       "comment_summary": "The projection argument does not hold for arbitrary differentiable manifolds.",
       "response_source_lines": [
-        535,
-        546
+        557,
+        568
       ],
       "sections": [
         "2.1",
@@ -1825,15 +2031,19 @@
         "manuscript/TRIX_SUPPLEMENT.tex"
       ],
       "status": "response_drafted",
-      "original_comment_verified": false
+      "original_comment_verified": true,
+      "original_source_pages": [
+        4
+      ],
+      "coverage_status": "response and current manuscript reviewed"
     },
     {
       "id": "R4.6",
       "title": "Circular validation",
       "comment_summary": "Agreement between the NumPy environment and constraints derived from its own equations is not independent physical validation.",
       "response_source_lines": [
-        547,
-        574
+        569,
+        596
       ],
       "sections": [
         "2.1",
@@ -1854,15 +2064,19 @@
         "manuscript/TRIX_SUPPLEMENT.tex"
       ],
       "status": "response_drafted",
-      "original_comment_verified": false
+      "original_comment_verified": true,
+      "original_source_pages": [
+        4
+      ],
+      "coverage_status": "claim withdrawn and scope explained; independent physical calibration not supplied"
     },
     {
       "id": "R4.7",
       "title": "Role of PyBullet",
       "comment_summary": "Explain the PyBullet code in the repository and its relationship to the reported experiments.",
       "response_source_lines": [
-        575,
-        590
+        597,
+        612
       ],
       "sections": [
         "2.2",
@@ -1883,15 +2097,19 @@
         "archive/research/experiments/pybullet_helix.py"
       ],
       "status": "response_drafted",
-      "original_comment_verified": false
+      "original_comment_verified": true,
+      "original_source_pages": [
+        4
+      ],
+      "coverage_status": "response and current manuscript reviewed"
     },
     {
       "id": "R4.8",
       "title": "Physical robot evidence",
       "comment_summary": "The submission contains no hardware demonstration.",
       "response_source_lines": [
-        591,
-        614
+        613,
+        636
       ],
       "sections": [
         "2.6",
@@ -1910,15 +2128,19 @@
         "manuscript/TRIX_SUPPLEMENT.tex"
       ],
       "status": "response_drafted",
-      "original_comment_verified": false
+      "original_comment_verified": true,
+      "original_source_pages": [
+        4
+      ],
+      "coverage_status": "response and current manuscript reviewed"
     },
     {
       "id": "R4.9",
       "title": "Actual VLM evaluation",
       "comment_summary": "Synthetic hallucination injection does not establish governance of actual VLM outputs.",
       "response_source_lines": [
-        615,
-        688
+        637,
+        710
       ],
       "sections": [
         "2.5",
@@ -1942,15 +2164,19 @@
         "manuscript/TRIX_SUPPLEMENT.tex"
       ],
       "status": "response_drafted",
-      "original_comment_verified": false
+      "original_comment_verified": true,
+      "original_source_pages": [
+        4
+      ],
+      "coverage_status": "response and current manuscript reviewed"
     },
     {
       "id": "R4.10",
       "title": "BATTERY threshold and thermal interpretation",
       "comment_summary": "Reconcile the 20-N force threshold, thermal criterion and inconsistent table/text descriptions.",
       "response_source_lines": [
-        689,
-        711
+        711,
+        733
       ],
       "sections": [
         "2.3",
@@ -1974,15 +2200,19 @@
         "manuscript/TRIX_SUPPLEMENT.tex"
       ],
       "status": "response_drafted",
-      "original_comment_verified": false
+      "original_comment_verified": true,
+      "original_source_pages": [
+        4
+      ],
+      "coverage_status": "response and current manuscript reviewed"
     },
     {
       "id": "R4.11",
       "title": "Simulation and control rates",
       "comment_summary": "Resolve the inconsistent 240-Hz and 100-Hz descriptions.",
       "response_source_lines": [
-        712,
-        723
+        734,
+        745
       ],
       "sections": [
         "4.1",
@@ -2006,15 +2236,19 @@
         "manuscript/TRIX_SUPPLEMENT.tex"
       ],
       "status": "response_drafted",
-      "original_comment_verified": false
+      "original_comment_verified": true,
+      "original_source_pages": [
+        4
+      ],
+      "coverage_status": "response and current manuscript reviewed"
     },
     {
       "id": "R4.12",
       "title": "Figure~4 and Table~4 use different experiments",
       "comment_summary": "Resolve the mismatch between the submitted learning curves and headline results.",
       "response_source_lines": [
-        724,
-        737
+        746,
+        759
       ],
       "sections": [
         "2.3",
@@ -2035,15 +2269,19 @@
         "manuscript/TRIX_SUPPLEMENT.tex"
       ],
       "status": "response_drafted",
-      "original_comment_verified": false
+      "original_comment_verified": true,
+      "original_source_pages": [
+        4
+      ],
+      "coverage_status": "response and current manuscript reviewed"
     },
     {
       "id": "R4.13",
       "title": "PCB residual violations and representation analysis",
-      "comment_summary": "Explain the reported PCB failures instead of attributing them generically to curvature or linearity.",
+      "comment_summary": "Analyze the reported 44\\% PCB violation rate despite using the correct manifold.",
       "response_source_lines": [
-        738,
-        761
+        760,
+        783
       ],
       "sections": [
         "2.3",
@@ -2066,7 +2304,11 @@
         "manuscript/TRIX_SUPPLEMENT.tex"
       ],
       "status": "response_drafted",
-      "original_comment_verified": false
+      "original_comment_verified": true,
+      "original_source_pages": [
+        4
+      ],
+      "coverage_status": "response and current manuscript reviewed"
     }
   ],
   "local_evidence_sha256": {
@@ -2081,7 +2323,7 @@
     "benchmark/gym_adapter.py": "04eb3dfe0c8b38ca2ca9afb7d691992ab5095c352377062e9697095a54bd2c7b",
     "benchmark/outcome.py": "4089d1be55f5b62b541e3fb3967f67beac577d60702e56c13645fa944bf582e5",
     "benchmark/registry.py": "f002fcec502883ea5c1a0c09f39144b69ed2ed933530567536efcfffebd42372",
-    "docs/REPRODUCING.md": "5b214a3b432d083fb8a2b9505645f645a90a3d72a00a4780b565bd0b976f6899",
+    "docs/REPRODUCING.md": "fd743140b0f16451e54811607f8fa706a8a7df6ac675419a546b493285f8b6de",
     "docs/battery_aggregation_correction.md": "088bbc2bde148190da08be8193957b419caf63e26fdce78c0322bab2cdf1c7d8",
     "docs/bayonet_preregistration.md": "d20236c37881c69f6e5c18cf1dcbf06c6b2c65941ed3fa9c2932dc70e4fb9fb9",
     "docs/ood_reset_protocol.json": "c3e9f59d9bf1948565ba0f58a74f7dbb5b3c03a1d4b0feca8656fd64ea2ef5b5",
@@ -2152,8 +2394,8 @@
     "scope": "Measured complete-filter calls across six tasks; matched SCREW solvers"
   },
   "submission_gates": [
-    "Check original reports and exact editorial requirements",
-    "Review whether matched command-QP scope addresses original R4.2 wording",
+    "Complete the actual linked editorial requirements table",
+    "Author approval of the scoped R4.2 and R4.6 responses",
     "Arrange private reviewer access",
     "Author review and clean/marked submission",
     "Final journal page/line references"
