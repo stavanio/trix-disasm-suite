@@ -2,7 +2,7 @@
   "schema": 2,
   "stage": "author_review_draft",
   "manuscript_sha256": "c01feb36d39ed4aaca9f55c507f70535d964385d30c54f852ff9e94fdb8ff272",
-  "response_sha256": "06d84b333ed4d74cab0ade387330e1a6aa919611521395874b63497671bc5e72",
+  "response_sha256": "749099253d5d6a4416b25d99819835748e2b92b367cbd96bfcffb05f2e62ae1f",
   "supplement_sha256": "c2c3537ee16ec3f7bd4bc0f8aefabc5905715a22c93f99f917431895824395c2",
   "manuscript_pdf_sha256_at_build": "c80cba06b266c9cf158a60cc4af03f7aa6aad672b55ec6ca4a8f6ae650f76c2a",
   "supplement_pdf_sha256_at_build": "3bd7fc98579e61bbd9459062e7896355bff57d1ece5663bbaef53f7d82d3f15e",
@@ -1493,13 +1493,13 @@
       "comment_summary": "Fill the empty appendix with parameters, distributions, ranges and training versus out-of-distribution use.",
       "response_source_lines": [
         358,
-        372
+        380
       ],
       "sections": [
         "S4.5",
         "S4.6",
         "4.4",
-        "S10.4"
+        "S7"
       ],
       "items": [
         "tab:submitted-9"
@@ -1512,6 +1512,8 @@
         "envs/crank_env_v2.py",
         "envs/battery_env_v2.py",
         "envs/pry_env_v2.py",
+        "experiments/sensitivity.py",
+        "results/sensitivity.json",
         "manuscript/TRIX_SUPPLEMENT.tex"
       ],
       "status": "response_drafted",
@@ -1522,8 +1524,8 @@
       "title": "Placement of runtime discussion",
       "comment_summary": "Move computational timing out of the theoretical derivation.",
       "response_source_lines": [
-        373,
-        382
+        381,
+        390
       ],
       "sections": [
         "2.1",
@@ -1548,8 +1550,8 @@
       "title": "Orphaned Figure~2 reference",
       "comment_summary": "Repair the disconnected sentence referring to Figure~2.",
       "response_source_lines": [
-        383,
-        392
+        391,
+        400
       ],
       "sections": [
         "2.1"
@@ -1570,8 +1572,8 @@
       "title": "Narrative structure",
       "comment_summary": "Connect the physical constraint, the limitation of the compared representation and the resulting TRiX design.",
       "response_source_lines": [
-        393,
-        415
+        401,
+        423
       ],
       "sections": [
         "1",
@@ -1593,8 +1595,8 @@
       "title": "Trained policies and experimental provenance",
       "comment_summary": "The submitted results used random-action transformations rather than the claimed trained policies.",
       "response_source_lines": [
-        416,
-        446
+        424,
+        454
       ],
       "sections": [
         "4.2",
@@ -1622,8 +1624,8 @@
       "title": "Matched analytical comparator",
       "comment_summary": "The SafeLayer comparison is unfair; compare against a CBF-QP supplied with the same analytical constraint.",
       "response_source_lines": [
-        447,
-        466
+        455,
+        474
       ],
       "sections": [
         "2.1",
@@ -1651,8 +1653,8 @@
       "title": "CBF capabilities",
       "comment_summary": "Correct Table~1's categorical statements about control barrier functions.",
       "response_source_lines": [
-        467,
-        477
+        475,
+        485
       ],
       "sections": [
         "1",
@@ -1676,8 +1678,8 @@
       "title": "ISS theorem assumptions",
       "comment_summary": "The submitted stability assumptions substantially supply the claimed conclusion.",
       "response_source_lines": [
-        478,
-        490
+        486,
+        498
       ],
       "sections": [
         "2.1",
@@ -1698,8 +1700,8 @@
       "title": "Non-expansiveness of projection",
       "comment_summary": "The projection argument does not hold for arbitrary differentiable manifolds.",
       "response_source_lines": [
-        491,
-        502
+        499,
+        510
       ],
       "sections": [
         "2.1",
@@ -1721,8 +1723,8 @@
       "title": "Circular validation",
       "comment_summary": "Agreement between the NumPy environment and constraints derived from its own equations is not independent physical validation.",
       "response_source_lines": [
-        503,
-        530
+        511,
+        538
       ],
       "sections": [
         "2.1",
@@ -1750,8 +1752,8 @@
       "title": "Role of PyBullet",
       "comment_summary": "Explain the PyBullet code in the repository and its relationship to the reported experiments.",
       "response_source_lines": [
-        531,
-        546
+        539,
+        554
       ],
       "sections": [
         "2.2",
@@ -1779,8 +1781,8 @@
       "title": "Physical robot evidence",
       "comment_summary": "The submission contains no hardware demonstration.",
       "response_source_lines": [
-        547,
-        570
+        555,
+        578
       ],
       "sections": [
         "2.6",
@@ -1806,8 +1808,8 @@
       "title": "Actual VLM evaluation",
       "comment_summary": "Synthetic hallucination injection does not establish governance of actual VLM outputs.",
       "response_source_lines": [
-        571,
-        644
+        579,
+        652
       ],
       "sections": [
         "2.5",
@@ -1838,8 +1840,8 @@
       "title": "BATTERY threshold and thermal interpretation",
       "comment_summary": "Reconcile the 20-N force threshold, thermal criterion and inconsistent table/text descriptions.",
       "response_source_lines": [
-        645,
-        667
+        653,
+        675
       ],
       "sections": [
         "2.3",
@@ -1870,8 +1872,8 @@
       "title": "Simulation and control rates",
       "comment_summary": "Resolve the inconsistent 240-Hz and 100-Hz descriptions.",
       "response_source_lines": [
-        668,
-        679
+        676,
+        687
       ],
       "sections": [
         "4.1",
@@ -1902,8 +1904,8 @@
       "title": "Figure~4 and Table~4 use different experiments",
       "comment_summary": "Resolve the mismatch between the submitted learning curves and headline results.",
       "response_source_lines": [
-        680,
-        693
+        688,
+        701
       ],
       "sections": [
         "2.3",
@@ -1931,8 +1933,8 @@
       "title": "PCB residual violations and representation analysis",
       "comment_summary": "Explain the reported PCB failures instead of attributing them generically to curvature or linearity.",
       "response_source_lines": [
-        694,
-        717
+        702,
+        725
       ],
       "sections": [
         "2.3",

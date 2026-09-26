@@ -147,3 +147,19 @@ The previous PDF remains in Git history and the frozen archive. The other
 54 pinned files retain their prior hashes, including all six workspace renders.
 Main and Supplement remain 22 and 43 pages; the response is 20 pages. The
 source inventory now has 203 files and 90 mapped Python files, with no orphan code.
+
+
+## R2.4 and reviewer-access follow-up
+
+R2.4 now states directly that no parameters were randomised under a separate
+OOD reset distribution. It identifies the existing perturbation evidence as the
+105-case sweep of 21 constants at five multipliers, with eight scripted episodes
+per arm/case and a recorded 96/105 ordering result. It explicitly distinguishes
+this scripted sensitivity study from OOD generalisation of trained policies and
+links to S7, the experiment code and the saved outcomes. The compiled S4.6 and
+Table S4 were rechecked on SI page 17; the remaining noise/evaluation details
+are on page 18. Title declarations remain in the editor email and R4 introduction.
+
+The source remains an author-review draft. The original decision/reviewer reports
+and an operational reviewer-access route are still required before submission.
+The availability text has not been rewritten to claim unestablished access.

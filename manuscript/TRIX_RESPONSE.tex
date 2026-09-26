@@ -361,14 +361,22 @@ Section~S4.6; Supplementary Section~S4.5 describes
 chance-constraint margins. The table records each reset-sampled parameter,
 distribution and range directly from the frozen environments, and separates
 reset variation from per-step Gaussian noise. Its evaluation-use column
-explicitly identifies the common training, validation and held-out test ranges,
-and the absence of a widened OOD reset distribution. Training and held-out
-episodes use disjoint episode seeds. The sensitivity
-sweep and BAYONET experiment are described separately rather than relabeled
-as held-out reset randomisation. PRY has no reset-time parameter sampling,
-which is stated explicitly.
-\locations{\mssec{S4.5}; \mssec{S4.6}; \mssec{4.4}; \mssec{S10.4}; \msitem{tab:submitted-9}}
-\evidence{envs/screw_env_v3.py; envs/pcb_env_v2.py; envs/snap_env_v2.py; envs/crank_env_v2.py; envs/battery_env_v2.py; envs/pry_env_v2.py; manuscript/TRIX_SUPPLEMENT.tex}
+explicitly identifies the common training, validation and held-out test ranges.
+No parameters were randomised under a separate out-of-distribution reset
+distribution: the recorded policy evaluation is in-distribution, with disjoint
+episode seeds. PRY has no reset-time parameter sampling, as the table states.
+
+The perturbation evidence available is a separate 105-case sensitivity sweep:
+21 constants at multipliers 0.5, 0.75, 1.0, 1.5 and 2.0, with eight scripted
+episodes per arm and case. The prescribed task-specific ordering holds in
+96/105 cases; Supplementary Section~S7 diagnoses the nine exceptions.
+This sweep tests changes to the declared physical/specification constants
+using scripted actions. It does not establish out-of-distribution generalisation
+of the trained policies or substitute for the requested OOD reset evaluation,
+which was not performed. The protocol and all outcomes are retained in
+\path{experiments/sensitivity.py} and \path{results/sensitivity.json}.
+\locations{\mssec{S4.5}; \mssec{S4.6}; \mssec{4.4}; \mssec{S7}; \msitem{tab:submitted-9}}
+\evidence{envs/screw_env_v3.py; envs/pcb_env_v2.py; envs/snap_env_v2.py; envs/crank_env_v2.py; envs/battery_env_v2.py; envs/pry_env_v2.py; experiments/sensitivity.py; results/sensitivity.json; manuscript/TRIX_SUPPLEMENT.tex}
 
 \response{R2.5}{Placement of runtime discussion}{Move computational timing out of the theoretical derivation.}
 The helical-coupling subsection now contains only the model, normalization
