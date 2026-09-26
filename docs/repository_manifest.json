@@ -256,6 +256,20 @@
         "docs/PAPER_MAP.md"
       ]
     },
+    "docs/runtime_benchmark_protocol.md": {
+      "role": "Runtime benchmark source, protocol, environment or generated table",
+      "references": [
+        "tab:runtime-latency",
+        "docs/runtime_benchmark_results.md"
+      ]
+    },
+    "docs/runtime_benchmark_results.md": {
+      "role": "Runtime benchmark source, protocol, environment or generated table",
+      "references": [
+        "tab:runtime-latency",
+        "docs/runtime_benchmark_results.md"
+      ]
+    },
     "docs/workspace_rendering.md": {
       "role": "documentation or pinned asset metadata",
       "references": [
@@ -351,6 +365,13 @@
       "role": "entrypoint",
       "references": [
         "docs/REPRODUCING.md"
+      ]
+    },
+    "experiments/runtime_benchmark.py": {
+      "role": "Runtime benchmark source, protocol, environment or generated table",
+      "references": [
+        "tab:runtime-latency",
+        "docs/runtime_benchmark_results.md"
       ]
     },
     "experiments/safelayer_decomposition.py": {
@@ -624,10 +645,24 @@
         "fig:disasm-workspaces"
       ]
     },
+    "manuscript/tables/runtime_latency.tex": {
+      "role": "Runtime benchmark source, protocol, environment or generated table",
+      "references": [
+        "tab:runtime-latency",
+        "docs/runtime_benchmark_results.md"
+      ]
+    },
     "manuscript/tables/seed_statistics.tex": {
       "role": "manuscript source or figure/data dependency",
       "references": [
         "tab:submitted-11"
+      ]
+    },
+    "requirements-runtime.txt": {
+      "role": "Runtime benchmark source, protocol, environment or generated table",
+      "references": [
+        "tab:runtime-latency",
+        "docs/runtime_benchmark_results.md"
       ]
     },
     "requirements-training.txt": {
@@ -688,6 +723,132 @@
       "role": "compact archived result",
       "references": [
         "tab:procedural-geometry"
+      ]
+    },
+    "results/runtime/inputs.npz": {
+      "role": "Recorded filter timing measurement, input or provenance",
+      "references": [
+        "tab:runtime-latency",
+        "docs/runtime_benchmark_results.md"
+      ]
+    },
+    "results/runtime/manifest.json": {
+      "role": "Recorded filter timing measurement, input or provenance",
+      "references": [
+        "tab:runtime-latency",
+        "docs/runtime_benchmark_results.md"
+      ]
+    },
+    "results/runtime/repeat_0.json": {
+      "role": "Recorded filter timing measurement, input or provenance",
+      "references": [
+        "tab:runtime-latency",
+        "docs/runtime_benchmark_results.md"
+      ]
+    },
+    "results/runtime/repeat_0.log": {
+      "role": "Recorded filter timing measurement, input or provenance",
+      "references": [
+        "tab:runtime-latency",
+        "docs/runtime_benchmark_results.md"
+      ]
+    },
+    "results/runtime/repeat_0.npz": {
+      "role": "Recorded filter timing measurement, input or provenance",
+      "references": [
+        "tab:runtime-latency",
+        "docs/runtime_benchmark_results.md"
+      ]
+    },
+    "results/runtime/repeat_1.json": {
+      "role": "Recorded filter timing measurement, input or provenance",
+      "references": [
+        "tab:runtime-latency",
+        "docs/runtime_benchmark_results.md"
+      ]
+    },
+    "results/runtime/repeat_1.log": {
+      "role": "Recorded filter timing measurement, input or provenance",
+      "references": [
+        "tab:runtime-latency",
+        "docs/runtime_benchmark_results.md"
+      ]
+    },
+    "results/runtime/repeat_1.npz": {
+      "role": "Recorded filter timing measurement, input or provenance",
+      "references": [
+        "tab:runtime-latency",
+        "docs/runtime_benchmark_results.md"
+      ]
+    },
+    "results/runtime/repeat_2.json": {
+      "role": "Recorded filter timing measurement, input or provenance",
+      "references": [
+        "tab:runtime-latency",
+        "docs/runtime_benchmark_results.md"
+      ]
+    },
+    "results/runtime/repeat_2.log": {
+      "role": "Recorded filter timing measurement, input or provenance",
+      "references": [
+        "tab:runtime-latency",
+        "docs/runtime_benchmark_results.md"
+      ]
+    },
+    "results/runtime/repeat_2.npz": {
+      "role": "Recorded filter timing measurement, input or provenance",
+      "references": [
+        "tab:runtime-latency",
+        "docs/runtime_benchmark_results.md"
+      ]
+    },
+    "results/runtime/repeat_3.json": {
+      "role": "Recorded filter timing measurement, input or provenance",
+      "references": [
+        "tab:runtime-latency",
+        "docs/runtime_benchmark_results.md"
+      ]
+    },
+    "results/runtime/repeat_3.log": {
+      "role": "Recorded filter timing measurement, input or provenance",
+      "references": [
+        "tab:runtime-latency",
+        "docs/runtime_benchmark_results.md"
+      ]
+    },
+    "results/runtime/repeat_3.npz": {
+      "role": "Recorded filter timing measurement, input or provenance",
+      "references": [
+        "tab:runtime-latency",
+        "docs/runtime_benchmark_results.md"
+      ]
+    },
+    "results/runtime/repeat_4.json": {
+      "role": "Recorded filter timing measurement, input or provenance",
+      "references": [
+        "tab:runtime-latency",
+        "docs/runtime_benchmark_results.md"
+      ]
+    },
+    "results/runtime/repeat_4.log": {
+      "role": "Recorded filter timing measurement, input or provenance",
+      "references": [
+        "tab:runtime-latency",
+        "docs/runtime_benchmark_results.md"
+      ]
+    },
+    "results/runtime/repeat_4.npz": {
+      "role": "Recorded filter timing measurement, input or provenance",
+      "references": [
+        "tab:runtime-latency",
+        "docs/runtime_benchmark_results.md"
+      ]
+    },
+    "results/runtime/summary.json": {
+      "role": "Recorded filter timing measurement, input or provenance",
+      "references": [
+        "tab:runtime-latency",
+        "docs/runtime_benchmark_results.md"
       ]
     },
     "results/safelayer_decomposition.json": {
@@ -1043,7 +1204,8 @@
     "scripts/verify_workspace_state_mapping.py",
     "training/stage1.py",
     "training/stage2.py",
-    "scripts/build_reviewer_response_map.py"
+    "scripts/build_reviewer_response_map.py",
+    "experiments/runtime_benchmark.py"
   ],
   "tests": [
     "tests/test_battery_v2.py",
@@ -1356,6 +1518,37 @@
         "manuscript/tables/seed_statistics.tex"
       ],
       "command_or_check": "python3 scripts/build_revision_seed_statistics.py; 13 contrasts, 220 records, 4,400 source shards.",
+      "citations": []
+    },
+    {
+      "label": "tab:runtime-latency",
+      "title": "Table 14: recorded computational cost",
+      "files": [
+        "experiments/runtime_benchmark.py",
+        "requirements-runtime.txt",
+        "docs/runtime_benchmark_protocol.md",
+        "docs/runtime_benchmark_results.md",
+        "manuscript/tables/runtime_latency.tex",
+        "results/runtime/inputs.npz",
+        "results/runtime/manifest.json",
+        "results/runtime/repeat_0.json",
+        "results/runtime/repeat_0.log",
+        "results/runtime/repeat_0.npz",
+        "results/runtime/repeat_1.json",
+        "results/runtime/repeat_1.log",
+        "results/runtime/repeat_1.npz",
+        "results/runtime/repeat_2.json",
+        "results/runtime/repeat_2.log",
+        "results/runtime/repeat_2.npz",
+        "results/runtime/repeat_3.json",
+        "results/runtime/repeat_3.log",
+        "results/runtime/repeat_3.npz",
+        "results/runtime/repeat_4.json",
+        "results/runtime/repeat_4.log",
+        "results/runtime/repeat_4.npz",
+        "results/runtime/summary.json"
+      ],
+      "command_or_check": "python3 -B experiments/runtime_benchmark.py check --out results/runtime",
       "citations": []
     }
   ],

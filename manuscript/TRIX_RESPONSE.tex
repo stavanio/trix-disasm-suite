@@ -133,16 +133,33 @@ as prevention of constraint-violation cases, without claiming prevented fracture
 \evidence{benchmark/outcome.py; envs/battery_env_v2.py}
 
 \response{E.4}{Quantitative latency}{Replace vague claims of negligible latency with a quantitative computational comparison.}
-We agree that a latency claim requires a reproducible timing protocol and
-measurement record. The previously quoted microsecond values could not be
-linked to an archived matched benchmark record. We have removed those values,
-the associated speedup implication and the unsupported latency table.
-Appendix~H now distinguishes the available analytical, active-set QP and
-operator-splitting implementations from a measured runtime comparison.
-The matching task-level outcomes are retained as evidence about the common
-constraint specification. They establish no timing advantage.
-\locations{\mssec{3.5}; \mssec{4.9}; \mssec{H}}
-\evidence{baselines/screw_solvers.py}
+We replaced the unsupported historical timing figures with a new recorded
+benchmark of 22 existing filter implementations across all six tasks.
+Five fresh processes each evaluate the same 2,048 saved inputs per task,
+following 256 warm-up calls per implementation. The resulting 225,280 timed
+calls, output actions, failure flags, execution order, host information and
+source hashes are supplied with the reproducible benchmark.
+
+For the matched SCREW command polytope, median filter-call latency is
+1.255~$\mu$s for the production scalar TRiX projector,
+12.578~$\mu$s for active-set QP and 14.924~$\mu$s for reused OSQP.
+The corresponding 95th percentiles are 1.556, 15.534 and 19.895~$\mu$s.
+All matched implementations pass the declared output-agreement and
+constraint-residual checks with zero recovery outputs. The maximum
+action-coordinate difference is $1.013\times10^{-6}$ on the saved bank.
+\msitem{tab:runtime-latency} reports every implementation, including
+the NumPy analytical projector, whose 18.163~$\mu$s median shows that
+implementation choices materially affect cost.
+
+The timer covers the complete filter callable, including allocation,
+per-call constraint construction and diagnostics. Policy/VLM inference,
+simulation and robot communication are excluded. Appendix~H specifies
+the Intel Core Ultra 9 275HX host, numerical package versions, CPU affinity,
+solver tolerances, setup reuse and the full sampling protocol. These are
+measured implementation costs on the recorded host, not a claim of
+worst-case execution time or end-to-end robot latency.
+\locations{\mssec{3.5}; \mssec{4.9}; \mssec{H}; \msitem{tab:runtime-latency}}
+\evidence{experiments/runtime_benchmark.py; docs/runtime_benchmark_protocol.md; results/runtime/manifest.json; results/runtime/summary.json}
 
 \Needspace{23\baselineskip}
 \response{E.5}{Generality beyond six task implementations}{Explain how the method generalizes beyond the six manually specified disassembly tasks.}
@@ -237,15 +254,23 @@ unmodeled manipulation task.
 \evidence{benchmark/geometry_gen.py; results/geometry_bench_heldout.json; results/sensitivity.json}
 
 \response{R1.6}{Computational time}{Report the computation time required by TRiX and the comparator.}
-The analytical and QP operators are available for the same SCREW command
-set, but the earlier timing claims have no recovered matched measurement
-record. We have withdrawn the numerical latency and speedup claims and
-state this in Appendix~H. The observed equality of task outcomes is not used
-as evidence of lower runtime. A measured timing comparison would require a
-declared workload, solver settings, warm-up protocol, hardware and saved
-per-call measurements; those data are not present in the evidence used here.
-\locations{\mssec{4.9}; \mssec{H}; response E.4}
-\evidence{baselines/screw_solvers.py}
+We added the recorded computational comparison in Appendix~H. Across the six
+registered TRiX task arms, median complete-filter latency ranges from
+1.123~$\mu$s for PCB to 11.770~$\mu$s for CRANK; BATTERY's preventive
+variant takes 3.122~$\mu$s. The matched SCREW comparison measures
+1.255~$\mu$s for production TRiX, 12.578~$\mu$s for active-set QP and
+14.924~$\mu$s for reused OSQP. The table reports medians, 95th percentiles
+and variation across five fresh processes, with all raw calls retained.
+
+Each row uses 10,240 calls on the same saved input bank for its task.
+The source specifies solver settings, warm-up, a single pinned CPU and the
+measurement boundary. OSQP's one-time object construction is reported
+separately from steady-state calls. The different componentwise and
+oracle-tangent restrictions are identified explicitly, so their timings
+are not presented as equivalent-safety comparisons. Response E.4 gives
+the matched-solver agreement checks and the timing scope.
+\locations{\mssec{4.9}; \mssec{H}; \msitem{tab:runtime-latency}; response E.4}
+\evidence{experiments/runtime_benchmark.py; docs/runtime_benchmark_protocol.md; results/runtime/manifest.json; results/runtime/summary.json}
 
 \response{R1.7}{Distributions and uncertainty}{Show distributions or boxplots rather than relying only on aggregate performance.}
 Figure~4 shows all ten training-seed values for each displayed arm and
@@ -341,12 +366,12 @@ which is stated explicitly.
 \response{R2.5}{Placement of runtime discussion}{Move computational timing out of the theoretical derivation.}
 The helical-coupling subsection now contains only the model, normalization
 and projection interpretation. Computational scope is treated separately in
-Appendix~H and the solver-control Methods subsection. Since the earlier
-timing values have no recovered measurement record, they are removed rather
-than relocated as established results. The outstanding quantitative request
-is identified in E.4 and R1.6.
-\locations{\mssec{3.2}; \mssec{4.9}; \mssec{H}}
-\evidence{manuscript/TRIX_REVISION.tex}
+Appendix~H and the solver-control Methods subsection. The new timing protocol
+and measured distributions are reported there, with their raw evidence and
+implementation scope. They replace the unsupported historical figures.
+Responses E.4 and R1.6 describe the completed measurement.
+\locations{\mssec{3.2}; \mssec{4.9}; \mssec{H}; \msitem{tab:runtime-latency}}
+\evidence{manuscript/TRIX_REVISION.tex; results/runtime/summary.json}
 
 \response{R2.6}{Orphaned Figure~2 reference}{Repair the disconnected sentence referring to Figure~2.}
 Figure~2 is integrated with the screw-coupling explanation and explicitly
@@ -466,9 +491,10 @@ the physical fidelity of those equations or their numerical parameters.
 
 We separate this consistency check from two further analyses. First, matched
 SCREW operators share a declared optimization problem, and the archived
-policy results establish matching task-level outcomes. The source retains
-analytical, active-set and operator-splitting implementations; no unrecovered
-pointwise-precision result is claimed. Second, the sensitivity sweep tests
+policy results establish matching task-level outcomes. The new finite-bank
+agreement checks in Appendix~H compare analytical, active-set and
+operator-splitting implementations; agreement does not validate the physical
+model. Second, the sensitivity sweep tests
 21 constants at five multipliers with eight scripted episodes per arm and
 case. The prescribed ordering holds in 96 of 105 cases. The nine exceptions
 comprise six PCB model/boundary inconsistencies, one CRANK tightening failure
@@ -481,8 +507,8 @@ auditable, while the physical calibration of the benchmark force, torque and
 damage thresholds remains unestablished. Neither the VLM study nor the
 separate B601 execution demonstration is offered as independent validation
 of those quantities.
-\locations{\mssec{3.2}; \mssec{4.1}; \mssec{4.9}; \mssec{5.5.3}; \mssec{6.2.1}; \mssec{D.4}; \mssec{G}}
-\evidence{results/sensitivity.json; experiments/sensitivity.py; baselines/screw_solvers.py; assets/workspaces/environment_sources.json}
+\locations{\mssec{3.2}; \mssec{4.1}; \mssec{4.9}; \mssec{5.5.3}; \mssec{6.2.1}; \mssec{D.4}; \mssec{G}; \mssec{H}}
+\evidence{results/sensitivity.json; experiments/sensitivity.py; baselines/screw_solvers.py; assets/workspaces/environment_sources.json; results/runtime/summary.json}
 
 \response{R4.7}{Role of PyBullet}{Explain the PyBullet code in the repository and its relationship to the reported experiments.}
 The production experiments use the versioned analytical environments.

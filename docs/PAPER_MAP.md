@@ -1,7 +1,7 @@
 # Paper → source → evidence
 
 Figure/table labels below are stable TeX labels. Numbering refers to the current
-70-page revision. Source citations refer to bibliography IDs in the manuscript.
+revision. Source citations refer to bibliography IDs in the manuscript.
 
 Reviewer requests are separately mapped to manuscript locations and evidence in
 [REVIEWER_MAP.md](REVIEWER_MAP.md), with an editable
@@ -161,6 +161,17 @@ Citations: `ref31`, `ref32`.
 [scripts/build_revision_seed_statistics.py](../scripts/build_revision_seed_statistics.py); [manuscript/data/seed_statistics_input.json](../manuscript/data/seed_statistics_input.json); [manuscript/data/seed_statistics_summary.json](../manuscript/data/seed_statistics_summary.json); [manuscript/data/seed_statistics_pairs.csv](../manuscript/data/seed_statistics_pairs.csv); [manuscript/tables/seed_statistics.tex](../manuscript/tables/seed_statistics.tex).
 
 python3 scripts/build_revision_seed_statistics.py; 13 contrasts, 220 records, 4,400 source shards.
+
+## Table 14: recorded computational cost
+
+`tab:runtime-latency`
+
+[Protocol](runtime_benchmark_protocol.md); [results and scope](runtime_benchmark_results.md); [experiment/checker](../experiments/runtime_benchmark.py); [raw-file and source hashes](../results/runtime/manifest.json); [full summary](../results/runtime/summary.json); [generated table](../manuscript/tables/runtime_latency.tex); [measurement environment](../requirements-runtime.txt).
+
+`python3 -B experiments/runtime_benchmark.py check --out results/runtime`
+verifies and recomputes all 225,280 recorded filter-call measurements. `table`
+regenerates the table without rerunning timing. Appendix H and responses E.4
+and R1.6 cite the new evidence.
 
 ## Supporting analyses outside numbered tables
 

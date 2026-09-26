@@ -66,7 +66,8 @@ def main():
     for test in manifest['tests']:
         assert edges[test] - initializers, f'Test has no retained source dependency: {test}'
     tex = (ROOT / 'manuscript/TRIX_REVISION.tex').read_text()
-    tex += '\n' + (ROOT / 'manuscript/tables/seed_statistics.tex').read_text()
+    for included in re.findall(r'\\input\{([^}]+)\}', tex):
+        tex += '\n' + (ROOT / included).read_text()
     labels = set(re.findall(r'\\label\{([^}]+)\}', tex))
     refs = set(re.findall(r'\\bibitem\{([^}]+)\}', tex))
     covered = set()

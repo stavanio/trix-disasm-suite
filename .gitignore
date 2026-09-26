@@ -7,6 +7,7 @@ dist/
 .eggs/
 .DS_Store
 *.log
+!results/runtime/repeat_*.log
 *.aux
 *.out
 *.toc

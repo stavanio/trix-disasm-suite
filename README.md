@@ -30,7 +30,8 @@ The repository check uses Python's standard library. The VLM audit also needs
 NumPy; compilation needs XeLaTeX. See the command guide before running training.
 `make response` builds the paper, refreshes response page references and builds
 the response letter. Its 34 comment summaries still require checking against
-the original decision letter; E.4/R1.6's quantitative timing request remains open.
+the original decision letter. E.4/R1.6 now have a [recorded runtime benchmark](docs/runtime_benchmark_results.md),
+with all raw calls and an independently regenerable table.
 
 ## Repository and archive
 

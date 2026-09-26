@@ -1,0 +1,34 @@
+% Generated from saved measurements by experiments/runtime_benchmark.py table.
+\begin{longtable}{llrrrr}
+\caption{Filter-call latency on the recorded host. Times are in $\mu$s.
+Each row contains 10,240 calls across five fresh processes. Median and
+95th percentile pool the retained calls; the range is the minimum and
+maximum of the five process medians. Controls outside the matched SCREW
+comparison implement different restrictions.}\label{tab:runtime-latency}\\
+\toprule Task & Implementation & Median & 95th & \multicolumn{2}{c}{Process medians}\\
+ & & & percentile & Min. & Max.\\\midrule\endfirsthead
+\toprule Task & Implementation & Median & 95th & Min. & Max.\\\midrule\endhead
+\bottomrule\endfoot
+SCREW & TRiX & 1.25 & 1.56 & 1.24 & 1.26\\
+SCREW & Oracle tangent & 6.37 & 41.14 & 6.28 & 6.44\\
+SCREW & Active-set QP & 12.58 & 15.53 & 12.51 & 12.73\\
+SCREW & NumPy polygon & 18.16 & 20.90 & 18.12 & 18.20\\
+SCREW & Reused OSQP & 14.92 & 19.90 & 14.65 & 15.13\\
+PCB & TRiX & 1.12 & 1.46 & 1.11 & 1.13\\
+PCB & Oracle tangent & 6.14 & 8.62 & 6.07 & 6.19\\
+PCB & Box clip & 3.47 & 4.25 & 3.42 & 3.49\\
+SNAP & TRiX & 3.97 & 4.84 & 3.95 & 3.98\\
+SNAP & Oracle tangent & 12.33 & 19.78 & 12.20 & 12.42\\
+SNAP & Static clip & 4.73 & 5.29 & 4.70 & 4.76\\
+CRANK & TRiX & 11.77 & 13.46 & 11.72 & 11.86\\
+CRANK & Oracle tangent & 34.03 & 36.75 & 33.92 & 34.39\\
+CRANK & Static clip & 5.70 & 6.43 & 5.65 & 5.75\\
+BATTERY & TRiX & 2.19 & 2.53 & 2.17 & 2.21\\
+BATTERY & Oracle tangent & 9.43 & 12.04 & 9.37 & 9.51\\
+BATTERY & Box clip & 4.89 & 5.37 & 4.85 & 4.95\\
+BATTERY & TRiX preventive & 3.12 & 3.56 & 3.09 & 3.14\\
+BATTERY & Box preventive & 5.83 & 6.50 & 5.75 & 5.88\\
+PRY & TRiX & 5.51 & 6.29 & 5.47 & 5.54\\
+PRY & Oracle tangent & 14.88 & 18.00 & 14.73 & 15.06\\
+PRY & Static clip & 5.11 & 5.74 & 5.09 & 5.16\\
+\end{longtable}

@@ -1262,9 +1262,11 @@ model itself.
 For SCREW, analytical projection and the matched active-set QP enforce
 the same finite-tolerance command polytope. An operator-splitting implementation
 is also retained in the source. The archived policy comparison tests the
-task-level consequence of matched command constraints. We do not report
-pointwise numerical error or runtime measurements without their supporting
-benchmark record.
+task-level consequence of matched command constraints. A separate recorded
+benchmark measures complete filter-call latency across all six tasks and
+checks the matched SCREW outputs on identical inputs. Its protocol, numerical
+agreement checks and runtime distributions are reported in Appendix~H,
+Table~\ref{tab:runtime-latency}.
 
 \paragraph{Specification sensitivity.}
 Twenty-one physical constants spanning the six environments are perturbed over
@@ -1636,9 +1638,11 @@ achieve 60.0\%, again compared with 0.0\% unfiltered.
 The equality of these outcomes is important. It means the SCREW experiment
 does not show that closed-form TRiX projection is safer or more capable than a
 matched QP. Given the same admissible-set specification, the correction
-mechanisms produce the same task-level result. This does not establish
-bitwise equality or a runtime advantage; those claims require a separate
-archived numerical benchmark.
+mechanisms produce the same task-level result. The separate implementation
+benchmark in Appendix~H measures the latency of these operators and checks
+their numerical agreement on a saved input bank. Those measurements support
+an implementation-specific timing comparison on the recorded host; equality
+of policy outcomes alone does not establish a runtime advantage.
 
 \subsubsection{Policy competence limits what a frozen-policy comparison can show}
 
@@ -3661,8 +3665,10 @@ environment establishes implementation consistency only.
 The analytical, active-set QP and operator-splitting implementations in
 \texttt{baselines/screw\_solvers.py} use the same normalized SCREW command
 polytope. The policy results establish matching task-level outcomes for the
-registered analytical and matched-QP arms. The archived evidence does not
-support retaining a specific pointwise error bound in this draft.
+registered analytical and matched-QP arms. The new saved input-bank checks
+in Appendix~H measure pointwise agreement of the scalar and NumPy analytical
+projectors, active-set QP and reused OSQP. The observed errors apply to that
+declared workload, rather than constituting a universal numerical error bound.
 
 \paragraph{Specification sensitivity.}
 The archived sweep contains 21 constants at five multipliers, with eight
@@ -3673,15 +3679,89 @@ zero destructive completions but lower safe completion for the designated
 preventive arm. These are post-hoc diagnoses of the observed sweep, not a
 96/96 certification conditional on two sufficient safety preconditions.
 
-\section{Computational Scope}
+\section{Recorded Computational Cost}
+\label{sec:runtime-benchmark}
 
-The source provides an analytical polygon projector, an active-set QP and a
-reused operator-splitting QP for the same SCREW command specification. This
-separates the mathematical set from the choice of numerical implementation.
-No per-action latency comparison or speedup is reported here because the
-previously quoted timing pair could not be tied to an archived matched
-benchmark record. The observed equality of task-level outcomes is retained;
-it does not establish a computational-efficiency advantage.
+We measured the complete implemented filter call,
+$(o,a)\mapsto(a',\mathrm{info})$, for all 20 registered non-passthrough arms
+across the six tasks, plus the NumPy SCREW polygon projector and reused OSQP.
+The measurement includes array conversion and allocation, per-call constraint
+construction, projection and diagnostic construction. Input generation,
+imports, policy or VLM inference, simulator steps, output validation and robot
+communication are outside the timer. This new benchmark replaces the
+unsupported historical timing figures; it does not reconstruct their provenance.
+
+\paragraph{Workload and repetition.}
+Each task has 2,048 saved float32 observation/action pairs generated with seed
+20260925. Half the actions are uniform in $[-1,1]^3$, one quarter scales the
+TRiX projection by a factor in $[0.1,0.9]$, and one quarter perturbs that
+projection toward the original proposal by $10^{-4}$ normalized units before
+clipping to the action cube. These deliberately constructed strata exercise
+different correction costs; their weights are not policy visitation frequencies.
+Observations come from the existing environment encoders: reset states for
+state-independent filters, equal engaged/disengaged SNAP cases, CRANK angles
+before and after its rotation threshold, and PRY insertion depths over its
+declared range. No environment rollout or policy retraining is involved.
+
+Five fresh Python processes each warm every callable for 256 calls, then time
+all 2,048 inputs per implementation, giving 10,240 recorded calls per row and
+225,280 calls overall. Each process uses a seeded input permutation and
+randomizes task and implementation order within 64-input blocks. The arms for
+each task receive the same input sequence. Cyclic garbage collection is
+disabled during the timing loop; ordinary allocation and reference counting
+remain included. Durations use \texttt{perf\_counter\_ns}. All samples,
+including outliers, are retained. The empty timer-pair median is 0.025~$\mu$s
+and is not subtracted. Table~\ref{tab:runtime-latency} reports pooled medians,
+95th percentiles and the range of the five process medians. Raw per-call
+durations, outputs, failure flags, call order, strata and maxima are preserved.
+
+\paragraph{Host and solver settings.}
+The measurements used an Intel Core Ultra 9 275HX under Linux 7.0.0-31,
+CPython 3.12.3, NumPy 1.26.4, SciPy 1.11.4, quadprog 0.1.13 and OSQP 1.1.3.
+Each worker was pinned to CPU~0, native numerical thread limits were set to
+one, and the recorded process thread count was one. The existing
+\texttt{intel\_pstate} powersave policy and frequency scaling were retained.
+OSQP reuses its problem object and warm start; both absolute and relative
+tolerances are $10^{-9}$, the iteration cap is 20,000, and polishing is enabled
+with zero refinement iterations. Object construction took 0.662--0.674~ms
+across the five processes and is excluded from steady-state call times.
+Active-set QP retains its existing per-call matrix construction. Solver
+diagnostic work remains inside the timed call; worker output is redirected to
+saved logs. These choices measure the supplied implementations as used, with
+setup reuse explicitly stated.
+
+\paragraph{Matched comparison and scope.}
+For the same SCREW command polytope and inputs, the production scalar TRiX
+projector has median/95th-percentile latency 1.255/1.556~$\mu$s, compared with
+12.578/15.534~$\mu$s for active-set QP and 14.924/19.895~$\mu$s for reused OSQP.
+The scalar, NumPy and active-set outputs coincide in float32 on this bank;
+the largest absolute action-coordinate difference from OSQP is
+$1.013\times10^{-6}$. All four implementations pass the predeclared
+$10^{-5}$ action-agreement and $10^{-7}$ constraint-residual tolerances with
+zero recovery outputs. These are checks on the saved bank, not a proof for
+arbitrary inputs. The alternative NumPy analytical projector takes
+18.16/20.90~$\mu$s, demonstrating that allocation and implementation choices
+materially affect the comparison even for the same projection geometry.
+
+Across the six registered TRiX arms, median latency ranges from 1.12 to
+11.77~$\mu$s; BATTERY's preventive variant takes 3.12~$\mu$s. The
+componentwise and oracle-tangent controls on the other tasks implement
+different restrictions, so their times are descriptive overhead comparisons
+without a claim of equivalent safety. CRANK's TRiX median exceeds its static
+clip median, for example, while including frame-dependent projection and
+tightening diagnostics. The largest recorded call is 352.56~$\mu$s for OSQP;
+the largest registered TRiX call is 335.81~$\mu$s for CRANK. A single-host
+distribution does not establish worst-case execution time or an end-to-end
+real-time guarantee.
+
+The protocol, pinned numerical dependencies, input bank and raw measurements
+are supplied in \texttt{docs/runtime\_benchmark\_protocol.md},
+\texttt{requirements-runtime.txt} and \texttt{results/runtime/}.
+\texttt{experiments/runtime\_benchmark.py} reproduces the measurement and
+regenerates the summary and table from the saved arrays, with source and
+payload hashes checked separately from timing.
+
+\input{manuscript/tables/runtime_latency.tex}
 
 
 \begin{thebibliography}{99}

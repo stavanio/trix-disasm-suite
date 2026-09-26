@@ -1,0 +1,7 @@
+# Environment used for the new 25 September 2026 runtime benchmark.
+# These pins do not retroactively identify the historical training runtime.
+numpy==1.26.4
+scipy==1.11.4
+osqp==1.1.3
+quadprog==0.1.13
+gymnasium==1.3.0

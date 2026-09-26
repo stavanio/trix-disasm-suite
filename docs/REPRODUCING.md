@@ -48,8 +48,8 @@ is recorded in [the correction note](battery_aggregation_correction.md).
 page and bibliography references from that build. The response map records exact
 TeX source ranges and hashes; they are not journal margin line numbers.
 `make check` also detects stale response mappings without requiring a TeX runtime.
-Original reviewer wording and the quantitative timing request remain review gates;
-see [the response map](REVIEWER_MAP.md).
+Original reviewer wording remains a review gate; see [the response map](REVIEWER_MAP.md).
+The new runtime benchmark supplies the measurements for E.4 and R1.6.
 
 The response letter uses XeLaTeX with 12-point TeX Gyre Termes text, matching
 TeX Gyre Termes Math, and Latin Modern Mono for literal code identifiers.
@@ -64,6 +64,25 @@ requires point-by-point replies and compliance with the editor's decision letter
 recommends clearly distinguishing comments and replies. The draft does this
 with italic dark-blue comment summaries and black responses; it still requires
 the original reviewer reports before those summaries can be verified.
+
+## Recorded runtime benchmark
+
+Use the separate numerical environment in [requirements-runtime.txt](../requirements-runtime.txt).
+This records the new timing experiment's versions; it does not reconstruct
+historical solver versions. [Protocol](runtime_benchmark_protocol.md) and
+[results/scope](runtime_benchmark_results.md) define the measurement boundary.
+
+```bash
+python3 -B experiments/runtime_benchmark.py check --out results/runtime
+python3 -B experiments/runtime_benchmark.py table --out results/runtime
+# Optional new timing replication; refuses to overwrite an existing directory:
+python3 -B experiments/runtime_benchmark.py run --out build/runtime-replication
+```
+
+The first two commands only read saved measurements and regenerate the table.
+The final command times the existing filter implementations; it runs no
+training, environment rollout, provider call or hardware command. All 225,280
+recorded calls and their source/input hashes are retained in the lean repository.
 
 ## Training and experiment entrypoints
 

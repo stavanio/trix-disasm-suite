@@ -17,14 +17,14 @@ are TeX file lines, not journal margin line numbers.
 | E.1 | Positioning among existing safety methods | response drafted | 1.2, 2.1, 2.3, 2.6 |
 | E.2 | Introduce the architecture figure in context | response drafted | 1.1 |
 | E.3 | Safety, damage and task quality | response drafted | 3.1, 4.2, 5.5.1, A |
-| E.4 | Quantitative latency | quantitative request open | 3.5, 4.9, H |
+| E.4 | Quantitative latency | timing benchmark reported | 3.5, 4.9, H |
 | E.5 | Generality beyond six task implementations | response drafted | 3.1, 3.4, 4.10, 5.3.2, 5.5.5 |
 | R1.1 | References in comparison tables | response drafted | 4.6 |
 | R1.2 | Accessibility of the theoretical framework | response drafted | 1.1, 3.1, 3.4, 3.7 |
 | R1.3 | Simulated workspace and interaction | response drafted | 4.1, 4.3 |
 | R1.4 | Concrete model proposals and corrections | response drafted | 3.8, 4.12, 5.4.1 |
 | R1.5 | Adding or changing constraints | response drafted | 3.1, 3.4, 4.9, 4.10, 5.3, 6.2 |
-| R1.6 | Computational time | quantitative request open | 4.9, H |
+| R1.6 | Computational time | timing benchmark reported | 4.9, H |
 | R1.7 | Distributions and uncertainty | response drafted | 4.13, F |
 | R1.8 | Figure references and Figure~4 quality | response drafted | 1.1, 3.2, 4.3, 5.2, 5.6 |
 | R1.9 | Foundation-model robotics literature | response drafted | 1.1, 2.4 |
@@ -40,7 +40,7 @@ are TeX file lines, not journal margin line numbers.
 | R4.3 | CBF capabilities | response drafted | 2.3 |
 | R4.4 | ISS theorem assumptions | response drafted | 3.4, 3.6, 3.7, C |
 | R4.5 | Non-expansiveness of projection | response drafted | 3.1, 3.5, 3.7, B, C |
-| R4.6 | Circular validation | response drafted | 3.2, 4.1, 4.9, 5.5.3, 6.2.1, D.4, G |
+| R4.6 | Circular validation | response drafted | 3.2, 4.1, 4.9, 5.5.3, 6.2.1, D.4, G, H |
 | R4.7 | Role of PyBullet | response drafted | 4.1, 4.3 |
 | R4.8 | Physical robot evidence | response drafted | 4.14, 5.6, 6.2.1 |
 | R4.9 | Actual VLM evaluation | response drafted | 4.12, 4.13, 5.4 |
@@ -52,7 +52,6 @@ are TeX file lines, not journal margin line numbers.
 ## Submission gates
 
 - Check original reports and exact editorial requirements.
-- Resolve quantitative timing request E.4/R1.6.
 - Review whether matched command-QP scope addresses original R4.2 wording.
 - Arrange private reviewer access.
 - Author review and clean/marked submission.

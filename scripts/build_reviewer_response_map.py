@@ -66,7 +66,7 @@ def response_entries(text):
             items=list(dict.fromkeys(re.findall(r'\\msitem\{([^}]+)\}', body))),
             citations=list(dict.fromkeys(re.findall(r'\\mscite\{([^}]+)\}', body))),
             evidence_paths=[x for v in paths for x in v.split('; ')],
-            status=('quantitative_request_open' if values[0] in {'E.4', 'R1.6'}
+            status=('timing_benchmark_reported' if values[0] in {'E.4', 'R1.6'}
                     else 'matched_command_QP_scope' if values[0] == 'R4.2'
                     else 'response_drafted'),
             original_comment_verified=False))
@@ -105,8 +105,11 @@ def paper_locations(text, aux):
         owner = PAPER
         raw = text
         if f'\\label{{{name}}}' not in raw:
-            owner = 'manuscript/tables/seed_statistics.tex'
-            raw = (ROOT / owner).read_text()
+            for included in re.findall(r'\\input\{([^}]+)\}', text):
+                included_text = (ROOT / included).read_text()
+                if f'\\label{{{name}}}' in included_text:
+                    owner, raw = included, included_text
+                    break
         literal = f'\\label{{{name}}}'
         assert literal in raw, name
         labels[name] = dict(number=m.group(2), page=int(m.group(3)), source=owner,
@@ -151,12 +154,23 @@ def check(data, archive_root=None):
         assert e['evidence_paths']
     for path, sha in data['local_evidence_sha256'].items():
         assert digest(ROOT / path) == sha, path
+    timing = data['timing_evidence']
+    assert digest(ROOT / timing['summary']) == timing['summary_sha256']
+    summary = json.loads((ROOT / timing['summary']).read_text())
+    assert summary['matched_screw_pass']
+    assert summary['measured_calls'] == summary['inputs_per_task'] * summary['fresh_processes'] * summary['arms']
+    manifest = json.loads((ROOT / timing['manifest']).read_text())
+    for name, expected in manifest['raw_sha256'].items():
+        assert digest(ROOT / 'results/runtime' / name) == expected, name
+    for name, expected in manifest['source_sha256'].items():
+        assert digest(ROOT / name) == expected, name
     if archive_root:
         assert digest(archive_root/'SHA256SUMS.jsonl') == data['archive_manifest_sha256']
         for path in data['archive_evidence_paths']:
             assert (archive_root/path).exists(), path
     print(json.dumps(dict(responses=len(data['responses']),
-        original_comment_verification_pending=34, timing_requests_open=['E.4', 'R1.6'],
+        original_comment_verification_pending=34, timing_requests_open=[],
+        timing_calls_verified=summary['measured_calls'],
         matched_QP_scope_explicit=True, local_evidence_files=len(data['local_evidence_sha256']),
         missing_evidence_paths=0, manuscript_source_references_verified=True,
         final_journal_line_numbers=False), indent=2))
@@ -191,8 +205,11 @@ def main():
         sections=sections, labels=labels, citations=citations, responses=entries,
         local_evidence_sha256={p:digest(ROOT/p) for p in local_paths},
         archive_evidence_paths=sorted(p[8:] for p in paths if p.startswith('archive/')),
+        timing_evidence=dict(summary='results/runtime/summary.json',
+            summary_sha256=digest(ROOT/'results/runtime/summary.json'),
+            manifest='results/runtime/manifest.json',
+            scope='Measured complete-filter calls across six tasks; matched SCREW solvers'),
         submission_gates=['Check original reports and exact editorial requirements',
-            'Resolve quantitative timing request E.4/R1.6',
             'Review whether matched command-QP scope addresses original R4.2 wording',
             'Arrange private reviewer access', 'Author review and clean/marked submission',
             'Final journal page/line references'])
