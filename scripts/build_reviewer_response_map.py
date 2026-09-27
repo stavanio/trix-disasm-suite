@@ -113,6 +113,17 @@ def cross_tex():
         macro = 'supitem' if is_si else 'mainitem'
         prefix = 'Supplementary ' if is_si else 'main '
         lines.append(f"\\expandafter\\def\\csname {macro}{label}\\endcsname{{{prefix}{item['kind']}~{item['number']}}}")
+    for document, prefix, macro in [(PAPER, '', 'mainsection'), (SUPPLEMENT, 'S', 'suppsection')]:
+        counts = [0, 0, 0]
+        levels = {'section': 0, 'subsection': 1, 'subsubsection': 2}
+        lines.append('\\newcommand{\\' + macro + r'}[1]{\csname sectiontitle#1\endcsname}')
+        for match in re.finditer(r'^\\(section|subsection|subsubsection)\{([^}]+)\}', (ROOT/document).read_text(), re.M):
+            level = levels[match[1]]
+            counts[level] += 1
+            for j in range(level+1,3): counts[j] = 0
+            key = prefix + '.'.join(str(n) for n in counts[:level+1])
+            owner = 'Supplementary Information' if prefix else 'main text'
+            lines.append(r'\expandafter\def\csname sectiontitle'+key+r'\endcsname{'+owner+", ``"+match[2]+"''}")
     return '\n'.join(lines)+'\n'
 
 
@@ -169,10 +180,15 @@ def location_tex(data):
     for k in sorted(used_sections):
         value = data['sections'][k]
         prefix = 'Supplementary ' if value['source'] == SUPPLEMENT else ''
-        lines.append(f"\\expandafter\\def\\csname mssection{k}\\endcsname{{{prefix}\\S\\,{k} (p.~{value['page']})}}")
+        lines.append(f"\\expandafter\\def\\csname mssection{k}\\endcsname{{{prefix}``{value['title']}'' (p.~{value['page']})}}")
     for k in sorted(used_items):
         value = data['labels'][k]
         kind = 'Figure' if k.startswith('fig:') else 'Table' if k.startswith('tab:') else 'Section'
+        if kind == 'Section':
+            section = data['sections'][value['number']]
+            prefix = 'Supplementary ' if value['document'] == SUPPLEMENT else ''
+            lines.append(f"\\expandafter\\def\\csname msitem{k}\\endcsname{{{prefix}``{section['title']}'' (p.~{value['page']})}}")
+            continue
         if value['document'] == SUPPLEMENT:
             kind = 'Supplementary ' + kind
         lines.append(f"\\expandafter\\def\\csname msitem{k}\\endcsname{{{kind}~{value['number']} (p.~{value['page']})}}")
@@ -280,7 +296,7 @@ def main():
             numbering_note=originals['numbering_note'],
             current_evidence_overrides_historical_summary=True),
         editorial_requirements=originals['editorial_requirements'],
-        page_reference_basis='Separate main/supplement builds; S-prefixed sections/items belong to the supplement; source lines are not typeset line numbers',
+        page_reference_basis='Separate main/supplement builds; named headings and S-prefixed supplementary display items; section IDs are internal mapping keys; source lines are not typeset line numbers',
         sections=sections, labels=labels, citations=citations, responses=entries,
         local_evidence_sha256={p:digest(ROOT/p) for p in local_paths},
         archive_evidence_paths=sorted(p[8:] for p in paths if p.startswith('archive/')),
@@ -289,7 +305,7 @@ def main():
             manifest='results/runtime/manifest.json',
             scope='Measured complete-filter calls across six tasks; matched SCREW solvers'),
         submission_gates=['Complete the actual linked editorial requirements table',
-            'Author approval of the scoped R4.2 and R4.6 responses',
+            'Confirm funding, acknowledgements and corresponding-author ORCID',
             'Arrange private reviewer access', 'Author review and clean/marked submission',
             'Final journal page/line references'])
     (ROOT/MAP).write_text(json.dumps(data, indent=2)+'\n')

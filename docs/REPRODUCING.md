@@ -208,3 +208,29 @@ Use a new output directory. The run preserves its code/plan hashes and refuses
 to overwrite an earlier attempt. All 39 scientific files from the prospective
 freeze must still match. This is a diagnostic of the original states and
 policies, not a new evaluation population or a corrected-governor result.
+
+## Journal submission presentation
+
+The manuscript-specific editorial requirements were opened on 27 September
+2026. The main abstract is under 160 words; section headings are displayed
+without numbers, and cross-document section pointers use the actual heading
+names. Internal counter keys remain in the source map for reproducibility.
+Affiliations appear in a title-page block rather than footnotes.
+
+Main figure legends are grouped at the end of the manuscript. Figures are
+supplied as five separate files. The Overleaf builder explicitly retains these
+figure assets even though they are no longer embedded in the main text.
+All figures, renderer source and scientific result records remain frozen.
+The supplementary tables retain their S-prefixed display-item numbers.
+
+The submission delivery contains a clean reference PDF and a separate marked
+TeX/PDF. Marking is at paragraph/display-block level against the supplied
+submitted PDF, whose hash is retained in the source header. The original
+submitted LaTeX is unavailable, so this is not represented as a word-level
+LaTeX diff. Blue marks revised blocks; unchanged words inside a revised block
+can also be blue. Removed material is accounted for in the response letter.
+
+The downloaded editorial form is completed locally with author comments.
+Access statements, funding, acknowledgements and corresponding-author ORCID
+require their actual facts or author action before submission. The local form
+does not claim that files have been uploaded or that the online form is saved.

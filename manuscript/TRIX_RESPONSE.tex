@@ -57,13 +57,13 @@
 {\bfseries\raggedright TRiX: Task-conditioned execution governance\\for robotic disassembly\par}
 Manuscript COMMSENG-26-0216-T\par
 Stavan Dholakia, Shivani Shukla, Abhishek Singh and Aditya Gazta\par
-26 September 2026
+27 September 2026
 
 \medskip
 Comments are paraphrases checked against the decision letter dated 20 July 2026.
 The editor's six bullets and Reviewers 1 and 2 retain their original order;
 Reviewer 4's unnumbered report is separated into thirteen issues for reference.
-Locations identify the main manuscript or S-prefixed
+Locations identify headings by name in the main manuscript or
 Supplementary Information, each with separate pagination. Citations use the main
 bibliography; \path{archive/} identifies the separate evidence archive.
 
@@ -158,7 +158,7 @@ implementation choices materially affect cost.
 
 The timer covers the complete filter callable, including allocation,
 per-call constraint construction and diagnostics. Policy/VLM inference,
-simulation and robot communication are excluded. Supplementary Section~S8 specifies
+simulation and robot communication are excluded. \mssec{S8} specifies
 the Intel Core Ultra 9 275HX host, numerical package versions, CPU affinity,
 solver tolerances, setup reuse and the full sampling protocol. These are
 measured implementation costs on the recorded host, not a claim of
@@ -169,8 +169,8 @@ worst-case execution time or end-to-end robot latency.
 \response{E.5}{Position TRiX against the reviewed approaches}{Provide a dedicated comparison positioning TRiX against the reviewed approaches, explaining the gap and TRiX's role.}
 The revised Introduction and Table~1 now position TRiX alongside constrained
 policy optimization, learned safety layers, recovery policies and control
-barrier functions. Section~2.2 and Table~3 give a dedicated account of the
-experimental comparator roles; Section~4.3 states the specification controls.
+barrier functions. \mssec{2.2} and Table~3 give a dedicated account of the
+experimental comparator roles; \mssec{4.3} states the specification controls.
 These comparisons distinguish policy learning, constraint representation and
 runtime enforcement. They identify when a componentwise restriction is
 sufficient and when phase, orientation or coupling changes retained command
@@ -222,7 +222,7 @@ figure precedes the mathematics. The screw example introduces coupled
 translation and rotation in normalized action coordinates; the PCB example
 then introduces a coupled inequality, followed by phase and coordinate-frame
 dependence. The main text summarizes four propositions, with the proofs and
-practical interpretations in Supplementary Sections~S1--S3. The theory's scope is stated before the experiments, and the
+practical interpretations in \mssec{S1}, \mssec{S2} and \mssec{S3}. The theory's scope is stated before the experiments, and the
 former broad ISS argument is removed.
 \locations{\mssec{1}; \mssec{2.1}; \mssec{S1}; \mssec{S2}; \mssec{S3}; \msitem{fig:submitted-1}; \msitem{fig:submitted-2}}
 \evidence{manuscript/TRIX_REVISION.tex; manuscript/TRIX_SUPPLEMENT.tex}
@@ -274,7 +274,7 @@ unmodeled manipulation task.
 \evidence{benchmark/geometry_gen.py; results/geometry_bench_heldout.json; results/sensitivity.json; manuscript/TRIX_SUPPLEMENT.tex}
 
 \response{R1.6}{Computational time}{Report the computation time required by TRiX and the comparator.}
-We added the recorded computational comparison in Supplementary Section~S8. Across the six
+We added the recorded computational comparison in \mssec{S8}. Across the six
 registered TRiX task arms, median complete-filter latency ranges from
 1.123~$\mu$s for PCB to 11.770~$\mu$s for CRANK; BATTERY's preventive
 variant takes 3.122~$\mu$s. The matched SCREW comparison measures
@@ -344,8 +344,8 @@ The nominal torque condition is
 $\sqrt{\tau_x^2+\tau_y^2}\leq0.100$ N\,m, not a zero-torque requirement.
 The implemented robust projector uses a smaller radius, and that difference
 is disclosed. Table~2 summarizes the modeled commands and damage conditions;
-Supplementary Section~S4 gives the complete command scales, observation
-indices and units. Supplementary Section~S2.2 supplies
+\mssec{S4} gives the complete command scales, observation
+indices and units. \mssec{S2.2} supplies
 the disk--interval projection.
 \locations{\mssec{2.2}; \mssec{4.1}; \mssec{S2.2}; \mssec{S4.1}; \mssec{S4.2}; \msitem{tab:submitted-2}; \msitem{tab:action-scales}}
 \evidence{envs/pcb_env_v2.py; baselines/pcb_filters.py; manuscript/TRIX_SUPPLEMENT.tex}
@@ -379,7 +379,7 @@ avoiding a violation.
 
 \response{R2.4}{Domain randomisation appendix}{Fill the empty appendix with parameters, distributions, ranges and training versus out-of-distribution use.}
 The requested systematic table is now \msitem{tab:submitted-9} in
-Supplementary Section~S4.6. It lists each reset parameter, distribution,
+\mssec{S4.6}. It lists each reset parameter, distribution,
 numerical range and training/validation/test use, separately from per-step
 Gaussian noise. The original held-out evaluation uses the training ranges.
 
@@ -402,7 +402,7 @@ absolute safe completion, changes from historical in-range values and exact
 seed-bootstrap intervals for every condition. \msitem{tab:ood-outcomes}
 reports destructive, unsafe intact, mechanical-failure, timeout and violation
 counts, plus within/outside-support denominators. The same training-seed
-estimator is used as in main Section~4.6; historical comparisons are not
+estimator is used as in \mssec{4.6}; historical comparisons are not
 episode-paired and therefore include episode-sampling variation.
 
 In SNAP's outside-support shell, safe completion is 59.9\% under TRiX versus
@@ -428,7 +428,7 @@ command membership from episode safety. The use column now records both
 native-range evaluation and the added OOD conditions; original in-range
 results remain unchanged.
 
-The separate 105-case sensitivity sweep in Supplementary Section~S7 remains
+The separate 105-case sensitivity sweep in \mssec{S7} remains
 a scripted study of physical/specification constants, with 96/105 cases
 meeting its prescribed ordering. It is not pooled with this new reset-distribution
 evaluation and does not substitute for it. Neither study establishes independent
@@ -439,7 +439,7 @@ physical calibration or generalisation to arbitrary unseen dynamics.
 \response{R2.5}{Placement of runtime discussion}{Move computational timing out of the theoretical derivation.}
 The helical-coupling subsection now contains only the model, normalization
 and projection interpretation. Computational scope is treated separately in
-Supplementary Section~S8 and the solver-control Methods subsection. The new timing protocol
+\mssec{S8} and the solver-control Methods subsection. The new timing protocol
 and measured distributions are reported there, with their raw evidence and
 implementation scope. They replace the unsupported historical figures.
 Responses E.4 and R1.6 describe the completed measurement.
@@ -576,7 +576,7 @@ the physical fidelity of those equations or their numerical parameters.
 We separate this consistency check from two further analyses. First, matched
 SCREW operators share a declared optimization problem, and the archived
 policy results establish matching task-level outcomes. The new finite-bank
-agreement checks in Supplementary Section~S8 compare analytical, active-set and
+agreement checks in \mssec{S8} compare analytical, active-set and
 operator-splitting implementations; agreement does not validate the physical
 model. Second, the sensitivity sweep tests
 21 constants at five multipliers with eight scripted episodes per arm and
@@ -642,7 +642,7 @@ grounds proposals into commands; each grounded command is evaluated with
 and without TRiX from the same restored state and seed. The primary result
 is prevention of all 31 observed constraint-violation cases, with zero new
 cases among the 257 grounded pairs during the 40-step horizon.
-Results Section~2.5 now states alongside that count that the commands were
+\mssec{2.5} now states alongside that count that the commands were
 elicited from visibility-scaled images whose displayed tilts can exceed the
 intact-board range, and that the result concerns the recorded commands.
 
@@ -736,7 +736,7 @@ All six revised analytical environments import $\Delta t=1/240$ s from
 \texttt{benchmark/disasm\_bench.py}; each action step advances approximately
 4.167 ms of simulated time. SCREW uses 40 internal integration substeps;
 PCB, SNAP, CRANK and BATTERY use ten, while PRY updates at the outer step.
-Supplementary Section~S4.2 now states these values explicitly and withdraws the submitted
+\mssec{S4.2} now states these values explicitly and withdraws the submitted
 100-Hz simulation statement. The approximately 200-Hz physical B601-RS
 controller is described separately. Simulated-time step size is not a
 measurement of wall-clock governor throughput or a real-time deadline guarantee.

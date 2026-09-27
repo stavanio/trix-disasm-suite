@@ -44,9 +44,9 @@
 \posttitle{\par\end{center}}
 \predate{}\postdate{}
 \usepackage{titlesec}
-\titleformat{\section}{\normalfont\Large\bfseries\raggedright}{\thesection}{1em}{}
-\titleformat{\subsection}{\normalfont\large\bfseries\raggedright}{\thesubsection}{1em}{}
-\titleformat{\subsubsection}{\normalfont\normalsize\bfseries\raggedright}{\thesubsubsection}{1em}{}
+\titleformat{\section}{\normalfont\Large\bfseries\raggedright}{}{0pt}{}
+\titleformat{\subsection}{\normalfont\large\bfseries\raggedright}{}{0pt}{}
+\titleformat{\subsubsection}{\normalfont\normalsize\bfseries\raggedright}{}{0pt}{}
 \usepackage{needspace}
 \usepackage[section]{placeins}
 \usepackage{hyperref}
@@ -74,7 +74,13 @@
 \begin{document}
 \maketitle
 \noindent Detailed methods, proofs and evidence supporting the main manuscript.
+% Section IDs remain internal for reproducible mappings; headings use names.
+\begingroup
+\renewcommand{\numberline}[1]{}
+\setlength{\cftsecnumwidth}{0pt}
+\setlength{\cftsubsecnumwidth}{0pt}
 \tableofcontents
+\endgroup
 \clearpage
 \linenumbers
 \section{Admissibility definitions and scope}
@@ -93,7 +99,7 @@ that the corresponding context variable is supplied to the governor. The impleme
 observation fields used to construct their bounds. In the benchmark
 harness, sharing the same task observation does not require every arm to
 condition on every field; the concrete field use is specified in
-Supplementary Section~S4.
+\suppsection{S4}.
 
 \paragraph{Projection well-posedness.}
 Whenever TRiX returns a projected command, the corresponding admissible set is
@@ -260,7 +266,7 @@ the reported outcome is scoped to those policies and configurations.
 
 \section{Supplementary proofs for representation propositions}
 
-This Supplementary section consolidates the representation results stated in main Section~2.1.
+This Supplementary section consolidates the representation results stated in \mainsection{2.1}.
 They characterize properties of admissible action sets and do not constitute a
 closed-loop stability theorem.
 
@@ -1023,7 +1029,7 @@ $U(a,b)$ denotes a uniform multiplier drawn separately for each listed
 parameter at every reset. These distributions are used for training,
 validation, and the original held-out policy evaluation (train/val/test).
 The evaluation-use column distinguishes these common ranges from the added
-revision study in Section~S14: $1.5\times$ and $2\times$ half-width widening
+revision study in \suppsection{S14}: $1.5\times$ and $2\times$ half-width widening
 and a $2\times$ outside-support shell. Native ranges are transcribed from the
 frozen \texttt{reset()} implementations; Table~\ref{tab:ood-ranges} gives
 all added ranges.}
@@ -1042,23 +1048,23 @@ SCREW v3 &
 $0.61\,U(0.9,1.1)$: $0.549$--$0.671$.\par
 $0.47\,U(0.9,1.1)$: $0.423$--$0.517$.\par
 Both coefficients are dimensionless.
-& Train/val/test: same range.\par OOD: $1.5\times$, $2\times$, shell; S14.\\
+& Train/val/test: same range.\par OOD: $1.5\times$, $2\times$, shell; Table~\ref{tab:ood-ranges}.\\
 \midrule
 PCB v2 & \texttt{f\_clip} &
 $25\,U(0.85,1.15)$ N:\par $21.25$--$28.75$ N.
-& Train/val/test: same range.\par OOD: $1.5\times$, $2\times$, shell; S14.\\
+& Train/val/test: same range.\par OOD: $1.5\times$, $2\times$, shell; Table~\ref{tab:ood-ranges}.\\
 \midrule
 SNAP v2 & \texttt{k\_latch} &
 $5000\,U(0.9,1.1)$ N\,m$^{-1}$:\par $4500$--$5500$ N\,m$^{-1}$.
-& Train/val/test: same range.\par OOD: $1.5\times$, $2\times$, shell; S14.\\
+& Train/val/test: same range.\par OOD: $1.5\times$, $2\times$, shell; Table~\ref{tab:ood-ranges}.\\
 \midrule
 CRANK v2 & \texttt{mu\_k} &
 $0.47\,U(0.9,1.1)$:\par $0.423$--$0.517$ (dimensionless).
-& Train/val/test: same range.\par OOD: $1.5\times$, $2\times$, shell; S14.\\
+& Train/val/test: same range.\par OOD: $1.5\times$, $2\times$, shell; Table~\ref{tab:ood-ranges}.\\
 \midrule
 BATTERY\par v2 & \texttt{adhesive} &
 $8\,U(0.9,1.1)$ N:\par $7.2$--$8.8$ N.
-& Train/val/test: same range.\par OOD: $1.5\times$, $2\times$, shell; S14.\\
+& Train/val/test: same range.\par OOD: $1.5\times$, $2\times$, shell; Table~\ref{tab:ood-ranges}.\\
 \midrule
 PRY v2 & None &
 Deterministic reset; stochastic variation enters through per-step noise.
@@ -1111,7 +1117,7 @@ historical seed-pairing exceptions and their treatment remain as documented
 in the reproducibility section. Held-out evaluation changes the seed stream,
 not the parameter ranges or noise distribution. It is therefore an
 in-distribution held-out evaluation, not a widened out-of-distribution
-parameter sweep. The added revision experiment in Section~S14 separately
+parameter sweep. The added revision experiment in \suppsection{S14} separately
 evaluates the selected policies on declared widened ranges and an outside-support
 shell without retraining or reselection. Its episode seeds, reset parameters
 and distribution hashes are saved separately. The constant-sensitivity study
@@ -1390,7 +1396,7 @@ The analytical, active-set QP and operator-splitting implementations in
 \texttt{baselines/screw\_solvers.py} use the same normalized SCREW command
 polytope. The policy results establish matching task-level outcomes for the
 registered analytical and matched-QP arms. The new saved input-bank checks
-in Supplementary Section~S8 measure pointwise agreement of the scalar and NumPy analytical
+in \suppsection{S8} measure pointwise agreement of the scalar and NumPy analytical
 projectors, active-set QP and reused OSQP. The observed errors apply to that
 declared workload, rather than constituting a universal numerical error bound.
 
@@ -1590,7 +1596,7 @@ Within the training reset ranges, SNAP reaches 5.2\% safe completion under
 static and 96.5\% under TRiX in a comparison of separately trained
 policy-and-governor systems that does not isolate the governor's causal
 contribution. These rates fall to 3.5\% and 59.9\%, respectively, in the
-outside-support shell (Section~S14).
+outside-support shell (\suppsection{S14}).
 
 For SNAP, this is an implemented-governor comparison rather than a
 phase-only or geometry-only ablation. The static arm is phase-blind and uses
@@ -2292,7 +2298,7 @@ hashes. Comparisons across distributions are explicit contrasts. Safe completion
 uses the same outcome contract as the original study. The training seed is
 the unit: ten-seed absolute rates, changes from historical in-range rates and
 paired-arm differences use the exact percentile bootstrap implementation in
-main Methods Section~4.6. Historical comparisons are paired by training-seed
+\mainsection{4.6}. Historical comparisons are paired by training-seed
 identifier, not by episode. Changes from historical estimates therefore include
 episode-sampling variation as well as the distribution change. These intervals describe training-seed variability on the fixed episode
 schedules; identical outcomes across all seeds produce degenerate intervals.
@@ -2323,7 +2329,7 @@ systems and does not isolate the governor's causal contribution.
 Destructive completion combines fracture with accumulated
 damage in completed episodes and excludes timeouts. Across all shell
 episodes, including timeouts, latch fractures number 401 under TRiX and
-468 under static; Section~S14.4 separates these outcomes.
+468 under static; \suppsection{S14.4} separates these outcomes.
 
 The matched SCREW arms remain equal in every condition. PCB retains its
 regime distinction. CRANK TRiX reaches 47.6\% safe completion in each added
@@ -2354,7 +2360,7 @@ registry's $z\simeq4.4266298$ in the pull and lateral bounds alone, while
 retaining the executed deflection bound, puts 230,582 of the 293,082 TRiX
 commands outside that tighter alternative by more than $10^{-7}$ normalized
 units, so the membership result applies only to the executed specification.
-This is the margin-routing discrepancy described in Section~S5.7, measured
+This is the margin-routing discrepancy described in \suppsection{S5.7}, measured
 on the retained command traces; the projector and historical records remain
 unchanged.
 

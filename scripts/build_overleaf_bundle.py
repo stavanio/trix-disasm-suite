@@ -43,6 +43,13 @@ def sha(data):
 
 def payload():
     sources = {'TRIX_MAIN.tex': PAPER, 'TRIX_SUPPLEMENT.tex': SUPPLEMENT}
+    # The journal requests separate figure files and legends at the end.
+    # These assets therefore remain dependencies even without inline graphics.
+    for item in json.loads((ROOT / 'docs/repository_manifest.json').read_text())['paper_items']:
+        if item['document'] == PAPER and item['label'].startswith('fig:'):
+            for path in item['files']:
+                if path.startswith('manuscript/figures/') and path.endswith(('.pdf', '.png')):
+                    sources[path] = path
     pending = [PAPER, SUPPLEMENT]
     visited = set()
     while pending:
