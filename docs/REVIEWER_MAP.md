@@ -24,7 +24,7 @@ claims. Those scope choices are explicit in the replies.
 |---|---|---|---|
 | E.1 | Positioning among existing safety methods | response drafted | 1, 2.1, 4.3 |
 | E.2 | Introduce the architecture figure in context | response drafted | 2.1, 1 |
-| E.3 | Safety, damage and task quality | response drafted | 3, 4.1, S1, S4.4, S13 |
+| E.3 | Safety, damage and task quality | response drafted | 1, 3, 4.1, S1, S4.4, S13 |
 | E.4 | Quantitative latency | timing benchmark reported | S8, 2.7, 4.8 |
 | E.5 | Position TRiX against the reviewed approaches | response drafted | 2.2, 4.3, 1, 2.3 |
 | E.6 | Generality beyond task examples | response drafted | 2.1, 2.4, 3, 4.4, S10 |

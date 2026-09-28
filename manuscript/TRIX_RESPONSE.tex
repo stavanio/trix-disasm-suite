@@ -148,7 +148,10 @@ architecture interpretable in its stated context.
 We agree that thread damage is an asset-quality or integrity failure and
 does not by itself demonstrate a hazard to people. We therefore use qualified
 terms for modeled command admissibility and asset integrity; the experiments
-do not establish human safety. In the revised evaluation, ``safe completion''
+do not establish human safety. The Introduction now defines modeled hazards
+and failures of asset integrity before presenting the method, and states that
+the reported measurements do not establish physical safety.
+In the revised evaluation, ``safe completion''
 is the explicitly defined intact, violation-free task outcome.
 We distinguish modeled command inadmissibility, outcome-affecting violations,
 diagnostic violations, mechanical failure and successful completion. A violated
@@ -160,8 +163,8 @@ asset-integrity outcomes. Progress or timeout measures task performance.
 The episode contract and constraint table specify which recorded events
 change the evaluation outcome. The VLM result is correspondingly reported
 as prevention of constraint-violation cases, without claiming prevented fractures.
-\locations{\mssec{3}; \mssec{4.1}; \mssec{S1}; \mssec{S4.4}; \mssec{S13}; \msitem{tab:submitted-8}}
-\evidence{benchmark/outcome.py; envs/battery_env_v2.py; manuscript/TRIX_SUPPLEMENT.tex}
+\locations{\mssec{1}; \mssec{3}; \mssec{4.1}; \mssec{S1}; \mssec{S4.4}; \mssec{S13}; \msitem{tab:submitted-8}}
+\evidence{manuscript/TRIX_REVISION.tex; benchmark/outcome.py; envs/battery_env_v2.py; manuscript/TRIX_SUPPLEMENT.tex}
 
 \response{E.4}{Quantitative latency}{Section 1.4: given the high technicality of the discussion involved, using terms like "negligible latency" may appear unprecise. Is it possible to better formulate such concepts to better ground them in the robotics landscape?}
 We replaced the unsupported historical timing figures with a new recorded
