@@ -462,5 +462,13 @@
     }
   ],
   "numbering_note": "E and R1/R2 follow source order. R4.1-R4.13 are response identifiers for an unnumbered report. The previous 34-point handoff omitted editor bullet 5; generality moves from E.5 to E.6.",
-  "privacy_note": "Only review comments and submission requirements are retained here. Mail metadata, addresses, private submission links and access tokens are excluded."
+  "privacy_note": "Only review comments and submission requirements are retained here. Mail metadata, addresses, private submission links and access tokens are excluded.",
+  "r4_general": {
+    "original_excerpt": "The paper claims a projection-based safety layer (TRiX) that fixes the failure of linear safe sets on coupled constrains like screw threads. The observation itself is fine but not surprisig, and the experiments don't describe them.",
+    "source_pdf_pages": [
+      4
+    ],
+    "original_comment_verified": true
+  },
+  "quotation_convention": "Original spelling retained; PDF line wrapping/whitespace and typographic hyphens normalized. R4 issue numbers are response identifiers."
 }

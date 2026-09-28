@@ -1,7 +1,7 @@
 # Reviewer response map
 
 Author-review draft: all 35 requests are mapped to the original decision letter
-dated 20 July 2026 and the current manuscript. Comments are verified paraphrases.
+dated 20 July 2026 and the current manuscript. Comments reproduce verified quotations.
 The earlier handoff omitted editor bullet 5. It is now E.5; generality is E.6.
 R3 is a confirmed co-review acknowledgement with no separate substantive requests.
 
@@ -23,7 +23,7 @@ claims. Those scope choices are explicit in the replies.
 | ID | Request | Draft status | Manuscript sections |
 |---|---|---|---|
 | E.1 | Positioning among existing safety methods | response drafted | 1, 2.1, 4.3 |
-| E.2 | Introduce the architecture figure in context | response drafted | 1, 2.1 |
+| E.2 | Introduce the architecture figure in context | response drafted | 2.1, 1 |
 | E.3 | Safety, damage and task quality | response drafted | 3, 4.1, S1, S4.4, S13 |
 | E.4 | Quantitative latency | timing benchmark reported | S8, 2.7, 4.8 |
 | E.5 | Position TRiX against the reviewed approaches | response drafted | 2.2, 4.3, 1, 2.3 |
@@ -62,7 +62,7 @@ claims. Those scope choices are explicit in the replies.
 
 - Complete the actual linked editorial requirements table.
 - Confirm funding, acknowledgements and corresponding-author ORCID.
-- Arrange private reviewer access.
+- Test public code access and private evidence reviewer access.
 - Author review and clean/marked submission.
 - Final journal page/line references.
 

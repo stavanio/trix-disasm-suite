@@ -1,3 +1,66 @@
+# Provenance and corrections
+
+## 1. Submitted headline results and their withdrawal
+
+The pre-revision implementation retained in Git at
+`8b1a746a806907b548066cfe30fff829f5192330`,
+`benchmark/disasm_bench.py`, generates uniform random action proposals in
+`run_benchmark`. `Algorithms.get_action` returns fixed transformations named
+PPO, SAC, PPO-Lag, CPO, Lambda, SafeLayer and TRiX. It does not train policies.
+The submitted 86.9% SCREW and 44% PCB violation claims must not be described as
+trained-policy results. The 84.5-percentage-point reduction and claimed
+9-million-step evaluation claim are withdrawn. The synthetic grounding
+exercise also does not establish the submitted over-90% model-grounding claim.
+The revision's trained-policy and actual-model studies replace these claims.
+This is a provenance correction, not a retrospective change to historical code.
+
+## 2. Task-description mismatches in the retained benchmark
+
+| Task | Retained implementation defect | Revision treatment |
+|---|---|---|
+| SCREW | The state update imposes helical motion. The stated realized-velocity criterion is therefore not independently violable by that motion; the benchmark instead flags load limits and an ad hoc command ratio. | Independent actuation and the declared realized-motion/load criteria in SCREW v3. |
+| PRY | Bond strength is 150 N and lever length 0.15 m, but admissible torque is at most 1.5 N m, giving at most 10 N for bond release. | Revised crack/bond dynamics and a reachable task; the old task does not establish safe task competence. |
+| SNAP | A spring and generic friction/release flag replace the described separate latch-deflection and pull state. | Explicit latch state, release and pull dynamics. |
+| CRANK | A fixed axial limit is used, without the stated rotation-complete gating of extraction. | Separate structural and phase-gated axial constraints. |
+| BATTERY | Force flags are counted although submitted Table 8 states only a thermal criterion. No event-resolved historical trace establishes that the reported aggregate was a thermal-event rate. | Separate force, deformation, internal-short and diagnostic temperature definitions. |
+| PCB | Lift/lateral force checks and fixed per-axis clips do not implement the stated tilt-torque manifold. | Explicit coupled tilt-torque and lift interface. |
+
+These statements concern the benchmark runner, not interchangeable versions of
+similarly named classes in `envs/`. In particular, "no latch state" means no
+separate latch-and-pull state for the submitted task; the old benchmark did
+contain a generic spring/release flag. "Unviolable" refers to the imposed
+helical kinematics, not every force or torque flag. Gaussian noise is unbounded;
+the PRY statement concerns release under admissible torque.
+
+## 3. Submitted thermal table
+
+The submitted Table 5 claims continued temperature rise after power cutoff.
+For its stated first-order model, zero input power implies cooling toward
+ambient temperature, so that claimed overshoot does not follow from the model.
+The table and its temperature/time values are withdrawn. Historical
+per-event temperature traces have not been recovered; a claim that the
+thermal counter was exactly zero for every submitted run is therefore not
+independently attested here. The revised deformation/internal-short model is
+new evidence, not validation of the old table.
+
+## 4. Corrections during revision development
+
+These are internal development corrections, not versions circulated to the
+editor or reviewers. They belong in provenance and must not be described in
+correspondence as corrections to an "intermediate draft" seen by the journal.
+
+- BATTERY Stage 1 SAC/TRiX: an arm-prefix collision produced 59.75% (rounded
+  59.8%). Exact-arm shard aggregation gives 20.0%. The detailed audit is
+  `docs/battery_aggregation_correction.md`, with the full linkage in the
+  evidence archive at `verification/policy_record_linkage.json`. Selected
+  checkpoints were preserved; this does not establish that repeating the
+  historical selection would choose the same checkpoint.
+- Gemini: 62 admissible decisions in an internal summary omitted three saved
+  decisions. The current single-artifact accounting is 65 admissible plus
+  26 inadmissible, with no refusals, for 91. Across providers there are 219
+  admissible, 38 inadmissible and 16 refusals. This is a correction to internal
+  accounting, not evidence that three new calls were made.
+
 
 ## 5. What the SNAP and CRANK comparisons vary
 

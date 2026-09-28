@@ -50,6 +50,17 @@ def norm(text):
     return ' '.join(text.split())
 
 
+def quote_tex(text):
+    """Escape verified review text, preserving words and original spelling."""
+    escapes = {'\\': r'\textbackslash{}', '&': r'\&', '%': r'\%',
+               '$': r'\$', '#': r'\#', '_': r'\_', '{': r'\{', '}': r'\}',
+               '^': r'\textasciicircum{}', '~': r'\textasciitilde{}',
+               '\u2011': '-', '\u2010': '-', '\u00a0': ' '}
+    parts = re.split(r'(https?://\S+)', text)
+    return ''.join(r'\url{' + part + '}' if part.startswith(('https://', 'http://'))
+                   else ''.join(escapes.get(c, c) for c in part) for part in parts)
+
+
 def response_entries(text):
     originals = json.loads((ROOT / COMMENT_SOURCE).read_text())['comments']
     starts = list(re.finditer(r'^\\response\{', text, re.M))
@@ -64,8 +75,8 @@ def response_entries(text):
         body = text[cursor:end]
         paths = re.findall(r'\\evidence\{([^}]+)\}', body)
         original = originals[values[0]]
-        assert values[2] == original['verified_paraphrase'], values[0]
-        entries.append(dict(id=values[0], title=values[1], comment_summary=values[2],
+        assert values[2] == norm(quote_tex(original['original_excerpt'])), values[0]
+        entries.append(dict(id=values[0], title=values[1], comment_quote=original['original_excerpt'],
             response_source_lines=[text.count('\n', 0, match.start()) + 1,
                                    text.count('\n', 0, end)],
             sections=list(dict.fromkeys(re.findall(r'\\mssec\{([^}]+)\}', body))),
@@ -209,6 +220,8 @@ def check(data, archive_root=None):
     assert set(originals['comments']) == set(EXPECTED)
     assert originals['r3']['verified'] and not originals['r3']['separate_substantive_requests']
     assert all(e['original_comment_verified'] for e in data['responses'])
+    assert originals['r4_general']['original_comment_verified']
+    assert quote_tex(originals['r4_general']['original_excerpt']) in (ROOT / LETTER).read_text()
     for s in data['sections'].values():
         paper_lines = (ROOT / s['source']).read_text().splitlines()
         assert s['title'] in norm(paper_lines[s['source_lines'][0] - 1])
@@ -290,7 +303,7 @@ def main():
         supplement_pdf_sha256_at_build=digest(ROOT/'manuscript/build/TRIX_SUPPLEMENT.pdf'),
         archive_manifest_sha256=archive['sha256_manifest'],
         comment_source=dict(original_reports_available=True,
-            kind='paraphrases verified against the original decision letter',
+            kind='verbatim excerpts from the original decision letter; whitespace and typographic hyphens normalized',
             excerpts=COMMENT_SOURCE, excerpts_sha256=digest(ROOT/COMMENT_SOURCE),
             original_pdf=originals['source'], r3=originals['r3'],
             numbering_note=originals['numbering_note'],
@@ -306,13 +319,13 @@ def main():
             scope='Measured complete-filter calls across six tasks; matched SCREW solvers'),
         submission_gates=['Complete the actual linked editorial requirements table',
             'Confirm funding, acknowledgements and corresponding-author ORCID',
-            'Arrange private reviewer access', 'Author review and clean/marked submission',
+            'Test public code access and private evidence reviewer access', 'Author review and clean/marked submission',
             'Final journal page/line references'])
     (ROOT/MAP).write_text(json.dumps(data, indent=2)+'\n')
     (ROOT/LOCATIONS).write_text(location_tex(data))
     guide = ['# Reviewer response map', '',
         'Author-review draft: all 35 requests are mapped to the original decision letter',
-        'dated 20 July 2026 and the current manuscript. Comments are verified paraphrases.',
+        'dated 20 July 2026 and the current manuscript. Comments reproduce verified quotations.',
         'The earlier handoff omitted editor bullet 5. It is now E.5; generality is E.6.',
         'R3 is a confirmed co-review acknowledgement with no separate substantive requests.', '',
         '[Response LaTeX](../manuscript/TRIX_RESPONSE.tex) ·',
