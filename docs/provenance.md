@@ -7,8 +7,11 @@ The pre-revision implementation retained in Git at
 `benchmark/disasm_bench.py`, generates uniform random action proposals in
 `run_benchmark`. `Algorithms.get_action` returns fixed transformations named
 PPO, SAC, PPO-Lag, CPO, Lambda, SafeLayer and TRiX. It does not train policies.
-The submitted 86.9% SCREW and 44% PCB violation claims must not be described as
-trained-policy results. The 84.5-percentage-point reduction and claimed
+The submitted Table 4 (p. 15) assigns 86.9% SCREW violations to SafeLayer,
+43.9% PCB violations (approximately 44%) to TRiX, and 0.0% PRY violations to
+TRiX. These assignments were checked against the author-supplied submitted
+PDF (SHA-256 `df186311c2f39b78069572b9f7da69aa902c7b67c20c78dfe30f09bb47ab83fc`).
+They must not be described as trained-policy results. The 84.5-percentage-point reduction and claimed
 9-million-step evaluation claim are withdrawn. The synthetic grounding
 exercise also does not establish the submitted over-90% model-grounding claim.
 The revision's trained-policy and actual-model studies replace these claims.
@@ -19,11 +22,11 @@ This is a provenance correction, not a retrospective change to historical code.
 | Task | Retained implementation defect | Revision treatment |
 |---|---|---|
 | SCREW | The state update imposes helical motion. The stated realized-velocity criterion is therefore not independently violable by that motion; the benchmark instead flags load limits and an ad hoc command ratio. | Independent actuation and the declared realized-motion/load criteria in SCREW v3. |
-| PRY | Bond strength is 150 N and lever length 0.15 m, but admissible torque is at most 1.5 N m, giving at most 10 N for bond release. | Revised crack/bond dynamics and a reachable task; the old task does not establish safe task competence. |
+| PRY | Bond strength is 150 N and lever length 0.15 m, but admissible torque is at most 1.5 N m, giving at most 10 N for bond release. | The submitted TRiX value of 0.0% violations does not demonstrate safe task completion: the filter could not command the force required for release. Revised crack/bond dynamics provide a reachable task. |
 | SNAP | A spring and generic friction/release flag replace the described separate latch-deflection and pull state. | Explicit latch state, release and pull dynamics. |
 | CRANK | A fixed axial limit is used, without the stated rotation-complete gating of extraction. | Separate structural and phase-gated axial constraints. |
 | BATTERY | Force flags are counted although submitted Table 8 states only a thermal criterion. No event-resolved historical trace establishes that the reported aggregate was a thermal-event rate. | Separate force, deformation, internal-short and diagnostic temperature definitions. |
-| PCB | Lift/lateral force checks and fixed per-axis clips do not implement the stated tilt-torque manifold. | Explicit coupled tilt-torque and lift interface. |
+| PCB | Actions represent lift/lateral forces, so the stated tilt-torque constraint cannot be expressed in that action interface. Force checks and fixed per-axis clips do not implement it. | Explicit coupled tilt-torque and lift interface. |
 
 These statements concern the benchmark runner, not interchangeable versions of
 similarly named classes in `envs/`. In particular, "no latch state" means no
@@ -40,7 +43,11 @@ ambient temperature, so that claimed overshoot does not follow from the model.
 The table and its temperature/time values are withdrawn. Historical
 per-event temperature traces have not been recovered; a claim that the
 thermal counter was exactly zero for every submitted run is therefore not
-independently attested here. The revised deformation/internal-short model is
+independently attested here. The retained benchmark combines force and
+temperature flags with a logical OR and saves aggregate `vio` counts, without
+separate thermal-event counters or temperature traces in its result output.
+The aggregate therefore cannot establish that the thermal criterion never
+fired in every historical run or version. The revised deformation/internal-short model is
 new evidence, not validation of the old table.
 
 ## 4. Corrections during revision development

@@ -355,7 +355,9 @@
       "coverage_status": "response and current manuscript reviewed"
     },
     "R4.9": {
-      "original_excerpt": "The VLM framing is confusing. No actual VLM is used anywhere : the \"hallucinations\" are noise the authors designed themselves, then their own projection corrects them. Either test a real model or drop this from the title and abstract. Few inconsistencies:",
+      "original_excerpt": "The VLM framing is confusing. No actual VLM is used anywhere : the \"hallucinations\" are noise the authors designed themselves, then their own projection corrects them. Either test a real model or drop this from the title and abstract.",
+      "following_transition": "Few inconsistencies:",
+      "quotation_boundary_note": "The following transition introduces the three subsequent bullets, mapped to R4.10-R4.12; it is not part of the VLM comment.",
       "source_pdf_pages": [
         4
       ],

@@ -11,6 +11,20 @@ R3 is a confirmed co-review acknowledgement with no separate substantive request
 
 Build: `make response`. Check without TeX: `make check`.
 
+Check every evidence line against the actual prepared delivery containers:
+
+```sh
+python3 scripts/build_reviewer_response_map.py --check \
+  --reviewer-package /path/to/TRIX_reviewer_files \
+  --article-bundle /path/to/01_Article_LaTeX.zip
+```
+
+Unprefixed evidence paths resolve inside `TRIX_manuscript_source.zip`.
+`archive/` resolves inside `TRIX_reproducibility_release.tar`, under
+`TRIX_reproducibility_release/`. The article bundle exports the same main
+and SI sources as `TRIX_MAIN.tex` and `TRIX_SUPPLEMENT.tex`; the check
+compares their bytes. Container checks do not establish remote reviewer access.
+
 Section/page references come from separate main and supplement builds. S-prefixed
 locations belong to Supplementary Information. Source ranges
 are TeX file lines, not journal margin line numbers.

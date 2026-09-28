@@ -9,6 +9,8 @@ import hashlib
 import json
 from pathlib import Path
 import re
+import tarfile
+import zipfile
 
 ROOT = Path(__file__).resolve().parents[1]
 PAPER = 'manuscript/TRIX_REVISION.tex'
@@ -208,7 +210,50 @@ def location_tex(data):
     return '\n'.join(lines) + '\n'
 
 
-def check(data, archive_root=None):
+def check_reviewer_package(package_root, article_bundle, archive_root=None):
+    """Resolve every evidence line against the delivered ZIP/TAR members."""
+    letter = (ROOT / LETTER).read_text()
+    paths = sorted({path.strip()
+                    for block in re.findall(r'\\evidence\{([^}]+)\}', letter)
+                    for path in block.split(';')})
+    resolved = {}
+    source_name = 'TRIX_manuscript_source.zip'
+    with zipfile.ZipFile(package_root / source_name) as source:
+        members = set(source.namelist())
+        for path in paths:
+            if path.startswith('archive/'):
+                continue
+            assert path in members, f'Missing reviewer source member: {path}'
+            assert source.read(path) == (ROOT / path).read_bytes(), f'Stale reviewer source: {path}'
+            resolved[path] = dict(container=source_name, member=path, kind='file')
+        aliases = {PAPER: 'TRIX_MAIN.tex', SUPPLEMENT: 'TRIX_SUPPLEMENT.tex'}
+        with zipfile.ZipFile(article_bundle) as article:
+            for path, alias in aliases.items():
+                assert source.read(path) == article.read(alias), f'Article/source mismatch: {alias}'
+    archive_name = 'TRIX_reproducibility_release.tar'
+    archive_paths = [p for p in paths if p.startswith('archive/')]
+    matches = {p: [] for p in archive_paths}
+    with tarfile.open(package_root / archive_name) as archive:
+        for member in archive:
+            for path in archive_paths:
+                target = 'TRIX_reproducibility_release/' + path[len('archive/'):]
+                if member.name == target or member.name.startswith(target + '/'):
+                    matches[path].append(member.name)
+                    if member.name == target and member.isfile() and archive_root:
+                        with archive.extractfile(member) as stream:
+                            assert stream.read() == (archive_root / path[len('archive/'):]).read_bytes(), path
+        for path, members in matches.items():
+            assert members, f'Missing reviewer archive member: {path}'
+            target = 'TRIX_reproducibility_release/' + path[len('archive/'):]
+            resolved[path] = dict(container=archive_name, member=target,
+                kind='file' if members == [target] else 'directory', matched_members=len(members))
+    assert len(resolved) == len(paths)
+    return dict(status='passed', evidence_paths=len(paths), source_files=len(paths)-len(archive_paths),
+        archive_paths=len(archive_paths), article_aliases=aliases, resolved=resolved,
+        remote_reviewer_access_tested=False)
+
+
+def check(data, archive_root=None, reviewer_package=None, article_bundle=None):
     assert digest(ROOT / PAPER) == data['manuscript_sha256'], 'Manuscript changed; rebuild response map.'
     assert digest(ROOT / SUPPLEMENT) == data['supplement_sha256'], 'Supplement changed; rebuild response map.'
     assert digest(ROOT / LETTER) == data['response_sha256'], 'Response changed; rebuild response map.'
@@ -260,13 +305,14 @@ def check(data, archive_root=None):
         assert digest(archive_root/'SHA256SUMS.jsonl') == data['archive_manifest_sha256']
         for path in data['archive_evidence_paths']:
             assert (archive_root/path).exists(), path
+    packaged = check_reviewer_package(reviewer_package, article_bundle, archive_root) if reviewer_package else None
     print(json.dumps(dict(responses=len(data['responses']),
         original_comment_verification_pending=sum(not e['original_comment_verified'] for e in data['responses']),
         editorial_requirements=len(originals['editorial_requirements']), timing_requests_open=[],
         timing_calls_verified=summary['measured_calls'],
         matched_QP_scope_explicit=True, local_evidence_files=len(data['local_evidence_sha256']),
         missing_evidence_paths=0, manuscript_source_references_verified=True,
-        final_journal_line_numbers=False), indent=2))
+        final_journal_line_numbers=False, reviewer_package=packaged), indent=2))
 
 
 def main():
@@ -274,12 +320,19 @@ def main():
     parser.add_argument('--check', action='store_true')
     parser.add_argument('--cross-references', action='store_true')
     parser.add_argument('--archive-root', type=Path)
+    parser.add_argument('--reviewer-package', type=Path,
+                        help='Directory containing the prepared reviewer source ZIP and evidence TAR.')
+    parser.add_argument('--article-bundle', type=Path,
+                        help='Article LaTeX ZIP; required with --reviewer-package to verify export aliases.')
     args = parser.parse_args()
+    if bool(args.reviewer_package) != bool(args.article_bundle):
+        parser.error('--reviewer-package and --article-bundle must be supplied together')
     if args.cross_references:
         (ROOT / CROSS).write_text(cross_tex())
         return
     if args.check:
-        check(json.loads((ROOT/MAP).read_text()), args.archive_root)
+        check(json.loads((ROOT/MAP).read_text()), args.archive_root,
+              args.reviewer_package, args.article_bundle)
         return
     text = (ROOT/PAPER).read_text()
     letter = (ROOT/LETTER).read_text()
@@ -332,6 +385,17 @@ def main():
         '[Exact source ranges and evidence hashes](../manuscript/data/reviewer_response_map.json)',
         '[Original excerpts and requirement mapping](../manuscript/data/reviewer_comment_source.json)',
         '', 'Build: `make response`. Check without TeX: `make check`.', '',
+        'Check every evidence line against the actual prepared delivery containers:', '',
+        '```sh',
+        'python3 scripts/build_reviewer_response_map.py --check \\',
+        '  --reviewer-package /path/to/TRIX_reviewer_files \\',
+        '  --article-bundle /path/to/01_Article_LaTeX.zip',
+        '```', '',
+        'Unprefixed evidence paths resolve inside `TRIX_manuscript_source.zip`.',
+        '`archive/` resolves inside `TRIX_reproducibility_release.tar`, under',
+        '`TRIX_reproducibility_release/`. The article bundle exports the same main',
+        'and SI sources as `TRIX_MAIN.tex` and `TRIX_SUPPLEMENT.tex`; the check',
+        'compares their bytes. Container checks do not establish remote reviewer access.', '',
         'Section/page references come from separate main and supplement builds. S-prefixed',
         'locations belong to Supplementary Information. Source ranges',
         'are TeX file lines, not journal margin line numbers.', '',
@@ -354,7 +418,7 @@ def main():
         'The earlier R4.9 fragment outside this repository is superseded by the complete',
         'response source. The dated evidence archive itself remains unchanged.', '']
     (ROOT/GUIDE).write_text('\n'.join(guide))
-    check(data, args.archive_root)
+    check(data, args.archive_root, args.reviewer_package, args.article_bundle)
 
 
 if __name__ == '__main__':

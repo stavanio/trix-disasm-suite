@@ -66,7 +66,13 @@ The editor's six bullets and Reviewers 1 and 2 retain their original order;
 Reviewer 4's unnumbered report is separated into thirteen issues for reference.
 Locations identify headings by name in the main manuscript or
 Supplementary Information, each with separate pagination. Citations use the main
-bibliography; \path{archive/} identifies the separate evidence archive.
+bibliography. Evidence paths are relative to the root of
+\path{TRIX_manuscript_source.zip}; the prefix \path{archive/} instead denotes
+the \path{TRIX_reproducibility_release/} directory in
+\path{TRIX_reproducibility_release.tar}. The article LaTeX bundle exports
+\path{manuscript/TRIX_REVISION.tex} as \path{TRIX_MAIN.tex} and
+\path{manuscript/TRIX_SUPPLEMENT.tex} as \path{TRIX_SUPPLEMENT.tex}, with
+identical contents.
 
 We also thank Reviewer 3 for contributing through Communications Engineering's
 early-career peer-review initiative. The decision letter contains a co-review
@@ -88,6 +94,7 @@ implementations and outcome definitions. The disclosure preceding response
 R4.1 details these defects; the note to Reviewer 2 identifies the withdrawn
 headline claims.
 
+\Needspace{5\baselineskip}
 The main changes are:
 \begin{enumerate}[leftmargin=*,itemsep=0.3em]
 \item Recorded Stable-Baselines3 PPO and SAC experiments with ten training
@@ -530,8 +537,8 @@ universal ranking of safety algorithms.
 \section*{Response to Reviewer 4}
 
 \textbf{Disclosure concerning the submitted evidence.}
-The submitted headline comparisons, including the 86.9\% SCREW violation
-rate and the 44\% PCB violation rate, came from a random-action benchmark
+The submitted headline comparisons, including SafeLayer's 86.9\% SCREW
+violation rate and TRiX's approximately 44\% PCB violation rate, came from a random-action benchmark
 stub with fixed transformations labelled as learning algorithms. They were
 not evaluations of trained policies. Presenting them as such was incorrect;
 we withdraw those results and their policy-learning interpretation and
@@ -542,15 +549,20 @@ stated realized-velocity coupling criterion could not be violated by that
 motion; the benchmark instead counted separate load and command-ratio flags.
 PRY required a 150-N bond-release force, while its 1.5-N\,m admissible torque
 and 0.15-m lever supplied at most 10 N, making safe bond release unattainable.
+The submitted TRiX PRY value of 0.0\% violations therefore did not demonstrate
+safe task completion: the filter could not command the force required for release.
 SNAP lacked the separate latch-deflection and pull state needed for the
 claimed release-then-pull task, and CRANK lacked phase-gated axial extraction.
-BATTERY's implementation counted force-limit violations omitted from the
-written task specification; the submitted results did not establish crossings
-of its stated thermal threshold. The submitted thermal-overshoot table is
+PCB's actions represented forces, so the stated tilt-torque constraint could
+not be expressed in that action interface.
+BATTERY's reported violation counts pooled force and temperature flags,
+although the written task specification listed only a thermal threshold;
+they did not measure thermal-threshold violations separately.
+The submitted thermal-overshoot table is
 unsupported and inconsistent with the stated first-order cooling model after
 power cutoff, and is withdrawn. The revised environments, outcome contract
 and trained-policy records replace this evidence; they do not retroactively
-validate the submitted numbers. We apologize for these errors.
+validate the submitted numbers. We thank the reviewer for identifying these problems.
 \evidence{docs/provenance.md; archive/research/benchmark/disasm_bench.py; training/sb3_runner.py}
 
 \textbf{Title change.} For manuscript COMMSENG-26-0216-T, we changed the submitted title,
@@ -725,7 +737,7 @@ provide disassembly-level physical safety statistics.
 \locations{\mssec{2.6}; \mssec{3}; \mssec{4.7}; \mssec{S12}; \msitem{tab:b601-hardware}; \msitem{fig:b601-hardware}}
 \evidence{archive/hardware/experiments/hardware/2026-08-27_trix_physical_safety_v1; archive/hardware/results/hardware/v4_confirmation/final_submission/HARDWARE_EVIDENCE_README.md; manuscript/TRIX_SUPPLEMENT.tex}
 
-\response{R4.9}{Actual VLM evaluation}{The VLM framing is confusing. No actual VLM is used anywhere : the "hallucinations" are noise the authors designed themselves, then their own projection corrects them. Either test a real model or drop this from the title and abstract. Few inconsistencies:}
+\response{R4.9}{Actual VLM evaluation}{The VLM framing is confusing. No actual VLM is used anywhere : the "hallucinations" are noise the authors designed themselves, then their own projection corrects them. Either test a real model or drop this from the title and abstract.}
 We replaced the synthetic injection experiment with actual model responses.
 Runs configured as Claude Sonnet, GPT-4o and Gemini each received the same
 91 PCB images and prompt, producing 273 saved decisions. A fixed parser
