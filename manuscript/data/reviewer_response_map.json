@@ -1,10 +1,10 @@
 {
   "schema": 2,
   "stage": "author_review_draft",
-  "manuscript_sha256": "4809807ecb3f8edcb7d740541c778b3b539385795ea66b09deb41f386d7f24fa",
+  "manuscript_sha256": "04367692c21ac17942769df16e3f17d4bed7700446ea960daa68062d52d03b10",
   "response_sha256": "0f7f8923c2eb6f8ce9f94eaea656772415051f645c3ce2173c0a46e6b129cb93",
   "supplement_sha256": "8fafb3351c32ccb384947ec1ec8fd8d6fff878292cf5436237483b56d6458c1a",
-  "manuscript_pdf_sha256_at_build": "45a1a59baf6ccfdae676364e1e6a874247fe9e0957a0d50af898edfe08eced14",
+  "manuscript_pdf_sha256_at_build": "b949b19d4a013eecad9ff62430f043065c9472a14101772900f69f2f99c4a9bd",
   "supplement_pdf_sha256_at_build": "c67a7a3be94c30ce6e85690d7842d69e8b27c676100cda9729528b0fb633fb04",
   "archive_manifest_sha256": "00d1f97690f4ab90b11ae7da55fabcbe1c866c9d6dbe893eb1c15f3dcf292710",
   "comment_source": {
@@ -196,7 +196,7 @@
       "source": "manuscript/TRIX_REVISION.tex",
       "source_lines": [
         603,
-        962
+        968
       ],
       "heading_level": "section"
     },
@@ -276,7 +276,7 @@
       "source": "manuscript/TRIX_REVISION.tex",
       "source_lines": [
         768,
-        962
+        968
       ],
       "heading_level": "subsection"
     },
@@ -1005,35 +1005,35 @@
       "page": 22,
       "source": "manuscript/TRIX_REVISION.tex",
       "document": "manuscript/TRIX_REVISION.tex",
-      "source_line": 900
+      "source_line": 906
     },
     "fig:submitted-2": {
       "number": "2",
       "page": 22,
       "source": "manuscript/TRIX_REVISION.tex",
       "document": "manuscript/TRIX_REVISION.tex",
-      "source_line": 916
+      "source_line": 922
     },
     "fig:disasm-workspaces": {
       "number": "3",
       "page": 22,
       "source": "manuscript/TRIX_REVISION.tex",
       "document": "manuscript/TRIX_REVISION.tex",
-      "source_line": 930
+      "source_line": 936
     },
     "fig:seed-distributions": {
       "number": "4",
       "page": 22,
       "source": "manuscript/TRIX_REVISION.tex",
       "document": "manuscript/TRIX_REVISION.tex",
-      "source_line": 949
+      "source_line": 955
     },
     "fig:b601-hardware": {
       "number": "5",
       "page": 23,
       "source": "manuscript/TRIX_REVISION.tex",
       "document": "manuscript/TRIX_REVISION.tex",
-      "source_line": 960
+      "source_line": 966
     },
     "tab:submitted-7": {
       "number": "S1",
@@ -2360,7 +2360,7 @@
     "experiments/runtime_benchmark.py": "2deedbbf4a1945fc00f7cd30f7fd908be1a06f589fc1f6ddb7633caa4849c10d",
     "experiments/sensitivity.py": "56287173ea8ea2b5d4f2646cf99e447b68affefcd4972ad16f1576c3c4f70a3d",
     "experiments/snap_ood_attribution.py": "4d757b830a17d81eef871aea351ef20f7e36b37c8e60556cab53f0ff1bbec741",
-    "manuscript/TRIX_REVISION.tex": "4809807ecb3f8edcb7d740541c778b3b539385795ea66b09deb41f386d7f24fa",
+    "manuscript/TRIX_REVISION.tex": "04367692c21ac17942769df16e3f17d4bed7700446ea960daa68062d52d03b10",
     "manuscript/TRIX_SUPPLEMENT.tex": "8fafb3351c32ccb384947ec1ec8fd8d6fff878292cf5436237483b56d6458c1a",
     "manuscript/data/seed_statistics_pairs.csv": "c5402c1e2fa37f4adea604ac64646439fcdfb15b9deea9b4b4323dc214ab1d9c",
     "manuscript/data/seed_statistics_summary.json": "71c400c37f6028e4a4f454181e6d2d77128224bcd9ae1b266098d0f317d285fe",
