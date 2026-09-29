@@ -157,3 +157,13 @@ ALLOW/PROJECT/REJECT decisions, joint residuals or separate intervention
 experiment. Historical evidence files remain original records; the reviewer
 archive separately documents its setup-photo privacy derivative in
 `PRIVACY_REDACTIONS.json`.
+
+## Reviewer-copy path redaction (28 September 2026)
+
+The OOD reset reviewer archive replaces local workspace directory prefixes
+with `[WORKSPACE]` in `raw/launch_detached_attempt.json` and `raw/run.log`.
+`PATH_REDACTIONS.json` records the original archive digest and both original
+and released file hashes; `SHA256SUMS.json` indexes the released bytes.
+The unmodified archive is retained privately. All 420 episode files, reset
+draws, analysis, protocol, native verification and frozen source remain
+byte-for-byte unchanged.

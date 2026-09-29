@@ -184,8 +184,11 @@ python3 -B scripts/build_ood_reset_tables.py --check
 
 Full episode outcomes, the execution log, native replay check and frozen source
 snapshot are retained in the separate `TRIX_ood_reset_evidence` directory.
-Its `SHA256SUMS.json` covers every payload file. Place it beside the unchanged
-historical evidence archive. No remote URL or DOI is assigned to either package.
+Its `SHA256SUMS.json` covers every released payload file.
+`PATH_REDACTIONS.json` records original and released hashes for local workspace
+prefixes replaced with `[WORKSPACE]` in two logs. The original archive is
+retained privately; the 420 episode files, reset draws, protocol, analysis and
+frozen source are unchanged. Reviewer-access details are supplied separately.
 
 
 ## Post-hoc SNAP command and damage attribution

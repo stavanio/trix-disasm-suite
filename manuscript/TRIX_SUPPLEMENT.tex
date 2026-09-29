@@ -1,20 +1,8 @@
-% TRiX revision source reconstructed from the submitted PDF.
-% Canonical source authority stated by the author:
-%   commsnegtrixmanuscriot submitted.pdf
-%   SHA-256: df186311c2f39b78069572b9f7da69aa902c7b67c20c78dfe30f09bb47ab83fc
-%
-% This is a clean editable reconstruction, not the original missing LaTeX source.
-% Compile with XeLaTeX or LuaLaTeX. Figures and tables have been integrated
-% from archived sources. See docs/provenance.md and docs/battery_aggregation_correction.md for evidence
-% corrections and limitations; no content placeholders remain.
-%
-% Hardware statements below refer to the archived execution evidence; no new runs are implied.
 
 \documentclass[12pt]{article}
 \usepackage[margin=1in]{geometry}
 \usepackage{fontspec}
 \usepackage{unicode-math}
-% Load the supplied fonts by file so local and Overleaf builds use the same faces.
 \setmainfont[
   Path=manuscript/fonts/,
   BoldFont=DejaVuSerif-Bold.ttf,
@@ -25,7 +13,6 @@
 \usepackage{microtype}
 \usepackage{lineno}
 \input{manuscript/data/cross_document_refs.tex}
-% Allow a modest final line-breaking pass without hiding overflow warnings.
 \setlength{\emergencystretch}{2em}
 \clubpenalty=10000
 \widowpenalty=10000
@@ -39,7 +26,6 @@
 \usepackage{longtable}
 \usepackage{enumitem}
 \usepackage{titling}
-% Compact the title block so the complete abstract stays on the first page.
 \setlength{\droptitle}{-2em}
 \posttitle{\par\end{center}}
 \predate{}\postdate{}
@@ -74,7 +60,6 @@
 \begin{document}
 \maketitle
 \noindent Detailed methods, proofs and evidence supporting the main manuscript.
-% Section IDs remain internal for reproducible mappings; headings use names.
 \begingroup
 \renewcommand{\numberline}[1]{}
 \setlength{\cftsecnumwidth}{0pt}
@@ -1673,8 +1658,8 @@ The historical filename-prefix matcher pooled \texttt{trix} with
 \texttt{box\_clip\_preventive}. Thirty aggregate records include another arm,
 and 22 repeat episode seed IDs. The exact-arm audit maps 1,020 aggregates to
 20,400 test shards, checks every displayed cell and retains the selected
-checkpoint. The corrected Stage~1 BATTERY/SAC/TRiX mean is 20.0\%, replacing
-59.8\% in the intermediate draft. The matched preventive comparison remains
+checkpoint. The corrected Stage~1 BATTERY/SAC/TRiX mean is 20.0\%.
+The matched preventive comparison remains
 100\% versus 100\%. Original files and the complete correction ledger are
 preserved; checkpoint selection was not rerun.
 

@@ -2,7 +2,6 @@
 \usepackage[margin=1in]{geometry}
 \usepackage{fontspec}
 \usepackage{unicode-math}
-% Load the supplied fonts by file so local and Overleaf builds use the same faces.
 \setmainfont[
   Path=manuscript/fonts/,
   BoldFont=DejaVuSerif-Bold.ttf,
@@ -13,7 +12,6 @@
 \usepackage{microtype}
 \usepackage{lineno}
 \input{manuscript/data/cross_document_refs.tex}
-% Allow a modest final line-breaking pass without hiding overflow warnings.
 \setlength{\emergencystretch}{2em}
 \clubpenalty=10000
 \widowpenalty=10000
@@ -27,7 +25,6 @@
 \usepackage{longtable}
 \usepackage{enumitem}
 \usepackage{titling}
-% Compact the title block so the complete abstract stays on the first page.
 \setlength{\droptitle}{-2em}
 \posttitle{\par\end{center}}
 \predate{}\postdate{}
@@ -41,7 +38,6 @@
 \usepackage{xurl}
 \usepackage{xcolor}
 \usepackage{float}
-% Keep readable display items close to their first callouts without sparse float pages.
 \renewcommand{\topfraction}{0.90}
 \renewcommand{\bottomfraction}{0.80}
 \renewcommand{\textfraction}{0.08}
@@ -800,9 +796,6 @@ Stavan Dholakia: Conceptualization, Methodology, Software, Validation, Writing
 (review \& editing). Abhishek Singh: Formal analysis, Visualization.
 Aditya Gazta: Validation, Visualization, Writing (review \& editing).
 
-% AUTHOR ACTION BEFORE SUBMISSION: retain provisional access wording until the
-% private Zenodo reviewer link and public GitHub release tag both exist and
-% have been tested from a logged-out browser.
 \section*{Data Availability}
 The source package includes the compact policy summaries, seed-level figure
 data, VLM responses and trial ledger, procedural and sensitivity results,
@@ -812,9 +805,6 @@ evidence, indexed by checksums. Original records affected by audit corrections
 are preserved. Reviewer access arrangements remain to be completed; this draft
 does not claim public archive availability.
 
-% AUTHOR ACTION BEFORE SUBMISSION: retain provisional access wording until the
-% private Zenodo reviewer link and public GitHub release tag both exist and
-% have been tested from a logged-out browser.
 \section*{Code Availability}
 The repository \url{https://github.com/stavanio/trix-disasm-suite} and its
 associated revision repository are private. The supplied source bundle contains
