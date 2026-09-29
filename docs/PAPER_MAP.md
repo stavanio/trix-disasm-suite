@@ -61,9 +61,9 @@ Archive: hardware/results/hardware/v4_confirmation/final_submission/HARDWARE_EVI
 
 [manuscript/TRIX_REVISION.tex](../manuscript/TRIX_REVISION.tex).
 
-Bibliography ref16–ref26; editorial comparison, no generated experiment.
+Bibliography ref16 through ref24, ref40 and ref41; editorial comparison, no generated experiment.
 
-Citations: `ref16`, `ref17`, `ref18`, `ref19`, `ref20`, `ref21`, `ref22`, `ref23`, `ref24`, `ref25`, `ref26`.
+Citations: `ref16`, `ref17`, `ref18`, `ref19`, `ref20`, `ref21`, `ref22`, `ref23`, `ref24`, `ref40`, `ref41`.
 
 ## Table 2: task definitions
 

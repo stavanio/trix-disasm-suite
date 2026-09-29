@@ -1624,7 +1624,7 @@
       "files": [
         "manuscript/TRIX_REVISION.tex"
       ],
-      "command_or_check": "Bibliography ref16\u2013ref26; editorial comparison, no generated experiment.",
+      "command_or_check": "Bibliography ref16 through ref24, ref40 and ref41; editorial comparison, no generated experiment.",
       "citations": [
         "ref16",
         "ref17",
@@ -1635,8 +1635,8 @@
         "ref22",
         "ref23",
         "ref24",
-        "ref25",
-        "ref26"
+        "ref40",
+        "ref41"
       ],
       "document": "manuscript/TRIX_REVISION.tex",
       "number": "1"
