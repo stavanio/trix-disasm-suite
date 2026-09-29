@@ -4,9 +4,9 @@
   "access": "private local archive",
   "directory_name": "TRIX_reproducibility_release",
   "remote_uri": null,
-  "sha256_manifest": "00d1f97690f4ab90b11ae7da55fabcbe1c866c9d6dbe893eb1c15f3dcf292710",
-  "payload_files": 109004,
-  "payload_bytes": 24550012038,
+  "sha256_manifest": "c99a622769f040815fa297658d3923784b1eed195c9b54f3b92ed6024cc4e41b",
+  "payload_files": 109005,
+  "payload_bytes": 24545473500,
   "manifest_name": "SHA256SUMS.jsonl",
   "source_provenance": "SOURCE_PROVENANCE.json",
   "evidence_map": "EVIDENCE_MAP.md",
@@ -55,5 +55,17 @@
       "archive": "source_snapshots/hardware-intervention-source-633730c839b5.tar.gz",
       "sha256": "217abcf6607f0f400f0f528aa1c026610dbe9e61ceac372af267d30c2e30000b"
     }
-  ]
+  ],
+  "original_manifest": {
+    "sha256_manifest": "00d1f97690f4ab90b11ae7da55fabcbe1c866c9d6dbe893eb1c15f3dcf292710",
+    "payload_files": 109004,
+    "payload_bytes": 24550012038
+  },
+  "privacy_amendment": {
+    "date": "2026-09-28",
+    "note": "PRIVACY_REDACTIONS.json",
+    "note_sha256": "488003d40dfd729bbe95634946f8164d7b9997efd0a7d589ca5d829bc976b084",
+    "scope": "One setup JPEG privacy derivative; the three experimental MP4s and scientific records are unchanged.",
+    "original_archive_retained_privately": true
+  }
 }
