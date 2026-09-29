@@ -96,4 +96,6 @@ identified by [archive_manifest.json](../assets/evidence/archive_manifest.json).
 The archive has no remote URI. No push or visibility change is part of this build.
 
 The earlier R4.9 fragment outside this repository is superseded by the complete
-response source. The dated evidence archive itself remains unchanged.
+response source. Historical scientific records are retained. The reviewer
+archive documents its setup-photo privacy derivative and hash mapping in
+`PRIVACY_REDACTIONS.json`.

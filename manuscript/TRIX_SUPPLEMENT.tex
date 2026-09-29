@@ -2072,6 +2072,13 @@ the deep-hover primitive, and a mapping from symbolic gripper state to the
 calibrated Joint~7 open and grasp positions. These mappings implement an
 approved physical primitive; they are not autonomous grasp synthesis.
 
+The operator manually positions the object between the open jaws at the
+calibrated grasp-ready pose immediately before engagement. The governed
+sequence then closes the gripper, lifts, returns and holds the object.
+All six grasp-and-return trials used this manual-placement protocol.
+The procedure for the three repetitions without video is confirmed by the
+operator; the logs alone do not establish how the object was positioned.
+
 For each formal confirmation trial, the evidence package preserves the console
 log, passive timestamped CAN traffic, CAN state before and after execution,
 source and configuration copies, process exit status, SHA256 checksums, and
@@ -2120,7 +2127,8 @@ implementation. A/P/R denotes the number of physically executed
 \texttt{ALLOW}/\texttt{PROJECT}/\texttt{REJECT} TRiX decisions. Max arm
 residual is the largest absolute start-to-final difference over Joints~1--6.
 Joint~7 is excluded because the gripper intentionally remains closed around
-the retained object.}
+the retained object. The operator manually positioned the object between the
+open jaws before governed closure, lift and return.}
 \label{tab:b601-hardware}
 \begin{tabular}{lcccc}
 \hline
@@ -2138,7 +2146,8 @@ start-to-return drift was \(0.027^\circ\), and the largest final residual over
 Joints~1--6 was \(0.122^\circ\). Three additional same-code logged repetitions
 also completed normally with exit code zero and verified evidence hashes. They
 are retained as additional execution repetitions rather than counted as
-video-backed object-retention trials.
+video-backed object-retention trials. The operator confirms that they used
+the same manual object-placement procedure as the three filmed trials.
 
 The intervention and manipulation experiments test complementary properties.
 The former demonstrates that TRiX can suppress or modify a proposed command

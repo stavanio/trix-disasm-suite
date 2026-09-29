@@ -136,3 +136,24 @@ The margin-policy hash remains useful provenance for the declared experimental
 specification, but for these archived runs it is not treated as a byte-level
 fingerprint of the filter's executable tightening. The executable source and
 archived records remain the authority for what was run.
+
+## Hardware object placement
+
+On 28 September 2026, the operator confirmed that all six B601-RS
+grasp-and-return repetitions used manual object placement. The operator
+positioned the box between the open jaws at the calibrated grasp-ready pose;
+the governed robot sequence then closed the gripper, lifted, returned and held
+the box. Object acquisition was manual.
+
+The three continuous-video trials are `20260914T023526Z`,
+`20260914T023812Z` and `20260914T024051Z`. The same placement procedure for
+the three log-only repetitions, `20260914T022237Z`, `20260914T022503Z` and
+`20260914T022714Z`, is established by the operator's confirmation, not by
+the logs alone. The logs establish the recorded robot execution.
+
+This disclosure is included in Figure 5, main-text Sections 2.6 and 4.7,
+Supplementary Section S12 and response R4.8. It does not change the recorded
+ALLOW/PROJECT/REJECT decisions, joint residuals or separate intervention
+experiment. Historical evidence files remain original records; the reviewer
+archive separately documents its setup-photo privacy derivative in
+`PRIVACY_REDACTIONS.json`.

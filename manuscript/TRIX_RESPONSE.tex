@@ -724,6 +724,10 @@ return finishes with a recorded Joint~1 drift of $+0.007^\circ$.
 The frozen final implementation then completes three continuous-video
 grasp-and-return trials with the object retained. Each has ten ALLOW decisions;
 these trials are not counted as additional PROJECT/REJECT interventions.
+Object placement between the open jaws was manual in all six repetitions;
+the grasp trials demonstrate governed closure, lift and return, not autonomous
+object acquisition. The operator confirms the same placement procedure for
+the three repetitions without video.
 The largest absolute Joint~1 return drift is $0.027^\circ$, and the largest
 final residual across Joints~1--6 is $0.122^\circ$. Three further logged
 repetitions completed normally; they are not counted as video-verified
@@ -735,7 +739,7 @@ recorded intervention behavior. There is no independent wrench sensor, and
 the hardware study does not validate the six benchmark damage models or
 provide disassembly-level physical safety statistics.
 \locations{\mssec{2.6}; \mssec{3}; \mssec{4.7}; \mssec{S12}; \msitem{tab:b601-hardware}; \msitem{fig:b601-hardware}}
-\evidence{archive/hardware/experiments/hardware/2026-08-27_trix_physical_safety_v1; archive/hardware/results/hardware/v4_confirmation/final_submission/HARDWARE_EVIDENCE_README.md; manuscript/TRIX_SUPPLEMENT.tex}
+\evidence{archive/hardware/experiments/hardware/2026-08-27_trix_physical_safety_v1; archive/hardware/results/hardware/v4_confirmation/final_submission/HARDWARE_EVIDENCE_README.md; manuscript/TRIX_SUPPLEMENT.tex; docs/provenance.md}
 
 \response{R4.9}{Actual VLM evaluation}{The VLM framing is confusing. No actual VLM is used anywhere : the "hallucinations" are noise the authors designed themselves, then their own projection corrects them. Either test a real model or drop this from the title and abstract.}
 We replaced the synthetic injection experiment with actual model responses.

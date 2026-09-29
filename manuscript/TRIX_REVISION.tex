@@ -493,8 +493,10 @@ these trials are not additional projection or rejection interventions.
 The maximum absolute Joint~1 return drift is $0.027^\circ$ and the largest
 start-to-final residual over Joints~1--6 is $0.122^\circ$.
 Three further logged repetitions complete normally but are not counted as
-video-backed object-retention trials. The grasp pose is calibrated, and no
-independent wrench sensor is used. This demonstrates physical execution of
+video-backed object-retention trials. The grasp pose is calibrated. In all six
+trials, the operator manually positions the object between the open jaws;
+the governed sequence then closes the gripper, lifts and returns.
+No independent wrench sensor is used. This demonstrates physical execution of
 the command boundary, while physical calibration of the six simulated task
 models remains open (\suppsection{S12}).
 
@@ -760,6 +762,10 @@ implementation is identified by commit \texttt{d296e6e} and tag
 proposals, decision receipts and approved executor targets, with Joint~1
 protected by a hard invariant. The calibrated sequence uses J3 gravity
 feed-forward and a disclosed Joint~2 positioning offset around engagement.
+In all six grasp-and-return trials, the operator manually positions the object
+between the open jaws at the calibrated grasp-ready pose before governed
+closure, lift and return. The placement protocol for the three repetitions
+without video is author-confirmed; their logs record robot execution.
 Console logs, passive CAN captures, source/configuration snapshots, video
 mappings and checksums support the intervention experiment, three video-backed
 trials and three logged repetitions. There is no independent force/torque
@@ -957,8 +963,9 @@ and task-conditioned restrictions, with means of 88.5\% and 89.1\%.}
 
 {
 \captionof{figure}{Physical B601-RS execution under the frozen V4 implementation.
-(a) Governed approach with the gripper open. (b) Object positioned at the
-calibrated grasp-ready pose immediately before engagement. (c) Object retained
+(a) Governed approach with the gripper open. (b) The operator places the object
+between the open jaws at the calibrated grasp-ready pose immediately before
+engagement. (c) Object retained
 during automatic return. (d) Returned configuration with the object still
 held. The grasp pose is calibrated rather than perception-generated; the
 experiment evaluates physical execution-governance integration rather than
