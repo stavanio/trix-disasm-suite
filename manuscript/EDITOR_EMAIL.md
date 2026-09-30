@@ -6,7 +6,9 @@ The submitted headline policy comparisons came from random-action stubs with fix
 
 We have changed the submitted title, "TRiX: Neuro-Symbolic Safety for Foundation Model Agents in Robotic Disassembly", to "TRiX: Task-conditioned execution governance for robotic disassembly". No autonomous agent loop was evaluated; the revised title reflects the study of execution governance over recorded model proposals and learned-policy commands.
 
-[AUTHOR ACTION BEFORE SENDING: insert the verified public release tag/commit at https://github.com/stavanio/trix-disasm-suite and the tested private Zenodo reviewer link for the checksum-indexed evidence archive. Code publication and evidence upload have not yet been completed; this paragraph must remain marked until the private Zenodo reviewer link and public GitHub release tag both exist and have been tested from a logged-out browser.]
+The complete checksum-indexed evidence package and current source snapshot are deposited in an unpublished Zenodo draft (record 23031294). The confidential read-only reviewer link supplied with this correspondence has been tested without account authentication, including representative file downloads. The archive remains private during peer review.
+
+[AUTHOR ACTION BEFORE SENDING: complete the public code release at https://github.com/stavanio/trix-disasm-suite, verify access without signing in, and insert its release tag and commit here. Private Zenodo reviewer access is complete.]
 
 This revision has been prepared within the twelve-week window following the decision of 20 July 2026, which ends on 12 October 2026. The clean manuscript, marked manuscript, Supplementary Information and point-by-point response accompany the resubmission. We also thank Reviewer 3 for the co-review contribution acknowledged in the decision letter; no separate substantive report was supplied.
 

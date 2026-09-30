@@ -75,8 +75,8 @@ claims. Those scope choices are explicit in the replies.
 ## Submission gates
 
 - Complete the actual linked editorial requirements table.
-- Confirm funding, acknowledgements and corresponding-author ORCID.
-- Test public code access and private evidence reviewer access.
+- Complete NSF award details and corresponding-author ORCID confirmation.
+- Release and test public code at resubmission; private evidence reviewer access is verified.
 - Author review and clean/marked submission.
 - Final journal page/line references.
 
@@ -93,7 +93,14 @@ claims. Those scope choices are explicit in the replies.
 Local evidence paths and SHA-256 values are in the JSON map. Hardware files
 and the complete record-to-shard map remain in the separate frozen archive
 identified by [archive_manifest.json](../assets/evidence/archive_manifest.json).
-The archive has no remote URI. No push or visibility change is part of this build.
+The evidence is deposited in unpublished Zenodo draft 23031294. Its confidential
+read-only preview link is supplied in the editor correspondence and is excluded
+from this repository. Access and representative downloads were tested without
+account authentication. No public archive URI or DOI is claimed.
+
+For transfer reliability, the main tar is supplied as 24 ordered byte parts.
+`ARCHIVE_PARTS.json` and `reassemble_archive.py` verify and reconstruct the
+original tar before extraction; internal evidence paths are unchanged.
 
 The earlier R4.9 fragment outside this repository is superseded by the complete
 response source. Historical scientific records are retained. The reviewer

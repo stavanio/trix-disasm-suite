@@ -1,10 +1,10 @@
 {
   "schema": 2,
   "stage": "author_review_draft",
-  "manuscript_sha256": "5c94e752decbfc68d4387d84784fd45b336cec0e5758a2c5b857c9011d1afd6e",
+  "manuscript_sha256": "a710e258235ee34fbb990c70d0ff3723a8413115ec42019f47f454b87d8a977b",
   "response_sha256": "a18b287807365257dca47b43600000e4884aaba27675892fb9ddaa5cb4ead313",
   "supplement_sha256": "6b0d12fa2c3dd56dc845709ad5ac29c4ca2b42abbfe8a352a4a59e4112279f84",
-  "manuscript_pdf_sha256_at_build": "21acafb5170eba46b46eb786b6c06a1f373dc7ddc7ccf321cbd36c6d0d697337",
+  "manuscript_pdf_sha256_at_build": "905edfa308fde59116528b8f70e23b4b5263348501fba90187619f52dcf78444",
   "supplement_pdf_sha256_at_build": "12d78c8d30bcf09a4e31750c24f12a95ebb68d44c563d1eda77f8fdeed81d47c",
   "archive_manifest_sha256": "c99a622769f040815fa297658d3923784b1eed195c9b54f3b92ed6024cc4e41b",
   "comment_source": {
@@ -2361,7 +2361,7 @@
     "experiments/runtime_benchmark.py": "2deedbbf4a1945fc00f7cd30f7fd908be1a06f589fc1f6ddb7633caa4849c10d",
     "experiments/sensitivity.py": "56287173ea8ea2b5d4f2646cf99e447b68affefcd4972ad16f1576c3c4f70a3d",
     "experiments/snap_ood_attribution.py": "4d757b830a17d81eef871aea351ef20f7e36b37c8e60556cab53f0ff1bbec741",
-    "manuscript/TRIX_REVISION.tex": "5c94e752decbfc68d4387d84784fd45b336cec0e5758a2c5b857c9011d1afd6e",
+    "manuscript/TRIX_REVISION.tex": "a710e258235ee34fbb990c70d0ff3723a8413115ec42019f47f454b87d8a977b",
     "manuscript/TRIX_SUPPLEMENT.tex": "6b0d12fa2c3dd56dc845709ad5ac29c4ca2b42abbfe8a352a4a59e4112279f84",
     "manuscript/data/seed_statistics_pairs.csv": "c5402c1e2fa37f4adea604ac64646439fcdfb15b9deea9b4b4323dc214ab1d9c",
     "manuscript/data/seed_statistics_summary.json": "71c400c37f6028e4a4f454181e6d2d77128224bcd9ae1b266098d0f317d285fe",
@@ -2413,8 +2413,8 @@
   },
   "submission_gates": [
     "Complete the actual linked editorial requirements table",
-    "Confirm funding, acknowledgements and corresponding-author ORCID",
-    "Test public code access and private evidence reviewer access",
+    "Complete NSF award details and corresponding-author ORCID confirmation",
+    "Release and test public code at resubmission; private evidence reviewer access is verified",
     "Author review and clean/marked submission",
     "Final journal page/line references"
   ]
