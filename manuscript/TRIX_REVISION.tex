@@ -69,22 +69,20 @@ Abhishek Singh\textsuperscript{3}, Aditya Gazta\textsuperscript{4}}
 }
 
 \begin{abstract}
-Robotic disassembly requires controllers to distinguish plausible proposals
-from commands that satisfy task constraints. Here we present TRiX, an execution
-governor that accepts, projects or rejects proposals using task-conditioned
-command sets. Across six simulated tasks, we distinguish governance of trained
-policies from training with the governor active. On circuit-board extraction,
-the same componentwise restriction gives 0\% safe completion when applied after
-training and 100\% when included during training. On crank extraction, the
-task-conditioned governor reaches 49.4\% while a static restriction remains at
-0\%. Matched analytical and quadratic-program controls coincide on screw
-extraction. Paired replay of 257 grounded commands from 273 recorded
-vision-language-model decisions prevents 31 constraint-violation cases and
-introduces none. No shared image elicits an inadmissible proposal in all three
-recorded runs. Robot experiments demonstrate command rejection and correction
-before actuation. These results support evaluating governance jointly with the
-proposal policy, constraint specification and task context, while distinguishing
-modeled command admissibility from physical safety.
+Robots disassembling electronics increasingly act on commands
+proposed by learned policies and vision-language models. A plausible command
+can fracture a circuit board, strip a thread or break a latch. Here we
+show that the value of a runtime governor depends on whether the proposing
+policy was trained with it. We present TRiX, which allows, corrects
+or rejects each command against a set conditioned on task state, and test it
+in six simulated tasks, on recorded model commands and on a robot arm. In circuit-board extraction, one restriction gives 0\%
+safe completion when added after training and 100\% when present during
+training. In crank extraction, training cannot recover the authority a fixed
+restriction removes: 0\% against 49.4\%. Under snap-fit conditions outside
+the training range, safe completion falls from 96.5\% to 59.9\% although every
+executed command stays within its bounds. Across 273 recorded model decisions,
+governance prevents all 31 observed constraint-violation cases. Governors must
+be evaluated with the policies they govern.
 \end{abstract}
 
 \noindent\textbf{Keywords:} robotic disassembly; execution governance; action
@@ -95,35 +93,47 @@ projection; robot learning; vision-language models
 \label{sec:intro}
 Electronic waste combines heterogeneous products with manipulation failures
 that can permanently damage valuable or hazardous components
-\cite{ref1,ref2,ref3,ref4,ref5,ref6}. A useful disassembly command must respect
-more than the identity of the component: threaded motion couples translation
-and rotation, snap removal requires a released latch, and extraction forces
-may be restricted in a moving task frame. Vision-language models (VLMs),
-language models and learned policies expand the range of actions a robot can
-propose \cite{ref8,ref9,ref10,ref11,ref12,ref13}. Rrapi et al.\ survey their
-emerging roles in reasoning, planning and interaction in collaborative
-robotics \cite{ref39}. These capabilities sharpen the need for an explicit
-decision about which proposals may reach the actuators.
+\cite{ref1,ref2,ref3,ref4,ref5,ref6}. A robot that disassembles such products
+must decide, at every step, what force or motion to apply to a part whose
+condition keeps changing. Vision-language models (VLMs), language models and
+learned policies now let a robot propose a wide range of such actions from
+images, instructions and experience \cite{ref8,ref9,ref10,ref11,ref12,ref13}.
+Rrapi et al.\ survey their emerging roles in reasoning, planning and
+interaction in collaborative robotics \cite{ref39}. A proposal can be
+reasonable as a description of what to do and still be wrong as a physical
+command.
 
-In this paper, BATTERY deformation progressing to an internal short and heating
-is a modeled hazard, whereas PCB fracture, stripped threads and broken latches
-are failures of asset integrity. We measure modeled command admissibility and
-task outcomes under declared constraints; these measurements do not establish
-physical safety.
+The constraints that decide whether a command is acceptable depend on the
+task and on its current state. Removing a screw couples axial motion to
+rotation through the thread pitch, so pulling without turning strips the
+thread. A snap-fit latch must be deflected before the part can be pulled.
+A crank permits axial extraction only in particular rotation phases, and its
+transverse limits turn with the workpiece. Pressing a battery beyond its
+deformation onset can start an internal short that keeps heating after the
+force is removed. These failures differ in kind. Battery deformation
+progressing to an internal short and heating is a modeled hazard, whereas
+circuit-board fracture, stripped threads and broken latches are failures of
+asset integrity. Throughout this paper we measure modeled command
+admissibility and task outcomes under declared constraints; these
+measurements do not establish physical safety.
 
 Existing approaches address different parts of this problem. Constrained
 reinforcement learning optimizes a policy under cost constraints
 \cite{ref16,ref17}; Lagrangian methods adapt penalties during learning
-\cite{ref18,ref19,ref20}; safety layers correct actions using a constraint model
-\cite{ref21}; and recovery policies intervene when estimated risk is high
-\cite{ref22}. Control barrier functions can describe nonlinear and
+\cite{ref18,ref19,ref20}; safety layers correct actions using a constraint
+model \cite{ref21}; and recovery policies intervene when estimated risk is
+high \cite{ref22}. Control barrier functions can describe nonlinear and
 state-dependent safe sets and, under their dynamics and feasibility
 assumptions, support forward-invariance guarantees \cite{ref23,ref24}.
-Extensions handle higher relative degree \cite{ref40} and time-varying barriers
-\cite{ref41} under their stated dynamical conditions.
-Table~\ref{tab:submitted-1} distinguishes these formulations. The question here
-is which constraint representation and task information are actually available
-to the implemented governor, and how the upstream policy adapts to them.
+Extensions handle higher relative degree \cite{ref40} and time-varying
+barriers \cite{ref41} under their stated dynamical conditions.
+Table~\ref{tab:submitted-1} distinguishes these formulations. For a governor
+placed between a proposer and a robot, two further questions decide what it
+can deliver. The first is which constraint representation and task
+information the implemented governor actually has. The second is how the
+upstream policy adapts to the governor: a restriction added to a policy
+trained without it receives different proposals from one present throughout
+training.
 
 \begin{table}[!htbp]
 \centering\small
@@ -145,38 +155,72 @@ TRiX & Task context selects explicit command sets and an execution outcome. & Te
 \end{tabular}
 \end{table}
 
-We introduce TRiX, a neuro-symbolic execution governor in which task state and
-symbolic context select an admissible command set before a learned proposal
-receives execution authority (Figure~\ref{fig:submitted-1}). This separation
-makes two evaluation regimes explicit. A governor applied to a frozen policy
-must handle proposals generated without adapting to its restrictions. A
-policy trained with the governor active can instead reorganize its proposals
-around the authority that the governor preserves. Performance in one regime
-does not establish performance in the other.
+We present TRiX, an execution governor that sits between proposal generation
+and actuation (Figure~\ref{fig:submitted-1}). An upstream proposer, such as a
+reinforcement-learning policy or a VLM planner, produces a command. The
+current task state and a declared task context select the set of commands
+that the task model admits. TRiX then passes the command unchanged, projects
+it onto that set, rejects it when no meaningful correction exists, or reports
+that the selected specification leaves no usable command. Only a passed or
+projected command reaches the executor. This separation makes two evaluation
+regimes explicit. A governor applied to a frozen policy must handle proposals
+generated without adapting to its restrictions. A policy trained with the
+governor active can instead reorganize its proposals around the authority
+that the governor preserves. Performance in one regime does not establish
+performance in the other.
 
+\begin{figure}[!htbp]
+\centering
+\includegraphics[width=\textwidth]{manuscript/figures/trix_architecture_fig1.pdf}
+\caption{Action proposal and execution authority in TRiX. A learned or
+generative planner proposes a manipulation command. TRiX evaluates the
+proposal against task-conditioned physical admissibility constraints before
+the command reaches the execution system.}
+\label{fig:submitted-1}
+\end{figure}
 
+We evaluate TRiX at three levels, each answering a different question.
+DISASM-Bench, a set of six analytical disassembly tasks, supports controlled
+comparisons of trained policies, runtime restrictions and constraint
+representations under both regimes. Recorded commands from three VLM runs on
+shared circuit-board images are replayed with and without governance from
+identical states, testing governance of actual model outputs. A physical
+B601-RS arm tests whether governance decisions change what reaches the
+actuators. The analytical tasks are models with declared parameters; neither
+the replay study nor the robot experiments calibrate their force, torque or
+damage thresholds.
 
-Our experiments test that distinction using six disassembly tasks, matched
-solver and specification controls, and procedural admissible sets. A simple
-restriction can be sufficient after adaptation, but missing task context or
-required action authority can remain limiting. We also evaluate recorded VLM
-proposals and physical execution on a B601-RS robot. Together, the studies
-locate the contribution of TRiX at the boundary between proposal generation
-and execution, with explicit evidence for what changes at that boundary and
-which safety questions remain unresolved.
+The experiments show that a governor and the policy it governs must be
+evaluated together. On circuit-board extraction, the same componentwise
+restriction gives 0.0\% safe completion when applied to an already trained
+policy and 100.0\% when present during training. Training does not recover
+everything: on crank extraction, a static restriction stays at 0.0\% while
+the task-conditioned governor reaches 49.4\%. With the specification matched,
+analytical projection and a quadratic program give identical outcomes on
+screw extraction, which separates solver choice from command-set
+representation. Outside the training reset distribution, snap-fit safe
+completion under TRiX falls from 96.5\% to 59.9\%, and latch fractures occur
+even though every executed command stays inside its bounds. In replay of
+recorded model commands, governance prevents all 31 observed
+constraint-violation cases among 257 grounded commands and introduces none,
+and on the physical arm it rejects or corrects commands before actuation.
+TRiX is therefore best understood as an auditable execution contract whose
+value depends on the proposer, the specification and the task context it is
+given.
 
-\section{Results}
-\subsection{Task-conditioned execution authority}
+\section{Methods}
+
+\subsection{Execution contract}
 \label{sec:authority}
 Let $x$ be the observed state, $c$ the declared task context and
-$\mathcal A(x,c)$ the applicable admissible command set. TRiX returns
-\texttt{ALLOW} for a proposal already in that set, \texttt{PROJECT} for an
-inadmissible proposal with a feasible correction, \texttt{REJECT} for a
-non-projectable symbolic or task-state violation, and \texttt{INFEASIBLE} when
-the selected specification supplies no usable command authority. Rejection
-and infeasibility do not forward a command for execution. For a nonempty
-closed convex set in normalized command coordinates, the correction is the
-unique Euclidean projection
+$\mathcal A(x,c)$ the applicable admissible command set. A proposer supplies a
+command $\tilde a$. TRiX returns \texttt{ALLOW} for a proposal already in that
+set, \texttt{PROJECT} for an inadmissible proposal with a feasible correction,
+\texttt{REJECT} for a non-projectable symbolic or task-state violation, and
+\texttt{INFEASIBLE} when the selected specification supplies no usable
+command authority. Rejection and infeasibility do not forward a command for
+execution. For a nonempty closed convex set in normalized command coordinates,
+the correction is the unique Euclidean projection
 \begin{equation}
 \Pi_{\mathcal A}(\tilde a)=\arg\min_{a\in\mathcal A(x,c)}
 \tfrac12\|a-\tilde a\|_2^2.
@@ -185,11 +229,12 @@ unique Euclidean projection
 Normalization is part of the model: squared velocity, angular-velocity and
 force errors require declared scales before they can share this metric.
 
-Screw extraction illustrates the representation requirement. With pitch $p$,
-axial velocity $v_z$ and angular velocity $\omega_z$, ideal motion obeys
-$v_z=k\omega_z$, where $k=p/(2\pi)$. Using command scales $S_v$ and
-$S_\omega$ gives $a_v=v_z/S_v$, $a_\omega=\omega_z/S_\omega$ and
-$\alpha=kS_\omega/S_v$. The ideal-line projection is
+Screw extraction shows why the representation of $\mathcal A$ matters. With
+pitch $p$, axial velocity $v_z$ and angular velocity $\omega_z$, ideal motion
+obeys $v_z=k\omega_z$, where $k=p/(2\pi)$. Using command scales $S_v$ and
+$S_\omega$ gives normalized commands $a_v=v_z/S_v$ and
+$a_\omega=\omega_z/S_\omega$, and a coupling coefficient
+$\alpha=kS_\omega/S_v$. The projection onto the ideal line is
 \begin{equation}
 \Pi_0(\tilde a)=
 \frac{\alpha\tilde a_v+\tilde a_\omega}{1+\alpha^2}
@@ -202,30 +247,52 @@ SCREW task uses a finite-tolerance strip with command and radial-force bounds
 quadratic program (QP) represents the same set. This makes solution mechanism
 separable from constraint representation.
 
+\begin{figure}[!htbp]
+\centering
+\includegraphics[width=\textwidth]{manuscript/figures/figure2_representation_gap.pdf}
+\caption{Representation of the SCREW command coupling. (a) A two-dimensional
+slice of the normalized command box, with radial action fixed at zero.
+The frozen environment uses pitch $p=1.25$ mm and the finite tolerance
+$|v_z^c-p\omega_z^c/(2\pi)|\leq0.001$ m\,s$^{-1}$; the admissible strip
+occupies 2.0\% of this slice. Commands are normalized by 60 rad\,s$^{-1}$
+and 0.05 m\,s$^{-1}$, respectively; the displayed coefficient is rounded.
+The tightest enclosing componentwise box admits commands outside the strip.
+(b) The same illustrative proposal is corrected by componentwise clipping
+and by Euclidean projection in normalized action coordinates. The latter
+uses the coupled strip and command bounds. The dashed box is a geometric
+illustration, not a registered SCREW experimental arm; an appropriately
+specified linear-constraint QP also represents the strip.}
+\label{fig:submitted-2}
+\end{figure}
 
-
-Four representation properties delimit the analysis. First, projection onto
-an axis-aligned product of intervals is componentwise clipping. Second, a
+Four representation properties frame the analysis. First, projection onto an
+axis-aligned product of intervals is componentwise clipping. Second, a
 phase-independent set valid in two phases must lie in their intersection,
 which may discard phase-specific authority. Third, the intersection over all
 rotations of a rectangle with half-widths $a\geq b>0$ is the radius-$b$ disk;
 a fixed square $[-h,h]^2$ valid for every orientation therefore requires
 $h\leq b/\sqrt2$. Fourth, a Gaussian-tightened scalar interval
 $|y|\leq L-z\sigma$ retains nonzero authority exactly when $z\sigma<L$.
-The assumptions and proofs are in \suppsection{S1}, \suppsection{S2} and \suppsection{S3}.
-These are statements about representation and feasibility. They do not imply
-closed-loop stability or forward invariance for an unmodeled plant.
+The assumptions and proofs are in \suppsection{S1}, \suppsection{S2} and
+\suppsection{S3}. These are statements about representation and feasibility.
+They do not imply closed-loop stability or forward invariance for an
+unmodeled plant. How a trained policy adapts to a restriction is examined
+empirically rather than stated as a proposition.
 
-\subsection{Six disassembly tasks and explicit comparator roles}
+\subsection{Disassembly tasks and outcome definitions}
 \label{sec:tasks}
-DISASM-Bench supplies six analytical environments: SCREW, PCB, SNAP, CRANK,
-BATTERY and PRY. Each maps three normalized action coordinates to a
-task-specific physical interface (Table~\ref{tab:submitted-2}).
-Figure~\ref{fig:disasm-workspaces} visualizes recorded states in PyBullet
-\cite{ref33}; the analytical environments generate the reported dynamics and
-outcomes. The illustrated gripper does not imply that articulated-arm or
-contact dynamics generated the policy results.
-
+DISASM-Bench supplies six analytical environments: SCREW (screw extraction),
+PCB (circuit-board extraction), SNAP (snap-fit release), CRANK (crank
+extraction), BATTERY (battery peel) and PRY (prying open an enclosure). Each
+maps three normalized action coordinates to a task-specific physical
+interface (Table~\ref{tab:submitted-2}). The commanded quantities are axial
+and angular velocity $v_z^c,\omega_z^c$ and radial force $F_r$ for SCREW;
+tilt torques $\tau_x,\tau_y$ and lift force $F_z$ for PCB; latch-deflection,
+pull and lateral forces $F_{\rm def},F_{\rm pull},F_{\rm lat}$ for SNAP;
+forces $F_x,F_y,F_z$ for CRANK; peel force $F_{\rm peel}$ and lateral forces
+$F_{\ell1},F_{\ell2}$ for BATTERY; and tool torque $\tau$, insertion force
+$F_{\rm ins}$ and lateral force $F_{\rm lat}$ for PRY, whose torque limit
+depends on insertion depth $d$.
 
 \begin{table}[!htbp]
 \centering\small
@@ -248,15 +315,84 @@ PRY v2 & $\tau,F_{\rm ins},F_{\rm lat}$ & $|\tau|\leq1.5[1-0.5\min(1,|d|/0.05)]$
 \end{tabular}
 \end{table}
 
-We evaluate Proximal Policy Optimization (PPO) \cite{ref31} and Soft
-Actor-Critic (SAC) \cite{ref32} with the runtime arms in
-Table~\ref{tab:submitted-3}. Ten independent training seeds define each policy
-comparison. Stage~1 applies each arm to the same selected frozen policy;
-Stage~2 trains a separate policy with its restriction inside the environment
-transition. Safe completion combines successful task termination with the
-absence of the declared outcome-affecting violation. Progress, diagnostic
-violations and destructive completion are reported separately. Full
-interfaces and selection rules are supplied in \suppsection{S4}, \suppsection{S5} and \suppsection{S6}.
+The versioned registry binds SCREW v3 and the five v2 tasks to their
+analytical environments and named filters. All observations contain ten
+float32 entries; their meanings are task-specific, and unused entries are
+zero padding. For example, PCB contains lift and lift velocity, two tilt
+angles and their rates, accumulated damage and a fracture flag. Observations
+are not one shared position/velocity/wrench vector. Actions are normalized to
+$[-1,1]^3$ and mapped through the physical scales in \suppsection{S4}.
+Each outer action advances $1/240$~s of simulated time. SCREW uses 40
+internal integration substeps; PCB, SNAP, CRANK and BATTERY use ten; PRY
+updates directly. Progress and termination are task-specific.
+
+Safe completion combines successful task termination with the absence of the
+declared outcome-affecting violation. The outcome contract also distinguishes
+completion with outcome-affecting violations, destructive completion and the
+remaining unsuccessful outcomes; diagnostic events are recorded separately.
+Reset parameters, distributions, ranges and training/evaluation use are
+tabulated in \suppref{tab:submitted-9} and detailed in \suppsection{S4.6}.
+Risk allocations, noise and reset variation come from the frozen source.
+
+Figure~\ref{fig:disasm-workspaces} visualizes recorded states of the six
+tasks in PyBullet \cite{ref33}, with a per-panel state manifest. The
+analytical environments generate the reported dynamics and outcomes; the
+renderer is not a second validation of the analytical equations or a
+simulated articulated-arm controller, and the illustrated gripper does not
+imply that articulated-arm or contact dynamics generated the policy results.
+An earlier PyBullet helical-constraint prototype imposed the same screw pitch
+through a gear constraint. It therefore could not independently validate that
+pitch; we withdrew the associated validation argument.
+
+\begin{figure}[!htbp]
+\centering
+\includegraphics[width=\textwidth]{manuscript/figures/disasm_bench_workspaces.pdf}
+\caption{Six recorded disassembly workspaces. (a) SCREW: coupled threaded
+extraction. (b) PCB: lift and two-axis board tilt, with $\|\symbfit\theta\|=
+0.00748$ rad in this frame. (c) SNAP: latch deflection before extraction.
+(d) CRANK: rotation and axial removal. (e) BATTERY: peel through an upright
+extraction tab. (f) PRY: opening one end with the opposite edge supported;
+the orange element is the tool handle. Poses come from recorded environment
+states and the per-panel manifest. RGB axes mark world-aligned display
+references; grid spacing is 20 mm. Purple arrows are schematic command/load
+directions, not measured force or torque. PyBullet supplies visualization;
+arm/contact dynamics are not simulated. Panels are individual snapshots.}
+\label{fig:disasm-workspaces}
+\end{figure}
+
+\subsection{Policies and evaluation regimes}
+\label{sec:training-methods}
+We train Proximal Policy Optimization (PPO) \cite{ref31} and Soft
+Actor-Critic (SAC) \cite{ref32} policies with Stable-Baselines3 2.9.0,
+Gymnasium 1.3.0 and two-layer $[256,256]$ networks on CPU. Ten independent
+training seeds, 0--9, define each policy comparison. Stage~1 trains without
+the evaluated governor and then applies each runtime arm in
+Table~\ref{tab:submitted-3} to the same selected frozen policy. Stage~2 trains
+a separate policy with its restriction inside the environment transition;
+replay and rollout buffers retain the nominal policy action. The adapter
+distinguishes termination from time-limit truncation and restores NumPy
+random state after interleaved evaluation.
+
+At each predeclared task budget, checkpoints saved every 1,000 steps are
+screened on 30 fixed validation episodes. Three-checkpoint windows are ranked
+by mean safe completion, and the centers of the three best windows receive
+70 additional validation episodes. Selection is lexicographic: maximize safe
+completion, minimize destructive completion, maximize normalized progress,
+minimize episode-level violation incidence, then choose the earliest
+checkpoint. Each selected policy is tested on 100 held-out episodes, disjoint
+from validation; pilot seeds are excluded. Recorded checkpoint lists,
+software fingerprints, task budgets and episode-seed exceptions are retained
+in \suppsection{S5} and \suppsection{S6}.
+
+\subsection{Runtime arms and specification controls}
+\label{sec:controls-methods}
+The runtime registry distinguishes componentwise restrictions, analytical
+local-gradient references, matched QP and task-specific TRiX operators
+(Table~\ref{tab:submitted-3}). A learned constraint-representation experiment
+is evaluated separately from these policy results. No trained PPO-Lagrangian
+or complete trained SafeLayer policy is included in the quantitative matrix.
+Literature comparisons in Table~\ref{tab:submitted-1} retain their original
+assumptions and are not relabeled as experimental baselines.
 
 \begin{table}[!htbp]
 \centering\small
@@ -281,16 +417,169 @@ Learned affine / nonlinear \cite{ref21} & Fit constraint models and correct usin
 \end{tabular}
 \end{table}
 
-\subsection{Policy adaptation changes which restrictions are sufficient}
+The SCREW matched QP and analytical solver minimize the same normalized
+Euclidean error over the same finite helical slab, action bounds and radial
+limit. This controls command-set specification; it does not construct a
+state-space barrier certificate. BATTERY preventive arms share the 15-N
+threshold and margin construction. PCB and SNAP comparisons retain their
+implemented margin differences, and CRANK combines frame and angle
+conditioning. Historical BATTERY prefix pooling and the PCB oracle
+episode-seed correction are documented alongside preserved originals. The
+full policy tables use exact-arm counts; no checkpoint was reselected during
+that audit.
+
+\subsection{Representation, sensitivity and prospective tests}
+\label{sec:model-validation}
+The PCB decomposition uses the archived seed-0 run with 20,000 fitting
+samples and 2,000 held-out proposals, plus the 500--20,000-sample
+affine-model sweep. The procedural generator defines six three-dimensional
+set families, with 120 training, 40 validation and 200 held-out geometries
+from disjoint seed streams. Learned constraint models are fitted separately
+on each evaluated instance using 3,000 labeled state-action samples;
+nonlinear fitting uses 250 gradient steps. Each arm receives 400 sampled
+proposals per instance. Required-action retention means displacement below
+$0.02(\|u_{\rm req}\|+10^{-9})$. The context-free box's required-action
+exclusion defines the 124/76 partition. Approximate arms share implemented
+inscribed-box bounds, which can contribute both feasibility and conservatism.
+
+The sensitivity study varies 21 constants across five multipliers from 0.5
+to 2.0, with eight scripted episodes per arm and case. Its ordering criterion
+first compares destructive completions and, when both are zero, safe
+completion. The nine failed cases are diagnosed after the sweep. The separate
+BAYONET experiment preregisters a 150,000-step budget, SAC as the primary and
+PPO as a replication algorithm, and a 50\% competence gate; neither exceeds
+10\% mean safe completion. The gate and task are not changed after this
+inconclusive result. \suppsection{S7} and \suppsection{S10} give
+implementation checks, designs and full outcomes.
+
+\subsection{Shifted reset evaluation}
+\label{sec:ood-methods}
+Held-out tests in the original evaluation use the training reset ranges.
+A prospectively declared evaluation adds 42,000 episodes across the five
+tasks with stochastic physical resets. It widens existing reset half-widths
+by $1.5\times$ and $2\times$ and samples a $2\times$ outside-support shell,
+with selected policies and governors fixed. PRY is not applicable because its
+physical reset is deterministic. \suppsection{S14} and \suppref{tab:ood-ranges}
+give the committed protocol, explicit reset interface and complete ranges.
+The SNAP command and damage attribution reported in Results was conducted
+after this evaluation and is labelled post hoc.
+
+\subsection{Recorded vision-language-model commands}
+\label{sec:vlm-method}
+The frozen bank has 28 base configurations: 21 have normal, rotated,
+occluded and misleading views, and seven have one partial view each,
+producing 91 images. Each provider receives the same image/prompt pairs and
+a 2,000-token output limit. Recorded aliases are
+\texttt{claude-sonnet-4-5}, \texttt{gpt-4o} and
+\texttt{gemini-flash-latest}; they are not pinned backend snapshots
+\cite{ref36,ref37,ref38}. All raw responses and parsed commands are retained.
+Backend IDs, per-call dates and retry attribution are unavailable. Four
+retried Gemini timeouts are mentioned in historical notes, but their image
+IDs and successful variants cannot be recovered; the client also permits
+fallback outside those events.
+
+The images use a visibility-scaled tilt cue. Main-stratum display tilt is
+approximately $20.669$ times replayed mechanical curvature; partial views use
+$3.6$ times. Saved near-boundary mechanical tilts of 0.0358--0.042525~rad
+appear as roughly $42.4^\circ$--$50.4^\circ$, beyond the model's $0.075$-rad
+($4.30^\circ$) fracture threshold if interpreted physically. Thus the
+displayed pose need not be a realizable intact-board state. Positive scaling
+preserves ordering within the 84 main-stratum images, but not physical
+distance to a boundary; all margin comparisons exclude the seven partial
+views. Rendering reproducibility does not establish fidelity to mechanical
+tilt. The stratum counts describe responses to this encoding. Without an
+unscaled image control, effects of visual scaling cannot be separated from
+differences between model runs.
+
+The fixed parser maps outputs to \texttt{LIFT}, \texttt{TILT\_X},
+\texttt{TILT\_Y}, \texttt{PRESS}, \texttt{HOLD} or \texttt{ABORT}.
+Refusals and ungroundable outputs are distinct from grounded admissible and
+inadmissible commands. Set membership defines inadmissibility; no independent
+semantic-correctness annotation is available. Each grounded command is held
+for 40 steps in unfiltered and governed replay from the same restored state
+and seed. A violation case contains at least one recorded constraint
+violation; prevention requires violations only in the unfiltered arm.
+\suppsection{S11} provides the display formulas, trial ledger, stratum counts
+and conditional Gemini sensitivity bound.
+
+\subsection{Physical platform}
+\label{sec:hardware-methods}
+The Seeed reBot B601-RS uses RobStride actuators, a 48-V supply and
+1-Mbit/s CAN. Joints~1--5 use 0.1-second MIT-style position/velocity
+commands; Joint~6 uses an approximately 200-Hz velocity controller. The final
+grasp implementation is identified by commit \texttt{d296e6e} and tag
+\path{trix-hardware-soft-grasp-success-20260828}. TRiX separates symbolic
+proposals, decision receipts and approved executor targets, with Joint~1
+protected by a hard invariant. The calibrated sequence uses J3 gravity
+feed-forward and a disclosed Joint~2 positioning offset around engagement.
+In all six grasp-and-return trials, the operator manually positions the
+object between the open jaws at the calibrated grasp-ready pose before
+governed closure, lift and return. The placement protocol for the three
+repetitions without video is author-confirmed; their logs record robot
+execution. Console logs, passive CAN captures, source/configuration
+snapshots, video mappings and checksums support the intervention experiment,
+three video-backed trials and three logged repetitions. There is no
+independent force/torque measurement or autonomous perception-to-grasp
+evaluation (\suppsection{S12}).
+
+\subsection{Runtime measurement}
+\label{sec:timing-methods}
+The latency benchmark times the complete $(o,a)\mapsto(a',\mathrm{info})$
+call, including allocations, per-call constraint construction and
+diagnostics. It uses 2,048 saved inputs per task, five fresh processes and
+256 warm-up calls per implementation/process. Identical per-task input
+sequences are shared across arms, with task/arm order randomized in 64-input
+blocks. Durations are untrimmed integer nanoseconds; cyclic garbage
+collection is disabled, and timer overhead is recorded without subtraction.
+Each process uses CPU~0 and one native numerical thread. OSQP reuses its
+problem and warm start; one-time construction is reported separately.
+Policy/VLM inference, input generation, simulation and robot communication
+are outside the interval. \suppsection{S8} records host/software versions,
+tolerances, raw arrays, source hashes and the complete workload design.
+
+\subsection{Statistical analysis}
+\label{sec:statistics}
+The training seed, not the evaluation episode, is the unit for policy
+comparisons. We report ten-seed means and all plotted seed values. Selected
+contrasts use paired differences by seed identifier and exact percentile
+bootstrap distributions over those ten differences, computed by convolution.
+Intervals are descriptive, not multiplicity-adjusted tests. Same-policy
+Stage~1 contrasts are distinguished from separately trained Stage~2 and
+cross-regime pairs. The preventive BATTERY and PCB cross-regime contrasts
+also have recorded episode-seed mismatches, so pairing is only at
+training-seed level (\suppref{tab:submitted-11}). The shifted reset study
+uses the same estimator and training-seed pairing. Its changes from
+historical in-range estimates include episode-sampling variation because the
+schedules differ; within/outside-support strata are descriptive
+(\suppsection{S14}). Procedural instances are the units in the geometry
+study. VLM counts are descriptive over paired images and commands; views
+clustered within 28 configurations are not independent physical replicates,
+and no inferential cross-model test is reported.
+
+\subsection{Records and provenance}
+\label{sec:provenance}
+Every experimental record is linked to the applicable environment, policy,
+constraint, margin and outcome specifications. The curated source map links
+all main and supplementary figures and tables to data or executable source.
+Correction notes retain affected historical files. Independent physical
+calibration and unresolved backend identities remain provenance limits.
+Figure~\ref{fig:seed-distributions} was regenerated from the retained
+seed-level data using a supplied replacement plotting script; the original
+plotting script remains unavailable.
+
+\section{Results}
+
+\subsection{Training with the governor changes which restriction suffices}
 \label{sec:policy-results}
-The strongest regime effect occurs on PCB extraction. When the same
+The clearest regime effect occurs on PCB extraction. When the same
 componentwise \texttt{box\_clip} restriction is applied after SAC training,
 safe completion is 0.0\%; with that restriction active during training, it is
 100.0\% (Table~\ref{tab:policy-summary}). Every one of the ten training seeds
-shows this change (Figure~\ref{fig:seed-distributions}a). The policy can learn
-to use authority retained by a restriction that performs poorly on proposals
-from an independently trained policy. This result establishes the role of
-adaptation while holding the implemented restriction fixed.
+shows this change (Figure~\ref{fig:seed-distributions}a). The same frozen
+policy reaches 100.0\% under TRiX, so the post-hoc failure reflects the
+restriction rather than an incompetent policy. A policy trained under the box
+learns to use the authority the box retains. This result establishes the role
+of adaptation while holding the implemented restriction fixed.
 
 \begin{table}[!htbp]
 \centering\small
@@ -317,101 +606,139 @@ BATTERY & SAC & Stage 2 & Preventive box / TRiX & 100.0 & 100.0\\
 \end{tabular}
 \end{table}
 
-SCREW isolates solution mechanism. Under frozen-policy evaluation,
-\texttt{oracle\_tangent}, \texttt{qp\_matched} and TRiX each achieve 88.7\%
-safe completion for SAC and 60.0\% for PPO, against 0.0\% without a governor.
-The matched constrained controls reach 100\% for both algorithms with
-filter-aware training. The equal outcomes are expected when the same
-admissible command set is supplied to each method; the implementation timing
-comparison is reported separately below.
+\begin{figure}[!htbp]
+\centering
+\includegraphics[width=\textwidth]{manuscript/figures/figure4_seed_distributions.pdf}
+\caption{Seed-level safe completion within the training reset ranges in the
+frozen production experiments.
+Each point is one independent training seed (\(n=10\)). Boxes span the
+interquartile range, central lines show medians, whiskers extend to the most
+extreme observations within 1.5 interquartile ranges of the box, and triangles
+denote arithmetic means.
+(a) PCB compares the same \texttt{box\_clip} restriction under post-hoc
+Stage~1 governance and Stage~2 filter-aware training, yielding mean safe
+completion of 0.0\% and 100.0\%, respectively.
+(b--d) Stage~2 filter-aware SAC comparisons for SNAP, CRANK, and PRY.
+SNAP yields 5.2\% under the static restriction and 96.5\% under the implemented
+task-conditioned governor. CRANK yields 0.0\% under the static restriction and
+49.4\% under the task-conditioned governor, with the latter exhibiting a
+bimodal seed distribution. PRY yields similar distributions under the simpler
+and task-conditioned restrictions, with means of 88.5\% and 89.1\%.}
+\label{fig:seed-distributions}
+\end{figure}
 
+\subsection{Matched controls separate solver from representation}
+\label{sec:matched-results}
+SCREW holds the specification fixed and varies only the solution mechanism.
+Under frozen-policy evaluation, \texttt{oracle\_tangent}, \texttt{qp\_matched}
+and TRiX each achieve 88.7\% safe completion for SAC and 60.0\% for PPO,
+against 0.0\% without a governor. The matched constrained controls reach
+100\% for both algorithms with filter-aware training. Equal outcomes are
+expected when the same admissible command set is supplied to each method;
+on this task, differences between methods arise from what each is given,
+not from how it computes the correction. Implementation cost is reported
+separately below.
+
+\subsection{Missing task context limits what training can recover}
+\label{sec:context-results}
 Adaptation does not recover all lost authority. CRANK's static restriction
 remains at 0.0\% after filter-aware SAC training, while the implemented
 task-conditioned governor reaches 49.4\%. That mean conceals seeds near
 0\% or 100\% (Figure~\ref{fig:seed-distributions}c). The comparison changes
 both angle-conditioned axial bounds and transverse task-frame representation,
-so it does not isolate either factor. Within the training reset ranges,
-SNAP reaches 5.2\% under static and 96.5\% under TRiX in a comparison of
-separately trained policy-and-governor systems that does not isolate the
-governor's causal contribution. The implementations also differ in margin
-and latch-phase conditioning. The shifted-reset evaluation below reduces
-these rates to 3.5\% and 59.9\%, respectively (\suppsection{S14}).
+so it does not isolate either factor.
 
+SNAP separates as strongly. Within the training reset ranges, SNAP reaches
+5.2\% under static and 96.5\% under TRiX
+(Figure~\ref{fig:seed-distributions}b). This compares separately trained
+policy-and-governor systems and does not isolate the governor's causal
+contribution; the implementations also differ in margin and latch-phase
+conditioning. The shifted reset evaluation below reduces these rates to
+3.5\% and 59.9\%, respectively.
 
+\subsection{Simpler restrictions suffice when context and specification match}
+\label{sec:sufficient-results}
+On PRY, filter-aware SAC gives 88.5\% and 89.1\% under static and
+task-conditioned restrictions, with closely aligned seed distributions and
+the same zero-performing seed (Figure~\ref{fig:seed-distributions}d). PCB
+reaches 100.0\% with the box and 99.8\% with TRiX in this regime. The
+production PCB comparison also changes the torque margin: the box uses a
+nominal 0.100~N\,m per-axis bound, while TRiX uses a robust coupled radius of
+approximately 0.087087~N\,m. Consequently, its between-arm comparison does
+not isolate box-versus-disk geometry.
 
-Other controls establish when simpler restrictions suffice. On PRY,
-filter-aware SAC gives 88.5\% and 89.1\% under static and task-conditioned
-restrictions, with closely aligned seed distributions and the same
-zero-performing seed. PCB reaches 100.0\% with the box and 99.8\% with TRiX
-in this regime. The production PCB comparison also changes the torque margin:
-the box uses a nominal 0.100~N\,m per-axis bound, while TRiX uses a robust
-coupled radius of approximately 0.087087~N\,m. Consequently, its between-arm
-comparison does not isolate box-versus-disk geometry.
+BATTERY isolates specification. Historical arms compared the 20-N flagged
+peel boundary with a 15-N preventive deformation threshold. When both
+componentwise and TRiX arms use the same preventive target and margin
+construction, both reach 100\% safe completion. Historical aggregation also
+pooled similarly named BATTERY arms; the exact-arm audit in
+\suppsection{S9.4} corrects Stage~1 SAC/TRiX safe completion to 20.0\%, with
+original records retained. \suppsection{S9} reports the full policy tables
+and these controls; \suppref{tab:submitted-11} supplies training-seed
+intervals and pairing exceptions. Nominal-policy failure on some tasks leaves
+frozen-policy arms at zero, which limits the ranking those cells can support.
 
-BATTERY provides a specification control. Historical arms compared the
-20-N flagged peel boundary with a 15-N preventive deformation threshold.
-When both componentwise and TRiX arms use the same preventive target and
-margin construction, both reach 100\% safe completion.
-
-Historical aggregation
-also pooled similarly named BATTERY arms; the exact-arm audit in \suppsection{S9.4} corrects Stage~1 SAC/TRiX safe completion to 20.0\%, with original
-records retained.
-\suppsection{S9} reports the full policy tables and these controls;
-\suppref{tab:submitted-11} supplies training-seed intervals and pairing
-exceptions. Nominal-policy failure on some tasks leaves frozen-policy arms
-at zero, which limits the ranking those cells can support.
-
-A prospectively declared revision experiment evaluates 42,000 additional
-episodes across the five tasks with stochastic physical resets, retaining
-selected checkpoints and governors. In the primary outside-training-support
-shell, SNAP safe completion is 59.9\% under TRiX versus 3.5\% under static
-in a comparison of separately trained policy-and-governor systems that does
-not isolate the governor's causal contribution. These rates fall from the
-in-range 96.5\% and 5.2\% reported above. Latch fractures, including timeouts,
-occur in 401 versus 468 of 1,000 episodes per arm.
-Destructive completions number 369 versus 886;
-this category combines completed episodes with fracture or accumulated damage
-and excludes timeouts (\suppref{tab:snap-ood-attribution}).
-CRANK reaches 47.6\% under TRiX versus
-0.0\% under the static arm, with 22 destructive completions per 1,000
-episodes under TRiX. Matched SCREW arms remain equal (87.9\% SAC;
-59.9\% PPO). PCB yields 0.0\%/99.6\% in Stage~1 and 100.0\%/99.8\%
-in Stage~2 for box/TRiX; preventive BATTERY gives 100.0\%/100.0\%.
-PRY is not applicable because its physical reset is deterministic.
-\suppsection{S14} and \suppref{tab:ood-safe} report all three declared
-conditions, changes and intervals; \suppref{tab:ood-outcomes} reports every
-outcome category. The original in-range results remain unchanged.
-
-\subsection{Representation controls identify losses of required authority}
+\subsection{Learned constraint models can lose required authority}
 \label{sec:representation-results}
 The PCB representation study distinguishes learned constraint models from
 trained task policies. On 2,000 held-out proposals, clipping produces 2.9\%
 feasible commands, a learned action-affine model 0.0\%, a learned nonlinear
 model 78.0\% after one correction and 92.3\% after iteration, and the
 analytical oracle and exact projector 100\%. The affine result remains 0.0\%
-when fitting samples increase from 500 to 20,000. This single-seed study tests
-the implemented representations; it does not establish a general failure of
-learning or an ordering of complete safety algorithms.
+when fitting samples increase from 500 to 20,000. This single-seed study
+tests the implemented representations; it does not establish a general
+failure of learning or an ordering of complete safety algorithms.
 
 A separate procedural study evaluates 200 admissible-set instances from box,
-ellipsoid, polytope, state-scaled, rotating and phase-gated families. Each has
-a required action sampled inside its exact set. The implemented context-free
-box excludes that action in 124 instances and retains it in 76. This
-partition is a constructed calibration: the box's exclusion is the grouping
-criterion, so its behavior cannot independently validate that criterion.
+ellipsoid, polytope, state-scaled, rotating and phase-gated families. Each
+has a required action sampled inside its exact set. The implemented
+context-free box excludes that action in 124 instances and retains it in 76.
+This partition is a constructed calibration: the box's exclusion is the
+grouping criterion, so its behavior cannot independently validate that
+criterion. The alternatives reveal information beyond the partition
+definition (\suppref{tab:procedural-geometry}). Exact projection retains the
+required action in 100\% of both groups; the context-conditioned oracle
+retains it in 36.3\% and 100\%, respectively. The learned affine model
+retains it in 0\% of both groups, including the group where a box succeeds.
+All arms return feasible commands on 400 sampled proposals per instance,
+partly because approximate arms also use the implemented inscribed-box
+bounds. Feasibility can therefore coexist with loss of task-required
+authority. Models are fitted separately on samples from each evaluated
+geometry; this is not zero-shot transfer of one learned constraint model
+(\suppsection{S10}).
 
-The alternatives reveal information beyond the partition definition
-(\suppref{tab:procedural-geometry}). Exact projection retains the required
-action in 100\% of both groups; the context-conditioned oracle retains it in
-36.3\% and 100\%, respectively. The learned affine model retains it in 0\%
-of both groups, including the group where a box succeeds. All arms return
-feasible commands on 400 sampled proposals per instance, partly because
-approximate arms also use the implemented inscribed-box bounds. Feasibility
-can therefore coexist with loss of task-required authority. Models are fitted
-separately on samples from each evaluated geometry; this is not zero-shot
-transfer of one learned constraint model (\suppsection{S10}).
+\subsection{Admissible commands do not guarantee safe outcomes outside the training range}
+\label{sec:ood-results}
+In the primary outside-training-support shell of the prospectively declared
+evaluation, SNAP safe completion is 59.9\% under TRiX versus 3.5\% under
+static. These rates fall from the in-range 96.5\% and 5.2\%. As in range,
+this compares separately trained policy-and-governor systems and does not
+isolate the governor's causal contribution. Latch fractures, including
+timeouts, occur in 401 versus 468 of 1,000 episodes per arm. Destructive
+completions number 369 versus 886; this category combines completed episodes
+with fracture or accumulated damage and excludes timeouts
+(\suppref{tab:snap-ood-attribution}). The advantage in safe completion is
+therefore much larger than the reduction in fractures.
 
-\subsection{Governance prevents violations from recorded VLM proposals}
+A post-hoc replay audit finds every TRiX command inside the frozen executable
+bounds. Nevertheless, all 401 TRiX fractures begin through overdeflection in
+the softer-latch stratum, before pull damage; all 480 TRiX episodes in the
+harder-latch stratum complete safely. Per-step command membership therefore
+did not secure the subsequent dynamic state. These observed counts do not
+establish safety throughout either stiffness interval. \suppsection{S14.4}
+reports the full outcome partition, traces and the distinction between
+executed margins and the later, tighter registry.
+
+The other tasks change less. CRANK reaches 47.6\% under TRiX versus 0.0\%
+under the static arm, with 22 destructive completions per 1,000 episodes
+under TRiX. Matched SCREW arms remain equal (87.9\% SAC; 59.9\% PPO). PCB
+yields 0.0\%/99.6\% in Stage~1 and 100.0\%/99.8\% in Stage~2 for box/TRiX;
+preventive BATTERY gives 100.0\%/100.0\%. \suppsection{S14} and
+\suppref{tab:ood-safe} report all three declared conditions, changes and
+intervals; \suppref{tab:ood-outcomes} reports every outcome category. The
+original in-range results remain unchanged.
+
+\subsection{Governance intercepts violations in recorded model commands}
 \label{sec:vlm-results}
 Three recorded provider runs receive the same 91 PCB images and prompt,
 yielding 273 decisions. The labels Claude Sonnet, GPT-4o and Gemini identify
@@ -451,344 +778,144 @@ Total         & 16 & 219 & 38 & 257 & 31 & 31\\
 \end{table}
 
 TRiX prevents all 31 observed constraint-violation cases and introduces none.
-The commands were elicited from visibility-scaled PCB images whose displayed
-tilts can exceed the model's intact-board range; this result measures
-governance of those recorded commands under mechanical replay.
 A prevented case has at least one violation during the unfiltered replay and
-none under governance from the same restored state and seed. Merely changing
+none under governance from the same restored state and seed; merely changing
 a command receives no prevention credit. The three inadmissible Claude
 commands produce no unfiltered violation cases; GPT-4o contributes nine
-prevented cases and Gemini 22. For example, GPT-4o's
-\texttt{s06\_occluded} response requests \texttt{LIFT} at magnitude 0.8,
-grounding to $(0,0,0.8)$: violations occur on 40/40 unfiltered steps and
-0/40 governed steps. Both arms in every replay finish the 40-step horizon
-without task completion or mechanical failure. The endpoint is prevented
-constraint violations, not fractures or successful extraction.
+prevented cases and Gemini 22. For example, GPT-4o's \texttt{s06\_occluded}
+response requests \texttt{LIFT} at magnitude 0.8, grounding to $(0,0,0.8)$:
+violations occur on 40/40 unfiltered steps and 0/40 governed steps. Both arms
+in every replay finish the 40-step horizon without task completion or
+mechanical failure. The endpoint is prevented constraint violations, not
+fractures or successful extraction. The commands were elicited from
+visibility-scaled images whose displayed tilts can exceed the model's
+intact-board range, so this result measures governance of those recorded
+commands under mechanical replay.
 
 Thirty-five images elicit an inadmissible proposal in at least one run; none
-does so in all three. Claude's three inadmissible cases and GPT-4o's nine
-do not overlap, even when grouped by base configuration. Holding those
-responses fixed, no Gemini failure set can create a three-way overlap.
-The result supports execution governance for actual model outputs while
-retaining the visual-encoding and provenance limits in Methods. It measures
-one proposal per image, with repeated views of 28 configurations, and makes
-no claim about an autonomous agent loop or hallucination detection.
+does so in all three. Claude's three inadmissible cases and GPT-4o's nine do
+not overlap, even when grouped by base configuration. Holding those responses
+fixed, no Gemini failure set can create a three-way overlap. The study
+measures one proposal per image, with repeated views of 28 configurations,
+and makes no claim about an autonomous agent loop or hallucination detection.
 
-\subsection{Physical execution enforces the proposal boundary}
+\subsection{Governance changes what reaches a physical robot}
 \label{sec:hardware-results}
-On a B601-RS robot, the intervention experiment rejects an invalid symbolic
+On the B601-RS, the intervention experiment rejects an invalid symbolic
 transition and a proposed $+50^\circ$ motion of protected Joint~1, producing
 no physical target. An excessive Joint~2 proposal of $+50^\circ$ is projected
-to $+18^\circ$; only the corrected target is transmitted and executed.
-The allowed return finishes with Joint~1 drift of $+0.007^\circ$.
+to $+18^\circ$; only the corrected target is transmitted and executed. The
+allowed return finishes with Joint~1 drift of $+0.007^\circ$.
 
 The frozen final implementation then completes three video-backed
-grasp-and-return trials with the object retained (Figure~\ref{fig:b601-hardware}).
-Each contains ten \texttt{ALLOW} decisions, for 30 governed decisions in total;
-these trials are not additional projection or rejection interventions.
-The maximum absolute Joint~1 return drift is $0.027^\circ$ and the largest
-start-to-final residual over Joints~1--6 is $0.122^\circ$.
-Three further logged repetitions complete normally but are not counted as
-video-backed object-retention trials. The grasp pose is calibrated. In all six
-trials, the operator manually positions the object between the open jaws;
-the governed sequence then closes the gripper, lifts and returns.
-No independent wrench sensor is used. This demonstrates physical execution of
-the command boundary, while physical calibration of the six simulated task
-models remains open (\suppsection{S12}).
+grasp-and-return trials with the object retained
+(Figure~\ref{fig:b601-hardware}). Each contains ten \texttt{ALLOW} decisions,
+for 30 governed decisions in total; these trials are not additional
+projection or rejection interventions. The maximum absolute Joint~1 return
+drift is $0.027^\circ$ and the largest start-to-final residual over
+Joints~1--6 is $0.122^\circ$. Three further logged repetitions complete
+normally but are not counted as video-backed object-retention trials. The
+grasp pose is calibrated. In all six trials, the operator manually positions
+the object between the open jaws; the governed sequence then closes the
+gripper, lifts and returns. No independent wrench sensor is used. This
+demonstrates physical execution of the command boundary, while physical
+calibration of the six simulated task models remains open
+(\suppsection{S12}).
 
+\begin{figure}[!htbp]
+\centering
+\includegraphics[width=\textwidth]{manuscript/figures/b601_hardware_sequence.jpg}
+\caption{Physical B601-RS execution under the frozen V4 implementation.
+(a) Governed approach with the gripper open. (b) The operator places the
+object between the open jaws at the calibrated grasp-ready pose immediately
+before engagement. (c) Object retained during automatic return. (d) Returned
+configuration with the object still held. The grasp pose is calibrated rather
+than perception-generated; the experiment evaluates physical
+execution-governance integration rather than autonomous grasp synthesis.}
+\label{fig:b601-hardware}
+\end{figure}
 
-
-\subsection{Measured cost depends on the implementation}
+\subsection{Runtime cost depends on the implementation}
 \label{sec:runtime-benchmark}
-A separate benchmark measures 225,280 complete-filter calls across 22 existing
-implementations, six tasks and five fresh processes. On the recorded Intel
-Core Ultra 9 275HX host, matched SCREW median/95th-percentile latency is
+A separate benchmark measures 225,280 complete-filter calls across 22
+existing implementations, six tasks and five fresh processes. On the recorded
+Intel Core Ultra 9 275HX host, matched SCREW median/95th-percentile latency is
 1.255/1.556~$\mu$s for production scalar TRiX, 12.578/15.534~$\mu$s for
 active-set QP and 14.924/19.895~$\mu$s for reused OSQP. All matched arms pass
 the declared numerical agreement checks on the saved bank; the maximum OSQP
-action-coordinate difference is $1.013\times10^{-6}$.
-
-The alternative NumPy analytical implementation takes 18.163~$\mu$s by
-median, exceeding both QP medians despite representing the same geometry.
-Thus the result concerns these implementations and workload. Across the
-six registered TRiX arms, medians range from 1.123 to 11.770~$\mu$s.
+action-coordinate difference is $1.013\times10^{-6}$. The alternative NumPy
+analytical implementation takes 18.163~$\mu$s by median, exceeding both QP
+medians despite representing the same geometry. The comparison therefore
+concerns these implementations and this workload. Across the six registered
+TRiX arms, medians range from 1.123 to 11.770~$\mu$s.
 \suppref{tab:runtime-latency} reports every implementation, process variation
-and the measurement scope. All outliers are retained; these measurements
-are not a worst-case or end-to-end robot latency guarantee.
+and the measurement scope. All outliers are retained; these measurements are
+not a worst-case or end-to-end robot latency guarantee.
 
 \section{Discussion}
 \label{sec:discussion}
-The governing restriction and the proposal policy form a joint system.
-The PCB cross-regime comparison establishes why that distinction matters:
-a restriction that fails after training can support successful behavior when
-included during training. CRANK shows the complementary limit: adaptation
-cannot reliably restore action authority or task context that the supplied
-restriction omits. These observations support reporting post-hoc governance
-and filter-aware learning separately, rather than treating one as evidence
-for the other.
+The governing restriction and the proposal policy form a joint system. The
+PCB cross-regime comparison shows why that matters: a restriction that fails
+after training can support successful behavior when included during
+training. CRANK shows the complementary limit: adaptation cannot reliably
+restore action authority or task context that the supplied restriction
+omits. Post-hoc governance and filter-aware learning should therefore be
+reported separately, rather than treating one as evidence for the other.
 
-They also refine how representation should be evaluated. Matching the command
-set makes analytical and QP controls coincide on SCREW, while matching the
-preventive specification removes the BATTERY performance difference.
-The procedural study distinguishes feasible output from retained required
+The controls also sharpen how representation should be judged. Matching the
+command set makes analytical and QP controls coincide on SCREW, and matching
+the preventive specification removes the BATTERY performance difference. The
+procedural study distinguishes feasible output from retained required
 authority, and the learned nonlinear PCB correction shows that approximation
 quality can improve substantially with an expressive representation and
 iteration. The contribution is an auditable execution contract and an
 experimental account of the conditions under which different implemented
 restrictions suffice. It does not establish a universal advantage of symbolic
-projection over learned or classical safety methods.
-
-The timing comparison
-likewise demonstrates an advantage for the scalar implementation on the saved
+projection over learned or classical safety methods. The timing comparison
+likewise shows an advantage for the scalar implementation on the saved
 workload, not an inherent speed advantage of analytical projection over QP:
 the NumPy analytical implementation is slower than both matched QP controls.
 
-The VLM and hardware experiments extend this contract to generative proposals
-and physical actuation. The VLM result demonstrates prevention of recorded
-constraint violations under paired command replay. The robot trials show
-that rejection and projection can alter what reaches the actuators and that
-the same boundary can support repeated manipulation. Their scopes are
-complementary: neither calibrates the benchmark's force, torque or damage
-thresholds. Such validation would require independent physical measurements
-and trials covering contact uncertainty, object variation and model mismatch.
-
-Several failures identify limits of reactive governance. In BATTERY, an
+Several results mark the limits of reactive governance. Outside training
+support, every TRiX command on SNAP stayed inside its executable bounds, yet
+fractures fell only from 468 to 401 per 1,000 episodes: per-step command
+membership does not secure the subsequent dynamic state. In BATTERY, an
 internal short can continue heating after external force is removed; a
 current-command filter cannot remove accumulated internal state. In SNAP,
-suppressing premature pull does not create the latch-deflection action needed
-for progress. A correct projector can also enforce the wrong boundary: the
-20-N flagged BATTERY limit allows deformation that begins at 15~N.
+suppressing premature pull does not create the latch-deflection action
+needed for progress. A correct projector can also enforce the wrong boundary:
+the 20-N flagged BATTERY limit allows deformation that begins at 15~N.
 Finally, excessive probabilistic tightening can remove all usable authority.
 For the reported CRANK axial family, $L/\sigma=5/1.235\simeq4.05$, whereas
 the declared multiplier is approximately 4.488. This is reported as a
-specification-feasibility failure, with the relevant code path and assumptions
-in \suppsection{S13}.
+specification-feasibility failure, with the relevant code path and
+assumptions in \suppsection{S13}.
 
 The sensitivity study reinforces that these boundaries are empirical. Its
-prescribed task-specific ordering holds in 96 of 105 perturbation cases;
-the nine exceptions comprise six PCB boundary/model cases, one CRANK
-feasibility failure and two BATTERY completion trade-offs with zero destructive
-completions in both arms (\suppsection{S7}). A prospective BAYONET
-test is inconclusive because neither policy algorithm reaches the predeclared
-competence gate. These results remain part of the evidence, rather than
-being removed to produce a cleaner success narrative.
+prescribed task-specific ordering holds in 96 of 105 perturbation cases; the
+nine exceptions comprise six PCB boundary/model cases, one CRANK feasibility
+failure and two BATTERY completion trade-offs with zero destructive
+completions in both arms (\suppsection{S7}). A prospective BAYONET test is
+inconclusive because neither policy algorithm reaches the predeclared
+competence gate. These results remain part of the evidence rather than being
+removed to produce a cleaner narrative.
 
-The added reset-distribution evaluation exposes a further limit. Outside
-training support, SNAP safe completion is 59.9\% under TRiX versus 3.5\%
-under static in a comparison of separately trained policy-and-governor
-systems that does not isolate the governor's causal contribution.
-Fractures fall from 468 to 401 per 1,000 episodes.
-A post-hoc replay audit finds every TRiX command inside the frozen executable
-bounds. Nevertheless, all 401 TRiX fractures begin through overdeflection
-in the softer-latch stratum, before pull damage; all 480 TRiX episodes in
-the harder-latch stratum complete safely. These observations distinguish
-per-step command membership from safety of the subsequent dynamic state.
-These observed counts do not establish safety throughout either stiffness interval.
-\suppsection{S14.4} reports the full outcome partition, traces and
-the distinction between executed margins and the later, tighter registry.
-
-Generalization consequently has several meanings here. The procedural study
-varies set family and task context, but fits learned models on each evaluated
-geometry. The VLM study uses a fixed PCB command interface and visibility-scaled
-images. Hardware uses a calibrated grasp and a separate joint-space contract.
-Future evaluation should combine these components with independently calibrated
+The VLM and hardware experiments extend the contract to generative proposals
+and physical actuation, each within its own scope. The VLM result
+demonstrates prevention of recorded constraint violations under paired
+command replay, on visibility-scaled images of one task. The robot trials
+show that rejection and projection alter what reaches the actuators and that
+the same boundary supports repeated manipulation, with a calibrated grasp,
+manual object placement and a separate joint-space contract. Neither
+calibrates the benchmark's force, torque or damage thresholds. Such
+validation would require independent physical measurements and trials
+covering contact uncertainty, object variation and model mismatch. Future
+evaluation should combine these components with independently calibrated
 constraints, state estimation and sequence planning, while measuring which
 interventions preserve useful action authority. The supported conclusion is
 that explicit execution governance is most informative when evaluated with
 its proposal distribution, available context and physical specification made
 visible.
-
-\section{Methods}
-\subsection{Analytical environments and outcome definitions}
-\label{sec:environment-methods}
-The versioned registry binds SCREW v3 and the five v2 tasks to their analytical
-environments and named filters. All observations contain ten float32 entries;
-their meanings are task-specific, and unused entries are zero padding.
-For example, PCB contains lift and lift velocity, two tilt angles and their
-rates, accumulated damage and a fracture flag. Observations are not one
-shared position/velocity/wrench vector. Actions are normalized to $[-1,1]^3$
-and mapped through the physical scales in \suppsection{S4}.
-
-Each outer action advances $1/240$~s of simulated time. SCREW uses 40
-internal integration substeps; PCB, SNAP, CRANK and BATTERY use ten; PRY
-updates directly. Progress and termination are task-specific. The outcome
-contract distinguishes safe completion, completion with outcome-affecting
-violations, destructive completion and the remaining unsuccessful outcomes;
-diagnostic events are recorded separately. Reset parameters, distributions,
-ranges and training/evaluation use are tabulated in \suppref{tab:submitted-9}
-and detailed in \suppsection{S4.6}. Held-out tests use the training
-ranges in the original evaluation. The added prospective evaluation widens
-existing reset half-widths by $1.5\times$ and $2\times$ and samples a
-$2\times$ outside-support shell, with selected policies and governors fixed.
-\suppsection{S14} and \suppref{tab:ood-ranges} give its committed
-protocol, explicit reset interface and complete ranges. PyBullet provides the workspace
-illustrations, with a per-panel state manifest; it is not a second validation
-of the analytical equations or a simulated articulated-arm controller.
-An earlier PyBullet helical-constraint prototype imposed the same screw pitch
-through a gear constraint. It therefore could not independently validate that
-pitch; we withdrew the associated validation argument.
-
-\subsection{Policy training and checkpoint selection}
-\label{sec:training-methods}
-PPO and SAC use Stable-Baselines3 2.9.0, Gymnasium 1.3.0 and two-layer
-$[256,256]$ networks on CPU. Production training seeds are 0--9.
-Stage~1 trains without the evaluated governor and then applies runtime arms
-to the same selected policy. Stage~2 trains separate policies with the governor
-inside the transition; replay and rollout buffers retain the nominal policy
-action. The adapter distinguishes termination from time-limit truncation and
-restores NumPy random state after interleaved evaluation.
-
-At each predeclared task budget, checkpoints saved every 1,000 steps are
-screened on 30 fixed validation episodes. Three-checkpoint windows are ranked
-by mean safe completion, and the centers of the three best windows receive
-70 additional validation episodes. Selection is lexicographic: maximize safe
-completion, minimize destructive completion, maximize normalized progress,
-minimize episode-level violation incidence, then choose the earliest checkpoint.
-Each selected policy is tested on 100 held-out episodes, disjoint from
-validation; pilot seeds are excluded. Recorded checkpoint lists, software
-fingerprints, task budgets and episode-seed exceptions are retained in
-\suppsection{S5} and \suppsection{S6}.
-
-\subsection{Comparator and specification controls}
-\label{sec:controls-methods}
-The runtime registry distinguishes componentwise restrictions, analytical
-local-gradient references, matched QP and task-specific TRiX operators
-(Table~\ref{tab:submitted-3}). A learned constraint-representation experiment
-is evaluated separately from these policy results. No trained PPO-Lagrangian
-or complete trained SafeLayer policy is included in the quantitative matrix.
-Literature comparisons in Table~\ref{tab:submitted-1} retain their original
-assumptions and are not relabeled as experimental baselines.
-
-The SCREW matched QP and analytical solver minimize the same normalized
-Euclidean error over the same finite helical slab, action bounds and radial
-limit. This controls command-set specification; it does not construct a
-state-space barrier certificate. BATTERY preventive arms share the 15-N
-threshold and margin construction. PCB and SNAP comparisons retain their
-implemented margin differences, and CRANK combines frame and angle conditioning.
-Historical BATTERY prefix pooling and the PCB oracle episode-seed correction
-are documented alongside preserved originals. The full policy tables use
-exact-arm counts; no checkpoint was reselected during that audit.
-
-\subsection{Representation, sensitivity and prospective tests}
-\label{sec:model-validation}
-The PCB decomposition uses the archived seed-0 run with 20,000 fitting samples
-and 2,000 held-out proposals, plus the 500--20,000-sample affine-model sweep.
-The procedural generator defines six three-dimensional set families, with
-120 training, 40 validation and 200 held-out geometries from disjoint seed
-streams. Learned constraint models are fitted separately on each evaluated
-instance using 3,000 labeled state-action samples; nonlinear fitting uses
-250 gradient steps. Each arm receives 400 sampled proposals per instance.
-Required-action retention means displacement below
-$0.02(\|u_{\rm req}\|+10^{-9})$. The context-free box's required-action
-exclusion defines the 124/76 partition. Approximate arms share implemented
-inscribed-box bounds, which can contribute both feasibility and conservatism.
-
-The sensitivity study varies 21 constants across five multipliers from 0.5
-to 2.0, with eight scripted episodes per arm and case. Its ordering criterion
-first compares destructive completions and, when both are zero, safe
-completion. The nine failed cases are diagnosed after the sweep. The separate
-BAYONET experiment preregisters a 150,000-step budget, SAC as the primary and
-PPO as a replication algorithm, and a 50\% competence gate; neither exceeds
-10\% mean safe completion. The gate and task are not changed after this
-inconclusive result. \suppsection{S7} and \suppsection{S10} give implementation
-checks, designs and full outcomes.
-
-\subsection{VLM images, command grounding and paired replay}
-\label{sec:vlm-method}
-The frozen bank has 28 base configurations: 21 have normal, rotated,
-occluded and misleading views, and seven have one partial view each,
-producing 91 images. Each provider receives the same image/prompt pairs and
-a 2,000-token output limit. Recorded aliases are
-\texttt{claude-sonnet-4-5}, \texttt{gpt-4o} and
-\texttt{gemini-flash-latest}; they are not pinned backend snapshots
-\cite{ref36,ref37,ref38}. All raw responses and parsed commands are retained.
-Backend IDs, per-call dates and retry attribution are unavailable. Four
-retried Gemini timeouts are mentioned in historical notes, but their image
-IDs and successful variants cannot be recovered; the client also permits
-fallback outside those events.
-
-The images use a visibility-scaled tilt cue. Main-stratum display tilt is
-approximately $20.669$ times replayed mechanical curvature; partial views use
-$3.6$ times. Saved near-boundary mechanical tilts of 0.0358--0.042525~rad appear
-as roughly $42.4^\circ$--$50.4^\circ$, beyond the model's $0.075$-rad
-($4.30^\circ$) fracture threshold if interpreted physically. Thus the displayed
-pose need not be a realizable intact-board state. Positive scaling preserves
-ordering within the 84 main-stratum images, but not physical distance to a
-boundary; all margin comparisons exclude the seven partial views. Rendering
-reproducibility does not establish fidelity to mechanical tilt.
-The stratum counts describe responses to this encoding. Without an unscaled
-image control, effects of visual scaling cannot be separated from differences
-between model runs.
-
-The fixed parser maps outputs to \texttt{LIFT}, \texttt{TILT\_X},
-\texttt{TILT\_Y}, \texttt{PRESS}, \texttt{HOLD} or \texttt{ABORT}.
-Refusals and ungroundable outputs are distinct from grounded admissible and
-inadmissible commands. Set membership defines inadmissibility; no independent
-semantic-correctness annotation is available. Each grounded command is held
-for 40 steps in unfiltered and governed replay from the same restored state
-and seed. A violation case contains at least one recorded constraint violation;
-prevention requires violations only in the unfiltered arm. \suppsection{S11} provides the display formulas, trial ledger, stratum counts and
-conditional Gemini sensitivity bound.
-
-\subsection{Statistical Analyses}
-\label{sec:statistics}
-The training seed, not the evaluation episode, is the unit for policy
-comparisons. We report ten-seed means and all plotted seed values. Selected
-contrasts use paired differences by seed identifier and exact percentile
-bootstrap distributions over those ten differences, computed by convolution.
-Intervals are descriptive, not multiplicity-adjusted tests. Same-policy
-Stage~1 contrasts are distinguished from separately trained Stage~2 and
-cross-regime pairs. The preventive BATTERY and PCB cross-regime contrasts
-also have recorded episode-seed mismatches, so pairing is only at training-seed
-level (\suppref{tab:submitted-11}). The added reset-distribution study uses
-the same estimator and training-seed pairing. Its changes from historical
-in-range estimates include episode-sampling variation because the schedules
-differ; within/outside-support strata are descriptive (\suppsection{S14}). Procedural instances are the units in the
-geometry study. VLM counts are descriptive over paired images and commands;
-views clustered within 28 configurations are not independent physical
-replicates, and no inferential cross-model test is reported.
-
-\subsection{Physical platform and evidence}
-\label{sec:hardware-methods}
-The Seeed reBot B601-RS uses RobStride actuators, a 48-V supply and 1-Mbit/s
-CAN. Joints~1--5 use 0.1-second MIT-style position/velocity commands;
-Joint~6 uses an approximately 200-Hz velocity controller. The final grasp
-implementation is identified by commit \texttt{d296e6e} and tag
-\path{trix-hardware-soft-grasp-success-20260828}. TRiX separates symbolic
-proposals, decision receipts and approved executor targets, with Joint~1
-protected by a hard invariant. The calibrated sequence uses J3 gravity
-feed-forward and a disclosed Joint~2 positioning offset around engagement.
-In all six grasp-and-return trials, the operator manually positions the object
-between the open jaws at the calibrated grasp-ready pose before governed
-closure, lift and return. The placement protocol for the three repetitions
-without video is author-confirmed; their logs record robot execution.
-Console logs, passive CAN captures, source/configuration snapshots, video
-mappings and checksums support the intervention experiment, three video-backed
-trials and three logged repetitions. There is no independent force/torque
-measurement or autonomous perception-to-grasp evaluation (\suppsection{S12}).
-
-\subsection{Timing and reproducibility}
-\label{sec:timing-methods}
-The latency benchmark times the complete $(o,a)\mapsto(a',\mathrm{info})$
-call, including allocations, per-call constraint construction and diagnostics.
-It uses 2,048 saved inputs per task, five fresh processes and 256 warm-up
-calls per implementation/process. Identical per-task input sequences are
-shared across arms, with task/arm order randomized in 64-input blocks.
-Durations are untrimmed integer nanoseconds; cyclic garbage collection is
-disabled, and timer overhead is recorded without subtraction. Each process
-uses CPU~0 and one native numerical thread. OSQP reuses its problem and warm
-start; one-time construction is reported separately. Policy/VLM inference,
-input generation, simulation and robot communication are outside the interval.
-\suppsection{S8} records host/software versions, tolerances, raw
-arrays, source hashes and the complete workload design.
-
-Every experimental record is linked to the applicable environment, policy,
-constraint, margin and outcome specifications. The curated source map links
-all main and supplementary figures and tables to data or executable source.
-Correction notes retain affected historical files. Independent physical
-calibration and unresolved backend identities remain provenance limits.
-Figure~4 was regenerated from the retained seed-level data using a supplied
-replacement plotting script; the original plotting script remains unavailable.
 
 \section*{Author Contributions}
 Stavan Dholakia: Conceptualization, Methodology, Software, Validation, Writing
@@ -892,74 +1019,4 @@ analysis, writing or the decision to publish.
 
 \bibitem{ref38} Google. Models: Gemini API. \url{https://ai.google.dev/gemini-api/docs/models} (accessed 21 September 2026).
 \end{thebibliography}
-\clearpage
-\section*{Figure legends}
-{
-\captionof{figure}{Action proposal and execution authority in TRiX. A learned or generative
-planner proposes a manipulation command. TRiX evaluates the proposal against
-task-conditioned physical admissibility constraints before the command reaches
-the execution system.}
-\label{fig:submitted-1}
-}
-
-{
-\captionof{figure}{Representation of the SCREW command coupling. (a) A two-dimensional
-slice of the normalized command box, with radial action fixed at zero.
-The frozen environment uses pitch $p=1.25$ mm and the finite tolerance
-$|v_z^c-p\omega_z^c/(2\pi)|\leq0.001$ m\,s$^{-1}$; the admissible strip
-occupies 2.0\% of this slice. Commands are normalized by 60 rad\,s$^{-1}$
-and 0.05 m\,s$^{-1}$, respectively; the displayed coefficient is rounded.
-The tightest enclosing componentwise box admits commands outside the strip.
-(b) The same illustrative proposal is corrected by componentwise clipping
-and by Euclidean projection in normalized action coordinates. The latter
-uses the coupled strip and command bounds. The dashed box is a geometric
-illustration, not a registered SCREW experimental arm; an appropriately
-specified linear-constraint QP also represents the strip.}
-\label{fig:submitted-2}
-}
-
-{
-\captionof{figure}{Six recorded disassembly workspaces. (a) SCREW: coupled threaded
-extraction. (b) PCB: lift and two-axis board tilt, with $\|\symbfit\theta\|=
-0.00748$ rad in this frame. (c) SNAP: latch deflection before extraction.
-(d) CRANK: rotation and axial removal. (e) BATTERY: peel through an upright
-extraction tab. (f) PRY: opening one end with the opposite edge supported;
-the orange element is the tool handle. Poses come from recorded environment
-states and the per-panel manifest. RGB axes mark world-aligned display
-references; grid spacing is 20 mm. Purple arrows are schematic command/load
-directions, not measured force or torque. PyBullet supplies visualization;
-arm/contact dynamics are not simulated. Panels are individual snapshots.}
-\label{fig:disasm-workspaces}
-}
-
-{
-\captionof{figure}{Seed-level safe completion within the training reset ranges in the
-frozen production experiments.
-Each point is one independent training seed (\(n=10\)). Boxes span the
-interquartile range, central lines show medians, whiskers extend to the most
-extreme observations within 1.5 interquartile ranges of the box, and triangles
-denote arithmetic means.
-(a) PCB compares the same \texttt{box\_clip} restriction under post-hoc
-Stage~1 governance and Stage~2 filter-aware training, yielding mean safe
-completion of 0.0\% and 100.0\%, respectively.
-(b--d) Stage~2 filter-aware SAC comparisons for SNAP, CRANK, and PRY.
-SNAP yields 5.2\% under the static restriction and 96.5\% under the implemented
-task-conditioned governor. CRANK yields 0.0\% under the static restriction and
-49.4\% under the task-conditioned governor, with the latter exhibiting a
-bimodal seed distribution. PRY yields similar distributions under the simpler
-and task-conditioned restrictions, with means of 88.5\% and 89.1\%.}
-\label{fig:seed-distributions}
-}
-
-{
-\captionof{figure}{Physical B601-RS execution under the frozen V4 implementation.
-(a) Governed approach with the gripper open. (b) The operator places the object
-between the open jaws at the calibrated grasp-ready pose immediately before
-engagement. (c) Object retained
-during automatic return. (d) Returned configuration with the object still
-held. The grasp pose is calibrated rather than perception-generated; the
-experiment evaluates physical execution-governance integration rather than
-autonomous grasp synthesis.}
-\label{fig:b601-hardware}
-}
 \end{document}

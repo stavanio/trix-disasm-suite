@@ -8,9 +8,15 @@ def body_lines(path):
     lines = open(path, encoding="utf-8").read().split("\n")
     start = next(i for i, l in enumerate(lines) if r"\begin{abstract}" in l)
     out = []
+    skipping = False
     for i, line in enumerate(lines[start:], start + 1):
         if r"\begin{thebibliography}" in line:
-            break
+            skipping = True
+        if r"\end{thebibliography}" in line:
+            skipping = False
+            continue
+        if skipping:
+            continue
         line = re.sub(r"(?<!\\)%.*$", "", line)
         out.append((i, SKIP.sub("", line)))
     return out
