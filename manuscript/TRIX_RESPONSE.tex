@@ -130,15 +130,15 @@ a constraint and enforcing a command at runtime. We explicitly acknowledge
 that CBF methods can encode nonlinear and state-dependent constraints.
 TRiX's contribution is stated in terms of task-conditioned execution authority
 and its interaction with the upstream proposal distribution.
-\locations{\mssec{1}; \mssec{2.1}; \mssec{4.3}; \msitem{tab:submitted-1}; manuscript references \mscite{ref16}--\mscite{ref41}}
+\locations{\mssec{1}; \mssec{2.1}; \mssec{2.4}; \msitem{tab:submitted-1}; manuscript references \mscite{ref16}--\mscite{ref41}}
 \evidence{manuscript/TRIX_REVISION.tex}
 
 \response{E.2}{Introduce the architecture figure in context}{Fig1 is not referenced in the text. It appears very early in the body of the manuscript, when limited knowledge about the TRiX Approach is provided yet. Would it make more sense to propose this in a later stage of the manuscript?}
 We agree that the architecture should follow enough explanation to make it
 interpretable. The Introduction now introduces the proposal and execution
-authority distinction before its explicit Figure~1 callout; the following
-Results subsection, \mssec{2.1}, supplies the formal contract. The separate
-figure and its end-of-manuscript legend follow the journal's submission format.
+authority distinction before its explicit Figure~1 callout, and Figure~1 is
+placed at that callout. The Methods now precede the Results, as the journal
+permits when methods are central, and \mssec{2.1} supplies the formal contract.
 The figure shows the proposal, task state/context, TRiX's
 decision and the execution boundary. ALLOW and PROJECT can reach execution;
 REJECT and INFEASIBLE terminate without an execution command. This makes the
@@ -165,7 +165,7 @@ asset-integrity outcomes. Progress or timeout measures task performance.
 The episode contract and constraint table specify which recorded events
 change the evaluation outcome. The VLM result is correspondingly reported
 as prevention of constraint-violation cases, without claiming prevented fractures.
-\locations{\mssec{1}; \mssec{3}; \mssec{4.1}; \mssec{S1}; \mssec{S4.4}; \mssec{S13}; \msitem{tab:submitted-8}}
+\locations{\mssec{1}; \mssec{2.2}; \mssec{4}; \mssec{S1}; \mssec{S4.4}; \mssec{S13}; \msitem{tab:submitted-8}}
 \evidence{manuscript/TRIX_REVISION.tex; benchmark/outcome.py; envs/battery_env_v2.py; manuscript/TRIX_SUPPLEMENT.tex}
 
 \response{E.4}{Quantitative latency}{Section 1.4: given the high technicality of the discussion involved, using terms like "negligible latency" may appear unprecise. Is it possible to better formulate such concepts to better ground them in the robotics landscape?}
@@ -194,18 +194,18 @@ the Intel Core Ultra 9 275HX host, numerical package versions, CPU affinity,
 solver tolerances, setup reuse and the full sampling protocol. These are
 measured implementation costs on the recorded host, not a claim of
 worst-case execution time or end-to-end robot latency.
-\locations{\mssec{2.7}; \mssec{4.8}; \mssec{S8}; \msitem{tab:runtime-latency}}
+\locations{\mssec{2.9}; \mssec{3.9}; \mssec{S8}; \msitem{tab:runtime-latency}}
 \evidence{experiments/runtime_benchmark.py; docs/runtime_benchmark_protocol.md; results/runtime/manifest.json; results/runtime/summary.json; manuscript/TRIX_SUPPLEMENT.tex}
 
 \response{E.5}{Position TRiX against the reviewed approaches}{Section 2.3: the Authors are providing a comparison with their own approach with respect to an existing one. As this is not done for the other approached discussed in the SOA, would it be ebtter to add a 2.X Section, in which the TRiX approach is positioned against the presented approaches? This way, the readeer would hae a clear understanding of the gap in existing approaches, and how TRiX plays a role in this view.}
 We address the requested positioning through a consolidated Introduction
 and Table~1 covering all reviewed method families, followed by the dedicated
-Results subsection \mssec{2.2} and its comparator-role Table~3. We have not
+Methods subsection \mssec{2.4} and its comparator-role Table~3. We have not
 added a second related-work subsection with the submitted numbering.
 The revised Introduction and Table~1 position TRiX alongside constrained
 policy optimization, learned safety layers, recovery policies and control
-barrier functions. \mssec{2.2} and Table~3 give a dedicated account of the
-experimental comparator roles; \mssec{4.3} states the specification controls.
+barrier functions. \mssec{2.4} and Table~3 give a dedicated account of the
+experimental comparator roles and the specification controls.
 These comparisons distinguish policy learning, constraint representation and
 runtime enforcement. They identify when a componentwise restriction is
 sufficient and when phase, orientation or coupling changes retained command
@@ -213,7 +213,7 @@ authority. The matched SCREW comparison also shows equal task outcomes when
 analytical projection and QP enforce the same specification. The revised gap
 is therefore stated conditionally, without claiming a universal advantage
 over the reviewed safety methods.
-\locations{\mssec{1}; \mssec{2.2}; \mssec{2.3}; \mssec{4.3}; \msitem{tab:submitted-1}; \msitem{tab:submitted-3}}
+\locations{\mssec{1}; \mssec{2.4}; \mssec{3.1}; \mssec{3.2}; \mssec{3.3}; \mssec{3.4}; \msitem{tab:submitted-1}; \msitem{tab:submitted-3}}
 \evidence{manuscript/TRIX_REVISION.tex; baselines/screw_solvers.py; results/stage1/stage1_records.json; results/stage2/stage2_records.json}
 
 \Needspace{23\baselineskip}
@@ -233,7 +233,7 @@ independent discovery of that partition. The preregistered BAYONET test is
 also retained as inconclusive because no learned arm met its competence gate.
 Together, these results identify where the formulation has been tested and
 where further task modeling and evaluation remain necessary.
-\locations{\mssec{2.1}; \mssec{2.4}; \mssec{3}; \mssec{4.4}; \mssec{S10}; \msitem{tab:procedural-geometry}}
+\locations{\mssec{2.1}; \mssec{2.5}; \mssec{3.5}; \mssec{4}; \mssec{S10}; \msitem{tab:procedural-geometry}}
 \evidence{benchmark/geometry_gen.py; results/geometry_bench_heldout.json; docs/bayonet_preregistration.md; manuscript/TRIX_SUPPLEMENT.tex}
 
 \clearpage
@@ -247,7 +247,7 @@ runtime restrictions, reference controls and the learned-constraint study.
 The latter is not represented as a trained SafeLayer task policy. This avoids
 implying an experimental baseline merely because its method family appears
 in related work.
-\locations{\mssec{4.3}; \msitem{tab:submitted-1}; \msitem{tab:submitted-3}}
+\locations{\mssec{2.4}; \msitem{tab:submitted-1}; \msitem{tab:submitted-3}}
 \evidence{benchmark/registry.py; training/sb3_runner.py}
 
 \response{R1.2}{Accessibility of the theoretical framework}{The description of the proposed theoretical framework and experimental methodology is not always straightforward for non-expert readers. I suggest trying to simplify the description and provide additional information on the existing approaches that are recalled in the text.}
@@ -277,7 +277,7 @@ The caption and Methods distinguish the two layers of the implementation:
 the analytical environments generate the dynamics and reported outcomes;
 PyBullet visualizes their archived states. The figure does not imply that
 articulated-arm or contact dynamics were used to generate the policy results.
-\locations{\mssec{2.2}; \mssec{4.1}; \mssec{S4}; \msitem{fig:disasm-workspaces}}
+\locations{\mssec{2.2}; \mssec{S4}; \msitem{fig:disasm-workspaces}}
 \evidence{manuscript/figures/workspaces/state_manifest.json; docs/workspace_rendering.md; assets/workspaces/frozen_frames.json; manuscript/TRIX_SUPPLEMENT.tex}
 
 \response{R1.4}{Concrete model proposals and corrections}{Specific examples of hallucinations and relative corrective actions proposed by TRiX should be reported in the manuscript.}
@@ -300,7 +300,7 @@ ungroundable output. These records contain no independent human annotation
 of semantic correctness. The example demonstrates command governance over
 the fixed replay horizon, not successful autonomous extraction. R4.9 below
 gives the complete numerical and visual-provenance account.
-\locations{\mssec{2.5}; \mssec{4.5}; \mssec{S11}; \msitem{tab:vlm-results}}
+\locations{\mssec{2.7}; \mssec{3.7}; \mssec{S11}; \msitem{tab:vlm-results}}
 \evidence{results/vlm/vlm_openai.json; manuscript/data/vlm_trial_ledger.json; baselines/pcb_filters.py; benchmark/margin.py; manuscript/TRIX_SUPPLEMENT.tex}
 
 \response{R1.5}{Adding or changing constraints}{How scalable is the proposed framework to the introduction of additional constraints or to the modification of an existing one?}
@@ -314,7 +314,7 @@ over five multipliers. These address representation breadth and specification
 dependence, respectively. They do not establish computational scaling with
 arbitrary action dimension, automatic constraint discovery or transfer to an
 unmodeled manipulation task.
-\locations{\mssec{2.1}; \mssec{2.4}; \mssec{3}; \mssec{4.4}; \mssec{S10}}
+\locations{\mssec{2.1}; \mssec{2.5}; \mssec{3.5}; \mssec{4}; \mssec{S10}}
 \evidence{benchmark/geometry_gen.py; results/geometry_bench_heldout.json; results/sensitivity.json; manuscript/TRIX_SUPPLEMENT.tex}
 
 \response{R1.6}{Computational time}{More details on the computational time of the proposed approach with respect to alternative strategies should be provided in the manuscript.}
@@ -333,7 +333,7 @@ separately from steady-state calls. The different componentwise and
 oracle-tangent restrictions are identified explicitly, so their timings
 are not presented as equivalent-safety comparisons. Response E.4 gives
 the matched-solver agreement checks and the timing scope.
-\locations{\mssec{2.7}; \mssec{4.8}; \mssec{S8}; \msitem{tab:runtime-latency}; response E.4}
+\locations{\mssec{2.9}; \mssec{3.9}; \mssec{S8}; \msitem{tab:runtime-latency}; response E.4}
 \evidence{experiments/runtime_benchmark.py; docs/runtime_benchmark_protocol.md; results/runtime/manifest.json; results/runtime/summary.json; manuscript/TRIX_SUPPLEMENT.tex}
 
 \response{R1.7}{Distributions and uncertainty}{I suggest including additional visuals and graphs to better display the results of the work (e.g., boxplots for comparison of statistical distributions).}
@@ -346,7 +346,7 @@ contrasts. Training seed is the experimental unit; the 100 evaluation episodes
 within each seed are not treated as independent trained-policy replicates.
 The table identifies comparisons that use separately trained policies or
 different episode streams. A collapsed interval is not an equivalence test.
-\locations{\mssec{2.3}; \mssec{4.6}; \mssec{S6}; \msitem{fig:seed-distributions}; \msitem{tab:submitted-11}}
+\locations{\mssec{2.10}; \mssec{3.1}; \mssec{3.3}; \mssec{3.4}; \mssec{S6}; \msitem{fig:seed-distributions}; \msitem{tab:submitted-11}}
 \evidence{manuscript/figures/figure4_seed_data.csv; manuscript/data/seed_statistics_pairs.csv; scripts/build_revision_seed_statistics.py; manuscript/TRIX_SUPPLEMENT.tex}
 
 \response{R1.8}{Figure references and Figure~4 quality}{All figures should be recalled in the text (e.g., Figure 1 is not mentioned in the manuscript). I also suggest improving the quality of Figure 4 in terms of style and resolution.}
@@ -360,7 +360,7 @@ Figure~4 has been regenerated from the retained 80 seed-level values using
 value against the retained audited seed counts before plotting. The historical
 plotting script remains unavailable; the replacement and its input/output hashes
 are supplied with the source.
-\locations{\mssec{1}; \mssec{2.1}; \mssec{2.2}; \mssec{2.3}; \mssec{2.6}; \msitem{fig:seed-distributions}}
+\locations{\mssec{1}; \mssec{2.1}; \mssec{2.2}; \mssec{3.1}; \mssec{3.8}; \msitem{fig:seed-distributions}}
 \evidence{manuscript/figures/figure4_seed_distributions.pdf; manuscript/figures/figure4_seed_data.csv; scripts/build_revision_figure4.py; manuscript/figures/figure4_rebuild.json; docs/REPRODUCING.md}
 
 \response{R1.9}{Foundation-model robotics literature}{I suggest improving the literature review, by considering additional works on the topic of LLMs/VLMs in collaborative robotics. See for instance: \url{https://www.sciencedirect.com/science/article/pii/S0736584526000487}}
@@ -374,7 +374,7 @@ separate execution-authority question, rather than treating semantic planning
 as physical admissibility. The actual VLM study then evaluates that interface
 through recorded proposals and paired command execution. The paper does not
 claim a human-robot collaboration experiment.
-\locations{\mssec{1}; \mssec{2.5}; manuscript references \mscite{ref8}--\mscite{ref13}, \mscite{ref39}}
+\locations{\mssec{1}; \mssec{3.7}; manuscript references \mscite{ref8}--\mscite{ref13}, \mscite{ref39}}
 \evidence{manuscript/TRIX_REVISION.tex}
 
 \clearpage
@@ -406,7 +406,7 @@ of a recorded state. Table~2 summarizes the modeled commands and damage conditio
 \mssec{S4} gives the complete command scales, observation
 indices and units. \mssec{S2.2} supplies
 the disk--interval projection.
-\locations{\mssec{2.2}; \mssec{4.1}; \mssec{S2.2}; \msitem{fig:disasm-workspaces}; \mssec{S4.1}; \mssec{S4.2}; \msitem{tab:submitted-2}; \msitem{tab:action-scales}}
+\locations{\mssec{2.2}; \mssec{S2.2}; \msitem{fig:disasm-workspaces}; \mssec{S4.1}; \mssec{S4.2}; \msitem{tab:submitted-2}; \msitem{tab:action-scales}}
 \evidence{envs/pcb_env_v2.py; baselines/pcb_filters.py; manuscript/TRIX_SUPPLEMENT.tex}
 
 \response{R2.2}{Observation dimensionality}{In Section 4.3 ("State and Action Spaces") \& Appendix D.1 ("Observation Space"), the observation space is said to be R\textasciicircum{}10 with task-specific components, but the exact mapping of the 10 dimensions is not given for each task. The table in Appendix D.1 lumps "position, force, temperature" into 6 dimensions without allocation. A clear task-by-task breakdown is required.}
@@ -419,7 +419,7 @@ followed by two zeros. Reset-sampled parameters are not extra observation
 coordinates. Context-limited filters receive the same observation but use
 fewer of its fields. The submitted dimensional description is superseded
 by this code-derived table.
-\locations{\mssec{4.1}; \mssec{S4.1}; \msitem{tab:submitted-7}}
+\locations{\mssec{2.2}; \mssec{S4.1}; \msitem{tab:submitted-7}}
 \evidence{benchmark/gym_adapter.py; envs/pcb_env_v2.py; envs/snap_env_v2.py; envs/crank_env_v2.py; manuscript/TRIX_SUPPLEMENT.tex}
 
 \response{R2.3}{Reward symbols and outcome notation}{Equation (13) and (43): v\_progress and I\_violation are used without definition, hence they should be stated explicitly. I\_violation appears to be an indicator for safety violation, but this is not explained. Moreover, the notation differs between (13) and (43) (e.g., r\_progress vs v\_progress); the Authors are invited to unify or explain the difference.}
@@ -433,7 +433,7 @@ into five mutually exclusive outcomes and distinguishes outcome-affecting
 from diagnostic violations. Checkpoint selection ranks safe completion
 before progress, preventing a stationary policy from winning solely by
 avoiding a violation.
-\locations{\mssec{4.1}; \mssec{4.2}; \mssec{S4.3}; \mssec{S4.4}}
+\locations{\mssec{2.2}; \mssec{2.3}; \mssec{S4.3}; \mssec{S4.4}}
 \evidence{benchmark/outcome.py; training/stage1.py; envs/pcb_env_v2.py; manuscript/TRIX_SUPPLEMENT.tex}
 
 \response{R2.4}{Domain randomisation appendix}{Appendix D.5 ("Domain Randomisation"): This appendix heading is present but the section is completely empty. Randomisation ranges are mentioned in Section 4.2, but a systematic table of all randomised parameters (distributions, ranges, and whether used for training or out-of-distribution evaluation) must be supplied.}
@@ -461,7 +461,7 @@ absolute safe completion, changes from historical in-range values and exact
 seed-bootstrap intervals for every condition. \msitem{tab:ood-outcomes}
 reports destructive, unsafe intact, mechanical-failure, timeout and violation
 counts, plus within/outside-support denominators. The same training-seed
-estimator is used as in \mssec{4.6}; historical comparisons are not
+estimator is used as in \mssec{2.10}; historical comparisons are not
 episode-paired and therefore include episode-sampling variation.
 
 In SNAP's outside-support shell, safe completion is 59.9\% under TRiX versus
@@ -492,17 +492,17 @@ a scripted study of physical/specification constants, with 96/105 cases
 meeting its prescribed ordering. It is not pooled with this new reset-distribution
 evaluation and does not substitute for it. Neither study establishes independent
 physical calibration or generalisation to arbitrary unseen dynamics.
-\locations{\mssec{2.3}; \mssec{3}; \mssec{4.1}; \mssec{4.6}; \mssec{S4.6}; \mssec{S14}; \mssec{S14.4}; \msitem{tab:submitted-9}; \msitem{tab:ood-ranges}; \msitem{tab:ood-safe}; \msitem{tab:ood-outcomes}; \msitem{tab:snap-ood-attribution}}
+\locations{\mssec{2.2}; \mssec{2.6}; \mssec{2.10}; \mssec{3.3}; \mssec{3.6}; \mssec{4}; \mssec{S4.6}; \mssec{S14}; \mssec{S14.4}; \msitem{tab:submitted-9}; \msitem{tab:ood-ranges}; \msitem{tab:ood-safe}; \msitem{tab:ood-outcomes}; \msitem{tab:snap-ood-attribution}}
 \evidence{docs/ood_reset_protocol.md; docs/ood_reset_protocol.json; experiments/ood_reset.py; benchmark/evaluation_distribution.py; training/sb3_runner.py; results/ood_reset/summary.json; results/ood_reset/seed_records.json; results/ood_reset/reset_draws.json; results/ood_reset/manifest.json; docs/ood_reset_results.md; docs/snap_ood_attribution_plan.md; docs/snap_ood_attribution_results.md; experiments/snap_ood_attribution.py; results/snap_ood_attribution/summary.json; results/snap_ood_attribution/episode_attribution.json; results/snap_ood_attribution/verification.json; results/snap_ood_attribution/manifest.json; experiments/sensitivity.py; results/sensitivity.json}
 
 \response{R2.5}{Placement of runtime discussion}{The numerical latency value ("<10 μs") is reported at the end of the helical manifold derivation in the methodology section (3.3, "The Helical Manifold: Screw Extraction"). Such performance data are more suitable to be reported in the experimental sections (e.g., Section 4.6 or Table 3).}
 The helical-coupling subsection now contains only the model, normalization
 and projection interpretation. Computational scope is treated separately in
-\mssec{S8} and the solver-control Methods subsection. The new timing protocol
+\mssec{S8} and the Methods subsection \mssec{2.9}. The new timing protocol
 and measured distributions are reported there, with their raw evidence and
 implementation scope. They replace the unsupported historical figures.
 Responses E.4 and R1.6 describe the completed measurement.
-\locations{\mssec{2.1}; \mssec{2.7}; \mssec{4.8}; \mssec{S8}; \msitem{tab:runtime-latency}}
+\locations{\mssec{2.1}; \mssec{2.9}; \mssec{3.9}; \mssec{S8}; \msitem{tab:runtime-latency}}
 \evidence{manuscript/TRIX_REVISION.tex; results/runtime/summary.json; manuscript/TRIX_SUPPLEMENT.tex}
 
 \response{R2.6}{Orphaned Figure~2 reference}{The sentence fragment "(Figure 2). The geometry of the task is the safety constraint [...]" appears orphaned. The Authors should try to integrate the figure reference naturally into the preceding sentence.}
@@ -516,7 +516,9 @@ experiment.
 \evidence{manuscript/figures/figure2_geometry.json; scripts/build_revision_figure2.py}
 
 \response{R2.7}{Narrative structure}{The manuscript uses a very rigid structure (excessive bullet points, numbered "Fundamental Limitation" lists, short disjointed paragraphs). While this helps skimming, it impedes narrative flow. A revision with more transitional prose, fewer enumerated lists, and a clearer logical flow (e.g., connecting the "Linearity Gap" directly to the design of TRiX) would greatly improve readability for the readership.}
-We reorganized the argument around that sequence. Screw coupling first
+We reorganized the manuscript around that sequence. Methods now precede
+Results, as the journal permits when methods are central, so the execution
+contract, tasks and comparators are defined before any result is reported. Screw coupling first
 shows what independent coordinate bounds omit. PCB then illustrates a coupled
 norm, while phase and frame examples explain which state information selects
 the applicable set. The formal propositions identify those representation
@@ -525,7 +527,7 @@ and filter-aware training. The discussion includes controls where simple
 restrictions suffice and cases where they remain limiting. This links the
 physical requirement to the implemented comparator without presenting a
 universal ranking of safety algorithms.
-\locations{\mssec{1}; \mssec{2.1}; \mssec{2.3}; \mssec{2.4}; \mssec{3}}
+\locations{\mssec{1}; \mssec{2.1}; \mssec{3.1}; \mssec{3.3}; \mssec{3.5}; \mssec{4}}
 \evidence{manuscript/TRIX_REVISION.tex}
 
 \clearpage
@@ -605,7 +607,7 @@ checkpoint was reselected or rerun; this correction does not establish that
 repeating historical selection would choose the same checkpoint. The separate
 PCB oracle seed correction is also retained. Seed-level statistical inference
 replaces the submitted episode-stream tests.
-\locations{\mssec{4.2}; \mssec{4.6}; \mssec{S5}; \mssec{S6}; \mssec{S9}; \msitem{tab:submitted-4}; \msitem{tab:stage2-key}}
+\locations{\mssec{2.3}; \mssec{2.10}; \mssec{S5}; \mssec{S6}; \mssec{S9}; \msitem{tab:submitted-4}; \msitem{tab:stage2-key}}
 \evidence{training/sb3_runner.py; docs/battery_aggregation_correction.md; archive/verification/policy_record_linkage.json; manuscript/TRIX_SUPPLEMENT.tex}
 
 \response{R4.2}{Matched analytical comparator}{TRiX is given true constraint equation analytically while SafeLayer has to learn it. So the comparison is between a correct constraint and a wrong one, here TRiX wins by construction. The fair baseine would be a CBF-QP given the same analytical constraint.}
@@ -625,7 +627,7 @@ forward invariance. This directly tests whether TRiX's projection machinery
 confers an advantage when the specification is matched: no task-level
 advantage is observed here. We do not claim a full dynamics-aware CBF study
 across all six tasks.
-\locations{\mssec{2.1}; \mssec{2.3}; \mssec{4.3}; \mssec{S2.1}; \mssec{S8}; \msitem{tab:submitted-4}}
+\locations{\mssec{2.1}; \mssec{2.4}; \mssec{3.2}; \mssec{S2.1}; \mssec{S8}; \msitem{tab:submitted-4}}
 \evidence{baselines/screw_solvers.py; baselines/screw_filters.py; results/stage1/stage1_records.json; results/stage2/stage2_records.json; manuscript/TRIX_SUPPLEMENT.tex}
 
 \response{R4.3}{CBF capabilities}{Table 1 is also wrong about CBFs.}
@@ -636,7 +638,7 @@ formulations with citations and explicit assumptions. The manuscript separates
 command-set membership from state-space forward invariance and states that
 barrier synthesis requires its own dynamical conditions. TRiX is positioned
 through its execution contract and empirical regime comparisons.
-\locations{\mssec{1}; \mssec{4.3}; \msitem{tab:submitted-1}; manuscript references \mscite{ref23}--\mscite{ref41}}
+\locations{\mssec{1}; \mssec{2.4}; \msitem{tab:submitted-1}; manuscript references \mscite{ref23}--\mscite{ref41}}
 \evidence{manuscript/TRIX_REVISION.tex}
 
 \response{R4.4}{ISS theorem assumptions}{The theorem assumes its own conclusion. Assumption 4 already requires a stable and safe nominal controller with a known Lyapunov function, then ISS follows in a few lines from non expansiveness of projection.}
@@ -649,7 +651,7 @@ remove all nonzero or all feasible command authority. Each statement gives
 its assumptions, proof and interpretation. These are representation and
 feasibility results, not closed-loop stability or physical-safety theorems.
 Policy adaptation is explicitly empirical and is not a fifth proposition.
-\locations{\mssec{2.1}; \mssec{3}; \mssec{S3}}
+\locations{\mssec{2.1}; \mssec{4}; \mssec{S3}}
 \evidence{manuscript/TRIX_REVISION.tex; manuscript/TRIX_SUPPLEMENT.tex}
 
 \response{R4.5}{Non-expansiveness of projection}{And non-expansiveness only holds for convex sets and affine subspaces, not the general "differentiable manifolds" the paper keeps claiming.}
@@ -689,7 +691,7 @@ auditable, while the physical calibration of the benchmark force, torque and
 damage thresholds remains unestablished. Neither the VLM study nor the
 separate B601 execution demonstration is offered as independent validation
 of those quantities.
-\locations{\mssec{2.1}; \mssec{3}; \mssec{4.4}; \mssec{S4.4}; \mssec{S7}; \mssec{S8}}
+\locations{\mssec{2.1}; \mssec{2.5}; \mssec{4}; \mssec{S4.4}; \mssec{S7}; \mssec{S8}}
 \evidence{results/sensitivity.json; experiments/sensitivity.py; baselines/screw_solvers.py; assets/workspaces/environment_sources.json; results/runtime/summary.json; manuscript/TRIX_SUPPLEMENT.tex}
 
 \response{R4.7}{Role of PyBullet}{The PyBullet environment sits in the repo but not the paper.}
@@ -705,7 +707,7 @@ implementation. The supplied per-panel manifests bind workpiece poses to
 archived environment states. We do not present these renders as a second
 independent physics validation, and the illustrated gripper does not imply
 that articulated-arm or contact dynamics generated the reported task outcomes.
-\locations{\mssec{2.2}; \mssec{4.1}; \mssec{S4}; \msitem{fig:disasm-workspaces}; manuscript reference \mscite{ref33}}
+\locations{\mssec{2.2}; \mssec{S4}; \msitem{fig:disasm-workspaces}; manuscript reference \mscite{ref33}}
 \evidence{docs/workspace_rendering.md; manuscript/figures/workspaces/state_manifest.json; scripts/workspace_environment.py; manuscript/TRIX_SUPPLEMENT.tex; archive/research/experiments/pybullet_helix.py}
 
 \response{R4.8}{Physical robot evidence}{No hardware.}
@@ -733,7 +735,7 @@ This establishes physical deployment of the execution boundary and the
 recorded intervention behavior. There is no independent wrench sensor, and
 the hardware study does not validate the six benchmark damage models or
 provide disassembly-level physical safety statistics.
-\locations{\mssec{2.6}; \mssec{3}; \mssec{4.7}; \mssec{S12}; \msitem{tab:b601-hardware}; \msitem{fig:b601-hardware}}
+\locations{\mssec{2.8}; \mssec{3.8}; \mssec{4}; \mssec{S12}; \msitem{tab:b601-hardware}; \msitem{fig:b601-hardware}}
 \evidence{archive/hardware/experiments/hardware/2026-08-27_trix_physical_safety_v1; archive/hardware/results/hardware/v4_confirmation/final_submission/HARDWARE_EVIDENCE_README.md; manuscript/TRIX_SUPPLEMENT.tex; docs/provenance.md}
 
 \response{R4.9}{Actual VLM evaluation}{The VLM framing is confusing. No actual VLM is used anywhere : the "hallucinations" are noise the authors designed themselves, then their own projection corrects them. Either test a real model or drop this from the title and abstract.}
@@ -744,7 +746,7 @@ grounds proposals into commands; each grounded command is evaluated with
 and without TRiX from the same restored state and seed. The primary result
 is prevention of all 31 observed constraint-violation cases, with zero new
 cases among the 257 grounded pairs during the 40-step horizon.
-\mssec{2.5} now states alongside that count that the commands were
+\mssec{3.7} now states alongside that count that the commands were
 elicited from visibility-scaled images whose displayed tilts can exceed the
 intact-board range, and that the result concerns the recorded commands.
 
@@ -807,7 +809,7 @@ No replay records mechanical failure or successful extraction; this is a
 single-proposal governance study, not an autonomous agent evaluation. The
 result remains prominent in the abstract, Results and conclusion. Its
 measurement and provenance boundaries are stated alongside it.
-\locations{\mssec{2.5}; \mssec{4.5}; \mssec{4.6}; \mssec{S11}; \msitem{tab:vlm-results}; manuscript references \mscite{ref36}--\mscite{ref38}}
+\locations{\mssec{2.7}; \mssec{2.10}; \mssec{3.7}; \mssec{S11}; \msitem{tab:vlm-results}; manuscript references \mscite{ref36}--\mscite{ref38}}
 \evidence{results/vlm/vlm_anthropic.json; results/vlm/vlm_openai.json; results/vlm/vlm_google.json; manuscript/data/vlm_trial_ledger.json; scripts/audit_vlm_reconciliation.py; manuscript/TRIX_SUPPLEMENT.tex}
 
 \response{R4.10}{BATTERY threshold and thermal interpretation}{BATTERY violations are blamed on a 20 N puncture threshold that doesn't exist in the task spec (Table 8 says T > 60 °C only), while Table 5 shows unavoidable thermal overshoot.}
@@ -843,7 +845,7 @@ the \texttt{stage1/BATTERY/sac/trix} group and its shards. The physical
 specification correction and bookkeeping correction are documented separately,
 and the original records remain preserved.
 \Needspace{12\baselineskip}
-\locations{\mssec{2.3}; \mssec{3}; \mssec{4.3}; \mssec{S2.3}; \mssec{S7.1}; \mssec{S9.4}; \mssec{S13.1}; \msitem{tab:submitted-4}; \msitem{tab:submitted-8}}
+\locations{\mssec{2.4}; \mssec{3.4}; \mssec{4}; \mssec{S2.3}; \mssec{S7.1}; \mssec{S9.4}; \mssec{S13.1}; \msitem{tab:submitted-4}; \msitem{tab:submitted-8}}
 \evidence{envs/battery_env_v2.py; docs/battery_aggregation_correction.md; archive/verification/policy_record_linkage.json; manuscript/data/seed_statistics_summary.json; manuscript/TRIX_SUPPLEMENT.tex}
 
 \response{R4.11}{Simulation and control rates}{Control rate is 240 Hz in methods, 100 Hz in discussion.}
@@ -855,7 +857,7 @@ PCB, SNAP, CRANK and BATTERY use ten, while PRY updates at the outer step.
 100-Hz simulation statement. The approximately 200-Hz physical B601-RS
 controller is described separately. Simulated-time step size is not a
 measurement of wall-clock governor throughput or a real-time deadline guarantee.
-\locations{\mssec{4.1}; \mssec{4.7}; \mssec{4.8}; \mssec{S4.2}; \mssec{S8}; \msitem{para:simulation-timestep}}
+\locations{\mssec{2.2}; \mssec{2.8}; \mssec{2.9}; \mssec{S4.2}; \mssec{S8}; \msitem{para:simulation-timestep}}
 \evidence{benchmark/disasm_bench.py; envs/screw_env_v3.py; envs/pcb_env_v2.py; envs/snap_env_v2.py; envs/crank_env_v2.py; envs/battery_env_v2.py; envs/pry_env_v2.py; manuscript/TRIX_SUPPLEMENT.tex}
 
 \response{R4.12}{Figure~4 and Table~4 use different experiments}{Fig. 4 uses a different "simplified" environment than Table 4.}
@@ -869,7 +871,7 @@ Figure~4 was regenerated from the retained seed-level data with the supplied
 replacement plotting script. All 80 plotted values are checked against their
 recorded source cells before plotting. No curve from a simplified environment is used to explain another
 environment's absolute rates.
-\locations{\mssec{2.3}; \mssec{S9}; \msitem{tab:submitted-4}; \msitem{tab:stage2-key}; \msitem{fig:seed-distributions}}
+\locations{\mssec{3.1}; \mssec{S9}; \msitem{tab:submitted-4}; \msitem{tab:stage2-key}; \msitem{fig:seed-distributions}}
 \evidence{manuscript/figures/figure4_seed_data.csv; scripts/build_revision_figure4.py; manuscript/figures/figure4_rebuild.json; results/stage1/stage1_records.json; results/stage2/stage2_records.json; manuscript/TRIX_SUPPLEMENT.tex}
 
 \response{R4.13}{PCB residual violations and representation analysis}{The PCB result (44\% violations even with the right manifold) is the most interesting thing here and needs more analysis.}
@@ -898,7 +900,7 @@ uses the separate procedural benchmark with its disclosed fitting and
 partition design. This identifies the roles of learned approximation,
 constraint specification and policy adaptation without preserving the
 unsupported curvature explanation of the old 44\% figure.
-\locations{\mssec{2.3}; \mssec{2.4}; \mssec{4.3}; \mssec{4.4}; \mssec{S9.3}; \mssec{S10.2}; \mssec{S10.3}; \msitem{tab:procedural-geometry}}
+\locations{\mssec{2.4}; \mssec{2.5}; \mssec{3.1}; \mssec{3.4}; \mssec{3.5}; \mssec{S9.3}; \mssec{S10.2}; \mssec{S10.3}; \msitem{tab:procedural-geometry}}
 \evidence{results/safelayer_decomposition.json; baselines/pcb_filters.py; docs/provenance.md; results/geometry_bench_heldout.json; manuscript/TRIX_SUPPLEMENT.tex}
 
 \end{document}

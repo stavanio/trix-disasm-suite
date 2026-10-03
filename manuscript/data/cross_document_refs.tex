@@ -2,14 +2,14 @@
 \newcommand{\suppref}[1]{\csname supitem#1\endcsname}
 \newcommand{\mainref}[1]{\csname mainitem#1\endcsname}
 \expandafter\def\csname mainitemtab:submitted-1\endcsname{main Table~1}
-\expandafter\def\csname mainitemtab:submitted-2\endcsname{main Table~2}
-\expandafter\def\csname mainitemtab:submitted-3\endcsname{main Table~3}
-\expandafter\def\csname mainitemtab:policy-summary\endcsname{main Table~4}
-\expandafter\def\csname mainitemtab:vlm-results\endcsname{main Table~5}
 \expandafter\def\csname mainitemfig:submitted-1\endcsname{main Figure~1}
 \expandafter\def\csname mainitemfig:submitted-2\endcsname{main Figure~2}
+\expandafter\def\csname mainitemtab:submitted-2\endcsname{main Table~2}
 \expandafter\def\csname mainitemfig:disasm-workspaces\endcsname{main Figure~3}
+\expandafter\def\csname mainitemtab:submitted-3\endcsname{main Table~3}
+\expandafter\def\csname mainitemtab:policy-summary\endcsname{main Table~4}
 \expandafter\def\csname mainitemfig:seed-distributions\endcsname{main Figure~4}
+\expandafter\def\csname mainitemtab:vlm-results\endcsname{main Table~5}
 \expandafter\def\csname mainitemfig:b601-hardware\endcsname{main Figure~5}
 \expandafter\def\csname supitemtab:submitted-7\endcsname{Supplementary Table~S1}
 \expandafter\def\csname supitemtab:action-scales\endcsname{Supplementary Table~S2}
@@ -28,24 +28,29 @@
 \expandafter\def\csname supitemtab:snap-ood-attribution\endcsname{Supplementary Table~S15}
 \newcommand{\mainsection}[1]{\csname sectiontitle#1\endcsname}
 \expandafter\def\csname sectiontitle1\endcsname{main text, ``Introduction''}
-\expandafter\def\csname sectiontitle2\endcsname{main text, ``Results''}
-\expandafter\def\csname sectiontitle2.1\endcsname{main text, ``Task-conditioned execution authority''}
-\expandafter\def\csname sectiontitle2.2\endcsname{main text, ``Six disassembly tasks and explicit comparator roles''}
-\expandafter\def\csname sectiontitle2.3\endcsname{main text, ``Policy adaptation changes which restrictions are sufficient''}
-\expandafter\def\csname sectiontitle2.4\endcsname{main text, ``Representation controls identify losses of required authority''}
-\expandafter\def\csname sectiontitle2.5\endcsname{main text, ``Governance prevents violations from recorded VLM proposals''}
-\expandafter\def\csname sectiontitle2.6\endcsname{main text, ``Physical execution enforces the proposal boundary''}
-\expandafter\def\csname sectiontitle2.7\endcsname{main text, ``Measured cost depends on the implementation''}
-\expandafter\def\csname sectiontitle3\endcsname{main text, ``Discussion''}
-\expandafter\def\csname sectiontitle4\endcsname{main text, ``Methods''}
-\expandafter\def\csname sectiontitle4.1\endcsname{main text, ``Analytical environments and outcome definitions''}
-\expandafter\def\csname sectiontitle4.2\endcsname{main text, ``Policy training and checkpoint selection''}
-\expandafter\def\csname sectiontitle4.3\endcsname{main text, ``Comparator and specification controls''}
-\expandafter\def\csname sectiontitle4.4\endcsname{main text, ``Representation, sensitivity and prospective tests''}
-\expandafter\def\csname sectiontitle4.5\endcsname{main text, ``VLM images, command grounding and paired replay''}
-\expandafter\def\csname sectiontitle4.6\endcsname{main text, ``Statistical Analyses''}
-\expandafter\def\csname sectiontitle4.7\endcsname{main text, ``Physical platform and evidence''}
-\expandafter\def\csname sectiontitle4.8\endcsname{main text, ``Timing and reproducibility''}
+\expandafter\def\csname sectiontitle2\endcsname{main text, ``Methods''}
+\expandafter\def\csname sectiontitle2.1\endcsname{main text, ``Execution contract''}
+\expandafter\def\csname sectiontitle2.2\endcsname{main text, ``Disassembly tasks and outcome definitions''}
+\expandafter\def\csname sectiontitle2.3\endcsname{main text, ``Policies and evaluation regimes''}
+\expandafter\def\csname sectiontitle2.4\endcsname{main text, ``Runtime arms and specification controls''}
+\expandafter\def\csname sectiontitle2.5\endcsname{main text, ``Representation, sensitivity and prospective tests''}
+\expandafter\def\csname sectiontitle2.6\endcsname{main text, ``Shifted reset evaluation''}
+\expandafter\def\csname sectiontitle2.7\endcsname{main text, ``Recorded vision-language-model commands''}
+\expandafter\def\csname sectiontitle2.8\endcsname{main text, ``Physical platform''}
+\expandafter\def\csname sectiontitle2.9\endcsname{main text, ``Runtime measurement''}
+\expandafter\def\csname sectiontitle2.10\endcsname{main text, ``Statistical analysis''}
+\expandafter\def\csname sectiontitle2.11\endcsname{main text, ``Records and provenance''}
+\expandafter\def\csname sectiontitle3\endcsname{main text, ``Results''}
+\expandafter\def\csname sectiontitle3.1\endcsname{main text, ``Training with the governor changes which restriction suffices''}
+\expandafter\def\csname sectiontitle3.2\endcsname{main text, ``Matched controls separate solver from representation''}
+\expandafter\def\csname sectiontitle3.3\endcsname{main text, ``Missing task context limits what training can recover''}
+\expandafter\def\csname sectiontitle3.4\endcsname{main text, ``Simpler restrictions suffice when context and specification match''}
+\expandafter\def\csname sectiontitle3.5\endcsname{main text, ``Learned constraint models can lose required authority''}
+\expandafter\def\csname sectiontitle3.6\endcsname{main text, ``Admissible commands do not guarantee safe outcomes outside the training range''}
+\expandafter\def\csname sectiontitle3.7\endcsname{main text, ``Governance intercepts violations in recorded model commands''}
+\expandafter\def\csname sectiontitle3.8\endcsname{main text, ``Governance changes what reaches a physical robot''}
+\expandafter\def\csname sectiontitle3.9\endcsname{main text, ``Runtime cost depends on the implementation''}
+\expandafter\def\csname sectiontitle4\endcsname{main text, ``Discussion''}
 \newcommand{\suppsection}[1]{\csname sectiontitle#1\endcsname}
 \expandafter\def\csname sectiontitleS1\endcsname{Supplementary Information, ``Admissibility definitions and scope''}
 \expandafter\def\csname sectiontitleS2\endcsname{Supplementary Information, ``Reference Projection Operators''}
