@@ -3,13 +3,9 @@
 \usepackage[margin=1in]{geometry}
 \usepackage{fontspec}
 \usepackage{unicode-math}
-\setmainfont[
-  Path=manuscript/fonts/,
-  BoldFont=DejaVuSerif-Bold.ttf,
-  ItalicFont=DejaVuSerif-Italic.ttf,
-  BoldItalicFont=DejaVuSerif-BoldItalic.ttf
-]{DejaVuSerif.ttf}
-\setmathfont[Path=manuscript/fonts/]{DejaVuMathTeXGyre.ttf}
+\setmainfont{TeX Gyre Termes}
+\setmathfont{TeX Gyre Termes Math}
+\setmonofont{Latin Modern Mono}[Scale=MatchLowercase]
 \usepackage{microtype}
 \usepackage{lineno}
 \input{manuscript/data/cross_document_refs.tex}
