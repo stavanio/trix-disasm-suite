@@ -144,11 +144,11 @@ Entries describe the cited formulations and their assumptions.}
 \toprule
 Approach & Constraint and intervention & Scope of the cited formulation\\
 \midrule
-CPO \cite{ref16} & Trust-region policy updates constrained by expected cumulative costs. & Policy-level cost guarantees depend on CMDP assumptions and update approximations.\\
-Lagrangian RL \cite{ref18,ref19,ref20} & Policy and penalty multipliers adapt to cost signals. & Constraint handling occurs during learning; a separate execution filter can be added.\\
+Constrained policy optimization (CPO) \cite{ref16} & Trust-region policy updates constrained by expected cumulative costs. & Policy-level cost guarantees depend on constrained Markov decision process assumptions and update approximations.\\
+Lagrangian reinforcement learning \cite{ref18,ref19,ref20} & Policy and penalty multipliers adapt to cost signals. & Constraint handling occurs during learning; a separate execution filter can be added.\\
 Safety layer \cite{ref21} & Learned state-dependent, action-affine constraint model; minimum-change correction. & Accuracy depends on the model; the cited closed form assumes at most one active constraint.\\
-Recovery RL \cite{ref22} & A learned risk critic switches execution to a recovery policy. & Depends on risk estimation and the recovery behavior.\\
-CBF-QP \cite{ref23,ref24} & Dynamics and barrier derivatives define state-dependent control constraints. & Nonlinear safe sets are allowed; invariance requires the stated regularity, model and feasibility assumptions.\\
+Recovery reinforcement learning \cite{ref22} & A learned risk critic switches execution to a recovery policy. & Depends on risk estimation and the recovery behavior.\\
+Control barrier function quadratic program \cite{ref23,ref24} & Dynamics and barrier derivatives define state-dependent control constraints. & Nonlinear safe sets are allowed; invariance requires the stated regularity, model and feasibility assumptions.\\
 TRiX & Task context selects explicit command sets and an execution outcome. & Tests command admissibility and retained authority under declared task models, with frozen or filter-aware proposers.\\
 \bottomrule
 \end{tabular}
@@ -166,11 +166,16 @@ explicit.
 This paper studies both factors through TRiX, an execution governor placed
 between the proposer and the robot (Figure~\ref{fig:submitted-1}). For each
 proposed command, TRiX uses the current task state and declared task context
-to select the set of commands the task model admits. It passes a command
-already in that set, projects one outside it onto the nearest admissible
-command, refuses one that cannot be meaningfully corrected, and reports when
-the specification leaves no usable command at all. Only passed or corrected
-commands reach the executor. Because the governor is explicit about what it
+to select the set of commands the task model admits. It then returns one of four
+decisions. \texttt{ALLOW} passes a command already in that set;
+\texttt{PROJECT} replaces a command outside it with the nearest admissible
+one; \texttt{REJECT} refuses a request that no correction can repair; and
+\texttt{INFEASIBLE} reports that the specification leaves no usable command at
+all. Only allowed or projected commands reach the executor. Because its
+admissible set follows the task's state and phase, we call TRiX a
+task-conditioned governor, in contrast to static restrictions that apply the
+same limits throughout a task, and we call the range of commands a restriction
+leaves available its command authority. Because the governor is explicit about what it
 represents and when it acts, the same governor can be evaluated in both
 settings: applied to a policy after training, and present while the policy
 learns.
@@ -222,10 +227,8 @@ the section closes with its computational cost.
 TRiX sits between an upstream proposer and the executor
 (Figure~\ref{fig:submitted-1}). For every proposed command it uses the
 current task state and a declared task context to select the set of commands
-the task model admits, and it returns one of four outcomes: it passes an
-admissible command, projects an inadmissible one onto the nearest admissible
-command, rejects one that cannot be corrected, or reports that the
-specification leaves no usable command. The Methods give the formal contract.
+the task model admits, and it returns one of the four decisions introduced above,
+\texttt{ALLOW}, \texttt{PROJECT}, \texttt{REJECT} or \texttt{INFEASIBLE}. The Methods give the formal contract.
 
 Screw removal shows why the form of that set matters. Because a screw advances
 one pitch per turn, admissible commands couple axial and angular velocity, and
@@ -233,26 +236,35 @@ the implemented task admits only a narrow strip of the normalized command
 space (Figure~\ref{fig:submitted-2}a). A componentwise box cannot represent
 that strip: clipping can leave a proposal inadmissible where projection lands
 on it (Figure~\ref{fig:submitted-2}b). The same strip can also be written as a
-quadratic program, which lets solution mechanisms be compared with the
-specification held fixed.
+quadratic program (QP), which lets solution mechanisms be compared with the
+specification held fixed. Every governor may also tighten its limits by a
+margin that absorbs command noise.
 
-The simulation layer, DISASM-Bench, models six disassembly tasks, each with its
-own command interface, constraints and damage mechanism
+The simulation layer, DISASM-Bench, models six disassembly tasks, abbreviated
+SCREW (screw removal), PCB (circuit-board extraction), SNAP (snap-fit
+release), CRANK (crank removal), BATTERY (battery peeling) and PRY (prying a
+bonded part open), each with its own command interface, constraints and damage
+mechanism
 (Table~\ref{tab:submitted-2} and Figure~\ref{fig:disasm-workspaces}). On each,
 Proximal Policy Optimization (PPO) \cite{ref31} and Soft Actor-Critic (SAC)
 \cite{ref32} policies are trained over ten seeds in two regimes. In Stage~1, a
 policy is trained without the governor and each runtime arm is then applied to
-the same frozen policy; in Stage~2, a separate policy is trained with its
-restriction active. The runtime arms range from componentwise clipping to
-task-conditioned projection (Table~\ref{tab:submitted-3}), and each
-comparison states which factors it varies. The primary outcome, safe
+the same frozen policy, which we call post-hoc governance; in Stage~2, a
+separate policy is trained with its restriction active, which we call
+filter-aware training. Each runtime arm is a restriction placed between policy
+and environment (Table~\ref{tab:submitted-3}): the unfiltered reference
+\texttt{none}; componentwise bounds that ignore coupling (\texttt{box\_clip})
+or task phase (\texttt{static\_clip}); an analytical local-gradient reference
+(\texttt{oracle\_tangent}); a quadratic program matched to the screw
+constraint (\texttt{qp\_matched}); and TRiX. Each comparison states which
+factors it varies. The primary outcome, safe
 completion, requires finishing the task without its declared
 outcome-affecting violation.
 
 \begin{table}[!htbp]
 \centering\small
 \caption{\textbf{Task interfaces and modeled boundaries.} Limits are nominal
-specifications before chance tightening; scales, observations and reset
+specifications before tightening for command noise; scales, observations and reset
 distributions are in the Supplementary Information.}
 \label{tab:submitted-2}
 \begin{tabular}{@{}L{0.74in}L{1.30in}L{2.41in}L{1.72in}@{}}
@@ -339,9 +351,9 @@ BATTERY & SAC & Stage 2 & Preventive box / TRiX & 100.0 & 100.0\\
 \label{sec:context-results}
 If the regime can reverse the verdict on a restriction, the next question is
 what else does. Screw removal rules out the solver. Holding the constraint
-fixed, \texttt{oracle\_tangent}, \texttt{qp\_matched} and TRiX each reach
-88.7\% safe completion for SAC and 60.0\% for PPO under frozen-policy
-evaluation, against 0.0\% without a governor, and the matched constrained
+fixed, the analytical reference (\texttt{oracle\_tangent}), the matched
+quadratic program (\texttt{qp\_matched}) and TRiX each reach 88.7\% safe
+completion for SAC and 60.0\% for PPO under post-hoc governance, against 0.0\% without a governor, and the matched constrained
 controls reach 100\% for both algorithms with filter-aware training. Given the
 same admissible set, the methods agree exactly.
 
@@ -370,7 +382,8 @@ the task-conditioned one, with closely aligned seed distributions and the same
 zero-performing seed (Figure~\ref{fig:seed-distributions}d). On circuit-board
 extraction in this regime, the box reaches 100.0\% and TRiX 99.8\%. These two
 arms also differ in torque margin, a nominal 0.100~N\,m per-axis bound against
-a robust coupled radius of approximately 0.087087~N\,m, so the pair measures
+a coupled limit tightened for command noise to approximately
+0.087087~N\,m, so the pair measures
 geometry and margin together rather than box-versus-disk geometry alone.
 
 Battery peeling shows that the specification can matter more than the form of
@@ -390,7 +403,7 @@ at zero, which limits the ranking those cells can support.
 Context and specification enter a governor through how its constraints are
 represented, which two studies examine directly. On 2,000 held-out
 circuit-board proposals, componentwise clipping produces 2.9\% feasible
-commands, a learned action-affine model 0.0\%, a learned nonlinear model
+commands, a learned model linear in the action (action-affine) 0.0\%, a learned nonlinear model
 78.0\% after one correction and 92.3\% after iteration, and the analytical
 oracle and exact projector 100\%. The affine result stays at 0.0\% as fitting
 samples grow from 500 to 20,000, placing its failure in the representation
@@ -399,16 +412,19 @@ representations, not learning in general or complete safety algorithms.
 
 The procedural study widens the comparison to 200 admissible sets drawn from
 box, ellipsoid, polytope, state-scaled, rotating and phase-gated families,
-each with a required action inside its exact set. The context-free box
-excludes that action in 124 instances and retains it in 76. Because the box's
+each with a required action inside its exact set. A single box that ignores task
+context, the context-free box, excludes that action in 124 instances and
+retains it in 76. Because the box's
 own exclusion defines this partition, it is a constructed calibration rather
 than an independent test of the box, and the informative results come from
 the other arms (\suppref{tab:procedural-geometry}). Exact projection retains
-the required action in 100\% of both groups, and the context-conditioned
-oracle in 36.3\% and 100\%, respectively. The learned affine model retains it
+the required action in 100\% of both groups, and a context-conditioned oracle,
+which knows the context but is limited to the largest box inside each set, in
+36.3\% and 100\%, respectively. The learned affine model retains it
 in 0\% of both groups, including the group where a box succeeds. Every arm
 returns feasible commands on 400 sampled proposals per instance, partly
-because the approximate arms share the inscribed-box bounds, so feasibility
+because the approximate arms are also limited to that inscribed box, so
+feasibility
 and retained authority prove to be distinct properties. Models are fitted
 separately on each evaluated geometry, so the study measures representation
 capacity rather than transfer of one learned model (\suppsection{S10}).
@@ -418,7 +434,8 @@ capacity rather than transfer of one learned model (\suppsection{S10}).
 Every result so far was obtained within the conditions the policies were
 trained on. The prospectively declared shifted-reset evaluation asks what
 happens beyond them, and it shows where per-step governance ends. In the
-primary outside-support shell, snap-fit safe completion is 59.9\% under TRiX
+primary outside-support shell, whose resets are sampled from beyond the
+training ranges, snap-fit safe completion is 59.9\% under TRiX
 and 3.5\% under static, down from the in-range 96.5\% and 5.2\%; as in range,
 this compares complete policy-and-governor systems and does not isolate the
 governor's causal contribution. Latch fractures, including timeouts, occur in
@@ -428,13 +445,14 @@ number 369 and 886 (\suppref{tab:snap-ood-attribution}). The advantage of TRiX
 in safe completion is therefore far larger than its reduction in fractures.
 
 A post-hoc replay audit locates the mechanism. Every TRiX command lies inside
-the frozen executable bounds, yet all 401 TRiX fractures begin through
-overdeflection in the softer-latch stratum, before any pull damage, while all
-480 TRiX episodes in the harder-latch stratum complete safely. Admissible
+the bounds the governor actually enforced, yet all 401 TRiX fractures begin
+through overdeflection among episodes with softer latches, before any pull
+damage, while all 480 TRiX episodes with harder latches complete safely. Admissible
 commands, applied one step at a time, drove a softer latch into a damaging
 state. These counts are observations within the sampled stiffness intervals,
 not a safety bound over them; \suppsection{S14.4} reports the full partition,
-the traces and how the executed margins relate to a later, tighter registry.
+the traces and how the margins enforced in these runs compare with a later,
+tighter margin specification.
 
 The other tasks shift less. Crank removal reaches 47.6\% under TRiX and
 0.0\% under the static arm, with 22 destructive completions per 1,000 episodes
@@ -452,7 +470,10 @@ unchanged.
 The simulation results concern policies trained on the benchmark. The second
 foundation tests whether the same contract governs commands that no such
 policy produced. Three recorded VLM runs received the same 91 circuit-board
-images and prompt, giving 273 decisions. The labels Claude Sonnet, GPT-4o and
+images and prompt, giving 273 decisions. A fixed parser maps each response
+to one of six motion primitives, such as \texttt{LIFT} or \texttt{TILT\_X},
+scaled to a normalized command; a response it can map is grounded, and one it
+cannot is ungroundable. The labels Claude Sonnet, GPT-4o and
 Gemini identify the configured aliases and recorded runs; resolved backend
 versions are not recorded. The decisions partition into 16 refusals, 219
 admissible commands and 38 inadmissible commands, with no ungroundable output
@@ -489,15 +510,16 @@ A case counts as prevented only when the unfiltered replay violates a
 constraint and the governed replay from the same restored state and seed does
 not, so changing a command earns no credit on its own. GPT-4o contributes nine
 prevented cases and Gemini 22, while the three inadmissible Claude commands
-caused no unfiltered violation. In one example, GPT-4o's response to the
-\texttt{s06\_occluded} image requests \texttt{LIFT} at magnitude 0.8,
-grounding to $(0,0,0.8)$: the unfiltered replay violates the constraint on
+caused no unfiltered violation. In one example, GPT-4o's response to an
+occluded view of base configuration 6 requests \texttt{LIFT} at 0.8 of its
+normalized range, which grounds to the command $(0,0,0.8)$: the unfiltered replay violates the constraint on
 40/40 steps and the governed replay on 0/40. Every replay runs the full
 40-step horizon without task completion or mechanical failure, so the
 measured outcome is prevented constraint violation, not fractures or
-successful extraction. The commands were elicited from visibility-scaled
-images whose displayed tilts can exceed the model's intact-board range, and
-the result measures governance of those recorded commands.
+successful extraction. The images exaggerate board tilt so
+that it is visible, and these visibility-scaled displays can exceed the
+model's intact-board range (Methods); the result therefore measures governance
+of the recorded commands.
 
 The models fail in different places. Thirty-five images elicit an
 inadmissible proposal in at least one run and none in all three. Claude's
@@ -511,19 +533,21 @@ rather than an autonomous agent loop or hallucination detection.
 \subsection{Governance on a physical robot}
 \label{sec:hardware-results}
 The third foundation asks whether the contract changes what physical motors
-actually do. On the B601-RS arm, TRiX sits in the command path. It rejects an
-invalid symbolic transition and a proposed $+50^\circ$ motion of protected
-Joint~1, producing no physical target, and it projects an excessive
-$+50^\circ$ Joint~2 proposal to $+18^\circ$, so that only the corrected target
-is transmitted and executed. The allowed return finishes with Joint~1 drift of
-$+0.007^\circ$.
+actually do. On a Seeed reBot B601-RS arm with a parallel gripper, TRiX sits in the command
+path. It rejects a
+request to move between task phases in an order the task does not allow, and a
+proposed $+50^\circ$ motion of Joint~1, which the contract protects; neither
+produces a physical target. It projects an excessive $+50^\circ$ Joint~2
+proposal to $+18^\circ$, so that only the corrected target is transmitted and
+executed. The return that follows, allowed by TRiX, ends with Joint~1
+$+0.007^\circ$ from its starting angle.
 
 The frozen final implementation then completes three video-backed
 grasp-and-return trials with the object retained
 (Figure~\ref{fig:b601-hardware}), each with ten \texttt{ALLOW} decisions, for
-30 governed decisions in total. The largest absolute Joint~1 return drift is
-$0.027^\circ$ and the largest start-to-final residual over Joints~1--6 is
-$0.122^\circ$. Three further logged repetitions complete normally and are
+30 governed decisions in total. Across these trials, Joint~1 returns to within
+$0.027^\circ$ of its starting angle, and no joint among Joints~1--6 ends more
+than $0.122^\circ$ from where it began. Three further logged repetitions complete normally and are
 counted separately from the video-backed trials. In all six, the operator
 places the object between the open jaws at a calibrated grasp pose, and the
 governed sequence closes the gripper, lifts and returns. The arm carries no
@@ -535,15 +559,16 @@ next step (\suppsection{S12}).
 \subsection{The cost of governance}
 \label{sec:runtime-benchmark}
 A governor that sits in every command path must also be cheap, and at this
-boundary it costs microseconds per command. A benchmark of 225,280
-complete-filter calls across 22 existing implementations, six tasks and five
-fresh processes, on the recorded Intel Core Ultra 9 275HX host, gives matched
-screw median/95th-percentile latencies of 1.255/1.556~$\mu$s for production
-scalar TRiX, 12.578/15.534~$\mu$s for active-set QP and 14.924/19.895~$\mu$s
-for reused OSQP. All matched arms pass the declared numerical agreement checks,
-with a maximum OSQP action-coordinate difference of $1.013\times10^{-6}$.
-Across the six registered TRiX arms, medians range from 1.123 to
-11.770~$\mu$s. Implementation matters as much as formulation: the NumPy
+boundary it costs microseconds per command. We timed
+225,280 calls to complete governor implementations, 22 in all, across six
+tasks and five fresh processes on an Intel Core Ultra 9 275HX host. On the
+shared screw constraint, median and 95th-percentile latencies are 1.255 and
+1.556~$\mu$s for the production TRiX implementation, 12.578 and
+15.534~$\mu$s for an active-set QP solver, and 14.924 and 19.895~$\mu$s for
+the OSQP solver reusing its setup between calls. The three return the same
+commands to within $1.013\times10^{-6}$ in any normalized coordinate and pass
+the declared agreement checks. Across TRiX's implementations for the six
+tasks, median latency ranges from 1.123 to 11.770~$\mu$s. Implementation matters as much as formulation: the NumPy
 analytical implementation takes 18.163~$\mu$s by median, slower than both QP
 medians for the same geometry. \suppref{tab:runtime-latency} reports every
 implementation and its process variation. All outliers are retained, and these
@@ -570,7 +595,7 @@ still discard the action the task requires. The learned nonlinear
 circuit-board correction shows how much an expressive learned model, iterated,
 can recover, so the contribution here is an auditable execution contract and
 an experimental map of when each kind of restriction suffices, rather than a
-universal ranking of symbolic projection over learned or classical methods.
+universal ranking of analytical projection over learned or classical methods.
 The timing results point the same way: the advantage belongs to the scalar
 implementation, since the NumPy analytical version is slower than both matched
 QP controls.
@@ -584,20 +609,25 @@ after force is removed, beyond the reach of any current-command filter. In
 snap-fit release, suppressing a premature pull does not supply the latch
 deflection the task needs. A correct projector also enforces whatever boundary
 it is given, so the 20-N flagged battery limit allows deformation that begins
-at 15~N. Probabilistic tightening can remove authority altogether: for the
-crank axial family, $L/\sigma=5/1.235\simeq4.05$, whereas the declared
-multiplier is approximately 4.488, a specification-feasibility failure
-detailed in \suppsection{S13}. Each of these limits points to a specific
+at 15~N. Probabilistic tightening can remove authority altogether. To absorb command
+noise, each limit $L$ is tightened by $z$ noise standard deviations $\sigma$,
+which leaves usable commands only while $z\sigma<L$. For the crank's axial
+limit, $L/\sigma=5/1.235\simeq4.05$, below the declared multiplier of
+approximately 4.488, so the tightened limit admits no command; this
+specification-feasibility failure is detailed in \suppsection{S13}. Each of these limits points to a specific
 extension: state-aware constraints, sequence-level planning and calibrated
 specifications.
 
-These boundaries are empirical, and the study reports them in full. The
-prescribed task-specific ordering holds in 96 of 105 perturbation cases; the
+These boundaries are empirical, and the study reports them in full. When 21
+model constants are perturbed, the ordering of governors predicted for each
+task holds in 96 of 105 cases; the
 nine exceptions comprise six PCB boundary/model cases, one CRANK feasibility
 failure and two BATTERY completion trade-offs with zero destructive
-completions in both arms (\suppsection{S7}). A prospective BAYONET test is
-inconclusive because neither policy algorithm reached its predeclared
-competence gate, and it is reported as such.
+completions in both arms (\suppsection{S7}). A separately preregistered
+bayonet-mount task, intended as a prospective test, is inconclusive because
+neither policy algorithm reached its predeclared competence gate, the minimum
+safe completion required before its governors are compared, and it is
+reported as such.
 
 Across its three foundations, the study carries one execution contract from
 learned policies to foundation-model proposals to physical motors. The model
@@ -628,9 +658,10 @@ $x$ and a declared task context $c$, such as the current phase of a snap-fit
 release. From these it selects the admissible command set $\mathcal A(x,c)$
 and returns one of four outcomes. \texttt{ALLOW} forwards a proposal already
 in the set. \texttt{PROJECT} replaces an inadmissible proposal with a feasible
-correction. \texttt{REJECT} refuses a symbolic or task-state violation that no
-correction can repair, and \texttt{INFEASIBLE} reports that the selected
-specification supplies no usable command authority. Only the first two forward
+correction. \texttt{REJECT} refuses a request that breaks the task's sequence or state
+rules, such as a move between task phases the task does not allow, which no
+numerical correction can repair, and \texttt{INFEASIBLE} reports that the
+selected specification leaves no usable command. Only the first two forward
 a command for execution. When $\mathcal A(x,c)$ is a nonempty closed convex
 set in normalized command coordinates, the correction is the unique Euclidean
 projection
@@ -696,8 +727,8 @@ $F_{\rm ins}$ and lateral force $F_{\rm lat}$, with a torque limit that
 depends on insertion depth $d$.
 
 
-A versioned registry binds SCREW v3 and the five v2 tasks to their
-environments and named filters. Every observation has ten float32 entries
+A versioned registry binds each task model, SCREW v3 and the five v2 tasks
+of Table~\ref{tab:submitted-2}, to its environment and named filters. Every observation has ten float32 entries
 whose meanings are task-specific, with unused entries padded with zeros; PCB,
 for example, observes lift and lift velocity, two tilt angles and their rates,
 accumulated damage and a fracture flag. Actions are normalized to $[-1,1]^3$
@@ -714,7 +745,7 @@ unsuccessful outcomes, and it records diagnostic events separately. Reset
 parameters, their distributions and ranges, and whether each is used for
 training or evaluation are tabulated in \suppref{tab:submitted-9} and
 detailed in \suppsection{S4.6}; risk allocations, noise and reset variation
-all come from the frozen source.
+all come from the frozen task code.
 
 The analytical environments generate every reported dynamic and outcome.
 Figure~\ref{fig:disasm-workspaces} renders their recorded states in PyBullet
@@ -756,8 +787,9 @@ The runtime arms are chosen so that each comparison changes one factor where
 possible and states what it changes where not (Table~\ref{tab:submitted-3}).
 Componentwise restrictions, analytical local-gradient references, a matched
 QP and the task-specific TRiX operators form the registry. The quantitative
-policy matrix contains PPO and SAC task policies; no trained PPO-Lagrangian or
-complete trained SafeLayer policy is part of it, and learned constraint
+policy matrix contains PPO and SAC task policies; no PPO-Lagrangian policy, which adds a learned cost penalty to PPO, and no
+policy trained with the learned safety layer of ref.~\cite{ref21} (SafeLayer)
+is part of it, and learned constraint
 representations are studied separately below. The literature methods in
 Table~\ref{tab:submitted-1} keep their original assumptions and are
 positioned conceptually rather than run as experimental baselines.
@@ -796,9 +828,11 @@ conservatism.
 The third study tests behavior beyond the training conditions. The original
 held-out tests use the training reset ranges, and a prospectively declared
 evaluation adds 42,000 episodes across the five tasks with stochastic physical
-resets. It widens existing reset half-widths by $1.5\times$ and $2\times$ and
-samples a $2\times$ outside-support shell, keeping selected policies and
-governors fixed. PRY is not applicable because its physical reset is
+resets. It widens
+each randomized reset range about its centre to $1.5\times$ and $2\times$ its
+half-width and adds a $2\times$ outside-support shell that samples resets only
+from outside the training support, keeping selected policies and governors
+fixed. PRY is not applicable because its physical reset is
 deterministic. \suppsection{S14} and \suppref{tab:ood-ranges} give the
 committed protocol, explicit reset interface and complete ranges. The SNAP
 command and damage attribution reported in Results was conducted after this
@@ -808,9 +842,11 @@ The fourth study perturbs the task models themselves. A sensitivity sweep
 varies 21 constants across five multipliers from 0.5 to 2.0, with eight
 scripted episodes per arm and case. It orders arms first by destructive
 completions and, when both are zero, by safe completion, and its nine failed
-cases are diagnosed after the sweep. Separately, a BAYONET experiment
-preregisters a 150,000-step budget, SAC as the primary and PPO as a
-replication algorithm, and a 50\% competence gate. Neither algorithm exceeds
+cases are diagnosed after the sweep. Separately, a bayonet-mount release
+task (BAYONET), preregistered as a prospective test, fixes a 150,000-step
+budget, SAC as the primary and PPO as a replication algorithm, and a 50\%
+competence gate, the minimum safe completion required before its governors
+are compared. Neither algorithm exceeds
 10\% mean safe completion, and the gate and task were left unchanged after
 this inconclusive result. \suppsection{S7} and \suppsection{S10} give
 implementation checks, designs and full outcomes.
@@ -829,10 +865,11 @@ and retry attribution are unavailable. Historical notes mention four retried
 Gemini timeouts whose image IDs and successful variants cannot be recovered,
 and the client also permits fallback outside those events.
 
-The images make tilt visible by scaling it. Main-stratum display tilt is
-approximately $20.669$ times the replayed mechanical curvature, and partial
-views use $3.6$ times. Saved near-boundary mechanical tilts of
-0.0358--0.042525~rad therefore appear as roughly $42.4^\circ$--$50.4^\circ$,
+The images make tilt visible by scaling it. In the 84 main-stratum images,
+the 21 configurations shown in four views, display tilt is approximately
+$20.669$ times the replayed mechanical curvature, and partial
+views use $3.6$ times. Mechanical tilts saved for states near the
+fracture boundary, 0.0358--0.042525~rad, therefore appear as roughly $42.4^\circ$--$50.4^\circ$,
 beyond the model's $0.075$-rad ($4.30^\circ$) fracture threshold if read
 physically, so a displayed pose need not be a realizable intact-board state.
 Positive scaling preserves ordering within the 84 main-stratum images but not
@@ -857,12 +894,13 @@ stratum counts and a conditional Gemini sensitivity bound.
 \label{sec:hardware-methods}
 The hardware layer places TRiX in the command path of a Seeed reBot B601-RS
 arm with RobStride actuators, a 48-V supply and 1-Mbit/s CAN. Joints~1--5
-receive 0.1-second MIT-style position/velocity commands, and Joint~6 runs an
-approximately 200-Hz velocity controller. TRiX separates symbolic proposals,
-decision receipts and approved executor targets, and protects Joint~1 with a
-hard invariant. The final grasp implementation is identified by commit
+receive 0.1-second position/velocity commands in the actuators' MIT
+control mode, and Joint~6 runs an
+approximately 200-Hz velocity controller. TRiX keeps proposed task-level actions,
+logged decisions and approved joint targets separate, and protects Joint~1
+with a hard invariant that rejects proposals to move it. The final grasp implementation is identified by commit
 \texttt{d296e6e} and tag \path{trix-hardware-soft-grasp-success-20260828}; its
-calibrated sequence uses J3 gravity feed-forward and a disclosed Joint~2
+calibrated sequence uses gravity feed-forward on Joint~3 and a disclosed Joint~2
 positioning offset around engagement. In all six grasp-and-return trials, the
 operator manually positions the object between the open jaws at the
 calibrated grasp-ready pose before governed closure, lift and return. The
@@ -877,7 +915,8 @@ force/torque measurement and no autonomous perception-to-grasp stage
 \subsection{Measurement, statistics and provenance}
 \label{sec:statistics}
 To measure what governance costs per command, the latency benchmark times the
-complete $(o,a)\mapsto(a',\mathrm{info})$ call, including allocations,
+complete governor call $(o,a)\mapsto(a',\mathrm{info})$, from observation and
+proposal to approved command and diagnostics, including allocations,
 per-call constraint construction and diagnostics. It uses 2,048 saved inputs
 per task, five fresh processes and 256 warm-up calls per
 implementation/process. Every arm sees the same per-task input sequence, with
