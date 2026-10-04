@@ -2,7 +2,7 @@
   "schema": 2,
   "stage": "author_review_draft",
   "manuscript_sha256": "8eb6570017c43504cfc3c43d56860fb2085dee241d64314ea775648e598951c9",
-  "response_sha256": "000c866a54512987e975eeaa14658816550c63111f8c424846956ef9d9b75dbb",
+  "response_sha256": "f08e5d3081f352173d9a4dc79756e6680a3053ff0ce07c02752f82c00dc737c3",
   "supplement_sha256": "8e82f69547f6a39f5bc6767bf9f46142ed796da3fe59b5f509d393c5efc622e6",
   "manuscript_pdf_sha256_at_build": "c859d841d4cf412fb30456b12241624622947ed59f518955d5f2922a239a5993",
   "supplement_pdf_sha256_at_build": "c43a22d375071beec613ff94d24bcec6fee7968bcfc2f3be479e2f30c976ca81",
@@ -1373,6 +1373,7 @@
         218
       ],
       "sections": [
+        "2.1",
         "4.3",
         "1",
         "2.2.1",
@@ -1462,14 +1463,15 @@
       "comment_quote": "The description of the proposed theoretical framework and experimental methodology is not always straightforward for non-expert readers. I suggest trying to simplify the description and provide additional information on the existing approaches that are recalled in the text.",
       "response_source_lines": [
         252,
-        263
+        266
       ],
       "sections": [
+        "2.1",
+        "4.1",
         "S1",
         "S2",
         "S3",
-        "1",
-        "4.1"
+        "1"
       ],
       "items": [
         "fig:submitted-1",
@@ -1492,8 +1494,8 @@
       "title": "Simulated workspace and interaction",
       "comment_quote": "It would be interesting to show an image of the simulated workspace that models a disassembly cell where an end- effector interacts with task-specific workpieces.",
       "response_source_lines": [
-        264,
-        281
+        267,
+        284
       ],
       "sections": [
         "4.2",
@@ -1521,8 +1523,8 @@
       "title": "Concrete model proposals and corrections",
       "comment_quote": "Specific examples of hallucinations and relative corrective actions proposed by TRiX should be reported in the manuscript.",
       "response_source_lines": [
-        282,
-        304
+        285,
+        307
       ],
       "sections": [
         "2.3",
@@ -1552,8 +1554,8 @@
       "title": "Adding or changing constraints",
       "comment_quote": "How scalable is the proposed framework to the introduction of additional constraints or to the modification of an existing one?",
       "response_source_lines": [
-        305,
-        318
+        308,
+        321
       ],
       "sections": [
         "2.2.4",
@@ -1582,8 +1584,8 @@
       "title": "Computational time",
       "comment_quote": "More details on the computational time of the proposed approach with respect to alternative strategies should be provided in the manuscript.",
       "response_source_lines": [
-        319,
-        337
+        322,
+        340
       ],
       "sections": [
         "S8",
@@ -1613,8 +1615,8 @@
       "title": "Distributions and uncertainty",
       "comment_quote": "I suggest including additional visuals and graphs to better display the results of the work (e.g., boxplots for comparison of statistical distributions).",
       "response_source_lines": [
-        338,
-        350
+        341,
+        353
       ],
       "sections": [
         "2.2.1",
@@ -1646,8 +1648,8 @@
       "title": "Figure references and Figure~4 quality",
       "comment_quote": "All figures should be recalled in the text (e.g., Figure 1 is not mentioned in the manuscript). I also suggest improving the quality of Figure 4 in terms of style and resolution.",
       "response_source_lines": [
-        351,
-        364
+        354,
+        367
       ],
       "sections": [
         "1",
@@ -1679,8 +1681,8 @@
       "title": "Foundation-model robotics literature",
       "comment_quote": "I suggest improving the literature review, by considering additional works on the topic of LLMs/VLMs in collaborative robotics. See for instance: https://www.sciencedirect.com/science/article/pii/S0736584526000487",
       "response_source_lines": [
-        365,
-        394
+        368,
+        397
       ],
       "sections": [
         "1",
@@ -1712,8 +1714,8 @@
       "title": "PCB variables and physical interpretation",
       "comment_quote": "In Section 4.2.3 (\"PCB: Planar-Constrained Extraction\"), the variables are introduced without detailed physical definition, and their role compared to the task is unclear. The Authors are invited to better explain them, possibly visually introducing the tasks with, e.g., the related force/torque directions.",
       "response_source_lines": [
-        395,
-        410
+        398,
+        413
       ],
       "sections": [
         "S4",
@@ -1745,8 +1747,8 @@
       "title": "Observation dimensionality",
       "comment_quote": "In Section 4.3 (\"State and Action Spaces\") & Appendix D.1 (\"Observation Space\"), the observation space is said to be R^10 with task\u2011specific components, but the exact mapping of the 10 dimensions is not given for each task. The table in Appendix D.1 lumps \"position, force, temperature\" into 6 dimensions without allocation. A clear task\u2011by\u2011task breakdown is required.",
       "response_source_lines": [
-        411,
-        423
+        414,
+        426
       ],
       "sections": [
         "4.2",
@@ -1775,8 +1777,8 @@
       "title": "Reward symbols and outcome notation",
       "comment_quote": "Equation (13) and (43): v_progress and I_violation are used without definition, hence they should be stated explicitly. I_violation appears to be an indicator for safety violation, but this is not explained. Moreover, the notation differs between (13) and (43) (e.g., r_progress vs v_progress); the Authors are invited to unify or explain the difference.",
       "response_source_lines": [
-        424,
-        437
+        427,
+        440
       ],
       "sections": [
         "4.2",
@@ -1804,8 +1806,8 @@
       "title": "Domain randomisation appendix",
       "comment_quote": "Appendix D.5 (\"Domain Randomisation\"): This appendix heading is present but the section is completely empty. Randomisation ranges are mentioned in Section 4.2, but a systematic table of all randomised parameters (distributions, ranges, and whether used for training or out\u2011of\u2011distribution evaluation) must be supplied.",
       "response_source_lines": [
-        438,
-        496
+        441,
+        499
       ],
       "sections": [
         "S4.6",
@@ -1860,8 +1862,8 @@
       "title": "Placement of runtime discussion",
       "comment_quote": "The numerical latency value (\"<10 \u03bcs\") is reported at the end of the helical manifold derivation in the methodology section (3.3, \"The Helical Manifold: Screw Extraction\"). Such performance data are more suitable to be reported in the experimental sections (e.g., Section 4.6 or Table 3).",
       "response_source_lines": [
-        497,
-        506
+        500,
+        509
       ],
       "sections": [
         "S8",
@@ -1891,8 +1893,8 @@
       "title": "Orphaned Figure~2 reference",
       "comment_quote": "The sentence fragment \"(Figure 2). The geometry of the task is the safety constraint [...]\" appears orphaned. The Authors should try to integrate the figure reference naturally into the preceding sentence.",
       "response_source_lines": [
-        507,
-        516
+        510,
+        519
       ],
       "sections": [
         "4.1"
@@ -1917,8 +1919,8 @@
       "title": "Narrative structure",
       "comment_quote": "The manuscript uses a very rigid structure (excessive bullet points, numbered \"Fundamental Limitation\" lists, short disjointed paragraphs). While this helps skimming, it impedes narrative flow. A revision with more transitional prose, fewer enumerated lists, and a clearer logical flow (e.g., connecting the \"Linearity Gap\" directly to the design of TRiX) would greatly improve readability for the readership.",
       "response_source_lines": [
-        517,
-        578
+        520,
+        581
       ],
       "sections": [
         "2.1",
@@ -1949,8 +1951,8 @@
       "title": "Trained policies and experimental provenance",
       "comment_quote": "Main issue: the headline results use random actions, not trained policies.",
       "response_source_lines": [
-        579,
-        609
+        582,
+        612
       ],
       "sections": [
         "4.3",
@@ -1982,8 +1984,8 @@
       "title": "Matched analytical comparator",
       "comment_quote": "TRiX is given true constraint equation analytically while SafeLayer has to learn it. So the comparison is between a correct constraint and a wrong one, here TRiX wins by construction. The fair baseine would be a CBF-QP given the same analytical constraint.",
       "response_source_lines": [
-        610,
-        629
+        613,
+        632
       ],
       "sections": [
         "2.2.2",
@@ -2015,8 +2017,8 @@
       "title": "CBF capabilities",
       "comment_quote": "Table 1 is also wrong about CBFs.",
       "response_source_lines": [
-        630,
-        640
+        633,
+        643
       ],
       "sections": [
         "1",
@@ -2044,8 +2046,8 @@
       "title": "ISS theorem assumptions",
       "comment_quote": "The theorem assumes its own conclusion. Assumption 4 already requires a stable and safe nominal controller with a known Lyapunov function, then ISS follows in a few lines from non expansiveness of projection.",
       "response_source_lines": [
-        641,
-        653
+        644,
+        656
       ],
       "sections": [
         "3",
@@ -2070,8 +2072,8 @@
       "title": "Non-expansiveness of projection",
       "comment_quote": "And non-expansiveness only holds for convex sets and affine subspaces, not the general \"differentiable manifolds\" the paper keeps claiming.",
       "response_source_lines": [
-        654,
-        665
+        657,
+        668
       ],
       "sections": [
         "4.1",
@@ -2097,8 +2099,8 @@
       "title": "Circular validation",
       "comment_quote": "The environment is the author's own NumPy model, validated against the closed-form solutions of the same equations it implements. That's circular. TRiX's manifolds come from those same equations, so it is tested against a world it was handed the answers to.",
       "response_source_lines": [
-        666,
-        693
+        669,
+        696
       ],
       "sections": [
         "S8",
@@ -2130,8 +2132,8 @@
       "title": "Role of PyBullet",
       "comment_quote": "The PyBullet environment sits in the repo but not the paper.",
       "response_source_lines": [
-        694,
-        709
+        697,
+        712
       ],
       "sections": [
         "4.2",
@@ -2162,8 +2164,8 @@
       "title": "Physical robot evidence",
       "comment_quote": "No hardware.",
       "response_source_lines": [
-        710,
-        737
+        713,
+        740
       ],
       "sections": [
         "2.4",
@@ -2194,8 +2196,8 @@
       "title": "Actual VLM evaluation",
       "comment_quote": "The VLM framing is confusing. No actual VLM is used anywhere : the \"hallucinations\" are noise the authors designed themselves, then their own projection corrects them. Either test a real model or drop this from the title and abstract.",
       "response_source_lines": [
-        738,
-        811
+        741,
+        814
       ],
       "sections": [
         "2.3",
@@ -2230,8 +2232,8 @@
       "title": "BATTERY threshold and thermal interpretation",
       "comment_quote": "BATTERY violations are blamed on a 20 N puncture threshold that doesn't exist in the task spec (Table 8 says T > 60 \u00b0C only), while Table 5 shows unavoidable thermal overshoot.",
       "response_source_lines": [
-        812,
-        847
+        815,
+        850
       ],
       "sections": [
         "2.2.3",
@@ -2266,8 +2268,8 @@
       "title": "Simulation and control rates",
       "comment_quote": "Control rate is 240 Hz in methods, 100 Hz in discussion.",
       "response_source_lines": [
-        848,
-        859
+        851,
+        862
       ],
       "sections": [
         "S4.2",
@@ -2302,8 +2304,8 @@
       "title": "Figure~4 and Table~4 use different experiments",
       "comment_quote": "Fig. 4 uses a different \"simplified\" environment than Table 4.",
       "response_source_lines": [
-        860,
-        873
+        863,
+        876
       ],
       "sections": [
         "2.2.1",
@@ -2335,8 +2337,8 @@
       "title": "PCB residual violations and representation analysis",
       "comment_quote": "The PCB result (44% violations even with the right manifold) is the most interesting thing here and needs more analysis.",
       "response_source_lines": [
-        874,
-        902
+        877,
+        905
       ],
       "sections": [
         "2.2.1",

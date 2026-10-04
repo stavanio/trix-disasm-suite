@@ -40,10 +40,10 @@ claims. Those scope choices are explicit in the replies.
 | E.2 | Introduce the architecture figure in context | response drafted | 2.1, 4.1, 1 |
 | E.3 | Safety, damage and task quality | response drafted | 1, 3, 4.2, S1, S4.4, S13 |
 | E.4 | Quantitative latency | timing benchmark reported | S8, 2.5, 4.7 |
-| E.5 | Position TRiX against the reviewed approaches | response drafted | 4.3, 1, 2.2.1, 2.2.2, 2.2.3 |
+| E.5 | Position TRiX against the reviewed approaches | response drafted | 2.1, 4.3, 1, 2.2.1, 2.2.2, 2.2.3 |
 | E.6 | Generality beyond task examples | response drafted | 2.2.4, 3, 4.1, 4.4, S10 |
 | R1.1 | References in comparison tables | response drafted | 4.3 |
-| R1.2 | Accessibility of the theoretical framework | response drafted | S1, S2, S3, 1, 4.1 |
+| R1.2 | Accessibility of the theoretical framework | response drafted | 2.1, 4.1, S1, S2, S3, 1 |
 | R1.3 | Simulated workspace and interaction | response drafted | 4.2, S4 |
 | R1.4 | Concrete model proposals and corrections | response drafted | 2.3, 4.5, S11 |
 | R1.5 | Adding or changing constraints | response drafted | 2.2.4, 3, 4.1, 4.4, S10 |

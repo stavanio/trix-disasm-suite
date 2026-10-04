@@ -198,13 +198,13 @@ worst-case execution time or end-to-end robot latency.
 
 \response{E.5}{Position TRiX against the reviewed approaches}{Section 2.3: the Authors are providing a comparison with their own approach with respect to an existing one. As this is not done for the other approached discussed in the SOA, would it be ebtter to add a 2.X Section, in which the TRiX approach is positioned against the presented approaches? This way, the readeer would hae a clear understanding of the gap in existing approaches, and how TRiX plays a role in this view.}
 We address the requested positioning through a consolidated Introduction
-and Table~1 covering all reviewed method families, followed by the dedicated
-Methods subsection \mssec{4.3} and its comparator-role Table~3. We have not
+and Table~1 covering all reviewed method families, followed by the Results overview \mssec{2.1}, which introduces each
+comparator with Table~3, and the Methods subsection \mssec{4.3}. We have not
 added a second related-work subsection with the submitted numbering.
 The revised Introduction and Table~1 position TRiX alongside constrained
 policy optimization, learned safety layers, recovery policies and control
-barrier functions. \mssec{4.3} and Table~3 give a dedicated account of the
-experimental comparator roles and the specification controls.
+barrier functions. \mssec{2.1} and Table~3 introduce the experimental comparator roles, and
+\mssec{4.3} states the specification controls.
 These comparisons distinguish policy learning, constraint representation and
 runtime enforcement. They identify when a componentwise restriction is
 sufficient and when phase, orientation or coupling changes retained command
@@ -251,13 +251,16 @@ in related work.
 
 \response{R1.2}{Accessibility of the theoretical framework}{The description of the proposed theoretical framework and experimental methodology is not always straightforward for non-expert readers. I suggest trying to simplify the description and provide additional information on the existing approaches that are recalled in the text.}
 The exposition now starts with a concrete execution question: whether a
-proposed command can be forwarded, corrected or rejected. The architecture
-figure precedes the mathematics. The screw example introduces coupled
-translation and rotation in normalized action coordinates; the PCB example
-then introduces a coupled inequality, followed by phase and coordinate-frame
-dependence. The main text summarizes four propositions, with the proofs and
-practical interpretations in \mssec{S1}, \mssec{S2} and \mssec{S3}. The theory's scope is stated before the experiments, and the
-former broad ISS argument is removed.
+proposed command can be passed, corrected or rejected. The Introduction names
+the four decisions TRiX can return and defines each technical term at its
+first use. Table~1 summarizes the existing approaches with their assumptions.
+The Results open with a plain-language overview of the governor and the
+evaluation design (\mssec{2.1}), using screw removal to show why coupled
+constraints matter, before any result is reported. The formal contract and the
+four representation properties, with their assumptions and scope, are in the
+Methods (\mssec{4.1}), and the proofs and practical interpretations are in
+\mssec{S1}, \mssec{S2} and \mssec{S3}. The former broad ISS argument is
+removed.
 \locations{\mssec{1}; \mssec{4.1}; \mssec{S1}; \mssec{S2}; \mssec{S3}; \msitem{fig:submitted-1}; \msitem{fig:submitted-2}}
 \evidence{manuscript/TRIX_REVISION.tex; manuscript/TRIX_SUPPLEMENT.tex}
 
