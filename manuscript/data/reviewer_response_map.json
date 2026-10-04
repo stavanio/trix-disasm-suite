@@ -2,10 +2,10 @@
   "schema": 2,
   "stage": "author_review_draft",
   "manuscript_sha256": "deca5310b328002856699a313a60189d8935ba26fd647d9c813c571cfd779315",
-  "response_sha256": "f08e5d3081f352173d9a4dc79756e6680a3053ff0ce07c02752f82c00dc737c3",
-  "supplement_sha256": "29f610ce12169e06985c71d9ddc776e33be922fadd59940c52449354e517f196",
+  "response_sha256": "5bf97af760451348821bba7694954a6afa9c99cb24d0a0c91bfec923f66b908d",
+  "supplement_sha256": "ae62f313defb20be84bc3a55d0299953cbc0a0593a9853f5e3610553718e27ef",
   "manuscript_pdf_sha256_at_build": "575bde17184ea3dd0a4b1df2891c7d1f0dcef9a35d81527e39db81d46d51d6a6",
-  "supplement_pdf_sha256_at_build": "f09d7baef9d81865ddf84246ddd530d29c9598cb089bdb06ec6fc8690e5888bb",
+  "supplement_pdf_sha256_at_build": "42e42d1b22bfdb706cca9ebfcb076941f900a4e43e961705bea246f628a0e19b",
   "archive_manifest_sha256": "c99a622769f040815fa297658d3923784b1eed195c9b54f3b92ed6024cc4e41b",
   "comment_source": {
     "original_reports_available": true,
@@ -456,7 +456,7 @@
       "source": "manuscript/TRIX_SUPPLEMENT.tex",
       "source_lines": [
         1116,
-        1323
+        1322
       ],
       "heading_level": "section"
     },
@@ -526,7 +526,7 @@
       "source": "manuscript/TRIX_SUPPLEMENT.tex",
       "source_lines": [
         1278,
-        1323
+        1322
       ],
       "heading_level": "subsection"
     },
@@ -535,8 +535,8 @@
       "page": 20,
       "source": "manuscript/TRIX_SUPPLEMENT.tex",
       "source_lines": [
-        1324,
-        1363
+        1323,
+        1362
       ],
       "heading_level": "section"
     },
@@ -545,8 +545,8 @@
       "page": 22,
       "source": "manuscript/TRIX_SUPPLEMENT.tex",
       "source_lines": [
-        1364,
-        1418
+        1363,
+        1417
       ],
       "heading_level": "section"
     },
@@ -555,8 +555,8 @@
       "page": 22,
       "source": "manuscript/TRIX_SUPPLEMENT.tex",
       "source_lines": [
-        1393,
-        1418
+        1392,
+        1417
       ],
       "heading_level": "subsection"
     },
@@ -565,8 +565,8 @@
       "page": 23,
       "source": "manuscript/TRIX_SUPPLEMENT.tex",
       "source_lines": [
-        1419,
-        1504
+        1418,
+        1502
       ],
       "heading_level": "section"
     },
@@ -575,28 +575,28 @@
       "page": 25,
       "source": "manuscript/TRIX_SUPPLEMENT.tex",
       "source_lines": [
-        1505,
-        1661
+        1503,
+        1659
       ],
       "heading_level": "section"
     },
     "S9.1": {
       "title": "SNAP: phase-conditioned robust governance versus a static baseline",
-      "page": 25,
+      "page": 26,
       "source": "manuscript/TRIX_SUPPLEMENT.tex",
       "source_lines": [
-        1574,
-        1599
+        1572,
+        1597
       ],
       "heading_level": "subsection"
     },
     "S9.2": {
       "title": "CRANK: angle conditioning and task-frame representation vary together",
-      "page": 27,
+      "page": 26,
       "source": "manuscript/TRIX_SUPPLEMENT.tex",
       "source_lines": [
-        1600,
-        1618
+        1598,
+        1616
       ],
       "heading_level": "subsection"
     },
@@ -605,8 +605,8 @@
       "page": 27,
       "source": "manuscript/TRIX_SUPPLEMENT.tex",
       "source_lines": [
-        1619,
-        1650
+        1617,
+        1648
       ],
       "heading_level": "subsection"
     },
@@ -615,28 +615,28 @@
       "page": 27,
       "source": "manuscript/TRIX_SUPPLEMENT.tex",
       "source_lines": [
-        1651,
-        1661
+        1649,
+        1659
       ],
       "heading_level": "subsection"
     },
     "S10": {
       "title": "Representation and prospective generalization studies",
-      "page": 28,
+      "page": 27,
       "source": "manuscript/TRIX_SUPPLEMENT.tex",
       "source_lines": [
-        1662,
-        1843
+        1660,
+        1841
       ],
       "heading_level": "section"
     },
     "S10.1": {
       "title": "Procedural Admissible-Set Benchmark",
-      "page": 28,
+      "page": 27,
       "source": "manuscript/TRIX_SUPPLEMENT.tex",
       "source_lines": [
-        1663,
-        1701
+        1661,
+        1699
       ],
       "heading_level": "subsection"
     },
@@ -645,8 +645,8 @@
       "page": 28,
       "source": "manuscript/TRIX_SUPPLEMENT.tex",
       "source_lines": [
-        1702,
-        1730
+        1700,
+        1728
       ],
       "heading_level": "subsection"
     },
@@ -655,8 +655,8 @@
       "page": 29,
       "source": "manuscript/TRIX_SUPPLEMENT.tex",
       "source_lines": [
-        1731,
-        1807
+        1729,
+        1805
       ],
       "heading_level": "subsection"
     },
@@ -665,18 +665,18 @@
       "page": 30,
       "source": "manuscript/TRIX_SUPPLEMENT.tex",
       "source_lines": [
-        1808,
-        1825
+        1806,
+        1823
       ],
       "heading_level": "subsection"
     },
     "S10.5": {
       "title": "The prospective BAYONET test was inconclusive",
-      "page": 31,
+      "page": 30,
       "source": "manuscript/TRIX_SUPPLEMENT.tex",
       "source_lines": [
-        1826,
-        1843
+        1824,
+        1841
       ],
       "heading_level": "subsection"
     },
@@ -685,8 +685,8 @@
       "page": 31,
       "source": "manuscript/TRIX_SUPPLEMENT.tex",
       "source_lines": [
-        1844,
-        2021
+        1842,
+        2019
       ],
       "heading_level": "section"
     },
@@ -695,18 +695,18 @@
       "page": 31,
       "source": "manuscript/TRIX_SUPPLEMENT.tex",
       "source_lines": [
-        1845,
-        1940
+        1843,
+        1938
       ],
       "heading_level": "subsection"
     },
     "S11.2": {
       "title": "Complete outcome accounting",
-      "page": 33,
+      "page": 32,
       "source": "manuscript/TRIX_SUPPLEMENT.tex",
       "source_lines": [
-        1941,
-        1974
+        1939,
+        1972
       ],
       "heading_level": "subsection"
     },
@@ -715,18 +715,18 @@
       "page": 33,
       "source": "manuscript/TRIX_SUPPLEMENT.tex",
       "source_lines": [
-        1975,
-        2001
+        1973,
+        1999
       ],
       "heading_level": "subsection"
     },
     "S11.4": {
       "title": "Proposal patterns differ across ordered margin strata",
-      "page": 34,
+      "page": 33,
       "source": "manuscript/TRIX_SUPPLEMENT.tex",
       "source_lines": [
-        2002,
-        2021
+        2000,
+        2019
       ],
       "heading_level": "subsection"
     },
@@ -735,8 +735,8 @@
       "page": 34,
       "source": "manuscript/TRIX_SUPPLEMENT.tex",
       "source_lines": [
-        2022,
-        2141
+        2020,
+        2139
       ],
       "heading_level": "section"
     },
@@ -745,8 +745,8 @@
       "page": 34,
       "source": "manuscript/TRIX_SUPPLEMENT.tex",
       "source_lines": [
-        2023,
-        2069
+        2021,
+        2067
       ],
       "heading_level": "subsection"
     },
@@ -755,8 +755,8 @@
       "page": 35,
       "source": "manuscript/TRIX_SUPPLEMENT.tex",
       "source_lines": [
-        2070,
-        2141
+        2068,
+        2139
       ],
       "heading_level": "subsection"
     },
@@ -765,8 +765,8 @@
       "page": 36,
       "source": "manuscript/TRIX_SUPPLEMENT.tex",
       "source_lines": [
-        2142,
-        2205
+        2140,
+        2203
       ],
       "heading_level": "section"
     },
@@ -775,28 +775,28 @@
       "page": 36,
       "source": "manuscript/TRIX_SUPPLEMENT.tex",
       "source_lines": [
-        2143,
-        2165
+        2141,
+        2163
       ],
       "heading_level": "subsection"
     },
     "S13.2": {
       "title": "Sequential constraints: projection cannot invent a missing prerequisite",
-      "page": 37,
+      "page": 36,
       "source": "manuscript/TRIX_SUPPLEMENT.tex",
       "source_lines": [
-        2166,
-        2179
+        2164,
+        2177
       ],
       "heading_level": "subsection"
     },
     "S13.3": {
       "title": "Probabilistic tightening can eliminate command authority",
-      "page": 37,
+      "page": 36,
       "source": "manuscript/TRIX_SUPPLEMENT.tex",
       "source_lines": [
-        2180,
-        2205
+        2178,
+        2203
       ],
       "heading_level": "subsection"
     },
@@ -805,8 +805,8 @@
       "page": 37,
       "source": "manuscript/TRIX_SUPPLEMENT.tex",
       "source_lines": [
-        2206,
-        2415
+        2204,
+        2413
       ],
       "heading_level": "section"
     },
@@ -815,8 +815,8 @@
       "page": 37,
       "source": "manuscript/TRIX_SUPPLEMENT.tex",
       "source_lines": [
-        2208,
-        2264
+        2206,
+        2262
       ],
       "heading_level": "subsection"
     },
@@ -825,18 +825,18 @@
       "page": 38,
       "source": "manuscript/TRIX_SUPPLEMENT.tex",
       "source_lines": [
-        2265,
-        2297
+        2263,
+        2295
       ],
       "heading_level": "subsection"
     },
     "S14.3": {
       "title": "Complete outcomes",
-      "page": 39,
+      "page": 38,
       "source": "manuscript/TRIX_SUPPLEMENT.tex",
       "source_lines": [
-        2298,
-        2334
+        2296,
+        2332
       ],
       "heading_level": "subsection"
     },
@@ -845,8 +845,8 @@
       "page": 42,
       "source": "manuscript/TRIX_SUPPLEMENT.tex",
       "source_lines": [
-        2335,
-        2415
+        2333,
+        2413
       ],
       "heading_level": "subsection"
     }
@@ -1123,7 +1123,7 @@
       "page": 23,
       "source": "manuscript/TRIX_SUPPLEMENT.tex",
       "document": "manuscript/TRIX_SUPPLEMENT.tex",
-      "source_line": 1420
+      "source_line": 1419
     },
     "tab:runtime-latency": {
       "number": "S7",
@@ -1134,63 +1134,63 @@
     },
     "tab:submitted-4": {
       "number": "S8",
-      "page": 26,
+      "page": 25,
       "source": "manuscript/TRIX_SUPPLEMENT.tex",
       "document": "manuscript/TRIX_SUPPLEMENT.tex",
-      "source_line": 1521
+      "source_line": 1519
     },
     "tab:stage2-key": {
       "number": "S9",
       "page": 26,
       "source": "manuscript/TRIX_SUPPLEMENT.tex",
       "document": "manuscript/TRIX_SUPPLEMENT.tex",
-      "source_line": 1562
+      "source_line": 1560
     },
     "tab:procedural-geometry": {
       "number": "S10",
-      "page": 30,
+      "page": 29,
       "source": "manuscript/TRIX_SUPPLEMENT.tex",
       "document": "manuscript/TRIX_SUPPLEMENT.tex",
-      "source_line": 1761
+      "source_line": 1759
     },
     "sec:si-vlm-method": {
       "number": "S11.1",
       "page": 31,
       "source": "manuscript/TRIX_SUPPLEMENT.tex",
       "document": "manuscript/TRIX_SUPPLEMENT.tex",
-      "source_line": 1846
+      "source_line": 1844
     },
     "tab:b601-hardware": {
       "number": "S11",
-      "page": 36,
+      "page": 35,
       "source": "manuscript/TRIX_SUPPLEMENT.tex",
       "document": "manuscript/TRIX_SUPPLEMENT.tex",
-      "source_line": 2113
+      "source_line": 2111
     },
     "sec:si-ood": {
       "number": "S14",
       "page": 37,
       "source": "manuscript/TRIX_SUPPLEMENT.tex",
       "document": "manuscript/TRIX_SUPPLEMENT.tex",
-      "source_line": 2207
+      "source_line": 2205
     },
     "tab:ood-ranges": {
       "number": "S12",
-      "page": 38,
+      "page": 37,
       "source": "manuscript/TRIX_SUPPLEMENT.tex",
       "document": "manuscript/TRIX_SUPPLEMENT.tex",
-      "source_line": 2241
+      "source_line": 2239
     },
     "tab:ood-safe": {
       "number": "S13",
-      "page": 40,
+      "page": 39,
       "source": "manuscript/data/ood_reset_results.tex",
       "document": "manuscript/TRIX_SUPPLEMENT.tex",
       "source_line": 6
     },
     "tab:ood-outcomes": {
       "number": "S14",
-      "page": 41,
+      "page": 40,
       "source": "manuscript/data/ood_reset_results.tex",
       "document": "manuscript/TRIX_SUPPLEMENT.tex",
       "source_line": 34
@@ -1200,14 +1200,14 @@
       "page": 42,
       "source": "manuscript/TRIX_SUPPLEMENT.tex",
       "document": "manuscript/TRIX_SUPPLEMENT.tex",
-      "source_line": 2336
+      "source_line": 2334
     },
     "tab:snap-ood-attribution": {
       "number": "S15",
-      "page": 43,
+      "page": 42,
       "source": "manuscript/TRIX_SUPPLEMENT.tex",
       "document": "manuscript/TRIX_SUPPLEMENT.tex",
-      "source_line": 2363
+      "source_line": 2361
     }
   },
   "citations": {
@@ -1321,10 +1321,8 @@
       ],
       "citations": [],
       "evidence_paths": [
-        "manuscript/TRIX_REVISION.tex",
         "benchmark/outcome.py",
-        "envs/battery_env_v2.py",
-        "manuscript/TRIX_SUPPLEMENT.tex"
+        "envs/battery_env_v2.py"
       ],
       "status": "response_drafted",
       "original_comment_verified": true,
@@ -1352,10 +1350,8 @@
       "citations": [],
       "evidence_paths": [
         "experiments/runtime_benchmark.py",
-        "docs/runtime_benchmark_protocol.md",
         "results/runtime/manifest.json",
-        "results/runtime/summary.json",
-        "manuscript/TRIX_SUPPLEMENT.tex"
+        "results/runtime/summary.json"
       ],
       "status": "timing_benchmark_reported",
       "original_comment_verified": true,
@@ -1386,7 +1382,6 @@
       ],
       "citations": [],
       "evidence_paths": [
-        "manuscript/TRIX_REVISION.tex",
         "baselines/screw_solvers.py",
         "results/stage1/stage1_records.json",
         "results/stage2/stage2_records.json"
@@ -1419,9 +1414,7 @@
       "citations": [],
       "evidence_paths": [
         "benchmark/geometry_gen.py",
-        "results/geometry_bench_heldout.json",
-        "docs/bayonet_preregistration.md",
-        "manuscript/TRIX_SUPPLEMENT.tex"
+        "results/geometry_bench_heldout.json"
       ],
       "status": "response_drafted",
       "original_comment_verified": true,
@@ -1479,8 +1472,7 @@
       ],
       "citations": [],
       "evidence_paths": [
-        "manuscript/TRIX_REVISION.tex",
-        "manuscript/TRIX_SUPPLEMENT.tex"
+        "manuscript/TRIX_REVISION.tex"
       ],
       "status": "response_drafted",
       "original_comment_verified": true,
@@ -1507,9 +1499,7 @@
       "citations": [],
       "evidence_paths": [
         "manuscript/figures/workspaces/state_manifest.json",
-        "docs/workspace_rendering.md",
-        "assets/workspaces/frozen_frames.json",
-        "manuscript/TRIX_SUPPLEMENT.tex"
+        "assets/workspaces/frozen_frames.json"
       ],
       "status": "response_drafted",
       "original_comment_verified": true,
@@ -1539,8 +1529,7 @@
         "results/vlm/vlm_openai.json",
         "manuscript/data/vlm_trial_ledger.json",
         "baselines/pcb_filters.py",
-        "benchmark/margin.py",
-        "manuscript/TRIX_SUPPLEMENT.tex"
+        "benchmark/margin.py"
       ],
       "status": "response_drafted",
       "original_comment_verified": true,
@@ -1569,8 +1558,7 @@
       "evidence_paths": [
         "benchmark/geometry_gen.py",
         "results/geometry_bench_heldout.json",
-        "results/sensitivity.json",
-        "manuscript/TRIX_SUPPLEMENT.tex"
+        "results/sensitivity.json"
       ],
       "status": "response_drafted",
       "original_comment_verified": true,
@@ -1598,10 +1586,8 @@
       "citations": [],
       "evidence_paths": [
         "experiments/runtime_benchmark.py",
-        "docs/runtime_benchmark_protocol.md",
         "results/runtime/manifest.json",
-        "results/runtime/summary.json",
-        "manuscript/TRIX_SUPPLEMENT.tex"
+        "results/runtime/summary.json"
       ],
       "status": "timing_benchmark_reported",
       "original_comment_verified": true,
@@ -1633,8 +1619,7 @@
       "evidence_paths": [
         "manuscript/figures/figure4_seed_data.csv",
         "manuscript/data/seed_statistics_pairs.csv",
-        "scripts/build_revision_seed_statistics.py",
-        "manuscript/TRIX_SUPPLEMENT.tex"
+        "scripts/build_revision_seed_statistics.py"
       ],
       "status": "response_drafted",
       "original_comment_verified": true,
@@ -1666,8 +1651,7 @@
         "manuscript/figures/figure4_seed_distributions.pdf",
         "manuscript/figures/figure4_seed_data.csv",
         "scripts/build_revision_figure4.py",
-        "manuscript/figures/figure4_rebuild.json",
-        "docs/REPRODUCING.md"
+        "manuscript/figures/figure4_rebuild.json"
       ],
       "status": "response_drafted",
       "original_comment_verified": true,
@@ -1696,7 +1680,6 @@
       ],
       "evidence_paths": [
         "manuscript/TRIX_REVISION.tex",
-        "docs/provenance.md",
         "training/sb3_runner.py",
         "results/vlm/vlm_openai.json",
         "results/vlm/vlm_anthropic.json",
@@ -1732,8 +1715,7 @@
       "citations": [],
       "evidence_paths": [
         "envs/pcb_env_v2.py",
-        "baselines/pcb_filters.py",
-        "manuscript/TRIX_SUPPLEMENT.tex"
+        "baselines/pcb_filters.py"
       ],
       "status": "response_drafted",
       "original_comment_verified": true,
@@ -1762,8 +1744,7 @@
         "benchmark/gym_adapter.py",
         "envs/pcb_env_v2.py",
         "envs/snap_env_v2.py",
-        "envs/crank_env_v2.py",
-        "manuscript/TRIX_SUPPLEMENT.tex"
+        "envs/crank_env_v2.py"
       ],
       "status": "response_drafted",
       "original_comment_verified": true,
@@ -1791,8 +1772,7 @@
       "evidence_paths": [
         "benchmark/outcome.py",
         "training/stage1.py",
-        "envs/pcb_env_v2.py",
-        "manuscript/TRIX_SUPPLEMENT.tex"
+        "envs/pcb_env_v2.py"
       ],
       "status": "response_drafted",
       "original_comment_verified": true,
@@ -1830,7 +1810,6 @@
       ],
       "citations": [],
       "evidence_paths": [
-        "docs/ood_reset_protocol.md",
         "docs/ood_reset_protocol.json",
         "experiments/ood_reset.py",
         "benchmark/evaluation_distribution.py",
@@ -1839,9 +1818,6 @@
         "results/ood_reset/seed_records.json",
         "results/ood_reset/reset_draws.json",
         "results/ood_reset/manifest.json",
-        "docs/ood_reset_results.md",
-        "docs/snap_ood_attribution_plan.md",
-        "docs/snap_ood_attribution_results.md",
         "experiments/snap_ood_attribution.py",
         "results/snap_ood_attribution/summary.json",
         "results/snap_ood_attribution/episode_attribution.json",
@@ -1876,9 +1852,7 @@
       ],
       "citations": [],
       "evidence_paths": [
-        "manuscript/TRIX_REVISION.tex",
-        "results/runtime/summary.json",
-        "manuscript/TRIX_SUPPLEMENT.tex"
+        "results/runtime/summary.json"
       ],
       "status": "response_drafted",
       "original_comment_verified": true,
@@ -1935,7 +1909,6 @@
       "citations": [],
       "evidence_paths": [
         "manuscript/TRIX_REVISION.tex",
-        "docs/provenance.md",
         "archive/research/benchmark/disasm_bench.py",
         "training/sb3_runner.py"
       ],
@@ -1952,9 +1925,10 @@
       "comment_quote": "Main issue: the headline results use random actions, not trained policies.",
       "response_source_lines": [
         582,
-        612
+        611
       ],
       "sections": [
+        "S9.4",
         "4.3",
         "4.7",
         "S5",
@@ -1968,9 +1942,7 @@
       "citations": [],
       "evidence_paths": [
         "training/sb3_runner.py",
-        "docs/battery_aggregation_correction.md",
-        "archive/verification/policy_record_linkage.json",
-        "manuscript/TRIX_SUPPLEMENT.tex"
+        "archive/verification/policy_record_linkage.json"
       ],
       "status": "response_drafted",
       "original_comment_verified": true,
@@ -1984,8 +1956,8 @@
       "title": "Matched analytical comparator",
       "comment_quote": "TRiX is given true constraint equation analytically while SafeLayer has to learn it. So the comparison is between a correct constraint and a wrong one, here TRiX wins by construction. The fair baseine would be a CBF-QP given the same analytical constraint.",
       "response_source_lines": [
-        613,
-        632
+        612,
+        631
       ],
       "sections": [
         "2.2.2",
@@ -2002,8 +1974,7 @@
         "baselines/screw_solvers.py",
         "baselines/screw_filters.py",
         "results/stage1/stage1_records.json",
-        "results/stage2/stage2_records.json",
-        "manuscript/TRIX_SUPPLEMENT.tex"
+        "results/stage2/stage2_records.json"
       ],
       "status": "matched_command_QP_scope",
       "original_comment_verified": true,
@@ -2017,8 +1988,8 @@
       "title": "CBF capabilities",
       "comment_quote": "Table 1 is also wrong about CBFs.",
       "response_source_lines": [
-        633,
-        643
+        632,
+        642
       ],
       "sections": [
         "1",
@@ -2046,8 +2017,8 @@
       "title": "ISS theorem assumptions",
       "comment_quote": "The theorem assumes its own conclusion. Assumption 4 already requires a stable and safe nominal controller with a known Lyapunov function, then ISS follows in a few lines from non expansiveness of projection.",
       "response_source_lines": [
-        644,
-        656
+        643,
+        655
       ],
       "sections": [
         "3",
@@ -2057,8 +2028,7 @@
       "items": [],
       "citations": [],
       "evidence_paths": [
-        "manuscript/TRIX_REVISION.tex",
-        "manuscript/TRIX_SUPPLEMENT.tex"
+        "manuscript/TRIX_REVISION.tex"
       ],
       "status": "response_drafted",
       "original_comment_verified": true,
@@ -2072,8 +2042,8 @@
       "title": "Non-expansiveness of projection",
       "comment_quote": "And non-expansiveness only holds for convex sets and affine subspaces, not the general \"differentiable manifolds\" the paper keeps claiming.",
       "response_source_lines": [
-        657,
-        668
+        656,
+        667
       ],
       "sections": [
         "4.1",
@@ -2084,8 +2054,7 @@
       "items": [],
       "citations": [],
       "evidence_paths": [
-        "manuscript/TRIX_REVISION.tex",
-        "manuscript/TRIX_SUPPLEMENT.tex"
+        "manuscript/TRIX_REVISION.tex"
       ],
       "status": "response_drafted",
       "original_comment_verified": true,
@@ -2099,8 +2068,8 @@
       "title": "Circular validation",
       "comment_quote": "The environment is the author's own NumPy model, validated against the closed-form solutions of the same equations it implements. That's circular. TRiX's manifolds come from those same equations, so it is tested against a world it was handed the answers to.",
       "response_source_lines": [
-        669,
-        696
+        668,
+        695
       ],
       "sections": [
         "S8",
@@ -2117,8 +2086,7 @@
         "experiments/sensitivity.py",
         "baselines/screw_solvers.py",
         "assets/workspaces/environment_sources.json",
-        "results/runtime/summary.json",
-        "manuscript/TRIX_SUPPLEMENT.tex"
+        "results/runtime/summary.json"
       ],
       "status": "response_drafted",
       "original_comment_verified": true,
@@ -2132,8 +2100,8 @@
       "title": "Role of PyBullet",
       "comment_quote": "The PyBullet environment sits in the repo but not the paper.",
       "response_source_lines": [
-        697,
-        712
+        696,
+        711
       ],
       "sections": [
         "4.2",
@@ -2146,10 +2114,8 @@
         "ref33"
       ],
       "evidence_paths": [
-        "docs/workspace_rendering.md",
         "manuscript/figures/workspaces/state_manifest.json",
         "scripts/workspace_environment.py",
-        "manuscript/TRIX_SUPPLEMENT.tex",
         "archive/research/experiments/pybullet_helix.py"
       ],
       "status": "response_drafted",
@@ -2164,8 +2130,8 @@
       "title": "Physical robot evidence",
       "comment_quote": "No hardware.",
       "response_source_lines": [
-        713,
-        740
+        712,
+        739
       ],
       "sections": [
         "2.4",
@@ -2179,10 +2145,7 @@
       ],
       "citations": [],
       "evidence_paths": [
-        "archive/hardware/experiments/hardware/2026-08-27_trix_physical_safety_v1",
-        "archive/hardware/results/hardware/v4_confirmation/final_submission/HARDWARE_EVIDENCE_README.md",
-        "manuscript/TRIX_SUPPLEMENT.tex",
-        "docs/provenance.md"
+        "archive/hardware/experiments/hardware/2026-08-27_trix_physical_safety_v1"
       ],
       "status": "response_drafted",
       "original_comment_verified": true,
@@ -2196,8 +2159,8 @@
       "title": "Actual VLM evaluation",
       "comment_quote": "The VLM framing is confusing. No actual VLM is used anywhere : the \"hallucinations\" are noise the authors designed themselves, then their own projection corrects them. Either test a real model or drop this from the title and abstract.",
       "response_source_lines": [
-        741,
-        814
+        740,
+        813
       ],
       "sections": [
         "2.3",
@@ -2217,8 +2180,7 @@
         "results/vlm/vlm_openai.json",
         "results/vlm/vlm_google.json",
         "manuscript/data/vlm_trial_ledger.json",
-        "scripts/audit_vlm_reconciliation.py",
-        "manuscript/TRIX_SUPPLEMENT.tex"
+        "scripts/audit_vlm_reconciliation.py"
       ],
       "status": "response_drafted",
       "original_comment_verified": true,
@@ -2232,16 +2194,16 @@
       "title": "BATTERY threshold and thermal interpretation",
       "comment_quote": "BATTERY violations are blamed on a 20 N puncture threshold that doesn't exist in the task spec (Table 8 says T > 60 \u00b0C only), while Table 5 shows unavoidable thermal overshoot.",
       "response_source_lines": [
-        815,
-        850
+        814,
+        849
       ],
       "sections": [
+        "S9.4",
         "2.2.3",
         "3",
         "4.3",
         "S2.3",
         "S7.1",
-        "S9.4",
         "S13.1"
       ],
       "items": [
@@ -2251,10 +2213,8 @@
       "citations": [],
       "evidence_paths": [
         "envs/battery_env_v2.py",
-        "docs/battery_aggregation_correction.md",
         "archive/verification/policy_record_linkage.json",
-        "manuscript/data/seed_statistics_summary.json",
-        "manuscript/TRIX_SUPPLEMENT.tex"
+        "manuscript/data/seed_statistics_summary.json"
       ],
       "status": "response_drafted",
       "original_comment_verified": true,
@@ -2268,8 +2228,8 @@
       "title": "Simulation and control rates",
       "comment_quote": "Control rate is 240 Hz in methods, 100 Hz in discussion.",
       "response_source_lines": [
-        851,
-        862
+        850,
+        861
       ],
       "sections": [
         "S4.2",
@@ -2289,8 +2249,7 @@
         "envs/snap_env_v2.py",
         "envs/crank_env_v2.py",
         "envs/battery_env_v2.py",
-        "envs/pry_env_v2.py",
-        "manuscript/TRIX_SUPPLEMENT.tex"
+        "envs/pry_env_v2.py"
       ],
       "status": "response_drafted",
       "original_comment_verified": true,
@@ -2304,8 +2263,8 @@
       "title": "Figure~4 and Table~4 use different experiments",
       "comment_quote": "Fig. 4 uses a different \"simplified\" environment than Table 4.",
       "response_source_lines": [
-        863,
-        876
+        862,
+        875
       ],
       "sections": [
         "2.2.1",
@@ -2322,8 +2281,7 @@
         "scripts/build_revision_figure4.py",
         "manuscript/figures/figure4_rebuild.json",
         "results/stage1/stage1_records.json",
-        "results/stage2/stage2_records.json",
-        "manuscript/TRIX_SUPPLEMENT.tex"
+        "results/stage2/stage2_records.json"
       ],
       "status": "response_drafted",
       "original_comment_verified": true,
@@ -2337,8 +2295,8 @@
       "title": "PCB residual violations and representation analysis",
       "comment_quote": "The PCB result (44% violations even with the right manifold) is the most interesting thing here and needs more analysis.",
       "response_source_lines": [
-        877,
-        905
+        876,
+        904
       ],
       "sections": [
         "2.2.1",
@@ -2357,9 +2315,7 @@
       "evidence_paths": [
         "results/safelayer_decomposition.json",
         "baselines/pcb_filters.py",
-        "docs/provenance.md",
-        "results/geometry_bench_heldout.json",
-        "manuscript/TRIX_SUPPLEMENT.tex"
+        "results/geometry_bench_heldout.json"
       ],
       "status": "response_drafted",
       "original_comment_verified": true,
@@ -2382,17 +2338,7 @@
     "benchmark/margin.py": "bf42099450dfc38a2a7d859e6e7993653dd71ced8035f26cfda9b5b86c8d0aa7",
     "benchmark/outcome.py": "4089d1be55f5b62b541e3fb3967f67beac577d60702e56c13645fa944bf582e5",
     "benchmark/registry.py": "f002fcec502883ea5c1a0c09f39144b69ed2ed933530567536efcfffebd42372",
-    "docs/REPRODUCING.md": "9bcef588b9299accdc2e001e7d64a9be2140f4654fd16b845876adc6e12137c1",
-    "docs/battery_aggregation_correction.md": "088bbc2bde148190da08be8193957b419caf63e26fdce78c0322bab2cdf1c7d8",
-    "docs/bayonet_preregistration.md": "d20236c37881c69f6e5c18cf1dcbf06c6b2c65941ed3fa9c2932dc70e4fb9fb9",
     "docs/ood_reset_protocol.json": "c3e9f59d9bf1948565ba0f58a74f7dbb5b3c03a1d4b0feca8656fd64ea2ef5b5",
-    "docs/ood_reset_protocol.md": "dcd8446ef6e2ea56a131318dc99b6676a229c05d83901df362a17468762c5f1d",
-    "docs/ood_reset_results.md": "8fdc38360ba8c801a8390fabddb8a0e1f16f60c3821020a98d0815b293514558",
-    "docs/provenance.md": "a045543e917f835914eabda54377d85c351adc2d13f841fb69c7c851ccd219d2",
-    "docs/runtime_benchmark_protocol.md": "9e0d9d6a258f66d40cd38b4ca99d260cd803d97117911028acdaef2464cf3605",
-    "docs/snap_ood_attribution_plan.md": "1f4e58f35c5b4e54021acc3f239a71377253ffa8c209573bd59af6be68344a97",
-    "docs/snap_ood_attribution_results.md": "ea1f82a267f4a45376c4c517ffdd497936a709a5bda8d5c8a1ea4f01821615c2",
-    "docs/workspace_rendering.md": "52413ec7a298edd7c69f73bb34526524a9341bc8f395b9d198dcb5dd85a01723",
     "envs/battery_env_v2.py": "28505bec3a739b0639690fc182d1751ac6832351324925a74bec1b392cb3e343",
     "envs/crank_env_v2.py": "4dc0bfd35b07c1b4a187ab76278db219058f216e949383432f5b8a2863890afe",
     "envs/pcb_env_v2.py": "4b82b27bee6829c0db014f4c8789095067e3bc085ee757ef01b76dfeeb6f2643",
@@ -2404,7 +2350,6 @@
     "experiments/sensitivity.py": "56287173ea8ea2b5d4f2646cf99e447b68affefcd4972ad16f1576c3c4f70a3d",
     "experiments/snap_ood_attribution.py": "4d757b830a17d81eef871aea351ef20f7e36b37c8e60556cab53f0ff1bbec741",
     "manuscript/TRIX_REVISION.tex": "deca5310b328002856699a313a60189d8935ba26fd647d9c813c571cfd779315",
-    "manuscript/TRIX_SUPPLEMENT.tex": "29f610ce12169e06985c71d9ddc776e33be922fadd59940c52449354e517f196",
     "manuscript/data/seed_statistics_pairs.csv": "c5402c1e2fa37f4adea604ac64646439fcdfb15b9deea9b4b4323dc214ab1d9c",
     "manuscript/data/seed_statistics_summary.json": "71c400c37f6028e4a4f454181e6d2d77128224bcd9ae1b266098d0f317d285fe",
     "manuscript/data/vlm_trial_ledger.json": "f2439150441ad4a04c3098e821d58f419b1edb86e0e4d84feaff3cf05b01eb14",
@@ -2442,7 +2387,6 @@
   },
   "archive_evidence_paths": [
     "hardware/experiments/hardware/2026-08-27_trix_physical_safety_v1",
-    "hardware/results/hardware/v4_confirmation/final_submission/HARDWARE_EVIDENCE_README.md",
     "research/benchmark/disasm_bench.py",
     "research/experiments/pybullet_helix.py",
     "verification/policy_record_linkage.json"

@@ -58,7 +58,7 @@ claims. Those scope choices are explicit in the replies.
 | R2.5 | Placement of runtime discussion | response drafted | S8, 4.7, 2.5, 4.1 |
 | R2.6 | Orphaned Figure~2 reference | response drafted | 4.1 |
 | R2.7 | Narrative structure | response drafted | 2.1, 1, 2.2.1, 2.2.2, 2.2.4, 3, 4.1 |
-| R4.1 | Trained policies and experimental provenance | response drafted | 4.3, 4.7, S5, S6, S9 |
+| R4.1 | Trained policies and experimental provenance | response drafted | S9.4, 4.3, 4.7, S5, S6, S9 |
 | R4.2 | Matched analytical comparator | matched command QP scope | 2.2.2, 4.1, 4.3, S2.1, S8 |
 | R4.3 | CBF capabilities | response drafted | 1, 4.3 |
 | R4.4 | ISS theorem assumptions | response drafted | 3, 4.1, S3 |
@@ -67,7 +67,7 @@ claims. Those scope choices are explicit in the replies.
 | R4.7 | Role of PyBullet | response drafted | 4.2, S4 |
 | R4.8 | Physical robot evidence | response drafted | 2.4, 3, 4.6, S12 |
 | R4.9 | Actual VLM evaluation | response drafted | 2.3, 4.5, 4.7, S11 |
-| R4.10 | BATTERY threshold and thermal interpretation | response drafted | 2.2.3, 3, 4.3, S2.3, S7.1, S9.4, S13.1 |
+| R4.10 | BATTERY threshold and thermal interpretation | response drafted | S9.4, 2.2.3, 3, 4.3, S2.3, S7.1, S13.1 |
 | R4.11 | Simulation and control rates | response drafted | S4.2, 4.2, 4.6, 4.7, S8 |
 | R4.12 | Figure~4 and Table~4 use different experiments | response drafted | 2.2.1, S9 |
 | R4.13 | PCB residual violations and representation analysis | response drafted | 2.2.1, 2.2.3, 2.2.4, 4.3, 4.4, S9.3, S10.2, S10.3 |

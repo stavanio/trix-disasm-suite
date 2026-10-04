@@ -1298,8 +1298,7 @@ pooled.
 
 The registry is the single binding between environment versions and runtime
 arms. The deterministic seed schedule, historical seed audit, specification
-and margin audits, and interpretation limits are recorded in
-\texttt{docs/provenance.md}. Frozen historical artifacts are retained rather
+and margin audits, and interpretation limits are recorded in the source package. Frozen historical artifacts are retained rather
 than rewritten after an audit correction.
 
 The reported training implementation uses Stable-Baselines3 rather than the
@@ -1492,8 +1491,7 @@ distribution does not establish worst-case execution time or an end-to-end
 real-time guarantee.
 
 The protocol, pinned numerical dependencies, input bank and raw measurements
-are supplied in \path{docs/runtime_benchmark_protocol.md},
-\path{requirements-runtime.txt} and \path{results/runtime/}.
+are supplied in \path{requirements-runtime.txt} and \path{results/runtime/}.
 \path{experiments/runtime_benchmark.py} reproduces the measurement and
 regenerates the summary and table from the saved arrays, with source and
 payload hashes checked separately from timing.
