@@ -1059,20 +1059,20 @@ analysis, writing or the decision to publish.
 \end{thebibliography}\clearpage
 \section*{Figure legends}
 
-\begin{figure}[p]
-\centering
+
+\begin{center}
 \includegraphics[width=\textwidth]{manuscript/figures/trix_architecture_fig1.pdf}
-\caption{\textbf{Execution authority in TRiX.} An upstream proposer submits a command;
+\captionof{figure}{\textbf{Execution authority in TRiX.} An upstream proposer submits a command;
 TRiX evaluates it against the admissible set selected by task state and context
 and returns \texttt{ALLOW}, \texttt{PROJECT}, \texttt{REJECT} or
 \texttt{INFEASIBLE}. Only allowed or projected commands reach the executor.}
 \label{fig:submitted-1}
-\end{figure}
+\end{center}
 
-\begin{figure}[p]
-\centering
+\clearpage
+\begin{center}
 \includegraphics[width=\textwidth]{manuscript/figures/figure2_representation_gap.pdf}
-\caption{\textbf{Coupling of screw-removal commands.} (a) Slice of the normalized
+\captionof{figure}{\textbf{Coupling of screw-removal commands.} (a) Slice of the normalized
 command box with radial action at zero; commands are normalized by
 60 rad\,s$^{-1}$ and 0.05 m\,s$^{-1}$. With pitch $p=1.25$ mm and tolerance
 $|v_z^c-p\omega_z^c/(2\pi)|\leq0.001$ m\,s$^{-1}$, admissible commands form a
@@ -1080,12 +1080,12 @@ narrow strip. (b) One proposal corrected by componentwise clipping, which
 remains inadmissible, and by Euclidean projection onto the strip. The dashed
 box is illustrative, not an experimental arm.}
 \label{fig:submitted-2}
-\end{figure}
+\end{center}
 
-\begin{figure}[p]
-\centering
+\clearpage
+\begin{center}
 \includegraphics[width=\textwidth]{manuscript/figures/disasm_bench_workspaces.pdf}
-\caption{\textbf{DISASM-Bench task workspaces.} (a) SCREW, screw removal. (b) PCB,
+\captionof{figure}{\textbf{DISASM-Bench task workspaces.} (a) SCREW, screw removal. (b) PCB,
 circuit-board extraction, with $\|\symbfit\theta\|=0.00748$ rad in this frame.
 (c) SNAP, snap-fit release. (d) CRANK, crank removal. (e) BATTERY, battery
 peeling. (f) PRY, prying a bonded part open. Each panel is rendered from a
@@ -1093,12 +1093,12 @@ recorded environment state with a parallel-jaw end effector; purple arrows mark
 schematic command directions and grid spacing is 20 mm. Rendering is for
 visualization; arm and contact dynamics are not simulated.}
 \label{fig:disasm-workspaces}
-\end{figure}
+\end{center}
 
-\begin{figure}[p]
-\centering
+\clearpage
+\begin{center}
 \includegraphics[width=\textwidth]{manuscript/figures/figure4_seed_distributions.pdf}
-\caption{\textbf{Seed-level safe completion within the training reset ranges.} Each
+\captionof{figure}{\textbf{Seed-level safe completion within the training reset ranges.} Each
 point is one SAC training seed (\(n=10\)) evaluated on 100 held-out episodes;
 boxes show quartiles with the median as centre line, whiskers extend to 1.5
 interquartile ranges and triangles mark means. (a) PCB under the same
@@ -1106,15 +1106,15 @@ interquartile ranges and triangles mark means. (a) PCB under the same
 (Stage~2). (b) SNAP, (c) CRANK and (d) PRY under static and task-conditioned
 governors with filter-aware training (Stage~2).}
 \label{fig:seed-distributions}
-\end{figure}
+\end{center}
 
-\begin{figure}[p]
-\centering
+\clearpage
+\begin{center}
 \includegraphics[width=\textwidth]{manuscript/figures/b601_hardware_sequence.jpg}
-\caption{\textbf{Governed grasp and return on a physical arm.} (a) Approach of the
+\captionof{figure}{\textbf{Governed grasp and return on a physical arm.} (a) Approach of the
 B601-RS with the gripper open. (b) The operator places the object between the
 jaws at the calibrated grasp pose. (c) Object retained during automatic return.
 (d) Returned configuration with the object held.}
 \label{fig:b601-hardware}
-\end{figure}
+\end{center}
 \end{document}

@@ -1,10 +1,10 @@
 {
   "schema": 2,
   "stage": "author_review_draft",
-  "manuscript_sha256": "f0417ee0c8a615321a5d04241c0d169c1d6e4f3da7447417a7659e5d5eec7bb5",
+  "manuscript_sha256": "8eb6570017c43504cfc3c43d56860fb2085dee241d64314ea775648e598951c9",
   "response_sha256": "000c866a54512987e975eeaa14658816550c63111f8c424846956ef9d9b75dbb",
   "supplement_sha256": "8e82f69547f6a39f5bc6767bf9f46142ed796da3fe59b5f509d393c5efc622e6",
-  "manuscript_pdf_sha256_at_build": "1b9a276189ac8ad66f1e42d849432c67a81e9cfa984054a1bb1ac20a5987e39e",
+  "manuscript_pdf_sha256_at_build": "c859d841d4cf412fb30456b12241624622947ed59f518955d5f2922a239a5993",
   "supplement_pdf_sha256_at_build": "c43a22d375071beec613ff94d24bcec6fee7968bcfc2f3be479e2f30c976ca81",
   "archive_manifest_sha256": "c99a622769f040815fa297658d3923784b1eed195c9b54f3b92ed6024cc4e41b",
   "comment_source": {
@@ -1036,7 +1036,7 @@
     },
     "fig:submitted-1": {
       "number": "1",
-      "page": 26,
+      "page": 25,
       "source": "manuscript/TRIX_REVISION.tex",
       "document": "manuscript/TRIX_REVISION.tex",
       "source_line": 1069
@@ -2401,7 +2401,7 @@
     "experiments/runtime_benchmark.py": "2deedbbf4a1945fc00f7cd30f7fd908be1a06f589fc1f6ddb7633caa4849c10d",
     "experiments/sensitivity.py": "56287173ea8ea2b5d4f2646cf99e447b68affefcd4972ad16f1576c3c4f70a3d",
     "experiments/snap_ood_attribution.py": "4d757b830a17d81eef871aea351ef20f7e36b37c8e60556cab53f0ff1bbec741",
-    "manuscript/TRIX_REVISION.tex": "f0417ee0c8a615321a5d04241c0d169c1d6e4f3da7447417a7659e5d5eec7bb5",
+    "manuscript/TRIX_REVISION.tex": "8eb6570017c43504cfc3c43d56860fb2085dee241d64314ea775648e598951c9",
     "manuscript/TRIX_SUPPLEMENT.tex": "8e82f69547f6a39f5bc6767bf9f46142ed796da3fe59b5f509d393c5efc622e6",
     "manuscript/data/seed_statistics_pairs.csv": "c5402c1e2fa37f4adea604ac64646439fcdfb15b9deea9b4b4323dc214ab1d9c",
     "manuscript/data/seed_statistics_summary.json": "71c400c37f6028e4a4f454181e6d2d77128224bcd9ae1b266098d0f317d285fe",
