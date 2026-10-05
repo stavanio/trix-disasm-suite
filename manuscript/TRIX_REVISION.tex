@@ -70,22 +70,21 @@ Abhishek Singh\textsuperscript{3}, Aditya Gazta\textsuperscript{4}}
 \noindent\textsuperscript{*}Corresponding author: sgshukla@usfca.edu.\par
 }
 \begin{abstract}
-Robotic disassembly needs commands that respect task-specific physical
-constraints, yet these increasingly come from learned policies and
-vision-language models without such guarantees. Runtime governors that correct
-unsafe commands are a natural safeguard, usually assessed in isolation. Here
-we present TRiX, an execution governor that allows, projects or rejects each
-proposed command against a task-conditioned admissible set, and show that its
-value depends on the policy it governs. Across six simulated disassembly
-tasks, each with a distinct constraint, the same componentwise restriction
-gives 0\% safe completion when added to a trained policy and 100\% when
-present during training. Training does not always compensate for missing
-context: where admissible forces rotate with the part, a static restriction
-stays at 0\% while TRiX reaches 49.4\%. Among 257 grounded commands from 273
-vision-language-model decisions, TRiX prevents all 31 observed constraint
-violations and introduces none, and corrects commands on robot hardware.
-Beyond training conditions, admissible commands still permit damage, marking
-the limit of per-step governance.
+Robots dismantling electronic waste increasingly take commands from learned
+policies and vision-language models (VLMs), and a plausible command can be
+physically inadmissible, like a pull where a screw must turn. Here we present
+TRiX, an execution governor between proposer and robot that allows, projects
+or rejects each command against constraints selected by task state. We
+evaluate it in six simulated disassembly tasks, on commands from three VLMs
+(Claude Sonnet, GPT-4o and Gemini) and on a Seeed reBot B601-RS
+six-degree-of-freedom arm. In simulation, a governor's value depends on its
+policy: the same componentwise restriction gives 0\% safe completion after
+training and 100\% during it, and where admissible forces rotate with the
+part, a static restriction stays at 0\% while TRiX reaches 49.4\%. TRiX
+prevents all 31 constraint violations among 257 grounded VLM commands, and on
+the arm it cuts a 50$^\circ$ joint command to 18$^\circ$ before motion. Under
+shifted conditions, admissible commands still permit latch damage, marking
+where per-step governance ends.
 \end{abstract}
 
 \noindent\textbf{Keywords:} robotic disassembly; execution governance; action
@@ -196,9 +195,8 @@ latch in snap-fit release, limits that rotate with the part in crank removal,
 a delayed internal hazard in battery peeling and a depth-dependent torque
 limit in prying. With foundation models, commands proposed by three VLMs from
 shared images of the circuit-board task are replayed with and without
-governance from identical states. On hardware, a physical robot arm runs the
-governor in its command path, so its rejections and corrections change what
-the motors execute. The Results follow this order, and the Methods specify
+governance from identical states. On hardware, TRiX runs in the command path of a six-degree-of-freedom Seeed
+reBot B601-RS arm with a parallel gripper, so its rejections and corrections change what the motors execute. The Results follow this order, and the Methods specify
 each layer in full.
 
 The results show that a governor cannot be judged apart from the policy it
@@ -214,7 +212,8 @@ falls from 96.5\% to 59.9\%, and latches fracture even though every executed
 command stays within its bounds, which shows where per-step governance must be
 extended. For commands proposed by VLMs, governance prevents all 31 observed
 constraint-violation cases without introducing any, and on the robot arm it
-rejects and corrects commands before execution. Execution governance is
+rejects a disallowed phase transition and a protected-joint motion and cuts an
+excessive $+50^\circ$ joint command to $+18^\circ$ before execution. Execution governance is
 therefore best treated as an explicit contract whose value is measured jointly
 with the proposer, the specification and the task context.
 
@@ -547,8 +546,8 @@ an autonomous agent loop or hallucination detection.
 \subsection{Governance on a physical robot}
 \label{sec:hardware-results}
 The third foundation asks whether the contract changes what physical motors
-do. On a Seeed reBot B601-RS arm with a parallel gripper, TRiX sits in the
-command path. It rejects a request to move between task phases in an order the
+do. On the B601-RS, a six-degree-of-freedom arm with a parallel gripper, TRiX sits
+in the command path. It rejects a request to move between task phases in an order the
 task does not allow, and a proposed $+50^\circ$ motion of Joint~1, which the
 contract protects; neither produces a physical target. It projects an
 excessive $+50^\circ$ Joint~2 proposal to $+18^\circ$, and only the corrected
@@ -922,8 +921,8 @@ stratum counts and a conditional Gemini sensitivity bound.
 
 \subsection{Physical platform}
 \label{sec:hardware-methods}
-The hardware layer places TRiX in the command path of a Seeed reBot B601-RS
-arm with RobStride actuators, a 48-V supply and 1-Mbit/s CAN. Joints~1--5
+The hardware layer places TRiX in the command path of a Seeed reBot B601-RS, a
+six-degree-of-freedom arm with a parallel gripper and RobStride actuators, a 48-V supply and 1-Mbit/s CAN. Joints~1--5
 receive 0.1-second position/velocity commands in the actuators' MIT
 control mode, and Joint~6 runs an
 approximately 200-Hz velocity controller. TRiX keeps proposed task-level actions,
