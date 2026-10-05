@@ -1,10 +1,10 @@
 {
   "schema": 2,
   "stage": "author_review_draft",
-  "manuscript_sha256": "f16bb653088c182748f940720836f12f23eeaf760d2154b228f252f0de7ff896",
+  "manuscript_sha256": "c2f678057a7766f79f285b2ebc20299244e94026fb2ad284bdcf02d45d5bea4e",
   "response_sha256": "e12050aa5925063f1e662022974b793881ab7ad2ee92e8abe374708411c4987d",
   "supplement_sha256": "06ae7dfe092d1e225595bf7be00cdad082fe7c47a0b57cd192b62ba5d88f7f10",
-  "manuscript_pdf_sha256_at_build": "ed4e1183d34b0c45606377c642fd6e1379d567a33ecc474a630078fff3158585",
+  "manuscript_pdf_sha256_at_build": "aabae925ce0332fa2b781b9b78c7e714d00c514c648a188e0437d5da95d28d75",
   "supplement_pdf_sha256_at_build": "91c947575ab620fc21c38385adf1d52b8ea9697115d99c6af9c89a1134fb044b",
   "archive_manifest_sha256": "c99a622769f040815fa297658d3923784b1eed195c9b54f3b92ed6024cc4e41b",
   "comment_source": {
@@ -2371,7 +2371,7 @@
     "experiments/runtime_benchmark.py": "2deedbbf4a1945fc00f7cd30f7fd908be1a06f589fc1f6ddb7633caa4849c10d",
     "experiments/sensitivity.py": "56287173ea8ea2b5d4f2646cf99e447b68affefcd4972ad16f1576c3c4f70a3d",
     "experiments/snap_ood_attribution.py": "4d757b830a17d81eef871aea351ef20f7e36b37c8e60556cab53f0ff1bbec741",
-    "manuscript/TRIX_REVISION.tex": "f16bb653088c182748f940720836f12f23eeaf760d2154b228f252f0de7ff896",
+    "manuscript/TRIX_REVISION.tex": "c2f678057a7766f79f285b2ebc20299244e94026fb2ad284bdcf02d45d5bea4e",
     "manuscript/data/seed_statistics_pairs.csv": "c5402c1e2fa37f4adea604ac64646439fcdfb15b9deea9b4b4323dc214ab1d9c",
     "manuscript/data/seed_statistics_summary.json": "71c400c37f6028e4a4f454181e6d2d77128224bcd9ae1b266098d0f317d285fe",
     "manuscript/data/vlm_trial_ledger.json": "f2439150441ad4a04c3098e821d58f419b1edb86e0e4d84feaff3cf05b01eb14",
