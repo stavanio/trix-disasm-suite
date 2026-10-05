@@ -42,7 +42,8 @@
 \newcommand{\mscite}[1]{[\csname mscite#1\endcsname]}
 \newcommand{\response}[3]{\Needspace{9\baselineskip}\subsection*{#1\enspace #2}\phantomsection\label{response:#1}{\color{commentink}\itshape\textbf{Comment #1 (quotation).} #3\par}\nobreak\textbf{Response.} }
 \newcommand{\locations}[1]{\par\nopagebreak[4]{\small\textbf{Manuscript locations:} #1.\par}\nopagebreak[4]}
-\newcommand{\evidence}[1]{\par\nopagebreak[4]\begingroup\small\RaggedRight\textbf{Evidence:} \path{#1}\par\endgroup}
+\newif\ifshowevidence
+\newcommand{\evidence}[1]{\ifshowevidence\par\nopagebreak[4]\begingroup\small\RaggedRight\textbf{Evidence:} \path{#1}\par\endgroup\fi}
 
 \begin{document}
 \raggedright
@@ -61,7 +62,7 @@ The editor's six bullets and Reviewers 1 and 2 retain their original order;
 Reviewer 4's unnumbered report is separated into thirteen issues for reference.
 Locations identify headings by name in the main manuscript or
 Supplementary Information, each with separate pagination. Citations use the main
-bibliography. Evidence paths are relative to the root of
+bibliography. The code and records behind every response are in the reviewer archive. The response to Reviewer~4, who reviewed the repository directly, also lists the specific files for each point; those paths are relative to the root of
 \path{TRIX_manuscript_source.zip}; the prefix \path{archive/} instead denotes
 the \path{TRIX_reproducibility_release/} directory in
 \path{TRIX_reproducibility_release.tar}. The article LaTeX bundle exports
@@ -532,6 +533,7 @@ universal ranking of safety algorithms.
 
 \clearpage
 \section*{Response to Reviewer 4}
+\showevidencetrue
 
 \textbf{Disclosure concerning the submitted evidence.}
 The submitted headline comparisons, including SafeLayer's 86.9\% SCREW
