@@ -77,13 +77,13 @@ unsafe commands are a natural safeguard, usually assessed in isolation. Here
 we present TRiX, an execution governor that allows, projects or rejects each
 proposed command against a task-conditioned admissible set, and show that its
 value depends on the policy it governs. Across six simulated disassembly
-tasks, each with a distinct constraint, the training regime decides whether a
-restriction suffices: the same componentwise restriction gives 0\% safe
-completion when added to a trained policy and 100\% when present during
-training. Yet training cannot supply task context a restriction lacks: where
-admissible forces rotate with the part, a static restriction stays at 0\%
-while TRiX reaches 49.4\%. TRiX prevents all 31 constraint violations in 273
-vision-language-model decisions and corrects commands on robot hardware.
+tasks, each with a distinct constraint, the same componentwise restriction
+gives 0\% safe completion when added to a trained policy and 100\% when
+present during training. Training does not always compensate for missing
+context: where admissible forces rotate with the part, a static restriction
+stays at 0\% while TRiX reaches 49.4\%. Among 257 grounded commands from 273
+vision-language-model decisions, TRiX prevents all 31 observed constraint
+violations and introduces none, and corrects commands on robot hardware.
 Beyond training conditions, admissible commands still permit damage, marking
 the limit of per-step governance.
 \end{abstract}
@@ -119,7 +119,8 @@ from images, instructions and experience
 planning and interaction for collaborative robotics are developing quickly
 \cite{ref39}. These proposers widen what a robot can attempt, but nothing in
 them guarantees that a proposed command respects the physics of the part in
-front of it. A model can describe the right step and still command a pull
+front of it. A proposal can be semantically plausible yet physically
+inadmissible: a model can describe the right step and still command a pull
 where a turn was needed. Something must decide which proposals reach the
 motors.
 
@@ -175,7 +176,8 @@ task model admits, and it returns one of four decisions. \texttt{ALLOW}
 passes a command already in that set; \texttt{PROJECT} replaces a command
 outside it with the nearest admissible one; \texttt{REJECT} refuses a request
 that no correction can repair; and \texttt{INFEASIBLE} reports that the
-specification leaves no usable command. Because the admissible set follows the
+specification leaves no usable command. TRiX addresses this execution-level
+gap; it does not judge whether a proposal is semantically correct. Because the admissible set follows the
 task's state and phase, we call TRiX a task-conditioned governor, in contrast
 to static restrictions that apply the same limits throughout a task, and we
 call the range of commands a restriction leaves available its command
@@ -278,8 +280,7 @@ comparisons: the unfiltered reference \texttt{none};
 componentwise bounds that ignore coupling (\texttt{box\_clip}) or task phase
 (\texttt{static\_clip}); an analytical local-gradient reference
 (\texttt{oracle\_tangent}); a quadratic program matched to the screw
-constraint (\texttt{qp\_matched}), the form a control-barrier-function filter
-takes when its constraint is affine in the command \cite{ref23}; and TRiX. When comparing them we refer to
+constraint (\texttt{qp\_matched}); and TRiX. When comparing them we refer to
 every arm, TRiX included, as a governor. Any arm may tighten its limits by
 a margin that absorbs command noise, and each comparison states which factors
 it varies. The primary outcome, safe completion, requires finishing the task
@@ -351,9 +352,9 @@ as one system. Applied after SAC training, the componentwise
 \texttt{box\_clip} restriction yields 0.0\% safe completion; with the same
 restriction active during training, safe completion is 100.0\%, and all ten
 training seeds show the reversal
-(Fig.~\ref{fig:seed-distributions}a). The frozen policy is not at fault:
-under TRiX it reaches 100.0\%, so the post-hoc failure lies in the
-restriction. A policy trained under the box instead learns to work within the
+(Fig.~\ref{fig:seed-distributions}a). The same frozen policy reaches 100.0\% safe
+completion under TRiX, which localizes the contrast to the runtime restriction
+used with that policy. A policy trained under the box instead learns to work within the
 authority the box retains. Because only the regime changes, the regime is
 itself a variable that any evaluation of a governor must report.
 
@@ -439,11 +440,12 @@ feasibility and retained authority are distinct properties. Models are fitted
 separately on each evaluated geometry, so the study measures representation
 capacity rather than transfer of one learned model (\suppsection{S10}).
 
-\subsubsection{Per-step admissibility ends at the training boundary}
+\subsubsection{Per-step admissibility does not secure outcomes under shifted resets}
 \label{sec:ood-results}
 Every result so far lies within the conditions the policies were trained on.
 The prospectively declared shifted-reset evaluation asks what happens beyond
-them and shows where per-step governance ends. In the primary outside-support
+them, within the same analytical task models, and shows where per-step
+governance ends. In the primary outside-support
 shell, whose resets are sampled from beyond the training ranges, snap-fit safe
 completion is 59.9\% under TRiX and 3.5\% under the static restriction, down
 from 96.5\% and 5.2\% in range. As in range, this compares complete
@@ -724,9 +726,22 @@ $h\leq b/\sqrt2$. A Gaussian-tightened interval $|y|\leq L-z\sigma$ keeps
 nonzero authority exactly when $z\sigma<L$; the Supplementary Information
 gives the assumptions and proofs (\suppsection{S3}). These
 properties describe what a command set can represent and when it retains
-authority; closed-loop stability and forward invariance for an unmodeled plant
-require dynamical analysis beyond this contract. How a trained policy adapts
-to a restriction is measured empirically rather than stated as a proposition.
+authority.
+
+\textbf{Scope of the contract.} TRiX takes as given an observed state, the
+task context needed to select the applicable constraint, declared command
+scales and an admissible-set specification. It does not discover the
+specification; it enforces whatever set it is given. What it guarantees is
+that a forwarded command satisfies the implemented constraint whenever the
+projection or correction is well defined, which for
+Eq.~(\ref{eq:projection}) requires a nonempty closed convex set. Closed-loop
+stability and forward invariance for an unmodeled plant, task completion and
+physical safety for an uncalibrated product require dynamical analysis and
+calibration beyond this contract. The DISASM-Bench force, torque, damage and
+thermal thresholds are model specifications rather than measured hardware
+limits, and the physical-arm experiments test the execution boundary itself.
+How a trained policy adapts to a restriction is measured empirically rather
+than stated as a proposition.
 
 \subsection{DISASM-Bench tasks and outcomes}
 \label{sec:tasks}
@@ -913,8 +928,8 @@ receive 0.1-second position/velocity commands in the actuators' MIT
 control mode, and Joint~6 runs an
 approximately 200-Hz velocity controller. TRiX keeps proposed task-level actions,
 logged decisions and approved joint targets separate, and protects Joint~1
-with a hard invariant that rejects proposals to move it. The final grasp implementation is identified by commit
-\texttt{d296e6e} and tag \path{trix-hardware-soft-grasp-success-20260828}; its
+with a hard invariant that rejects proposals to move it. The final grasp implementation is a tagged release of the hardware repository
+named in Code Availability; its
 calibrated sequence uses gravity feed-forward on Joint~3 and a disclosed Joint~2
 positioning offset around engagement. In all six grasp-and-return trials, the
 operator manually positions the object between the open jaws at the
@@ -990,8 +1005,8 @@ The Zenodo reviewer link provides \texttt{TRIX\_manuscript\_source.zip}:
 manuscript and Supplementary sources, environment/filter implementations,
 training and analysis entrypoints, and evidence mappings. Public release of
 \url{https://github.com/stavanio/trix-disasm-suite} is planned at resubmission.
-Hardware source is identified by \url{https://github.com/stavanio/bhujab601}
-and the Methods commit/tag. Supplementary Information records reproduction
+Hardware source is at \url{https://github.com/stavanio/bhujab601}, release
+\path{trix-hardware-soft-grasp-success-20260828}. Supplementary Information records reproduction
 protocols and the computational environment.
 
 \section*{Acknowledgements}

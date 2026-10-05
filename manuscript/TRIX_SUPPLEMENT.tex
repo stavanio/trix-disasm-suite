@@ -1054,10 +1054,7 @@ Deterministic reset; stochastic variation enters through per-step noise.
 \end{longtable}
 \endgroup
 
-The associated constraint identifiers are SCREW \texttt{beb88f8d0baf5e4a},
-PCB \texttt{53fcd8e18d341d5d}, SNAP \texttt{044763e531cb6bcb},
-CRANK \texttt{bc6cc80449c95466}, BATTERY \texttt{09a4ae5d933db6bf},
-and PRY \texttt{52be08aa340982f6}.
+Each task's constraint identifier is listed under Provenance identifiers at the end of this document.
 
 \paragraph{Per-step noise.}
 The production training and evaluation entry points instantiate the registered
@@ -1310,14 +1307,7 @@ trained policies.
 
 \paragraph{Protocol-hash lineage.}
 Protocol hashes are retained as historical identifiers rather than rewritten
-when the protocol record is later amended. The original Stage~1 production
-matrix carries protocol hash \texttt{15d38a78fb73c2d4}. The filter-aware
-Stage~2 records, including the BATTERY matched-specification amendment, carry
-\texttt{422cbb191bc7ab5a}. A subsequent documentation-only clarification of
-the CRANK interpretation changed the current protocol-source hash to
-\texttt{4f5fd47a2d3e3342} without changing an experimental protocol parameter.
-Accordingly, each reported artifact retains the hash under which it was
-assembled.
+when the protocol record is later amended. The original Stage~1 production matrix, the filter-aware Stage~2 records, including the BATTERY matched-specification amendment, and a later documentation-only clarification of the CRANK interpretation each carry their own protocol identifier (Provenance identifiers). The clarification changed no experimental protocol parameter, and each reported artifact retains the identifier under which it was assembled.
 
 
 \section{Seed-Level Statistical Analysis}
@@ -1845,8 +1835,7 @@ it.
 
 The synthetic ``hallucination injection'' experiment is replaced by a
 controlled evaluation of actual vision-language-model outputs on one PCB task.
-Bank specification v1.0 records the freeze date 11 August 2026 and identifier
-\texttt{b3bb5dac2ef5a8fa}. It contains 91 images from 28 base configurations:
+Bank specification v1.0 records the freeze date 11 August 2026 and an identifier listed under Provenance identifiers at the end of this document. It contains 91 images from 28 base configurations:
 21 configurations each have normal, rotated, occluded and misleading visual
 conditions, and seven additional configurations each have one partial view.
 The three main strata each contain seven configurations and 28 images.
@@ -2024,9 +2013,7 @@ The physical platform is a Seeed reBot Arm B601-RS with RobStride
 actuators and gripper, powered from a 48-V supply and commanded over
 1-Mbit/s CAN. Joints~1--3 use RS-06 actuators and Joints~4--7 use RS-00
 actuators. The existing MIT-style joint controller operates at approximately
-200~Hz. The final grasp implementation is frozen at commit
-\texttt{d296e6e} and tag
-\path{trix-hardware-soft-grasp-success-20260828}.
+200~Hz. The final grasp implementation is frozen at the release listed under Provenance identifiers at the end of this document.
 
 The hardware execution path preserves the separation between proposal and
 command authority. A manipulation action is represented as a symbolic
@@ -2079,8 +2066,7 @@ excessive Joint~2 proposal of \(+50^\circ\) was \texttt{PROJECT}ed to
 executed by the physical robot. The subsequent \texttt{RETURN\_SAFE} request
 was \texttt{ALLOW}ed, with final Joint~1 drift of \(+0.007^\circ\). The
 complete archived intervention package, including controller logs, passive CAN
-captures, run-time repository state, and checksums, is preserved at checkpoint
-\texttt{633730c}.
+captures, run-time repository state, and checksums, is preserved at the checkpoint listed under Provenance identifiers at the end of this document.
 
 We then evaluated the frozen final V4 implementation in three continuous-video
 grasp-and-return trials (\mainref{fig:b601-hardware}). Each trial validated the symbolic sequence before
@@ -2207,11 +2193,7 @@ basis.
 
 This experiment was added during revision to evaluate selected policies under
 reset-parameter distributions extending beyond their training support.
-The protocol and implementation were committed as \texttt{9bc2242} before
-any OOD policy rollout. The declaration, checkpoint hashes, source hashes,
-seed lists and analysis rules are retained in
-\path{docs/ood_reset_protocol.json}; its SHA-256 begins
-\texttt{c3e9f59d9bf19485}. No policy was retrained or reselected. The original
+The protocol and implementation were committed to the repository before any OOD policy rollout (Provenance identifiers). The declaration, checkpoint and source identifiers, seed lists and analysis rules are retained in \path{docs/ood_reset_protocol.json} (Provenance identifiers). No policy was retrained or reselected. The original
 in-range estimates in \mainref{tab:policy-summary} are unchanged.
 
 The scope comprises the seven comparisons in that table involving SCREW
@@ -2398,6 +2380,37 @@ The source map links the post-hoc plan, diagnostic code, per-episode records
 and archived command traces and first-event states.
 
 \clearpage
+
+\section{Provenance identifiers}
+\label{sec:si-provenance}
+Every record cited in this Supplementary Information can be traced to the
+identifiers below. Hash identifiers are shown by their leading characters.
+
+\begin{center}
+\small
+\begin{tabular}{@{}p{3.6in}p{2.4in}@{}}
+\toprule
+Item & Identifier\\
+\midrule
+Task constraint, SCREW & \texttt{beb88f8d0baf5e4a}\\
+Task constraint, PCB & \texttt{53fcd8e18d341d5d}\\
+Task constraint, SNAP & \texttt{044763e531cb6bcb}\\
+Task constraint, CRANK & \texttt{bc6cc80449c95466}\\
+Task constraint, BATTERY & \texttt{09a4ae5d933db6bf}\\
+Task constraint, PRY & \texttt{52be08aa340982f6}\\
+Protocol, Stage~1 production matrix & \texttt{15d38a78fb73c2d4}\\
+Protocol, Stage~2 records including the BATTERY amendment & \texttt{422cbb191bc7ab5a}\\
+Protocol source after the CRANK documentation clarification & \texttt{4f5fd47a2d3e3342}\\
+VLM image bank, specification v1.0 & \texttt{b3bb5dac2ef5a8fa}\\
+Shifted-reset protocol and implementation, commit & \texttt{9bc2242}\\
+Shifted-reset protocol record, SHA-256 & \texttt{c3e9f59d9bf19485}\\
+Hardware intervention archive, checkpoint & \texttt{633730c}\\
+Hardware final grasp implementation, commit & \texttt{d296e6e}\\
+Hardware final grasp implementation, release & \path{trix-hardware-soft-grasp-success-20260828}\\
+\bottomrule
+\end{tabular}
+\end{center}
+
 \begin{thebibliography}{99}
 
 \bibitem{ref31} Schulman, J., Wolski, F., Dhariwal, P., Radford, A. \& Klimov, O. Proximal policy optimization algorithms. Preprint at arXiv:1707.06347 (2017).
