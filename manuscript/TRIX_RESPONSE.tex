@@ -104,8 +104,7 @@ ISS theorem. Policy adaptation is reported as an empirical finding.
 \item Actual VLM outputs: 273 decisions on 91 shared, visibility-scaled PCB images. Of 257
 grounded command pairs, TRiX prevents all 31 recorded constraint-violation
 cases and introduces none during the 40-step horizon.
-\item Physical B601-RS intervention evidence and three video-documented
-grasp-and-return trials, plus three additional logged repetitions.
+\item Physical intervention evidence on a six-degree-of-freedom Seeed reBot B601-RS arm and three video-documented grasp-and-return trials, plus three additional logged repetitions.
 \item A prospectively declared evaluation of 42,000 episodes under shifted
 reset distributions, with selected policies and governors frozen. In SNAP's
 outside-support shell, separately trained TRiX and static systems achieve
@@ -202,9 +201,7 @@ We address the requested positioning through a consolidated Introduction
 and Table~1 covering all reviewed method families, followed by the Results overview \mssec{2.1}, which introduces each
 comparator with Table~3, and the Methods subsection \mssec{4.3}. We have not
 added a second related-work subsection with the submitted numbering.
-The revised Introduction and Table~1 position TRiX alongside constrained
-policy optimization, learned safety layers, recovery policies and control
-barrier functions. \mssec{2.1} and Table~3 introduce the experimental comparator roles, and
+The revised Introduction and Table~1 position TRiX alongside constrained policy optimization, learned safety layers, recovery policies and control barrier functions, and the Introduction also relates it to shields, optimization layers that act during training and predictive safety filters (manuscript references \mscite{ref42}--\mscite{ref44}). The Discussion returns to these as the concrete extensions that per-step governance needs. \mssec{2.1} and Table~3 introduce the experimental comparator roles, and
 \mssec{4.3} states the specification controls.
 These comparisons distinguish policy learning, constraint representation and
 runtime enforcement. They identify when a componentwise restriction is
@@ -254,12 +251,10 @@ in related work.
 The exposition now starts with a concrete execution question: whether a
 proposed command can be passed, corrected or rejected. The Introduction names
 the four decisions TRiX can return and defines each technical term at its
-first use. Table~1 summarizes the existing approaches with their assumptions.
+first use. Table~1 summarizes the existing approaches with their assumptions, and the Introduction relates TRiX to shields, optimization layers and predictive safety filters.
 The Results open with a plain-language overview of the governor and the
 evaluation design (\mssec{2.1}), using screw removal to show why coupled
-constraints matter, before any result is reported. The formal contract and the
-four representation properties, with their assumptions and scope, are in the
-Methods (\mssec{4.1}), and the proofs and practical interpretations are in
+constraints matter, before any result is reported. The Methods (\mssec{4.1}) give the formal contract in a notation shared with Fig.~1, the four representation properties with their assumptions, and an explicit statement of the contract's scope; the proofs and practical interpretations are in
 \mssec{S1}, \mssec{S2} and \mssec{S3}. The former broad ISS argument is
 removed.
 \locations{\mssec{1}; \mssec{4.1}; \mssec{S1}; \mssec{S2}; \mssec{S3}; \msitem{fig:submitted-1}; \msitem{fig:submitted-2}}
@@ -636,8 +631,7 @@ nonlinear safe sets, state-dependent barriers and extensions involving
 relative degree and time variation. Table~1 describes representative
 formulations with citations and explicit assumptions. The manuscript separates
 command-set membership from state-space forward invariance and states that
-barrier synthesis requires its own dynamical conditions. TRiX is positioned
-through its execution contract and empirical regime comparisons.
+barrier synthesis requires its own dynamical conditions. TRiX is positioned through its execution contract and empirical regime comparisons, and the matched QP control is described as a command-space QP rather than a barrier filter.
 \locations{\mssec{1}; \mssec{4.3}; \msitem{tab:submitted-1}; manuscript references \mscite{ref23}--\mscite{ref41}}
 \evidence{manuscript/TRIX_REVISION.tex}
 
@@ -650,7 +644,7 @@ can lose authority for rotating anisotropic sets; and Gaussian tightening can
 remove all nonzero or all feasible command authority. Each statement gives
 its assumptions, proof and interpretation. These are representation and
 feasibility results, not closed-loop stability or physical-safety theorems.
-Policy adaptation is explicitly empirical and is not a fifth proposition.
+Policy adaptation is explicitly empirical and is not a fifth proposition. The Methods now close the execution contract with an explicit scope statement: TRiX takes the state, context, command scales and admissible set as given; it guarantees only that a forwarded command satisfies the implemented constraint where the correction is well defined; and it leaves closed-loop stability, forward invariance and calibrated physical safety to separate analysis.
 \locations{\mssec{3}; \mssec{4.1}; \mssec{S3}}
 \evidence{manuscript/TRIX_REVISION.tex}
 

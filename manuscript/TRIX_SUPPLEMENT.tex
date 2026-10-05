@@ -1408,8 +1408,7 @@ within a retrospectively defined valid region.
 \section{Recorded Computational Cost}
 \label{sec:si-runtime}
 
-We measured the complete implemented filter call,
-$(o,a)\mapsto(a',\mathrm{info})$, for all 20 registered non-passthrough arms
+We measured the complete implemented governor call, $(x,\tilde u)\mapsto(u,\mathrm{info})$, in the notation of the main Methods, for all 20 registered non-passthrough arms
 across the six tasks, plus the NumPy SCREW polygon projector and reused OSQP.
 The measurement includes array conversion and allocation, per-call constraint
 construction, projection and diagnostic construction. Input generation,
@@ -2009,7 +2008,7 @@ Partial views are reported separately and repeated views share a base configurat
 \section{Physical platform and trial records}
 \subsection{Hardware Platform}
 
-The physical platform is a Seeed reBot Arm B601-RS with RobStride
+The physical platform is a Seeed reBot Arm B601-RS, a six-degree-of-freedom arm with a parallel gripper and RobStride
 actuators and gripper, powered from a 48-V supply and commanded over
 1-Mbit/s CAN. Joints~1--3 use RS-06 actuators and Joints~4--7 use RS-00
 actuators. The existing MIT-style joint controller operates at approximately
