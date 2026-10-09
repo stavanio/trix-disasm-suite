@@ -927,8 +927,7 @@ receive 0.1-second position/velocity commands in the actuators' MIT
 control mode, and Joint~6 runs an
 approximately 200-Hz velocity controller. TRiX keeps proposed task-level actions,
 logged decisions and approved joint targets separate, and protects Joint~1
-with a hard invariant that rejects proposals to move it. The final grasp implementation is a tagged release of the hardware repository
-named in Code Availability; its
+with a hard invariant that rejects proposals to move it. The governor, trial scripts and tests used on the arm are included unchanged in the code repository (Code Availability); its
 calibrated sequence uses gravity feed-forward on Joint~3 and a disclosed Joint~2
 positioning offset around engagement. In all six grasp-and-return trials, the
 operator manually positions the object between the open jaws at the
@@ -1004,8 +1003,7 @@ The Zenodo reviewer link provides \texttt{TRIX\_manuscript\_source.zip}:
 manuscript and Supplementary sources, environment/filter implementations,
 training and analysis entrypoints, and evidence mappings. Public release of
 \url{https://github.com/stavanio/trix-disasm-suite} is planned at resubmission.
-Hardware source is at \url{https://github.com/stavanio/bhujab601}, release
-\path{trix-hardware-soft-grasp-success-20260828}. Supplementary Information records reproduction
+The hardware governor, trial scripts and tests are in the repository's \path{hardware/} directory, copied unchanged from the release used for the physical trials (\path{trix-hardware-soft-grasp-success-20260828}). Supplementary Information records reproduction
 protocols and the computational environment.
 
 \section*{Acknowledgements}

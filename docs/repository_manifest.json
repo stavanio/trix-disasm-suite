@@ -1443,6 +1443,118 @@
       "references": [
         "tab:stage2-key"
       ]
+    },
+    "hardware/trix_runtime/__init__.py": {
+      "role": "Hardware TRiX governor (__init__) used in the physical trials",
+      "references": [
+        "manuscript/TRIX_REVISION.tex",
+        "manuscript/TRIX_SUPPLEMENT.tex"
+      ]
+    },
+    "hardware/trix_runtime/types.py": {
+      "role": "Hardware TRiX governor (types) used in the physical trials",
+      "references": [
+        "manuscript/TRIX_REVISION.tex",
+        "manuscript/TRIX_SUPPLEMENT.tex"
+      ]
+    },
+    "hardware/trix_runtime/primitives.py": {
+      "role": "Hardware TRiX governor (primitives) used in the physical trials",
+      "references": [
+        "manuscript/TRIX_REVISION.tex",
+        "manuscript/TRIX_SUPPLEMENT.tex"
+      ]
+    },
+    "hardware/trix_runtime/projector.py": {
+      "role": "Hardware TRiX governor (projector) used in the physical trials",
+      "references": [
+        "manuscript/TRIX_REVISION.tex",
+        "manuscript/TRIX_SUPPLEMENT.tex"
+      ]
+    },
+    "hardware/trix_runtime/execution_bridge.py": {
+      "role": "Hardware TRiX governor (execution_bridge) used in the physical trials",
+      "references": [
+        "manuscript/TRIX_REVISION.tex",
+        "manuscript/TRIX_SUPPLEMENT.tex"
+      ]
+    },
+    "hardware/trix_runtime/physical_adapter.py": {
+      "role": "Hardware TRiX governor (physical_adapter) used in the physical trials",
+      "references": [
+        "manuscript/TRIX_REVISION.tex",
+        "manuscript/TRIX_SUPPLEMENT.tex"
+      ]
+    },
+    "hardware/examples/trix_physical_v1_adversarial.py": {
+      "role": "Hardware intervention trial: rejected transition, protected joint and projected joint command",
+      "references": [
+        "manuscript/TRIX_REVISION.tex",
+        "manuscript/TRIX_SUPPLEMENT.tex"
+      ]
+    },
+    "hardware/examples/trix_physical_v1_approach_return.py": {
+      "role": "Hardware intervention trial: allowed approach and return",
+      "references": [
+        "manuscript/TRIX_REVISION.tex",
+        "manuscript/TRIX_SUPPLEMENT.tex"
+      ]
+    },
+    "hardware/examples/trix_physical_manipulation_v4_soft_grasp.py": {
+      "role": "Hardware grasp-and-return confirmation trials",
+      "references": [
+        "manuscript/TRIX_REVISION.tex",
+        "manuscript/TRIX_SUPPLEMENT.tex"
+      ]
+    },
+    "hardware/examples/trix_physical_v1_adversarial_gravity.py": {
+      "role": "Gravity-compensated launcher for the corresponding hardware trial script",
+      "references": [
+        "manuscript/TRIX_REVISION.tex",
+        "manuscript/TRIX_SUPPLEMENT.tex"
+      ]
+    },
+    "hardware/examples/trix_physical_v1_approach_return_gravity.py": {
+      "role": "Gravity-compensated launcher for the corresponding hardware trial script",
+      "references": [
+        "manuscript/TRIX_REVISION.tex",
+        "manuscript/TRIX_SUPPLEMENT.tex"
+      ]
+    },
+    "hardware/examples/trix_physical_manipulation_v4_soft_grasp_gravity.py": {
+      "role": "Gravity-compensated launcher for the corresponding hardware trial script",
+      "references": [
+        "manuscript/TRIX_REVISION.tex",
+        "manuscript/TRIX_SUPPLEMENT.tex"
+      ]
+    },
+    "hardware/tests/test_trix_bridge_v1.py": {
+      "role": "Unit test for the hardware TRiX governor",
+      "references": [
+        "manuscript/TRIX_REVISION.tex",
+        "manuscript/TRIX_SUPPLEMENT.tex"
+      ]
+    },
+    "hardware/tests/test_trix_projector_v1.py": {
+      "role": "Unit test for the hardware TRiX governor",
+      "references": [
+        "manuscript/TRIX_REVISION.tex",
+        "manuscript/TRIX_SUPPLEMENT.tex"
+      ]
+    },
+    "hardware/tests/test_trix_physical_adapter_v1.py": {
+      "role": "Unit test for the hardware TRiX governor",
+      "references": [
+        "manuscript/TRIX_REVISION.tex",
+        "manuscript/TRIX_SUPPLEMENT.tex"
+      ]
+    },
+    "hardware/tests/test_trix_gripper_v1.py": {
+      "role": "Unit test for the hardware TRiX governor",
+      "references": [
+        "manuscript/TRIX_REVISION.tex",
+        "manuscript/TRIX_SUPPLEMENT.tex"
+      ]
     }
   },
   "entrypoints": [
@@ -1476,7 +1588,13 @@
     "scripts/verify_workspace_renders.py",
     "scripts/verify_workspace_state_mapping.py",
     "training/stage1.py",
-    "training/stage2.py"
+    "training/stage2.py",
+    "hardware/examples/trix_physical_v1_adversarial.py",
+    "hardware/examples/trix_physical_v1_adversarial_gravity.py",
+    "hardware/examples/trix_physical_v1_approach_return.py",
+    "hardware/examples/trix_physical_v1_approach_return_gravity.py",
+    "hardware/examples/trix_physical_manipulation_v4_soft_grasp.py",
+    "hardware/examples/trix_physical_manipulation_v4_soft_grasp_gravity.py"
   ],
   "tests": [
     "tests/test_battery_v2.py",
@@ -1496,7 +1614,11 @@
     "tests/test_selection.py",
     "tests/test_selection_seed_determinism.py",
     "tests/test_snap_v2.py",
-    "tests/test_ood_reset.py"
+    "tests/test_ood_reset.py",
+    "hardware/tests/test_trix_bridge_v1.py",
+    "hardware/tests/test_trix_projector_v1.py",
+    "hardware/tests/test_trix_physical_adapter_v1.py",
+    "hardware/tests/test_trix_gripper_v1.py"
   ],
   "explicit_dependencies": {
     "scripts/workspace_environment.py": [
@@ -1536,6 +1658,71 @@
       "scripts/audit_revision_claims.py",
       "scripts/audit_vlm_reconciliation.py",
       "scripts/build_revision_seed_statistics.py"
+    ],
+    "hardware/examples/trix_physical_v1_adversarial.py": [
+      "hardware/trix_runtime/__init__.py",
+      "hardware/trix_runtime/types.py",
+      "hardware/trix_runtime/primitives.py",
+      "hardware/trix_runtime/projector.py",
+      "hardware/trix_runtime/execution_bridge.py",
+      "hardware/trix_runtime/physical_adapter.py"
+    ],
+    "hardware/examples/trix_physical_v1_adversarial_gravity.py": [
+      "hardware/examples/trix_physical_v1_adversarial.py"
+    ],
+    "hardware/examples/trix_physical_v1_approach_return.py": [
+      "hardware/trix_runtime/__init__.py",
+      "hardware/trix_runtime/types.py",
+      "hardware/trix_runtime/primitives.py",
+      "hardware/trix_runtime/projector.py",
+      "hardware/trix_runtime/execution_bridge.py",
+      "hardware/trix_runtime/physical_adapter.py"
+    ],
+    "hardware/examples/trix_physical_v1_approach_return_gravity.py": [
+      "hardware/examples/trix_physical_v1_approach_return.py"
+    ],
+    "hardware/examples/trix_physical_manipulation_v4_soft_grasp.py": [
+      "hardware/trix_runtime/__init__.py",
+      "hardware/trix_runtime/types.py",
+      "hardware/trix_runtime/primitives.py",
+      "hardware/trix_runtime/projector.py",
+      "hardware/trix_runtime/execution_bridge.py",
+      "hardware/trix_runtime/physical_adapter.py"
+    ],
+    "hardware/examples/trix_physical_manipulation_v4_soft_grasp_gravity.py": [
+      "hardware/examples/trix_physical_manipulation_v4_soft_grasp.py"
+    ],
+    "hardware/tests/test_trix_bridge_v1.py": [
+      "hardware/trix_runtime/__init__.py",
+      "hardware/trix_runtime/types.py",
+      "hardware/trix_runtime/primitives.py",
+      "hardware/trix_runtime/projector.py",
+      "hardware/trix_runtime/execution_bridge.py",
+      "hardware/trix_runtime/physical_adapter.py"
+    ],
+    "hardware/tests/test_trix_projector_v1.py": [
+      "hardware/trix_runtime/__init__.py",
+      "hardware/trix_runtime/types.py",
+      "hardware/trix_runtime/primitives.py",
+      "hardware/trix_runtime/projector.py",
+      "hardware/trix_runtime/execution_bridge.py",
+      "hardware/trix_runtime/physical_adapter.py"
+    ],
+    "hardware/tests/test_trix_physical_adapter_v1.py": [
+      "hardware/trix_runtime/__init__.py",
+      "hardware/trix_runtime/types.py",
+      "hardware/trix_runtime/primitives.py",
+      "hardware/trix_runtime/projector.py",
+      "hardware/trix_runtime/execution_bridge.py",
+      "hardware/trix_runtime/physical_adapter.py"
+    ],
+    "hardware/tests/test_trix_gripper_v1.py": [
+      "hardware/trix_runtime/__init__.py",
+      "hardware/trix_runtime/types.py",
+      "hardware/trix_runtime/primitives.py",
+      "hardware/trix_runtime/projector.py",
+      "hardware/trix_runtime/execution_bridge.py",
+      "hardware/trix_runtime/physical_adapter.py"
     ]
   },
   "paper_items": [
