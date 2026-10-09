@@ -1,11 +1,11 @@
 {
   "schema": 2,
   "stage": "author_review_draft",
-  "manuscript_sha256": "16cb506b756b3eeb912fc69fb6e5ff804114ed153cc172a1e3ea906fa1c549ac",
+  "manuscript_sha256": "e6221e661aeb6e9affb913dd14b58a82d8d6e4fda459817b5de91f2b62bd7164",
   "response_sha256": "d2dc3f2e7dc4bb475543fb8801d90d53d93a85ffd2f512b88f088cbb78d50026",
   "supplement_sha256": "d6d942f5b0dba4f8f5e57060d23519b6337e2bf2cc302b9a1e199c1f691278e3",
-  "manuscript_pdf_sha256_at_build": "a702e371b24a00fb593f0397390f390653a8f105c971054d869dc1022621fc11",
-  "supplement_pdf_sha256_at_build": "0b63be29ef485ef3d857903b7424d1320dedd19d80233b2e9356c0972266418a",
+  "manuscript_pdf_sha256_at_build": "ee40f425ac09cda2dafac98fbd7d0fe76a81a0293feb7322d01b7d665bfe6913",
+  "supplement_pdf_sha256_at_build": "6b7ce14c739d2977e409dfcfbc9291588b1458fe628ec8b5524077ab43181efc",
   "archive_manifest_sha256": "c99a622769f040815fa297658d3923784b1eed195c9b54f3b92ed6024cc4e41b",
   "comment_source": {
     "original_reports_available": true,
@@ -95,8 +95,8 @@
       "page": 1,
       "source": "manuscript/TRIX_REVISION.tex",
       "source_lines": [
-        94,
-        219
+        95,
+        226
       ],
       "heading_level": "section"
     },
@@ -105,198 +105,198 @@
       "page": 4,
       "source": "manuscript/TRIX_REVISION.tex",
       "source_lines": [
-        220,
-        589
+        227,
+        613
       ],
       "heading_level": "section"
     },
     "2.1": {
-      "title": "Governor and evaluation design",
+      "title": "Execution contract and evaluation design",
       "page": 4,
       "source": "manuscript/TRIX_REVISION.tex",
       "source_lines": [
-        229,
-        308
+        235,
+        339
       ],
       "heading_level": "subsection"
     },
     "2.2": {
-      "title": "Simulation benchmark",
-      "page": 5,
+      "title": "Simulated disassembly",
+      "page": 6,
       "source": "manuscript/TRIX_REVISION.tex",
       "source_lines": [
-        309,
-        478
+        340,
+        504
       ],
       "heading_level": "subsection"
     },
     "2.2.1": {
       "title": "The training regime decides whether a restriction suffices",
-      "page": 5,
+      "page": 7,
       "source": "manuscript/TRIX_REVISION.tex",
       "source_lines": [
-        347,
-        359
+        377,
+        389
       ],
       "heading_level": "subsubsection"
     },
     "2.2.2": {
       "title": "Task context, not the solver, separates governors",
-      "page": 6,
+      "page": 7,
       "source": "manuscript/TRIX_REVISION.tex",
       "source_lines": [
-        360,
-        385
+        390,
+        414
       ],
       "heading_level": "subsubsection"
     },
     "2.2.3": {
-      "title": "Simple restrictions suffice when correctly specified",
-      "page": 7,
+      "title": "Simple restrictions suffice when nothing is missing",
+      "page": 8,
       "source": "manuscript/TRIX_REVISION.tex",
       "source_lines": [
-        386,
-        410
+        415,
+        438
       ],
       "heading_level": "subsubsection"
     },
     "2.2.4": {
       "title": "Representation determines retained authority",
-      "page": 7,
+      "page": 8,
       "source": "manuscript/TRIX_REVISION.tex",
       "source_lines": [
-        411,
-        441
+        439,
+        468
       ],
       "heading_level": "subsubsection"
     },
     "2.2.5": {
-      "title": "Per-step admissibility does not secure outcomes under shifted resets",
-      "page": 8,
+      "title": "Admissible commands can still produce damage under shifted resets",
+      "page": 9,
       "source": "manuscript/TRIX_REVISION.tex",
       "source_lines": [
-        442,
-        478
+        469,
+        504
       ],
       "heading_level": "subsubsection"
     },
     "2.3": {
-      "title": "Governance of foundation-model commands",
-      "page": 8,
+      "title": "Commands from vision-language models",
+      "page": 9,
       "source": "manuscript/TRIX_REVISION.tex",
       "source_lines": [
-        479,
-        545
+        505,
+        570
       ],
       "heading_level": "subsection"
     },
     "2.4": {
-      "title": "Governance on a physical robot",
-      "page": 9,
+      "title": "Execution on a physical arm",
+      "page": 10,
       "source": "manuscript/TRIX_REVISION.tex",
       "source_lines": [
-        546,
-        569
+        571,
+        594
       ],
       "heading_level": "subsection"
     },
     "2.5": {
-      "title": "The cost of governance",
-      "page": 10,
+      "title": "Computational cost",
+      "page": 11,
       "source": "manuscript/TRIX_REVISION.tex",
       "source_lines": [
-        570,
-        589
+        595,
+        613
       ],
       "heading_level": "subsection"
     },
     "3": {
       "title": "Discussion",
-      "page": 10,
+      "page": 11,
       "source": "manuscript/TRIX_REVISION.tex",
       "source_lines": [
-        590,
-        662
+        614,
+        686
       ],
       "heading_level": "section"
     },
     "4": {
       "title": "Methods",
-      "page": 11,
+      "page": 12,
       "source": "manuscript/TRIX_REVISION.tex",
       "source_lines": [
-        663,
-        1122
+        687,
+        1172
       ],
       "heading_level": "section"
     },
     "4.1": {
       "title": "The execution contract",
-      "page": 12,
+      "page": 13,
       "source": "manuscript/TRIX_REVISION.tex",
       "source_lines": [
-        669,
-        744
+        693,
+        803
       ],
       "heading_level": "subsection"
     },
     "4.2": {
       "title": "DISASM-Bench tasks and outcomes",
-      "page": 13,
+      "page": 14,
       "source": "manuscript/TRIX_REVISION.tex",
       "source_lines": [
-        745,
-        788
+        804,
+        846
       ],
       "heading_level": "subsection"
     },
     "4.3": {
       "title": "Policies, regimes and comparators",
-      "page": 13,
+      "page": 15,
       "source": "manuscript/TRIX_REVISION.tex",
       "source_lines": [
-        789,
-        838
+        847,
+        895
       ],
       "heading_level": "subsection"
     },
     "4.4": {
       "title": "Representation, shift and sensitivity studies",
-      "page": 14,
+      "page": 16,
       "source": "manuscript/TRIX_REVISION.tex",
       "source_lines": [
-        839,
-        882
+        896,
+        937
       ],
       "heading_level": "subsection"
     },
     "4.5": {
-      "title": "Foundation-model commands",
-      "page": 15,
+      "title": "Vision-language-model commands",
+      "page": 17,
       "source": "manuscript/TRIX_REVISION.tex",
       "source_lines": [
-        883,
-        921
+        938,
+        975
       ],
       "heading_level": "subsection"
     },
     "4.6": {
       "title": "Physical platform",
-      "page": 16,
+      "page": 17,
       "source": "manuscript/TRIX_REVISION.tex",
       "source_lines": [
-        922,
-        942
+        976,
+        996
       ],
       "heading_level": "subsection"
     },
     "4.7": {
       "title": "Measurement, statistics and provenance",
-      "page": 16,
+      "page": 18,
       "source": "manuscript/TRIX_REVISION.tex",
       "source_lines": [
-        943,
-        1122
+        997,
+        1172
       ],
       "heading_level": "subsection"
     },
@@ -867,217 +867,259 @@
       "page": 1,
       "source": "manuscript/TRIX_REVISION.tex",
       "document": "manuscript/TRIX_REVISION.tex",
-      "source_line": 95
+      "source_line": 96
     },
     "tab:submitted-1": {
       "number": "1",
       "page": 3,
       "source": "manuscript/TRIX_REVISION.tex",
       "document": "manuscript/TRIX_REVISION.tex",
-      "source_line": 154
+      "source_line": 144
     },
     "sec:design": {
       "number": "2.1",
       "page": 4,
       "source": "manuscript/TRIX_REVISION.tex",
       "document": "manuscript/TRIX_REVISION.tex",
-      "source_line": 230
+      "source_line": 236
     },
     "tab:submitted-2": {
       "number": "2",
       "page": 5,
       "source": "manuscript/TRIX_REVISION.tex",
       "document": "manuscript/TRIX_REVISION.tex",
-      "source_line": 255
-    },
-    "sec:sim-results": {
-      "number": "2.2",
-      "page": 5,
-      "source": "manuscript/TRIX_REVISION.tex",
-      "document": "manuscript/TRIX_REVISION.tex",
-      "source_line": 310
-    },
-    "sec:policy-results": {
-      "number": "2.2.1",
-      "page": 5,
-      "source": "manuscript/TRIX_REVISION.tex",
-      "document": "manuscript/TRIX_REVISION.tex",
-      "source_line": 348
+      "source_line": 258
     },
     "tab:submitted-3": {
       "number": "3",
       "page": 6,
       "source": "manuscript/TRIX_REVISION.tex",
       "document": "manuscript/TRIX_REVISION.tex",
-      "source_line": 292
+      "source_line": 303
+    },
+    "sec:sim-results": {
+      "number": "2.2",
+      "page": 6,
+      "source": "manuscript/TRIX_REVISION.tex",
+      "document": "manuscript/TRIX_REVISION.tex",
+      "source_line": 341
     },
     "tab:policy-summary": {
       "number": "4",
-      "page": 6,
+      "page": 7,
       "source": "manuscript/TRIX_REVISION.tex",
       "document": "manuscript/TRIX_REVISION.tex",
-      "source_line": 330
+      "source_line": 359
+    },
+    "sec:policy-results": {
+      "number": "2.2.1",
+      "page": 7,
+      "source": "manuscript/TRIX_REVISION.tex",
+      "document": "manuscript/TRIX_REVISION.tex",
+      "source_line": 378
     },
     "sec:context-results": {
       "number": "2.2.2",
-      "page": 6,
+      "page": 7,
       "source": "manuscript/TRIX_REVISION.tex",
       "document": "manuscript/TRIX_REVISION.tex",
-      "source_line": 361
+      "source_line": 391
     },
     "sec:sufficient-results": {
       "number": "2.2.3",
-      "page": 7,
+      "page": 8,
       "source": "manuscript/TRIX_REVISION.tex",
       "document": "manuscript/TRIX_REVISION.tex",
-      "source_line": 387
+      "source_line": 416
     },
     "sec:representation-results": {
       "number": "2.2.4",
-      "page": 7,
+      "page": 8,
       "source": "manuscript/TRIX_REVISION.tex",
       "document": "manuscript/TRIX_REVISION.tex",
-      "source_line": 412
+      "source_line": 440
     },
     "sec:ood-results": {
       "number": "2.2.5",
-      "page": 8,
+      "page": 9,
       "source": "manuscript/TRIX_REVISION.tex",
       "document": "manuscript/TRIX_REVISION.tex",
-      "source_line": 443
+      "source_line": 470
     },
     "sec:vlm-results": {
       "number": "2.3",
-      "page": 8,
+      "page": 9,
       "source": "manuscript/TRIX_REVISION.tex",
       "document": "manuscript/TRIX_REVISION.tex",
-      "source_line": 480
+      "source_line": 506
     },
     "tab:vlm-results": {
       "number": "5",
-      "page": 9,
+      "page": 10,
       "source": "manuscript/TRIX_REVISION.tex",
       "document": "manuscript/TRIX_REVISION.tex",
-      "source_line": 502
+      "source_line": 527
     },
     "sec:hardware-results": {
       "number": "2.4",
-      "page": 9,
+      "page": 10,
       "source": "manuscript/TRIX_REVISION.tex",
       "document": "manuscript/TRIX_REVISION.tex",
-      "source_line": 547
+      "source_line": 572
     },
     "sec:runtime-benchmark": {
       "number": "2.5",
-      "page": 10,
+      "page": 11,
       "source": "manuscript/TRIX_REVISION.tex",
       "document": "manuscript/TRIX_REVISION.tex",
-      "source_line": 571
+      "source_line": 596
     },
     "sec:discussion": {
       "number": "3",
-      "page": 10,
+      "page": 11,
       "source": "manuscript/TRIX_REVISION.tex",
       "document": "manuscript/TRIX_REVISION.tex",
-      "source_line": 591
+      "source_line": 615
     },
     "sec:authority": {
       "number": "4.1",
-      "page": 12,
+      "page": 13,
       "source": "manuscript/TRIX_REVISION.tex",
       "document": "manuscript/TRIX_REVISION.tex",
-      "source_line": 670
+      "source_line": 694
+    },
+    "eq:contract": {
+      "number": "1",
+      "page": 13,
+      "source": "manuscript/TRIX_REVISION.tex",
+      "document": "manuscript/TRIX_REVISION.tex",
+      "source_line": 713
     },
     "eq:projection": {
-      "number": "1",
-      "page": 12,
+      "number": "2",
+      "page": 13,
       "source": "manuscript/TRIX_REVISION.tex",
       "document": "manuscript/TRIX_REVISION.tex",
-      "source_line": 689
+      "source_line": 722
+    },
+    "eq:pitch": {
+      "number": "3",
+      "page": 13,
+      "source": "manuscript/TRIX_REVISION.tex",
+      "document": "manuscript/TRIX_REVISION.tex",
+      "source_line": 732
     },
     "eq:helix": {
-      "number": "2",
-      "page": 12,
-      "source": "manuscript/TRIX_REVISION.tex",
-      "document": "manuscript/TRIX_REVISION.tex",
-      "source_line": 706
-    },
-    "sec:tasks": {
-      "number": "4.2",
+      "number": "4",
       "page": 13,
       "source": "manuscript/TRIX_REVISION.tex",
       "document": "manuscript/TRIX_REVISION.tex",
-      "source_line": 746
+      "source_line": 743
     },
-    "sec:training-methods": {
-      "number": "4.3",
-      "page": 13,
-      "source": "manuscript/TRIX_REVISION.tex",
-      "document": "manuscript/TRIX_REVISION.tex",
-      "source_line": 790
-    },
-    "sec:model-validation": {
-      "number": "4.4",
+    "eq:clip": {
+      "number": "5",
       "page": 14,
       "source": "manuscript/TRIX_REVISION.tex",
       "document": "manuscript/TRIX_REVISION.tex",
-      "source_line": 840
+      "source_line": 762
     },
-    "sec:vlm-method": {
-      "number": "4.5",
+    "eq:phase": {
+      "number": "6",
+      "page": 14,
+      "source": "manuscript/TRIX_REVISION.tex",
+      "document": "manuscript/TRIX_REVISION.tex",
+      "source_line": 768
+    },
+    "eq:rotation": {
+      "number": "7",
+      "page": 14,
+      "source": "manuscript/TRIX_REVISION.tex",
+      "document": "manuscript/TRIX_REVISION.tex",
+      "source_line": 775
+    },
+    "eq:tighten": {
+      "number": "8",
+      "page": 14,
+      "source": "manuscript/TRIX_REVISION.tex",
+      "document": "manuscript/TRIX_REVISION.tex",
+      "source_line": 782
+    },
+    "sec:tasks": {
+      "number": "4.2",
+      "page": 14,
+      "source": "manuscript/TRIX_REVISION.tex",
+      "document": "manuscript/TRIX_REVISION.tex",
+      "source_line": 805
+    },
+    "sec:training-methods": {
+      "number": "4.3",
       "page": 15,
       "source": "manuscript/TRIX_REVISION.tex",
       "document": "manuscript/TRIX_REVISION.tex",
-      "source_line": 884
+      "source_line": 848
+    },
+    "sec:model-validation": {
+      "number": "4.4",
+      "page": 16,
+      "source": "manuscript/TRIX_REVISION.tex",
+      "document": "manuscript/TRIX_REVISION.tex",
+      "source_line": 897
+    },
+    "sec:vlm-method": {
+      "number": "4.5",
+      "page": 17,
+      "source": "manuscript/TRIX_REVISION.tex",
+      "document": "manuscript/TRIX_REVISION.tex",
+      "source_line": 939
     },
     "sec:hardware-methods": {
       "number": "4.6",
-      "page": 16,
+      "page": 17,
       "source": "manuscript/TRIX_REVISION.tex",
       "document": "manuscript/TRIX_REVISION.tex",
-      "source_line": 923
+      "source_line": 977
     },
     "sec:statistics": {
       "number": "4.7",
-      "page": 16,
+      "page": 18,
       "source": "manuscript/TRIX_REVISION.tex",
       "document": "manuscript/TRIX_REVISION.tex",
-      "source_line": 944
+      "source_line": 998
     },
     "fig:submitted-1": {
       "number": "1",
-      "page": 22,
-      "source": "manuscript/TRIX_REVISION.tex",
-      "document": "manuscript/TRIX_REVISION.tex",
-      "source_line": 1071
-    },
-    "fig:submitted-2": {
-      "number": "2",
       "page": 23,
       "source": "manuscript/TRIX_REVISION.tex",
       "document": "manuscript/TRIX_REVISION.tex",
-      "source_line": 1084
+      "source_line": 1121
     },
-    "fig:disasm-workspaces": {
-      "number": "3",
+    "fig:submitted-2": {
+      "number": "2",
       "page": 24,
       "source": "manuscript/TRIX_REVISION.tex",
       "document": "manuscript/TRIX_REVISION.tex",
-      "source_line": 1097
+      "source_line": 1134
     },
-    "fig:seed-distributions": {
-      "number": "4",
+    "fig:disasm-workspaces": {
+      "number": "3",
       "page": 25,
       "source": "manuscript/TRIX_REVISION.tex",
       "document": "manuscript/TRIX_REVISION.tex",
-      "source_line": 1110
+      "source_line": 1147
     },
-    "fig:b601-hardware": {
-      "number": "5",
+    "fig:seed-distributions": {
+      "number": "4",
       "page": 26,
       "source": "manuscript/TRIX_REVISION.tex",
       "document": "manuscript/TRIX_REVISION.tex",
-      "source_line": 1120
+      "source_line": 1160
+    },
+    "fig:b601-hardware": {
+      "number": "5",
+      "page": 27,
+      "source": "manuscript/TRIX_REVISION.tex",
+      "document": "manuscript/TRIX_REVISION.tex",
+      "source_line": 1170
     },
     "tab:submitted-7": {
       "number": "S1",
@@ -2374,7 +2416,7 @@
     "experiments/runtime_benchmark.py": "2deedbbf4a1945fc00f7cd30f7fd908be1a06f589fc1f6ddb7633caa4849c10d",
     "experiments/sensitivity.py": "56287173ea8ea2b5d4f2646cf99e447b68affefcd4972ad16f1576c3c4f70a3d",
     "experiments/snap_ood_attribution.py": "4d757b830a17d81eef871aea351ef20f7e36b37c8e60556cab53f0ff1bbec741",
-    "manuscript/TRIX_REVISION.tex": "16cb506b756b3eeb912fc69fb6e5ff804114ed153cc172a1e3ea906fa1c549ac",
+    "manuscript/TRIX_REVISION.tex": "e6221e661aeb6e9affb913dd14b58a82d8d6e4fda459817b5de91f2b62bd7164",
     "manuscript/data/seed_statistics_pairs.csv": "c5402c1e2fa37f4adea604ac64646439fcdfb15b9deea9b4b4323dc214ab1d9c",
     "manuscript/data/seed_statistics_summary.json": "71c400c37f6028e4a4f454181e6d2d77128224bcd9ae1b266098d0f317d285fe",
     "manuscript/data/vlm_trial_ledger.json": "f2439150441ad4a04c3098e821d58f419b1edb86e0e4d84feaff3cf05b01eb14",
