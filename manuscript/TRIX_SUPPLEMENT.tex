@@ -88,7 +88,6 @@ Results, Solver, metric and task context & S9.5 correction-metric sensitivity\\
 Results and Methods, VLM command replay & S11 encoding, records and analyses\\
 Results and Methods, Hardware verification & S12 platform and trial records\\
 Discussion & S13 failure mechanisms of per-step governance\\
-Data and Code Availability & S15 provenance identifiers\\
 \bottomrule
 \end{tabular}
 \end{center}
@@ -1032,8 +1031,8 @@ Deterministic reset; stochastic variation enters through per-step noise.
 \end{longtable}
 \endgroup
 
-Each task's constraint identifier (Provenance identifiers, end of this
-document) matches the frozen v2/v3 module but does not hash the complete
+Each task's constraint identifier, recorded with every run in the evidence
+archive, matches the frozen v2/v3 module but does not hash the complete
 observation and reset implementations; reproducing those also requires the
 corresponding source revision.
 
@@ -1198,7 +1197,7 @@ corrections.
 The original Stage~1 matrix, the filter-aware Stage~2 records (including the
 BATTERY matched-specification amendment) and a later documentation-only
 clarification of the CRANK interpretation each carry their own protocol identifier
-(Provenance identifiers); the clarification changed no experimental
+in the evidence archive; the clarification changed no experimental
 parameter, and each artifact keeps the identifier under which it was
 assembled.
 
@@ -1490,7 +1489,8 @@ the task code before any policy was trained and are unchanged since.
 Two gates precede comparison: at $\kappa=1$ the reconstructed projector
 matches the production scalar TRiX projector within the declared $10^{-6}$
 tolerance on 10,000 uniformly sampled commands, and the replay reproduces
-every archived TRiX safe-completion count for all 20 policies, seed for seed.
+every archived TRiX safe-completion count for all 20 policies, seed for seed
+(\path{experiments/screw_metric_sensitivity.py}).
 Policies replay their archived held-out Stage~1 test-shard episodes
 (879000--879099 for training seed~0 of both algorithms, 899000--899099 for
 seeds~1--9), shared by TRiX and the matched QP for every seed; the archived
@@ -1768,7 +1768,7 @@ boundary.
 \section{Physical platform and trial records}
 \subsection{Hardware platform}
 Joints~1--3 use RS-06 and Joints~4--7 RS-00 actuators; the final grasp implementation is frozen
-at the release listed under Provenance identifiers.
+at a tagged release preserved in the evidence archive.
 
 \texttt{TrixProjector} answers each symbolic manipulation \texttt{Proposal} with \texttt{ALLOW},
 \texttt{PROJECT} or \texttt{REJECT}; \texttt{TrixExecutionBridge} turns an
@@ -1798,7 +1798,7 @@ excessive \(+50^\circ\) Joint~2 proposal was \texttt{PROJECT}ed to
 \(+18^\circ\), and only that target was executed. The subsequent
 \texttt{RETURN\_SAFE} request was \texttt{ALLOW}ed, with final Joint~1 drift of
 \(+0.007^\circ\). Its evidence package, including passive CAN captures and checksums, is
-archived at the checkpoint listed under Provenance identifiers.
+preserved in the evidence archive.
 
 Each of three continuous-video grasp-and-return trials of the frozen V4
 implementation (\mainref{fig:b601-hardware}) validated the symbolic sequence
@@ -1887,7 +1887,7 @@ that narrower basis.
 
 Protocol and implementation for this revision-added experiment were committed to the
 repository before any OOD policy rollout; \path{docs/ood_reset_protocol.json}
-(Provenance identifiers) retains the declaration, checkpoint and source identifiers, seed lists
+retains the declaration, checkpoint and source identifiers, seed lists
 and analysis rules. No policy was retrained or reselected, and the
 in-range estimates in \mainref{tab:policy-summary} are unchanged.
 
@@ -2050,37 +2050,6 @@ explain the trace. The audit locates overdeflection after admissible commands
 without apportioning it among noise, stiffness and transient dynamics. The Stage~2 arms also differ in phase awareness and margin
 specification, a further reason their contrast does not isolate the governor. The source map links the post-hoc plan, diagnostic code,
 per-episode records, command traces and first-event states.
-
-\section{Provenance identifiers}
-\label{sec:si-provenance}
-Every record cited in this Supplementary Information can be traced to the
-identifiers below. Hash identifiers are shown by their leading characters.
-
-\begin{center}
-\small
-\begin{tabular}{@{}p{3.6in}p{2.4in}@{}}
-\toprule
-Item & Identifier\\
-\midrule
-Task constraint, SCREW & \texttt{beb88f8d0baf5e4a}\\
-Task constraint, PCB & \texttt{53fcd8e18d341d5d}\\
-Task constraint, SNAP & \texttt{044763e531cb6bcb}\\
-Task constraint, CRANK & \texttt{bc6cc80449c95466}\\
-Task constraint, BATTERY & \texttt{09a4ae5d933db6bf}\\
-Task constraint, PRY & \texttt{52be08aa340982f6}\\
-Protocol, Stage~1 production matrix & \texttt{15d38a78fb73c2d4}\\
-Protocol, Stage~2 records including the BATTERY amendment & \texttt{422cbb191bc7ab5a}\\
-Protocol source after the CRANK documentation clarification & \texttt{4f5fd47a2d3e3342}\\
-VLM image bank, specification v1.0 & \texttt{b3bb5dac2ef5a8fa}\\
-Shifted-reset protocol and implementation, commit & \texttt{9bc2242}\\
-Shifted-reset protocol record, SHA-256 & \texttt{c3e9f59d9bf19485}\\
-Hardware intervention archive, checkpoint & \texttt{633730c}\\
-Hardware final grasp implementation, commit & \texttt{d296e6e}\\
-Hardware final grasp implementation, release & \path{trix-hardware-soft-grasp-success-20260828}\\
-Correction-metric replay and results & \path{experiments/screw_metric_sensitivity.py}\\
-\bottomrule
-\end{tabular}
-\end{center}
 
 \begin{thebibliography}{99}
 

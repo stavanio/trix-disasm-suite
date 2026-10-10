@@ -3,9 +3,9 @@
   "stage": "author_review_draft",
   "manuscript_sha256": "0af8caae01a069e34495ae821e663a133537dadd4cfb1a68f009299b8a5eeaaf",
   "response_sha256": "ffd8fb8081a33460e7def3bf9c8263540f1a952980b70a463e77ba820b81de54",
-  "supplement_sha256": "2513587b821da007c4fc79885505a6658bd6ab76a9e578ea04e70812567121b7",
-  "manuscript_pdf_sha256_at_build": "edbe765db415bdb6a6646e70e00fee602c54f8b01d1161b3fc0768cc68ac8e4e",
-  "supplement_pdf_sha256_at_build": "f26cf0dc81f080d275f06cf1c0a14bb6615c56ac42dca5cbd12b4e9d549b412b",
+  "supplement_sha256": "cc620ee84732a85bf3de5bdf75db8bb5b4a078e31bc1b6f4b032b38c5fec0fa3",
+  "manuscript_pdf_sha256_at_build": "666be3bfad22e1f7f6e4dc049e1a9c4e191588810c9fa9c8ecf9ad3a52d0fee4",
+  "supplement_pdf_sha256_at_build": "c8612847fe1857f0d0e0a99b14dbef6ee329f98fcc474d72acf5409b8b75629f",
   "archive_manifest_sha256": "c99a622769f040815fa297658d3923784b1eed195c9b54f3b92ed6024cc4e41b",
   "comment_source": {
     "original_reports_available": true,
@@ -315,8 +315,8 @@
       "page": 2,
       "source": "manuscript/TRIX_SUPPLEMENT.tex",
       "source_lines": [
-        97,
-        127
+        96,
+        126
       ],
       "heading_level": "section"
     },
@@ -325,8 +325,8 @@
       "page": 3,
       "source": "manuscript/TRIX_SUPPLEMENT.tex",
       "source_lines": [
-        128,
-        253
+        127,
+        252
       ],
       "heading_level": "section"
     },
@@ -335,8 +335,8 @@
       "page": 3,
       "source": "manuscript/TRIX_SUPPLEMENT.tex",
       "source_lines": [
-        134,
-        164
+        133,
+        163
       ],
       "heading_level": "subsection"
     },
@@ -345,8 +345,8 @@
       "page": 3,
       "source": "manuscript/TRIX_SUPPLEMENT.tex",
       "source_lines": [
-        165,
-        220
+        164,
+        219
       ],
       "heading_level": "subsection"
     },
@@ -355,8 +355,8 @@
       "page": 4,
       "source": "manuscript/TRIX_SUPPLEMENT.tex",
       "source_lines": [
-        221,
-        235
+        220,
+        234
       ],
       "heading_level": "subsection"
     },
@@ -365,8 +365,8 @@
       "page": 4,
       "source": "manuscript/TRIX_SUPPLEMENT.tex",
       "source_lines": [
-        236,
-        244
+        235,
+        243
       ],
       "heading_level": "subsection"
     },
@@ -375,8 +375,8 @@
       "page": 4,
       "source": "manuscript/TRIX_SUPPLEMENT.tex",
       "source_lines": [
-        245,
-        253
+        244,
+        252
       ],
       "heading_level": "subsection"
     },
@@ -385,8 +385,8 @@
       "page": 4,
       "source": "manuscript/TRIX_SUPPLEMENT.tex",
       "source_lines": [
-        254,
-        539
+        253,
+        538
       ],
       "heading_level": "section"
     },
@@ -395,8 +395,8 @@
       "page": 8,
       "source": "manuscript/TRIX_SUPPLEMENT.tex",
       "source_lines": [
-        540,
-        1080
+        539,
+        1079
       ],
       "heading_level": "section"
     },
@@ -405,8 +405,8 @@
       "page": 8,
       "source": "manuscript/TRIX_SUPPLEMENT.tex",
       "source_lines": [
-        547,
-        651
+        546,
+        650
       ],
       "heading_level": "subsection"
     },
@@ -415,8 +415,8 @@
       "page": 9,
       "source": "manuscript/TRIX_SUPPLEMENT.tex",
       "source_lines": [
-        652,
-        710
+        651,
+        709
       ],
       "heading_level": "subsection"
     },
@@ -425,8 +425,8 @@
       "page": 9,
       "source": "manuscript/TRIX_SUPPLEMENT.tex",
       "source_lines": [
-        711,
-        731
+        710,
+        730
       ],
       "heading_level": "subsection"
     },
@@ -435,8 +435,8 @@
       "page": 10,
       "source": "manuscript/TRIX_SUPPLEMENT.tex",
       "source_lines": [
-        732,
-        956
+        731,
+        955
       ],
       "heading_level": "subsection"
     },
@@ -445,8 +445,8 @@
       "page": 11,
       "source": "manuscript/TRIX_SUPPLEMENT.tex",
       "source_lines": [
-        957,
-        973
+        956,
+        972
       ],
       "heading_level": "subsection"
     },
@@ -455,8 +455,8 @@
       "page": 11,
       "source": "manuscript/TRIX_SUPPLEMENT.tex",
       "source_lines": [
-        974,
-        1080
+        973,
+        1079
       ],
       "heading_level": "subsection"
     },
@@ -465,8 +465,8 @@
       "page": 12,
       "source": "manuscript/TRIX_SUPPLEMENT.tex",
       "source_lines": [
-        1081,
-        1205
+        1080,
+        1204
       ],
       "heading_level": "section"
     },
@@ -475,8 +475,8 @@
       "page": 12,
       "source": "manuscript/TRIX_SUPPLEMENT.tex",
       "source_lines": [
-        1082,
-        1094
+        1081,
+        1093
       ],
       "heading_level": "subsection"
     },
@@ -485,8 +485,8 @@
       "page": 12,
       "source": "manuscript/TRIX_SUPPLEMENT.tex",
       "source_lines": [
-        1095,
-        1100
+        1094,
+        1099
       ],
       "heading_level": "subsection"
     },
@@ -495,8 +495,8 @@
       "page": 13,
       "source": "manuscript/TRIX_SUPPLEMENT.tex",
       "source_lines": [
-        1101,
-        1110
+        1100,
+        1109
       ],
       "heading_level": "subsection"
     },
@@ -505,8 +505,8 @@
       "page": 13,
       "source": "manuscript/TRIX_SUPPLEMENT.tex",
       "source_lines": [
-        1111,
-        1148
+        1110,
+        1147
       ],
       "heading_level": "subsection"
     },
@@ -515,8 +515,8 @@
       "page": 13,
       "source": "manuscript/TRIX_SUPPLEMENT.tex",
       "source_lines": [
-        1149,
-        1157
+        1148,
+        1156
       ],
       "heading_level": "subsection"
     },
@@ -525,8 +525,8 @@
       "page": 13,
       "source": "manuscript/TRIX_SUPPLEMENT.tex",
       "source_lines": [
-        1158,
-        1174
+        1157,
+        1173
       ],
       "heading_level": "subsection"
     },
@@ -535,8 +535,8 @@
       "page": 14,
       "source": "manuscript/TRIX_SUPPLEMENT.tex",
       "source_lines": [
-        1175,
-        1205
+        1174,
+        1204
       ],
       "heading_level": "subsection"
     },
@@ -545,8 +545,8 @@
       "page": 14,
       "source": "manuscript/TRIX_SUPPLEMENT.tex",
       "source_lines": [
-        1206,
-        1240
+        1205,
+        1239
       ],
       "heading_level": "section"
     },
@@ -555,8 +555,8 @@
       "page": 14,
       "source": "manuscript/TRIX_SUPPLEMENT.tex",
       "source_lines": [
-        1241,
-        1279
+        1240,
+        1278
       ],
       "heading_level": "section"
     },
@@ -565,8 +565,8 @@
       "page": 15,
       "source": "manuscript/TRIX_SUPPLEMENT.tex",
       "source_lines": [
-        1261,
-        1279
+        1260,
+        1278
       ],
       "heading_level": "subsection"
     },
@@ -575,8 +575,8 @@
       "page": 15,
       "source": "manuscript/TRIX_SUPPLEMENT.tex",
       "source_lines": [
-        1280,
-        1344
+        1279,
+        1343
       ],
       "heading_level": "section"
     },
@@ -585,7 +585,7 @@
       "page": 17,
       "source": "manuscript/TRIX_SUPPLEMENT.tex",
       "source_lines": [
-        1345,
+        1344,
         1546
       ],
       "heading_level": "section"
@@ -595,8 +595,8 @@
       "page": 18,
       "source": "manuscript/TRIX_SUPPLEMENT.tex",
       "source_lines": [
-        1414,
-        1426
+        1413,
+        1425
       ],
       "heading_level": "subsection"
     },
@@ -605,8 +605,8 @@
       "page": 18,
       "source": "manuscript/TRIX_SUPPLEMENT.tex",
       "source_lines": [
-        1427,
-        1440
+        1426,
+        1439
       ],
       "heading_level": "subsection"
     },
@@ -615,8 +615,8 @@
       "page": 18,
       "source": "manuscript/TRIX_SUPPLEMENT.tex",
       "source_lines": [
-        1441,
-        1463
+        1440,
+        1462
       ],
       "heading_level": "subsection"
     },
@@ -625,8 +625,8 @@
       "page": 18,
       "source": "manuscript/TRIX_SUPPLEMENT.tex",
       "source_lines": [
-        1464,
-        1473
+        1463,
+        1472
       ],
       "heading_level": "subsection"
     },
@@ -635,7 +635,7 @@
       "page": 18,
       "source": "manuscript/TRIX_SUPPLEMENT.tex",
       "source_lines": [
-        1474,
+        1473,
         1546
       ],
       "heading_level": "subsection"
@@ -826,7 +826,7 @@
       "source": "manuscript/TRIX_SUPPLEMENT.tex",
       "source_lines": [
         1884,
-        2053
+        2066
       ],
       "heading_level": "section"
     },
@@ -866,19 +866,9 @@
       "source": "manuscript/TRIX_SUPPLEMENT.tex",
       "source_lines": [
         1993,
-        2053
+        2066
       ],
       "heading_level": "subsection"
-    },
-    "S15": {
-      "title": "Provenance identifiers",
-      "page": 28,
-      "source": "manuscript/TRIX_SUPPLEMENT.tex",
-      "source_lines": [
-        2054,
-        2097
-      ],
-      "heading_level": "section"
     }
   },
   "labels": {
@@ -1146,42 +1136,42 @@
       "page": 8,
       "source": "manuscript/TRIX_SUPPLEMENT.tex",
       "document": "manuscript/TRIX_SUPPLEMENT.tex",
-      "source_line": 566
+      "source_line": 565
     },
     "tab:action-scales": {
       "number": "S2",
       "page": 9,
       "source": "manuscript/TRIX_SUPPLEMENT.tex",
       "document": "manuscript/TRIX_SUPPLEMENT.tex",
-      "source_line": 663
+      "source_line": 662
     },
     "para:simulation-timestep": {
       "number": "S4.2",
       "page": 9,
       "source": "manuscript/TRIX_SUPPLEMENT.tex",
       "document": "manuscript/TRIX_SUPPLEMENT.tex",
-      "source_line": 701
+      "source_line": 700
     },
     "tab:submitted-8": {
       "number": "S3",
       "page": 10,
       "source": "manuscript/TRIX_SUPPLEMENT.tex",
       "document": "manuscript/TRIX_SUPPLEMENT.tex",
-      "source_line": 750
+      "source_line": 749
     },
     "tab:submitted-9": {
       "number": "S4",
       "page": 11,
       "source": "manuscript/TRIX_SUPPLEMENT.tex",
       "document": "manuscript/TRIX_SUPPLEMENT.tex",
-      "source_line": 995
+      "source_line": 994
     },
     "tab:submitted-10": {
       "number": "S5",
       "page": 13,
       "source": "manuscript/TRIX_SUPPLEMENT.tex",
       "document": "manuscript/TRIX_SUPPLEMENT.tex",
-      "source_line": 1125
+      "source_line": 1124
     },
     "tab:submitted-11": {
       "number": "S6",
@@ -1195,7 +1185,7 @@
       "page": 15,
       "source": "manuscript/TRIX_SUPPLEMENT.tex",
       "document": "manuscript/TRIX_SUPPLEMENT.tex",
-      "source_line": 1281
+      "source_line": 1280
     },
     "tab:runtime-latency": {
       "number": "S7",
@@ -1209,14 +1199,14 @@
       "page": 17,
       "source": "manuscript/TRIX_SUPPLEMENT.tex",
       "document": "manuscript/TRIX_SUPPLEMENT.tex",
-      "source_line": 1361
+      "source_line": 1360
     },
     "tab:stage2-key": {
       "number": "S9",
       "page": 17,
       "source": "manuscript/TRIX_SUPPLEMENT.tex",
       "document": "manuscript/TRIX_SUPPLEMENT.tex",
-      "source_line": 1402
+      "source_line": 1401
     },
     "tab:procedural-geometry": {
       "number": "S10",
@@ -1280,13 +1270,6 @@
       "source": "manuscript/TRIX_SUPPLEMENT.tex",
       "document": "manuscript/TRIX_SUPPLEMENT.tex",
       "source_line": 2019
-    },
-    "sec:si-provenance": {
-      "number": "S15",
-      "page": 28,
-      "source": "manuscript/TRIX_SUPPLEMENT.tex",
-      "document": "manuscript/TRIX_SUPPLEMENT.tex",
-      "source_line": 2055
     }
   },
   "citations": {
