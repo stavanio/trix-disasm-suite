@@ -1,0 +1,575 @@
+#!/usr/bin/env python3
+import os
+import json
+import glob
+import re
+import csv
+import multiprocessing as mp
+from pathlib import Path
+from concurrent.futures import ProcessPoolExecutor, as_completed
+
+import numpy as np
+
+ROOT = Path(os.environ.get("TRIX_ROOT", os.getcwd())).resolve()
+os.chdir(ROOT)
+
+STAGE1 = ROOT / "results/stage1/stage1_records.json"
+CKPT_DIR = ROOT / "results/stage1/checkpoints"
+OUT = Path("/tmp/trix_screw_norm_policy_sensitivity")
+OUT.mkdir(parents=True, exist_ok=True)
+
+ALGOS = ("sac", "ppo")
+TEST_EPISODES = 100
+
+
+def walk(x):
+    if isinstance(x, dict):
+        yield x
+        for v in x.values():
+            yield from walk(v)
+    elif isinstance(x, list):
+        for v in x:
+            yield from walk(v)
+
+
+def load_baseline():
+    data = json.loads(STAGE1.read_text())
+    selected = {a: {} for a in ALGOS}
+    baseline = {a: {} for a in ALGOS}
+
+    for r in walk(data):
+        if str(r.get("task", "")).upper() != "SCREW":
+            continue
+        if r.get("training_mode") != "nominal":
+            continue
+
+        algo = str(r.get("algorithm", "")).lower()
+        if algo not in ALGOS:
+            continue
+
+        seed = r.get("seed")
+        step = r.get("selected_step")
+        if seed is None or step is None:
+            continue
+
+        seed = int(seed)
+        step = int(step)
+        selected[algo][seed] = step
+
+        if r.get("evaluation_arm") == "trix":
+            counts = r.get("counts") or r.get("summary", {}).get("counts", {})
+            if "episodes" in counts and "safe_completions" in counts:
+                ep = int(counts["episodes"])
+                safe = int(counts["safe_completions"])
+                baseline[algo][seed] = {
+                    "episodes": ep,
+                    "safe": safe,
+                    "rate": 100.0 * safe / ep,
+                }
+
+    for algo in ALGOS:
+        if sorted(selected[algo]) != list(range(10)):
+            raise RuntimeError(
+                f"{algo}: selected checkpoint seeds are {sorted(selected[algo])}, expected 0..9"
+            )
+        if sorted(baseline[algo]) != list(range(10)):
+            raise RuntimeError(
+                f"{algo}: archived TRiX result seeds are {sorted(baseline[algo])}, expected 0..9"
+            )
+
+    return selected, baseline
+
+
+def checkpoint_for(algo, seed, step):
+    p = CKPT_DIR / f"SCREW__{algo}__none__seed{seed}_{step}.zip"
+    if not p.exists():
+        raise FileNotFoundError(p)
+    return p
+
+
+def make_weighted_filter(m):
+    from baselines import screw_filters as SF
+
+    poly = [np.asarray(x, dtype=np.float64)
+            for x in SF._admissible_polygon()]
+
+    W = np.diag([1.0 / (float(m) ** 2), 1.0])
+
+    def inside(p):
+        return SF._inside(np.asarray(p, dtype=np.float64), poly)
+
+    def project(p):
+        p = np.asarray(p, dtype=np.float64)
+
+        if inside(p):
+            return p.copy()
+
+        best = None
+        best_cost = np.inf
+
+        for i in range(len(poly)):
+            a = poly[i]
+            b = poly[(i + 1) % len(poly)]
+            e = b - a
+
+            den = float(e @ W @ e)
+            if den <= 0.0:
+                q = a.copy()
+            else:
+                t = float((p - a) @ W @ e) / den
+                t = min(1.0, max(0.0, t))
+                q = a + t * e
+
+            d = q - p
+            cost = float(d @ W @ d)
+
+            if cost < best_cost:
+                best_cost = cost
+                best = q
+
+        return best
+
+    def filt(obs, action):
+        p = np.array([float(action[0]), float(action[1])],
+                     dtype=np.float64)
+        q = project(p)
+
+        radial = float(np.clip(
+            float(action[2]),
+            -SF.RAD_LIM_N,
+            SF.RAD_LIM_N
+        ))
+
+        out = np.array([q[0], q[1], radial], dtype=np.float32)
+
+        e = SF.A_V * float(out[0]) - SF.A_W * float(out[1])
+
+        infeasible = (
+            abs(e) > SF.EPS + 1e-6
+            or abs(float(out[0])) > 1.0 + 1e-8
+            or abs(float(out[1])) > 1.0 + 1e-8
+            or abs(float(out[2])) > SF.RAD_LIM_N + 1e-8
+        )
+
+        return out, {
+            "active": bool(not inside(p)),
+            "infeasible": bool(infeasible),
+            "recovery": False,
+        }
+
+    return filt
+
+
+def operator_preflight():
+    from baselines import screw_solvers as SS
+
+    rng = np.random.default_rng(20261008)
+    f1 = make_weighted_filter(1.0)
+
+    worst = 0.0
+    worst_a = None
+
+    for _ in range(10000):
+        a = rng.uniform(-1.0, 1.0, size=3)
+
+        prod, _ = SS.trix_scalar(None, a)
+        test, _ = f1(None, a)
+
+        err = float(np.max(np.abs(
+            np.asarray(prod, dtype=float)
+            - np.asarray(test, dtype=float)
+        )))
+
+        if err > worst:
+            worst = err
+            worst_a = a.copy()
+
+    print(f"m=1 operator max difference: {worst:.3e}")
+
+    if worst > 1e-6:
+        print("Worst proposal:", worst_a)
+        raise SystemExit(
+            "FAIL: reconstructed m=1 projector does not match production TRiX."
+        )
+
+    print("PASS: m=1 reconstructed projector matches production TRiX.\n")
+
+
+def extract_summary(rec):
+    for name in ("summary", "summarize", "to_dict", "as_dict"):
+        obj = getattr(rec, name, None)
+
+        if isinstance(obj, dict):
+            return obj
+
+        if callable(obj):
+            x = obj()
+            if isinstance(x, dict):
+                return x
+
+    raise RuntimeError(
+        "Cannot extract EpisodeRecorder summary. "
+        f"Available attributes: {dir(rec)}"
+    )
+
+
+
+def archived_trix_test_seeds(algo, train_seed, selected_step):
+    """Recover the exact held-out episode seeds used by the archived
+    Stage-1 TRiX evaluation for this selected policy."""
+    pattern = str(
+        ROOT / "results/stage1/shards" /
+        f"SCREW_{algo}_{train_seed}_{selected_step}_test_trix_*__*.json"
+    )
+
+    rx = re.compile(r"_test_trix_(\d+)__[0-9a-f]+\.json$")
+    shards = []
+
+    for fn in glob.glob(pattern):
+        name = Path(fn).name
+        m = rx.search(name)
+        if not m:
+            continue
+
+        start = int(m.group(1))
+        d = json.loads(Path(fn).read_text())
+
+        if "episode_seeds" not in d:
+            raise RuntimeError(f"No episode_seeds in {fn}")
+
+        seeds = [int(x) for x in d["episode_seeds"]]
+        shards.append((start, seeds, fn))
+
+    if not shards:
+        raise FileNotFoundError(
+            f"No archived TRiX shards for "
+            f"{algo} seed={train_seed} step={selected_step}"
+        )
+
+    shards.sort(key=lambda x: x[0])
+    seeds = [x for _, ss, _ in shards for x in ss]
+
+    if len(seeds) != 100:
+        raise RuntimeError(
+            f"{algo} seed={train_seed}: expected 100 archived "
+            f"TRiX episode seeds, found {len(seeds)}"
+        )
+
+    if len(set(seeds)) != 100:
+        raise RuntimeError(
+            f"{algo} seed={train_seed}: archived episode seeds "
+            f"are not unique"
+        )
+
+    return seeds
+
+
+def run_job(job):
+    algo, train_seed, selected_step, m = job
+
+    os.environ["OMP_NUM_THREADS"] = "1"
+    os.environ["MKL_NUM_THREADS"] = "1"
+
+    from benchmark import registry as REG
+    from benchmark import selection as SEL
+    from benchmark.metrics import EpisodeRecorder
+    from training import sb3_runner as R
+
+    filter_name = f"trix_norm_m{str(m).replace('.', 'p')}"
+    REG.FILTERS["SCREW"][filter_name] = make_weighted_filter(m)
+
+    ckpt = checkpoint_for(algo, train_seed, selected_step)
+    model = R.load(str(ckpt), "SCREW")
+
+    seeds = archived_trix_test_seeds(algo, train_seed, selected_step)
+
+    if len(seeds) != TEST_EPISODES:
+        raise RuntimeError(
+            f"Expected {TEST_EPISODES} test seeds, got {len(seeds)}"
+        )
+
+    rec = EpisodeRecorder(
+        "SCREW",
+        f"{algo}+{filter_name}",
+        seed=train_seed
+    )
+
+    R.evaluate_frozen(
+        model,
+        "SCREW",
+        filter_name,
+        seeds,
+        rec
+    )
+
+    s = extract_summary(rec)
+    counts = s.get("counts", {})
+
+    episodes = int(counts["episodes"])
+    safe = int(counts["safe_completions"])
+
+    return {
+        "algorithm": algo,
+        "training_seed": train_seed,
+        "selected_step": selected_step,
+        "m": float(m),
+        "episodes": episodes,
+        "safe_completions": safe,
+        "safe_completion_rate": 100.0 * safe / episodes,
+        "destructive_completions":
+            int(counts.get("destructive_completions", 0)),
+        "mechanical_failures":
+            int(counts.get("mechanical_failures", 0)),
+        "timeouts":
+            int(counts.get("timeouts", 0)),
+        "episodes_with_violation":
+            int(counts.get("episodes_with_violation", 0)),
+    }
+
+
+def run_batch(selected, multipliers, workers=8):
+    jobs = []
+
+    for algo in ALGOS:
+        for seed in range(10):
+            for m in multipliers:
+                jobs.append(
+                    (algo, seed, selected[algo][seed], m)
+                )
+
+    rows = []
+
+    print(
+        f"Running {len(jobs)} jobs: "
+        f"m={multipliers}, {workers} workers"
+    )
+
+    ctx = mp.get_context("spawn")
+
+    with ProcessPoolExecutor(
+        max_workers=workers,
+        mp_context=ctx
+    ) as ex:
+
+        futures = {
+            ex.submit(run_job, job): job
+            for job in jobs
+        }
+
+        for i, fut in enumerate(as_completed(futures), 1):
+            job = futures[fut]
+
+            try:
+                r = fut.result()
+            except Exception as e:
+                raise RuntimeError(
+                    f"FAILED job {job}: {e}"
+                ) from e
+
+            rows.append(r)
+
+            print(
+                f"[{i:02d}/{len(jobs)}] "
+                f"{r['algorithm'].upper()} "
+                f"seed={r['training_seed']} "
+                f"m={r['m']} "
+                f"safe={r['safe_completion_rate']:.1f}%"
+            )
+
+    return rows
+
+
+def validate_m1(rows, baseline):
+    failures = []
+
+    for algo in ALGOS:
+        for seed in range(10):
+            archived = baseline[algo][seed]
+
+            found = [
+                r for r in rows
+                if r["algorithm"] == algo
+                and r["training_seed"] == seed
+                and r["m"] == 1.0
+            ]
+
+            if len(found) != 1:
+                failures.append(
+                    (algo, seed, "missing/duplicate", len(found))
+                )
+                continue
+
+            got = found[0]
+
+            if (
+                got["episodes"] != archived["episodes"]
+                or got["safe_completions"] != archived["safe"]
+            ):
+                failures.append((
+                    algo,
+                    seed,
+                    archived["safe"],
+                    got["safe_completions"]
+                ))
+
+    if failures:
+        print("\nFAIL: m=1 does not reproduce archived Stage-1 TRiX.")
+        for x in failures:
+            print(" ", x)
+
+        raise SystemExit(
+            "\nSTOP. Do not interpret m=0.5 or m=2.0."
+        )
+
+    print(
+        "\nPASS: m=1 reproduces archived Stage-1 TRiX "
+        "safe-completion counts seed-for-seed for all 20 policies.\n"
+    )
+
+
+def summarize(rows, baseline):
+    print("\n" + "=" * 76)
+    print("TASK-LEVEL NORMALIZATION SENSITIVITY")
+    print("=" * 76)
+    print("Policy   m     Baseline    Replay      Delta")
+    print("-" * 76)
+
+    summary = []
+
+    for algo in ALGOS:
+        base_rates = np.array(
+            [baseline[algo][s]["rate"] for s in range(10)],
+            dtype=float
+        )
+        base_mean = float(np.mean(base_rates))
+
+        for m in (0.5, 1.0, 2.0):
+            rr = sorted(
+                [
+                    r for r in rows
+                    if r["algorithm"] == algo
+                    and r["m"] == m
+                ],
+                key=lambda x: x["training_seed"]
+            )
+
+            if not rr:
+                continue
+
+            rates = np.array(
+                [r["safe_completion_rate"] for r in rr],
+                dtype=float
+            )
+
+            mean = float(np.mean(rates))
+            delta = mean - base_mean
+
+            print(
+                f"{algo.upper():<7} "
+                f"{m:<4.1f}  "
+                f"{base_mean:>7.1f}%   "
+                f"{mean:>7.1f}%   "
+                f"{delta:>+7.1f} pp"
+            )
+
+            summary.append({
+                "algorithm": algo,
+                "m": m,
+                "baseline_mean_pct": base_mean,
+                "replay_mean_pct": mean,
+                "delta_pp": delta,
+                "seed_rates_pct": rates.tolist(),
+                "baseline_seed_rates_pct":
+                    base_rates.tolist(),
+                "max_abs_seed_delta_pp":
+                    float(np.max(np.abs(rates - base_rates))),
+            })
+
+    print("\nSeed-level replay rates:")
+    for s in summary:
+        vals = ", ".join(
+            f"{x:.0f}" for x in s["seed_rates_pct"]
+        )
+        print(
+            f"  {s['algorithm'].upper()} "
+            f"m={s['m']}: [{vals}]"
+        )
+
+    return summary
+
+
+def main():
+    workers = int(os.environ.get("TRIX_WORKERS", "8"))
+
+    selected, baseline = load_baseline()
+
+    print("Archived Stage-1 TRiX baseline:")
+    for algo in ALGOS:
+        rates = [
+            baseline[algo][s]["rate"]
+            for s in range(10)
+        ]
+        print(
+            f"  {algo.upper()}: "
+            f"{np.mean(rates):.1f}%  "
+            f"{[int(x) for x in rates]}"
+        )
+
+    print()
+
+    # Gate 1: operator identity
+    operator_preflight()
+
+    # Gate 2: exact task-level reproduction at m=1
+    m1_rows = run_batch(
+        selected,
+        (1.0,),
+        workers=workers
+    )
+
+    validate_m1(m1_rows, baseline)
+
+    # Only after m=1 passes do we run actual sensitivity.
+    sens_rows = run_batch(
+        selected,
+        (0.5, 2.0),
+        workers=workers
+    )
+
+    all_rows = m1_rows + sens_rows
+
+    summary = summarize(all_rows, baseline)
+
+    (OUT / "summary.json").write_text(
+        json.dumps({
+            "study":
+                "Post-hoc frozen-policy SCREW normalization sensitivity",
+            "no_retraining": True,
+            "physical_admissible_set_fixed": True,
+            "metric_definition":
+                "S_v' = m * S_v; S_omega fixed; "
+                "W = diag(1/m^2, 1)",
+            "m1_seedwise_reproduction_required": True,
+            "rows": all_rows,
+            "aggregate": summary,
+        }, indent=2)
+    )
+
+    with (OUT / "per_seed.csv").open("w", newline="") as f:
+        w = csv.DictWriter(
+            f,
+            fieldnames=list(all_rows[0].keys())
+        )
+        w.writeheader()
+        w.writerows(all_rows)
+
+    print("\nPASS: experiment complete.")
+    print(f"Results: {OUT}")
+    print(
+        "Nothing was written into the repository; "
+        "all new replay output is under /tmp."
+    )
+
+
+if __name__ == "__main__":
+    main()

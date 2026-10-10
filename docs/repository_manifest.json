@@ -1555,6 +1555,40 @@
         "manuscript/TRIX_REVISION.tex",
         "manuscript/TRIX_SUPPLEMENT.tex"
       ]
+    },
+    "experiments/screw_metric_sensitivity.py": {
+      "role": "Frozen Stage-1 SCREW correction-metric replay with operator and archive-reproduction gates",
+      "references": [
+        "manuscript/TRIX_SUPPLEMENT.tex",
+        "R4.2"
+      ]
+    },
+    "results/screw_metric_sensitivity/summary.json": {
+      "role": "Correction-metric replay summary, per-seed rows and gates",
+      "references": [
+        "manuscript/TRIX_SUPPLEMENT.tex",
+        "R4.2"
+      ]
+    },
+    "results/screw_metric_sensitivity/per_seed.csv": {
+      "role": "Correction-metric replay per-seed outcome counts",
+      "references": [
+        "manuscript/TRIX_SUPPLEMENT.tex",
+        "R4.2"
+      ]
+    },
+    "results/screw_metric_sensitivity/executed_replay.py.txt": {
+      "role": "Exact replay script that produced the recorded results",
+      "references": [
+        "manuscript/TRIX_SUPPLEMENT.tex",
+        "R4.2"
+      ]
+    },
+    "manuscript/figures/trix_architecture_fig1.tex": {
+      "role": "Editable TikZ source of Figure 1",
+      "references": [
+        "manuscript/TRIX_REVISION.tex"
+      ]
     }
   },
   "entrypoints": [
@@ -1594,7 +1628,8 @@
     "hardware/examples/trix_physical_v1_approach_return.py",
     "hardware/examples/trix_physical_v1_approach_return_gravity.py",
     "hardware/examples/trix_physical_manipulation_v4_soft_grasp.py",
-    "hardware/examples/trix_physical_manipulation_v4_soft_grasp_gravity.py"
+    "hardware/examples/trix_physical_manipulation_v4_soft_grasp_gravity.py",
+    "experiments/screw_metric_sensitivity.py"
   ],
   "tests": [
     "tests/test_battery_v2.py",
@@ -1731,10 +1766,11 @@
       "title": "Figure 1: execution architecture",
       "files": [
         "manuscript/TRIX_REVISION.tex",
+        "manuscript/figures/trix_architecture_fig1.tex",
         "manuscript/figures/trix_architecture_fig1.svg",
         "manuscript/figures/trix_architecture_fig1.pdf"
       ],
-      "command_or_check": "Editable SVG source; paper compilation verifies the exported figure.",
+      "command_or_check": "TikZ source compiled with XeLaTeX to PDF; SVG exported from the PDF.",
       "citations": [],
       "document": "manuscript/TRIX_REVISION.tex",
       "number": "1"
@@ -2161,12 +2197,12 @@
     }
   ],
   "locked_renderer_files": {
-    "manuscript/figures/trix_architecture_fig1.svg": "16c29baebbd3a323f58c79cfce34f5c99e1543979e1be7c97e26ce7f1e8e8ace",
+    "manuscript/figures/trix_architecture_fig1.svg": "dde96746caee12117c04fd9eb3b04067dd2136cf9302dbb5649a20a53f8d8e08",
     "manuscript/figures/figure4_seed_distributions.pdf": "f9172744c34e5e46c2aff672c338b47e826bc2425bf9397cecaa17131457ca53",
     "manuscript/figures/b601_hardware_sequence.jpg": "be8c2837c63eef4af3d71ca6c7e70a4085e1472270259b63cabd84c2cf72d205",
     "manuscript/figures/disasm_bench_workspaces.pdf": "13d4c9de927fcfd2096512ca1d9c7f0d930ca1bb1eaa27de82483ccb82f76755",
     "manuscript/figures/disasm_bench_workspaces.png": "a7dfeb1cedd89c1c173483234b6045f2db66863a3787c6c8461c371ca2002c36",
-    "manuscript/figures/trix_architecture_fig1.pdf": "4030c8911674a0d20dbaf8b45024322ce7e74ca3506f956214193f1786b43134",
+    "manuscript/figures/trix_architecture_fig1.pdf": "48eec74a28f89c9807a25854c60489facdda64a9d00bad3f79d0bd4e0ab2f984",
     "manuscript/figures/workspaces/snap_workspace_manifest.json": "0d8a8f0728b77614be31693e94e23ed76a2a88ba721f0a1ebd926b74c4a77247",
     "manuscript/figures/workspaces/snap_workspace.png": "ca65b87447e95664cb1eb83fb158d7ff7bc07451a33199fd237f712017721a63",
     "manuscript/figures/workspaces/state_manifest.json": "cb842db1e9ab541871e33b77fd95a25436c7717821d1d2d4aa34b17f0283b6fc",
