@@ -14,7 +14,7 @@ The checksum-indexed evidence package and the current source snapshot are deposi
 
 The code is publicly available at https://github.com/stavanio/trix-disasm-suite (release v1.0-resubmission).
 
-This revision has been prepared within the twelve-week window following the decision of 20 July 2026, which ends on 12 October 2026. The clean manuscript, marked manuscript, Supplementary Information and point-by-point response accompany the resubmission. We also thank Reviewer 3 for the co-review contribution acknowledged in the decision letter; no separate substantive report was supplied.
+This revision has been prepared within the twelve-week window following the decision of 20 July 2026, which ends on 12 October 2026. The clean manuscript, marked manuscript, Supplementary Information and point-by-point response accompany the resubmission. Because the manuscript was restructured and rewritten throughout, the marked manuscript shows all text as revised; the response letter accounts for removed material. We also thank Reviewer 3 for the co-review contribution acknowledged in the decision letter; no separate substantive report was supplied.
 
 Sincerely,
 Stavan Dholakia (corresponding author), Shivani Shukla, Abhishek Singh and Aditya Gazta
