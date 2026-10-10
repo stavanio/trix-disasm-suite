@@ -10,7 +10,7 @@ Completed 26 September 2026. This is a new revision experiment; original results
 - Protocol SHA-256: `c3e9f59d9bf1948565ba0f58a74f7dbb5b3c03a1d4b0feca8656fd64ea2ef5b5`.
 - Environment/governor source, constraint, margin and taxonomy hashes remain frozen. Distribution specifications and hashes are separate record fields.
 - Every cell completed without an execution error. Simulated damage and other unsuccessful outcomes are retained below.
-- The three conditions are 1.5 and 2 times the native half-width about its centre, plus the 2x region conditioned outside native support. SCREW also conditions its joint friction pair on static friction being at least kinetic friction.
+- The three conditions are 1.5 and 2 times the native half-width about its center, plus the 2x region conditioned outside native support. SCREW also conditions its joint friction pair on static friction being at least kinetic friction.
 - These are declared simulation stress tests, not calibrated physical population ranges. All original in-range estimates are unchanged.
 
 ## Safe completion and changes

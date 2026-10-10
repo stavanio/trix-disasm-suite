@@ -28,7 +28,7 @@ python3 -B scripts/audit_reproducibility_release.py --package-root "$TRIX_EVIDEN
 
 The archive contains its historical source tree and verification entrypoint.
 The command checks that frozen payload. The current repository separately
-enforces its own lean file inventory. The archive has no remote URL yet.
+enforces its own lean file inventory. The archive is deposited in Zenodo (DOI 10.5281/zenodo.23031294), private during peer review.
 
 ## Build the paper and statistics
 
@@ -38,13 +38,13 @@ Run `make overleaf` to create `build/TRIX_overleaf.zip`. In Overleaf, select
 **New Project > Upload Project**, upload the ZIP, and set **Main document** to
 `TRIX_MAIN.tex` and **Compiler** to **XeLaTeX**. Keep all directories from the ZIP.
 Select `TRIX_SUPPLEMENT.tex` to compile the separate supplement.
-The package includes both documents, five figures, all table fragments, cross-references and the exact
-DejaVu text/math fonts with their licence. Fonts are loaded by file path, so
-the build does not require those fonts to be installed on Overleaf.
+The package includes both documents, five figures, all table fragments and
+cross-references. The documents use TeX Gyre Termes, TeX Gyre Termes Math and
+Latin Modern Mono, which are part of TeX Live and available on Overleaf.
 The standalone manuscript TeX file alone does not include its dependencies.
 
 The [bundle builder](../scripts/build_overleaf_bundle.py) follows the declared
-TeX/figure inputs and verifies [font hashes](../manuscript/fonts/manifest.json).
+TeX and figure inputs.
 Its root `TRIX_MAIN.tex` and `TRIX_SUPPLEMENT.tex` are byte-identical to the
 canonical main and supplement sources. The ZIP
 contains a file-to-source/hash manifest and a XeLaTeX `latexmkrc`. It omits
@@ -74,11 +74,11 @@ Their generated cross-document references are checked against both builds.
 page and bibliography references from that build. The response map records exact
 TeX source ranges and hashes; they are not journal margin line numbers.
 `make check` also detects stale response mappings without requiring a TeX runtime.
-The response paraphrases are checked against the original decision letter;
+The quoted comments are checked against the original decision letter;
 see [the response map](REVIEWER_MAP.md) and its source-excerpt record.
 The new runtime benchmark supplies the measurements for E.4 and R1.6.
 
-The response letter uses XeLaTeX with 12-point TeX Gyre Termes text, matching
+The response letter uses XeLaTeX with 11-point TeX Gyre Termes text, matching
 TeX Gyre Termes Math, and Latin Modern Mono for literal code identifiers.
 These are OpenType fonts distributed with TeX Live; install the TeX Gyre,
 TeX Gyre Math and Latin Modern fonts if the build cannot locate them.
@@ -88,8 +88,8 @@ The serif typeface and spacing are readability choices, not a mandatory Nature
 response-letter template. The journal's [revised-submission guide](https://www.nature.com/commseng/submit/guide-to-authors)
 requires point-by-point replies and compliance with the editor's decision letter.
 [Nature's rebuttal advice](https://blogs.nature.com/blog/how-to-write-a-rebuttal-letter/)
-recommends clearly distinguishing comments and replies. The draft does this
-with italic dark-blue comment paraphrases and black responses. The 35 requests
+recommends clearly distinguishing comments and replies. The letter does this
+with italic dark-blue verbatim comments and black responses. The 35 requests
 are mapped to the original decision letter dated 20 July 2026. R3 is acknowledged
 as a co-review with no separate substantive requests.
 
@@ -126,13 +126,13 @@ imports whose historical versions were not recorded. This is not a recovered
 transitive lockfile or a claim of a fresh training reproduction.
 
 Rendering uses [requirements-workspace-renders.txt](../requirements-workspace-renders.txt)
-and [the unchanged workspace guide](workspace_rendering.md). Its exact meshes
+and [the workspace guide](workspace_rendering.md). Its exact meshes
 and fonts are supplied in the evidence archive, with their hashes pinned here.
 No renderer was run during Git curation.
 
 ## Artwork provenance
 
-Figure 1 is editable SVG. Figure 4 is regenerated from the retained 80-point
+Figure 1 is drawn in TikZ ([source](../manuscript/figures/trix_architecture_fig1.tex)) and exported to PDF and SVG. Figure 4 is regenerated from the retained 80-point
 CSV by the supplied replacement builder; the historical plotting script remains
 unavailable. Figure 5 is an archived hardware image, supported by the separate
 run-to-video mapping.
@@ -220,20 +220,12 @@ without numbers, and cross-document section pointers use the actual heading
 names. Internal counter keys remain in the source map for reproducibility.
 Affiliations appear in a title-page block rather than footnotes.
 
-Main figure legends are grouped at the end of the manuscript. Figures are
-supplied as five separate files. The Overleaf builder explicitly retains these
-figure assets even though they are no longer embedded in the main text.
-All figures, renderer source and scientific result records remain frozen.
-The supplementary tables retain their S-prefixed display-item numbers.
+Main figure legends, each with its figure, are grouped at the end of the
+manuscript, and the figures are also supplied as five separate files. All
+figures, renderer source and scientific result records remain frozen. The
+supplementary tables retain their S-prefixed display-item numbers.
 
-The submission delivery contains a clean reference PDF and a separate marked
-TeX/PDF. Marking is at paragraph/display-block level against the supplied
-submitted PDF, whose hash is retained in the source header. The original
-submitted LaTeX is unavailable, so this is not represented as a word-level
-LaTeX diff. Blue marks revised blocks; unchanged words inside a revised block
-can also be blue. Removed material is accounted for in the response letter.
-
-The downloaded editorial form is completed locally with author comments.
-Access statements, funding, acknowledgements and corresponding-author ORCID
-require their actual facts or author action before submission. The local form
-does not claim that files have been uploaded or that the online form is saved.
+The submission contains a clean reference PDF and a marked PDF. The original
+submitted LaTeX is unavailable and the manuscript was restructured and rewritten
+throughout, so the marked PDF shows all text in blue rather than a word-level
+LaTeX diff. Removed material is accounted for in the response letter.

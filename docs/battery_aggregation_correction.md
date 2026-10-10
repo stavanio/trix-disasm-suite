@@ -19,7 +19,7 @@ all 1,020 production records.
 | Stage 2 BATTERY/SAC/box_clip | 40.0 | 0.0 |
 | Stage 2 BATTERY/PPO/box_clip | 81.0 | 71.0 |
 
-Supplementary Table S8 now displays **20.0** for BATTERY/SAC/TRiX; main Results 2.3 and Supplementary S9.4 explain the correction.
+Supplementary Table S8 now displays **20.0** for BATTERY/SAC/TRiX; main Results ("Sufficiency of simple restrictions") and Supplementary Section S9.4 explain the correction.
 The Stage 2 historical non-preventive box values in this audit table are not
 numerical results claimed in the current manuscript. They are reported here
 to account for the entire archive. No checkpoint was reselected or rerun;

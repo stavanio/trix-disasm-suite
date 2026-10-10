@@ -48,7 +48,7 @@ def test_3_unfiltered_commands_can_leave_the_manifold():
     assert abs(info['helix_error_cmd']) > EPS_HELIX
 
 def test_4_matched_qp_agrees_with_closed_form():
-    """For the pure helical equality the numerical minimiser and the
+    """For the pure helical equality the numerical minimizer and the
     closed form coincide; this is equivalence, not a differentiator."""
     from scipy.optimize import minimize
     rng = np.random.default_rng(1)

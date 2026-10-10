@@ -282,14 +282,6 @@
         "docs/PAPER_MAP.md"
       ]
     },
-    "docs/publication_edit.md": {
-      "role": "Scope, content migration, numerical preservation and layout checks for the condensed revision",
-      "references": [
-        "manuscript/TRIX_REVISION.tex",
-        "manuscript/TRIX_SUPPLEMENT.tex",
-        "docs/REVIEWER_MAP.md"
-      ]
-    },
     "docs/repository_manifest.json": {
       "role": "documentation or pinned asset metadata",
       "references": [
@@ -760,55 +752,6 @@
       "role": "manuscript source or figure/data dependency",
       "references": [
         "fig:disasm-workspaces"
-      ]
-    },
-    "manuscript/fonts/DejaVuMathTeXGyre.ttf": {
-      "role": "Bundled manuscript font or its licence/provenance for portable compilation",
-      "references": [
-        "manuscript/TRIX_REVISION.tex",
-        "docs/REPRODUCING.md"
-      ]
-    },
-    "manuscript/fonts/DejaVuSerif-Bold.ttf": {
-      "role": "Bundled manuscript font or its licence/provenance for portable compilation",
-      "references": [
-        "manuscript/TRIX_REVISION.tex",
-        "docs/REPRODUCING.md"
-      ]
-    },
-    "manuscript/fonts/DejaVuSerif-BoldItalic.ttf": {
-      "role": "Bundled manuscript font or its licence/provenance for portable compilation",
-      "references": [
-        "manuscript/TRIX_REVISION.tex",
-        "docs/REPRODUCING.md"
-      ]
-    },
-    "manuscript/fonts/DejaVuSerif-Italic.ttf": {
-      "role": "Bundled manuscript font or its licence/provenance for portable compilation",
-      "references": [
-        "manuscript/TRIX_REVISION.tex",
-        "docs/REPRODUCING.md"
-      ]
-    },
-    "manuscript/fonts/DejaVuSerif.ttf": {
-      "role": "Bundled manuscript font or its licence/provenance for portable compilation",
-      "references": [
-        "manuscript/TRIX_REVISION.tex",
-        "docs/REPRODUCING.md"
-      ]
-    },
-    "manuscript/fonts/LICENSE.txt": {
-      "role": "Bundled manuscript font or its licence/provenance for portable compilation",
-      "references": [
-        "manuscript/TRIX_REVISION.tex",
-        "docs/REPRODUCING.md"
-      ]
-    },
-    "manuscript/fonts/manifest.json": {
-      "role": "Bundled manuscript font or its licence/provenance for portable compilation",
-      "references": [
-        "manuscript/TRIX_REVISION.tex",
-        "docs/REPRODUCING.md"
       ]
     },
     "manuscript/tables/runtime_latency.tex": {
@@ -1908,7 +1851,7 @@
         "manuscript/data/battery_aggregation_correction.json"
       ],
       "citations": [],
-      "command_or_check": "Compare the eight displayed pairs with the frozen Stage 1/Stage 2 records and paired-seed statistics; details in docs/publication_edit.md.",
+      "command_or_check": "Compare the eight displayed pairs with the frozen Stage 1/Stage 2 records and paired-seed statistics.",
       "document": "manuscript/TRIX_REVISION.tex",
       "number": "4"
     },
@@ -1986,7 +1929,7 @@
     },
     {
       "label": "tab:submitted-9",
-      "title": "Supplementary Table S4: reset randomisation",
+      "title": "Supplementary Table S4: reset randomization",
       "files": [
         "envs/screw_env_v3.py",
         "envs/pcb_env_v2.py",

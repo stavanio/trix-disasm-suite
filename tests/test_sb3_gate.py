@@ -1,7 +1,7 @@
 """Acceptance gate for the reference training path.
 
 Nothing may run at production scale until these hold: the interface is
-valid, checkpoints reload to identical behaviour, termination semantics
+valid, checkpoints reload to identical behavior, termination semantics
 are distinguished, and every learned quantity stays finite.
 """
 import glob

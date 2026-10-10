@@ -10,9 +10,7 @@ The manuscript follows Introduction, Methods, Results, Discussion and Conclusion
 
 During revision we also added a frozen-policy study of the correction metric. With the admissible set fixed, changing only the metric that selects the nearest admissible command changes task outcomes for frozen policies while every forwarded command stays admissible. The response to Reviewer 4 (R4.2) and Supplementary Section S9.5 report it in full.
 
-The checksum-indexed evidence package and the current source snapshot are deposited in Zenodo (record 23031294, DOI 10.5281/zenodo.23031294). The record remains private during peer review and will be made public on publication. The confidential read-only reviewer link below has been tested without account authentication, including representative file downloads.
-
-The confidential reviewer link is supplied only in the correspondence sent to the editor.
+The checksum-indexed evidence package and the current source snapshot are deposited in Zenodo (record 23031294, DOI 10.5281/zenodo.23031294). The record remains private during peer review and will be made public on publication. The confidential read-only reviewer link, supplied only in the correspondence sent to the editor, has been tested without account authentication, including representative file downloads.
 
 The code is publicly available at https://github.com/stavanio/trix-disasm-suite (release v1.0-resubmission).
 

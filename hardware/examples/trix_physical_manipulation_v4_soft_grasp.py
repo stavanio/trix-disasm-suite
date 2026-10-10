@@ -363,7 +363,7 @@ def main():
     try:
 
         print("=" * 80)
-        print("TRIX MANIPULATION V4 — SOFT OBJECT GRASP")
+        print("TRIX MANIPULATION V4: SOFT OBJECT GRASP")
         print("FULL REACH + GRIPPER STATE CHAIN")
         print("J1 HARD-FROZEN")
         print("=" * 80)
@@ -524,7 +524,7 @@ def main():
 
         print()
         print("=" * 80)
-        print("GRASP_READY REACHED AND HOLDING — GRIPPER OPEN")
+        print("GRASP_READY REACHED AND HOLDING, GRIPPER OPEN")
         print("Position box between the jaws.")
         print()
         print("When clear, Terminal 2:")
@@ -664,7 +664,7 @@ def main():
 
         print()
         print(
-            "TRIX MANIPULATION V4 SOFT GRASP: PASS — OBJECT RETAINED"
+            "TRIX MANIPULATION V4 SOFT GRASP: PASS, OBJECT RETAINED"
         )
 
         time.sleep(1.0)

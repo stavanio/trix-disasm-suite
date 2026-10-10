@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Package the manuscript's exact TeX, figure, table and font dependencies."""
+"""Package the manuscript's exact TeX, figure and table dependencies."""
 import argparse
 import hashlib
 import json
@@ -10,7 +10,6 @@ import zipfile
 ROOT = Path(__file__).resolve().parents[1]
 PAPER = 'manuscript/TRIX_REVISION.tex'
 SUPPLEMENT = 'manuscript/TRIX_SUPPLEMENT.tex'
-FONT_MANIFEST = 'manuscript/fonts/manifest.json'
 DEPENDENCY = re.compile(r'\\(?:includegraphics(?:\[[^]]*\])?|input)\{([^}]+)\}')
 INSTRUCTIONS = """# TRiX manuscript and Supplementary Information for Overleaf
 
@@ -25,9 +24,10 @@ separate pagination and bibliographies. S-prefixed sections/tables are in
 the supplement. Cross-document numbers are supplied in a generated input;
 neither document requires the other document's compiled auxiliary files.
 
-All five figure assets, all included table fragments, cross-references and
-exact text/math fonts with their licence are included. No bibliography
-program or separate bibliography file is required. The root documents are
+All five figure assets, all included table fragments and cross-references are
+included. The documents use TeX Gyre Termes, TeX Gyre Termes Math and Latin
+Modern Mono, which are part of TeX Live. No bibliography program or separate
+bibliography file is required. The root documents are
 exact copies of manuscript/TRIX_REVISION.tex and manuscript/TRIX_SUPPLEMENT.tex
 in the repository. OVERLEAF_MANIFEST.json records source paths and SHA-256 hashes.
 
@@ -66,15 +66,6 @@ def payload():
             sources[name] = name
             if name.endswith('.tex'):
                 pending.append(name)
-    fonts = json.loads((ROOT / FONT_MANIFEST).read_text())
-    sources[FONT_MANIFEST] = FONT_MANIFEST
-    license_path = 'manuscript/fonts/' + fonts['license']
-    sources[license_path] = license_path
-    for name, metadata in fonts['files'].items():
-        path = 'manuscript/fonts/' + name
-        if sha((ROOT / path).read_bytes()) != metadata['sha256']:
-            raise ValueError(f'Font hash mismatch: {path}')
-        sources[path] = path
     data = {name: (ROOT / source).read_bytes() for name, source in sources.items()}
     data['latexmkrc'] = b"$pdf_mode = 5;\n@default_files = ('TRIX_MAIN.tex');\n"
     data['README_OVERLEAF.md'] = INSTRUCTIONS.encode()

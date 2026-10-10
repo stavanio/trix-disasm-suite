@@ -1,9 +1,8 @@
 # Reviewer response map
 
-Author-review draft: all 35 requests are mapped to the original decision letter
-dated 20 July 2026 and the current manuscript. Comments reproduce verified quotations.
-The earlier handoff omitted editor bullet 5. It is now E.5; generality is E.6.
-R3 is a confirmed co-review acknowledgement with no separate substantive requests.
+All 35 requests are mapped to the original decision letter dated 20 July 2026
+and the current manuscript. Comments reproduce verified quotations.
+R3 is a confirmed co-review acknowledgment with no separate substantive requests.
 
 [Response LaTeX](../manuscript/TRIX_RESPONSE.tex) ·
 [Exact source ranges and evidence hashes](../manuscript/data/reviewer_response_map.json)
@@ -34,75 +33,66 @@ Verified coverage is not a claim of reviewer acceptance: R4.2 supplies a
 matched command-set QP, and R4.6 withdraws independent physical-validation
 claims. Those scope choices are explicit in the replies.
 
-| ID | Request | Draft status | Manuscript sections |
+| ID | Request | Status | Manuscript sections |
 |---|---|---|---|
-| E.1 | Positioning among existing safety methods | response drafted | 1, 2.1, 2.2.2 |
-| E.2 | Introduce the architecture figure in context | response drafted | 1, 2.1 |
-| E.3 | Safety, damage and task quality | response drafted | 1, 4, 2.2.1, S1, S4.4, S13 |
+| E.1 | Positioning among existing safety methods | response final | 1, 2.1, 2.2.2 |
+| E.2 | Introduce the architecture figure in context | response final | 1, 2.1 |
+| E.3 | Safety, damage and task quality | response final | 1, 4, 2.2.1, S1, S4.4, S13 |
 | E.4 | Quantitative latency | timing benchmark reported | 3.4, 2.5, S8 |
-| E.5 | Position TRiX against the reviewed approaches | response drafted | 1, 3.1.1, 3.1.2, 3.1.3, 2.2.2 |
-| E.6 | Generality beyond task examples | response drafted | 3.1.4, 4, 2.1, 2.2.3, S10 |
-| R1.1 | References in comparison tables | response drafted | 2.2.2 |
-| R1.2 | Accessibility of the theoretical framework | response drafted | 1, 2.1, S1, S2, S3 |
-| R1.3 | Simulated workspace and interaction | response drafted | 2.2.1, S4 |
-| R1.4 | Concrete model proposals and corrections | response drafted | 3.2, 2.3, S11 |
-| R1.5 | Adding or changing constraints | response drafted | 3.1.4, 4, 2.1, 2.2.3, S10 |
+| E.5 | Position TRiX against the reviewed approaches | response final | 1, 3.1.1, 3.1.2, 3.1.3, 2.2.2 |
+| E.6 | Generality beyond task examples | response final | 3.1.4, 4, 2.1, 2.2.3, S10 |
+| R1.1 | References in comparison tables | response final | 2.2.2 |
+| R1.2 | Accessibility of the theoretical framework | response final | 1, 2.1, S1, S2, S3 |
+| R1.3 | Simulated workspace and interaction | response final | 2.2.1, S4 |
+| R1.4 | Concrete model proposals and corrections | response final | 3.2, 2.3, S11 |
+| R1.5 | Adding or changing constraints | response final | 3.1.4, 4, 2.1, 2.2.3, S10 |
 | R1.6 | Computational time | timing benchmark reported | 3.4, 2.5, S8 |
-| R1.7 | Distributions and uncertainty | response drafted | 3.1.1, 3.1.2, 3.1.3, 2.5, S6 |
-| R1.8 | Figure references and Figure~4 quality | response drafted | 1, 3.1.1, 3.3, 2.1, 2.2.1 |
-| R1.9 | Foundation-model robotics literature | response drafted | 1, 3.2 |
-| R2.1 | PCB variables and physical interpretation | response drafted | 2.2.1, S2.2, S4.1, S4.2 |
-| R2.2 | Observation dimensionality | response drafted | 2.2.1, S4.1 |
-| R2.3 | Reward symbols and outcome notation | response drafted | 2.2.1, 2.2.2, S4.3, S4.4 |
-| R2.4 | Domain randomization appendix | response drafted | S7, 3.1.2, 3.1.5, 4, 2.2.1, 2.2.3, 2.5, S4.6, S14, S14.4 |
-| R2.5 | Placement of runtime discussion | response drafted | 3.4, 2.1, 2.5, S8 |
-| R2.6 | Orphaned Figure~2 reference | response drafted | 2.1 |
-| R2.7 | Narrative structure | response drafted | 1, 3.1.1, 3.1.2, 3.1.4, 4, 2.1 |
-| R4.1 | Trained policies and experimental provenance | response drafted | S9.4, 2.2.2, 2.5, S5, S6, S9 |
+| R1.7 | Distributions and uncertainty | response final | 3.1.1, 3.1.2, 3.1.3, 2.5, S6 |
+| R1.8 | Figure references and Figure~4 quality | response final | 1, 3.1.1, 3.3, 2.1, 2.2.1 |
+| R1.9 | Foundation-model robotics literature | response final | 1, 3.2 |
+| R2.1 | PCB variables and physical interpretation | response final | 2.2.1, S2.2, S4.1, S4.2 |
+| R2.2 | Observation dimensionality | response final | 2.2.1, S4.1 |
+| R2.3 | Reward symbols and outcome notation | response final | 2.2.1, 2.2.2, S4.3, S4.4 |
+| R2.4 | Domain randomization appendix | response final | S7, 3.1.2, 3.1.5, 4, 2.2.1, 2.2.3, 2.5, S4.6, S14, S14.4 |
+| R2.5 | Placement of runtime discussion | response final | 3.4, 2.1, 2.5, S8 |
+| R2.6 | Orphaned Figure~2 reference | response final | 2.1 |
+| R2.7 | Narrative structure | response final | 1, 3.1.1, 3.1.2, 3.1.4, 4, 2.1 |
+| R4.1 | Trained policies and experimental provenance | response final | S9.4, 2.2.2, 2.5, S5, S6, S9 |
 | R4.2 | Matched analytical comparator | matched command QP scope | S9.5, 3.1.2, 2.1, 2.2.2, 2.2.3, S2.1, S8 |
-| R4.3 | CBF capabilities | response drafted | 1, 2.2.2 |
-| R4.4 | ISS theorem assumptions | response drafted | 4, 2.1, S3 |
-| R4.5 | Non-expansiveness of projection | response drafted | 2.1, S1, S2, S3 |
-| R4.6 | Circular validation | response drafted | 4, 2.1, 2.2.3, S4.4, S7, S8 |
-| R4.7 | Role of PyBullet | response drafted | 2.2.1, S4 |
-| R4.8 | Physical robot evidence | response drafted | 3.3, 4, 2.4, S12 |
-| R4.9 | Actual VLM evaluation | response drafted | S11, 3.2, 2.3, 2.5 |
-| R4.10 | BATTERY threshold and thermal interpretation | response drafted | 3.1.3, 4, 2.2.2, S2.3, S7.1, S9.4, S13.1 |
-| R4.11 | Simulation and control rates | response drafted | S4.2, 2.2.1, 2.4, 2.5 |
-| R4.12 | Figure~4 and Table~4 use different experiments | response drafted | 3.1.1, S9 |
-| R4.13 | PCB residual violations and representation analysis | response drafted | 3.1.1, 3.1.3, 3.1.4, 2.2.2, 2.2.3, S9.3, S10.2, S10.3 |
-
-## Submission gates
-
-- Complete the actual linked editorial requirements table.
-- Complete NSF award details and corresponding-author ORCID confirmation.
-- Release and test public code at resubmission; private evidence reviewer access is verified.
-- Author review and clean/marked submission.
-- Final journal page/line references.
+| R4.3 | CBF capabilities | response final | 1, 2.2.2 |
+| R4.4 | ISS theorem assumptions | response final | 4, 2.1, S3 |
+| R4.5 | Non-expansiveness of projection | response final | 2.1, S1, S2, S3 |
+| R4.6 | Circular validation | response final | 4, 2.1, 2.2.3, S4.4, S7, S8 |
+| R4.7 | Role of PyBullet | response final | 2.2.1, S4 |
+| R4.8 | Physical robot evidence | response final | 3.3, 4, 2.4, S12 |
+| R4.9 | Actual VLM evaluation | response final | S11, 3.2, 2.3, 2.5 |
+| R4.10 | BATTERY threshold and thermal interpretation | response final | 3.1.3, 4, 2.2.2, S2.3, S7.1, S9.4, S13.1 |
+| R4.11 | Simulation and control rates | response final | S4.2, 2.2.1, 2.4, 2.5 |
+| R4.12 | Figure~4 and Table~4 use different experiments | response final | 3.1.1, S9 |
+| R4.13 | PCB residual violations and representation analysis | response final | 3.1.1, 3.1.3, 3.1.4, 2.2.2, 2.2.3, S9.3, S10.2, S10.3 |
 
 ## Original editorial requirements
 
-- Complete the linked editorial requirements table, describing revisions and relevant notes in its right-hand column. Status: open; actual online table must be completed.
-- Supply a point-by-point response; explain any requests that cannot be addressed or are considered invalid. Status: draft mapped to all original requests; author review pending.
-- Supply a clean revised manuscript without markup. Status: final submission version pending.
-- Supply a marked manuscript with all changes highlighted in a different colour. Status: open.
-- Aim to return the revision within twelve weeks and notify the editor if substantially more time is needed. Status: scheduling instruction; no message sent.
+- Complete the linked editorial requirements table, describing revisions and relevant notes in its right-hand column. Status: completed in the online editorial form.
+- Supply a point-by-point response; explain any requests that cannot be addressed or are considered invalid. Status: point-by-point response to all original requests.
+- Supply a clean revised manuscript without markup. Status: clean revised manuscript supplied.
+- Supply a marked manuscript with all changes highlighted in a different colour. Status: marked manuscript supplied.
+- Aim to return the revision within twelve weeks and notify the editor if substantially more time is needed. Status: revision returned within the twelve-week window.
 
 ## Evidence and privacy
 
 Local evidence paths and SHA-256 values are in the JSON map. Hardware files
 and the complete record-to-shard map remain in the separate frozen archive
 identified by [archive_manifest.json](../assets/evidence/archive_manifest.json).
-The evidence is deposited in unpublished Zenodo draft 23031294. Its confidential
-read-only preview link is supplied in the editor correspondence and is excluded
-from this repository. Access and representative downloads were tested without
-account authentication. No public archive URI or DOI is claimed.
+The evidence is deposited in Zenodo (DOI 10.5281/zenodo.23031294), private during
+peer review and public on publication. Its confidential read-only link is supplied
+in the editor correspondence and is excluded from this repository. Access and
+representative downloads were tested without account authentication.
 
 For transfer reliability, the main tar is supplied as 24 ordered byte parts.
 `ARCHIVE_PARTS.json` and `reassemble_archive.py` verify and reconstruct the
 original tar before extraction; internal evidence paths are unchanged.
 
-The earlier R4.9 fragment outside this repository is superseded by the complete
-response source. Historical scientific records are retained. The reviewer
+Historical scientific records are retained. The reviewer
 archive documents its setup-photo privacy derivative and hash mapping in
 `PRIVACY_REDACTIONS.json`.

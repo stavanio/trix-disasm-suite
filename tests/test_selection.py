@@ -39,14 +39,14 @@ def test_4_violation_incidence_then_earliest_step():
     assert S.select([b, c]).step == 1000, "earliest tied checkpoint wins"
 
 
-def test_5_window_centre_is_selected_not_the_peak():
+def test_5_window_center_is_selected_not_the_peak():
     """A lone spike must not win over a sustained region."""
     cks = [_ck(1000, 10.0), _ck(2000, 10.0), _ck(3000, 95.0),
            _ck(4000, 10.0), _ck(5000, 70.0), _ck(6000, 72.0),
            _ck(7000, 71.0), _ck(8000, 10.0)]
     cands = S.candidate_windows(cks)
     steps = [c.step for c in cands]
-    assert 6000 in steps, f"sustained window centre missing from {steps}"
+    assert 6000 in steps, f"sustained window center missing from {steps}"
     best = max(cands, key=lambda c: c.key("safe_completion_rate"))
     assert best.step == 6000, f"spike at 3000 outranked the plateau: {steps}"
 

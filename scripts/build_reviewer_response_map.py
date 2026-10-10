@@ -87,7 +87,7 @@ def response_entries(text):
             evidence_paths=[x for v in paths for x in v.split('; ')],
             status=('timing_benchmark_reported' if values[0] in {'E.4', 'R1.6'}
                     else 'matched_command_QP_scope' if values[0] == 'R4.2'
-                    else 'response_drafted'),
+                    else 'response_final'),
             original_comment_verified=original['original_comment_verified'],
             original_source_pages=original['source_pdf_pages'],
             coverage_status=original['coverage_status']))
@@ -349,7 +349,7 @@ def main():
     local_paths = sorted(p for p in paths if not p.startswith('archive/'))
     archive = json.loads((ROOT/'assets/evidence/archive_manifest.json').read_text())
     originals = json.loads((ROOT/COMMENT_SOURCE).read_text())
-    data = dict(schema=2, stage='author_review_draft',
+    data = dict(schema=2, stage='final_submission',
         manuscript_sha256=digest(ROOT/PAPER), response_sha256=digest(ROOT/LETTER),
         supplement_sha256=digest(ROOT/SUPPLEMENT),
         manuscript_pdf_sha256_at_build=digest(ROOT/'manuscript/build/TRIX_REVISION.pdf'),
@@ -370,17 +370,13 @@ def main():
             summary_sha256=digest(ROOT/'results/runtime/summary.json'),
             manifest='results/runtime/manifest.json',
             scope='Measured complete-filter calls across six tasks; matched SCREW solvers'),
-        submission_gates=['Complete the actual linked editorial requirements table',
-            'Complete NSF award details and corresponding-author ORCID confirmation',
-            'Release and test public code at resubmission; private evidence reviewer access is verified', 'Author review and clean/marked submission',
-            'Final journal page/line references'])
+        submission_gates=[])
     (ROOT/MAP).write_text(json.dumps(data, indent=2)+'\n')
     (ROOT/LOCATIONS).write_text(location_tex(data))
     guide = ['# Reviewer response map', '',
-        'Author-review draft: all 35 requests are mapped to the original decision letter',
-        'dated 20 July 2026 and the current manuscript. Comments reproduce verified quotations.',
-        'The earlier handoff omitted editor bullet 5. It is now E.5; generality is E.6.',
-        'R3 is a confirmed co-review acknowledgement with no separate substantive requests.', '',
+        'All 35 requests are mapped to the original decision letter dated 20 July 2026',
+        'and the current manuscript. Comments reproduce verified quotations.',
+        'R3 is a confirmed co-review acknowledgment with no separate substantive requests.', '',
         '[Response LaTeX](../manuscript/TRIX_RESPONSE.tex) ·',
         '[Exact source ranges and evidence hashes](../manuscript/data/reviewer_response_map.json)',
         '[Original excerpts and requirement mapping](../manuscript/data/reviewer_comment_source.json)',
@@ -403,10 +399,11 @@ def main():
         'Verified coverage is not a claim of reviewer acceptance: R4.2 supplies a',
         'matched command-set QP, and R4.6 withdraws independent physical-validation',
         'claims. Those scope choices are explicit in the replies.', '',
-        '| ID | Request | Draft status | Manuscript sections |', '|---|---|---|---|']
+        '| ID | Request | Status | Manuscript sections |', '|---|---|---|---|']
     for e in entries:
         guide.append('| '+e['id']+' | '+e['title']+' | '+e['status'].replace('_',' ')+' | '+', '.join(e['sections'])+' |')
-    guide += ['', '## Submission gates', ''] + ['- '+g+'.' for g in data['submission_gates']]
+    if data['submission_gates']:
+        guide += ['', '## Submission gates', ''] + ['- '+g+'.' for g in data['submission_gates']]
     guide += ['', '## Original editorial requirements', '']
     for requirement in originals['editorial_requirements']:
         guide.append('- '+requirement['request']+' Status: '+requirement['status']+'.')
@@ -414,15 +411,14 @@ def main():
         'Local evidence paths and SHA-256 values are in the JSON map. Hardware files',
         'and the complete record-to-shard map remain in the separate frozen archive',
         'identified by [archive_manifest.json](../assets/evidence/archive_manifest.json).',
-        'The evidence is deposited in unpublished Zenodo draft 23031294. Its confidential',
-        'read-only preview link is supplied in the editor correspondence and is excluded',
-        'from this repository. Access and representative downloads were tested without',
-        'account authentication. No public archive URI or DOI is claimed.', '',
+        'The evidence is deposited in Zenodo (DOI 10.5281/zenodo.23031294), private during',
+        'peer review and public on publication. Its confidential read-only link is supplied',
+        'in the editor correspondence and is excluded from this repository. Access and',
+        'representative downloads were tested without account authentication.', '',
         'For transfer reliability, the main tar is supplied as 24 ordered byte parts.',
         '`ARCHIVE_PARTS.json` and `reassemble_archive.py` verify and reconstruct the',
         'original tar before extraction; internal evidence paths are unchanged.', '',
-        'The earlier R4.9 fragment outside this repository is superseded by the complete',
-        'response source. Historical scientific records are retained. The reviewer',
+        'Historical scientific records are retained. The reviewer',
         'archive documents its setup-photo privacy derivative and hash mapping in',
         '`PRIVACY_REDACTIONS.json`.', '']
     (ROOT/GUIDE).write_text('\n'.join(guide))

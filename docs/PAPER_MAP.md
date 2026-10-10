@@ -3,9 +3,9 @@
 Main and Supplementary Information have separate numbering. Stable TeX labels bind
 each item to its sources. Citations use the source bibliography IDs.
 
-[Main manuscript](../manuscript/TRIX_REVISION.tex) | [Supplement](../manuscript/TRIX_SUPPLEMENT.tex) | [Editorial change record](publication_edit.md)
+[Main manuscript](../manuscript/TRIX_REVISION.tex) | [Supplement](../manuscript/TRIX_SUPPLEMENT.tex)
 
-All 34 reviewer points are mapped in [REVIEWER_MAP.md](REVIEWER_MAP.md).
+All 35 reviewer requests are mapped in [REVIEWER_MAP.md](REVIEWER_MAP.md).
 `make response` refreshes their page references; `make check` rejects stale mappings.
 
 ## Figure 1: execution architecture
@@ -89,7 +89,7 @@ Citations: `ref21`, `ref31`, `ref32`.
 
 [manuscript/TRIX_REVISION.tex](../manuscript/TRIX_REVISION.tex); [results/stage1/stage1_records.json](../results/stage1/stage1_records.json); [results/stage2/stage2_records.json](../results/stage2/stage2_records.json); [manuscript/data/seed_statistics_summary.json](../manuscript/data/seed_statistics_summary.json); [manuscript/data/battery_aggregation_correction.json](../manuscript/data/battery_aggregation_correction.json).
 
-Compare the eight displayed pairs with the frozen Stage 1/Stage 2 records and paired-seed statistics; details in docs/publication_edit.md.
+Compare the eight displayed pairs with the frozen Stage 1/Stage 2 records and paired-seed statistics.
 
 ## Table 5: VLM decisions
 
@@ -125,7 +125,7 @@ Check ACTION_SCALE in each frozen environment; no rollout.
 
 Environment step()/episode_summary() and classify(); no new physics parameters.
 
-## Supplementary Table S4: reset randomisation
+## Supplementary Table S4: reset randomization
 
 `tab:submitted-9` in [manuscript/TRIX_SUPPLEMENT.tex](../manuscript/TRIX_SUPPLEMENT.tex).
 
@@ -193,9 +193,9 @@ Archive: hardware/results/hardware/v4_confirmation/final_submission/tables/hardw
 
 ## Supporting analyses
 
-- Learned PCB: [experiment](../experiments/safelayer_decomposition.py), [record](../results/safelayer_decomposition.json), main Section 2.4 and Supplementary Section S10.2.
+- Learned PCB: [experiment](../experiments/safelayer_decomposition.py), [record](../results/safelayer_decomposition.json), main Results ("Constraint representation") and Supplementary Section S10.2.
 - PRY control: [experiment](../experiments/pry_control.py), [record](../results/control/pry_control.json), Supplementary Section S9.3; separate from selected Stage 2 means.
-- Sensitivity: [experiment](../experiments/sensitivity.py), [record](../results/sensitivity.json), main Section 4.4 and Supplementary Section S7.
+- Sensitivity: [experiment](../experiments/sensitivity.py), [record](../results/sensitivity.json), main Methods ("Representation, shift and sensitivity studies") and Supplementary Section S7.
 - BAYONET: [preregistration](bayonet_preregistration.md), [freeze](bayonet_implementation_freeze.md), [Stage 1](../results/bayonet/stage1_records.json), [Stage 2](../results/bayonet2/stage2_records.json), Supplementary Sections S10.4 and S10.5.
 
 The separate private archive is identified by [its manifest](../assets/evidence/archive_manifest.json).
@@ -209,7 +209,7 @@ The [reset-distribution amendment](ood_reset_protocol.md) maps
 [distribution interface](../benchmark/evaluation_distribution.py) and
 [acceptance tests](../tests/test_ood_reset.py) to R2.4 and the evaluation-use
 column of Supplementary Table S4. All 42,000 episodes are now complete and
-reported in main Results 2.3, Methods 4.1/4.6, Supplementary S14 and R2.4.
+reported in main Results ("Distribution shift"), Methods ("Representation, shift and sensitivity studies"), Supplementary Section S14 and R2.4.
 [Results and provenance](ood_reset_results.md) retain adverse outcomes.
 
 ## Supplementary Table S12: Added reset ranges

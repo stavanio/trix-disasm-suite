@@ -149,7 +149,7 @@ can be selected with `--workspace-dir` and `--output-dir`.
 Composition also writes `manuscript/figures/workspaces/state_manifest.json`.
 Its `states` and `trace_provenance` fields follow the existing
 `renders/tasks/state_manifest.json` format: one entry for each of the six tasks.
-Lengths are metres, angles are radians, and temperatures are degrees Celsius.
+Lengths are meters, angles are radians, and temperatures are degrees Celsius.
 The PCB curvature is the norm of its two recorded tilt components:
 0.007478982481916388 rad (about 0.429 degrees).
 
@@ -182,7 +182,7 @@ is projected with each scene's actual camera and masked behind the geometry.
 The reference gizmo is placed at a clear grid intersection beside the fixture.
 Its directions are world-aligned; its display origin is offset for visibility and
 is **not the simulation origin**. Every manifest records the display origin in
-world metres, the three world directions, and the displayed axis length. The
+world meters, the three world directions, and the displayed axis length. The
 arrows are rendered in a separate PyBullet pass and do not affect scene contacts
 or shadows.
 
@@ -299,5 +299,5 @@ perturbations are mapping tests, not new benchmark rollouts or paper results.
 - `compose_b601_workspaces.py`: the publication figure layout.
 - `verify_workspace_renders.py`: reproduction checks against saved panels.
 
-All scene lengths use metres, angles use radians unless stated otherwise, and
+All scene lengths use meters, angles use radians unless stated otherwise, and
 PyBullet quaternions use `(x, y, z, w)` ordering.

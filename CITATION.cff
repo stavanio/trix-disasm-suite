@@ -1,5 +1,5 @@
 cff-version: 1.2.0
-message: "Cite the manuscript and the exact Git commit used. This revision is unreleased."
+message: "Cite the manuscript and the v1.0-resubmission release of this repository."
 type: software
 title: "TRiX: Task-conditioned execution governance for robotic disassembly"
 authors:
@@ -12,5 +12,6 @@ authors:
   - family-names: Gazta
     given-names: Aditya
 repository-code: "https://github.com/stavanio/trix-disasm-suite"
-version: unreleased
+version: v1.0-resubmission
+date-released: 2026-10-09
 license: MIT

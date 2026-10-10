@@ -52,9 +52,8 @@ new evidence, not validation of the old table.
 
 ## 4. Corrections during revision development
 
-These are internal development corrections, not versions circulated to the
-editor or reviewers. They belong in provenance and must not be described in
-correspondence as corrections to an "intermediate draft" seen by the journal.
+These corrections were made during development, before any revised version
+was sent to the editor or reviewers.
 
 - BATTERY Stage 1 SAC/TRiX: an arm-prefix collision produced 59.75% (rounded
   59.8%). Exact-arm shard aggregation gives 20.0%. The detailed audit is
@@ -67,6 +66,11 @@ correspondence as corrections to an "intermediate draft" seen by the journal.
   26 inadmissible, with no refusals, for 91. Across providers there are 219
   admissible, 38 inadmissible and 16 refusals. This is a correction to internal
   accounting, not evidence that three new calls were made.
+- Hardware example scripts: after the trials, the console banner punctuation in
+  `hardware/examples/trix_physical_v1_adversarial.py` and
+  `hardware/examples/trix_physical_manipulation_v4_soft_grasp.py` was changed
+  for consistency. Command logic, limits and recorded outputs are unchanged; the
+  evidence archive holds the executed versions.
 
 
 ## 5. What the SNAP and CRANK comparisons vary

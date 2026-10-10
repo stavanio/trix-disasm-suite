@@ -181,7 +181,7 @@ def main():
         )
 
         show_case(
-            "CASE 1 — ILLEGAL DIRECT LOW_HOVER",
+            "CASE 1: ILLEGAL DIRECT LOW_HOVER",
             p1, d1, c1, t1,
         )
 
@@ -217,7 +217,7 @@ def main():
         )
 
         show_case(
-            "CASE 2 — FORBIDDEN J1 COMMAND",
+            "CASE 2: FORBIDDEN J1 COMMAND",
             p2, d2, c2, t2,
         )
 
@@ -256,7 +256,7 @@ def main():
         )
 
         show_case(
-            "CASE 3 — EXCESSIVE J2 PROPOSAL",
+            "CASE 3: EXCESSIVE J2 PROPOSAL",
             p3, d3, c3, t3,
         )
 
@@ -389,7 +389,7 @@ def main():
         )
 
         show_case(
-            "CASE 4 — RETURN_SAFE",
+            "CASE 4: RETURN_SAFE",
             p4, d4, c4, t4,
         )
 
