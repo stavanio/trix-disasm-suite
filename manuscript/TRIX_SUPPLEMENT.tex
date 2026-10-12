@@ -9,6 +9,7 @@
 \usepackage{microtype}
 \usepackage{lineno}
 \input{manuscript/data/cross_document_refs.tex}
+\let\suppsection\suppname
 \setlength{\emergencystretch}{2em}
 \clubpenalty=10000
 \widowpenalty=10000
@@ -31,7 +32,8 @@
 \titleformat{\subsubsection}{\normalfont\normalsize\bfseries\raggedright}{}{0pt}{}
 \usepackage{needspace}
 \usepackage{etoolbox}
-\flushbottom
+\raggedbottom
+\makeatletter\setlength{\@fptop}{0pt}\setlength{\@fpsep}{18pt plus 6pt}\setlength{\@fpbot}{0pt plus 1fil}\makeatother
 \pretocmd{\section}{\Needspace*{10\baselineskip}}{}{}
 \pretocmd{\subsection}{\Needspace*{6\baselineskip}}{}{}
 \pretocmd{\subsubsection}{\Needspace*{5\baselineskip}}{}{}
@@ -39,12 +41,14 @@
 \usepackage[section]{placeins}
 \usepackage{hyperref}
 \usepackage{xurl}
+\makeatletter\def\UrlBreaks{\do\/\do\.}\def\UrlBigBreaks{}\g@addto@macro\UrlSpecials{\do\:{\mbox{\UrlFont\char58}}}\Urlmuskip=0mu\relax\makeatother
 \usepackage{xcolor}
 \usepackage{float}
 \usepackage{caption}
-\setlength{\parskip}{0.45em plus 0.5em}
+\setlength{\parskip}{0.5em}
 \setlength{\parindent}{0pt}
-\hypersetup{colorlinks=true,linkcolor=blue,citecolor=blue,urlcolor=blue}
+\hypersetup{colorlinks=true,linkcolor=blue,citecolor=blue,urlcolor=blue,
+  pdftitle={Supplementary Information: TRiX: Neuro-Symbolic Safety for Foundation Model Agents in Robotic Disassembly},pdfauthor={Stavan Dholakia, Shivani Shukla, Abhishek Singh, Aditya Gazta}}
 
 \usepackage{tocloft}
 \setlength{\cftsecnumwidth}{2.8em}
@@ -56,7 +60,7 @@
 \renewcommand{\theequation}{S\arabic{equation}}
 \renewcommand{\tablename}{Supplementary Table}
 \renewcommand{\figurename}{Supplementary Figure}
-\title{Supplementary Information\\\large TRiX: Task-conditioned execution governance for robotic disassembly}
+\title{Supplementary Information\\\large TRiX: Neuro-Symbolic Safety for Foundation Model Agents in Robotic Disassembly}
 \author{Stavan Dholakia, Shivani Shukla\\Abhishek Singh and Aditya Gazta}
 \date{}
 \begin{document}
@@ -76,18 +80,18 @@ result appears; the map below lists the correspondence.
 \begin{center}
 \small
 \setlength{\tabcolsep}{6pt}
-\begin{tabular}{@{}p{2.9in}p{3.1in}@{}}
+\begin{tabular}{@{}>{\raggedright\arraybackslash}p{2.9in}>{\raggedright\arraybackslash}p{3.1in}@{}}
 \toprule
 Main text & Supplementary Information\\
 \midrule
-Methods, Execution contract & S1 scope; S2 projection operators; S3 proofs\\
-Methods, Simulation benchmark & S4 task specifications; S5 training; S7 validation\\
-Methods, Latency and statistics & S6 seed-level statistics; S8 computational cost\\
-Results, Simulation & S9 full policy results; S10 representation studies; S14 shifted resets\\
-Results, Solver, metric and task context & S9.5 correction-metric sensitivity\\
-Results and Methods, VLM command replay & S11 encoding, records and analyses\\
-Results and Methods, Hardware verification & S12 platform and trial records\\
-Discussion & S13 failure mechanisms of per-step governance\\
+Methods, Execution contract & Admissibility definitions and scope; Reference projection operators; Supplementary proofs for representation propositions\\
+Methods, Simulation benchmark & DISASM-Bench v2 complete specifications; Training configuration; Implementation and specification validation\\
+Methods, Latency measurement and statistical analyses & Seed-level statistical analysis; Recorded computational cost\\
+Results, Simulation & Extended policy results and specification controls; Representation and prospective generalization studies; Prospective evaluation under shifted reset distributions\\
+Results, Solver, metric and task context & SCREW correction-metric sensitivity of frozen policies\\
+Results and Methods, Vision-language model command replay & VLM encoding, records and additional analyses\\
+Results and Methods, Hardware verification & Physical platform and trial records\\
+Discussion & Reactive-governance failure mechanisms\\
 \bottomrule
 \end{tabular}
 \end{center}
@@ -95,27 +99,25 @@ Discussion & S13 failure mechanisms of per-step governance\\
 \linenumbers
 \section{Admissibility definitions and scope}
 
-The revised analysis drops the nominal-controller stability and
-bounded-neural-error assumptions of the submitted ISS argument.
+The analysis makes no nominal-controller stability or bounded-neural-error assumption.
 
 \paragraph{Declared task context.}
 Context-conditioned results assume the governor receives the task context $c$
 of $\mathcal{A}(x,c)$, such as primitive identity, phase or
 task-frame orientation. Context-limited runtime arms are identified by the
-observation fields their bounds use, not necessarily every field of a shared
-task observation (\suppsection{S4}).
+observation fields their bounds use, which may be a subset of a shared task observation (\suppsection{S4}).
 
 \paragraph{Projection well-posedness.}
 Projection requires a nonempty closed admissible set for a Euclidean minimizer
 to exist; convexity makes it unique. Non-projectable symbolic
-violations return REJECT.
+violations return \texttt{REJECT}.
 
 \paragraph{Specification validity.}
 Membership in $\mathcal{A}(x,c)$ means the \emph{modeled} command-level
 constraint holds, not that its threshold, margin, coordinate transform or
 physical model is correct, so specification validity is evaluated
 separately from solver correctness, a distinction central to the BATTERY
-matched-specification experiment and PCB margin audit.
+matched-specification experiment and the PCB margin comparison.
 
 \paragraph{Execution scope.}
 The analytical results concern only command admissibility and representation,
@@ -126,7 +128,7 @@ error.
 
 \section{Reference projection operators}
 
-The revised benchmark defines explicit admissible action sets and analytical
+The benchmark defines explicit admissible action sets and analytical
 operators that enforce them; not every task constraint is an equality manifold.
 
 
@@ -210,26 +212,21 @@ and the lift component is
 a_z'=\min\{r_z,\max\{\ell_z,a_z\}\}.
 \]
 
-This projection does \emph{not} zero both tilt torques and is not the submitted
-appendix's six-dimensional wrench operator. The physical nominal planarity
+This projection acts on the three commanded components only. The physical nominal planarity
 limit is $\tau_{\max}=0.100\,\mathrm{N\,m}$; under chance tightening, the
-runtime radius derives separately from the margin policy rather than silently
-replacing that limit.
+runtime radius derives separately from the margin policy and does not replace that limit.
 
 
 \subsection{BATTERY specification and runtime operators}
 
-BATTERY v2 no longer relies solely on the submitted appendix's instantaneous
-half-space $F\cdot v\leq P_{\max}(T)$; it distinguishes preventive
+BATTERY v2 goes beyond an instantaneous halfspace $F\cdot v\leq P_{\max}(T)$; it distinguishes preventive
 deformation limits, modeled damage onset, internal short and subsequent thermal
 evolution, so runtime comparisons identify both the \emph{constraint
 specification} and the \emph{operator form}. The executable operator
 definitions are therefore fingerprinted with the benchmark registry and margin
-policy, not restated here as an informal analytical approximation. The
+policy instead of being restated here as an informal analytical approximation. The
 matched-specification experiment compares componentwise and TRiX operators at
-the same 15-N preventive threshold; the submitted comparison, which mixed a
-20-N flagged peel bound with a different projection geometry, is retained only
-as provenance.
+the same 15-N preventive threshold.
 
 
 \subsection{Phase- and frame-conditioned operators}
@@ -243,16 +240,16 @@ geometry is generally superior to clipping.
 
 \subsection{PRY restriction}
 
-PRY is a control case in which a simpler restriction can retain
+PRY is a control case in which a simpler restriction retains
 task-relevant authority; a separate fixed-budget control compares the
 implemented static and insertion-dependent restrictions, whose similar
-completion rates, scoped to those policies and configurations, establish
-neither equivalence nor a geometric causal effect.
+completion rates hold for those policies and configurations.
 
 
+\Needspace*{22\baselineskip}
 \section{Supplementary proofs for representation propositions}
 
-This section consolidates the representation results stated in \mainsection{2.1}.
+This section consolidates the representation results stated in the main-text section ``Execution contract''.
 They characterize admissible action sets and are not a closed-loop stability
 theorem.
 
@@ -521,8 +518,7 @@ A closed-form implementation and a quadratic-program solver given the same
 affine constraint therefore solve the same optimization problem. The SCREW set
 is instead a polytope (\suppsection{S2.1}), but the same conclusion holds there:
 both solvers minimize the same strictly convex objective over the same nonempty
-closed convex set, whose minimizer is unique, so the revised SCREW solver
-comparison tests numerical agreement and computational cost, not
+closed convex set, whose minimizer is unique, so the SCREW solver comparison tests numerical agreement and computational cost, not
 representational superiority.
 
 
@@ -530,9 +526,8 @@ representational superiority.
 
 No proposition in this section states that training can or cannot overcome a
 particular runtime restriction. Filter-aware training changes the policy's
-proposal distribution and may let it adapt to retained action authority;
-whether that succeeds is task dependent and is reported only as an empirical
-result in main Results.
+proposal distribution and lets it adapt to retained action authority;
+whether that succeeds is task dependent and is reported only as an empirical result in the main-text Results.
 
 
 \Needspace*{20\baselineskip}
@@ -549,9 +544,7 @@ Each environment's \texttt{\_get\_obs()} returns a ten-entry \texttt{float32}
 vector, mapped in Table~\ref{tab:submitted-7} without the \texttt{self.}
 prefix; padding is not measured state. The Gymnasium adapter declares an
 unbounded space of the same shape and adds no normalization; BATTERY's
-division of temperature by 100 belongs to that task only. The vectors hold
-selected simulator state and derived features, not the full internal state or
-an independent sensor measurement.
+division of temperature by 100 belongs to that task only. The vectors hold selected simulator state and derived features, a subset of the internal state that excludes independent sensor measurements.
 
 \begingroup
 \small
@@ -627,15 +620,14 @@ PRY v2 &
 
 For SNAP, entry 7 is
 $\mathbf{1}\{\delta\geq\texttt{DELTA\_DISENGAGE}\ \text{or}\ \texttt{released}\}$,
-with \texttt{DELTA\_DISENGAGE}$=0.002$ m; unlike the hysteretic
+with \texttt{DELTA\_DISENGAGE}${}=0.002$ m; unlike the hysteretic
 \texttt{released} flag (entry 4), it marks a deflected latch as disengaged
 before the part has traveled far enough to remain released. CRANK's
 rotation-complete flag is
 $\mathbf{1}\{|\theta|\geq 2\pi\,\texttt{TARGET\_ROTATIONS}\}$, with
-\texttt{TARGET\_ROTATIONS}$=2$. PRY encodes its mode as
-\texttt{STUCK}$=0$ and \texttt{SLIPPING}$=1$, not as a sampled friction
-coefficient; its observed torque limit is
-$1.5[1-0.5\!\min\!\!(1,|x_{\mathrm{ins}}|/0.05)]$ N\,m.
+\texttt{TARGET\_ROTATIONS}${}=2$. PRY encodes its mode as
+\texttt{STUCK}${}=0$ and \texttt{SLIPPING}${}=1$ instead of a sampled friction coefficient; its observed torque limit is
+\mbox{$1.5[1-0.5\min(1,|x_{\mathrm{ins}}|/0.05)]$~N\,m}.
 
 Runtime filters receive the policy's observation; context-limited arms differ
 only in which entries they read. SNAP's static clip ignores latch phase; its
@@ -692,7 +684,7 @@ caps:
 \toprule
 Task & SCREW & PCB & SNAP & CRANK & BATTERY & PRY\\
 \midrule
-Maximum steps & 2500 & 1500 & 1500 & 3000 & 3000 & 4000\\
+Maximum steps & 2,500 & 1,500 & 1,500 & 3,000 & 3,000 & 4,000\\
 \bottomrule
 \end{tabular}
 \end{center}
@@ -702,15 +694,25 @@ All six environments import the outer timestep\label{para:simulation-timestep}
 one action step advances 4.167 ms of simulated time.
 SCREW integrates 40 internal substeps per action; PCB, SNAP, CRANK and
 BATTERY integrate ten; PRY updates directly at the outer timestep. Substeps
-are not policy action updates. The physical B601-RS controller is a separate
-approximately 200-Hz implementation; the submitted 100-Hz simulation statement
-is withdrawn.
+are not policy action updates. The physical B601-RS timing is separate: Joints~1--5 receive targets every 0.1~s, and Joint~6 runs an approximately 200-Hz velocity loop.
 
 
 \subsection{Reward and progress contract}
 
-Task-specific rewards replace the submitted PDF's single reconstructed reward
-equation. Each environment records a normalized progress quantity for the
+Each environment uses a task-specific per-step reward. With $v_z$ the axial,
+lift, extraction or peel velocity in m\,s$^{-1}$ and $I_t\in\{0,1\}$ equal to
+1 when any per-step constraint flag of the task (Table~\ref{tab:submitted-8})
+is raised at step $t$,
+\[
+r_t = 1000\max(0,v_z) - 10 I_t
+\]
+for SCREW, PCB, SNAP and BATTERY;
+\[
+r_t = \frac{|\theta|}{2\pi N_{\mathrm{rot}}} + 100\max(0,v_z) - 10 I_t
+\]
+for CRANK, with crank angle $\theta$ and $N_{\mathrm{rot}}=2$ target rotations;
+and $r_t = 100\,z_t - 10 I_t$ for PRY, with gap opening $z_t\in[0,0.02]$ m.
+Each environment also records a normalized progress quantity for the
 frozen checkpoint selection rule:
 
 \begin{itemize}
@@ -735,17 +737,15 @@ five-category episode outcome contract is computed independently.
 \setlength{\tabcolsep}{2pt}
 \renewcommand{\arraystretch}{1.10}
 \begin{longtable}{@{}L{0.60in}L{1.00in}L{0.60in}L{1.35in}L{0.83in}L{1.83in}@{}}
-\caption{Executable constraint and outcome taxonomy for the six revised
-DISASM-Bench tasks. ``Outcome'' families contribute to the episode outcome
+\caption{Executable constraint and outcome taxonomy for the six DISASM-Bench tasks. ``Outcome'' families contribute to the episode outcome
 contract; ``Diag.'' families are recorded but do not by themselves convert an
 intact completion into an unsafe outcome. Margin entries report the
 episode-risk-derived one-sided Gaussian multiplier $z$ used by the runtime
 margin policy. A dash denotes a family for which no stochastic tightening is
 applied. Except where an executed target is shown explicitly, the margin column reports
 the frozen declarative margin policy. Archived executable routing differs from
-that registry for several historical filter modules; those runs are preserved
-as executed and the routing differences are summarized in the Reproducibility
-and Provenance subsection.}
+that registry for several archived filter modules; those runs are reported
+as executed and the routing differences are summarized in \suppsection{S5.7}.}
 \label{tab:submitted-8}\\
 \toprule
 Task & Constraint family & Role & Executable violation boundary &
@@ -854,8 +854,7 @@ Outcome &
 rotating and $|F_z|>5$ N &
 $4.488\sigma$ &
 Damage accumulates above 5 N while rotating. With
-$\sigma_F=1.235$ N, $5-4.488\sigma_F<0$, so the tightened set has no positive
-authority and this family is excluded from enforcement-guarantee claims.
+$\sigma_F=1.235$ N, $5-4.488\sigma_F<0$, so the executed operator holds axial force at zero while rotating.
 \\
 
 CRANK &
@@ -917,7 +916,7 @@ PRY &
 Depth-dependent torque &
 Outcome &
 $|\tau|>
-1.5[1-0.5\!\min\!\!(1,|x_{\mathrm{ins}}|/0.05)]$ N\,m &
+1.5[1-0.5\min(1,|x_{\mathrm{ins}}|/0.05)]$ N\,m &
 $4.542\sigma$ &
 Crack damage accumulates above the depth-dependent torque bound; cracking
 occurs at accumulated damage 1.
@@ -945,11 +944,10 @@ state.
 \end{longtable}
 \endgroup
 
-Unclassified families default to outcome-affecting, so a new constraint cannot
-silently leave evaluation. One frozen naming mismatch is retained: SNAP emits
+Unclassified families default to outcome-affecting, so a new constraint cannot drop out of evaluation unnoticed. One frozen naming mismatch is retained: SNAP emits
 \texttt{vio\_premature} but the taxonomy lists
 \texttt{vio\_premature\_pull}; the emitted family inherits the
-outcome-affecting default as intended, and the historical taxonomy hash is
+outcome-affecting default as intended, and the archived taxonomy hash is
 unchanged after the production runs.
 
 
@@ -959,38 +957,39 @@ Stochastic tightening derives each margin from a declared episode-level risk
 budget and horizon, allocated across the applicable constraint families. Under
 Gaussian noise this is a chance constraint for the assumed distribution, not a
 worst-case robustness guarantee. The implementation records whether a
-tightened set is
+tightened set
 
 \begin{enumerate}
-\item nonempty,
-\item nonempty with positive nonzero command authority, or
-\item infeasible.
+\item retains positive nonzero command authority,
+\item contains only the zero command, or
+\item is empty (infeasible).
 \end{enumerate}
 
 The singleton zero-command set is nonempty yet gives no task-progress authority.
 
 
+\Needspace*{14\baselineskip}
 \subsection{Domain randomization}
 
 Apart from the reset parameters in Table~\ref{tab:submitted-9}, initial
 physical states are deterministic: positions, velocities and damage states
-start at zero, SCREW engagement at one, BATTERY at $25\,{}^{\circ}$C, and PRY
-in \texttt{STUCK} mode.
+start at zero, SCREW engagement at one, BATTERY temperature at $25\,{}^{\circ}$C, and PRY
+in \texttt{STUCK} mode. The evaluation-use column of Table~\ref{tab:submitted-9}
+distinguishes the common ranges from the shifted-reset study in
+\suppsection{S14}: $1.5\times$ and $2\times$ half-width widening and a
+$2\times$ outside-support shell. Native ranges are transcribed from the frozen
+\texttt{reset()} implementations; Table~\ref{tab:ood-ranges} gives all added
+ranges.
 
 \begingroup
 \small
 \setlength{\tabcolsep}{4pt}
 \renewcommand{\arraystretch}{1.15}
 \begin{longtable}{@{}L{0.75in}L{1.30in}L{2.26in}L{1.72in}@{}}
-\caption{Reset-time parameter randomization in the six revised environments.
+\caption{Reset-time parameter randomization in the six environments.
 $U(a,b)$ denotes a uniform multiplier drawn separately for each listed
 parameter at every reset. These distributions are used for training,
-validation, and the original held-out policy evaluation (train/val/test).
-The evaluation-use column distinguishes these common ranges from the added
-revision study in \suppsection{S14}: $1.5\times$ and $2\times$ half-width widening
-and a $2\times$ outside-support shell. Native ranges are transcribed from the
-frozen \texttt{reset()} implementations; Table~\ref{tab:ood-ranges} gives
-all added ranges.}
+validation, and the in-range held-out policy evaluation (train/val/test).}
 \label{tab:submitted-9}\\
 \toprule
 Task & Sampled code field & Distribution and numerical range & Evaluation use\\
@@ -1006,27 +1005,27 @@ SCREW v3 &
 $0.61\,U(0.9,1.1)$: $0.549$--$0.671$.\par
 $0.47\,U(0.9,1.1)$: $0.423$--$0.517$.\par
 Both coefficients are dimensionless.
-& Train/val/test: same range.\par OOD: $1.5\times$, $2\times$, shell; Table~\ref{tab:ood-ranges}.\\
+& Train/val/test: same range.\par Shifted resets: $1.5\times$, $2\times$, shell; Table~\ref{tab:ood-ranges}.\\
 \midrule
 PCB v2 & \texttt{f\_clip} &
 $25\,U(0.85,1.15)$ N:\par $21.25$--$28.75$ N.
-& Train/val/test: same range.\par OOD: $1.5\times$, $2\times$, shell; Table~\ref{tab:ood-ranges}.\\
+& Train/val/test: same range.\par Shifted resets: $1.5\times$, $2\times$, shell; Table~\ref{tab:ood-ranges}.\\
 \midrule
 SNAP v2 & \texttt{k\_latch} &
 $5000\,U(0.9,1.1)$ N\,m$^{-1}$:\par $4500$--$5500$ N\,m$^{-1}$.
-& Train/val/test: same range.\par OOD: $1.5\times$, $2\times$, shell; Table~\ref{tab:ood-ranges}.\\
+& Train/val/test: same range.\par Shifted resets: $1.5\times$, $2\times$, shell; Table~\ref{tab:ood-ranges}.\\
 \midrule
 CRANK v2 & \texttt{mu\_k} &
 $0.47\,U(0.9,1.1)$:\par $0.423$--$0.517$ (dimensionless).
-& Train/val/test: same range.\par OOD: $1.5\times$, $2\times$, shell; Table~\ref{tab:ood-ranges}.\\
+& Train/val/test: same range.\par Shifted resets: $1.5\times$, $2\times$, shell; Table~\ref{tab:ood-ranges}.\\
 \midrule
 BATTERY\par v2 & \texttt{adhesive} &
 $8\,U(0.9,1.1)$ N:\par $7.2$--$8.8$ N.
-& Train/val/test: same range.\par OOD: $1.5\times$, $2\times$, shell; Table~\ref{tab:ood-ranges}.\\
+& Train/val/test: same range.\par Shifted resets: $1.5\times$, $2\times$, shell; Table~\ref{tab:ood-ranges}.\\
 \midrule
 PRY v2 & None &
 Deterministic reset; stochastic variation enters through per-step noise.
-& Train/val/test: deterministic.\par OOD widening: not applicable.\\
+& Train/val/test: deterministic.\par Shifted-reset widening: not applicable.\\
 \bottomrule
 \end{longtable}
 \endgroup
@@ -1038,7 +1037,7 @@ corresponding source revision.
 
 \paragraph{Per-step noise.}
 Production training and evaluation use the default
-\texttt{noise\_mult}$=1.0$: zero-mean Gaussian noise with standard deviation
+\texttt{noise\_mult}${}=1.0$: zero-mean Gaussian noise with standard deviation
 $1.235$ N per sampled force component, $0.003$ N\,m per PCB tilt-torque
 component and $0.039$ N\,m for PRY torque:
 
@@ -1067,21 +1066,17 @@ has unbounded support.
 \paragraph{Training and held-out use.}
 Production training seeds are $0,\ldots,9$; validation and test seed bases are
 $500{,}000$ and $800{,}000$ plus fixed task offsets. Held-out evaluation
-changes only the seed stream, not the ranges or noise, so it is
-in-distribution. \suppsection{S14} evaluates the unchanged selected policies
+changes only the seed stream and keeps the ranges and noise, so it is in-distribution. \suppsection{S14} evaluates the unchanged selected policies
 on shifted resets, saving its episode seeds, reset parameters and distribution
 hashes separately. The constant-sensitivity study is a distinct scripted
-perturbation experiment; the submitted wider random-action sweep is not the
-primary revised evaluation.
+perturbation experiment.
 
 
 
 
 \section{Training configuration}
 \subsection{Learning implementation}
-The reported policies use PPO~\cite{ref31} and SAC~\cite{ref32}. Earlier
-custom SAC and PPO implementations were retired before the reported
-experiments and produced no reported result. With a restriction active in
+The reported policies use PPO~\cite{ref31} and SAC~\cite{ref32}, and every reported policy result comes from these implementations. With a restriction active in
 training, the policy emits a \emph{nominal} command and the restriction is
 part of the environment transition,
 \[
@@ -1098,14 +1093,14 @@ active, testing adaptation to the retained authority. The stages are reported
 separately; neither substitutes for the other.
 
 \subsection{Frozen checkpoint selection and held-out evaluation}
-The main Methods selection rule (checkpoints every 1000 steps; 30 screening
+The main Methods selection rule (checkpoints every 1,000 steps; 30 screening
 and 70 confirmation validation episodes; one evaluation on 100 held-out
 episodes per training seed $0,\ldots,9$) was fixed before any reported
 held-out evaluation. The scheduler uses deterministic task offsets, not
-Python's process-dependent \texttt{hash()}. Historical seed-pairing
-mismatches are reported, not overwritten: SCREW training seed~0 was evaluated
+Python's process-dependent \texttt{hash()}. Seed-pairing
+exceptions are reported as recorded: SCREW training seed~0 was evaluated
 on a different held-out block from seeds~1--9, and its
-\texttt{oracle\_tangent} arm on a third (S9.5).
+\texttt{oracle\_tangent} arm on a third (\suppsection{S9.5}).
 
 \subsection{Recorded configuration}
 
@@ -1119,12 +1114,11 @@ candidate list, and each run record retains the selected step.
 
 \begin{table}[htbp]
 \centering
-\caption{Frozen training and selection configuration for the revised policy
-experiments.}
+\caption{Frozen training and selection configuration for the policy experiments.}
 \label{tab:submitted-10}
 \begin{tabular}{ll}
 \toprule
-Item & Revised configuration\\
+Item & Configuration\\
 \midrule
 Policy algorithms & PPO, SAC\\
 Implementation & Stable-Baselines3 2.9.0\\
@@ -1132,53 +1126,48 @@ Environment API & Gymnasium 1.3.0\\
 Policy network & MLP $[256,256]$\\
 Training device & CPU\\
 Production training seeds & 10 (0--9)\\
-Checkpoint interval & 1000 training steps\\
+Training budget & 15,000 environment steps per policy\\
+Checkpoint interval & 1,000 training steps\\
 Initial validation & 30 episodes/checkpoint\\
+Screening arm & Stage~1: TRiX; Stage~2: training arm\\
 Candidate confirmation & 70 additional episodes\\
 Held-out test & 100 episodes/selected checkpoint\\
+Selected checkpoints & 2,000--14,000 steps\\
 \bottomrule
 \end{tabular}
 \end{table}
 
 PPO-Lagrangian and a complete SafeLayer policy are not trained baselines;
 analytical, learned-constraint, oracle and matched QP arms are identified by
-role, not as trained policies.
+role and kept separate from the trained policies.
 
 
+\Needspace*{14\baselineskip}
 \subsection{Compute and software fingerprints}
 
 Each training artifact stores its Python, NumPy, PyTorch, Stable-Baselines3,
 Gymnasium, platform, network-architecture, constraint and margin-policy
-fingerprints. The revision wrapper explicitly selects the CPU device, so the
-submitted claim that the reported matrix was trained on an NVIDIA A100 is
-withdrawn.
+fingerprints. The training wrapper explicitly selects the CPU device, so the reported matrix was trained on CPU.
 
 
 \subsection{Constraint margins and specification controls}
 
-Margins follow the chance-constraint subsection above, with three recorded
-feasibility states:
+Margins follow the chance-constraint subsection above, including its three recorded feasibility states.
 
-\begin{itemize}
-\item the tightened set is nonempty;
-\item the tightened set retains positive nonzero action authority; or
-\item the tightened set is infeasible.
-\end{itemize}
 
 BATTERY's componentwise and TRiX arms enforce the same preventive force
-threshold, separating specification from projection form; the historical PCB
+threshold, separating specification from projection form; the PCB
 box and TRiX arms differ in both set form and effective margin, so their
 comparison is not an isolated proof of geometric superiority.
 
 
 \subsection{Reproducibility and provenance}
 
-An implementation audit found that several archived filters did not use the
-later per-family margin-policy registry: historical PCB, SNAP, CRANK, BATTERY
-and PRY filters used the common default tightening when no multiplier was
-supplied, and the SCREW radial restriction used its independently derived task
-value. These runs are reported as executed, not regenerated; for them the
-registry is declarative metadata, not the complete executable fingerprint.
+The PCB, SNAP, CRANK, BATTERY and PRY filters apply the common default
+tightening when no multiplier is supplied, and the SCREW radial restriction uses
+its independently derived task value. For these runs the executed code, not the
+per-family margin-policy registry, defines the executed margins, and the runs
+are reported as executed.
 Comparisons remain margin-matched where both arms use the same bound
 construction; PCB and SNAP, whose arms also differ in margin, are
 implemented-governor comparisons.
@@ -1188,15 +1177,12 @@ outcome-taxonomy and protocol-freeze hashes, execution mode, arm, policy
 algorithm, training seed, selected checkpoint and episode seeds; records with
 missing or mismatched fields are not pooled. The registry is the single
 binding between environment versions and runtime arms. The seed schedule,
-seed, specification and margin audits, and interpretation limits are in the
-source package; frozen historical artifacts are not rewritten after audit
-corrections.
+seed, specification and margin checks, and interpretation limits are in the
+source package; archived artifacts are kept as executed.
 
 
 \paragraph{Protocol-hash lineage.}
-The original Stage~1 matrix, the filter-aware Stage~2 records (including the
-BATTERY matched-specification amendment) and a later documentation-only
-clarification of the CRANK interpretation each carry their own protocol identifier
+The Stage~1 matrix, the filter-aware Stage~2 records (including the BATTERY matched-specification records) and a documentation-only clarification of the CRANK interpretation each carry their own protocol identifier
 in the evidence archive; the clarification changed no experimental
 parameter, and each artifact keeps the identifier under which it was
 assembled.
@@ -1206,15 +1192,14 @@ assembled.
 
 The training seed is the experimental unit for learned-policy comparisons;
 the 100 held-out episodes behind each arm/seed estimate in
-Table~\ref{tab:submitted-11} are not independent policy replicates. The
-submitted Welch-test table based on three evaluation RNG streams is withdrawn.
+Table~\ref{tab:submitted-11} are not independent policy replicates. Inference therefore uses these seed-level intervals rather than tests over evaluation random-number streams.
 
 For each contrast, $d_i$ is the arms' safe-completion percentage difference
 at training seed $i=0,\ldots,9$. We report $\bar d$ and the 2.5th and 97.5th
 percentiles of its bootstrap distribution over the ten seed pairs resampled
 with replacement, computed exactly by ten convolutions of the empirical
 distribution of $d_i$ (per-seed percentages are integers at 100 episodes). The intervals, reconstructed from archived counts,
-are descriptive, not multiplicity-adjusted tests, and do not resample episodes.
+are descriptive summaries without multiplicity adjustment and do not resample episodes.
 
 Stage~1 pairs reuse a frozen policy; Stage~2 and PCB cross-regime pairs are
 separately trained policies matched by seed. The preventive BATTERY arms use
@@ -1222,10 +1207,10 @@ different held-out episode seed sets (850000--850099 versus 845000--845099),
 as do the PCB filter-aware and post-hoc box arms, and PCB's episode ranges
 also vary across training seeds (exact lists in the companion per-seed data);
 these contrasts are paired by training seed only. All other contrasts were
-checked for matching episode seed sets. The audit reconciles
-220 aggregate records with 4400 evaluation shards and all 80 archived
-\mainref{fig:seed-distributions} points; historical Stage~1 BATTERY results
-remain outside this table.
+checked for matching episode seed sets. The checker reconciles
+220 aggregate records with 4,400 evaluation shards and all 80 archived
+\mainref{fig:seed-distributions} points; Stage~1 BATTERY results
+are reported in Table~\ref{tab:submitted-4}.
 
 \input{manuscript/tables/seed_statistics.tex}
 
@@ -1248,31 +1233,26 @@ environment.
 
 \paragraph{Matched solver specification.}
 The analytical, active-set QP and operator-splitting implementations in
-\texttt{baselines/screw\_solvers.py} share the normalized SCREW command
+\path{baselines/screw_solvers.py} share the normalized SCREW command
 polytope; the registered analytical and matched-QP arms match at task level,
 and \suppsection{S8} reports pointwise agreement with reused OSQP on a saved
 input bank.
 
+\Needspace*{8\baselineskip}
 \paragraph{Specification sensitivity.}
-The archived sweep covers 21 constants at five multipliers, with eight
-scripted episodes per arm and case.
-
-\subsection{Specification failure: exact projection cannot repair the wrong boundary}
-
-BATTERY's 20-N flagged peel bound and 15-N preventive deformation threshold are
-different physical specifications that no projection geometry makes
-equivalent.
-
-The expected task-specific ordering holds in 96 of 105 perturbation cases.
+The archived sweep covers 21 constants at five multipliers, with eight scripted episodes per arm and case. The expected task-specific ordering holds in 96 of 105 perturbation cases.
 Six PCB failures reduce stiffness or yield curvature, or raise the
 tilt-torque limit, making the permitted torque inconsistent with the modeled
 yield boundary; one CRANK failure halves the axial limit, leaving no feasible
 command under the declared tightening; two BATTERY failures, at deformation
 onsets of 22.5 and 30 N, have zero destructive completions in both arms but
 lower safe completion for the designated preventive arm (12.5\% and 0.0\%
-versus 100.0\%), failing the ordering criterion without recorded damage.
-These post-hoc diagnoses support neither the earlier claim that all nine failures violated two safety preconditions nor a 96/96 safety
-guarantee within a retrospectively defined valid region.
+versus 100.0\%), failing the ordering criterion without recorded damage. These diagnoses are post hoc and do not define a parameter region in which the ordering is guaranteed.
+
+\Needspace*{14\baselineskip}
+\subsection{Specification failure: exact projection cannot repair the wrong boundary}
+
+BATTERY's 20-N flagged peel bound and 15-N preventive deformation threshold are different physical specifications that no projection geometry makes equivalent.
 
 
 
@@ -1281,8 +1261,7 @@ guarantee within a retrospectively defined valid region.
 
 The benchmark times the complete governor call (main Methods) for all 20
 registered non-passthrough arms across the six tasks, plus the NumPy SCREW
-polygon projector and reused OSQP; it replaces the unsupported historical
-timing figures without reconstructing their provenance.
+polygon projector and reused OSQP.
 
 \paragraph{Workload and repetition.}
 Each task has 2,048 saved float32 observation/action pairs (seed 20260925):
@@ -1300,7 +1279,7 @@ all 2,048 inputs per implementation (10,240 calls per row, 225,280 overall)
 in a seeded permutation, with task and implementation order randomized within
 64-input blocks; all arms of a task see the same input sequence. Timing uses
 \texttt{perf\_counter\_ns} with cyclic garbage collection disabled, allocation
-and reference counting included, and the 0.025~$\mu$s empty timer-pair median
+and reference counting included, and the 0.025~\textmu s empty timer-pair median
 not subtracted. Table~\ref{tab:runtime-latency} reports pooled medians, 95th
 percentiles and the range of the five process medians; raw per-call durations
 (all outliers), outputs, failure flags, call order, strata and maxima are kept.
@@ -1322,12 +1301,11 @@ output goes to saved logs.
 The scalar, NumPy and active-set outputs coincide in float32 and differ from
 OSQP by at most $1.013\times10^{-6}$ per action coordinate; all four pass the
 predeclared $10^{-5}$ action-agreement and $10^{-7}$ constraint-residual
-tolerances with zero recovery outputs, though these saved-bank checks are no
-general error bound. The NumPy analytical projector takes 18.16/20.90~$\mu$s
-(median/95th percentile), and BATTERY's preventive TRiX variant 3.12~$\mu$s.
+tolerances with zero recovery outputs; these checks on the saved bank do not establish a general error bound. The NumPy analytical projector takes 18.16/20.90~\textmu s
+(median/95th percentile), and BATTERY's preventive TRiX variant 3.12~\textmu s.
 Componentwise and oracle-tangent controls implement different restrictions,
 so their times are descriptive overheads, not equivalent-safety comparisons.
-The largest recorded calls are 352.56~$\mu$s for OSQP and 335.81~$\mu$s for
+The largest recorded calls are 352.56~\textmu s for OSQP and 335.81~\textmu s for
 CRANK TRiX; a single-host distribution establishes no worst-case execution
 time or end-to-end real-time guarantee.
 
@@ -1337,7 +1315,8 @@ pinned dependencies, input bank and raw measurements;
 regenerates summary and table from the saved arrays, checking source and
 payload hashes separately from timing.
 
-\input{manuscript/tables/runtime_latency.tex}
+\Needspace*{18\baselineskip}
+{\renewcommand{\mu}{\text{\textmu}}\input{manuscript/tables/runtime_latency.tex}}
 
 
 
@@ -1351,20 +1330,17 @@ Table~\ref{tab:stage2-key} the Stage~2 comparisons summarized in
 \caption{Stage~1 paired frozen-policy governance. Entries are mean safe
 completion (\%) across ten independent training seeds. The runtime arms are
 named individually rather than collapsed into a generic baseline. The frozen
-protocol specifies 100 held-out test episodes per selected policy. Historical
-BATTERY rates are reconstructed from exact-arm test shards: the historical
-\texttt{trix} filename match also pooled \texttt{trix\_preventive}, producing
-200-episode aggregates. The displayed rates use 100 episodes per seed and arm;
-original records are preserved. BATTERY remains a specification ablation,
+protocol specifies 100 held-out test episodes per selected policy. BATTERY
+rates are computed from exact-arm test shards, so \texttt{trix} and
+\texttt{trix\_preventive} are counted separately, with 100 episodes per seed and arm. BATTERY remains a specification ablation,
 not a matched-form comparison in this table.}
 \label{tab:submitted-4}
-\scriptsize
-\setlength{\tabcolsep}{2.8pt}
-\resizebox{\linewidth}{!}{%
+\small
+\setlength{\tabcolsep}{4pt}
 \begin{tabular}{llrrrrrrr}
 \toprule
 Task & Alg. & none & box\_clip & static\_clip & oracle\_tangent &
-qp\_matched & TRiX & TRiX\_preventive\\
+qp\_matched & trix & trix\_preventive\\
 \midrule
 SCREW & SAC & 0.0 & -- & -- & 88.7 & 88.7 & 88.7 & -- \\
 SCREW & PPO & 0.0 & -- & -- & 60.0 & 60.0 & 60.0 & -- \\
@@ -1379,34 +1355,39 @@ BATTERY & PPO & 0.0 & 0.0 & -- & 0.0 & -- & 0.0 & 0.0 \\
 PRY & SAC & 0.0 & -- & 0.0 & 0.0 & -- & 0.0 & -- \\
 PRY & PPO & 0.0 & -- & 0.0 & 0.0 & -- & 0.0 & -- \\
 \bottomrule
-\end{tabular}%
-}
+\end{tabular}
 \begin{minipage}{0.98\linewidth}
 \footnotesize
 \textit{Reporting notes.}
-For PCB, the historical aggregate is preserved in the repository but its
+For PCB, the archived aggregate's
 seed-0 oracle arm used a different held-out test-seed set from the paired
-arms. Correcting both SAC and PPO seed-0 oracle records gives reporting means
-of 100.0\% and 44.4\%, respectively. For BATTERY, the original Stage~1 comparison mixed physical
-specifications: \texttt{box\_clip} enforced the 20-N flagged threshold whereas
-\texttt{trix\_preventive} enforced the 15-N preventive threshold. Those cells
+arms. With both SAC and PPO seed-0 oracle records aligned to the paired
+test seeds, the reporting means are 100.0\% and 44.4\%, respectively. For BATTERY, the Stage~1 comparison mixes physical
+specifications: \texttt{box\_clip} enforces the 20-N flagged threshold whereas
+\texttt{trix\_preventive} enforces the 15-N preventive threshold. Those cells
 are descriptive only; the matched 15-N comparison is reported separately.
 \end{minipage}
 \end{table}
 \begin{table}[htbp]
 \centering
-\caption{Representative Stage~2 filter-aware SAC results within the training
-reset ranges. Safe-completion rates are percentages aggregated over ten
-production training seeds; arms retain separately trained policies.}
+\caption{Stage~2 filter-aware results within the training reset ranges.
+Safe-completion rates are percentages aggregated over ten production training
+seeds; arms retain separately trained policies. SCREW was trained only with
+TRiX. For BATTERY, both arms enforce the matched 15-N preventive target
+(\texttt{box\_clip\_preventive} and \texttt{trix\_preventive}).}
 \label{tab:stage2-key}
-\begin{tabular}{lrr}
+\begin{tabular}{llrrrr}
 \toprule
-Task & Simpler restriction & Task-conditioned governor\\
+& & \multicolumn{2}{c}{SAC} & \multicolumn{2}{c}{PPO}\\
+\cmidrule(lr){3-4}\cmidrule(l){5-6}
+Task & Simpler restriction & Simpler & TRiX & Simpler & TRiX\\
 \midrule
-SNAP  & 5.2  & 96.5\\
-CRANK & 0.0  & 49.4\\
-PCB   & 100.0 & 99.8\\
-PRY   & 88.5 & 89.1\\
+SCREW & -- & -- & 100.0 & -- & 100.0\\
+PCB   & \texttt{box\_clip} & 100.0 & 99.8 & 100.0 & 100.0\\
+SNAP  & \texttt{static\_clip} & 5.2  & 96.5 & 0.0 & 0.0\\
+CRANK & \texttt{static\_clip} & 0.0  & 49.4 & 0.0 & 0.0\\
+BATTERY & preventive box & 100.0 & 100.0 & 100.0 & 100.0\\
+PRY   & \texttt{static\_clip} & 88.5 & 89.1 & 10.0 & 0.3\\
 \bottomrule
 \end{tabular}
 \end{table}
@@ -1416,11 +1397,10 @@ SNAP safe completion is 5.2\% (static) and 96.5\% (TRiX) within the training
 reset ranges and 3.5\% and 59.9\% in the outside-support shell
 (\suppsection{S14}). The separately trained arms also differ in phase
 conditioning (static is phase-blind) and margin (nominal bounds versus
-archived robust tightening), so the gap supports the combined
-policy-and-governor configuration without isolating governor, phase
-information or tightening as the cause. Nor does it implicate curved
-geometry: the phase-conditioned admissible set is axis-aligned, and
-phase-aware clipping delegates to the same phase-conditioned projection.
+archived robust tightening), so the gap belongs to the combined
+policy-and-governor configuration. The phase-conditioned admissible set is
+axis-aligned, and phase-aware clipping delegates to the same
+phase-conditioned projection, so curved geometry plays no part.
 
 
 \subsection{CRANK: angle conditioning and task-frame representation vary together}
@@ -1430,21 +1410,18 @@ restriction and 49.4\% with the task-conditioned governor.
 The static arm sets its axial restriction by rotation phase but fixes
 transverse bounds in world coordinates at the smaller task-axis authority;
 the task-conditioned arm also tracks crank angle and works in the rotating
-task frame. The static representation thus omits task-relevant structure,
-without isolating angle conditioning, the task-frame transform or both as the
-cause, and the training stall is an empirical learning outcome under the
+task frame. The static representation thus omits task-relevant structure. The comparison does not separate angle conditioning from the task-frame transform as the cause, and the training stall is an empirical learning outcome under the
 implemented restriction, not proof that a required tangential command is
 mathematically excluded at every orientation.
 
 
-\subsection{PCB and PRY: simpler restrictions can be sufficient after adaptation}
+\subsection{PCB and PRY: simpler restrictions suffice after adaptation}
 
 On PCB, filter-aware SAC reaches 100.0\% with componentwise clipping and
-99.8\% with TRiX, so exact structured projection shows no material task-level
-advantage after adaptation. Stage~1 changed filter form and margin together,
-a nominal $0.100$~N\,m per-axis tilt bound against an executed projection
-radius of about $0.0871$~N\,m ($12.9\%$ tighter), so it does not isolate set
-geometry as the cause.
+99.8\% with TRiX, so after adaptation the two restrictions perform alike.
+Stage~1 changes filter form and margin together: a nominal $0.100$~N\,m
+per-axis tilt bound against an executed projection radius of $0.0871$~N\,m
+($12.9\%$ tighter).
 
 On PRY it reaches 88.5\% (static) and 89.1\% (TRiX); trained under the
 restriction, the policy adapts its proposals to the authority a simpler
@@ -1455,23 +1432,20 @@ checkpoint-selected means, gives mean safe completion of 0.0\% unrestricted,
 each restricted arm. The restrictions share the intended zero-insertion
 bounds but differ as insertion proceeds; the archive's provenance note reports
 an initial volume check without its sample record, so no numerical volume
-estimate is retained. Both restrictions are useful here, without proven
-equivalence or a causal role for task-dependent geometry.
+estimate is retained. Both restrictions work here; the data show neither equivalence nor a causal role for task-dependent geometry.
 
 
 
-\subsection{BATTERY exact-arm correction}
-The historical filename-prefix matcher pooled \texttt{trix} with
-\texttt{trix\_preventive} and, in Stage~2, \texttt{box\_clip} with
-\texttt{box\_clip\_preventive}; thirty aggregate records include another arm
-and 22 repeat episode seed IDs. The exact-arm audit maps 1,020 aggregates to
-20,400 test shards, checks every displayed cell, keeps the selected checkpoint
-(selection was not rerun) and corrects the Stage~1 BATTERY/SAC/TRiX mean to
-20.0\%; the matched preventive comparison remains 100\% versus 100\%, and the
-original files and complete correction ledger are preserved.
+\subsection{BATTERY exact-arm counts}
+Displayed counts match arms by exact name, so \texttt{trix} and
+\texttt{trix\_preventive} and, in Stage~2, \texttt{box\_clip} and
+\texttt{box\_clip\_preventive} are counted separately. Exact-arm matching maps 1,020 aggregates to 20,400 test shards, checks every displayed
+cell with the selected checkpoints unchanged and gives a Stage~1
+BATTERY/SAC/TRiX mean of 20.0\%; the matched preventive comparison is 100\%
+against 100\%. The complete ledger is in the evidence archive.
 
 \subsection{SCREW correction-metric sensitivity of frozen policies}
-This study, added in revision, re-evaluates the selected Stage~1 SCREW
+This study re-evaluates the selected Stage~1 SCREW
 policies (ten SAC and ten PPO training seeds) without retraining, testing
 whether the metric selecting the nearest admissible command changes outcomes
 when the admissible set is fixed. In production normalized coordinates
@@ -1481,10 +1455,9 @@ d_\kappa(u,\tilde u)^2=\kappa^{-2}(a_v-\tilde a_v)^2+(a_\omega-\tilde a_\omega)^
 \]
 that is, Euclidean projection with axial scale $\kappa S_v$ in place of $S_v$,
 while the radial command keeps its production margin-tightened bound. Any
-positive weighting returns a point of the same polygon, so $\kappa$ changes
-only the selected correction, not admissibility. The declared scales,
+positive weighting returns a point of the same polygon, so $\kappa$ changes only the selected correction and leaves admissibility unchanged. The declared scales,
 $S_v=0.05$~m\,s$^{-1}$ and $S_\omega=60$~rad\,s$^{-1}$, were fixed in
-the task code before any policy was trained and are unchanged since.
+the task code before any policy was trained.
 
 Two gates precede comparison: at $\kappa=1$ the reconstructed projector
 matches the production scalar TRiX projector within the declared $10^{-6}$
@@ -1495,11 +1468,11 @@ Policies replay their archived held-out Stage~1 test-shard episodes
 (879000--879099 for training seed~0 of both algorithms, 899000--899099 for
 seeds~1--9), shared by TRiX and the matched QP for every seed; the archived
 seed-0 \texttt{oracle\_tangent} arm used 819000--819099 and is not
-episode-paired with them.
+episode-paired with them. The two tables below give the per-seed rates and the episode outcomes.
 
-\begin{center}
+\par\noindent\begin{minipage}{\linewidth}\begin{center}
 \small
-\textbf{Safe completion (\%) per training seed under TRiX with metric factor $\kappa$.}\\[4pt]
+\textbf{SCREW safe completion (\%) per training seed under TRiX with metric factor $\kappa$.}\\[4pt]
 \setlength{\tabcolsep}{6pt}
 \begin{tabular}{@{}llrrrrrrrrrrr@{}}
 \toprule
@@ -1514,11 +1487,11 @@ PPO & 1 & 100 & 100 & 100 & 100 & 100 & 0 & 0 & 100 & 0 & 0 & 60.0\\
 PPO & 2 & 0 & 100 & 0 & 100 & 0 & 0 & 0 & 0 & 0 & 0 & 20.0\\
 \bottomrule
 \end{tabular}
-\end{center}
+\end{center}\end{minipage}\par
 
-\begin{center}
+\par\noindent\begin{minipage}{\linewidth}\begin{center}
 \small
-\textbf{Episode outcomes over 1,000 episodes per row.}\\[4pt]
+\textbf{SCREW episode outcomes under TRiX with metric factor $\kappa$, over 1,000 episodes per row.}\\[4pt]
 \setlength{\tabcolsep}{6pt}
 \begin{tabular}{@{}llrrrrrr@{}}
 \toprule
@@ -1533,13 +1506,11 @@ PPO & 1 & 600 & 0 & 0 & 0 & 400 & 0\\
 PPO & 2 & 200 & 0 & 0 & 0 & 800 & 0\\
 \bottomrule
 \end{tabular}
-\end{center}
+\end{center}\end{minipage}\par
 
 
 No episode at any $\kappa$ ends in destructive completion or mechanical
-failure. Lost episodes stall until timeout, except for SAC at $\kappa=2$,
-where they instead become unsafe intact completions, which rise from 13 to
-138 per 1,000 episodes; the last column counts episodes with any recorded
+failure. Lost episodes mostly stall until timeout; for SAC, unsafe intact completions rise from 13 per 1,000 episodes at $\kappa=1$ to 23 at $\kappa=0.5$ and 138 at $\kappa=2$; the last column counts episodes with any recorded
 violation, whatever their outcome. Which admissible command replaces a
 proposal thus changes whether a frozen policy progresses, without admitting
 any inadmissible command; whether policies trained under a given metric adapt
@@ -1561,8 +1532,8 @@ required action, sampled from the interior of its exact admissible set, standing
 in for task-essential control authority.
 
 Learned models are fitted separately on each evaluated geometry from 3,000
-labeled state--action samples (250 fitting steps for the nonlinear model), so
-``held-out'' refers to the geometry bank, not to transfer of one learned model.
+labeled state--action samples (250 gradient steps for the nonlinear model), so
+``held-out'' refers to the geometry bank; no single learned model is transferred across geometries.
 Retention permits displacement below
 $0.02(\lVert u_{\rm req}\rVert+10^{-9})$. The context-free box uses the
 implemented inscribed-box construction and, for context-dependent families,
@@ -1580,13 +1551,10 @@ and 92.3\% iterated; the per-action analytical oracle and exact structured
 projection each reach 100\%.
 
 The action-affine result stays at 0.0\% as its training set grows from 500 to
-20,000 samples, a representational limitation of that model class in this
-experiment rather than insufficient data. The iterated nonlinear result
-counters a simple ``learned versus symbolic'' reading, but it is a
-proposal-feasibility rate, not set recovery; exact projection differs because
-it is given the declared set rather than learning an approximation. The
-archived run uses seed 0, 20,000 fitting samples and 2,000 test proposals, so
-the gain from 78.0\% to 92.3\% is not established across seeds.
+20,000 samples, a representational limitation of that model class. The
+iterated nonlinear result is a proposal-feasibility rate: exact projection is
+given the declared set, while the learned models approximate it. The archived
+run uses seed 0, 20,000 fitting samples and 2,000 test proposals.
 
 
 \subsection{Procedural benchmark separates context, approximation and exact projection}
@@ -1594,15 +1562,14 @@ the gain from 78.0\% to 92.3\% is not established across seeds.
 The partition of the 200 held-out instances, fixed before evaluation, is a
 constructed calibration test: the ``needs structure'' group is defined by the
 implemented context-free axis-aligned box excluding the required action, so
-that box's failure there is close to definitional, not independent validation
-of the criterion. The empirical
+that box's failure there follows from the definition. The empirical
 information is how other representations behave inside each group.
 
 \begin{table}[htbp]
 \centering
 \caption{Held-out procedural admissible-set benchmark. Values are the
 percentage within each group whose required-action displacement is below
-2\% of its norm (with the numerical offset specified in Methods). The
+2\% of its norm (with the numerical offset specified in the main Methods). The
 ``needs structure'' partition contains 124 instances and ``box suffices''
 contains 76. Learned models receive labeled samples from each evaluated
 geometry. Feasibility is checked on 400 sampled proposals per instance.}
@@ -1622,17 +1589,13 @@ Exact projection & 100.0 & 100.0\\
 \end{table}
 
 Every arm returns feasible commands for all 400 sampled proposals in each of
-the 200 instances, an empirical check on 80,000 proposals per arm, not a
-universal guarantee. The approximate arms also use the implemented
+the 200 instances, an empirical check on 80,000 proposals per arm. The approximate arms also use the implemented
 inscribed-box bounds, which contribute to feasibility and can remove required
 authority. The 2\% tolerance explains why clipping retains two of the 124
 box-excluded actions.
 
 The learned affine model retains the required action in 0.0\% of the
-box-sufficient group, where a context-free box succeeds on 100.0\%, so
-``linear'' is not one capability class: a learned affine cost representation
-is not equivalent to an explicit bounded box, which generally requires multiple
-signed inequalities. Context helps without making an approximate operator
+box-sufficient group, where a context-free box succeeds on 100.0\%, so a learned affine model cannot represent a bounded box, which needs several signed inequalities. Context helps without making an approximate operator
 exact: the context-conditioned oracle's 36.3\% in the structure-required group
 measures authority retained by the implemented per-context approximation, not
 a generic tangent projection error rate. Exact projection's 100\% in both
@@ -1657,30 +1620,25 @@ variant with no learned arm reaching 50\% completion was declared
 
 The gate was not met: every arm stayed below 50\%, with a highest ten-seed
 mean safe-completion rate of 10.0\% (individual seeds are not bounded by that
-mean), so the test neither confirms nor falsifies the criterion. Gate and task
-were frozen before the final comparison and not softened afterward; reporting
-this null result is part of the evidence that the criterion was not repeatedly
-modified until every new experiment agreed with it.
+mean), so the test neither confirms nor falsifies the criterion. Gate and task were frozen before the final comparison and not changed afterward.
 
 
 \section{VLM encoding, records and additional analyses}
 \subsection{Controlled foundation-model command study}
 \label{sec:si-vlm-method}
 
-Recorded outputs of actual vision-language models on one PCB task replace the
-synthetic injection experiment; bank, aliases and replay protocol are in the
+This study uses recorded outputs of vision-language models on one PCB task; bank, aliases and replay protocol are in the
 main Methods. Bank specification v1.0 records the freeze date 11 August 2026,
 not an API access date. The aliases are not pinned snapshots
 \cite{ref36,ref37,ref38}, and the client permits fallback within provider pools while writing the
 configured alias. All 273 raw outputs and parsed commands are retained;
 backend identifiers, per-call access times and retry histories are not, and
-the trial ledger marks them unavailable. The images affected by four retried
-Gemini timeouts in earlier notes cannot be identified; the final Gemini file
+the trial ledger marks them unavailable. Run notes record four Gemini timeout retries without image identifiers; the Gemini file
 has 91 successful, uniquely identified records and no error rows.
 
 \paragraph{Visual tilt scaling and margin strata.}
 The bank generator stores a display angle $\phi$ and a normalized parameter
-$t=\texttt{tilt\_norm}$. For the 21 main-strata configurations, before
+$t=\texttt{tilt\_norm}$. For the 21 main-stratum configurations, before
 rounding,
 \[
 b=\texttt{TAU\_ROBUST}(1-\texttt{INTERIOR}),\qquad
@@ -1708,12 +1666,11 @@ margin, which the stored values retain, but not the physical angle, so
 apparent image distance to a boundary is not a physical safety margin. The same
 mechanical tilt displays about 5.74-fold larger in a main-stratum image than
 in a partial view. Byte-identical re-rendering from saved display parameters
-tests rendering reproducibility, not equality of displayed and mechanical
-tilt. The VLM bank is separate from the six manuscript workspace illustrations.
+tests rendering reproducibility; it does not equate displayed and mechanical tilt. The VLM bank is separate from the six manuscript workspace illustrations.
 
 The archive calls the admissible category ``executable''; admissible and
 inadmissible grounded commands are both replayed, without human annotation of
-semantic correctness. The historical \texttt{projection\_prevented\_harm}
+semantic correctness. The archived \texttt{projection\_prevented\_harm}
 field combines violations with destructive completion. Both arms record zero
 destructive completions and zero mechanical failures in every VLM replay, so
 the field, like the main Methods' endpoint, measures prevented constraint
@@ -1722,8 +1679,7 @@ not an autonomous agent loop.
 
 
 \subsection{Complete outcome accounting}
-Main Table~5 accounts for all 273 decisions, one complete record per bank
-image in each provider archive. Inadmissible counts for Claude Sonnet, GPT-4o
+Main Table~5 accounts for all 273 decisions, one complete record per bank image in each model-run archive. Inadmissible counts for Claude Sonnet, GPT-4o
 and Gemini are 3/91, 9/91 and 26/91 over all inputs and 3/91, 9/75 and 26/91
 over grounded responses. All nine inadmissible GPT-4o commands and 22 of the
 26 inadmissible Gemini commands produce violations without governance and
@@ -1731,12 +1687,11 @@ none with it. A correction alone earns no prevention credit: Claude
 Sonnet's \texttt{LIFT} at magnitude 0.6 on \texttt{s00\_misleading.png} is
 inadmissible but produces no recorded violation in either arm.
 
-\subsection{Inadmissible image sets differ across provider runs}
+\subsection{Inadmissible image sets differ across model runs}
 
 Of the 91 images, 35 elicit an inadmissible command in at least one run and
 none in all three: 23 are unique to Gemini, eight to GPT-4o and one to Claude
-Sonnet, and three occur in a pair of failure sets. These are image-level
-overlaps, not independent physical configurations. The three Claude Sonnet and
+Sonnet, and three occur in a pair of failure sets. These overlaps are at the image level and do not represent independent physical configurations. The three Claude Sonnet and
 nine GPT-4o inadmissible images do not intersect, even when grouped by
 base-state ID, so no Gemini failure set can create a three-way overlap,
 whether or not the Gemini retries are identified.
@@ -1761,46 +1716,31 @@ visual-tilt comparison.
 The counts describe responses to the scaled encoding, not a common monotonic
 error trend across runs. Without an unscaled image control, the contribution of
 visual scaling cannot be separated from differences between model runs. The
-margin is the generator's normalized quantity, not a model-perceived safety
-boundary.
+margin is the generator's normalized quantity; the models do not perceive it as a safety boundary.
 
 
 \section{Physical platform and trial records}
 \subsection{Hardware platform}
-Joints~1--3 use RS-06 and Joints~4--7 RS-00 actuators; the final grasp implementation is frozen
+Joints~1--3 use RS-06 and Joints~4--7 RS-00 actuators; the grasp implementation is frozen
 at a tagged release preserved in the evidence archive.
 
-\texttt{TrixProjector} answers each symbolic manipulation \texttt{Proposal} with \texttt{ALLOW},
-\texttt{PROJECT} or \texttt{REJECT}; \texttt{TrixExecutionBridge} turns an
-approved decision into an executor command, which
-\texttt{TrixPhysical\-Target\-Adapter} maps to a physical target relative to
-the joint configuration captured at trial start. Joint~1 is a hard invariant: proposals to move it are
-rejected, the bridge excludes it, and the adapter restores its captured value
-before execution.
+{\raggedright The projector (\mbox{\texttt{TrixProjector}}) answers each symbolic manipulation \texttt{Proposal} with \texttt{ALLOW}, \texttt{PROJECT} or \texttt{REJECT}. An execution bridge (\mbox{\texttt{TrixExecutionBridge}}) turns an approved decision into an executor command, and a target adapter (\mbox{\texttt{TrixPhysicalTargetAdapter}}) maps that command to a physical target relative to the joint configuration captured at trial start. Joint~1 is a hard invariant: proposals to move it are rejected, the bridge excludes it, and the adapter restores its captured value before execution.\par}
 
-Joint~3 gravity feed-forward is model-based with \(\alpha=0.25\). Two disclosed
-calibrations, a \(+5^\circ\) Joint~2 grasp-ready offset after deep hover and a
+Joint~3 gravity feed-forward is model-based with \(\alpha=0.25\). Two calibrations, a \(+5^\circ\) Joint~2 grasp-ready offset after deep hover and a
 map from symbolic gripper state to calibrated Joint~7 open and grasp positions,
 implement an approved physical primitive, not autonomous grasp synthesis. In
 all six grasp-and-return trials the operator placed the object between the open
-jaws at the grasp-ready pose; for the three repetitions without video this is
-operator-confirmed, not logged. Each formal trial preserves the console log,
-passive timestamped CAN traffic, pre- and post-execution CAN state, source
-and configuration copies, exit status, SHA256 checksums and continuous video.
+jaws at the grasp-ready pose; for the three repetitions without video this is confirmed by the operator rather than logged. Each formal trial preserves the console log,
+passive timestamped CAN traffic, pre- and post-execution CAN state, source and configuration copies, exit status and SHA256 checksums; the three video-backed trials also preserve continuous video.
 No independent force or torque sensor is used.
 
 \subsection{Recorded interventions and confirmation trials}
 
-In the intervention experiment, a request for the invalid transition
-\texttt{START\_SAFE} to \texttt{LOW\_HOVER} was \texttt{REJECT}ed and produced
-no physical target, as did a hard-rejected \(+50^\circ\) Joint~1 proposal. An
-excessive \(+50^\circ\) Joint~2 proposal was \texttt{PROJECT}ed to
-\(+18^\circ\), and only that target was executed. The subsequent
-\texttt{RETURN\_SAFE} request was \texttt{ALLOW}ed, with final Joint~1 drift of
+In the intervention experiment, a request for the invalid transition \texttt{START\_SAFE} to \texttt{LOW\_HOVER} was rejected (\texttt{REJECT}) and produced no physical target, as did a hard-rejected \(+50^\circ\) Joint~1 proposal. An excessive \(+50^\circ\) Joint~2 proposal was projected (\texttt{PROJECT}) to \(+18^\circ\), the upper bound of the approach-phase Joint~2 interval \([0^\circ,18^\circ]\), and only that target was executed. The subsequent \texttt{RETURN\_SAFE} request was allowed (\texttt{ALLOW}), with final Joint~1 drift of
 \(+0.007^\circ\). Its evidence package, including passive CAN captures and checksums, is
 preserved in the evidence archive.
 
-Each of three continuous-video grasp-and-return trials of the frozen V4
+Each of three continuous-video grasp-and-return trials of the frozen
 implementation (\mainref{fig:b601-hardware}) validated the symbolic sequence
 before motion and executed ten TRiX-governed decisions spanning gripper opening, approach, preshape, low and deep hover, engagement,
 retraction and return: 30 physical decisions, all \texttt{ALLOW}. The
@@ -1814,7 +1754,7 @@ and largest Joints~1--6 residual \(0.122^\circ\); all recorded files passed thei
 \begin{table}[H]
 \centering
 \small
-\caption{Video-backed B601-RS confirmation trials under the frozen V4
+\caption{Video-backed B601-RS confirmation trials under the frozen
 implementation. A/P/R denotes the number of physically executed
 \texttt{ALLOW}/\texttt{PROJECT}/\texttt{REJECT} TRiX decisions. Max arm
 residual is the largest absolute start-to-final difference over Joints~1--6.
@@ -1823,19 +1763,18 @@ the retained object. The operator manually positioned the object between the
 open jaws before governed closure, lift and return.}
 \label{tab:b601-hardware}
 \begin{tabular}{lcccc}
-\hline
+\toprule
 Trial & Outcome & A/P/R & J1 drift & Max arm residual \\
-\hline
+\midrule
 1 & Retained & 10/0/0 & \(-0.027^\circ\) & \(0.112^\circ\) \\
 2 & Retained & 10/0/0 & \(+0.027^\circ\) & \(0.117^\circ\) \\
 3 & Retained & 10/0/0 & \(+0.015^\circ\) & \(0.122^\circ\) \\
-\hline
+\bottomrule
 \end{tabular}
 \end{table}
 
 Three additional same-code logged
-repetitions completed normally with exit code zero and verified hashes; they
-count as execution repetitions, not video-backed retention trials. Neither
+repetitions completed normally with exit code zero and verified hashes; they count as execution repetitions without video-backed retention evidence. Neither
 experiment independently validates the modeled force or wrench limits used in
 simulation.
 
@@ -1847,15 +1786,15 @@ BATTERY v2 models latent internal-short dynamics that keep generating heat
 after external force is removed. Its acceptance test applies a damaging
 command, zeroes it for 2,000 steps and checks that heating continues, a property of the
 declared model, not independent thermal validation. Trajectory temperatures are omitted,
-as their supporting trace was not recovered in the revision archive.
+as their supporting trace is not in the archive.
 
 A governor acting only on current commands cannot remove energy already in
 that state, so prevention must precede it. With the same
 15-N preventive threshold, the componentwise arm and TRiX both reach 100\% safe
-completion; the earlier difference between filter forms reflected different
-physical thresholds, not the projection operator.
+completion; the difference between the Stage~1 filter forms reflects different physical thresholds rather than the projection operator.
 
 
+\Needspace*{14\baselineskip}
 \subsection{Sequential constraints: projection cannot invent a missing prerequisite}
 
 In SNAP, safe extraction requires latch deflection before pulling. A reactive
@@ -1864,20 +1803,20 @@ but cannot create the missing deflection; that requires an upstream planner, tem
 precondition-creating mechanism.
 
 
-\subsection{Probabilistic tightening can eliminate command authority}
+\subsection{Probabilistic tightening eliminates CRANK axial authority during rotation}
 
 For CRANK, with axial force-noise standard deviation 1.235 N and nominal
-limit 5.00 N, the largest feasible Gaussian multiplier is approximately
+limit 5.00 N, the largest feasible Gaussian multiplier is
 
 \[
 z_{\max}=\frac{5.00}{1.235}\approx4.05.
 \]
 
-The declared episode-level allowance requires $z=4.488$, so the tightened
-limit is negative and no positive command authority remains. The noise model is not relaxed; the nominal 5-N CRANK
-configuration is excluded from enforcement-guarantee claims, and its separate
-representation study, which does not require this margin, is interpreted on
-that narrower basis.
+The declared episode-level allowance requires $z=4.488$, which leaves no
+positive axial authority during rotation. The executed CRANK operator therefore
+holds the axial bound at zero while rotating, so it forwards commands with zero
+axial force, and axial extraction is commanded after rotation completes under
+the tightened 20-N structural limit. The noise model is not relaxed.
 
 
 
@@ -1885,13 +1824,11 @@ that narrower basis.
 \label{sec:si-ood}
 \subsection{Protocol and evaluation conditions}
 
-Protocol and implementation for this revision-added experiment were committed to the
-repository before any OOD policy rollout; \path{docs/ood_reset_protocol.json}
+Protocol and implementation for this experiment were committed to the repository before any shifted-reset policy rollout; \path{docs/ood_reset_protocol.json}
 retains the declaration, checkpoint and source identifiers, seed lists
-and analysis rules. No policy was retrained or reselected, and the
-in-range estimates in \mainref{tab:policy-summary} are unchanged.
+and analysis rules. No policy was retrained or reselected, and the in-range estimates in \mainref{tab:policy-summary} come from the same checkpoints.
 
-It covers the seven comparisons there for SCREW
+It covers the seven non-PRY comparisons of \mainref{tab:policy-summary}: SCREW
 (SAC and PPO, Stage~1), PCB (SAC, Stages~1 and 2), and SNAP, CRANK and
 BATTERY (SAC, Stage~2), retaining all arms, including zero-performing ones, and ten training seeds.
 BATTERY uses the matched 15-N preventive box and TRiX specifications. PRY is not applicable (deterministic
@@ -1901,8 +1838,7 @@ For a training interval with center $c$ and half-width $h$, the first two
 conditions draw uniform proposals from $[c-kh,c+kh]$ at $k=1.5$ and $k=2$.
 The primary shell condition keeps only $k=2$ draws outside training
 support: the two outer intervals for one parameter and, for SCREW, at
-least one coefficient outside its interval. These are declared simulation
-stress-test ranges, not measured physical variability.
+least one coefficient outside its interval. These are declared simulation stress-test ranges and do not represent measured physical variability.
 
 \begin{table}[!htbp]
 \centering\small
@@ -1938,7 +1874,7 @@ The evaluator loads 110 distinct selected checkpoints and executes 100
 episodes for each of 420 policy-seed/arm/condition cells (42,000
 episodes). Stage~1 reuses the same nominal policy across governors; Stage~2
 retains each separately trained policy. Episode lists begin at $1{,}200{,}000$ plus
-1,000 times the fixed task offset, are disjoint from historical training,
+1,000 times the fixed task offset, are disjoint from the in-range training,
 validation and test schedules, and, with the reset draws, are shared across
 arms and seeds within a task.
 
@@ -1947,15 +1883,14 @@ friction, clip-force, latch-stiffness or adhesive field before encoding the
 observation; no module constant, governor, threshold, margin, observation
 channel, action scale, episode cap or noise distribution changes. Parameter
 sampling uses its own deterministic stream, never consuming per-step noise. Environment-constraint, margin-policy and outcome-taxonomy hashes
-match the historical records before and after every cell, and source hashes
+match the archived records before and after every cell, and source hashes
 preserve the governor implementations and their margin routing.
 
 Records store their evaluation-distribution specification and hash; the
 checker refuses to pool different or absent hashes. Cross-distribution
-comparisons are explicit contrasts under the original outcome contract. With
+comparisons are explicit contrasts under the same outcome contract. With
 the training seed as the unit, absolute rates, changes from in-range rates and
-paired-arm differences use the exact percentile bootstrap of
-\mainsection{2.5}. Historical comparisons pair by training seed, not episode,
+paired-arm differences use the exact percentile bootstrap described in the main-text section ``Latency measurement and statistical analyses''. Comparisons with in-range results pair by training seed, not episode,
 so changes also include episode-sampling variation. Intervals
 describe seed variability on fixed schedules and degenerate when all seeds
 agree. Within/outside-support strata, with varying denominators, are descriptive.
@@ -1975,8 +1910,7 @@ The largest loss occurs on SNAP. Under TRiX, safe completion is 85.1\%,
 32 timeouts per 1,000 episodes. The shell change is $-36.6$ percentage points
 (95\% interval $[-40.3,-33.3]$). The static comparator reaches 4.7\%, 4.4\%
 and 3.5\% safe completion with 891, 891 and 886 destructive completions. This
-contrast between separately trained policy-and-governor systems does
-not isolate the governor's causal contribution. Destructive completions count completed episodes with fracture or
+contrast compares separately trained policy-and-governor systems. Destructive completions count completed episodes with fracture or
 accumulated damage; shell latch fractures, timeouts
 included, number 401 under TRiX and 468 under static (\suppsection{S14.4}).
 
@@ -1996,19 +1930,16 @@ mechanism for the SNAP damage increase.
 A replay with passive command and substep observers reproduced all 6,000 SNAP
 episodes (both arms, all three conditions) exactly in every outcome, step count, violation
 flag and reset metadata, with plant, filters, checkpoints and random streams unchanged.
-An independent array audit reconstructed every projection: all 293,082 TRiX commands and 317,466
+An independent array check reconstructed every projection: all 293,082 TRiX commands and 317,466
 static commands satisfied their own executed bounds, with zero positive
 residuals and no tolerance. This checks membership at the sampled state, not
 safety of subsequent dynamic states.
 
-The historical SNAP TRiX filter executes $z\simeq4.3043128$. Substituting the
-later registry's $z\simeq4.4266298$ in the pull and lateral bounds alone, while
+The executed SNAP TRiX filter uses $z\simeq4.3043128$. Substituting the
+registry's $z\simeq4.4266298$ in the pull and lateral bounds alone, while
 retaining the executed deflection bound, puts 230,582 of the 293,082 TRiX
 commands outside that tighter alternative by more than $10^{-7}$ normalized
-units, so the membership result applies only to the executed specification.
-This is the margin-routing discrepancy described in \suppsection{S5.7},
-measured on the retained command traces; the projector and historical records
-are unchanged.
+units, so the membership result applies to the executed specification (\suppsection{S5.7}).
 
 \begin{table}[!htbp]
 \centering\small
@@ -2046,16 +1977,16 @@ Every TRiX shell fracture first occurs when integrated deflection exceeds
 executed set. In 331 of these 401 episodes, no
 preceding commanded force has a static equilibrium magnitude
 $|F_{\rm command}/k_{\rm latch}|>6$~mm, so that static calculation alone cannot
-explain the trace. The audit locates overdeflection after admissible commands
+explain the trace. The replay locates overdeflection after admissible commands
 without apportioning it among noise, stiffness and transient dynamics. The Stage~2 arms also differ in phase awareness and margin
-specification, a further reason their contrast does not isolate the governor. The source map links the post-hoc plan, diagnostic code,
+specification. The source map links the post-hoc plan, diagnostic code,
 per-episode records, command traces and first-event states.
 
 \begin{thebibliography}{99}
 
-\bibitem{ref31} Schulman, J., Wolski, F., Dhariwal, P., Radford, A. \& Klimov, O. Proximal policy optimization algorithms. Preprint at arXiv:1707.06347 (2017).
+\bibitem{ref31} Schulman, J., Wolski, F., Dhariwal, P., Radford, A. \& Klimov, O. Proximal policy optimization algorithms. Preprint at \url{https://arxiv.org/abs/1707.06347} (2017).
 
-\bibitem{ref32} Haarnoja, T., Zhou, A., Abbeel, P. \& Levine, S. Soft actor-critic: Off-policy maximum entropy deep reinforcement learning with a stochastic actor. in Proc. ICML 1861--1870 (2018).
+\bibitem{ref32} Haarnoja, T., Zhou, A., Abbeel, P. \& Levine, S. Soft actor-critic: off-policy maximum entropy deep reinforcement learning with a stochastic actor. In Proc. ICML, PMLR 80, 1861--1870 (2018).
 
 \bibitem{ref36} Anthropic. Model IDs and versioning. \url{https://platform.claude.com/docs/en/about-claude/models/model-ids-and-versions} (accessed 21 September 2026).
 

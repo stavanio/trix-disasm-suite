@@ -1,7 +1,7 @@
 # TRiX: paper reference
 
-Source and compact evidence for **TRiX: Task-conditioned execution governance
-for robotic disassembly**, revised manuscript COMMSENG-26-0216 for
+Source and compact evidence for **TRiX: Neuro-Symbolic Safety for Foundation
+Model Agents in Robotic Disassembly**, revised manuscript COMMSENG-26-0216 for
 Communications Engineering. Authors and citation metadata: [CITATION.cff](CITATION.cff).
 
 ## Start here
@@ -59,5 +59,5 @@ unchanged. Their [rendering guide](docs/workspace_rendering.md) identifies input
 
 ## Release
 
-The code for the resubmission is tagged `v1.0-resubmission`. Cite the paper and
+The code is tagged `v1.0`. Cite the paper and
 that release. Git history and the evidence archive retain superseded work.

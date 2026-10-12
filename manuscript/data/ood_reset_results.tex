@@ -2,31 +2,66 @@
 \begingroup\small
 \setlength{\tabcolsep}{3pt}
 \renewcommand{\arraystretch}{1.2}
-\begin{longtable}{@{}L{1.03in}L{1.05in}rccc@{}}
-\caption{Prospective reset-distribution evaluation. ID gives historical in-range safe completion (\%). Shifted entries show mean \%; change from ID (percentage points); and exact 95\% seed-bootstrap interval. Each entry uses ten training seeds with 100 episodes each. Historical contrasts are not episode-paired. Shell draws are outside training support. S1/S2: Stages 1/2. Prev.: matched 15-N preventive specification.}\label{tab:ood-safe}\\
-\toprule Task/policy & Arm & ID & $1.5\times$ & $2\times$ & Shell $2\times$\\\midrule\endfirsthead
-\multicolumn{6}{l}{\small\itshape Table~\ref{tab:ood-safe} (continued)}\\
-\toprule Task/policy & Arm & ID & $1.5\times$ & $2\times$ & Shell $2\times$\\\midrule\endhead
-\shortstack[l]{SCREW\\S1 SAC} & Matched QP & 88.7 & \shortstack{87.9\\{\scriptsize $\Delta$ -0.8}\\{\scriptsize [-1.3, -0.4]}} & \shortstack{88.3\\{\scriptsize $\Delta$ -0.4}\\{\scriptsize [-1.7, +0.7]}} & \shortstack{87.9\\{\scriptsize $\Delta$ -0.8}\\{\scriptsize [-1.8, +0.1]}}\\*
- & TRiX & 88.7 & \shortstack{87.9\\{\scriptsize $\Delta$ -0.8}\\{\scriptsize [-1.3, -0.4]}} & \shortstack{88.3\\{\scriptsize $\Delta$ -0.4}\\{\scriptsize [-1.7, +0.7]}} & \shortstack{87.9\\{\scriptsize $\Delta$ -0.8}\\{\scriptsize [-1.8, +0.1]}}\\
+\begin{longtable}{@{}llrlrrr@{}}
+\caption{Prospective reset-distribution evaluation. ID gives in-range safe completion (\%). Each shifted condition gives mean safe completion (\%), its change $\Delta$ from ID (percentage points) and the exact 95\% seed-bootstrap interval of that change. Each entry uses ten training seeds with 100 episodes each. Changes from ID are not episode-paired. Shell draws are outside training support. S1/S2: Stages 1/2. Prev.: matched 15-N preventive specification.}\label{tab:ood-safe}\\
+\toprule Task/policy & Arm & ID & Condition & Safe & $\Delta$ & 95\% interval\\\midrule\endfirsthead
+\multicolumn{7}{l}{\small\itshape Table~\ref{tab:ood-safe} (continued)}\\
+\toprule Task/policy & Arm & ID & Condition & Safe & $\Delta$ & 95\% interval\\\midrule\endhead
+SCREW S1 SAC & Matched QP & 88.7 & $1.5\times$ & 87.9 & $-0.8$ & $[-1.3,\,-0.4]$\\*
+ &  &  & $2\times$ & 88.3 & $-0.4$ & $[-1.7,\,0.7]$\\*
+ &  &  & Shell $2\times$ & 87.9 & $-0.8$ & $[-1.8,\,0.1]$\\*
+\addlinespace[2pt]
+ & TRiX & 88.7 & $1.5\times$ & 87.9 & $-0.8$ & $[-1.3,\,-0.4]$\\*
+ &  &  & $2\times$ & 88.3 & $-0.4$ & $[-1.7,\,0.7]$\\*
+ &  &  & Shell $2\times$ & 87.9 & $-0.8$ & $[-1.8,\,0.1]$\\
 \midrule
-\shortstack[l]{SCREW\\S1 PPO} & Matched QP & 60.0 & \shortstack{59.9\\{\scriptsize $\Delta$ -0.1}\\{\scriptsize [-0.3, 0.0]}} & \shortstack{59.9\\{\scriptsize $\Delta$ -0.1}\\{\scriptsize [-0.3, 0.0]}} & \shortstack{59.9\\{\scriptsize $\Delta$ -0.1}\\{\scriptsize [-0.3, 0.0]}}\\*
- & TRiX & 60.0 & \shortstack{59.9\\{\scriptsize $\Delta$ -0.1}\\{\scriptsize [-0.3, 0.0]}} & \shortstack{59.9\\{\scriptsize $\Delta$ -0.1}\\{\scriptsize [-0.3, 0.0]}} & \shortstack{59.9\\{\scriptsize $\Delta$ -0.1}\\{\scriptsize [-0.3, 0.0]}}\\
+SCREW S1 PPO & Matched QP & 60.0 & $1.5\times$ & 59.9 & $-0.1$ & $[-0.3,\,0.0]$\\*
+ &  &  & $2\times$ & 59.9 & $-0.1$ & $[-0.3,\,0.0]$\\*
+ &  &  & Shell $2\times$ & 59.9 & $-0.1$ & $[-0.3,\,0.0]$\\*
+\addlinespace[2pt]
+ & TRiX & 60.0 & $1.5\times$ & 59.9 & $-0.1$ & $[-0.3,\,0.0]$\\*
+ &  &  & $2\times$ & 59.9 & $-0.1$ & $[-0.3,\,0.0]$\\*
+ &  &  & Shell $2\times$ & 59.9 & $-0.1$ & $[-0.3,\,0.0]$\\
 \midrule
-\shortstack[l]{PCB\\S1 SAC} & Box & 0.0 & \shortstack{0.0\\{\scriptsize $\Delta$ 0.0}\\{\scriptsize [0.0, 0.0]}} & \shortstack{0.0\\{\scriptsize $\Delta$ 0.0}\\{\scriptsize [0.0, 0.0]}} & \shortstack{0.0\\{\scriptsize $\Delta$ 0.0}\\{\scriptsize [0.0, 0.0]}}\\*
- & TRiX & 100.0 & \shortstack{99.6\\{\scriptsize $\Delta$ -0.4}\\{\scriptsize [-0.7, -0.1]}} & \shortstack{99.6\\{\scriptsize $\Delta$ -0.4}\\{\scriptsize [-0.7, -0.1]}} & \shortstack{99.6\\{\scriptsize $\Delta$ -0.4}\\{\scriptsize [-0.7, -0.1]}}\\
+PCB S1 SAC & Box & 0.0 & $1.5\times$ & 0.0 & $0.0$ & $[0.0,\,0.0]$\\*
+ &  &  & $2\times$ & 0.0 & $0.0$ & $[0.0,\,0.0]$\\*
+ &  &  & Shell $2\times$ & 0.0 & $0.0$ & $[0.0,\,0.0]$\\*
+\addlinespace[2pt]
+ & TRiX & 100.0 & $1.5\times$ & 99.6 & $-0.4$ & $[-0.7,\,-0.1]$\\*
+ &  &  & $2\times$ & 99.6 & $-0.4$ & $[-0.7,\,-0.1]$\\*
+ &  &  & Shell $2\times$ & 99.6 & $-0.4$ & $[-0.7,\,-0.1]$\\
 \midrule
-\shortstack[l]{PCB\\S2 SAC} & Box & 100.0 & \shortstack{100.0\\{\scriptsize $\Delta$ 0.0}\\{\scriptsize [0.0, 0.0]}} & \shortstack{100.0\\{\scriptsize $\Delta$ 0.0}\\{\scriptsize [0.0, 0.0]}} & \shortstack{100.0\\{\scriptsize $\Delta$ 0.0}\\{\scriptsize [0.0, 0.0]}}\\*
- & TRiX & 99.8 & \shortstack{99.8\\{\scriptsize $\Delta$ 0.0}\\{\scriptsize [0.0, 0.0]}} & \shortstack{99.8\\{\scriptsize $\Delta$ 0.0}\\{\scriptsize [0.0, 0.0]}} & \shortstack{99.8\\{\scriptsize $\Delta$ 0.0}\\{\scriptsize [0.0, 0.0]}}\\
+PCB S2 SAC & Box & 100.0 & $1.5\times$ & 100.0 & $0.0$ & $[0.0,\,0.0]$\\*
+ &  &  & $2\times$ & 100.0 & $0.0$ & $[0.0,\,0.0]$\\*
+ &  &  & Shell $2\times$ & 100.0 & $0.0$ & $[0.0,\,0.0]$\\*
+\addlinespace[2pt]
+ & TRiX & 99.8 & $1.5\times$ & 99.8 & $0.0$ & $[0.0,\,0.0]$\\*
+ &  &  & $2\times$ & 99.8 & $0.0$ & $[0.0,\,0.0]$\\*
+ &  &  & Shell $2\times$ & 99.8 & $0.0$ & $[0.0,\,0.0]$\\
 \midrule
-\shortstack[l]{SNAP\\S2 SAC} & Static & 5.2 & \shortstack{4.7\\{\scriptsize $\Delta$ -0.5}\\{\scriptsize [-1.5, 0.0]}} & \shortstack{4.4\\{\scriptsize $\Delta$ -0.8}\\{\scriptsize [-2.4, 0.0]}} & \shortstack{3.5\\{\scriptsize $\Delta$ -1.7}\\{\scriptsize [-5.1, 0.0]}}\\*
- & TRiX & 96.5 & \shortstack{85.1\\{\scriptsize $\Delta$ -11.4}\\{\scriptsize [-13.5, -9.5]}} & \shortstack{78.2\\{\scriptsize $\Delta$ -18.3}\\{\scriptsize [-20.9, -16.1]}} & \shortstack{59.9\\{\scriptsize $\Delta$ -36.6}\\{\scriptsize [-40.3, -33.3]}}\\
+SNAP S2 SAC & Static & 5.2 & $1.5\times$ & 4.7 & $-0.5$ & $[-1.5,\,0.0]$\\*
+ &  &  & $2\times$ & 4.4 & $-0.8$ & $[-2.4,\,0.0]$\\*
+ &  &  & Shell $2\times$ & 3.5 & $-1.7$ & $[-5.1,\,0.0]$\\*
+\addlinespace[2pt]
+ & TRiX & 96.5 & $1.5\times$ & 85.1 & $-11.4$ & $[-13.5,\,-9.5]$\\*
+ &  &  & $2\times$ & 78.2 & $-18.3$ & $[-20.9,\,-16.1]$\\*
+ &  &  & Shell $2\times$ & 59.9 & $-36.6$ & $[-40.3,\,-33.3]$\\
 \midrule
-\shortstack[l]{CRANK\\S2 SAC} & Static & 0.0 & \shortstack{0.0\\{\scriptsize $\Delta$ 0.0}\\{\scriptsize [0.0, 0.0]}} & \shortstack{0.0\\{\scriptsize $\Delta$ 0.0}\\{\scriptsize [0.0, 0.0]}} & \shortstack{0.0\\{\scriptsize $\Delta$ 0.0}\\{\scriptsize [0.0, 0.0]}}\\*
- & TRiX & 49.4 & \shortstack{47.6\\{\scriptsize $\Delta$ -1.8}\\{\scriptsize [-3.0, -0.6]}} & \shortstack{47.6\\{\scriptsize $\Delta$ -1.8}\\{\scriptsize [-3.0, -0.6]}} & \shortstack{47.6\\{\scriptsize $\Delta$ -1.8}\\{\scriptsize [-3.0, -0.6]}}\\
+CRANK S2 SAC & Static & 0.0 & $1.5\times$ & 0.0 & $0.0$ & $[0.0,\,0.0]$\\*
+ &  &  & $2\times$ & 0.0 & $0.0$ & $[0.0,\,0.0]$\\*
+ &  &  & Shell $2\times$ & 0.0 & $0.0$ & $[0.0,\,0.0]$\\*
+\addlinespace[2pt]
+ & TRiX & 49.4 & $1.5\times$ & 47.6 & $-1.8$ & $[-3.0,\,-0.6]$\\*
+ &  &  & $2\times$ & 47.6 & $-1.8$ & $[-3.0,\,-0.6]$\\*
+ &  &  & Shell $2\times$ & 47.6 & $-1.8$ & $[-3.0,\,-0.6]$\\
 \midrule
-\shortstack[l]{BATTERY\\S2 SAC} & Prev. box & 100.0 & \shortstack{100.0\\{\scriptsize $\Delta$ 0.0}\\{\scriptsize [0.0, 0.0]}} & \shortstack{100.0\\{\scriptsize $\Delta$ 0.0}\\{\scriptsize [0.0, 0.0]}} & \shortstack{100.0\\{\scriptsize $\Delta$ 0.0}\\{\scriptsize [0.0, 0.0]}}\\*
- & Prev. TRiX & 100.0 & \shortstack{100.0\\{\scriptsize $\Delta$ 0.0}\\{\scriptsize [0.0, 0.0]}} & \shortstack{100.0\\{\scriptsize $\Delta$ 0.0}\\{\scriptsize [0.0, 0.0]}} & \shortstack{100.0\\{\scriptsize $\Delta$ 0.0}\\{\scriptsize [0.0, 0.0]}}\\
+BATTERY S2 SAC & Prev. box & 100.0 & $1.5\times$ & 100.0 & $0.0$ & $[0.0,\,0.0]$\\*
+ &  &  & $2\times$ & 100.0 & $0.0$ & $[0.0,\,0.0]$\\*
+ &  &  & Shell $2\times$ & 100.0 & $0.0$ & $[0.0,\,0.0]$\\*
+\addlinespace[2pt]
+ & Prev. TRiX & 100.0 & $1.5\times$ & 100.0 & $0.0$ & $[0.0,\,0.0]$\\*
+ &  &  & $2\times$ & 100.0 & $0.0$ & $[0.0,\,0.0]$\\*
+ &  &  & Shell $2\times$ & 100.0 & $0.0$ & $[0.0,\,0.0]$\\
 \bottomrule\end{longtable}\endgroup
 
 \begingroup\small\setlength{\tabcolsep}{4pt}\renewcommand{\arraystretch}{1.15}
@@ -37,58 +72,58 @@
 \toprule Task/policy/arm & Range & S & U & D & M & T & V & Within & Outside\\\midrule\endhead
 \shortstack[l]{SCREW S1 SAC\\Matched QP} & $1.5\times$ & 879 & 21 & 0 & 0 & 100 & 31 & 389/440 & 490/560\\*
  & $2\times$ & 883 & 17 & 0 & 0 & 100 & 28 & 268/300 & 615/700\\*
- & Shell & 879 & 21 & 0 & 0 & 100 & 32 & n/a & 879/1000\\
+ & Shell & 879 & 21 & 0 & 0 & 100 & 32 & n/a & 879/1,000\\
 \addlinespace[3pt]
 \shortstack[l]{SCREW S1 SAC\\TRiX} & $1.5\times$ & 879 & 21 & 0 & 0 & 100 & 31 & 389/440 & 490/560\\*
  & $2\times$ & 883 & 17 & 0 & 0 & 100 & 28 & 268/300 & 615/700\\*
- & Shell & 879 & 21 & 0 & 0 & 100 & 32 & n/a & 879/1000\\
+ & Shell & 879 & 21 & 0 & 0 & 100 & 32 & n/a & 879/1,000\\
 \addlinespace[3pt]
 \shortstack[l]{SCREW S1 PPO\\Matched QP} & $1.5\times$ & 599 & 1 & 0 & 0 & 400 & 1 & 263/440 & 336/560\\*
  & $2\times$ & 599 & 1 & 0 & 0 & 400 & 1 & 180/300 & 419/700\\*
- & Shell & 599 & 1 & 0 & 0 & 400 & 1 & n/a & 599/1000\\
+ & Shell & 599 & 1 & 0 & 0 & 400 & 1 & n/a & 599/1,000\\
 \addlinespace[3pt]
 \shortstack[l]{SCREW S1 PPO\\TRiX} & $1.5\times$ & 599 & 1 & 0 & 0 & 400 & 1 & 263/440 & 336/560\\*
  & $2\times$ & 599 & 1 & 0 & 0 & 400 & 1 & 180/300 & 419/700\\*
- & Shell & 599 & 1 & 0 & 0 & 400 & 1 & n/a & 599/1000\\
+ & Shell & 599 & 1 & 0 & 0 & 400 & 1 & n/a & 599/1,000\\
 \addlinespace[3pt]
-\shortstack[l]{PCB S1 SAC\\Box} & $1.5\times$ & 0 & 0 & 1000 & 0 & 0 & 1000 & 0/740 & 0/260\\*
- & $2\times$ & 0 & 0 & 1000 & 0 & 0 & 1000 & 0/530 & 0/470\\*
- & Shell & 0 & 0 & 1000 & 0 & 0 & 1000 & n/a & 0/1000\\
+\shortstack[l]{PCB S1 SAC\\Box} & $1.5\times$ & 0 & 0 & 1,000 & 0 & 0 & 1,000 & 0/740 & 0/260\\*
+ & $2\times$ & 0 & 0 & 1,000 & 0 & 0 & 1,000 & 0/530 & 0/470\\*
+ & Shell & 0 & 0 & 1,000 & 0 & 0 & 1,000 & n/a & 0/1,000\\
 \addlinespace[3pt]
 \shortstack[l]{PCB S1 SAC\\TRiX} & $1.5\times$ & 996 & 4 & 0 & 0 & 0 & 4 & 736/740 & 260/260\\*
  & $2\times$ & 996 & 4 & 0 & 0 & 0 & 4 & 527/530 & 469/470\\*
- & Shell & 996 & 4 & 0 & 0 & 0 & 4 & n/a & 996/1000\\
+ & Shell & 996 & 4 & 0 & 0 & 0 & 4 & n/a & 996/1,000\\
 \addlinespace[3pt]
-\shortstack[l]{PCB S2 SAC\\Box} & $1.5\times$ & 1000 & 0 & 0 & 0 & 0 & 0 & 740/740 & 260/260\\*
- & $2\times$ & 1000 & 0 & 0 & 0 & 0 & 0 & 530/530 & 470/470\\*
- & Shell & 1000 & 0 & 0 & 0 & 0 & 0 & n/a & 1000/1000\\
+\shortstack[l]{PCB S2 SAC\\Box} & $1.5\times$ & 1,000 & 0 & 0 & 0 & 0 & 0 & 740/740 & 260/260\\*
+ & $2\times$ & 1,000 & 0 & 0 & 0 & 0 & 0 & 530/530 & 470/470\\*
+ & Shell & 1,000 & 0 & 0 & 0 & 0 & 0 & n/a & 1,000/1,000\\
 \addlinespace[3pt]
 \shortstack[l]{PCB S2 SAC\\TRiX} & $1.5\times$ & 998 & 2 & 0 & 0 & 0 & 2 & 738/740 & 260/260\\*
  & $2\times$ & 998 & 2 & 0 & 0 & 0 & 2 & 529/530 & 469/470\\*
- & Shell & 998 & 2 & 0 & 0 & 0 & 2 & n/a & 998/1000\\
+ & Shell & 998 & 2 & 0 & 0 & 0 & 2 & n/a & 998/1,000\\
 \addlinespace[3pt]
 \shortstack[l]{SNAP S2 SAC\\Static} & $1.5\times$ & 47 & 40 & 891 & 0 & 22 & 953 & 35/680 & 12/320\\*
  & $2\times$ & 44 & 37 & 891 & 0 & 28 & 956 & 26/520 & 18/480\\*
- & Shell & 35 & 30 & 886 & 0 & 49 & 965 & n/a & 35/1000\\
+ & Shell & 35 & 30 & 886 & 0 & 49 & 965 & n/a & 35/1,000\\
 \addlinespace[3pt]
 \shortstack[l]{SNAP S2 SAC\\TRiX} & $1.5\times$ & 851 & 0 & 136 & 0 & 13 & 149 & 646/680 & 205/320\\*
  & $2\times$ & 782 & 0 & 201 & 0 & 17 & 218 & 488/520 & 294/480\\*
- & Shell & 599 & 0 & 369 & 0 & 32 & 401 & n/a & 599/1000\\
+ & Shell & 599 & 0 & 369 & 0 & 32 & 401 & n/a & 599/1,000\\
 \addlinespace[3pt]
-\shortstack[l]{CRANK S2 SAC\\Static} & $1.5\times$ & 0 & 0 & 0 & 0 & 1000 & 150 & 0/660 & 0/340\\*
- & $2\times$ & 0 & 0 & 0 & 0 & 1000 & 150 & 0/530 & 0/470\\*
- & Shell & 0 & 0 & 0 & 0 & 1000 & 150 & n/a & 0/1000\\
+\shortstack[l]{CRANK S2 SAC\\Static} & $1.5\times$ & 0 & 0 & 0 & 0 & 1,000 & 150 & 0/660 & 0/340\\*
+ & $2\times$ & 0 & 0 & 0 & 0 & 1,000 & 150 & 0/530 & 0/470\\*
+ & Shell & 0 & 0 & 0 & 0 & 1,000 & 150 & n/a & 0/1,000\\
 \addlinespace[3pt]
 \shortstack[l]{CRANK S2 SAC\\TRiX} & $1.5\times$ & 476 & 2 & 22 & 0 & 500 & 95 & 318/660 & 158/340\\*
  & $2\times$ & 476 & 2 & 22 & 0 & 500 & 95 & 253/530 & 223/470\\*
- & Shell & 476 & 2 & 22 & 0 & 500 & 95 & n/a & 476/1000\\
+ & Shell & 476 & 2 & 22 & 0 & 500 & 95 & n/a & 476/1,000\\
 \addlinespace[3pt]
-\shortstack[l]{BATTERY S2 SAC\\Prev. box} & $1.5\times$ & 1000 & 0 & 0 & 0 & 0 & 0 & 760/760 & 240/240\\*
- & $2\times$ & 1000 & 0 & 0 & 0 & 0 & 0 & 610/610 & 390/390\\*
- & Shell & 1000 & 0 & 0 & 0 & 0 & 0 & n/a & 1000/1000\\
+\shortstack[l]{BATTERY S2 SAC\\Prev. box} & $1.5\times$ & 1,000 & 0 & 0 & 0 & 0 & 0 & 760/760 & 240/240\\*
+ & $2\times$ & 1,000 & 0 & 0 & 0 & 0 & 0 & 610/610 & 390/390\\*
+ & Shell & 1,000 & 0 & 0 & 0 & 0 & 0 & n/a & 1,000/1,000\\
 \addlinespace[3pt]
-\shortstack[l]{BATTERY S2 SAC\\Prev. TRiX} & $1.5\times$ & 1000 & 0 & 0 & 0 & 0 & 0 & 760/760 & 240/240\\*
- & $2\times$ & 1000 & 0 & 0 & 0 & 0 & 0 & 610/610 & 390/390\\*
- & Shell & 1000 & 0 & 0 & 0 & 0 & 0 & n/a & 1000/1000\\
+\shortstack[l]{BATTERY S2 SAC\\Prev. TRiX} & $1.5\times$ & 1,000 & 0 & 0 & 0 & 0 & 0 & 760/760 & 240/240\\*
+ & $2\times$ & 1,000 & 0 & 0 & 0 & 0 & 0 & 610/610 & 390/390\\*
+ & Shell & 1,000 & 0 & 0 & 0 & 0 & 0 & n/a & 1,000/1,000\\
 \addlinespace[3pt]
 \bottomrule\end{longtable}\endgroup

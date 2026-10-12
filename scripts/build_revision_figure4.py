@@ -27,7 +27,7 @@ PANELS = [
     ('c', 'CRANK: filter-aware governance', [
         ('CRANK static', 'stage2', 'CRANK', 'static_clip', 'Static'),
         ('CRANK TRiX', 'stage2', 'CRANK', 'trix', 'TRiX')]),
-    ('d', 'PRY: simpler restriction is sufficient', [
+    ('d', 'PRY: filter-aware governance', [
         ('PRY static', 'stage2', 'PRY', 'static_clip', 'Static'),
         ('PRY TRiX', 'stage2', 'PRY', 'trix', 'TRiX')]),
 ]
@@ -94,8 +94,7 @@ def build(output):
         ax.set_axisbelow(True)
         ax.text(.02, .96, f'({panel})', transform=ax.transAxes,
                 va='top', fontweight='bold')
-    fig.suptitle('Seed-level safe completion from the frozen production experiments', fontsize=12)
-    fig.tight_layout(rect=(0, 0, 1, .95))
+    fig.tight_layout()
     output.mkdir(parents=True, exist_ok=True)
     pdf = output / 'figure4_seed_distributions.pdf'
     fig.savefig(pdf, metadata={'Title': 'TRiX Figure 4: seed-level safe completion',

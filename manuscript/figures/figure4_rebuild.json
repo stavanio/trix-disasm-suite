@@ -3,7 +3,7 @@
   "generator": "scripts/build_revision_figure4.py",
   "provenance": "Replacement generator from retained seed-level data; historical generator unavailable.",
   "historical_pdf_sha256": "399ed017a0b0b4d55509cf7782c0396e67dc132649e033fac0255eba6ce73e79",
-  "generator_sha256": "0f3ac07162bedbcfc94b89c2927d619be5da41b1f94dcefc342dfadafcacbb39",
+  "generator_sha256": "1d02a28532222b7bd264796c89d69e2cb3a4ebbfc292ea389c271aeed0f26e0e",
   "inputs": {
     "manuscript/figures/figure4_seed_data.csv": "d2394c3785a12a568761866cab5c3a2a8d73004ce9461c030c13b1ee7d35b417",
     "manuscript/data/seed_statistics_input.json": "8913c568e9d864a29eb51f997c607f291ad8ef3ad0bd51fa07451cdcd87663e5"
@@ -31,6 +31,6 @@
     "seed_offsets": "fixed horizontal offsets only",
     "seed_colors": "tab10, seed order 0-9"
   },
-  "pdf_sha256": "f9172744c34e5e46c2aff672c338b47e826bc2425bf9397cecaa17131457ca53",
+  "pdf_sha256": "439ab7c27859aa0eb0e2e83dd56f665114053a6b251b869115c752292910f352",
   "new_experiments": false
 }

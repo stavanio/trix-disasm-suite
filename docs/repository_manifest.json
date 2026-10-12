@@ -2141,7 +2141,7 @@
   ],
   "locked_renderer_files": {
     "manuscript/figures/trix_architecture_fig1.svg": "dde96746caee12117c04fd9eb3b04067dd2136cf9302dbb5649a20a53f8d8e08",
-    "manuscript/figures/figure4_seed_distributions.pdf": "f9172744c34e5e46c2aff672c338b47e826bc2425bf9397cecaa17131457ca53",
+    "manuscript/figures/figure4_seed_distributions.pdf": "439ab7c27859aa0eb0e2e83dd56f665114053a6b251b869115c752292910f352",
     "manuscript/figures/b601_hardware_sequence.jpg": "be8c2837c63eef4af3d71ca6c7e70a4085e1472270259b63cabd84c2cf72d205",
     "manuscript/figures/disasm_bench_workspaces.pdf": "13d4c9de927fcfd2096512ca1d9c7f0d930ca1bb1eaa27de82483ccb82f76755",
     "manuscript/figures/disasm_bench_workspaces.png": "a7dfeb1cedd89c1c173483234b6045f2db66863a3787c6c8461c371ca2002c36",

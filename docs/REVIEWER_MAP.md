@@ -30,8 +30,8 @@ are TeX file lines, not journal margin line numbers.
 
 R4.1-R4.13 are response identifiers for the unnumbered original report.
 Verified coverage is not a claim of reviewer acceptance: R4.2 supplies a
-matched command-set QP, and R4.6 withdraws independent physical-validation
-claims. Those scope choices are explicit in the replies.
+matched command-set QP, and R4.6 makes no independent physical-validation
+claim. Those scope choices are explicit in the replies.
 
 | ID | Request | Status | Manuscript sections |
 |---|---|---|---|

@@ -137,6 +137,8 @@ def cross_tex():
             key = prefix + '.'.join(str(n) for n in counts[:level+1])
             owner = 'Supplementary Information' if prefix else 'main text'
             lines.append(r'\expandafter\def\csname sectiontitle'+key+r'\endcsname{'+owner+", ``"+match[2]+"''}")
+            lines.append(r'\expandafter\def\csname sectionname'+key+r'\endcsname{``'+match[2]+"''}")
+    lines.append(r'\newcommand{\suppname}[1]{\csname sectionname#1\endcsname}')
     return '\n'.join(lines)+'\n'
 
 
@@ -193,6 +195,9 @@ def location_tex(data):
     for k in sorted(used_sections):
         value = data['sections'][k]
         prefix = 'Supplementary ' if value['source'] == SUPPLEMENT else ''
+        twins = [s for s in data['sections'].values() if s['title'] == value['title'] and s['source'] == value['source']]
+        if len(twins) > 1 and value['source'] != SUPPLEMENT:
+            prefix = data['sections'][k.split('.')[0]]['title'] + ', '
         lines.append(f"\\expandafter\\def\\csname mssection{k}\\endcsname{{{prefix}``{value['title']}'' (p.~{value['page']})}}")
     for k in sorted(used_items):
         value = data['labels'][k]
@@ -397,8 +402,8 @@ def main():
         'are TeX file lines, not journal margin line numbers.', '',
         'R4.1-R4.13 are response identifiers for the unnumbered original report.',
         'Verified coverage is not a claim of reviewer acceptance: R4.2 supplies a',
-        'matched command-set QP, and R4.6 withdraws independent physical-validation',
-        'claims. Those scope choices are explicit in the replies.', '',
+        'matched command-set QP, and R4.6 makes no independent physical-validation',
+        'claim. Those scope choices are explicit in the replies.', '',
         '| ID | Request | Status | Manuscript sections |', '|---|---|---|---|']
     for e in entries:
         guide.append('| '+e['id']+' | '+e['title']+' | '+e['status'].replace('_',' ')+' | '+', '.join(e['sections'])+' |')
