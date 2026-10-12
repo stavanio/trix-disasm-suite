@@ -54,9 +54,9 @@
 \begin{document}
 \raggedright
 \thispagestyle{plain}
-{\fontsize{20}{24}\selectfont\bfseries Response to the editor\\and reviewers\par}
+{\fontsize{16}{20}\selectfont\bfseries Response to the editor and reviewers\par}
 \medskip
-{\bfseries\raggedright TRiX: Neuro-Symbolic Safety for Foundation Model\\Agents in Robotic Disassembly\par}
+{\bfseries\raggedright TRiX: Neuro-Symbolic Safety for Foundation Model Agents in Robotic Disassembly\par}
 Manuscript COMMSENG-26-0216-T\par
 Stavan Dholakia, Shivani Shukla, Abhishek Singh and Aditya Gazta\par
 October 2026
@@ -209,7 +209,7 @@ This is an important practical question, and we thank the reviewer for raising i
 tightening and the solution or rejection rule) and checking feasibility; the physical specification remains a design input. The procedural
 experiment (six set families, 200 held-out instances) tests representation
 breadth, and the sensitivity experiment (21 constants, five multipliers) tests
-specification dependence. TRiX does not discover specifications (Methods, ``Scope of the contract''). Additional convex constraints keep the projection well defined, and the QP route adds one linear constraint per halfspace; measured per-call latency across the six task-specific implementations stays between 1.1 and 11.8~\textmu s.
+specification dependence. TRiX does not discover specifications (Methods, ``Scope of the contract''). Additional closed convex constraints preserve convexity, and projection remains well defined whenever their intersection with the admissible set is nonempty; the QP route adds one linear inequality per halfspace. Across the six task-specific TRiX implementations, median complete-filter latency ranges from 1.123 to 11.770~\textmu s.
 \locations{\mssec{3.1.4}; \mssec{4}; \mssec{2.1}; \mssec{2.2.3}; \mssec{S10}}
 \evidence{benchmark/geometry_gen.py; results/geometry_bench_heldout.json; results/sensitivity.json}
 
@@ -335,7 +335,7 @@ review prompted major improvements to the evidence, which we describe below.
 
 \response{R4.1}{Trained policies and experimental provenance}{Main issue: the headline results use random actions, not trained policies.}
 We thank the reviewer for the close examination of both the experiments and the code. The headline results now come from recorded Stable-Baselines3 PPO and SAC experiments (ten seeds, validated
-checkpoint selection, held-out evaluation), reported as post-hoc governance (Stage~1) and filter-aware training (Stage~2) for both algorithms. The trained algorithms are PPO and SAC; learned constraint representations are reported separately. Every policy trains for 15,000 environment steps; a predeclared rule selects checkpoints between 2,000 and 14,000 steps, and within a seed every Stage~1 arm evaluates the same selected policy. The release contains the selected policies, candidate checkpoints and evaluation shards. Exact-arm matching links 1,020 aggregates to 20,400 shards and computes each displayed count from the selected checkpoints' shards, with BATTERY arms counted separately (Stage~1 SAC/TRiX is 20.0\%; \mssec{S9.4}). Seed-level
+checkpoint selection, held-out evaluation), reported as post-hoc governance (Stage~1) and filter-aware training (Stage~2) for both algorithms. The trained algorithms are PPO and SAC; learned constraint representations are reported separately. Every policy has a requested budget of 15,000 environment steps; a predeclared rule selects checkpoints between 2,000 and 14,000 steps, and within a seed every Stage~1 arm evaluates the same selected policy. The release contains the selected policies, candidate checkpoints and evaluation shards. Exact-arm matching links 1,020 aggregates to 20,400 shards and computes each displayed count from the selected checkpoints' shards, with BATTERY arms counted separately (Stage~1 SAC/TRiX is 20.0\%; \mssec{S9.4}). Seed-level
 inference replaces the submitted episode-stream tests.
 \locations{\mssec{2.2.2}; \mssec{2.5}; \mssec{S5}; \mssec{S6}; \mssec{S9}; \msitem{tab:submitted-4}; \msitem{tab:stage2-key}}
 \evidence{training/sb3_runner.py; archive/research/benchmark/disasm_bench.py; archive/verification/policy_record_linkage.json}
@@ -347,10 +347,10 @@ The control is a command-space QP and makes no forward-invariance claim. The QP 
 post-hoc evaluation the analytical reference, QP and TRiX each reach 88.7\%
 safe completion for SAC and 60.0\% for PPO, and with the restriction active during training TRiX reaches 100\% for both algorithms. This equivalence holds for a fixed correction metric. Replaying the same frozen policies with one axial
 scale in the metric halved or doubled, and the admissible set unchanged,
-lowers TRiX safe completion to 67.7\% (halved) and 76.2\% (doubled) for SAC, and to 50.0\% and 20.0\% for PPO; the replay reproduces all 20 archived counts at the declared
-scale (\mssec{S9.5}). SCREW's constraint acts on the commanded velocities themselves, so a CBF-QP enforcing it has relative degree zero and reduces to this matched command-space QP; barriers on realized states are a separate construction.
+lowers TRiX safe completion to 67.7\% (halved) and 76.2\% (doubled) for SAC, and to 50.0\% and 20.0\% for PPO, where every lost episode is a timeout and no episode records a violation; the replay reproduces all 20 archived counts at the declared
+scale (\mssec{S9.5}). The analytical SCREW constraint is an algebraic constraint on the commanded velocities; a QP that enforces it as a hard constraint with the same objective is the matched control reported here. Barriers on realized states would be a different specification, which the Discussion identifies as the route to state-aware constraints.
 \locations{\mssec{3.1.2}; \mssec{2.1}; \mssec{2.2.2}; \mssec{2.2.3}; \mssec{S2.1}; \mssec{S8}; \mssec{S9.5}; \msitem{tab:submitted-4}}
-\evidence{baselines/screw_solvers.py; baselines/screw_filters.py; results/stage1/stage1_records.json; results/stage2/stage2_records.json; experiments/screw_metric_sensitivity.py; results/screw_metric_sensitivity/summary.json}
+\evidence{baselines/screw_solvers.py; baselines/screw_filters.py; results/stage1/stage1_records.json; results/stage2/stage2_records.json; experiments/screw_metric_sensitivity.py; results/screw_metric_sensitivity/summary.json; scripts/screw_metric_diagnostics.py; results/screw_metric_sensitivity/diagnostics.json}
 
 \response{R4.3}{CBF capabilities}{Table 1 is also wrong about CBFs.}
 We thank the reviewer for the guidance on control barrier functions. Table~1 now describes the CBF-QP formulation with its citations and assumptions, including nonlinear and state-dependent safe sets; the Introduction cites higher-relative-degree and time-varying barriers, and the text separates command-set membership from forward invariance.
@@ -361,9 +361,9 @@ We thank the reviewer for the guidance on control barrier functions. Table~1 now
 We appreciate the reviewer's careful reading of the theoretical section. Four representation properties, proved as propositions in the Supplementary Information, replace the ISS theorem and its guarantee: interval projection equals clipping; a phase-independent
 restriction safe in two phases lies in their intersection; an
 orientation-independent restriction loses authority for rotating
-anisotropic sets; and Gaussian tightening removes all command authority once $z\sigma\geq L$.
+anisotropic sets; and Gaussian tightening removes all nonzero authority once $z\sigma\geq L$, leaving an empty interval when $z\sigma>L$.
 They are representation and feasibility results, not stability theorems;
-policy adaptation is reported empirically. The execution contract closes with a scope statement: TRiX guarantees that a forwarded command satisfies the implemented constraint, with closed-loop stability and physical safety treated as separate analyses.
+policy adaptation is reported empirically. The execution contract closes with a scope statement: in exact arithmetic TRiX guarantees that a forwarded command satisfies the implemented constraint, the reported outcomes retain every violation recorded by the strict checks on forwarded float32 commands, and closed-loop stability and physical safety are separate analyses.
 \locations{\mssec{4}; \mssec{2.1}; \mssec{S3}}
 \evidence{manuscript/TRIX_REVISION.tex}
 
@@ -383,7 +383,7 @@ rather than excluded. The paper identifies calibration of the benchmark force, t
 \evidence{results/sensitivity.json; experiments/sensitivity.py; baselines/screw_solvers.py; assets/workspaces/environment_sources.json; results/runtime/summary.json}
 
 \response{R4.7}{Role of PyBullet}{The PyBullet environment sits in the repo but not the paper.}
-We thank the reviewer for asking about the simulator's role. All results come from the versioned analytical environments. PyBullet renders the six workspace panels from archived environment states, as the manuscript states and cites; the renders are for visualization only, and no result depends on the earlier PyBullet helix prototype.
+We thank the reviewer for asking about the simulator's role. All reported simulated dynamics and outcomes come from the versioned analytical environments. PyBullet renders the six workspace panels from archived environment states, as the manuscript states and cites; the renders are for visualization only, and no result depends on the earlier PyBullet helix prototype.
 \locations{\mssec{2.2.1}; \mssec{S4}; \msitem{fig:disasm-workspaces}; manuscript reference \mscite{ref33}}
 \evidence{manuscript/figures/workspaces/state_manifest.json; scripts/workspace_environment.py; archive/research/experiments/pybullet_helix.py}
 
@@ -456,7 +456,7 @@ proposals: clipping makes 2.9\% feasible, the learned affine model 0.0\%
 (unchanged from 500 to 20,000 fitting samples), nonlinear correction 78.0\%,
 iteration 92.3\%, and the analytical oracle and exact projection 100\%. This is
 a feasibility decomposition, not a safety ranking. The production PCB
-arms also differ in margin (0.100 N\,m box versus a 0.0871 N\,m robust radius), so the procedural benchmark isolates geometry; holding the box fixed, SAC
+arms also differ in margin (0.100 N\,m box versus a 0.0871 N\,m robust radius), so the procedural benchmark evaluates the implemented representations and correction pipelines on constructed sets; holding the box fixed, SAC
 goes from 0.0\% post hoc to 100.0\% with filter-aware training. 
 \locations{\mssec{3.1.1}; \mssec{3.1.3}; \mssec{3.1.4}; \mssec{2.2.2}; \mssec{2.2.3}; \mssec{S9.3}; \mssec{S10.2}; \mssec{S10.3}; \msitem{tab:procedural-geometry}}
 \evidence{results/safelayer_decomposition.json; baselines/pcb_filters.py; results/geometry_bench_heldout.json}

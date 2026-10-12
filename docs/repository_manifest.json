@@ -1532,6 +1532,20 @@
       "references": [
         "manuscript/TRIX_REVISION.tex"
       ]
+    },
+    "scripts/screw_metric_diagnostics.py": {
+      "role": "Per-family violation accounting and commanded-coupling residuals for the correction-metric replay, under both thread-torque sign conventions",
+      "references": [
+        "manuscript/TRIX_SUPPLEMENT.tex",
+        "R4.2"
+      ]
+    },
+    "results/screw_metric_sensitivity/diagnostics.json": {
+      "role": "Per-seed outcome categories, violation families and commanded-coupling residuals for the correction-metric replay",
+      "references": [
+        "manuscript/TRIX_SUPPLEMENT.tex",
+        "R4.2"
+      ]
     }
   },
   "entrypoints": [
@@ -1572,7 +1586,8 @@
     "hardware/examples/trix_physical_v1_approach_return_gravity.py",
     "hardware/examples/trix_physical_manipulation_v4_soft_grasp.py",
     "hardware/examples/trix_physical_manipulation_v4_soft_grasp_gravity.py",
-    "experiments/screw_metric_sensitivity.py"
+    "experiments/screw_metric_sensitivity.py",
+    "scripts/screw_metric_diagnostics.py"
   ],
   "tests": [
     "tests/test_battery_v2.py",

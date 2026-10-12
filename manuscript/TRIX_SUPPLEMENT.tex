@@ -150,7 +150,14 @@ $\epsilon=0.001$ m\,s$^{-1}$. The implemented command set is
 \end{array}\right\},
 \]
 where $\eta=10^{-6}\epsilon$ is the numerical interior offset and
-$r_{\rm int}$ the radial bound after the recorded stochastic margin.
+$r_{\rm int}$ the radial bound after the recorded stochastic margin. The
+forwarded command is cast to float32, and the commanded-coupling check uses the
+strict bound $\epsilon$. In 400,000 proposals drawn uniformly from $[-1.2,1.2]^3$
+(seed 0), 20 TRiX outputs exceeded $\epsilon$, the largest by
+$9.8\times10^{-11}$~m\,s$^{-1}$; in 100,000 such proposals, 6 matched-QP outputs
+did, the largest by $8.9\times10^{-11}$~m\,s$^{-1}$. These are observed values,
+not a bound over all inputs, and such steps count as violations in the reported
+outcomes.
 
 In the axial--angular slice, the convex polygon cut from the command square by
 the two helical halfspaces, admissible proposals pass unchanged and others move
@@ -295,8 +302,9 @@ which is exactly componentwise clipping. Therefore an exact Euclidean
 projector has no representational advantage over clipping when both
 enforce the same axis-aligned product set with the same margins.
 
-The result does not apply to admissible sets with coupled coordinates, state
-dependence, phase dependence, or a different physical margin.
+For state- or phase-dependent boxes the identity holds pointwise when both
+implementations use the same bounds. It does not make an axis-aligned box
+equivalent to a coupled admissible set or to one with a different physical margin.
 
 
 \Needspace*{8\baselineskip}
@@ -854,7 +862,7 @@ Outcome &
 rotating and $|F_z|>5$ N &
 $4.488\sigma$ &
 Damage accumulates above 5 N while rotating. With
-$\sigma_F=1.235$ N, $5-4.488\sigma_F<0$, so the executed operator holds axial force at zero while rotating.
+$\sigma_F=1.235$ N, $5-4.488\sigma_F<0$, so the tightened interval is empty; as an execution fallback the operator forwards zero axial force while rotating.
 \\
 
 CRANK &
@@ -1126,7 +1134,7 @@ Environment API & Gymnasium 1.3.0\\
 Policy network & MLP $[256,256]$\\
 Training device & CPU\\
 Production training seeds & 10 (0--9)\\
-Training budget & 15,000 environment steps per policy\\
+Training budget & 15,000 requested environment steps per policy\\
 Checkpoint interval & 1,000 training steps\\
 Initial validation & 30 episodes/checkpoint\\
 Screening arm & Stage~1: TRiX; Stage~2: training arm\\
@@ -1510,10 +1518,19 @@ PPO & 2 & 200 & 0 & 0 & 0 & 800 & 0\\
 
 
 No episode at any $\kappa$ ends in destructive completion or mechanical
-failure. Lost episodes mostly stall until timeout; for SAC, unsafe intact completions rise from 13 per 1,000 episodes at $\kappa=1$ to 23 at $\kappa=0.5$ and 138 at $\kappa=2$; the last column counts episodes with any recorded
-violation, whatever their outcome. Which admissible command replaces a
-proposal thus changes whether a frozen policy progresses, without admitting
-any inadmissible command; whether policies trained under a given metric adapt
+failure. For PPO, lost episodes stall until timeout, and no PPO episode records a
+violation. For SAC, halving the scale adds 200 timeouts per 1,000 episodes, while
+doubling it leaves completions unchanged at 900 per 1,000. Of the SAC unsafe intact
+completions, 12 of 13 at $\kappa=1$, 22 of 23 at $\kappa=0.5$ and all 138 at
+$\kappa=2$ carry a commanded-coupling flag from float32 boundary residuals, the
+largest $9.8\times10^{-11}$~m\,s$^{-1}$ (Supplementary Section ``Admissibility
+definitions and scope''); the others carry a radial-force flag. Replaying the same
+episodes with the thread-coupling torque $-kF_{\rm thread}$ replaced by
+$+kF_{\rm thread}$ (\path{scripts/screw_metric_diagnostics.py}) leaves every PPO count
+and every timeout unchanged and moves SAC safe completion by at most 0.9
+percentage points. The last column counts episodes with any recorded violation,
+whatever their outcome. Which admissible command replaces a
+proposal thus changes whether a frozen policy progresses, with the admissible set unchanged; whether policies trained under a given metric adapt
 to it was not tested.
 \section{Representation and prospective generalization studies}
 \subsection{Procedural admissible-set benchmark}
@@ -1551,7 +1568,7 @@ and 92.3\% iterated; the per-action analytical oracle and exact structured
 projection each reach 100\%.
 
 The action-affine result stays at 0.0\% as its training set grows from 500 to
-20,000 samples, a representational limitation of that model class. The
+20,000 samples; more fitting data did not remove this implementation's failure. The
 iterated nonlinear result is a proposal-feasibility rate: exact projection is
 given the declared set, while the learned models approximate it. The archived
 run uses seed 0, 20,000 fitting samples and 2,000 test proposals.
@@ -1595,7 +1612,7 @@ authority. The 2\% tolerance explains why clipping retains two of the 124
 box-excluded actions.
 
 The learned affine model retains the required action in 0.0\% of the
-box-sufficient group, where a context-free box succeeds on 100.0\%, so a learned affine model cannot represent a bounded box, which needs several signed inequalities. Context helps without making an approximate operator
+box-sufficient group, where a context-free box succeeds on 100.0\%, so the single learned affine inequality cannot represent a bounded box, which needs several signed inequalities. Context helps without making an approximate operator
 exact: the context-conditioned oracle's 36.3\% in the structure-required group
 measures authority retained by the implemented per-context approximation, not
 a generic tangent projection error rate. Exact projection's 100\% in both
@@ -1716,7 +1733,7 @@ visual-tilt comparison.
 The counts describe responses to the scaled encoding, not a common monotonic
 error trend across runs. Without an unscaled image control, the contribution of
 visual scaling cannot be separated from differences between model runs. The
-margin is the generator's normalized quantity; the models do not perceive it as a safety boundary.
+margin is the generator's normalized quantity and is not shown to the models.
 
 
 \section{Physical platform and trial records}
@@ -1755,8 +1772,8 @@ and largest Joints~1--6 residual \(0.122^\circ\); all recorded files passed thei
 \centering
 \small
 \caption{Video-backed B601-RS confirmation trials under the frozen
-implementation. A/P/R denotes the number of physically executed
-\texttt{ALLOW}/\texttt{PROJECT}/\texttt{REJECT} TRiX decisions. Max arm
+implementation. A/P/R counts the
+\texttt{ALLOW}/\texttt{PROJECT}/\texttt{REJECT} TRiX decisions in each trial. Max arm
 residual is the largest absolute start-to-final difference over Joints~1--6.
 Joint~7 is excluded because the gripper intentionally remains closed around
 the retained object. The operator manually positioned the object between the
@@ -1812,10 +1829,10 @@ limit 5.00 N, the largest feasible Gaussian multiplier is
 z_{\max}=\frac{5.00}{1.235}\approx4.05.
 \]
 
-The declared episode-level allowance requires $z=4.488$, which leaves no
-positive axial authority during rotation. The executed CRANK operator therefore
-holds the axial bound at zero while rotating, so it forwards commands with zero
-axial force, and axial extraction is commanded after rotation completes under
+The declared episode-level allowance requires $z=4.488$, so the tightened
+axial interval $|F_z|\leq 5-4.488\sigma$ is empty during rotation. As an execution
+fallback, the executed CRANK operator forwards zero axial force while rotating,
+and the reported CRANK outcomes describe that operator; axial extraction is commanded after rotation completes under
 the tightened 20-N structural limit. The noise model is not relaxed.
 
 
